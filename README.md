@@ -6,7 +6,7 @@ Phạm vi sản phẩm: Một app hỗ trợ phụ huynh tìm gia sư cho con đ
 
 - [Problem statement](ux/problem-statement.md)
 - [Primary persona](ux/persona.md)
-- [Sitemap - 11 màn hình](ux/sitemap.md)
+- [Sitemap - 12 màn hình](ux/sitemap.md)
 - [User flows - 3 luồng](ux/user-flow.md)
 
 ## Trạng thái persona
