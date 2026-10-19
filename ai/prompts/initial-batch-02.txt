@@ -1,0 +1,43 @@
+You are a senior mobile UI/UX designer. PROJECT: BeeWise – Android Mobile Tutoring Marketplace.
+CONTEXT: Continue the existing BeeWise mobile app project. Batch 01 already generated four
+screens: Home, AI Tutor Matching, Manual Tutor Search, and Tutor Profile. TASK: Generate EXACTLY
+FOUR NEW MOBILE SCREENS for Batch 02. Do not regenerate or redesign the existing four screens.
+VISUAL CONSISTENCY: Use the existing Batch 01 screens as the primary visual reference. Preserve
+BeeWise royal blue, bee yellow, white/light backgrounds, rounded cards, friendly educational
+styling, typography, spacing, mascot, and navigation patterns. Use Vietnamese UI copy and
+Android mobile-first 360dp frames. PRIMARY PERSONA: Lan, 38, a busy Vietnamese parent seeking a
+trustworthy Math tutor for her child preparing for the Grade 10 entrance exam. GENERATE THESE
+FOUR SCREENS: SCREEN 05 – LOGIN - Single-column mobile login layout. - Email and password
+fields. - Show/hide password control. - Primary button: "Đăng nhập". - Google sign-in option. -
+"Quên mật khẩu?" and "Đăng ký" links. - Inline validation and a clear failed-login error state.
+- Provide a way to return to the previously selected tutor after successful login. - Avoid the
+desktop website's two-column login layout. SCREEN 06 – REGISTER - Mobile registration form for a
+parent/student account. - Fields: Full name, email, phone number, password, confirm password. -
+Terms and privacy agreement checkbox. - Primary button: "Tạo tài khoản". - Link to Login. -
+Clear field validation and error feedback. - Do not force the user to register as a tutor. -
+Keep the layout simple and mobile-friendly. SCREEN 07 – CONNECTION REQUEST - Mobile confirmation
+screen or bottom sheet opened from a selected Tutor Profile. - Show selected tutor summary:
+photo/avatar, name, subject, grade, tuition per hour, and teaching mode. - Explain that BeeWise
+will create a conversation involving the parent, tutor, and BeeWise consultant. - Primary CTA:
+"Xác nhận kết nối". - Secondary CTA: "Để sau". - If the guest is not authenticated, show the
+login requirement before sending the request. - Preserve the selected tutor and connection
+intent through the login process. - Do not claim that a request has been sent before
+confirmation. SCREEN 08 – GROUP CHAT - Full-screen mobile group chat interface. - Three
+participant roles: Phụ huynh, Gia sư, and Tư vấn viên BeeWise. - Chat header with group name and
+participant information. - Distinguish messages from each participant and system notifications.
+- Show a connection-success system message and a helpful empty-chat state. - Message input, send
+button, and back navigation. - Provide an unobtrusive entry point to class onboarding details,
+but do not start a trial lesson automatically. - The BeeWise consultant will manually initiate
+the Trial Lesson widget later. BUSINESS RULES: 1. Guests can browse Home, Manual Tutor Search,
+AI Matching, and Tutor Profile without logging in, subject to the AI free-trial limit. 2.
+Request Connection requires authentication. 3. After successful login or registration, return to
+the previously selected tutor and resume the connection request. 4. The connection request is
+sent only after the user confirms it. 5. After a successful connection request, create a
+three-party group chat. 6. Do not skip consultant-mediated trial lessons or class confirmation.
+7. Do not show payment or official scheduling before the required onboarding steps. DESIGN
+REQUIREMENTS: - Android mobile, 360dp base width, adaptable to 412dp. - Vietnamese interface
+text. - Body text at least 14sp. - Touch targets at least 48x48dp. - Accessible contrast and
+consistent spacing. - Reusable components, clear primary and secondary CTAs. - Use sample data
+only, without presenting it as verified real tutor information. OUTPUT: Generate EXACTLY 4 new
+mobile screens: 05 Login 06 Register 07 Connection Request 08 Group Chat Keep all four visually
+consistent with Batch 01. Do not modify the existing screens.

@@ -1,2 +1,1 @@
-UX-01 — DÁN NGUYÊN VĂN PROMPT THỰC TẾ ĐÃ CHẠY TRONG GOOGLE STITCH VÀO ĐÂY.
-Không thay bằng prompt gợi ý nếu bạn không chạy prompt đó.
+Vấn đề: Banner AI hiện chứa quá nhiều thành phần: ưu đãi miễn phí, thời gian ghép, tiêu đề, mô tả, số liệu hài lòng, mascot và nút CTA. Điều này làm giảm sự tập trung vào hành động chính. Mục tiêu: Giúp phụ huynh nhận biết chức năng AI và hành động cần làm nhanh hơn.

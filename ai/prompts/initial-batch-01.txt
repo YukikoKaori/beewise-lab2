@@ -1,0 +1,36 @@
+You are a senior mobile UI/UX designer. PROJECT: BeeWise – Android mobile tutoring marketplace.
+TASK: Convert the existing BeeWise desktop website into a consistent Android mobile app design.
+Use the attached BeeWise website screenshots as the primary visual reference. Preserve the
+BeeWise brand identity: royal blue, bee yellow, white/light backgrounds, rounded cards, friendly
+educational style, and bee mascot. PRIMARY PERSONA: Lan, 38, a busy Vietnamese office worker.
+Her child is preparing for the Grade 10 entrance exam. She needs to find a trustworthy Math
+tutor with transparent tuition fees, suitable availability, and relevant teaching experience.
+PLATFORM: Android mobile app, base frame width 360dp. Also consider 412dp. CREATE THESE SCREENS:
+01 Home – Guest-friendly exploration, manual search and AI matching entry points. 02 Manual
+Tutor Search – Search field, subject/grade/price/location/teaching mode filters, tutor result
+cards, sorting, empty results. 03 AI Tutor Matching – Natural-language request entry, one
+successful free AI attempt for guests, loading and AI result states. 04 Tutor Profile – Tutor
+identity, relevant experience, education, teaching subjects, tuition per hour, availability,
+teaching methods, ratings if available, and Request Connection CTA. 05 Login – Email/password
+and Google sign-in, error state. 06 Register – Account creation and basic user information. 07
+Connection Request – Confirmation dialog before requesting connection. 08 Group Chat – Three
+participants: parent, tutor, BeeWise consultant. 09 Trial Lesson Detail – Consultant-sent trial
+lesson widget and related details. 10 Class Confirmation – Consultant-sent class confirmation
+widget, edit/request correction. 11 Payment – System-generated payment widget after class
+information is confirmed. 12 Official Schedule – System-generated scheduling widget after
+successful payment. CORE BUSINESS RULES: - Guests can access Home, Manual Tutor Search, and
+Tutor Profile without login. - A guest has one free successful AI matching attempt. The second
+attempt requires login/register. - Failed AI processing does not consume the free attempt. -
+Request Connection requires authentication. - After successful login, return to the previously
+selected tutor and resume the connection request. - After the connection request succeeds, open
+a group chat with parent, tutor and BeeWise consultant. - Consultant manually sends Trial Lesson
+and Class Confirmation widgets. - After class confirmation, the system automatically sends the
+Payment widget. - After successful payment, the system automatically sends the Official Schedule
+widget. - Never skip the consultant-mediated onboarding steps. DESIGN REQUIREMENTS: - Vietnamese
+UI copy. - Android mobile-first, 360dp base width. - Readable body text >=14sp. - Touch targets
+>=48x48dp. - Accessible contrast, consistent spacing, reusable components. - Show realistic
+tutor data only as clearly illustrative sample data. - Use bottom sheets, dialogs and sticky
+CTAs where appropriate. - Include loading, empty, error and success states. - Do not copy
+desktop layouts directly. - Do not create an LMS, assignments, exams or learning management
+dashboard. OUTPUT: Generate a coherent initial set of mobile screens suitable for UX critique
+and three subsequent design iterations. Keep visual consistency across all screens.
