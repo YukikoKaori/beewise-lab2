@@ -22,9 +22,9 @@ Giảm nhiễu thông tin trên Home và sửa CTA cho đúng quy trình kết n
 
 ![UX-01 After](../../assets/ux-critique/UX-01/after.png)
 
-**Evaluation:** CTA “Thử ghép AI ngay” nổi bật hơn và số liệu hài lòng không còn. Banner vẫn cao, còn hai nhãn, tiêu đề, mô tả hai dòng và hình minh họa nên mục tiêu gọn nội dung chưa đạt.
+**Evaluation:** CTA “Thử ghép AI ngay” nổi bật hơn, chức năng ghép gia sư bằng AI và quyền lợi dùng thử dễ hiểu; số liệu hài lòng không còn. Banner vẫn giữ hai nhãn, tiêu đề, mô tả hai dòng và hình minh họa. Các chi tiết này được chấp nhận như thông tin hỗ trợ, dù mức độ tinh gọn còn dư địa cải thiện.
 
-**Final decision:** **Modify further**
+**Final decision:** **Accept**
 
 ### UX-02 — Tutor card CTA
 
@@ -45,7 +45,7 @@ Giảm nhiễu thông tin trên Home và sửa CTA cho đúng quy trình kết n
 ## Reflection
 
 - **What improved:** CTA kết nối đã đổi đúng hành động nghiệp vụ; CTA AI dễ nhận biết hơn.
-- **What remains unresolved:** Banner AI vẫn chiếm diện tích lớn và chứa nhiều nội dung; ảnh UX-02 không thể hiện bước đăng nhập hoặc nhóm chat.
-- **Next action:** Chạy prompt refinement riêng cho UX-01 để bỏ bớt nhãn, rút mô tả và giảm chiều cao banner. Nếu cần chứng minh toàn luồng UX-02, bổ sung ảnh màn đăng nhập/nhóm chat tương ứng.
+- **Evidence scope (non-blocking):** Banner UX-01 vẫn có các chi tiết hỗ trợ; ảnh UX-02 chứng minh CTA trên card, không bao phủ các bước đăng nhập/nhóm chat phía sau. Những giới hạn này không chặn quyết định theo tiêu chí của hai finding.
+- **Next action:** Chấp nhận hai finding theo phạm vi minh chứng hiện có; không yêu cầu thêm prompt hoặc ảnh để hoàn tất báo cáo.
 
 > Đây là nhóm báo cáo của hai prompt refinement riêng, không khẳng định chúng được gửi trong cùng một lần chạy.

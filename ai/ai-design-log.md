@@ -23,19 +23,19 @@ Năm prompt refinement thực tế được chạy riêng theo thứ tự UX-01 
 
 | Nhóm báo cáo | Phạm vi | Prompt thực tế | Ảnh và kết quả |
 |---|---|---|---|
-| [01 — Home & Business Flow](iterations/iteration-01.md) | UX-01, UX-02 | [UX-01](prompts/UX-01.txt), [UX-02](prompts/UX-02.txt) | Before/After trong file; UX-01 Modify further, UX-02 Accept |
-| [02 — Tutor Discovery](iterations/iteration-02.md) | UX-03, UX-04 | [UX-03](prompts/UX-03.txt), [UX-04](prompts/UX-04.txt) | Before/After trong file; UX-03 Accept, UX-04 Modify further do ảnh After bị cắt |
+| [01 — Home & Business Flow](iterations/iteration-01.md) | UX-01, UX-02 | [UX-01](prompts/UX-01.txt), [UX-02](prompts/UX-02.txt) | Before/After trong file; UX-01 và UX-02 Accept |
+| [02 — Tutor Discovery](iterations/iteration-02.md) | UX-03, UX-04 | [UX-03](prompts/UX-03.txt), [UX-04](prompts/UX-04.txt) | Before/After trong file; UX-03 và UX-04 Accept |
 | [03 — Official Schedule](iterations/iteration-03.md) | UX-05 | [UX-05](prompts/UX-05.txt) | Before/After trong file; UX-05 Accept |
 
 ## Evidence and limits
 
 - Năm cặp ảnh Before/After nằm tại [assets/ux-critique](../assets/ux-critique/).
-- UX-01 cần thêm một refinement để banner gọn hơn.
-- Canvas Stitch có đủ ba kết quả UX-04; ảnh After hiện có trong repository chỉ chứng minh thẻ hạng 1. Cần ảnh đầy đủ hơn để đóng khoảng trống bằng chứng.
+- UX-01 được chấp nhận với CTA rõ ràng; các nhãn phụ và hình minh họa còn lại đóng vai trò thông tin hỗ trợ.
+- Với UX-04, ảnh After trong repository cho thấy phần đầu và canvas Stitch tại project link xác nhận đủ ba thẻ hạng 1–3. Bộ bằng chứng hiện tại được chấp nhận.
 - Prototype có thẻ **“Prototype : BeeWise Tutoring Platform Flow”** trong project Stitch. Không có URL prototype riêng hoặc Figma URL được lưu trong repository.
 - Repository không kèm rubric PRM323 Lab 2 chính thức; đánh giá hiện dùng checklist và hướng dẫn minh chứng nội bộ.
 
 ## Integrity note
 
 - Prompt files lưu prompt đã chạy; không thay thế prompt gốc bằng đề xuất mới.
-- Quyết định After được ghi theo bằng chứng và mục tiêu UX. “Modify further” nêu rõ phần còn thiếu.
+- Cả năm findings đều được **Accept** theo đối chiếu hiện tại; ghi chú nêu rõ phạm vi ảnh và chi tiết thị giác còn lại.

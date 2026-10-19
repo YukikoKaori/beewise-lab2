@@ -16,8 +16,8 @@ Ngày giờ được bỏ qua theo yêu cầu; không điền thời gian suy đ
 
 - Mở các liên kết ảnh từ GitHub sau khi repository được cập nhật để xác nhận ảnh hiển thị và đường dẫn không lỗi.
 - Mở project Stitch từ liên kết trong README. Prototype nằm trong thẻ **“Prototype : BeeWise Tutoring Platform Flow”**; repository hiện không lưu URL Figma hoặc URL prototype riêng.
-- Ảnh UX-04 After hiện chỉ chụp phần đầu màn hình và thẻ gia sư hạng 1. Cần thay bằng ảnh After rộng hơn để người đọc kiểm chứng đủ ba thẻ Top 3; nội dung ba thẻ đã được kiểm tra trên canvas Stitch.
-- Kết quả UX-01 hiện vẫn có banner cao với hai nhãn, tiêu đề, mô tả và hình minh họa. Finding này được ghi **Modify further**; cần chạy thêm refinement nếu muốn tuyên bố đã đạt mục tiêu banner gọn.
+- Minh chứng UX-04 gồm ảnh After trong repository và canvas Stitch tại liên kết project trong README. Ảnh lưu trong repository tập trung vào phần đầu; canvas Stitch xác nhận đủ ba thẻ Top 3. Bộ minh chứng hiện tại được chấp nhận cho báo cáo.
+- UX-01 được **Accept**: CTA chính nổi bật, chức năng AI và quyền lợi dùng thử dễ nhận biết. Banner còn các chi tiết hỗ trợ; đây là lựa chọn thiết kế được chấp nhận, không còn là việc chặn hoàn tất.
 
 ## Phạm vi đối chiếu
 

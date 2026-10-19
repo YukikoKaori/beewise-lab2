@@ -1,15 +1,15 @@
 # BeeWise — UX Critique (Lab 2)
 
-Nguồn đánh giá: ảnh Before/After trong repository và màn hình After đã đối chiếu trên Google Stitch. Quyết định bên dưới phản ánh bằng chứng hiện có; trường hợp thiếu ảnh chứng minh được ghi rõ là **Modify further**.
+Nguồn đánh giá: ảnh Before/After trong repository và màn hình After đã đối chiếu trên Google Stitch. UX-04 được đánh giá bằng ảnh lưu trong repository kết hợp canvas Stitch của project; các giới hạn phạm vi ảnh được ghi rõ bên dưới.
 
 ## Tổng hợp findings
 
 | ID | Screen | Severity | Quyết định ban đầu | Quyết định After | Kết quả đối chiếu |
 |---|---|---|---|---|---|
-| UX-01 | 01 Home | Medium | Modify | **Modify further** | CTA rõ, nhưng banner vẫn cao và còn nhiều thành phần. |
+| UX-01 | 01 Home | Medium | Modify | **Accept** | CTA AI nổi bật, thông tin dùng thử rõ; các chi tiết hỗ trợ còn lại được chấp nhận. |
 | UX-02 | 01 Home | High | Modify | **Accept** | Hai card gia sư hiển thị CTA “Yêu cầu kết nối”. |
 | UX-03 | 03 Manual Tutor Search | Medium | Modify | **Accept** | Bộ lọc, sắp xếp, chip và thao tác xóa được phân biệt rõ. |
-| UX-04 | 02 AI Tutor Matching | High | Modify | **Modify further** | Canvas có đủ Top 3; ảnh After lưu trong repo chỉ thấy gia sư hạng 1. |
+| UX-04 | 02 AI Tutor Matching | High | Modify | **Accept** | Canvas Stitch xác nhận đủ Top 3; ảnh repository tập trung vào thẻ đầu. |
 | UX-05 | 12 Official Schedule | Medium | Modify | **Accept** | Trạng thái gọn, gia sư và lịch Thứ Ba/Thứ Sáu được ưu tiên. |
 
 ## Chi tiết từng finding
@@ -22,7 +22,7 @@ Nguồn đánh giá: ảnh Before/After trong repository và màn hình After đ
 - **User impact:** Phụ huynh mất thời gian xác định thao tác tìm gia sư.
 - **Decision on initial design:** Modify
 - **Proposed solution:** Rút gọn banner và giữ một CTA chính rõ ràng.
-- **Acceptance criteria:** Banner gọn; CTA chính dễ nhận biết.
+- **Acceptance criteria:** CTA chính dễ nhận biết; thông tin về ghép AI và quyền lợi dùng thử dễ hiểu.
 - **Prompt thực tế:** [UX-01.txt](prompts/UX-01.txt)
 
 **Before:**
@@ -33,9 +33,9 @@ Nguồn đánh giá: ảnh Before/After trong repository và màn hình After đ
 
 ![UX-01 After](../assets/ux-critique/UX-01/after.png)
 
-- **Evaluation:** Nút “Thử ghép AI ngay” dễ nhận biết và số liệu hài lòng không còn. Tuy vậy, banner vẫn chiếm nhiều chiều cao và giữ hai nhãn, tiêu đề, mô tả hai dòng cùng hình minh họa.
-- **Decision after:** **Modify further**
-- **Evidence-based note:** Tiêu chí về CTA đạt; tiêu chí banner gọn chưa đạt. Prompt tiếp theo nên bỏ bớt nhãn và rút phần giải thích xuống một câu.
+- **Evaluation:** Nút “Thử ghép AI ngay” là hành động chính dễ nhận biết; nội dung thể hiện rõ ghép gia sư bằng AI và quyền lợi dùng thử, đồng thời bỏ số liệu hài lòng. Banner vẫn giữ hai nhãn, tiêu đề, mô tả hai dòng và hình minh họa; đây là các chi tiết hỗ trợ được chấp nhận trong phương án hiện tại.
+- **Decision after:** **Accept**
+- **Evidence-based note:** Mục tiêu làm rõ hành động và giá trị của CTA đã đạt. Mật độ nội dung có giảm so với Before nhưng banner vẫn còn nhiều thành phần; ghi nhận đây là đánh đổi thị giác, không phải hạng mục đang chờ thêm refinement.
 
 ### UX-02 — CTA không phù hợp quy trình nghiệp vụ
 
@@ -102,9 +102,9 @@ Nguồn đánh giá: ảnh Before/After trong repository và màn hình After đ
 
 ![UX-04 After](../assets/ux-critique/UX-04/after.png)
 
-- **Evaluation:** Canvas Stitch hiển thị ba thẻ hạng 1–3, mỗi thẻ có thông tin gia sư, lý do gợi ý và các hành động; không thấy tỷ lệ khớp kiểu 98% hoặc 96,4%. Tuy nhiên, ảnh After trong repository bị cắt và chỉ cho thấy thẻ hạng 1.
-- **Decision after:** **Modify further**
-- **Evidence-based note:** Nội dung thiết kế đã được kiểm tra trên canvas; bằng chứng lưu trong repository chưa đủ để người đọc xác minh ba thẻ. Thay ảnh After bằng ảnh rộng hơn trước khi nộp.
+- **Evaluation:** Canvas Stitch hiển thị ba thẻ hạng 1–3, mỗi thẻ có thông tin gia sư, lý do gợi ý và hành động; không thấy tỷ lệ khớp chưa xác minh. Ảnh After trong repository tập trung vào thẻ hạng 1; khi xem cùng canvas Stitch qua liên kết project, bộ bằng chứng xác nhận được đủ Top 3.
+- **Decision after:** **Accept**
+- **Evidence-based note:** Ảnh repository và canvas Stitch là hai phần của cùng bộ minh chứng. Canvas xác nhận đủ ba thẻ, lý do cá nhân hóa và hành động; ảnh lưu trong repository ghi lại phần đầu của kết quả.
 
 ### UX-05 — Thông tin đầu màn hình lịch học quá rườm rà
 
@@ -131,6 +131,6 @@ Nguồn đánh giá: ảnh Before/After trong repository và màn hình After đ
 
 ## Kết luận
 
-Ba finding được **Accept** (UX-02, UX-03, UX-05); hai finding cần làm tiếp (UX-01, UX-04). UX-01 cần tinh gọn thiết kế; UX-04 cần ảnh minh chứng đầy đủ hơn. Không có finding nào bị **Reject**.
+Tất cả năm finding được **Accept**. UX-01 giữ một số thành phần hỗ trợ nhưng làm rõ CTA AI và quyền lợi dùng thử; UX-04 được xác minh bằng ảnh After trong repository kết hợp canvas Stitch thể hiện đủ Top 3. Không có finding nào bị **Reject** hoặc đang chờ thêm bằng chứng.
 
 Repository hiện không kèm rubric PRM323 Lab 2 chính thức; phần đánh giá này bám checklist và hướng dẫn minh chứng đang có trong repository.

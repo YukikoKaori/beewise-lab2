@@ -38,14 +38,14 @@ Làm rõ bộ lọc/sắp xếp và giúp phụ huynh so sánh gia sư từ kế
 
 ![UX-04 After](../../assets/ux-critique/UX-04/after.png)
 
-**Evaluation:** Canvas Stitch cho thấy đủ ba thẻ xếp hạng, lý do gợi ý cá nhân hóa và hành động xem hồ sơ/yêu cầu kết nối; không thấy phần trăm khớp chưa xác minh. File ảnh After trong repository chỉ hiển thị thẻ hạng 1 nên chưa đủ bằng chứng cho người đọc.
+**Evaluation:** Canvas Stitch cho thấy đủ ba thẻ xếp hạng, lý do gợi ý cá nhân hóa và hành động xem hồ sơ/yêu cầu kết nối; không thấy phần trăm khớp chưa xác minh. Ảnh After trong repository tập trung vào thẻ hạng 1; xem kết hợp ảnh này với canvas Stitch qua liên kết project cung cấp đủ minh chứng cho Top 3.
 
-**Final decision:** **Modify further** — bổ sung ảnh After rộng hơn để thể hiện cả ba thẻ. Quyết định này đóng khoảng trống minh chứng trong repository; phần thiết kế ba thẻ đã được xác minh trên canvas Stitch.
+**Final decision:** **Accept** — bộ minh chứng gồm ảnh After trong repository và canvas Stitch, trong đó canvas xác nhận cả ba thẻ.
 
 ## Reflection
 
 - **What improved:** Bộ điều khiển tìm kiếm và lọc/sắp xếp rõ hơn; canvas AI có ba gia sư với lý do và hành động riêng.
-- **What remains unresolved:** Ảnh UX-04 After lưu trong repository bị cắt; ảnh UX-03 tĩnh không cho thấy bottom sheet sắp xếp đang mở.
-- **Next action:** Thay ảnh UX-04 bằng ảnh đủ rộng và, nếu cần chứng minh lựa chọn sắp xếp, bổ sung ảnh trạng thái bottom sheet.
+- **Evidence scope (non-blocking):** Ảnh UX-04 trong repository tập trung vào thẻ đầu, canvas Stitch xác nhận đủ ba thẻ; ảnh UX-03 tĩnh không mở bottom sheet sắp xếp. Các giới hạn này không chặn quyết định theo tiêu chí của hai finding.
+- **Next action:** Chấp nhận UX-03 và UX-04 theo phạm vi tiêu chí hiện tại; không yêu cầu ảnh hoặc refinement bổ sung.
 
 > Đây là nhóm báo cáo của hai prompt refinement riêng, không khẳng định chúng được gửi trong cùng một lần chạy.

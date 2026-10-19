@@ -29,5 +29,5 @@
 ## Reflection
 
 - **What improved:** Phụ huynh thấy tên lớp, gia sư và lịch hằng tuần sớm hơn; phần xác nhận thanh toán không còn chiếm đầu màn hình.
-- **What remains unresolved:** Ảnh After không thể hiện toàn bộ màn hình và các nút cuối trang.
-- **Next action:** Không cần thêm refinement cho finding này; giữ ảnh hiện tại làm minh chứng cho ưu tiên lịch học.
+- **Evidence scope (non-blocking):** Ảnh tập trung vào trạng thái và lịch học, không bao phủ toàn bộ màn hình hoặc các nút cuối trang; giới hạn này không ảnh hưởng tiêu chí ưu tiên lịch học.
+- **Next action:** Chấp nhận UX-05; giữ ảnh hiện tại làm minh chứng cho việc ưu tiên lịch học.
