@@ -4,7 +4,8 @@
 - **Primary Persona:** Chị Lan - 38 tuổi, phụ huynh tìm gia sư Toán ôn thi vào lớp 10 cho con.
 - **Platform:** Android Mobile (360dp, hỗ trợ 412dp)
 - **Total:** 12 màn hình
-- **Design Tool:** Google Stitch → Figma
+- **Design Tool:** [Google Stitch — BeeWise_Lab2](https://stitch.withgoogle.com/projects/11519656942239142615)
+- **Prototype:** Card “Prototype : BeeWise Tutoring Platform Flow” inside the Stitch project; no standalone URL is recorded.
 
 ## Batch 01 - Tutor Discovery & AI Matching
 

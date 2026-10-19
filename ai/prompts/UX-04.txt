@@ -1,2 +1,34 @@
-UX-04 — DÁN NGUYÊN VĂN PROMPT THỰC TẾ ĐÃ CHẠY TRONG GOOGLE STITCH VÀO ĐÂY.
-Không thay bằng prompt gợi ý nếu bạn không chạy prompt đó.
+Refine ONLY the existing BeeWise AI Tutor Matching mobile screen. PRIMARY GOAL: Simplify the AI
+Search interface and present the TOP 3 most suitable tutors with personalized recommendation
+reasons. UX PROBLEMS: - The large "BeeBot AI Tutor Matcher" introduction card takes up
+unnecessary vertical space. - The detailed "Quy trình phân tích dữ liệu BeeBot" section is too
+long. - Results prioritize only one tutor instead of three comparable recommendations. -
+Unsupported AI matching percentages reduce trust. REQUIRED UI CHANGES: 1. REMOVE THE BEEBOT
+INTRODUCTION - Completely remove the large "BeeBot AI Tutor Matcher" hero/banner/card at the
+top. - Remove unnecessary BeeBot branding, decorative illustrations, promotional text and
+exaggerated claims. - Keep the BeeWise brand identity. 2. SIMPLIFY THE TOP SECTION - Header:
+"Tìm gia sư bằng AI". - Small indicator: "1 lượt AI miễn phí còn lại" for eligible guests. -
+Immediately below, show the natural-language request input. - Placeholder: "Ví dụ: Tìm gia sư
+Toán lớp 9, luyện thi vào 10, học phí dưới 300k/giờ..." - One prominent CTA: "Tìm gia sư bằng
+AI". - Keep optional quick suggestion chips compact. 3. SIMPLIFY AI PROCESSING - Remove the long
+multi-step BeeBot analysis timeline from the result screen. - During processing, show only a
+compact loading indicator and the message "Đang tìm gia sư phù hợp với nhu cầu của bạn...". -
+When processing finishes, replace loading with the result section. 4. DISPLAY TOP 3 RESULTS -
+Section title: "Top 3 gia sư phù hợp nhất". - Display exactly three full tutor cards, ranked #1,
+#2 and #3. - Each card includes: * Name and avatar * Teaching subject and grade * Relevant
+experience * Tuition per hour * Available schedule if known * 2-3 personalized reasons
+explaining why this tutor matches the parent's needs * "Xem hồ sơ" and "Yêu cầu kết nối" actions
+- Keep all three cards equally readable and easy to compare. - Do not collapse tutor #2 and #3
+into small preview cards. 5. REMOVE UNNECESSARY ELEMENTS - Remove unsupported AI match
+percentages such as 98% or 96.4%. - Remove repeated descriptions, excessive badges, and
+decorative information. - Do not invent exam success guarantees or tutor verification claims. 6.
+PRESERVE BUSINESS RULES - Guests can view AI results and tutor profiles. - Requesting connection
+requires authentication. - After login, return to the selected tutor and continue the request. -
+One successful free AI attempt for guests; failed processing does not consume it. - The
+consultant-mediated onboarding process remains unchanged. VISUAL REQUIREMENTS: - Clean, compact
+Android mobile-first layout, 360dp. - Vietnamese UI. - BeeWise royal blue, bee yellow,
+white/light backgrounds, rounded cards. - Clear hierarchy and generous but efficient spacing. -
+Body text >=14sp, touch targets >=48dp. - Keep bottom navigation. - Do not redesign unrelated
+screens. EXPECTED RESULT: A simplified AI Search screen with this hierarchy: Header -> Free
+trial indicator -> AI search input -> Search CTA -> Top 3 tutor recommendations. Create a
+refined AFTER version while preserving the existing BeeWise design language.

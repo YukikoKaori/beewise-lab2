@@ -1,0 +1,57 @@
+You are a senior mobile UI/UX designer. PROJECT: BeeWise – Android Mobile Tutoring Marketplace.
+CONTEXT: Continue the existing BeeWise Android mobile app project. Batch 01 already includes: 01
+Home 02 AI Tutor Matching 03 Manual Tutor Search 04 Tutor Profile Batch 02 already includes: 05
+Login 06 Register 07 Connection Request 08 Group Chat TASK: Generate EXACTLY FOUR NEW MOBILE
+SCREENS for Batch 03. Do NOT regenerate, replace, or modify the existing eight screens. VISUAL
+CONSISTENCY: Use the previous BeeWise mobile screens as the primary design reference. Preserve
+the same royal blue, bee yellow, white/light backgrounds, rounded cards, typography, spacing,
+icons, and friendly educational design style. PRIMARY PERSONA: Lan, 38, a busy Vietnamese parent
+looking for a trustworthy Math tutor for her child preparing for the Grade 10 entrance exam.
+BUSINESS CONTEXT: After a parent successfully connects with a tutor, BeeWise creates a
+three-party Group Chat involving: - Parent (Phụ huynh) - Tutor (Gia sư) - BeeWise Consultant (Tư
+vấn viên) The consultant coordinates trial lessons and class confirmation. Payment and
+scheduling are triggered by the system only after their prerequisite steps. GENERATE THESE FOUR
+NEW SCREENS: SCREEN 09 – TRIAL LESSON DETAIL Design a mobile screen representing a Trial Lesson
+widget sent by the BeeWise consultant inside the Group Chat. Include: - Header: "Thông tin buổi
+học thử" - Tutor name and avatar - Subject and grade - Proposed date and time - Online or
+offline learning mode - Meeting link or location information when applicable - Lesson duration -
+Trial lesson status: Proposed / Confirmed / Completed - Primary CTA: "Xác nhận lịch học thử" -
+Secondary CTA: "Đề xuất thời gian khác" - Back navigation to Group Chat The consultant sends the
+trial lesson proposal manually. The parent can review and respond. Do not automatically confirm
+the lesson without user action. SCREEN 10 – CLASS CONFIRMATION Design a mobile screen
+representing a Class Confirmation widget sent by the BeeWise consultant after the trial lesson.
+Include: - Header: "Xác nhận thông tin lớp học" - Tutor name - Subject and grade - Tuition fee
+per hour - Weekly schedule - Lesson duration - Online/offline learning mode - Expected start
+date - Clear summary of the proposed class agreement - Primary CTA: "Xác nhận thông tin lớp" -
+Secondary CTA: "Yêu cầu điều chỉnh" If the parent requests changes: - Show a clear
+pending-update status. - The consultant updates the information and resends the widget. - Do not
+proceed to payment before confirmation. SCREEN 11 – PAYMENT Design a mobile payment screen or
+expanded payment widget automatically sent by the BeeWise system ONLY AFTER the class
+information has been confirmed. Include: - Header: "Thanh toán học phí" - Tutor and class
+summary - Payment description and amount - Payment method selection - Payment status: Pending /
+Processing / Failed / Successful - Primary CTA: "Thanh toán" - A clear error message and "Thử
+lại" action for failed payments - A successful payment confirmation state - Back navigation to
+Group Chat IMPORTANT: Do not invent a mandatory deposit, platform fee, refund policy, or billing
+cycle. Use clearly labeled illustrative payment data where necessary. SCREEN 12 – OFFICIAL
+SCHEDULE Design a mobile screen representing the Official Schedule widget automatically sent by
+the BeeWise system ONLY AFTER successful payment. Include: - Header: "Lịch học chính thức" -
+Tutor name - Subject and grade - Confirmed class schedule - Day of week - Start and end time -
+Learning mode - Meeting link or location when applicable - Upcoming lesson information - Status:
+"Đã xác nhận" - Primary CTA: "Xem lịch học" - Secondary CTA: "Quay lại nhóm chat" - Clear
+success confirmation that the class schedule has been established BUSINESS RULES: 1. Trial
+Lesson and Class Confirmation widgets are manually sent by the BeeWise consultant. 2. Parents
+and tutors can discuss proposed details in Group Chat. 3. Parents can request corrections to
+class information. 4. The consultant updates and resends the Class Confirmation widget when
+needed. 5. The system sends the Payment widget only after class information is confirmed. 6. If
+payment fails, show the reason when available and allow retry. 7. The system sends the Official
+Schedule widget only after successful payment. 8. Do not skip or reorder any onboarding steps.
+9. Keep these screens connected to the three-party Group Chat workflow. 10. Do not design an
+LMS, assignment manager, examination system, or unrelated learning dashboard. DESIGN
+REQUIREMENTS: - Android mobile-first design. - Base frame width: 360dp. - Adaptable to 412dp. -
+Vietnamese UI copy. - Body text >=14sp. - Touch targets >=48x48dp. - Accessible color contrast.
+- Consistent spacing, typography, and component patterns. - Clear visual hierarchy and primary
+actions. - Use bottom sheets, dialogs, status badges, and cards where appropriate. - Use
+illustrative data rather than unverified real payment or tutor information. OUTPUT: Generate
+EXACTLY FOUR ADDITIONAL mobile screens: 09 Trial Lesson Detail 10 Class Confirmation 11 Payment
+12 Official Schedule Place these four new screens alongside the existing eight screens. Preserve
+the existing BeeWise design system. Do not modify previously generated screens.

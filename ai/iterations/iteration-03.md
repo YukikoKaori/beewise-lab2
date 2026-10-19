@@ -1,33 +1,33 @@
 # AI Iteration 03 — Official Schedule
 
 ## Objective
-Đưa thông tin lịch học lên trước, giảm nội dung xác nhận lặp lại.
 
-## Scope
-UX-05
+Đưa thông tin lịch học lên trước và giảm phần xác nhận lặp lại.
 
-## Execution log
+## Scope and execution order
+
 - **Tool:** Google Stitch
-- **Date/time:** TODO — điền thời điểm thực tế
-- **Original screens:** TODO — chỉ rõ bản trước khi sửa
-- **Prompt sequence:** TODO — ghi đúng thứ tự đã chạy; không tự nhận là một lần chạy nếu thực tế khác
+- **Prompt sequence:** UX-05; một prompt refinement riêng.
+- **Original screen:** Official Schedule, theo ảnh Before.
 
-### UX-05
+### UX-05 — Official Schedule
 
-**Actual prompt:** [`UX-05.txt`](../prompts/UX-05.txt)
+**Actual prompt:** [UX-05.txt](../prompts/UX-05.txt)
 
 **Before:**
+
 ![UX-05 Before](../../assets/ux-critique/UX-05/before.png)
 
 **After:**
+
 ![UX-05 After](../../assets/ux-critique/UX-05/after.png)
 
-**Evaluation:** TODO — đối chiếu với acceptance criteria trong `../ux-critique.md`.
-**Final decision:** [ ] Accept  [ ] Modify further  [ ] Reject
+**Evaluation:** Ảnh After thu gọn xác nhận thanh toán thành một hàng, đặt lớp và gia sư ngay bên dưới, rồi hiển thị rõ hai buổi cố định Thứ Ba và Thứ Sáu từ 19:30 đến 21:30 cùng hình thức dạy tại nhà.
+
+**Final decision:** **Accept**
 
 ## Reflection
-- **What improved:** TODO — chỉ ghi điều quan sát được từ ảnh After.
-- **What remains unresolved:** TODO
-- **Next action:** TODO
 
-> Ghi chú: Phân nhóm 5 findings thành 3 iteration để báo cáo. Hãy đối chiếu lịch sử Google Stitch để bảo đảm 3 iteration phản ánh 3 vòng chỉnh sửa thực tế.
+- **What improved:** Phụ huynh thấy tên lớp, gia sư và lịch hằng tuần sớm hơn; phần xác nhận thanh toán không còn chiếm đầu màn hình.
+- **What remains unresolved:** Ảnh After không thể hiện toàn bộ màn hình và các nút cuối trang.
+- **Next action:** Không cần thêm refinement cho finding này; giữ ảnh hiện tại làm minh chứng cho ưu tiên lịch học.

@@ -1,2 +1,25 @@
-UX-05 — DÁN NGUYÊN VĂN PROMPT THỰC TẾ ĐÃ CHẠY TRONG GOOGLE STITCH VÀO ĐÂY.
-Không thay bằng prompt gợi ý nếu bạn không chạy prompt đó.
+Refine ONLY the existing BeeWise Official Schedule mobile screen. UX FINDING 05: The top section
+is too verbose and repetitive. The payment success banner, transaction ID, success badges,
+synchronization explanation and repeated activation status push the actual class schedule too
+far down the screen. PRIMARY GOAL: Make the official class schedule the main focus of the
+screen. Reduce unnecessary information above the schedule. REQUIRED CHANGES: 1. SIMPLIFY THE
+HEADER - Use the title "Lịch học chính thức". - Keep the standard back navigation. - Remove
+unnecessary decorative badges and branding repetitions. 2. COMPACT THE SUCCESS STATUS - Replace
+the large "Thanh toán thành công! Lớp học chính thức đã kích hoạt" banner with one compact
+success status row. - Text: "Lớp học đã được kích hoạt". - Secondary text: "Thanh toán thành
+công". - Remove "BeeWise Success", "100% Sẵn sàng", the large transaction ID and the long
+synchronization explanation from the main view. - Transaction details may be accessible through
+a separate "Xem chi tiết thanh toán" action, not prominently displayed. 3. PRIORITIZE THE CLASS
+SCHEDULE - Show the class title, tutor name and weekly schedule immediately after the compact
+status row. - Clearly display both recurring lessons: * Tuesday, 19:30–21:30 * Friday,
+19:30–21:30 - Include teaching mode, location and first lesson date when available. - Preserve
+existing class data rather than inventing new information. 4. REMOVE REDUNDANCY - Do not repeat
+"Đã xác nhận", "Kích hoạt", "Thành công" across multiple banners. - Reduce excessive cards,
+labels and decorative elements. - Keep one clear status indicator. 5. KEEP ESSENTIAL ACTIONS -
+"Xem lịch học chi tiết" - "Quay lại nhóm chat" - Preserve the existing navigation flow. VISUAL
+DESIGN: - Keep BeeWise royal blue, bee yellow, white/light backgrounds and rounded cards. -
+Android mobile-first 360dp. - Vietnamese UI. - Body text >=14sp. - Touch targets >=48dp. -
+Improve spacing and visual hierarchy. - Do not redesign other screens. EXPECTED RESULT: A
+compact Official Schedule screen where parents can immediately see the tutor, weekly schedule,
+lesson time and location without scrolling past long payment confirmation messages. Create a
+refined AFTER version of the selected screen.

@@ -1,2 +1,11 @@
-UX-03 — DÁN NGUYÊN VĂN PROMPT THỰC TẾ ĐÃ CHẠY TRONG GOOGLE STITCH VÀO ĐÂY.
-Không thay bằng prompt gợi ý nếu bạn không chạy prompt đó.
+Refine ONLY the existing BeeWise Manual Tutor Search mobile screen. UX FINDING 03: The filter
+and sorting area is visually crowded. Some filter/sort labels are truncated, and the reset
+action is difficult to discover. TASK: 1. Keep the search bar clearly visible at the top. 2. Add
+one prominent "Bộ lọc" button with an active filter count badge. 3. Display active filters as
+readable, horizontally scrollable chips with individual remove icons. 4. Provide a clearly
+visible "Xóa tất cả" action near the active filters. 5. Move sorting into one clearly labeled
+control: "Sắp xếp: Phù hợp nhất", opening a bottom sheet with options. 6. Avoid truncated labels
+such as "Học phí: Th...". 7. Preserve the tutor result cards and their primary actions. 8. Keep
+the existing BeeWise royal blue, bee yellow, white backgrounds and rounded card design. Create a
+clean Android mobile UI at 360dp, Vietnamese copy, body text >=14sp and touch targets >=48dp. Do
+not redesign other screens or change business rules.

@@ -1,2 +1,1 @@
-UX-02 — DÁN NGUYÊN VĂN PROMPT THỰC TẾ ĐÃ CHẠY TRONG GOOGLE STITCH VÀO ĐÂY.
-Không thay bằng prompt gợi ý nếu bạn không chạy prompt đó.
+Nút “Đặt lịch thử” không đúng quy trình kết nối qua tư vấn viên -> Đổi thành “Yêu cầu kết nối”
