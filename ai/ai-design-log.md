@@ -34,6 +34,7 @@ Năm prompt refinement thực tế được chạy riêng theo thứ tự UX-01 
 - Với UX-04, ảnh After trong repository cho thấy phần đầu và canvas Stitch tại project link xác nhận đủ ba thẻ hạng 1–3. Bộ bằng chứng hiện tại được chấp nhận.
 - Prototype có thẻ **“Prototype : BeeWise Tutoring Platform Flow”** trong project Stitch; không có URL prototype riêng. Link Figma và số đo frame hiện được lưu ở [README](../README.md) và [bảng kích thước Figma](../design/figma-screen-sizes.md).
 - Ảnh trong `assets/initial screen/` là kết quả Google Stitch; không gắn nhãn chúng là ảnh xuất trực tiếp từ Figma.
+- Bộ [ảnh minh chứng Figma](../assets/figma-screens/README.md) được lưu riêng, gồm 12 màn chính và trạng thái AI Results bổ sung.
 - Repository không kèm rubric PRM323 Lab 2 chính thức; đánh giá hiện dùng checklist và hướng dẫn minh chứng nội bộ.
 
 ## Integrity note

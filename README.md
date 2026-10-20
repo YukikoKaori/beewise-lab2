@@ -40,7 +40,7 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 ### Kích thước và ảnh minh chứng
 
 - [Kích thước 12 frame Final UI theo Figma](design/figma-screen-sizes.md) — ghi số đo canvas và nêu chênh lệch Home `402 px` so với khung cơ sở `360dp`.
-- `assets/initial screen/` là ảnh đầu ra Google Stitch theo ba batch; `assets/ux-critique/` là ảnh Before/After của năm vòng refinement. Đây không phải bộ 12 ảnh PNG xuất trực tiếp từ Figma.
+- [12 ảnh minh chứng Figma và một trạng thái AI bổ sung](assets/figma-screens/README.md) được lưu riêng. `assets/initial screen/` vẫn là ảnh đầu ra Google Stitch theo ba batch; `assets/ux-critique/` là ảnh Before/After của năm vòng refinement.
 - File Figma có các biến thể responsive 412dp; cần kiểm tra/chuẩn hóa kích thước frame Home trước khi bàn giao triển khai.
 
 ## Trạng thái persona
