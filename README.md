@@ -38,11 +38,6 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 | 5. Components | Icons (Heroicons + logo Google), Button, IconButton, Chip, Badge, Avatar, Rating, TextField, SearchBar, AppBar, BottomNav, OnboardingStepper, InfoRow, TutorCard, Alert, Dialog, Loading, EmptyState, ErrorState, ChatBubble; logo và minh họa mascot BeeWise; bảng component → widget Flutter |
 | 6. Prototype | 3 flow starting point; Back, bottom navigation, dialog overlay, chuyển cảnh loading → kết quả và nhánh lỗi → phục hồi |
 
-- Quyết định đáng chú ý trong bản Figma:
-  - Thanh toán chỉ dùng **chuyển khoản QR (VietQR)**; lỗi thanh toán phục hồi bằng tạo mã QR mới hoặc nhắn tư vấn viên.
-  - Màn 12 Official Schedule không có bottom navigation, giống các màn 09–11 của quy trình; phụ huynh mở màn này sau khi thanh toán hoặc từ nhóm chat.
-  - Accessibility: chữ thường đạt contrast ≥ 4.5:1, vùng chạm ≥ 48×48dp, chữ nội dung ≥ 14sp, trạng thái luôn có icon và chữ (không chỉ dùng màu).
-
 ## Trạng thái persona
 
 `ux/persona.md` giữ Chị Lan làm persona chính và bổ sung ba persona hỗ trợ trong phạm vi phụ huynh của các luồng hiện có. Đặc điểm người dùng và nhu cầu accessibility là giả định thiết kế; repository không có nghiên cứu người dùng để xác nhận chúng.
