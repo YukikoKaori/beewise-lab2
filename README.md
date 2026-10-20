@@ -26,8 +26,7 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 ## Figma
 
 - [Mở file BeeWise-Design](https://www.figma.com/design/gqbuTDuZYOyKyP8LsUwobC/BeeWise-Design?node-id=2-3&t=XLL8PoLbIdyZCOIC-1)
-- Nền tảng: Android, khung 360dp, kiểm tra thêm ở 412dp. Token màu, radius và elevation lấy từ design system của FE BeeWise; heading dùng Nunito, body dùng Be Vietnam Pro (thay Google Sans vì Figma không có font này).
-- File gồm 6 page theo thứ tự yêu cầu:
+- File gồm 6 page:
 
 | Page | Nội dung |
 | --- | --- |
