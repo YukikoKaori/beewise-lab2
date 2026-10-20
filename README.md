@@ -37,6 +37,12 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 | 5. Components | Icons (Heroicons + logo Google), Button, IconButton, Chip, Badge, Avatar, Rating, TextField, SearchBar, AppBar, BottomNav, OnboardingStepper, InfoRow, TutorCard, Alert, Dialog, Loading, EmptyState, ErrorState, ChatBubble; logo và minh họa mascot BeeWise; bảng component → widget Flutter |
 | 6. Prototype | 3 flow starting point; Back, bottom navigation, dialog overlay, chuyển cảnh loading → kết quả và nhánh lỗi → phục hồi |
 
+### Kích thước và ảnh minh chứng
+
+- [Kích thước 12 frame Final UI theo Figma](design/figma-screen-sizes.md) — ghi số đo canvas và nêu chênh lệch Home `402 px` so với khung cơ sở `360dp`.
+- `assets/initial screen/` là ảnh đầu ra Google Stitch theo ba batch; `assets/ux-critique/` là ảnh Before/After của năm vòng refinement. Đây không phải bộ 12 ảnh PNG xuất trực tiếp từ Figma.
+- File Figma có các biến thể responsive 412dp; cần kiểm tra/chuẩn hóa kích thước frame Home trước khi bàn giao triển khai.
+
 ## Trạng thái persona
 
 `ux/persona.md` giữ Chị Lan làm persona chính và bổ sung ba persona hỗ trợ trong phạm vi phụ huynh của các luồng hiện có. Đặc điểm người dùng và nhu cầu accessibility là giả định thiết kế; repository không có nghiên cứu người dùng để xác nhận chúng.

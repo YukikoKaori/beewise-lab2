@@ -15,7 +15,8 @@ Ngày giờ được bỏ qua theo yêu cầu; không điền thời gian suy đ
 ## Kiểm tra trước khi nộp
 
 - Mở các liên kết ảnh từ GitHub sau khi repository được cập nhật để xác nhận ảnh hiển thị và đường dẫn không lỗi.
-- Mở project Stitch từ liên kết trong README. Prototype nằm trong thẻ **“Prototype : BeeWise Tutoring Platform Flow”**; repository hiện không lưu URL Figma hoặc URL prototype riêng.
+- Mở project Stitch từ liên kết trong README. Prototype nằm trong thẻ **“Prototype : BeeWise Tutoring Platform Flow”**; không có URL prototype riêng. Link Figma nằm trong README.
+- README lưu link Figma; [bảng kích thước frame](../design/figma-screen-sizes.md) ghi số đo 12 màn Final UI và nêu Home 402 px đang lệch khung cơ sở 360dp. Ảnh trong `assets/initial screen/` là ảnh đầu ra Stitch, không phải bộ ảnh xuất Figma.
 - Minh chứng UX-04 gồm ảnh After trong repository và canvas Stitch tại liên kết project trong README. Ảnh lưu trong repository tập trung vào phần đầu; canvas Stitch xác nhận đủ ba thẻ Top 3. Bộ minh chứng hiện tại được chấp nhận cho báo cáo.
 - UX-01 được **Accept**: CTA chính nổi bật, chức năng AI và quyền lợi dùng thử dễ nhận biết. Banner còn các chi tiết hỗ trợ; đây là lựa chọn thiết kế được chấp nhận, không còn là việc chặn hoàn tất.
 
