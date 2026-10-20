@@ -7,6 +7,7 @@ Chị Lan tiếp tục là persona chính của BeeWise. Ba persona hỗ trợ m
 - **Thông tin sản phẩm trong repo:** BeeWise là ứng dụng Android giúp phụ huynh tìm gia sư bằng tìm kiếm thủ công hoặc AI, gửi yêu cầu kết nối, trao đổi trong nhóm ba bên với gia sư và tư vấn viên, rồi đi qua bước học thử, xác nhận lớp, thanh toán và xem lịch chính thức.
 - **Thông tin người dùng:** Tên và tuổi là ví dụ. Bối cảnh gia đình, công việc, thói quen, mục tiêu, khó khăn và nhu cầu accessibility của cả bốn persona đều là **giả định thiết kế**, chưa được kiểm chứng bằng phỏng vấn, khảo sát hay dữ liệu sử dụng. Không xem các giả định này là kết quả nghiên cứu.
 - **Nhu cầu accessibility:** Đây là các điều kiện cần thiết kế và kiểm chứng, không phải bằng chứng về tình trạng sức khỏe của người dùng. Persona Hạnh nêu một tình huống hỗ trợ phóng to văn bản như giả thuyết tiếp cận.
+- **Hình ảnh:** Cả bốn chân dung dưới đây được tạo bằng AI để minh họa persona; không phải ảnh người dùng thật hay minh chứng nghiên cứu.
 
 ## Problem Statement
 
@@ -17,6 +18,8 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 **Mục tiêu kiểm thử đề xuất, chưa phải kết quả đo:** Ít nhất 4/5 phụ huynh tham gia kiểm thử, bắt đầu ở trạng thái khách, có thể tìm hồ sơ phù hợp, xem học phí và lịch học, rồi gửi yêu cầu kết nối trong tối đa 5 phút mà không cần trợ giúp hoặc gặp lỗi nghiêm trọng.
 
 ## 1. Chị Lan — Persona chính
+
+![Ảnh minh họa AI cho persona Chị Lan](../assets/personas/lan.png)
 
 - **Tuổi và vai trò:** 38 tuổi (nhóm tuổi minh họa 35–40); nhân viên văn phòng, phụ huynh đang tìm gia sư cho con chuẩn bị thi vào lớp 10.
 - **Bối cảnh hằng ngày:** Theo mô tả persona hiện có, chị tìm gia sư Toán sau giờ làm, thường vào buổi tối. Bối cảnh và thói quen thiết bị là giả định cần kiểm chứng.
@@ -30,6 +33,8 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 
 ## 2. Anh Minh — Phụ huynh cần định hướng tìm kiếm
 
+![Ảnh minh họa AI cho persona Anh Minh](../assets/personas/minh.png)
+
 - **Tuổi và vai trò:** 42 tuổi (nhóm tuổi minh họa 40–45); kỹ sư và phụ huynh có con học lớp 7.
 - **Bối cảnh hằng ngày:** Lịch làm việc dày; muốn tìm hỗ trợ Toán đều đặn nhưng chưa biết mô tả chính xác nhu cầu của con bằng các bộ lọc.
 - **Mục tiêu:** Nhanh chóng hiểu loại gia sư nào phù hợp, xem lý do đề xuất và chọn lịch học có thể duy trì.
@@ -41,6 +46,8 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 
 ## 3. Chị Mai — Phụ huynh cân đối chi phí và lịch học
 
+![Ảnh minh họa AI cho persona Chị Mai](../assets/personas/mai.png)
+
 - **Tuổi và vai trò:** 35 tuổi (nhóm tuổi minh họa 30–35); nhân viên kinh doanh và phụ huynh có con học lớp 6.
 - **Bối cảnh hằng ngày:** Muốn tìm lớp tiếng Anh trực tuyến có thể học ngoài giờ; cần cân đối học phí với chi tiêu gia đình.
 - **Mục tiêu:** So sánh học phí, hình thức dạy và lịch trước khi gửi yêu cầu kết nối.
@@ -51,6 +58,8 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 - **Luồng liên quan:** Flow 01 — lọc và so sánh hồ sơ, sau đó yêu cầu kết nối; nếu tiếp tục, Flow 03 làm rõ học thử và thông tin lớp trước khi thanh toán.
 
 ## 4. Chị Hạnh — Phụ huynh cần theo dõi từng bước rõ ràng
+
+![Ảnh minh họa AI cho persona Chị Hạnh](../assets/personas/hanh.png)
 
 - **Tuổi và vai trò:** 52 tuổi (nhóm tuổi minh họa 50–55); phụ huynh có con học lớp 9.
 - **Bối cảnh hằng ngày:** Quan tâm không chỉ đến việc chọn gia sư mà còn muốn biết rõ điều gì xảy ra sau buổi học thử, trước khi đồng ý với lớp chính thức.
