@@ -7,6 +7,10 @@
 - **Design Tool:** [Google Stitch — BeeWise_Lab2](https://stitch.withgoogle.com/projects/11519656942239142615)
 - **Prototype:** Card “Prototype : BeeWise Tutoring Platform Flow” inside the Stitch project; no standalone URL is recorded.
 
+## Kích thước frame Figma
+
+Yêu cầu nền tảng là khung cơ sở Android `360dp`, hỗ trợ kiểm tra ở `412dp`. Trong page Final UI của Figma, 11 màn hình có chiều rộng frame 360 px; riêng Home rộng 402 px. Chiều cao frame thay đổi theo nội dung và không đồng nghĩa với chiều cao viewport cố định. Xem [bảng kích thước và ghi chú đối chiếu](../design/figma-screen-sizes.md). Home cần được chuẩn hóa về khung 360dp hoặc được giải thích rõ trước khi handoff.
+
 ## Batch 01 - Tutor Discovery & AI Matching
 
 | ID | Screen Name | Mô tả |
