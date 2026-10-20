@@ -5,7 +5,7 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 ## Tài liệu UX
 
 - [Problem statement](ux/problem-statement.md)
-- [Primary persona](ux/persona.md)
+- [User personas — 1 primary, 3 supporting](ux/persona.md)
 - [Sitemap — 12 màn hình](ux/sitemap.md)
 - [User flows — 3 luồng](ux/user-flow.md)
 
@@ -25,4 +25,4 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 
 ## Trạng thái persona
 
-Persona hiện là assumption-based. Các đặc điểm và mục tiêu chưa được kiểm chứng qua nghiên cứu người dùng.
+`ux/persona.md` giữ Chị Lan làm persona chính và bổ sung ba persona hỗ trợ trong phạm vi phụ huynh của các luồng hiện có. Đặc điểm người dùng và nhu cầu accessibility là giả định thiết kế; repository không có nghiên cứu người dùng để xác nhận chúng.
