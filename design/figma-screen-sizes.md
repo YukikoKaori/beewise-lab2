@@ -32,4 +32,6 @@ Trong inspector, AI Tutor Matching có chiều rộng `Fixed (360 px)` và chi�
 
 - `assets/initial screen/` chứa 12 ảnh kết quả ban đầu từ Google Stitch theo ba batch.
 - `assets/ux-critique/` chứa ảnh Before/After cho năm UX findings.
-- Hai nhóm trên không được ghi nhận là ảnh PNG xuất trực tiếp từ Figma. Dùng [file Figma](https://www.figma.com/design/gqbuTDuZYOyKyP8LsUwobC/BeeWise-Design?node-id=2-3&t=XLL8PoLbIdyZCOIC-1) để xem thiết kế hiện tại và kích thước frame nguồn.
+- Ảnh giao diện Figma do người dùng cung cấp được lưu tại [assets/figma-screens](../assets/figma-screens/README.md), gồm 12 màn hình chính và một trạng thái kết quả AI.
+- Ảnh Home có kích thước raster 804 × 2400 px, còn inspector Figma hiện ghi frame 402 × 874 px. Ghi chú này được giữ rõ trong index; 11 ảnh màn hình chính còn lại khớp kích thước frame ở tỉ lệ raster 2×. Trạng thái AI Results là ảnh bổ sung và chưa đo frame riêng.
+- Dùng [file Figma](https://www.figma.com/design/gqbuTDuZYOyKyP8LsUwobC/BeeWise-Design?node-id=2-3&t=XLL8PoLbIdyZCOIC-1) để xem thiết kế hiện tại và kích thước frame nguồn.
