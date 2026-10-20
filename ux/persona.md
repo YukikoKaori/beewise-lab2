@@ -19,7 +19,7 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 
 ## 1. Chị Lan — Persona chính
 
-![Ảnh minh họa AI cho persona Chị Lan](../assets/personas/lan.png)
+<img src="../assets/personas/lan.png" alt="Ảnh minh họa AI cho persona Chị Lan" width="220">
 
 - **Tuổi và vai trò:** 38 tuổi (nhóm tuổi minh họa 35–40); nhân viên văn phòng, phụ huynh đang tìm gia sư cho con chuẩn bị thi vào lớp 10.
 - **Bối cảnh hằng ngày:** Theo mô tả persona hiện có, chị tìm gia sư Toán sau giờ làm, thường vào buổi tối. Bối cảnh và thói quen thiết bị là giả định cần kiểm chứng.
@@ -33,7 +33,7 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 
 ## 2. Anh Minh — Phụ huynh cần định hướng tìm kiếm
 
-![Ảnh minh họa AI cho persona Anh Minh](../assets/personas/minh.png)
+<img src="../assets/personas/minh.png" alt="Ảnh minh họa AI cho persona Anh Minh" width="220">
 
 - **Tuổi và vai trò:** 42 tuổi (nhóm tuổi minh họa 40–45); kỹ sư và phụ huynh có con học lớp 7.
 - **Bối cảnh hằng ngày:** Lịch làm việc dày; muốn tìm hỗ trợ Toán đều đặn nhưng chưa biết mô tả chính xác nhu cầu của con bằng các bộ lọc.
@@ -46,7 +46,7 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 
 ## 3. Chị Mai — Phụ huynh cân đối chi phí và lịch học
 
-![Ảnh minh họa AI cho persona Chị Mai](../assets/personas/mai.png)
+<img src="../assets/personas/mai.png" alt="Ảnh minh họa AI cho persona Chị Mai" width="220">
 
 - **Tuổi và vai trò:** 35 tuổi (nhóm tuổi minh họa 30–35); nhân viên kinh doanh và phụ huynh có con học lớp 6.
 - **Bối cảnh hằng ngày:** Muốn tìm lớp tiếng Anh trực tuyến có thể học ngoài giờ; cần cân đối học phí với chi tiêu gia đình.
@@ -59,7 +59,7 @@ Phụ huynh tìm gia sư cho con cần xem năng lực, học phí và lịch h�
 
 ## 4. Chị Hạnh — Phụ huynh cần theo dõi từng bước rõ ràng
 
-![Ảnh minh họa AI cho persona Chị Hạnh](../assets/personas/hanh.png)
+<img src="../assets/personas/hanh.png" alt="Ảnh minh họa AI cho persona Chị Hạnh" width="220">
 
 - **Tuổi và vai trò:** 52 tuổi (nhóm tuổi minh họa 50–55); phụ huynh có con học lớp 9.
 - **Bối cảnh hằng ngày:** Quan tâm không chỉ đến việc chọn gia sư mà còn muốn biết rõ điều gì xảy ra sau buổi học thử, trước khi đồng ý với lớp chính thức.
