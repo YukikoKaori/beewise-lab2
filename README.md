@@ -8,6 +8,7 @@ Phạm vi sản phẩm: ứng dụng giúp phụ huynh tìm gia sư phù hợp, 
 - [User personas — 1 primary, 3 supporting](ux/persona.md)
 - [Sitemap — 12 màn hình](ux/sitemap.md)
 - [User flows — 3 luồng](ux/user-flow.md)
+- [Flutter handoff — đặc tả 12 màn hình](handoff/flutter-handoff.md)
 
 ## AI design và minh chứng
 
