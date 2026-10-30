@@ -1,0 +1,48 @@
+[!] Flutter (Channel [user-branch], 3.47.8, on Microsoft Windows [Version 10.0.26200.9711], locale en-BW) [2.2s]
+    ! Flutter version 3.47.8 on channel [user-branch] at D:\CodexTemp\beewise-lab3-tools\flutter
+      Currently on an unknown channel. Run `flutter channel` to switch to an official channel.
+      If that doesn't fix the issue, try deleting the 'bin/cache/flutter.version.json' file in your Flutter SDK directory and then reinstall Flutter by following instructions at https://flutter.dev/setup.
+    ! Warning: `flutter` on your path resolves to D:\src\flutter\bin\flutter, which is not inside your current Flutter SDK checkout at D:\CodexTemp\beewise-lab3-tools\flutter. Consider adding D:\CodexTemp\beewise-lab3-tools\flutter\bin to the front of your path.
+    ! Warning: `dart` on your path resolves to D:\src\flutter\bin\dart, which is not inside your current Flutter SDK checkout at D:\CodexTemp\beewise-lab3-tools\flutter. Consider adding D:\CodexTemp\beewise-lab3-tools\flutter\bin to the front of your path.
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision 737ba8f885 (7 days ago), 2026-10-22 21:37:31 -0700
+    • Engine revision cf636b1dfb
+    • Dart version 3.13.7
+    • DevTools version 2.60.0
+    • Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop, enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-native-assets, enable-record-use, enable-swift-package-manager, omit-legacy-version-file, enable-lldb-debugging, enable-uiscene-migration, enable-riscv64
+    • If those were intentional, you can disregard the above warnings; however it is recommended to use "git" directly to perform update checks and upgrades.
+
+[√] Windows Version (Windows 11 or higher, 25H2, 2009) [8.2s]
+
+[!] Android toolchain - develop for Android devices (Android SDK version 36.0.0) [5.1s]
+    • Android SDK at D:\Android\SDK
+    • Emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)
+    X cmdline-tools component is missing.
+      Try installing or updating Android Studio.
+      Alternatively, download the tools from https://developer.android.com/studio#command-line-tools-only and make sure to set the ANDROID_HOME environment variable.
+      See https://developer.android.com/studio/command-line for more details.
+    X Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/to/windows-android-setup for more details.
+
+[√] Chrome - develop for the web [968ms]
+    • Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[!] Visual Studio - develop Windows apps (Visual Studio Community 2026 18.7.3) [964ms]
+    • Visual Studio at C:\Program Files\Microsoft Visual Studio\18\Community
+    • Visual Studio Community 2026 version 18.7.11925.98
+    X Visual Studio is missing necessary components. Please re-run the Visual Studio installer for the "Desktop development with C++" workload, and include these components:
+        MSVC v142 - VS 2019 C++ x64/x86 build tools
+         - If there are multiple build tool versions available, install the latest
+        C++ CMake tools for Windows
+        Windows 10 SDK
+
+[√] Connected device (3 available) [958ms]
+    • Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.26200.9711]
+    • Chrome (web)      • chrome  • web-javascript • Google Chrome 156.0.8078.47
+    • Edge (web)        • edge    • web-javascript • Microsoft Edge 155.0.4283.45
+
+[√] Network resources [1,133ms]
+    • All expected network resources are available.
+
+! Doctor found issues in 3 categories.

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class AuthService {
   Stream<User?> authStateChanges();
@@ -73,10 +72,29 @@ class FirebaseAuthService implements AuthService {
     required String password,
   }) async {
     try {
-      final result = await _auth.createUserWithEmailAndPassword(
-        email: email.trim().toLowerCase(),
-        password: password,
-      );
+      final normalizedEmail = email.trim().toLowerCase();
+      UserCredential result;
+      try {
+        result = await _auth.createUserWithEmailAndPassword(
+          email: normalizedEmail,
+          password: password,
+        );
+      } on FirebaseAuthException catch (error) {
+        if (error.code != 'email-already-in-use') rethrow;
+        // Authenticate ownership before reconciling; never delete an identity.
+        result = await _auth.signInWithEmailAndPassword(
+          email: normalizedEmail,
+          password: password,
+        );
+        final user = result.user!;
+        if (await _isTutorApplicant(user) ||
+            (await _firestore.collection('parents').doc(user.uid).get())
+                .exists) {
+          throw const AuthFlowException(
+            'Email này đã có tài khoản. Hãy đăng nhập.',
+          );
+        }
+      }
       await result.user?.updateDisplayName(name.trim());
       final uid = result.user?.uid;
       if (uid != null) {
@@ -90,6 +108,10 @@ class FirebaseAuthService implements AuthService {
       return result;
     } on FirebaseAuthException catch (error) {
       throw AuthFlowException(_authMessage(error));
+    } on FirebaseException {
+      throw const AuthFlowException(
+        'Tài khoản đã được tạo nhưng chưa lưu được hồ sơ. Hãy thử đăng ký lại với cùng email và mật khẩu, hoặc đăng nhập để khôi phục hồ sơ.',
+      );
     }
   }
 
@@ -98,11 +120,13 @@ class FirebaseAuthService implements AuthService {
     final parent = _firestore.collection('parents').doc(user.uid);
     final snapshot = await parent.get();
     final data = <String, Object?>{
-      'displayName': user.displayName ?? '',
       'email': user.email ?? '',
       'updatedAt': FieldValue.serverTimestamp(),
     };
-    if (!snapshot.exists) data['createdAt'] = FieldValue.serverTimestamp();
+    if (!snapshot.exists) {
+      data['displayName'] = user.displayName ?? '';
+      data['createdAt'] = FieldValue.serverTimestamp();
+    }
     await parent.set(data, SetOptions(merge: true));
   }
 
@@ -123,8 +147,8 @@ class FirebaseAuthService implements AuthService {
     } catch (_) {
       // Firebase sign-out must still complete when Google sign-out is offline.
     }
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.clear();
+    // Keep UID-scoped inboxes and the installation cleanup journal. A global
+    // preferences.clear() would erase evidence needed to recover a failed detach.
   }
 
   String _authMessage(FirebaseAuthException error) => switch (error.code) {

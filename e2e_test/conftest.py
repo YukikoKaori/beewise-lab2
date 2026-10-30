@@ -81,6 +81,7 @@ def run_flow(artemis: ArtemisClient) -> Callable[..., Any]:
             f"ARTEMIS_RESULT case={case_id} trace_id={result.trace_id} "
             f"status={result.status} device={result.device_serial}"
         )
+        assert result.trace_id, f"{case_id} has no trace provenance"
         assert result.succeeded, f"{case_id} failed: {result.error or result.status}"
         observed = _decode_observation(result.output)
         observed["_trace_id"] = result.trace_id

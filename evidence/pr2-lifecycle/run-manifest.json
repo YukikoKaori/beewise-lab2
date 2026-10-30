@@ -1,0 +1,82 @@
+{
+  "recordedAtUtc": "2026-10-30T12:17:43.655145+00:00",
+  "reviewedPrHeadSha": "6ba751968c285daac443cb86e86af32185d2606a",
+  "testedApplicationSourceSha": "d89749f3a0740917d44f581c0961970b2efe059f",
+  "prUrl": "https://github.com/YukikoKaori/beewise-lab2/pull/2",
+  "commands": [
+    {
+      "command": "dart format --output=none --set-exit-if-changed .",
+      "result": "PASS",
+      "nativeExitCode": 0,
+      "log": "format.log"
+    },
+    {
+      "command": "flutter analyze",
+      "result": "PASS",
+      "nativeExitCode": 0,
+      "log": "analyze.log"
+    },
+    {
+      "command": "flutter test --reporter expanded",
+      "result": "PASS",
+      "nativeExitCode": 0,
+      "log": "flutter-test.log"
+    },
+    {
+      "command": "npm --prefix firebase test",
+      "result": "PASS",
+      "nativeExitCode": 0,
+      "log": "rules-test.log"
+    },
+    {
+      "command": "flutter build apk --debug (D checkout)",
+      "result": "PASS",
+      "nativeExitCode": 0,
+      "log": "apk-build.log"
+    }
+  ],
+  "flutterTests": 34,
+  "emulatorRulesTests": 26,
+  "initialAnalyzerFailure": "analyze-initial.log, subsequently corrected and rerun",
+  "tools": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "java": "Temurin 21.0.13+9",
+    "newToolingAndCachesDrive": "D"
+  },
+  "latestHeadCi": "Verify separately after final push; receipts outside repo avoid self-referential commit loop",
+  "androidRuntime": {
+    "status": "NOT_RUN",
+    "reason": "An emulator appeared in final adb inventory; no native runtime/FCM scenario was executed"
+  },
+  "staging": {
+    "status": "NOT_RUN/BLOCKED",
+    "reason": "No supplied staging backend, trusted sender or test identities"
+  },
+  "artemis": {
+    "status": "NOT_RUN/BLOCKED",
+    "reason": "No configured ARTEMIS session/authorized staging fixtures; collection is not execution"
+  },
+  "externalReview": {
+    "status": "NOT_RUN/BLOCKED",
+    "reason": "No independent review approval/transcript"
+  },
+  "productionOrSystemConfigurationChanges": false,
+  "localApk": {
+    "path": "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "sizeBytes": 227798741,
+    "sha256": "c8d253a08019f01ea3d6f27dc2e0e45225ac0f445885250e4602bf6c4086bf33"
+  },
+  "fileHashesSha256": {
+    "evidence/pr2-lifecycle/adb-devices.log": "75851a2c58192e7f6bbb43c51208d651ffbaaf00f56a633fe9c4eb5d71a17443",
+    "evidence/pr2-lifecycle/analyze-initial.log": "a0a0684913b90d464fb7e7b0dcd5fe88a519c3f0d009b8dc45f02d815e0ad06d",
+    "evidence/pr2-lifecycle/analyze.log": "456b23b9c4da45d2c9f9a37a366a7aac05c1093bb41f0c96000c46c7c9e0258f",
+    "evidence/pr2-lifecycle/apk-build.log": "bd6523d6930e96ba46789033f0701468f221203588554643ecc3ae2569a0c6fc",
+    "evidence/pr2-lifecycle/apk-metadata.log": "58e6c837536865b4bea60da0339e9c36884012ac9417896ec1653b10067e0874",
+    "evidence/pr2-lifecycle/flutter-test.log": "4f927f7959c00d9b43066d16ff68f8270ed6aa8c17dbd18975717c5aeb12991e",
+    "evidence/pr2-lifecycle/format.log": "67d73ae19f072999e580cc2f89fa245790e0a98dfdb361baf289afb5166987e2",
+    "evidence/pr2-lifecycle/pub-get.log": "247e5939ad1b99adf70977d18ce0bf83ac05953e41d4e92a389534cb59713bb2",
+    "evidence/pr2-lifecycle/rules-test.log": "f08a68af14230babb2ae69d309ba08ee952cd77c5989ec25b4359d112f02e9de",
+    "evidence/pr2-lifecycle/secret-scan.json": "c95acd78f308b19bcc7109c1e5db055f06c0f629db93a79b8eadc40b0352f64a"
+  }
+}
