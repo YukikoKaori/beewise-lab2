@@ -33,6 +33,10 @@ try {
     $runExitCode = $LASTEXITCODE
     $ErrorActionPreference = 'Stop'
     if ($runExitCode -ne 0 -and $exitCode -eq 0) { $exitCode = $runExitCode }
+    $hashStream = [System.IO.File]::OpenRead($logPath)
+    $hasher = [System.Security.Cryptography.SHA256]::Create()
+    try { $logSha256 = [BitConverter]::ToString($hasher.ComputeHash($hashStream)).Replace('-', '') }
+    finally { $hashStream.Dispose(); $hasher.Dispose() }
     $manifest.Add([pscustomobject]@{
         suiteRun = $run
         profile = 'flash'
@@ -40,7 +44,7 @@ try {
         exitCode = $runExitCode
         status = $(if ($runExitCode -eq 0) { 'PENDING_VERIFICATION' } else { 'FAIL' })
         sourceSha = $sourceSha
-        logSha256 = (Get-FileHash -LiteralPath $logPath -Algorithm SHA256).Hash
+        logSha256 = $logSha256
         log = $logPath
         junit = $junitPath
         recordedAtUtc = [DateTime]::UtcNow.ToString('o')
