@@ -1,35 +1,353 @@
 {
-  "recordedAtUtc": "2026-10-30T16:02:48.952895+00:00",
-  "applicationSourceSha": "db1f12e",
-  "apk": "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
-  "apkBytes": 227799947,
-  "apkSha256": "b3fa9f9d3b596d240cb24fe8dd4c422cc8d0376dd92cf42b2be6c3cf2483c9db",
+  "recordedAtUtc": "2026-10-30T22:22:44.949279+00:00",
+  "applicationSourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
   "projectId": "beewise-lab-3",
   "package": "com.beewise.beewise",
+  "apk": {
+    "apk": "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "sha256": "f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d",
+    "bytes": 227800966
+  },
   "device": {
-    "avd": "BeeWise_API_37",
-    "serial": "emulator-5554",
+    "avd": "BeeWise_Bao_PR3_API37",
+    "serial": "emulator-5558",
     "android": "17",
     "api": 37,
-    "architecture": "x86_64",
-    "physicalSize": "720x1280",
-    "density": 320
+    "imageRevision": 6,
+    "abi": "x86_64",
+    "ramMb": 4096,
+    "cores": 2,
+    "gpu": "software",
+    "directory": "D:/CodexTemp/beewise-lab3-tools/bao-isolated-avd",
+    "viewports": {
+      "360dp": "720x1600 @320dpi",
+      "412dp": "824x1830 @320dpi"
+    }
   },
   "build": "PASS",
-  "installLatest": "BLOCKED",
-  "installError": "INSTALL_FAILED_UPDATE_INCOMPATIBLE: Existing package com.beewise.beewise signatures do not match newer version; ignoring!",
-  "existingData": "Preserved. No uninstall or clear-data executed. Original display/network/Analytics state restored; original AVD restarted online.",
-  "alternativeAttempt": "Fresh data images on D; shared read-only instance rejected, fresh headless instance remained ADB offline; unsupported boot property rejected. Stopped these instances; original userdata untouched.",
-  "latestLaunch": "NOT RUN",
-  "width360": "NOT RUN",
-  "width412": "NOT RUN",
-  "navigation": "NOT RUN",
-  "offlineRecovery": "NOT RUN",
-  "authenticatedSession": "BLOCKED (no dedicated test identity)",
-  "nativeFirebaseInitialization": "NOT RUN",
-  "fcmDelivery": "NOT RUN",
-  "crashlyticsTrigger": "NOT RUN",
-  "consoleReceipt": "NOT RUN",
-  "screenshots": [],
-  "pendingUserDecision": "User asked whether uninstall of existing BeeWise on test emulator is authorized; no approval received at recording."
+  "installLatest": "PASS",
+  "latestLaunch": "PASS",
+  "width360": "PASS limited smoke",
+  "width412": "PASS limited smoke",
+  "navigation": "PASS Home, Search, Profile, matching form/disabled submit, guest Chats login gate; tutor detail RETEST BLOCKED by GMS package-update process kill and host paging",
+  "offlineRecovery": "PASS limited: both transports disabled, active default network none observed, Firestore DNS UNAVAILABLE logged while cached Home renders; reenable/relaunch fetched changed RC from server",
+  "authenticatedSession": "BLOCKED: user reconfirmed no dedicated authorized identity",
+  "nativeFirebaseInitialization": "PASS limited: real SDK logs, catalog and RC behavior; not all services live verified",
+  "fcmDelivery": "NOT RUN/BLOCKED authenticated receiver/sender; native notification permission allowed",
+  "crashlyticsTrigger": "PASS handled diagnostic and intentional native test crash PID 5565; Console receipt NOT RUN",
+  "remoteConfig": "PASS original empty -> version 1 -> restored empty version 2; same APK visible changes and restored enabled/3 verified",
+  "consoleReceipt": "NOT RUN/BLOCKED browser control unavailable; no screenshots fabricated",
+  "environmentFindings": [
+    "Initial 2GB run SIGBUS observed through GMS/Dex; raw crash buffer not retained across reboot, do not call this fixed application code",
+    "4GB initial System UI ANR/slow first launch; actual screenshot retained",
+    "PID 6589 killed due to com.google.android.gms package update; ActivityManager log retained",
+    "Host C filled during paging; stopping AVD returned about 6.3GB. Only generated dart cache moved intact to D, no personal data deletion"
+  ],
+  "existingData": "Original emulator-5554 shut down for RAM only. No original package uninstall, data clear, wipe or copying. Separate AVD restored display/Wi-Fi/mobile-data/Analytics debug and shut down after tests.",
+  "limitations": [
+    "No physical Android hardware",
+    "No full layout/performance certification",
+    "Old uiautomator /dev/tty output produced status-only XML files; those are not hierarchy proof",
+    "Capture helpers reporting completed only establish command completion; verified-screen index uses actual visual inspection",
+    "Some PNG writes failed when C was full; invalid/empty files are excluded"
+  ],
+  "screenshots": [
+    {
+      "path": "screenshots/corrective-360-home.png",
+      "bytes": 123379,
+      "width": 720,
+      "height": 1600,
+      "sha256": "b9fbc4a52aa33cfa27c2c63b86f6eb6384b230f302555a0394b9cc6e36f0ca00",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "360dp actual guest Home"
+    },
+    {
+      "path": "screenshots/corrective-360-nonfatal.png",
+      "bytes": 153069,
+      "width": 720,
+      "height": 1600,
+      "sha256": "4ac8373b203977296e71c496b9815b1760ebba306c7330d2a126db8cfc675137",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Profile handled diagnostic invoked; device log is authoritative, not snackbar"
+    },
+    {
+      "path": "screenshots/corrective-360-permission.png",
+      "bytes": 106841,
+      "width": 720,
+      "height": 1600,
+      "sha256": "64e62f5374869c6ff3a172cf62a95b98492c4235fa8934ecf9f33d53e7adb715",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Native Android notification permission prompt"
+    },
+    {
+      "path": "screenshots/corrective-360-profile-baseline.png",
+      "bytes": 123379,
+      "width": 720,
+      "height": 1600,
+      "sha256": "b9fbc4a52aa33cfa27c2c63b86f6eb6384b230f302555a0394b9cc6e36f0ca00",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-360-profile.png",
+      "bytes": 153067,
+      "width": 720,
+      "height": 1600,
+      "sha256": "d23c103eae4d62077377b03dc6c43aebabe3b89e26f205ab70d2c3efab94eae7",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "360dp actual guest Profile/default RC enabled, 3"
+    },
+    {
+      "path": "screenshots/corrective-360-relaunch.png",
+      "bytes": 716314,
+      "width": 720,
+      "height": 1600,
+      "sha256": "181461d73bab06badcb82409414e1c674dc10f5f8990216c0e43342803e91f2e",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-360-start.png",
+      "bytes": 834018,
+      "width": 720,
+      "height": 1600,
+      "sha256": "3c2aae255d8e4971001faf438b6452964d8271f551c7c6841ea8e24cef2a677a",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-after-crash-ready.png",
+      "bytes": 151068,
+      "width": 824,
+      "height": 1830,
+      "sha256": "ceae35f4ff62e4513536d06e541762ee93d20da10a9dafad1a6fae68ef80500c",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-before-crash.png",
+      "bytes": 152132,
+      "width": 824,
+      "height": 1830,
+      "sha256": "c83935226775c48bf0c7fc633358be55b77964d4d147d76d7d06e226ca881e85",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-chats-ready.png",
+      "bytes": 65533,
+      "width": 824,
+      "height": 1830,
+      "sha256": "6e09d57fece9d1801b25d83de01f9eea8f5547efed19af3f3ba2aecc6fd9507b",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Guest Chats correctly requests login"
+    },
+    {
+      "path": "screenshots/corrective-412-detail-loaded.png",
+      "bytes": 14458,
+      "width": 824,
+      "height": 1830,
+      "sha256": "a0203fc54c9fea0cf1d37e6da5ae5376ca4164df16d6c6d02047570e594d58aa",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-detail.png",
+      "bytes": 151735,
+      "width": 824,
+      "height": 1830,
+      "sha256": "c88be33e1bf2613b374384d0c747ddbb4d6688e4a6c28909f431526edd0cce7b",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-guest-chats.png",
+      "bytes": 25089,
+      "width": 824,
+      "height": 1830,
+      "sha256": "9d2c4d9ff4d3f477fddfb9f152dca0bb4b4e05e0f14b646d0fd5f669761f6074",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-home-limit-two-bottom.png",
+      "bytes": 170882,
+      "width": 824,
+      "height": 1830,
+      "sha256": "5107c30695821b1f95dea7781b7bcdfa7344a988afcf6d03df83a90bf96594ae",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Home ends after two tutors under temporary cloud limit"
+    },
+    {
+      "path": "screenshots/corrective-412-matching-disabled-result.png",
+      "bytes": 115821,
+      "width": 824,
+      "height": 1830,
+      "sha256": "2d95fc33fb528a78db664171383f2a7e62d912e0db543abc85825af5bcb19952",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Actual matching submit rejected by cloud-disabled gate"
+    },
+    {
+      "path": "screenshots/corrective-412-matching-disabled.png",
+      "bytes": 111481,
+      "width": 824,
+      "height": 1830,
+      "sha256": "4ff694f1578a4cb0b35b72e58b4e2ce5cc25195dd9911ab9066a749185b55027",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-network-restored-home.png",
+      "bytes": 137851,
+      "width": 824,
+      "height": 1830,
+      "sha256": "dd4885399f3936ee76d1f9b7235df8ff1771ef9911f7e81da018ad65b3f1c409",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-offline-error.png",
+      "bytes": 171220,
+      "width": 824,
+      "height": 1830,
+      "sha256": "2c8cb574215a11a35092b784061b2a3dd0b38a28f99cf7d368ae93e5a4a3d1c2",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Offline cached Home; despite filename this is NOT an error screen"
+    },
+    {
+      "path": "screenshots/corrective-412-offline-no-network.png",
+      "bytes": 24508,
+      "width": 824,
+      "height": 1830,
+      "sha256": "fdce8b2412f23305340f51f62aca3520f302109f55a48e41075cf6305948596a",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-offline.png",
+      "bytes": 895249,
+      "width": 824,
+      "height": 1830,
+      "sha256": "497aca56798f3144b59a2634436cbdbbc55b2f177b730dc1238423239f64e28b",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-profile-ready.png",
+      "bytes": 153078,
+      "width": 824,
+      "height": 1830,
+      "sha256": "531fc36a9c9a8d4c66b439700afbfcd370b6a341e3544bf04289b3830cffe8de",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "412dp guest Profile/default RC enabled, 3"
+    },
+    {
+      "path": "screenshots/corrective-412-profile.png",
+      "bytes": 153069,
+      "width": 720,
+      "height": 1600,
+      "sha256": "4ac8373b203977296e71c496b9815b1760ebba306c7330d2a126db8cfc675137",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-rc-changed-profile.png",
+      "bytes": 152280,
+      "width": 824,
+      "height": 1830,
+      "sha256": "784775d76663e32c46fc03eada1549a00c51f6cb7992042347813decfb531684",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "Same APK cloud RC disabled, 1"
+    },
+    {
+      "path": "screenshots/corrective-412-rc-restored-profile.png",
+      "bytes": 152572,
+      "width": 824,
+      "height": 1830,
+      "sha256": "aa22d1773ee4628d13678ff446d60135c40a6c895bfd808f878cff48a7bb872c",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "After cloud restoration and refetch: enabled, 3"
+    },
+    {
+      "path": "screenshots/corrective-412-rc-search.png",
+      "bytes": 100537,
+      "width": 824,
+      "height": 1830,
+      "sha256": "a06c23a10a0d8ca1e3d64a7dafdc6c83baae4c824ba8660f41c585d7b29ee0af",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-restored-ready.png",
+      "bytes": 172546,
+      "width": 824,
+      "height": 1830,
+      "sha256": "b06ceef2544e9443a4d791975242d7eba242f4a06f2ec535ebca4b29f9ea8270",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-search-data.png",
+      "bytes": 151843,
+      "width": 824,
+      "height": 1830,
+      "sha256": "ec3bb1c8bd692e5db3b5c73a7009fdf53fa64fd99252e2324d436fde275c9f37",
+      "classification": "VERIFIED_SCREEN",
+      "observation": "412dp live catalog: six labeled synthetic tutors"
+    },
+    {
+      "path": "screenshots/corrective-412-search.png",
+      "bytes": 101140,
+      "width": 824,
+      "height": 1830,
+      "sha256": "a46b0ed75b7f6d99a7363336972fd7b4446b4060fe908797891026c9b278bf27",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-412-tutor-detail.png",
+      "bytes": 100674,
+      "width": 824,
+      "height": 1830,
+      "sha256": "9d78f3ba72b073b7383d4691ba2dfd79ac54654fe5ae014f742e5b0d41accac0",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-4gb-360-home.png",
+      "bytes": 12168,
+      "width": 720,
+      "height": 1600,
+      "sha256": "9966b36731e54230fe7c188d14fb404adcb5846005faeba7f54480b7d4856c9c",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-4gb-360-ready.png",
+      "bytes": 12177,
+      "width": 720,
+      "height": 1600,
+      "sha256": "c0cb7056ac5d4974050653d77e6fd0c2840be608bcc92594dbd94241033525e9",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-4gb-360.png",
+      "bytes": 7904,
+      "width": 720,
+      "height": 1600,
+      "sha256": "e97487fe1c9e36ceb85c6d019479b7d6a852ee5632d037802f8a3e6e44aa023e",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    },
+    {
+      "path": "screenshots/corrective-4gb-installed-360.png",
+      "bytes": 35429,
+      "width": 720,
+      "height": 1600,
+      "sha256": "ddc707b50cb1cf5716d26705806fa010b32817c663cd74d433f8ea6bdc80a058",
+      "classification": "HISTORICAL_ATTEMPT_ONLY",
+      "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
+    }
+  ]
 }

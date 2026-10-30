@@ -1,0 +1,26 @@
+{
+  "project": "beewise-lab-3",
+  "authorization": "User allowed temporary Remote Config changes with restoration",
+  "records": [
+    {
+      "timestampUtc": "2026-10-30T22:06:32.316Z",
+      "action": "apply",
+      "conditionalWrite": true,
+      "status": "PASS",
+      "version": "1",
+      "parameters": {
+        "home_tutor_limit": "2",
+        "ai_result_limit": "1",
+        "ai_matching_enabled": "false"
+      }
+    },
+    {
+      "timestampUtc": "2026-10-30T22:14:11.676Z",
+      "action": "restore",
+      "conditionalWrite": true,
+      "status": "PASS",
+      "version": "2",
+      "parameters": {}
+    }
+  ]
+}

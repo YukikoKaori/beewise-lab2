@@ -1,3 +1,5 @@
+> **2026-10-31 corrective update (supersedes prior runtime status):** Current update: six fixed synthetic document IDs audited from server (not cache), all active, labeled TEST, namespace intact and unverified. Native Search rendered all six. Client enforces fixture labeling/unverified status and excludes fixtures from AI. Deployed rules hash still differs; deployment preparation and secure rollback are in docs/workstreams/bao-deployment-plan.md. No shared deployment or fixture cleanup occurred.
+
 # Firestore live deployment audit
 
 Read-only API/CLI inspection on 2026-10-30, `beewise-lab-3`. Default database is

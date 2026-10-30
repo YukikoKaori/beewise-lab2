@@ -1,3 +1,5 @@
+> **2026-10-31 corrective update (supersedes prior runtime status):** Current update: user reconfirmed no dedicated test identity. Keep every authenticated runtime case BLOCKED. Live configuration still has email/password enabled, Google provider missing and no registered Android SHA; no provider configuration was changed.
+
 # Authentication
 
 Implementation: `lib/services/auth_service.dart`, `tutor_application_service.dart`,
