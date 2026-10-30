@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/beewise_screens.dart';
+import '../services/notification_service.dart';
 import '../screens/tutor_application_screens.dart';
 import '../theme/bee_wise_theme.dart';
 import '../viewmodels/app_providers.dart';
@@ -18,7 +19,7 @@ class BeeWiseApp extends ConsumerStatefulWidget {
 
 class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
   late final GoRouter _router;
-  StreamSubscription<String>? _notificationRouteSubscription;
+  StreamSubscription<BeeWiseNotification>? _notificationRouteSubscription;
 
   @override
   void initState() {
@@ -133,8 +134,13 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
       ref.read(notificationInitializationProvider);
       _notificationRouteSubscription = ref
           .read(notificationServiceProvider)
-          .openedRoutes
-          .listen((route) => _router.go(route));
+          .openedNotifications
+          .listen((item) async {
+            final route = await ref
+                .read(notificationServiceProvider)
+                .routeForNotification(item);
+            if (mounted && route != null) _router.go(route);
+          });
     });
   }
 

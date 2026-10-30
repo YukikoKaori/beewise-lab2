@@ -1832,8 +1832,14 @@ class ProfileScreen extends ConsumerWidget {
             },
           ),
           const SectionTitle('Thông báo'),
-          if (notificationError != null)
+          if (notificationError != null) ...[
             ErrorStateView(message: notificationError),
+            TextButton(
+              onPressed: () =>
+                  ref.read(notificationServiceProvider).retryRegistration(),
+              child: const Text('Thử lại đăng ký thông báo'),
+            ),
+          ],
           notifications.when(
             loading: () => const LoadingStateView(),
             error: (error, stack) =>
@@ -1847,7 +1853,14 @@ class ProfileScreen extends ConsumerWidget {
                           leading: const Icon(Icons.notifications_none),
                           title: Text(item.title),
                           subtitle: Text(item.body),
-                          onTap: () => context.go(item.route),
+                          onTap: () async {
+                            final route = await ref
+                                .read(notificationServiceProvider)
+                                .routeForNotification(item);
+                            if (context.mounted && route != null) {
+                              context.go(route);
+                            }
+                          },
                         ),
                     ],
                   ),

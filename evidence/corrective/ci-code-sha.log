@@ -1,0 +1,1276 @@
+e2e-harness	Set up job	﻿2026-10-30T06:46:24.8464618Z Current runner version: '2.338.0'
+e2e-harness	Set up job	2026-10-30T06:46:24.8485395Z ##[group]Runner Image Provisioner
+e2e-harness	Set up job	2026-10-30T06:46:24.8486278Z Hosted Compute Agent
+e2e-harness	Set up job	2026-10-30T06:46:24.8486768Z Version: 20261021.618
+e2e-harness	Set up job	2026-10-30T06:46:24.8487179Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+e2e-harness	Set up job	2026-10-30T06:46:24.8487691Z Build Date: 2026-10-21T00:45:21Z
+e2e-harness	Set up job	2026-10-30T06:46:24.8488186Z Worker ID: {2597396e-a6ce-4bb6-b746-986dcbd7fd61}
+e2e-harness	Set up job	2026-10-30T06:46:24.8488653Z Region: centralus
+e2e-harness	Set up job	2026-10-30T06:46:24.8489061Z Cloud: Azure
+e2e-harness	Set up job	2026-10-30T06:46:24.8489426Z ##[endgroup]
+e2e-harness	Set up job	2026-10-30T06:46:24.8490274Z ##[group]Operating System
+e2e-harness	Set up job	2026-10-30T06:46:24.8490722Z Ubuntu
+e2e-harness	Set up job	2026-10-30T06:46:24.8491094Z 24.04.5
+e2e-harness	Set up job	2026-10-30T06:46:24.8491489Z LTS
+e2e-harness	Set up job	2026-10-30T06:46:24.8491827Z ##[endgroup]
+e2e-harness	Set up job	2026-10-30T06:46:24.8492151Z ##[group]Runner Image
+e2e-harness	Set up job	2026-10-30T06:46:24.8492993Z Image: ubuntu-24.04
+e2e-harness	Set up job	2026-10-30T06:46:24.8493354Z Version: 20261025.353.1
+e2e-harness	Set up job	2026-10-30T06:46:24.8494022Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+e2e-harness	Set up job	2026-10-30T06:46:24.8495126Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+e2e-harness	Set up job	2026-10-30T06:46:24.8495802Z ##[endgroup]
+e2e-harness	Set up job	2026-10-30T06:46:24.8496872Z ##[group]GITHUB_TOKEN Permissions
+e2e-harness	Set up job	2026-10-30T06:46:24.8498315Z Contents: read
+e2e-harness	Set up job	2026-10-30T06:46:24.8498691Z Metadata: read
+e2e-harness	Set up job	2026-10-30T06:46:24.8499100Z ##[endgroup]
+e2e-harness	Set up job	2026-10-30T06:46:24.8500740Z Secret source: Actions
+e2e-harness	Set up job	2026-10-30T06:46:24.8501404Z Cache mode: write
+e2e-harness	Set up job	2026-10-30T06:46:24.8501898Z Prepare workflow directory
+e2e-harness	Set up job	2026-10-30T06:46:24.8777478Z Prepare all required actions
+e2e-harness	Set up job	2026-10-30T06:46:24.8812071Z Getting action download info
+e2e-harness	Set up job	2026-10-30T06:46:25.0978529Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+e2e-harness	Set up job	2026-10-30T06:46:25.1964423Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+e2e-harness	Set up job	2026-10-30T06:46:25.3101053Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+e2e-harness	Set up job	2026-10-30T06:46:25.9410151Z Complete job name: e2e-harness
+e2e-harness	Run actions/checkout@v4	﻿2026-10-30T06:46:26.0066918Z ##[group]Run actions/checkout@v4
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0067516Z with:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0067842Z   repository: YukikoKaori/beewise-lab2
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0070414Z   token: ***
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0070691Z   ssh-strict: true
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0070967Z   ssh-user: git
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0071263Z   persist-credentials: true
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0071587Z   clean: true
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0071867Z   sparse-checkout-cone-mode: true
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0072191Z   fetch-depth: 1
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0072462Z   fetch-tags: false
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0072752Z   show-progress: true
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0073055Z   lfs: false
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0073324Z   submodules: false
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0073624Z   set-safe-directory: true
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0073940Z   allow-unsafe-pr-checkout: false
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.0074348Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2065301Z Syncing repository: YukikoKaori/beewise-lab2
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2067596Z ##[group]Getting Git version info
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2068372Z Working directory is '/home/runner/work/beewise-lab2/beewise-lab2'
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2069516Z [command]/usr/bin/git version
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2119615Z git version 2.56.0
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2145128Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2152214Z Temporarily overriding HOME='/home/runner/work/_temp/ee59f104-3790-46ba-a96b-ad808833abc2' before making global git config changes
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2153620Z Adding repository directory to the temporary git global config as a safe directory
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2154829Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beewise-lab2/beewise-lab2
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2204996Z Deleting the contents of '/home/runner/work/beewise-lab2/beewise-lab2'
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2211914Z ##[group]Initializing the repository
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2212816Z [command]/usr/bin/git init /home/runner/work/beewise-lab2/beewise-lab2
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2309032Z hint: Using 'master' as the name for the initial branch. This default branch name
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2310511Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2311314Z hint: to use in all of your new repositories, which will suppress this warning,
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2312295Z hint: call:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2312879Z hint:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2313429Z hint: 	git config --global init.defaultBranch <name>
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2314079Z hint:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2314660Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2316266Z hint: 'development'. The just-created branch can be renamed via this command:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2317132Z hint:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2317702Z hint: 	git branch -m <name>
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2318286Z hint:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2319002Z hint: Disable this message with "git config set advice.defaultBranchName false"
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2320252Z Initialized empty Git repository in /home/runner/work/beewise-lab2/beewise-lab2/.git/
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2328696Z [command]/usr/bin/git remote add origin https://github.com/YukikoKaori/beewise-lab2
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2382223Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2383698Z ##[group]Disabling automatic garbage collection
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2385292Z [command]/usr/bin/git config --local gc.auto 0
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2427383Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2428615Z ##[group]Setting up auth
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2433527Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2471527Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2801900Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.2845118Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.3052960Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.3094838Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.3302245Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.3349422Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.3350206Z ##[group]Fetching the repository
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:26.3358990Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +114d682c17098f7b96255c42eb3b8aa4ffeb66fc:refs/remotes/origin/codex/lab3-postmerge-corrective
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7133375Z From https://github.com/YukikoKaori/beewise-lab2
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7134701Z  * [new ref]         114d682c17098f7b96255c42eb3b8aa4ffeb66fc -> origin/codex/lab3-postmerge-corrective
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7137566Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7138349Z ##[group]Determining the checkout info
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7139060Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7144244Z [command]/usr/bin/git sparse-checkout disable
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7199499Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7243852Z ##[group]Checking out the ref
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.7247350Z [command]/usr/bin/git checkout --progress --force -B codex/lab3-postmerge-corrective refs/remotes/origin/codex/lab3-postmerge-corrective
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.8087238Z Switched to a new branch 'codex/lab3-postmerge-corrective'
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.8088646Z branch 'codex/lab3-postmerge-corrective' set up to track 'origin/codex/lab3-postmerge-corrective'.
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.8100018Z ##[endgroup]
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.8150441Z [command]/usr/bin/git log -1 --format=%H
+e2e-harness	Run actions/checkout@v4	2026-10-30T06:46:27.8184830Z 114d682c17098f7b96255c42eb3b8aa4ffeb66fc
+e2e-harness	Run actions/setup-python@v5	﻿2026-10-30T06:46:27.8479038Z ##[group]Run actions/setup-python@v5
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8479536Z with:
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8479705Z   python-version: 3.12
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8479876Z   check-latest: false
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8481487Z   token: ***
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8481650Z   update-environment: true
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8481832Z   allow-prereleases: false
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8482004Z   freethreaded: false
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.8482164Z ##[endgroup]
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.9511838Z ##[group]Installed versions
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.9571699Z (node:2077) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.9572236Z (Use `node --trace-deprecation ...` to show where the warning was created)
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.9572850Z Successfully set up CPython (3.12.15)
+e2e-harness	Run actions/setup-python@v5	2026-10-30T06:46:27.9573337Z ##[endgroup]
+e2e-harness	Run astral-sh/setup-uv@v6	﻿2026-10-30T06:46:27.9797829Z ##[group]Run astral-sh/setup-uv@v6
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9798124Z with:
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9798326Z   activate-environment: false
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9798562Z   working-directory: /home/runner/work/beewise-lab2/beewise-lab2
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9798842Z   server-url: https://github.com
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9800327Z   github-token: ***
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9800489Z   enable-cache: auto
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9800841Z   cache-dependency-glob: **/*requirements*.txt
+e2e-harness	Run astral-sh/setup-uv@v6	**/*requirements*.in
+e2e-harness	Run astral-sh/setup-uv@v6	**/*constraints*.txt
+e2e-harness	Run astral-sh/setup-uv@v6	**/*constraints*.in
+e2e-harness	Run astral-sh/setup-uv@v6	**/pyproject.toml
+e2e-harness	Run astral-sh/setup-uv@v6	**/uv.lock
+e2e-harness	Run astral-sh/setup-uv@v6	**/*.py.lock
+e2e-harness	Run astral-sh/setup-uv@v6
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9801237Z   restore-cache: true
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9801395Z   save-cache: true
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9801547Z   prune-cache: true
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9801715Z   ignore-nothing-to-cache: false
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9801901Z   ignore-empty-workdir: false
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9802085Z   add-problem-matchers: true
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9802251Z env:
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9802434Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9802972Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9803255Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9803519Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9803779Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9804038Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:27.9804428Z ##[endgroup]
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1118152Z (node:2085) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1118913Z (Use `node --trace-deprecation ...` to show where the warning was created)
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1217893Z Trying to find version for uv in: /home/runner/work/beewise-lab2/beewise-lab2/uv.toml
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1226726Z Could not find file: /home/runner/work/beewise-lab2/beewise-lab2/uv.toml
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1227764Z Trying to find version for uv in: /home/runner/work/beewise-lab2/beewise-lab2/pyproject.toml
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1228712Z Could not find file: /home/runner/work/beewise-lab2/beewise-lab2/pyproject.toml
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1229505Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.1230918Z Getting latest version from GitHub API...
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.4567839Z manifest-file not provided, reading from local file.
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.4596975Z manifest-file does not contain version 0.13.6, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.4598147Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:28.8238713Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/79561f11-e97a-4070-ae68-2a114d77b625 -f /home/runner/work/_temp/eff7644e-82fd-43ad-b1b9-64e1d9958bf2
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.1827587Z Added /home/runner/.local/bin to the path
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.1831341Z Added /opt/hostedtoolcache/uv/0.13.6/x86_64 to the path
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.1840392Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.1840804Z Successfully installed uv version 0.13.6
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.1841754Z Searching files using cache dependency glob: /home/runner/work/beewise-lab2/beewise-lab2/**/*requirements*.txt,/home/runner/work/beewise-lab2/beewise-lab2/**/*requirements*.in,/home/runner/work/beewise-lab2/beewise-lab2/**/*constraints*.txt,/home/runner/work/beewise-lab2/beewise-lab2/**/*constraints*.in,/home/runner/work/beewise-lab2/beewise-lab2/**/pyproject.toml,/home/runner/work/beewise-lab2/beewise-lab2/**/uv.lock,/home/runner/work/beewise-lab2/beewise-lab2/**/*.py.lock
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.2047417Z /home/runner/work/beewise-lab2/beewise-lab2/e2e_test/pyproject.toml
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.2063118Z /home/runner/work/beewise-lab2/beewise-lab2/e2e_test/uv.lock
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.2117750Z Found 2 files to hash.
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.2921518Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.15-pruned-e5d9dd0d94e912fdf55e44ca370aee76407db6449325c5d7f2928333114000ac
+e2e-harness	Run astral-sh/setup-uv@v6	2026-10-30T06:46:29.4350332Z No GitHub Actions cache found for key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.15-pruned-e5d9dd0d94e912fdf55e44ca370aee76407db6449325c5d7f2928333114000ac
+e2e-harness	Run uv sync --project e2e_test --frozen	﻿2026-10-30T06:46:29.4491291Z ##[group]Run uv sync --project e2e_test --frozen
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4491597Z ^[[36;1muv sync --project e2e_test --frozen^[[0m
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4512025Z shell: /usr/bin/bash -e {0}
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4512182Z env:
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4512338Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4512587Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4512831Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4513050Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4513268Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4513484Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4513692Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4513882Z ##[endgroup]
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4929664Z Using CPython 3.12.15 interpreter at: /opt/hostedtoolcache/Python/3.12.15/x64/bin/python3
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4930122Z Creating virtual environment at: e2e_test/.venv
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.4955215Z    Updating https://github.com/google/artemis.git (351ca8422f7b5b54e80a9c1ce03a222e02415b6b)
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.5680494Z Downloading pygments (1.2MiB)
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:29.7012335Z  Downloaded pygments
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:30.5507702Z     Updated https://github.com/google/artemis.git (351ca8422f7b5b54e80a9c1ce03a222e02415b6b)
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:30.5509962Z    Building artemis-client @ git+https://github.com/google/artemis.git@351ca8422f7b5b54e80a9c1ce03a222e02415b6b#subdirectory=packages/artemis-client
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2323940Z       Built artemis-client @ git+https://github.com/google/artemis.git@351ca8422f7b5b54e80a9c1ce03a222e02415b6b#subdirectory=packages/artemis-client
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2334201Z Prepared 8 packages in 1.73s
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2403895Z Installed 8 packages in 6ms
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2404862Z  + artemis-client==0.1.0 (from git+https://github.com/google/artemis.git@351ca8422f7b5b54e80a9c1ce03a222e02415b6b#subdirectory=packages/artemis-client)
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2405522Z  + iniconfig==2.3.1
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2405716Z  + packaging==26.3
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2406016Z  + pluggy==1.7.0
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2406191Z  + pygments==2.21.0
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2406373Z  + pytest==9.1.1
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2406568Z  + pytest-asyncio==1.4.0
+e2e-harness	Run uv sync --project e2e_test --frozen	2026-10-30T06:46:31.2406785Z  + typing-extensions==4.16.0
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	﻿2026-10-30T06:46:31.2522134Z ##[group]Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2522575Z ^[[36;1muv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q^[[0m
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2541143Z shell: /usr/bin/bash -e {0}
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2541285Z env:
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2541440Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2541832Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2542077Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2542295Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2542514Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2542732Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2542942Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.2543117Z ##[endgroup]
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9563723Z test_account_and_firebase.py::test_tc07_google_sign_in_native_picker_and_return
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9564458Z test_account_and_firebase.py::test_tc08_registration_validation_does_not_create_account
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9565023Z test_account_and_firebase.py::test_tc09_all_top_level_destinations_are_reachable
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9565502Z test_account_and_firebase.py::test_tc10_notification_permission_and_message_open
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9566162Z test_account_and_firebase.py::test_tc14_background_notification_is_listed
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9566622Z test_account_and_firebase.py::test_tc15_terminated_notification_reopens_route
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9567109Z test_account_and_firebase.py::test_tc11_pdf_export_upload_progress_and_private_path
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9567589Z test_account_and_firebase.py::test_tc12_remote_config_and_crashlytics_demo_area
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9568096Z test_account_and_firebase.py::test_tc13_sign_out_clears_local_account_and_returns_to_guest
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9568603Z test_account_and_firebase.py::test_tc16_cancel_google_picker_shows_recoverable_error
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9569130Z test_account_and_firebase.py::test_tc17_deliberate_crash_is_reported_and_app_recovers
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9569612Z test_account_and_firebase.py::test_tc26_tutor_registration_waits_for_staff_review
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9570050Z test_discovery.py::test_tc01_guest_home_reports_real_visible_state
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9570457Z test_discovery.py::test_tc02_search_returns_visible_catalog_state
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9570859Z test_discovery.py::test_tc03_search_no_match_shows_recoverable_empty_state
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9571282Z test_discovery.py::test_tc04_tutor_detail_matches_selected_real_tutor
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9571722Z test_discovery.py::test_tc05_ai_match_uses_active_catalog_and_offers_manual_fallback
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9572207Z test_discovery.py::test_tc06_connection_gate_preserves_tutor_after_auth_navigation
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9572632Z test_exploratory.py::test_tc25_pro_exploratory_session
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9572989Z test_workflow.py::test_tc18_submit_connection_request_creates_chat
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9573417Z test_workflow.py::test_tc19_parent_message_appears_in_consultant_chat
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9573806Z test_workflow.py::test_tc20_accept_consultant_trial_proposal
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9574151Z test_workflow.py::test_tc21_request_alternate_trial_time
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9574498Z test_workflow.py::test_tc22_request_class_revision_adjustment
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9574900Z test_workflow.py::test_tc23_confirm_class_revision_waits_for_backend_invoice
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9575319Z test_workflow.py::test_tc24_payment_and_schedule_are_not_fabricated
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9575556Z
+e2e-harness	Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q	2026-10-30T06:46:31.9575653Z 26 tests collected in 0.04s
+e2e-harness	Run python scripts/check_e2e_harness.py	﻿2026-10-30T06:46:31.9872450Z ##[group]Run python scripts/check_e2e_harness.py
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9872721Z ^[[36;1mpython scripts/check_e2e_harness.py^[[0m
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9889695Z shell: /usr/bin/bash -e {0}
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9889845Z env:
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9890006Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9890256Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9890506Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9890740Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9890961Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9891329Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9891544Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:31.9891724Z ##[endgroup]
+e2e-harness	Run python scripts/check_e2e_harness.py	2026-10-30T06:46:32.0158214Z PASS: 26 unique scenario functions, Python syntax, scenario JSON and evidence status guards. Android scenarios NOT RUN.
+e2e-harness	Post Run astral-sh/setup-uv@v6	﻿2026-10-30T06:46:32.0297071Z Post job cleanup.
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1224704Z Pruning cache...
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1226386Z (node:2224) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1227086Z (Use `node --trace-deprecation ...` to show where the warning was created)
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1255678Z [command]/opt/hostedtoolcache/uv/0.13.6/x86_64/uv cache prune --ci
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1343120Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1499500Z Removed 896 files (3.8MiB)
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1522799Z Saving cache path: /home/runner/work/_temp/setup-uv-cache
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.1645473Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/beewise-lab2/beewise-lab2 --files-from manifest.txt --use-compress-program zstdmt
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:32.4214724Z (node:2224) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:33.4151680Z Sent 49163618 of 49163618 (100.0%), 46.9 MBs/sec
+e2e-harness	Post Run astral-sh/setup-uv@v6	2026-10-30T06:46:33.8572942Z cache saved with the key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.15-pruned-e5d9dd0d94e912fdf55e44ca370aee76407db6449325c5d7f2928333114000ac
+e2e-harness	Post Run actions/setup-python@v5	﻿2026-10-30T06:46:33.8713021Z Post job cleanup.
+e2e-harness	Post Run actions/setup-python@v5	2026-10-30T06:46:33.9510135Z (node:2247) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+e2e-harness	Post Run actions/setup-python@v5	2026-10-30T06:46:33.9510614Z (Use `node --trace-deprecation ...` to show where the warning was created)
+e2e-harness	Post Run actions/checkout@v4	﻿2026-10-30T06:46:33.9646346Z Post job cleanup.
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0243968Z [command]/usr/bin/git version
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0279669Z git version 2.56.0
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0306347Z Temporarily overriding HOME='/home/runner/work/_temp/ac8f5262-a3de-4ac1-8d49-842dd6f716aa' before making global git config changes
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0307034Z Adding repository directory to the temporary git global config as a safe directory
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0312939Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beewise-lab2/beewise-lab2
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0343781Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0378485Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0607971Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0636342Z http.https://github.com/.extraheader
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0646987Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0692387Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0956417Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+e2e-harness	Post Run actions/checkout@v4	2026-10-30T06:46:34.0996903Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+e2e-harness	Complete job	﻿2026-10-30T06:46:34.1336745Z Cleaning up orphan processes
+e2e-harness	Complete job	2026-10-30T06:46:34.1588776Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+flutter-android	Set up job	﻿2026-10-30T06:46:24.7512624Z Current runner version: '2.338.0'
+flutter-android	Set up job	2026-10-30T06:46:24.7530946Z ##[group]Runner Image Provisioner
+flutter-android	Set up job	2026-10-30T06:46:24.7531544Z Hosted Compute Agent
+flutter-android	Set up job	2026-10-30T06:46:24.7532007Z Version: 20261021.618
+flutter-android	Set up job	2026-10-30T06:46:24.7532410Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+flutter-android	Set up job	2026-10-30T06:46:24.7532857Z Build Date: 2026-10-21T00:45:21Z
+flutter-android	Set up job	2026-10-30T06:46:24.7533597Z Worker ID: {fa146710-2f30-4580-8dcd-f3677dd65db9}
+flutter-android	Set up job	2026-10-30T06:46:24.7534035Z Region: centralus
+flutter-android	Set up job	2026-10-30T06:46:24.7534404Z Cloud: Azure
+flutter-android	Set up job	2026-10-30T06:46:24.7534803Z ##[endgroup]
+flutter-android	Set up job	2026-10-30T06:46:24.7535728Z ##[group]Operating System
+flutter-android	Set up job	2026-10-30T06:46:24.7536187Z Ubuntu
+flutter-android	Set up job	2026-10-30T06:46:24.7536518Z 24.04.5
+flutter-android	Set up job	2026-10-30T06:46:24.7536862Z LTS
+flutter-android	Set up job	2026-10-30T06:46:24.7537230Z ##[endgroup]
+flutter-android	Set up job	2026-10-30T06:46:24.7537578Z ##[group]Runner Image
+flutter-android	Set up job	2026-10-30T06:46:24.7537976Z Image: ubuntu-24.04
+flutter-android	Set up job	2026-10-30T06:46:24.7538348Z Version: 20261025.353.1
+flutter-android	Set up job	2026-10-30T06:46:24.7539013Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+flutter-android	Set up job	2026-10-30T06:46:24.7540097Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+flutter-android	Set up job	2026-10-30T06:46:24.7540803Z ##[endgroup]
+flutter-android	Set up job	2026-10-30T06:46:24.7541547Z ##[group]GITHUB_TOKEN Permissions
+flutter-android	Set up job	2026-10-30T06:46:24.7542961Z Contents: read
+flutter-android	Set up job	2026-10-30T06:46:24.7543342Z Metadata: read
+flutter-android	Set up job	2026-10-30T06:46:24.7543699Z ##[endgroup]
+flutter-android	Set up job	2026-10-30T06:46:24.7545043Z Secret source: Actions
+flutter-android	Set up job	2026-10-30T06:46:24.7545664Z Cache mode: write
+flutter-android	Set up job	2026-10-30T06:46:24.7546126Z Prepare workflow directory
+flutter-android	Set up job	2026-10-30T06:46:24.7766200Z Prepare all required actions
+flutter-android	Set up job	2026-10-30T06:46:24.7798858Z Getting action download info
+flutter-android	Set up job	2026-10-30T06:46:25.0054674Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+flutter-android	Set up job	2026-10-30T06:46:25.1671515Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+flutter-android	Set up job	2026-10-30T06:46:25.8327892Z Download action repository 'subosito/flutter-action@v2' (SHA:1a449444c387b1966244ae4d4f8c696479add0b2)
+flutter-android	Set up job	2026-10-30T06:46:26.1009285Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+flutter-android	Set up job	2026-10-30T06:46:26.3956070Z Getting action download info
+flutter-android	Set up job	2026-10-30T06:46:26.5040441Z Download action repository 'actions/cache@v5' (SHA:caa296126883cff596d87d8935842f9db880ef25)
+flutter-android	Set up job	2026-10-30T06:46:26.7229271Z Complete job name: flutter-android
+flutter-android	Run actions/checkout@v4	﻿2026-10-30T06:46:26.7932304Z ##[group]Run actions/checkout@v4
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7933093Z with:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7933628Z   repository: YukikoKaori/beewise-lab2
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7938273Z   token: ***
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7938788Z   ssh-strict: true
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7939299Z   ssh-user: git
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7939823Z   persist-credentials: true
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7940548Z   clean: true
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7941083Z   sparse-checkout-cone-mode: true
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7941668Z   fetch-depth: 1
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7942197Z   fetch-tags: false
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7942718Z   show-progress: true
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7943255Z   lfs: false
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7943746Z   submodules: false
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7944271Z   set-safe-directory: true
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7944848Z   allow-unsafe-pr-checkout: false
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:26.7945525Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0173169Z Syncing repository: YukikoKaori/beewise-lab2
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0175585Z ##[group]Getting Git version info
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0176740Z Working directory is '/home/runner/work/beewise-lab2/beewise-lab2'
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0178196Z [command]/usr/bin/git version
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0251042Z git version 2.56.0
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0266728Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0278108Z Temporarily overriding HOME='/home/runner/work/_temp/20f5680e-b773-41e0-a4c2-3244841f0c90' before making global git config changes
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0280397Z Adding repository directory to the temporary git global config as a safe directory
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0282538Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beewise-lab2/beewise-lab2
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0338360Z Deleting the contents of '/home/runner/work/beewise-lab2/beewise-lab2'
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0345184Z ##[group]Initializing the repository
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0346378Z [command]/usr/bin/git init /home/runner/work/beewise-lab2/beewise-lab2
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0457360Z hint: Using 'master' as the name for the initial branch. This default branch name
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0459170Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0460843Z hint: to use in all of your new repositories, which will suppress this warning,
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0462082Z hint: call:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0462854Z hint:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0463760Z hint: 	git config --global init.defaultBranch <name>
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0464749Z hint:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0465754Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0467289Z hint: 'development'. The just-created branch can be renamed via this command:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0468454Z hint:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0469263Z hint: 	git branch -m <name>
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0470104Z hint:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0471247Z hint: Disable this message with "git config set advice.defaultBranchName false"
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0472940Z Initialized empty Git repository in /home/runner/work/beewise-lab2/beewise-lab2/.git/
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0479073Z [command]/usr/bin/git remote add origin https://github.com/YukikoKaori/beewise-lab2
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0606913Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0608349Z ##[group]Disabling automatic garbage collection
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0609645Z [command]/usr/bin/git config --local gc.auto 0
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0650045Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0651340Z ##[group]Setting up auth
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0655454Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.0703929Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1031322Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1068475Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1263598Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1302558Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1494931Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1602532Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1603850Z ##[group]Fetching the repository
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:27.1613915Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +114d682c17098f7b96255c42eb3b8aa4ffeb66fc:refs/remotes/origin/codex/lab3-postmerge-corrective
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3859238Z From https://github.com/YukikoKaori/beewise-lab2
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3860038Z  * [new ref]         114d682c17098f7b96255c42eb3b8aa4ffeb66fc -> origin/codex/lab3-postmerge-corrective
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3863409Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3863823Z ##[group]Determining the checkout info
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3865816Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3871997Z [command]/usr/bin/git sparse-checkout disable
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3930032Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3966958Z ##[group]Checking out the ref
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.3977855Z [command]/usr/bin/git checkout --progress --force -B codex/lab3-postmerge-corrective refs/remotes/origin/codex/lab3-postmerge-corrective
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.4819311Z Switched to a new branch 'codex/lab3-postmerge-corrective'
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.4825830Z branch 'codex/lab3-postmerge-corrective' set up to track 'origin/codex/lab3-postmerge-corrective'.
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.4836398Z ##[endgroup]
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.4890993Z [command]/usr/bin/git log -1 --format=%H
+flutter-android	Run actions/checkout@v4	2026-10-30T06:46:29.4913474Z 114d682c17098f7b96255c42eb3b8aa4ffeb66fc
+flutter-android	Run actions/setup-java@v4	﻿2026-10-30T06:46:29.5147005Z ##[group]Run actions/setup-java@v4
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147231Z with:
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147352Z   distribution: temurin
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147477Z   java-version: 21
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147595Z   java-package: jdk
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147720Z   check-latest: false
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147838Z   server-id: github
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5147966Z   server-username: GITHUB_ACTOR
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5148115Z   server-password: GITHUB_TOKEN
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5148258Z   overwrite-settings: true
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5148390Z   job-status: success
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5149831Z   token: ***
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.5149948Z ##[endgroup]
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6345222Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6350847Z ##[group]Installed distributions
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6372702Z Resolved Java 21.0.13+9 from tool-cache
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6373037Z Setting Java 21.0.13+9 as the default
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6379937Z (node:2093) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6380644Z (Use `node --trace-deprecation ...` to show where the warning was created)
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6382262Z Creating toolchains.xml for JDK version 21 from temurin
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6429499Z Writing to /home/runner/.m2/toolchains.xml
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6430152Z
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6430451Z Java configuration:
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6430684Z   Distribution: temurin
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6430906Z   Version: 21.0.13+9
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6431197Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6431452Z
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6431739Z ##[endgroup]
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6446547Z Creating settings.xml with server-id: github
+flutter-android	Run actions/setup-java@v4	2026-10-30T06:46:29.6476785Z Writing to /home/runner/.m2/settings.xml
+flutter-android	Run subosito/flutter-action@v2	﻿2026-10-30T06:46:29.6749003Z ##[group]Run subosito/flutter-action@v2
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749203Z with:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749325Z   flutter-version: 3.47.8
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749458Z   channel: stable
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749569Z   cache: true
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749685Z   architecture: X64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749829Z   pub-cache-path: default
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6749962Z   dry-run: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6750112Z   git-source: https://github.com/flutter/flutter.git
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6750550Z env:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6750723Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6750990Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6751193Z ##[endgroup]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6792151Z ##[start-action display=Make yq tool available on Windows runners;id=__subosito_flutter-action.__run]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6798196Z ##[end-action id=__subosito_flutter-action.__run;outcome=skipped;conclusion=skipped;duration_ms=0]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6799498Z ##[start-action display=Make setup script executable;id=__subosito_flutter-action.__run_2]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6826593Z ##[group]Run chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6826871Z ^[[36;1mchmod +x "$GITHUB_ACTION_PATH/setup.sh"^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6846803Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6847007Z env:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6847180Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6847448Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6847654Z ##[endgroup]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6915361Z ##[end-action id=__subosito_flutter-action.__run_2;outcome=success;conclusion=success;duration_ms=11]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6916788Z ##[start-action display=Set action inputs;id=__subosito_flutter-action.flutter-action]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6944230Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh -p \
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6944460Z ^[[36;1m$GITHUB_ACTION_PATH/setup.sh -p \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6944639Z ^[[36;1m  -n '3.47.8' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6944765Z ^[[36;1m  -f '' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6944880Z ^[[36;1m  -a 'X64' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6944996Z ^[[36;1m  -k '' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6945105Z ^[[36;1m  -c '' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6945215Z ^[[36;1m  -l '' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6945329Z ^[[36;1m  -d 'default' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6945507Z ^[[36;1m  -g 'https://github.com/flutter/flutter.git' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6945682Z ^[[36;1m  stable^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6960818Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6961024Z env:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6961229Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6961499Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.6961702Z ##[endgroup]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9653163Z ##[end-action id=__subosito_flutter-action.flutter-action;outcome=success;conclusion=success;duration_ms=273]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9656756Z ##[start-action display=Cache Flutter;id=__subosito_flutter-action.cache-flutter]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9693674Z ##[group]Run actions/cache@v5
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9693829Z with:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9693975Z   path: /opt/hostedtoolcache/flutter/stable-3.47.8-x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9694230Z   key: flutter-linux-stable-3.47.8-x64-737ba8f885dc774b53b442759999a312c9461e4e
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9694464Z   enableCrossOsArchive: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9694608Z   fail-on-cache-miss: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9694743Z   lookup-only: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9694866Z   save-always: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9694986Z env:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9695152Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9695414Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:29.9695631Z ##[endgroup]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2036805Z Cache not found for input keys: flutter-linux-stable-3.47.8-x64-737ba8f885dc774b53b442759999a312c9461e4e
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2107546Z ##[end-action id=__subosito_flutter-action.cache-flutter;outcome=success;conclusion=success;duration_ms=245]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2109579Z ##[start-action display=Cache pub dependencies;id=__subosito_flutter-action.cache-pub]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2987354Z ##[group]Run actions/cache@v5
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2987541Z with:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2987670Z   path: /home/runner/.pub-cache
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2988058Z   key: flutter-pub-linux-stable-3.47.8-x64-737ba8f885dc774b53b442759999a312c9461e4e-b1cd7c7b443e5fd2c8405fd29af8d361a8e21a04b7de8da64d7d506a5f274c63
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2988458Z   enableCrossOsArchive: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2988600Z   fail-on-cache-miss: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2988733Z   lookup-only: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2988852Z   save-always: false
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2988969Z env:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2989137Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2989422Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.2989638Z ##[endgroup]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5219207Z Cache not found for input keys: flutter-pub-linux-stable-3.47.8-x64-737ba8f885dc774b53b442759999a312c9461e4e-b1cd7c7b443e5fd2c8405fd29af8d361a8e21a04b7de8da64d7d506a5f274c63
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5303264Z ##[end-action id=__subosito_flutter-action.cache-pub;outcome=success;conclusion=success;duration_ms=319]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5306071Z ##[start-action display=Run setup script;id=__subosito_flutter-action.__run_3]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5335737Z ##[group]Run $GITHUB_ACTION_PATH/setup.sh \
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5335958Z ^[[36;1m$GITHUB_ACTION_PATH/setup.sh \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5336112Z ^[[36;1m  -n '3.47.8' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5336247Z ^[[36;1m  -a 'x64' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5336427Z ^[[36;1m  -c '/opt/hostedtoolcache/flutter/stable-3.47.8-x64' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5336774Z ^[[36;1m  -d '/home/runner/.pub-cache' \^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5336922Z ^[[36;1m  stable^[[0m
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5354133Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5354334Z env:
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5354508Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5354771Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.5354976Z ##[endgroup]
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.8138453Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.8139276Z                                  Dload  Upload   Total   Spent    Left  Speed
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:30.8139893Z
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:31.6838961Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:32.6864466Z   9 1508M    9  138M    0     0   158M      0  0:00:09 --:--:--  0:00:09  158M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:33.6861678Z  27 1508M   27  410M    0     0   219M      0  0:00:06  0:00:01  0:00:05  219M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:34.6855314Z  47 1508M   47  720M    0     0   250M      0  0:00:06  0:00:02  0:00:04  250M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:35.6844974Z  64 1508M   64  971M    0     0   250M      0  0:00:06  0:00:03  0:00:03  250M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:36.6863886Z  82 1508M   82 1246M    0     0   255M      0  0:00:05  0:00:04  0:00:01  255M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:36.7587672Z  98 1508M   98 1491M    0     0   253M      0  0:00:05  0:00:05 --:--:--  270M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:46:36.7588053Z 100 1508M  100 1508M    0     0   253M      0  0:00:05  0:00:05 --:--:--  269M
+flutter-android	Run subosito/flutter-action@v2	2026-10-30T06:47:15.7546119Z ##[end-action id=__subosito_flutter-action.__run_3;outcome=success;conclusion=success;duration_ms=45223]
+flutter-android	Run flutter pub get --enforce-lockfile	﻿2026-10-30T06:47:15.7590860Z ##[group]Run flutter pub get --enforce-lockfile
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7591098Z ^[[36;1mflutter pub get --enforce-lockfile^[[0m
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7608271Z shell: /usr/bin/bash -e {0}
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7608415Z env:
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7608584Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7608877Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7609132Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.8-x64/flutter
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7609331Z   PUB_CACHE: /home/runner/.pub-cache
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:15.7609472Z ##[endgroup]
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:21.2105369Z Resolving dependencies...
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:22.0445052Z Downloading packages...
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6549913Z   code_assets 1.2.1 (2.1.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6550530Z   cross_file 0.3.5+5 (0.4.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6550752Z   crypto 3.0.7 (3.0.8 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6550938Z   cupertino_ui 1.1.4 (1.1.5 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6551161Z   go_router 18.1.1 (18.1.2 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6551303Z   hooks 2.0.2 (2.2.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6551438Z   jni 1.1.0 (1.1.1 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6551590Z   material_color_utilities 0.13.0 (0.13.1 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6551760Z   material_ui 1.8.0 (1.9.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6551910Z   meta 1.18.3 (1.19.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552047Z   mocktail 1.0.4 (1.0.5 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552191Z   objective_c 9.5.0 (9.6.2 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552336Z   petitparser 7.0.2 (7.1.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552478Z   posix 6.5.2 (6.5.4 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552612Z   qr 3.0.2 (4.0.1 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552741Z   record_use 0.6.0 (1.1.1 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6552911Z   shared_preferences_android 2.5.3 (2.5.4 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6553095Z   shared_preferences_foundation 2.5.7 (2.6.1 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6553273Z   test_api 0.7.12 (0.7.15 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6553414Z   vector_math 2.4.0 (2.4.4 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6553550Z   xml 7.0.1 (7.1.0 available)
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6553720Z Got dependencies!
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6556860Z 21 packages have newer versions incompatible with dependency constraints.
+flutter-android	Run flutter pub get --enforce-lockfile	2026-10-30T06:47:25.6557216Z Try `flutter pub outdated` for more information.
+flutter-android	Run dart format --output=none --set-exit-if-changed .	﻿2026-10-30T06:47:26.0356895Z ##[group]Run dart format --output=none --set-exit-if-changed .
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0357174Z ^[[36;1mdart format --output=none --set-exit-if-changed .^[[0m
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0373456Z shell: /usr/bin/bash -e {0}
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0373592Z env:
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0373756Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0374017Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0374265Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.8-x64/flutter
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0374466Z   PUB_CACHE: /home/runner/.pub-cache
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.0374604Z ##[endgroup]
+flutter-android	Run dart format --output=none --set-exit-if-changed .	2026-10-30T06:47:26.1812704Z Formatted 27 files (0 changed) in 0.13 seconds.
+flutter-android	Run flutter analyze	﻿2026-10-30T06:47:26.1918549Z ##[group]Run flutter analyze
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1918773Z ^[[36;1mflutter analyze^[[0m
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1935388Z shell: /usr/bin/bash -e {0}
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1935524Z env:
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1935705Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1935991Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1936245Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.8-x64/flutter
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1936448Z   PUB_CACHE: /home/runner/.pub-cache
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.1936590Z ##[endgroup]
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.3061893Z Resolving dependencies...
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.4386025Z Downloading packages...
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6430460Z   code_assets 1.2.1 (2.1.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6430819Z   cross_file 0.3.5+5 (0.4.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6431055Z   crypto 3.0.7 (3.0.8 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6431274Z   cupertino_ui 1.1.4 (1.1.5 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6431490Z   go_router 18.1.1 (18.1.2 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6431792Z   hooks 2.0.2 (2.2.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6431989Z   jni 1.1.0 (1.1.1 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6432215Z   material_color_utilities 0.13.0 (0.13.1 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6432492Z   material_ui 1.8.0 (1.9.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6432703Z   meta 1.18.3 (1.19.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6432903Z   mocktail 1.0.4 (1.0.5 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6433118Z   objective_c 9.5.0 (9.6.2 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6433344Z   petitparser 7.0.2 (7.1.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6433566Z   posix 6.5.2 (6.5.4 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6433771Z   qr 3.0.2 (4.0.1 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6433982Z   record_use 0.6.0 (1.1.1 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6434226Z   shared_preferences_android 2.5.3 (2.5.4 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6434512Z   shared_preferences_foundation 2.5.7 (2.6.1 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6434771Z   test_api 0.7.12 (0.7.15 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6434985Z   vector_math 2.4.0 (2.4.4 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6435202Z   xml 7.0.1 (7.1.0 available)
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6435402Z Got dependencies!
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6437468Z 21 packages have newer versions incompatible with dependency constraints.
+flutter-android	Run flutter analyze	2026-10-30T06:47:26.6437908Z Try `flutter pub outdated` for more information.
+flutter-android	Run flutter analyze	2026-10-30T06:47:37.7891596Z Analyzing beewise-lab2...
+flutter-android	Run flutter analyze	2026-10-30T06:47:37.7891997Z No issues found! (ran in 10.8s)
+flutter-android	Run flutter test --reporter expanded	﻿2026-10-30T06:47:37.7968709Z ##[group]Run flutter test --reporter expanded
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7968932Z ^[[36;1mflutter test --reporter expanded^[[0m
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7985563Z shell: /usr/bin/bash -e {0}
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7985706Z env:
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7985877Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7986137Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7986388Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.8-x64/flutter
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7986608Z   PUB_CACHE: /home/runner/.pub-cache
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.7986750Z ##[endgroup]
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:37.9206195Z Resolving dependencies...
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.0537336Z Downloading packages...
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2261354Z   code_assets 1.2.1 (2.1.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2261711Z   cross_file 0.3.5+5 (0.4.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2261929Z   crypto 3.0.7 (3.0.8 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2262144Z   cupertino_ui 1.1.4 (1.1.5 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2262460Z   go_router 18.1.1 (18.1.2 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2262666Z   hooks 2.0.2 (2.2.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2262861Z   jni 1.1.0 (1.1.1 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2263083Z   material_color_utilities 0.13.0 (0.13.1 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2263332Z   material_ui 1.8.0 (1.9.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2263540Z   meta 1.18.3 (1.19.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2263739Z   mocktail 1.0.4 (1.0.5 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2263944Z   objective_c 9.5.0 (9.6.2 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2264157Z   petitparser 7.0.2 (7.1.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2264346Z   posix 6.5.2 (6.5.4 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2264479Z   qr 3.0.2 (4.0.1 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2264607Z   record_use 0.6.0 (1.1.1 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2264772Z   shared_preferences_android 2.5.3 (2.5.4 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2264952Z   shared_preferences_foundation 2.5.7 (2.6.1 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2265111Z   test_api 0.7.12 (0.7.15 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2265246Z   vector_math 2.4.0 (2.4.4 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2265382Z   xml 7.0.1 (7.1.0 available)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2265505Z Got dependencies!
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2267050Z 21 packages have newer versions incompatible with dependency constraints.
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:38.2267379Z Try `flutter pub outdated` for more information.
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:39.5816387Z 00:00 +0: loading /home/runner/work/beewise-lab2/beewise-lab2/test/workflow_service_test.dart
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.3173593Z 00:00 +0: /home/runner/work/beewise-lab2/beewise-lab2/test/workflow_service_test.dart: (setUpAll)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.3293356Z 00:00 +0: /home/runner/work/beewise-lab2/beewise-lab2/test/workflow_service_test.dart: eligible response writes deterministic proposal ID and never advances chat
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.3472158Z 00:00 +1: /home/runner/work/beewise-lab2/beewise-lab2/test/workflow_service_test.dart: another owner, stale ID, expired or consumed proposal is denied
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.3531946Z 00:00 +2: /home/runner/work/beewise-lab2/beewise-lab2/test/workflow_service_test.dart: alternate response rejects empty text and guest access
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.3551482Z 00:00 +3: /home/runner/work/beewise-lab2/beewise-lab2/test/workflow_service_test.dart: (tearDownAll)
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.7247021Z 00:00 +3: /home/runner/work/beewise-lab2/beewise-lab2/test/auth_service_test.dart: failed profile write is recoverable by authenticated registration retry
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.7515320Z 00:00 +4: /home/runner/work/beewise-lab2/beewise-lab2/test/auth_service_test.dart: existing parent or applicant is never overwritten by registration retry
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:45.7538347Z 00:00 +5: /home/runner/work/beewise-lab2/beewise-lab2/test/auth_service_test.dart: incorrect password cannot reconcile another account
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:46.2165870Z 00:00 +6: /home/runner/work/beewise-lab2/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:46.2384280Z 00:00 +7: /home/runner/work/beewise-lab2/beewise-lab2/test/notification_service_test.dart: unknown recipients, guests and duplicate delivery are safe
+flutter-android	Run flutter test --reporter expanded	2026-10-30T06:47:46.2522173Z 00:00 +8: All tests passed!
+flutter-android	Run flutter build apk --debug	﻿2026-10-30T06:47:46.3157914Z ##[group]Run flutter build apk --debug
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3158122Z ^[[36;1mflutter build apk --debug^[[0m
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3174662Z shell: /usr/bin/bash -e {0}
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3174809Z env:
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3174968Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3175218Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3175454Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.8-x64/flutter
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3175644Z   PUB_CACHE: /home/runner/.pub-cache
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.3175915Z ##[endgroup]
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.4540857Z Resolving dependencies...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.5777717Z Downloading packages...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6883133Z   code_assets 1.2.1 (2.1.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6883467Z   cross_file 0.3.5+5 (0.4.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6883698Z   crypto 3.0.7 (3.0.8 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6883909Z   cupertino_ui 1.1.4 (1.1.5 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6884138Z   go_router 18.1.1 (18.1.2 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6884425Z   hooks 2.0.2 (2.2.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6884660Z   jni 1.1.0 (1.1.1 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6884893Z   material_color_utilities 0.13.0 (0.13.1 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6885146Z   material_ui 1.8.0 (1.9.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6885355Z   meta 1.18.3 (1.19.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6885557Z   mocktail 1.0.4 (1.0.5 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6885771Z   objective_c 9.5.0 (9.6.2 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6885992Z   petitparser 7.0.2 (7.1.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6886226Z   posix 6.5.2 (6.5.4 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6886428Z   qr 3.0.2 (4.0.1 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6886620Z   record_use 0.6.0 (1.1.1 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6886865Z   shared_preferences_android 2.5.3 (2.5.4 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6887149Z   shared_preferences_foundation 2.5.7 (2.6.1 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6887411Z   test_api 0.7.12 (0.7.15 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6887625Z   vector_math 2.4.0 (2.4.4 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6887842Z   xml 7.0.1 (7.1.0 available)
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6888206Z Got dependencies!
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6888486Z 21 packages have newer versions incompatible with dependency constraints.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:47:46.6888838Z Try `flutter pub outdated` for more information.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.1486481Z Running Gradle task 'assembleDebug'...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.1487035Z Loading package information...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.1487484Z Loading local repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.1487923Z [                                       ] 3% Loading local repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.5428970Z [                                       ] 3% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.8418774Z [=                                      ] 3% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.9440079Z [=                                      ] 4% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.9450826Z [=                                      ] 5% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.9470935Z [==                                     ] 5% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:57.9471431Z [==                                     ] 6% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.0421858Z [==                                     ] 7% Fetch remote repository...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.0430870Z [==                                     ] 7% Computing updates...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.0433504Z [===                                    ] 8% Computing updates...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.0455300Z [===                                    ] 10% Computing updates...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.1415420Z [===                                    ] 10% Installing NDK (Side by side) 28.2
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.3422445Z [===                                    ] 10% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.3428025Z [====                                   ] 10% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.4423631Z [====                                   ] 11% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.4424607Z [====                                   ] 12% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.5414542Z [=====                                  ] 13% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.6417604Z [=====                                  ] 14% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.6418752Z [=====                                  ] 15% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.7416299Z [======                                 ] 15% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.7418624Z [======                                 ] 16% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.8414789Z [======                                 ] 17% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.8415286Z [=======                                ] 18% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:58.9414827Z [=======                                ] 19% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.0415696Z [=======                                ] 20% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.0416159Z [========                               ] 20% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.1415320Z [========                               ] 21% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.1415732Z [========                               ] 22% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.2414824Z [=========                              ] 23% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.3415479Z [=========                              ] 24% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.3416088Z [=========                              ] 25% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.3417331Z [==========                             ] 25% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.4431322Z [==========                             ] 26% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.5416266Z [==========                             ] 27% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.6417317Z [===========                            ] 28% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.6417760Z [===========                            ] 29% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.7415949Z [===========                            ] 30% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.7416308Z [============                           ] 30% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.8414625Z [============                           ] 31% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.8415581Z [============                           ] 32% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:48:59.8415916Z [============                           ] 33% Downloading android-ndk-r28c-linux
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.2442761Z [============                           ] 33% Unzipping...
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.2443573Z [============                           ] 33% Unzipping... android-ndk-r28c/
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.2444249Z [============                           ] 33% Unzipping... android-ndk-r28c/READ
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.2444736Z [=============                          ] 33% Unzipping... android-ndk-r28c/READ
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.2445175Z [=============                          ] 33% Unzipping... android-ndk-r28c/meta
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.3417232Z [=============                          ] 33% Unzipping... android-ndk-r28c/shad
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.3441098Z [=============                          ] 33% Unzipping... android-ndk-r28c/ndk-
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.3441580Z [=============                          ] 33% Unzipping... android-ndk-r28c/wrap
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.3442081Z [=============                          ] 33% Unzipping... android-ndk-r28c/ndk-
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:00.6413951Z [=============                          ] 33% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:01.4414370Z [=============                          ] 34% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:02.1414151Z [=============                          ] 35% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:02.3413534Z [==============                         ] 35% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:02.6413555Z [==============                         ] 36% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:03.9414532Z [==============                         ] 37% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:05.2415548Z [===============                        ] 38% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:05.8414530Z [===============                        ] 39% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:06.1413911Z [===============                        ] 40% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:06.4413935Z [================                       ] 40% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:07.1414947Z [================                       ] 41% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:07.7414227Z [================                       ] 42% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:08.6413995Z [=================                      ] 43% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:09.5413772Z [=================                      ] 44% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:11.6413901Z [=================                      ] 45% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:12.2414744Z [==================                     ] 45% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:12.8414608Z [==================                     ] 46% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:13.3413897Z [==================                     ] 47% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:14.0414513Z [===================                    ] 48% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:14.5413997Z [===================                    ] 49% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:14.8413833Z [===================                    ] 50% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:15.1414766Z [====================                   ] 50% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:15.9415317Z [====================                   ] 51% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:16.2413542Z [====================                   ] 52% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.2413333Z [=====================                  ] 53% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.6413521Z [=====================                  ] 54% Unzipping... android-ndk-r28c/tool
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.6413983Z [=====================                  ] 54% Unzipping... android-ndk-r28c/buil
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9413498Z [=====================                  ] 54% Unzipping... android-ndk-r28c/sour
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9413997Z [=====================                  ] 54% Unzipping... android-ndk-r28c/NOTI
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9414309Z [=====================                  ] 54% Unzipping... android-ndk-r28c/ndk-
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9414610Z [=====================                  ] 54% Unzipping... android-ndk-r28c/NOTI
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9414920Z [=====================                  ] 54% Unzipping... android-ndk-r28c/pyth
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9415220Z [=====================                  ] 54% Unzipping... android-ndk-r28c/preb
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9415543Z [=====================                  ] 54% Unzipping... android-ndk-r28c/ndk-
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:17.9415807Z [=====================                  ] 54% Unzipping... android-ndk-r28c/sour
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:18.0411861Z [=====================                  ] 54% Unzipping... android-ndk-r28c/simp
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:18.1412012Z [=====================                  ] 55% Unzipping... android-ndk-r28c/simp
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:18.2411932Z [=====================                  ] 55% Unzipping... android-ndk-r28c/CHAN
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:18.2412622Z [=======================================] 100% Unzipping... android-ndk-r28c/CHA
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:18.5413371Z
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9442366Z WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): firebase_ai, firebase_analytics, firebase_app_check, firebase_auth, firebase_core, firebase_crashlytics, firebase_remote_config, firebase_storage
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9474588Z Future versions of Flutter will fail to build if your app uses plugins that apply KGP.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9485576Z
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9486019Z Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9486642Z If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9487608Z an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9488353Z
+flutter-android	Run flutter build apk --debug	2026-10-30T06:49:42.9488898Z If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors
+flutter-android	Run flutter build apk --debug	2026-10-30T06:50:38.7444381Z Note: /home/runner/.pub-cache/hosted/pub.dev/cloud_firestore-7.1.0/android/src/main/java/io/flutter/plugins/firebase/firestore/utils/PipelineStageHandlers.java uses unchecked or unsafe operations.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:50:38.7450655Z Note: Recompile with -Xlint:unchecked for details.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:50:44.0417732Z Note: Some input files use or override a deprecated API.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:50:44.0441457Z Note: Recompile with -Xlint:deprecation for details.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:37.4415159Z Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:37.4415769Z License for package CMake 3.22.1 accepted.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:37.4416140Z Preparing "Install CMake 3.22.1 v.3.22.1".
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:38.3415927Z "Install CMake 3.22.1 v.3.22.1" ready.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:38.3418834Z Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:38.3419272Z "Install CMake 3.22.1 v.3.22.1" complete.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:38.4414550Z "Install CMake 3.22.1 v.3.22.1" finished.
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:57.0918299Z Running Gradle task 'assembleDebug'...                            250.2s
+flutter-android	Run flutter build apk --debug	2026-10-30T06:51:57.9252929Z ✓ Built build/app/outputs/flutter-apk/app-debug.apk
+flutter-android	Run actions/upload-artifact@v4	﻿2026-10-30T06:51:57.9414813Z ##[group]Run actions/upload-artifact@v4
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9414986Z with:
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415128Z   name: debug-apk-114d682c17098f7b96255c42eb3b8aa4ffeb66fc
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415320Z   path: build/app/outputs/flutter-apk/app-debug.apk
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415482Z   if-no-files-found: warn
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415605Z   compression-level: 6
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415718Z   overwrite: false
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415831Z   include-hidden-files: false
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9415952Z env:
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9416105Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9416351Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9416591Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.47.8-x64/flutter
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9416782Z   PUB_CACHE: /home/runner/.pub-cache
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:57.9416911Z ##[endgroup]
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.0465913Z (node:3912) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.0488782Z (Use `node --trace-deprecation ...` to show where the warning was created)
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.0499086Z With the provided path, there will be 1 file uploaded
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.0502353Z Artifact name is valid!
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.0502844Z Root directory input is valid!
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.3244509Z Beginning upload of artifact content to blob storage
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:58.5029894Z (node:3912) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:59.1153663Z Uploaded bytes 8388608
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:59.3222321Z Uploaded bytes 16777216
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:59.4926945Z Uploaded bytes 25165824
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:51:59.8658597Z Uploaded bytes 33554432
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:00.2990434Z Uploaded bytes 41943040
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:00.7054002Z Uploaded bytes 50331648
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:01.2355062Z Uploaded bytes 58720256
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:01.4961122Z Uploaded bytes 67108864
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:01.8240014Z Uploaded bytes 75497472
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:01.8666194Z Uploaded bytes 83886080
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:02.0855433Z Uploaded bytes 92274688
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:02.2966941Z Uploaded bytes 100663296
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:02.4563314Z Uploaded bytes 105717725
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:02.5302664Z Finished uploading artifact content to blob storage!
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:02.5309746Z SHA256 digest of uploaded artifact zip is bf2c154edf13311cf458e897aec6a7aa0140952a617690de21f928d912580408
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:02.5311780Z Finalizing artifact upload
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:03.0035389Z Artifact debug-apk-114d682c17098f7b96255c42eb3b8aa4ffeb66fc.zip successfully finalized. Artifact ID 12959842381
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:03.0036276Z Artifact debug-apk-114d682c17098f7b96255c42eb3b8aa4ffeb66fc has been successfully uploaded! Final size is 105717725 bytes. Artifact ID is 12959842381
+flutter-android	Run actions/upload-artifact@v4	2026-10-30T06:52:03.0041939Z Artifact download URL: https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254/artifacts/12959842381
+flutter-android	Post Run subosito/flutter-action@v2	﻿2026-10-30T06:52:03.1320489Z Post job cleanup.
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:03.1324704Z ##[start-action display=Cache pub dependencies;id=__e19d1dcb-2776-43fa-a87a-bb65a55aa993.cache-pub]
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:03.7310246Z Post job cleanup.
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:04.0416364Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/beewise-lab2/beewise-lab2 --files-from manifest.txt --use-compress-program zstdmt
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.1997713Z Sent 57212928 of 75075992 (76.2%), 54.6 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.5496063Z Sent 75075992 of 75075992 (100.0%), 53.0 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.7161182Z Cache saved with key: flutter-pub-linux-stable-3.47.8-x64-737ba8f885dc774b53b442759999a312c9461e4e-b1cd7c7b443e5fd2c8405fd29af8d361a8e21a04b7de8da64d7d506a5f274c63
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.7255243Z ##[end-action id=__e19d1dcb-2776-43fa-a87a-bb65a55aa993.cache-pub;outcome=success;conclusion=success;duration_ms=6592]
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.7257207Z ##[start-action display=Cache Flutter;id=__e19d1dcb-2776-43fa-a87a-bb65a55aa993.cache-flutter]
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.7282712Z Post job cleanup.
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:09.8194351Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/beewise-lab2/beewise-lab2 --files-from manifest.txt --use-compress-program zstdmt
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:25.9046882Z Sent 0 of 1725583916 (0.0%), 0.0 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:26.9045266Z Sent 536870912 of 1725583916 (31.1%), 256.0 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:27.9078720Z Sent 805306368 of 1725583916 (46.7%), 255.9 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:28.9071456Z Sent 1073741824 of 1725583916 (62.2%), 255.9 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:29.9095807Z Sent 1610612736 of 1725583916 (93.3%), 307.1 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:30.5553584Z Sent 1725583916 of 1725583916 (100.0%), 291.2 MBs/sec
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:30.8375372Z Cache saved with key: flutter-linux-stable-3.47.8-x64-737ba8f885dc774b53b442759999a312c9461e4e
+flutter-android	Post Run subosito/flutter-action@v2	2026-10-30T06:52:30.8484384Z ##[end-action id=__e19d1dcb-2776-43fa-a87a-bb65a55aa993.cache-flutter;outcome=success;conclusion=success;duration_ms=21122]
+flutter-android	Post Run actions/setup-java@v4	﻿2026-10-30T06:52:30.8548362Z Post job cleanup.
+flutter-android	Post Run actions/setup-java@v4	2026-10-30T06:52:30.9424091Z (node:3981) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+flutter-android	Post Run actions/setup-java@v4	2026-10-30T06:52:30.9424526Z (Use `node --trace-deprecation ...` to show where the warning was created)
+flutter-android	Post Run actions/checkout@v4	﻿2026-10-30T06:52:30.9641006Z Post job cleanup.
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0246675Z [command]/usr/bin/git version
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0285384Z git version 2.56.0
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0312669Z Temporarily overriding HOME='/home/runner/work/_temp/482137a4-ada8-4df8-878b-c342a4d58879' before making global git config changes
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0313309Z Adding repository directory to the temporary git global config as a safe directory
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0315092Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beewise-lab2/beewise-lab2
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0347492Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0380054Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0619075Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0652564Z http.https://github.com/.extraheader
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0662257Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0715658Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.0956149Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+flutter-android	Post Run actions/checkout@v4	2026-10-30T06:52:31.1011122Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+flutter-android	Complete job	﻿2026-10-30T06:52:31.1341163Z Cleaning up orphan processes
+flutter-android	Complete job	2026-10-30T06:52:31.1663357Z Terminate orphan process: pid (2880) (java)
+flutter-android	Complete job	2026-10-30T06:52:31.1680305Z Terminate orphan process: pid (2992) (java)
+flutter-android	Complete job	2026-10-30T06:52:31.1693518Z Terminate orphan process: pid (3294) (java)
+flutter-android	Complete job	2026-10-30T06:52:31.1770383Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+firebase-rules	Set up job	﻿2026-10-30T06:46:25.0374649Z Current runner version: '2.338.0'
+firebase-rules	Set up job	2026-10-30T06:46:25.0404135Z ##[group]Runner Image Provisioner
+firebase-rules	Set up job	2026-10-30T06:46:25.0405698Z Hosted Compute Agent
+firebase-rules	Set up job	2026-10-30T06:46:25.0406384Z Version: 20261021.618
+firebase-rules	Set up job	2026-10-30T06:46:25.0407048Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+firebase-rules	Set up job	2026-10-30T06:46:25.0407973Z Build Date: 2026-10-21T00:45:21Z
+firebase-rules	Set up job	2026-10-30T06:46:25.0408738Z Worker ID: {af60f553-ee1b-4669-ae38-ea7a0eb2406e}
+firebase-rules	Set up job	2026-10-30T06:46:25.0409542Z Region: northcentralus
+firebase-rules	Set up job	2026-10-30T06:46:25.0410198Z Cloud: Azure
+firebase-rules	Set up job	2026-10-30T06:46:25.0411166Z ##[endgroup]
+firebase-rules	Set up job	2026-10-30T06:46:25.0412796Z ##[group]Operating System
+firebase-rules	Set up job	2026-10-30T06:46:25.0413537Z Ubuntu
+firebase-rules	Set up job	2026-10-30T06:46:25.0414197Z 24.04.5
+firebase-rules	Set up job	2026-10-30T06:46:25.0414761Z LTS
+firebase-rules	Set up job	2026-10-30T06:46:25.0415738Z ##[endgroup]
+firebase-rules	Set up job	2026-10-30T06:46:25.0416392Z ##[group]Runner Image
+firebase-rules	Set up job	2026-10-30T06:46:25.0417048Z Image: ubuntu-24.04
+firebase-rules	Set up job	2026-10-30T06:46:25.0417701Z Version: 20261025.353.1
+firebase-rules	Set up job	2026-10-30T06:46:25.0418824Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+firebase-rules	Set up job	2026-10-30T06:46:25.0421151Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+firebase-rules	Set up job	2026-10-30T06:46:25.0422178Z ##[endgroup]
+firebase-rules	Set up job	2026-10-30T06:46:25.0423497Z ##[group]GITHUB_TOKEN Permissions
+firebase-rules	Set up job	2026-10-30T06:46:25.0425747Z Contents: read
+firebase-rules	Set up job	2026-10-30T06:46:25.0426617Z Metadata: read
+firebase-rules	Set up job	2026-10-30T06:46:25.0427243Z ##[endgroup]
+firebase-rules	Set up job	2026-10-30T06:46:25.0429556Z Secret source: Actions
+firebase-rules	Set up job	2026-10-30T06:46:25.0430883Z Cache mode: write
+firebase-rules	Set up job	2026-10-30T06:46:25.0431681Z Prepare workflow directory
+firebase-rules	Set up job	2026-10-30T06:46:25.0782497Z Prepare all required actions
+firebase-rules	Set up job	2026-10-30T06:46:25.0831382Z Getting action download info
+firebase-rules	Set up job	2026-10-30T06:46:25.3217627Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+firebase-rules	Set up job	2026-10-30T06:46:25.4283181Z Download action repository 'actions/setup-java@v4' (SHA:cf277c60eb25467037889841efdb72551f06f6c3)
+firebase-rules	Set up job	2026-10-30T06:46:25.8841089Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+firebase-rules	Set up job	2026-10-30T06:46:26.0878874Z Complete job name: firebase-rules
+firebase-rules	Run actions/checkout@v4	﻿2026-10-30T06:46:26.1734781Z ##[group]Run actions/checkout@v4
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1735623Z with:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1736090Z   repository: YukikoKaori/beewise-lab2
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1739981Z   token: ***
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1740576Z   ssh-strict: true
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1741029Z   ssh-user: git
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1741488Z   persist-credentials: true
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1741968Z   clean: true
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1742407Z   sparse-checkout-cone-mode: true
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1742917Z   fetch-depth: 1
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1743343Z   fetch-tags: false
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1743782Z   show-progress: true
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1744282Z   lfs: false
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1744691Z   submodules: false
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1745139Z   set-safe-directory: true
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1745637Z   allow-unsafe-pr-checkout: false
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.1746355Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4302588Z Syncing repository: YukikoKaori/beewise-lab2
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4305594Z ##[group]Getting Git version info
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4306523Z Working directory is '/home/runner/work/beewise-lab2/beewise-lab2'
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4307783Z [command]/usr/bin/git version
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4377191Z git version 2.56.0
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4399985Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4416594Z Temporarily overriding HOME='/home/runner/work/_temp/e77be8b3-b119-4614-8eca-54542acee237' before making global git config changes
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4419560Z Adding repository directory to the temporary git global config as a safe directory
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4422730Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beewise-lab2/beewise-lab2
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4495902Z Deleting the contents of '/home/runner/work/beewise-lab2/beewise-lab2'
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4498385Z ##[group]Initializing the repository
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4500089Z [command]/usr/bin/git init /home/runner/work/beewise-lab2/beewise-lab2
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4603374Z hint: Using 'master' as the name for the initial branch. This default branch name
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4605928Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4607796Z hint: to use in all of your new repositories, which will suppress this warning,
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4609320Z hint: call:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4610042Z hint:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4611136Z hint: 	git config --global init.defaultBranch <name>
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4612256Z hint:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4613322Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4614995Z hint: 'development'. The just-created branch can be renamed via this command:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4616362Z hint:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4617115Z hint: 	git branch -m <name>
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4617949Z hint:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4619051Z hint: Disable this message with "git config set advice.defaultBranchName false"
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4623708Z Initialized empty Git repository in /home/runner/work/beewise-lab2/beewise-lab2/.git/
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4627032Z [command]/usr/bin/git remote add origin https://github.com/YukikoKaori/beewise-lab2
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4685933Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4687389Z ##[group]Disabling automatic garbage collection
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4689011Z [command]/usr/bin/git config --local gc.auto 0
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4726067Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4727454Z ##[group]Setting up auth
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4733428Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.4775579Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5192446Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5241537Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5501324Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5548882Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5808702Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5861800Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5863030Z ##[group]Fetching the repository
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:26.5875222Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +114d682c17098f7b96255c42eb3b8aa4ffeb66fc:refs/remotes/origin/codex/lab3-postmerge-corrective
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7611957Z From https://github.com/YukikoKaori/beewise-lab2
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7612875Z  * [new ref]         114d682c17098f7b96255c42eb3b8aa4ffeb66fc -> origin/codex/lab3-postmerge-corrective
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7616813Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7617332Z ##[group]Determining the checkout info
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7619739Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7625945Z [command]/usr/bin/git sparse-checkout disable
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7691029Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7742254Z ##[group]Checking out the ref
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.7746824Z [command]/usr/bin/git checkout --progress --force -B codex/lab3-postmerge-corrective refs/remotes/origin/codex/lab3-postmerge-corrective
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.8930287Z Switched to a new branch 'codex/lab3-postmerge-corrective'
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.8934921Z branch 'codex/lab3-postmerge-corrective' set up to track 'origin/codex/lab3-postmerge-corrective'.
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.8946718Z ##[endgroup]
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.9004704Z [command]/usr/bin/git log -1 --format=%H
+firebase-rules	Run actions/checkout@v4	2026-10-30T06:46:27.9041235Z 114d682c17098f7b96255c42eb3b8aa4ffeb66fc
+firebase-rules	Run actions/setup-java@v4	﻿2026-10-30T06:46:27.9443535Z ##[group]Run actions/setup-java@v4
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9444140Z with:
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9444405Z   distribution: temurin
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9444696Z   java-version: 21
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9444975Z   java-package: jdk
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9445262Z   check-latest: false
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9445535Z   server-id: github
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9445828Z   server-username: GITHUB_ACTOR
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9446160Z   server-password: GITHUB_TOKEN
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9446487Z   overwrite-settings: true
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9446785Z   job-status: success
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9449288Z   token: ***
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:27.9449554Z ##[endgroup]
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1235761Z ##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5.
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1244392Z ##[group]Installed distributions
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1280226Z Resolved Java 21.0.13+9 from tool-cache
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1280939Z Setting Java 21.0.13+9 as the default
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1289609Z (node:2315) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1290569Z (Use `node --trace-deprecation ...` to show where the warning was created)
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1293632Z Creating toolchains.xml for JDK version 21 from temurin
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1366614Z Writing to /home/runner/.m2/toolchains.xml
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1367080Z
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1367267Z Java configuration:
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1367620Z   Distribution: temurin
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1368191Z   Version: 21.0.13+9
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1368716Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1369162Z
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1369874Z ##[endgroup]
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1387401Z Creating settings.xml with server-id: github
+firebase-rules	Run actions/setup-java@v4	2026-10-30T06:46:28.1415305Z Writing to /home/runner/.m2/settings.xml
+firebase-rules	Run actions/setup-node@v4	﻿2026-10-30T06:46:28.1671981Z ##[group]Run actions/setup-node@v4
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1672303Z with:
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1672516Z   node-version: 24
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1672733Z   cache: npm
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1673020Z   cache-dependency-path: firebase/package-lock.json
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1673349Z   always-auth: false
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1673588Z   check-latest: false
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1675952Z   token: ***
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1676159Z env:
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1676470Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1676974Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.1677351Z ##[endgroup]
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.3229986Z (node:2328) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.3231583Z (Use `node --trace-deprecation ...` to show where the warning was created)
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.3241005Z Found in cache @ /opt/hostedtoolcache/node/24.22.1/x64
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.3241973Z ##[group]Environment details
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.7412984Z node: v24.22.1
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.7413401Z npm: 11.19.1
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.7413728Z yarn: 1.22.22
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.7414966Z ##[endgroup]
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.7435912Z [command]/opt/hostedtoolcache/node/24.22.1/x64/bin/npm config get cache
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:28.8659908Z /home/runner/.npm
+firebase-rules	Run actions/setup-node@v4	2026-10-30T06:46:29.0201342Z npm cache is not found
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	﻿2026-10-30T06:46:29.0371282Z ##[group]Run npm ci --prefix firebase --ignore-scripts
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:29.0371811Z ^[[36;1mnpm ci --prefix firebase --ignore-scripts^[[0m
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:29.0407152Z shell: /usr/bin/bash -e {0}
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:29.0407441Z env:
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:29.0407796Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:29.0408309Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:29.0408697Z ##[endgroup]
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:33.4746637Z npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:33.7992847Z npm warn deprecated json-ptr@3.1.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:34.3763320Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6503698Z
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6504952Z added 686 packages, and audited 687 packages in 10s
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6505301Z
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6505517Z 101 packages are looking for funding
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6506086Z   run `npm fund` for details
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6516879Z
+firebase-rules	Run npm ci --prefix firebase --ignore-scripts	2026-10-30T06:46:38.6517319Z found 0 vulnerabilities
+firebase-rules	Run npm --prefix firebase test	﻿2026-10-30T06:46:38.7240108Z ##[group]Run npm --prefix firebase test
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.7240744Z ^[[36;1mnpm --prefix firebase test^[[0m
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.7263558Z shell: /usr/bin/bash -e {0}
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.7263822Z env:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.7264143Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.7264684Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.7265078Z ##[endgroup]
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.8315813Z
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.8316331Z > test
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.8317237Z > firebase emulators:exec --config ../firebase.json --project demo-beewise --only firestore,storage "node --test rules.test.cjs"
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:38.8317757Z
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:41.5006993Z ^[[36m^[[1mi  emulators:^[[22m^[[39m Starting emulators: firestore, storage
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:41.5008891Z ^[[36m^[[1mi  emulators:^[[22m^[[39m Detected demo project ID "demo-beewise", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:41.5167449Z ^[[33m^[[1m⚠ ^[[22m^[[39m It appears you are running in a CI environment. You can avoid downloading the Firestore Emulator repeatedly by caching the /home/runner/.cache/firebase/emulators directory.
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:41.5169041Z ^[[36m^[[1mi  firestore:^[[22m^[[39m downloading cloud-firestore-emulator-v1.22.0.jar...
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:42.4251175Z
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:42.8943310Z ^[[36m^[[1mi  firestore:^[[22m^[[39m Firestore Emulator logging to ^[[1mfirestore-debug.log^[[22m
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:45.1083189Z ^[[32m^[[1m✔  firestore:^[[22m^[[39m Firestore Emulator was started in standard edition.
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:45.1102110Z ^[[32m^[[1m✔  firestore:^[[22m^[[39m Firestore Emulator UI websocket is running on 9150.
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:45.1122717Z ^[[33m^[[1m⚠ ^[[22m^[[39m It appears you are running in a CI environment. You can avoid downloading the Storage Emulator repeatedly by caching the /home/runner/.cache/firebase/emulators directory.
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:45.1151761Z ^[[36m^[[1mi  storage:^[[22m^[[39m downloading cloud-storage-rules-runtime-v1.1.3.jar...
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:45.5174058Z
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:46.6862543Z ^[[36m^[[1mi ^[[22m^[[39m Running script: ^[[1mnode --test rules.test.cjs^[[22m
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1156145Z [2026-10-30T06:46:49.114Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5a6 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1157074Z false for 'update' @ L95
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1286552Z [2026-10-30T06:46:49.128Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5aa error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1287799Z false for 'delete' @ L95
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1682535Z [2026-10-30T06:46:49.167Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ab error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1690311Z evaluation error at L20:32 for 'create' @ L20, evaluation error at L20:32 for 'update' @ L20, false for 'create' @ L20
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1907591Z [2026-10-30T06:46:49.190Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ac error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1908788Z false for 'create' @ L15, false for 'update' @ L15
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.1948268Z ✔ tutor application is private, pending, immutable and never self-approves (2274.860055ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.2464489Z [2026-10-30T06:46:49.245Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ad error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.2468370Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.2495493Z ✔ tutor application rejects approved (54.658942ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.2927367Z [2026-10-30T06:46:49.291Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ae error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.2928971Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.2936223Z ✔ tutor application rejects verified (45.359959ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.3398869Z [2026-10-30T06:46:49.339Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5af error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.3425766Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.3427380Z ✔ tutor application rejects active (48.190785ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.3923568Z [2026-10-30T06:46:49.390Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b0 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.3951723Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.3981666Z ✔ tutor application rejects consent (50.307784ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.4350025Z [2026-10-30T06:46:49.434Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b1 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.4352510Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.4371689Z ✔ tutor application rejects fee (44.744549ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.4852798Z [2026-10-30T06:46:49.483Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b2 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.4858192Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.4870907Z ✔ tutor application rejects malformed (48.883057ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.5462434Z [2026-10-30T06:46:49.541Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b3 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.5464398Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.5491548Z ✔ tutor application rejects name (57.818613ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.5886111Z [2026-10-30T06:46:49.587Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b4 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.5902117Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.5931591Z ✔ tutor application rejects email (45.748979ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.6313564Z [2026-10-30T06:46:49.628Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b5 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.6315196Z false for 'create' @ L42, false for 'update' @ L95
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.6316338Z ✔ tutor application rejects time (40.813788ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.6713383Z [2026-10-30T06:46:49.670Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b6 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.6719678Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.6722869Z ✔ tutor application rejects extra (41.40989ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.7373174Z [2026-10-30T06:46:49.735Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b7 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.7384088Z evaluation error at L20:32 for 'create' @ L20, evaluation error at L20:32 for 'update' @ L20, evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.7386674Z ✔ parent and applicant roles cannot be created together in a batch (65.159913ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.8133166Z [2026-10-30T06:46:49.812Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5b9 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.8151221Z false for 'delete' @ L35
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.8657422Z [2026-10-30T06:46:49.864Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5bb error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.8667576Z evaluation error at L30:34 for 'create' @ L30, evaluation error at L30:34 for 'update' @ L30, false for 'create' @ L30
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.8670925Z ✔ applicant can detach only their own pre-application device registration (128.352517ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.9753207Z [2026-10-30T06:46:49.974Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5bc error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.9781833Z evaluation error at L20:32 for 'create' @ L20, evaluation error at L20:32 for 'update' @ L20, false for 'update' @ L20
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.9937800Z [2026-10-30T06:46:49.993Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5bf error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:49.9941452Z evaluation error at L20:32 for 'update' @ L20, false for 'update' @ L20
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.0011777Z [2026-10-30T06:46:50.000Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5c0 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.0014702Z false for 'delete' @ L26
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.0340723Z [2026-10-30T06:46:50.031Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5c1 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.0351825Z evaluation error at L42:24 for 'create' @ L42, false for 'update' @ L95, false for 'create' @ L42
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1113271Z [2026-10-30T06:46:50.109Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5c2 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1141363Z false for 'create' @ L30, false for 'update' @ L30
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1225306Z [2026-10-30T06:46:50.120Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5c5 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1261203Z false for 'create' @ L30, false for 'update' @ L30
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1312021Z ✔ parent profile and devices enforce UID, email, fields and platform (263.845452ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1672104Z [2026-10-30T06:46:50.165Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5c7 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1681422Z false for 'create' @ L20, false for 'update' @ L20
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1782339Z [2026-10-30T06:46:50.177Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5c8 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1783949Z false for 'create' @ L42, false for 'update' @ L95
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.1801474Z ✔ anonymous identity cannot write parent data (50.184554ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.2552589Z [2026-10-30T06:46:50.253Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5cb error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.2553792Z false for 'update' @ L15
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.2762349Z [2026-10-30T06:46:50.275Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5cc error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.2763615Z false for 'delete' @ L15
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.2773917Z ✔ catalog exposes only active records and prohibits all client writes (97.39177ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.3433278Z [2026-10-30T06:46:50.341Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ce error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.3435824Z evaluation error at L99:24 for 'create' @ L99, false for 'update' @ L120, evaluation error at L125:24 for 'create' @ L125, false for 'update' @ L136, Null value error. for 'create' @ L99
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.3741133Z [2026-10-30T06:46:50.373Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5cf error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.3743641Z evaluation error at L99:24 for 'create' @ L99, false for 'update' @ L120, evaluation error at L125:24 for 'create' @ L125, false for 'update' @ L136, false for 'create' @ L99
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.4009112Z [2026-10-30T06:46:50.400Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5d0 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.4012294Z evaluation error at L99:24 for 'create' @ L99, false for 'update' @ L120, evaluation error at L125:24 for 'create' @ L125, false for 'update' @ L136, false for 'create' @ L99
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.4242985Z [2026-10-30T06:46:50.422Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5d1 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.4262595Z evaluation error at L99:24 for 'create' @ L99, false for 'update' @ L120, evaluation error at L125:24 for 'create' @ L125, false for 'update' @ L136, false for 'create' @ L99
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5322763Z [2026-10-30T06:46:50.531Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5d5 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5323932Z false for 'update' @ L136
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5528201Z [2026-10-30T06:46:50.550Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5d6 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5552838Z false for 'update' @ L120
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5557969Z ✔ connection and chat require reciprocal atomic getAfter links (273.91273ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5995828Z [2026-10-30T06:46:50.596Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5d8 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.5998594Z evaluation error at L99:24 for 'create' @ L99, false for 'update' @ L120, Null value error. for 'create' @ L99
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.6000208Z ✔ request without corresponding chat is denied (46.895638ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7183013Z [2026-10-30T06:46:50.717Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5dd error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7191477Z evaluation error at L142:26 for 'create' @ L142, false for 'update' @ L162, false for 'create' @ L142
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7461008Z [2026-10-30T06:46:50.745Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5de error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7464547Z evaluation error at L142:26 for 'create' @ L142, false for 'update' @ L162, false for 'create' @ L142
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7518577Z [2026-10-30T06:46:50.751Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5da error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7527051Z false for 'update' @ L162
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7648521Z [2026-10-30T06:46:50.763Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5df error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7650147Z false for 'delete' @ L162
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.7657096Z ✔ parent messages cannot impersonate consultant, change or read another chat (166.770919ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.8632315Z [2026-10-30T06:46:50.862Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5e1 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.8633669Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.9372762Z [2026-10-30T06:46:50.936Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5e5 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.9374400Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'update' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.9534206Z [2026-10-30T06:46:50.951Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5e6 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.9535873Z false for 'delete' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:50.9537415Z ✔ eligible trial_accepted is owner-only, one-time, immutable (187.511797ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.0104543Z [2026-10-30T06:46:51.009Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5e8 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.0106165Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1214995Z [2026-10-30T06:46:51.120Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ec error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1218848Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'update' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1530782Z [2026-10-30T06:46:51.151Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ed error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1533230Z false for 'delete' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1534739Z ✔ eligible trial_alternate_time is owner-only, one-time, immutable (199.737892ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1991728Z [2026-10-30T06:46:51.198Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ef error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.1993905Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.2702145Z [2026-10-30T06:46:51.269Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5f3 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.2712479Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'update' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.2860117Z [2026-10-30T06:46:51.285Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5f4 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.2861452Z false for 'delete' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.2871612Z ✔ eligible class_adjustment_requested is owner-only, one-time, immutable (134.131332ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.3319035Z [2026-10-30T06:46:51.331Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5f6 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.3321287Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4152833Z [2026-10-30T06:46:51.413Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5fa error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4159323Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'update' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4322405Z [2026-10-30T06:46:51.430Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5fb error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4329826Z false for 'delete' @ L203
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4331394Z ✔ eligible class_revision_confirmed is owner-only, one-time, immutable (144.563399ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4769071Z [2026-10-30T06:46:51.476Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5fd error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.4771326Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, Null value error. for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.5139663Z [2026-10-30T06:46:51.510Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c5ff error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.5161440Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.5548159Z [2026-10-30T06:46:51.554Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c601 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.5551585Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.5923174Z [2026-10-30T06:46:51.591Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c603 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.5930743Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.6248553Z [2026-10-30T06:46:51.624Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c605 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.6252168Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.6368495Z [2026-10-30T06:46:51.636Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c606 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.6398935Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.6612745Z [2026-10-30T06:46:51.660Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c607 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.6614957Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.7097299Z [2026-10-30T06:46:51.709Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c609 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.7099463Z evaluation error at L184:26 for 'create' @ L184, false for 'update' @ L203, false for 'create' @ L184
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.7118638Z ✔ responses reject missing, other-chat, stale, expired, wrong-kind and malformed proposals (279.283895ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8012305Z [2026-10-30T06:46:51.800Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c60d error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8013918Z false for 'update' @ L209
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8147617Z [2026-10-30T06:46:51.814Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c60e error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8149331Z false for 'create' @ L209, false for 'update' @ L209
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8763685Z [2026-10-30T06:46:51.875Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c612 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8765703Z evaluation error at L213:24 for 'create' @ L213, false for 'update' @ L220, false for 'create' @ L213
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8912980Z [2026-10-30T06:46:51.890Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c613 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.8914962Z evaluation error at L213:24 for 'create' @ L213, false for 'update' @ L220, false for 'create' @ L213
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.9131476Z [2026-10-30T06:46:51.912Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c614 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.9132273Z false for 'update' @ L220
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.9657399Z [2026-10-30T06:46:51.965Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x34c8c618 error. Code: 7 Message: 7 PERMISSION_DENIED:
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.9659107Z false for 'update' @ L226
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:51.9666180Z ✔ invoice verification and official schedule are trusted backend only (255.424478ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3437324Z ✔ Storage PDF reports enforce owner, extension, content type and strict size limit (364.584874ms)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3920209Z ℹ tests 26
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3920940Z ℹ suites 0
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3921319Z ℹ pass 26
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3921672Z ℹ fail 0
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3922026Z ℹ cancelled 0
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3922388Z ℹ skipped 0
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3922733Z ℹ todo 0
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3923128Z ℹ duration_ms 5665.543799
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.3984877Z ^[[32m^[[1m✔ ^[[22m^[[39m Script exited successfully (code 0)
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.9001277Z ^[[36m^[[1mi  emulators:^[[22m^[[39m Shutting down emulators.
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:52.9004186Z ^[[36m^[[1mi  firestore:^[[22m^[[39m Stopping Firestore Emulator
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:53.2521585Z ^[[36m^[[1mi  storage:^[[22m^[[39m Stopping Storage Emulator
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:53.5789692Z ^[[36m^[[1mi  hub:^[[22m^[[39m Stopping emulator hub
+firebase-rules	Run npm --prefix firebase test	2026-10-30T06:46:53.5792974Z ^[[36m^[[1mi  logging:^[[22m^[[39m Stopping Logging Emulator
+firebase-rules	Post Run actions/setup-node@v4	﻿2026-10-30T06:46:53.6834839Z Post job cleanup.
+firebase-rules	Post Run actions/setup-node@v4	2026-10-30T06:46:53.8090271Z (node:2525) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+firebase-rules	Post Run actions/setup-node@v4	2026-10-30T06:46:53.8091357Z (Use `node --trace-deprecation ...` to show where the warning was created)
+firebase-rules	Post Run actions/setup-node@v4	2026-10-30T06:46:53.8335084Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/beewise-lab2/beewise-lab2 --files-from manifest.txt --use-compress-program zstdmt
+firebase-rules	Post Run actions/setup-node@v4	2026-10-30T06:46:54.1501756Z (node:2525) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+firebase-rules	Post Run actions/setup-node@v4	2026-10-30T06:46:54.9215991Z Sent 66891615 of 66891615 (100.0%), 81.7 MBs/sec
+firebase-rules	Post Run actions/setup-node@v4	2026-10-30T06:46:55.0498074Z Cache saved with the key: node-cache-Linux-x64-npm-5cb0826999e0b4299ae5085ab0d7d6716d39108fd91e1f7cfde7a7b975b2e4bd
+firebase-rules	Post Run actions/setup-java@v4	﻿2026-10-30T06:46:55.0724177Z Post job cleanup.
+firebase-rules	Post Run actions/setup-java@v4	2026-10-30T06:46:55.2119322Z (node:2545) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+firebase-rules	Post Run actions/setup-java@v4	2026-10-30T06:46:55.2120853Z (Use `node --trace-deprecation ...` to show where the warning was created)
+firebase-rules	Post Run actions/checkout@v4	﻿2026-10-30T06:46:55.2347253Z Post job cleanup.
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3315640Z [command]/usr/bin/git version
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3360810Z git version 2.56.0
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3405674Z Temporarily overriding HOME='/home/runner/work/_temp/06f48fd2-dbb7-41ed-8e6c-10419c7dac74' before making global git config changes
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3407380Z Adding repository directory to the temporary git global config as a safe directory
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3411422Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/beewise-lab2/beewise-lab2
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3456270Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3496891Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3805198Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3847978Z http.https://github.com/.extraheader
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3858291Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.3900312Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.4183146Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+firebase-rules	Post Run actions/checkout@v4	2026-10-30T06:46:55.4254638Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+firebase-rules	Complete job	﻿2026-10-30T06:46:55.4686974Z Cleaning up orphan processes
+firebase-rules	Complete job	2026-10-30T06:46:55.5082849Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

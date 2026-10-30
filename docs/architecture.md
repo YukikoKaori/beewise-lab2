@@ -73,17 +73,25 @@ sequenceDiagram
 
 Screens consume Riverpod state/providers and call intent controllers. Firebase SDK instances are created at the provider composition boundary and injected into service adapters; widgets do not call Firebase SDKs directly. Search filtering is in the repository utility/service layer, not in `build()`.
 
-## Setup constraints
+## Verified setup constraints (2026-10-30)
 
-Firebase project `beewise-lab-3` is registered, Android options are generated for package `com.beewise.beewise`, Email/Password Auth is enabled, and the default Firestore database is provisioned in `asia-southeast1`. The baseline Firestore rules were published before the tutor-application change; updated local rules still need emulator validation and publishing. Real tutor data, Google OAuth/support email, App Check debug-token registration, FCM test account, and consultant/payment backend remain external setup. Firebase Storage is not usable on the current Spark plan; enabling it requires Blaze billing. ARTEMIS and Firebase setup instructions are in [README.md](../README.md).
+Committed Android Firebase client options target `beewise-lab-3`. Live services,
+provider setup, deployment and project billing were not verified in this run.
+Old cloud/machine observations are not current evidence. Firestore/Storage rules
+passed 26 real tests on the local demo project. Production was not changed.
 
-## Known gaps to resolve before claiming the lab fully complete
+Parent registration supports ownership-authenticated recovery of a missing
+profile; login merges existing profile without overwriting its display name.
+Tutor application remains a private pending record, not a trusted public tutor.
+Notification v2 keys are per UID and require `recipientUid`; guest/ownerless and
+mismatched messages are dropped. OS shade and live FCM need separate validation.
 
-- Seed a real active tutor catalog and designated non-production account in the configured Firebase project.
-- Confirm the project-owned tutor review process, secure document requirements/retention, and staff/backend approval path before adding uploads or approval UI.
-- Confirm the project’s AI Logic/App Check settings and validate a successful match.
-- Define/implement server-authored consultant proposal, invoice issuance, payment verification, and schedule creation.
-- Define the product persistence contract for the guest’s one-successful-AI-match allowance.
-- Validate `tutor_search` and `tutor_profile_view` in Firebase Analytics DebugView.
-- Configure ARTEMIS with the user’s permitted model key; execute each scenario at least three times and retain replay evidence.
-- Three local AI-review fixes are in the working tree; create separate commits after review if the Lab requires commit evidence. If the course requires a hosted PR review, attach that tool’s output separately.
+Workflow responses use deterministic proposal IDs and a client transaction.
+Rules independently require the current consultant proposal/revision, pending
+status and future expiry. The missing trusted backend must implement
+[backend-contract.md](backend-contract.md), including immutable receipt-driven
+payment/schedule transitions and real installation ownership checks.
+
+Search still caps at 100 active tutors, guest quota persistence remains a product
+decision, and chat activity ordering requires a trusted projection. No backend,
+live AI matching, console evidence or Android layout validation is claimed.

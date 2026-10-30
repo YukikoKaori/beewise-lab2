@@ -1,39 +1,148 @@
-# BeeWise Lab 3 implementation report (evidence draft)
+# BeeWise Lab 3 corrective execution report
 
-**State: implementation/evidence draft, not a submission-ready report.** App code, security-rule baseline and ARTEMIS pytest scenarios are present. Firebase project `beewise-lab-3`, its Android app, Spark-plan Email/Password Auth and the default Singapore Firestore database with production rules are configured. An Android 16/API 36 emulator is online. This run still has no APK, test account/data, ARTEMIS host/key, staging API contract or app runtime evidence. Do not represent pending sections as completed validation.
+**FINAL VERDICT: PARTIALLY COMPLETE. DRAFT - runtime/cloud evidence missing.**
+Execution date: 2026-10-30 (Asia/Bangkok). Initial workspace was clean; fetched
+main matched HEAD `dd8b0e165039886b52b08cab81e17dd08c4af7ff`.
+PR #1 base `9023547265bbe402d5aecbe54942482087bff068`, head
+`6c4ff370a771375846f50e2599c2251c0eed7322`, merge equals current base.
+GitHub API returned no reviews or review comments; original JSON is in evidence.
+**EXTERNAL_REVIEW_NOT_AVAILABLE**. Codex self-review is internal static review.
 
-Review artifacts: [9-page draft report PDF](../output/pdf/BeeWise-Lab3-Implementation-Report-DRAFT.pdf) and [13-slide draft deck](../output/presentations/BeeWise-Lab3-Review-DRAFT.pptx). Both state that runtime evidence is pending and must be revised after real runs.
+## Implementation inventory
 
-## Product and architecture
+| Module | Classification | Verified scope / missing integration |
+|---|---|---|
+| 12-screen Lab 2 client | Implemented in source | Routes, Vietnamese copy, Figma theme retained; device layout unverified |
+| Tutor discovery / AI | Partial | Active catalog adapter and validated AI IDs; live data/App Check/AI outcome not tested |
+| Parent Auth/profile | Partial | Authenticated retry after partial registration, no account deletion; live providers not tested |
+| Tutor applications | Partial | Pending/private/create-only rules tested; real Auth submission and staff approval backend unverified |
+| Notification inbox | Partial | UID v2 storage and recipient gate tested; FCM delivery/OS shade/device reassignment unverified |
+| Connection/chat/workflow | Partial | Atomic links, parent response gates tested; trusted consultant consumer absent |
+| Invoice/payment/schedule | Blocked | Client cannot self-verify; trusted issuance/receipt verification backend absent |
+| Storage PDF | Partial | PDF adapter present, owner/type/size rules tested on emulator; real bucket/upload recovery unverified |
+| Analytics/Crashlytics/Remote Config/App Check | Partial | Adapters/configuration present; console/service outcomes unverified |
+| Android | APK PASS / runtime blocked | CI debug APK built and inspected; no connected device/AVD |
+| ARTEMIS | Ready to collect / execution blocked | 26 cases collect; no online device, host, keys or safe staging fixtures |
 
-BeeWise is a Vietnamese tutoring app for parents and tutors. It implements the 12 Lab 2 screen routes plus account, message, Firebase demo and the project-added tutor application/pending-review flow. Flutter/Riverpod provides screen state, Firebase adapters isolate external calls, GoRouter maps the flows, and the Figma-derived Nunito/Be Vietnam Pro theme is centralized. See [design traceability](design-traceability.md) and [architecture](architecture.md).
+## Environment and reproducible results
 
-## Firebase and trust boundaries
+The original machine uses Flutter 3.47.3/Dart 3.13.3 and Java 8; its first
+`flutter pub get` failed SDK resolution. Android SDK exists at `D:/Android/SDK`
+but was not discovered from the original environment. `adb devices -l` returned
+no connected devices and `emulator -list-avds` returned no configured AVDs.
+Portable Flutter 3.47.8 / Dart 3.13.7 (tag `737ba8f885...`) and Temurin
+21.0.13+9 were prepared under `D:/CodexTemp/beewise-lab3-tools`. New pub,
+Gradle, Firebase emulator, npm caches and build output use drive D. System
+PATH/registry were not changed. Local Node 25.9.0 emits a dev-server engine
+warning; CI uses supported Node 24. Python 3.12.10 collected the pinned SDK.
 
-Client code is prepared for Authentication, Firestore, Firebase AI Logic, Storage/PDF, FCM, Analytics, Crashlytics, Remote Config and App Check. Firestore/Storage rules restrict parent records and report files by UID. Tutor applications are private, create-only records that remain pending, unverified and inactive; applicants cannot publish a tutor profile. Consultant proposals, invoices, payment verification and official class records are trusted-backend operations; the client cannot declare a transfer paid.
+| Command | Result | Native exit | Evidence |
+|---|---|---|---|
+| `flutter pub get` (3.47.8) | PASS | 0 | `evidence/corrective/pub-get.log` |
+| `dart format --output=none --set-exit-if-changed .` | PASS | 0 | `format.log` |
+| `flutter analyze` | PASS, no issues | 0 | `analyze.log` |
+| `flutter test --reporter expanded` | PASS, 8 tests | 0 | `flutter-test.log` |
+| `npm --prefix firebase test` | PASS, 26 real emulator tests | 0 | `rules-test.log` |
+| `npm audit --prefix firebase --json` | PASS, zero vulnerabilities | 0 | `npm-audit.json` |
+| `python scripts/check_e2e_harness.py` | PASS, offline structure only | 0 | `harness.log` |
+| `pytest ... --collect-only -q` | PASS, 26 collected; 0 executed | 0 | `e2e-collection.log` |
+| `run-artemis.ps1` without prerequisites | BLOCKED as intended | 2 (rtk launcher 1) | `artemis-preflight/run-manifest.json` |
+| `flutter build apk --debug` (CI) | PASS, APK downloaded and inspected | 0 | `apk-ci.json`, `ci-code-sha.log` |
+| Local build on original C checkout | FAIL, Kotlin cache registration | 1 | `apk-build.log` |
+| Local clean D checkout, `flutter build apk --debug` | PASS, assembleDebug 1642.8s including downloads | 0 | `apk-build-drive-d.log`, `run-manifest.json` |
+| Android install/launch/360dp/412dp/screenshots | NOT RUN | n/a | No online device/AVD |
+| Live Firebase/backend/ARTEMIS | NOT RUN | n/a | No authorized integration resources |
 
-Firebase project `beewise-lab-3` (Spark plan) and Android app `com.beewise.beewise` are registered. `android/app/google-services.json` and `lib/services/firebase_options.dart` match that project; Google Services and Crashlytics Gradle plugins are applied. Email/Password Authentication is enabled. The default Firestore database was created in Singapore (`asia-southeast1`) in production mode; the baseline Firestore rules were published from Firebase Console before the tutor-application change. Updated local rules add the private application collection but have not been compiled in the emulator or published. Google sign-in remains disabled pending a user-visible support email and Android OAuth/SHA configuration. Firebase AI Logic setup is paused at the Gemini API Additional Terms; the account owner must accept or decline before enabling APIs and App Check enforcement. Firebase Storage is not provisioned because the Spark plan cannot access Storage; enabling it now requires a Blaze billing upgrade. Tutor catalog, tester account, consultant/payment backend and live runtime evidence remain pending. No billing upgrade was performed.
+All short evidence paths above are relative to `evidence/corrective/`. The
+execution manifest records tested source SHA and hashes. Earlier failing
+iterations included SDK mismatch, external node_modules analyzer discovery and
+incorrect test mock generic stubs; these were corrected, not ignored.
 
-## Static validation performed
+## Loopback/build diagnosis
 
-- `flutter pub get` completed successfully.
-- `dart format lib` completed successfully.
-- `dart analyze` reported `No issues found` after the tutor-registration addition. `dart format --output=none --set-exit-if-changed lib` is clean.
-- Flutter's unit-test command could not run because the repository currently has no `test/` directory; coverage is defined as ARTEMIS device scenarios instead.
-- `e2e_test/` contains 25 Flash pytest cases using the pinned `ArtemisClient` SDK (22 automated suite cases and three operator-driven FCM cases), plus one separate 20-minute Pro exploratory case. Pytest collection with the project config collected all 26 cases after the tutor-flow addition; no mobile scenario was executed. The regression script passes the project config explicitly so pytest markers are recognized.
-- Android APK build remains unverified. `flutter build apk --debug` and direct Gradle invocation both fail before compilation with `java.io.IOException: Unable to establish loopback connection` from JDK 17's Windows NIO pipe/selector setup, including an out-of-sandbox retry. The Firestore emulator also fails while opening the same Windows loopback selector; updated rules have not been compiled/published.
-- AVD `BeeWise_API_36` now boots and `flutter devices` detects Android 16/API 36 on `emulator-5554`. APK compilation is still blocked at Gradle startup by the loopback error, so the app cannot yet be installed. Firebase Console access is available in the signed-in browser, but Firebase CLI is not authenticated. ARTEMIS `D:\Apps\artemis\.env` is absent and no ARTEMIS host/key environment variables are set; the host is not running.
+The prior run's JDK 17 loopback error is a historical claim, not reproduced
+here. With portable JDK 21, Gradle 9.3.1 opens a real 127.0.0.1 daemon connection,
+and both Firebase emulators start and execute tests. No firewall, registry,
+App Check or security policy was disabled. A thread dump locates the quiet
+Android build in `LegacyDownloader.downloadFully` while installing the required
+NDK 28.2.13676358. The original C/junction build later failed with Kotlin cache registration errors;
+a separate clean checkout on D is recorded in `apk-build-drive-d.log`. CI built
+the APK successfully on Linux, and the clean D checkout also built successfully
+with native exit 0 (1642.8 seconds including dependency/CMake downloads).
+The local APK path, size and SHA256 are in the execution manifest. Existing SDK
+licenses were detected by Gradle; no billing or Firebase provider terms changed.
+KGP migration/deprecation warnings remain and must be reviewed before upgrading
+the pinned Flutter/plugin toolchain. This evidence
+does not prove the original machine's historical root cause.
 
-## Evidence still to attach
+## Verified CI and APK provenance
 
-| Evidence | Status |
-|---|---|
-| Android debug APK and emulator screenshots at 360dp/412dp | Emulator is detected; APK build still fails at Gradle startup with loopback error |
-| Firebase Auth/Firestore/Storage/FCM/Analytics/Crashlytics/Remote Config/App Check captures | Email/Password enabled, Firestore database provisioned; new tutor rules not compiled/published; Storage needs Blaze, remaining service setup/data/runtime captures pending |
-| AI match from real active tutor records | Pending: App Check and real catalog |
-| Tutor application submission and private pending-review status | Code and restrictive Firestore rules are authored; emulator/live rule tests and Firebase project publishing remain pending |
-| 25 ARTEMIS Flash cases × 3 runs (22 automated, 3 manual FCM), one Pro exploratory session, traces and replay result table | Collection succeeds; execution pending APK, connected device, ARTEMIS host/model key and staging data |
-| Six AI-review findings and at least three finding-specific fix commits | Local Codex review and decisions are in [docs/code-review.md](code-review.md); no hosted PR output; fixes remain uncommitted per user instruction |
-| Final PDF/slides/demo recording | Pending actual runtime evidence; no screenshots or results are fabricated |
+All three jobs passed at source `114d682c17098f7b96255c42eb3b8aa4ffeb66fc`:
+[Actions run 41016040254](https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254).
+The downloaded APK is `com.beewise.beewise`, version 0.1.0 (1), minSdk 24,
+targetSdk 36, 187241891 bytes. SHA256:
+`873135f99155add93bbb4711a2adf09dec60c6331083e2106a0482ea25f914e3`.
+It is saved on D; binary output is not committed. Final documentation/artifact
+commits do not change tested application source. The final PR check must also
+be green at its actual head SHA.
 
-Use [test plan](test-plan.md) and [README setup steps](../README.md) to complete evidence after the external prerequisites are configured.
+## Security corrections and audit
+
+See [review traceability](code-review.md), [backend contract](backend-contract.md)
+and the checked-in regression tests. Local notification storage rejects other
+UIDs and ownerless pushes, ignores ownerless legacy history and bypasses stale
+preference caches. Android OS-visible notification payloads still require
+non-sensitive content and backend installation ownership checks.
+
+Registration retries authenticate the same email/password and only reconcile a
+missing parent profile; existing parent/applicant records are not overwritten.
+No existing account is deleted. Proposal rules validate same-chat consultant
+message, pending status, current pointer, expiry, ownership and one immutable
+response; trusted state remains server-owned. Reciprocal connection batches and
+batched role exclusion are exercised with getAfter-aware tests.
+
+Final review reproduced one additional batched role bypass: application creation
+could accompany a parent-side device write. The regression failed against the
+previous rules (25 pass / 1 fail), then `865d91d` added post-write applicant
+exclusion to every parent create/update boundary. All 26 emulator tests now pass,
+including mixed device, connection/chat, message, response and payment batches.
+The original failing result is retained as `rules-role-batch-red.log`.
+
+Process-double checks also reproduced missing `Get-FileHash` on this PowerShell
+environment. `7afe6a3` uses .NET SHA256 instead. Synthetic subprocess exits 7 and 0
+now produce three FAIL and three PENDING_VERIFICATION records respectively, with
+correct exit codes and hashes. These are harness checks only, not mobile runs;
+see `runner-hash-red.json` and `runner-exit*-check.json`.
+`567a97f` additionally fixes absolute D-drive evidence output paths. Reproduce
+both exit/status/hash regressions on Windows with
+`python scripts/check_artemis_runner.py`; it uses only synthetic subprocesses,
+retains its output on D and never contacts ARTEMIS or a mobile device.
+
+Emulator tests are not production deployments or App Check integration tests.
+Storage rules enforce metadata, not cryptographic PDF validation. Admin SDK
+code bypasses rules and must implement the contract itself. Parent/applicant
+role and payment invariants must be enforced in that server code before release.
+
+## Evidence still required and exact resume actions
+
+1. Use JDK 21 + Flutter 3.47.8; run `scripts/verify-lab3.ps1 -Flutter <path>
+   -Rules -Android`. Inspect CI linked to the latest corrective SHA.
+2. Owner supplies an already licensed/configured test Android emulator or device.
+   Confirm `adb devices -l` is online; install built APK, record SHA256 and test
+   all 12 screens at 360dp and 412dp, font scaling and keyboard insets.
+3. Owner supplies a dedicated Firebase test project/accounts, permitted provider
+   configuration, controlled tutor data, OAuth/App Check settings and a Storage
+   bucket if already authorized. Do not change billing or accept terms here.
+4. Staging team implements [trusted contract](backend-contract.md), including
+   proposal expiry/current pointers, idempotent consumers, real verified receipt
+   handling and schedule creation. No staging endpoint is available in this repo.
+5. Start ARTEMIS with local keys and authorized device/data; run 21 automatic
+   Flash cases x3, four manual-setup cases x3, and TC-25 Pro separately. Preserve
+   original traces/replays and verify JUnit against observable state.
+6. Obtain human/external review if required by the lab. No polling or synthetic
+   transcript substitutes for external review. Finalize the DRAFT PDF/slides
+   and capture the [demo](demo-script.md) only after actual evidence exists.
+
+No production resource, billing, provider terms or user data was changed.
+Release readiness: **NOT READY** until Android runtime, cloud integrations,
+trusted backend, external review and device evidence are verified.
