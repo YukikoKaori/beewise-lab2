@@ -1,0 +1,19 @@
+[project]
+name = "beewise-lab3-e2e"
+version = "0.1.0"
+description = "Google ARTEMIS end-to-end tests for BeeWise Lab 3"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "artemis-client @ git+https://github.com/google/artemis.git@351ca8422f7b5b54e80a9c1ce03a222e02415b6b#subdirectory=packages/artemis-client",
+  "pytest==9.1.1",
+  "pytest-asyncio==1.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["."]
+addopts = "-ra"
+markers = [
+  "exploratory: long unscripted Pro-profile session; run separately from regression tests",
+  "manual_setup: needs an operator-controlled Firebase Console push before each run",
+]
