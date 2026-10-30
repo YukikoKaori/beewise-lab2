@@ -1,0 +1,6 @@
+{
+    "status":  "FAIL",
+    "sourceSha":  "865d91d818f662f5c09c2f7d6021c63eff5bb928",
+    "reason":  "The term \u0027Get-FileHash\u0027 is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.",
+    "exitCode":  7
+}

@@ -1,0 +1,12 @@
+{
+  "sourceSha": "114d682c17098f7b96255c42eb3b8aa4ffeb66fc",
+  "runUrl": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254",
+  "apkPath": "D:\\CodexTemp\\beewise-lab3-tools\\ci-apk\\app-debug.apk",
+  "sha256": "873135f99155add93bbb4711a2adf09dec60c6331083e2106a0482ea25f914e3",
+  "sizeBytes": 187241891,
+  "package": "com.beewise.beewise",
+  "versionName": "0.1.0",
+  "versionCode": 1,
+  "minSdk": 24,
+  "targetSdk": 36
+}
