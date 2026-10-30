@@ -7,7 +7,11 @@ $ErrorActionPreference = 'Stop'
 if ($RunsPerTest -lt 3) { throw 'Lab 3 requires at least three Flash runs per test.' }
 
 $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$resolvedOutput = [System.IO.Path]::GetFullPath((Join-Path $repoRoot $OutputDirectory))
+$resolvedOutput = if ([System.IO.Path]::IsPathRooted($OutputDirectory)) {
+  [System.IO.Path]::GetFullPath($OutputDirectory)
+} else {
+  [System.IO.Path]::GetFullPath((Join-Path $repoRoot $OutputDirectory))
+}
 New-Item -ItemType Directory -Path $resolvedOutput -Force | Out-Null
 $manifest = [System.Collections.Generic.List[object]]::new()
 $manifestPath = Join-Path $resolvedOutput 'run-manifest.json'
