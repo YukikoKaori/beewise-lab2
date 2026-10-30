@@ -1,5 +1,10 @@
 # Lab 3 test and evidence plan
 
+The [PR #2 lifecycle follow-up](pr2-lifecycle-review.md) records 34 passing Flutter
+tests and 26 passing Emulator rules tests. Native Android, staging, ARTEMIS and
+external-review evidence remains NOT RUN / BLOCKED; earlier counts below are
+historical snapshots.
+
 ## Critical flows
 
 | Flow | Screens and expected end state |

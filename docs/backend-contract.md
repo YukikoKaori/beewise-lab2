@@ -1,5 +1,10 @@
 # Trusted workflow and notification contract
 
+For current client ownership handling, see the [PR #2 follow-up](pr2-lifecycle-review.md).
+Foreign pending registrations quarantine delivery until their owner authorizes
+cleanup. Historical unjournaled mappings need trusted migration; client code
+does not delete another UID's device rows or provide that backend migration.
+
 This is a required contract, not an implemented or deployed backend. No staging
 URL, server credentials, payment provider or consultant identity was supplied.
 The mobile client talks to Firestore; there are no verified HTTP endpoints.
