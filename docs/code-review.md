@@ -1,5 +1,9 @@
 # Lab 3 AI code review record
 
+Historical PR #1 notes below describe the premerge work. Statements about
+"working tree" or "pending commits" apply to that historical review only;
+they are superseded by the 2026-10-30 corrective audit at the end of this file.
+
 ## Review context
 
 - Reviewer: OpenAI Codex (GPT-6), in-repository static review.
@@ -27,3 +31,25 @@
 - The three fixes are present in the working tree but are not separate Git commits, by explicit user instruction.
 - The previous Firestore production rules were published but have not been exercised against the emulator or signed-in app. Updated local tutor-application rules are not yet compiled/published because the emulator and Gradle both hit the Windows/JDK loopback error. Storage rules remain a checked-in baseline because the Spark plan cannot provision/use Firebase Storage. Android build remains blocked; see `docs/lab3-report.md`.
 - No hosted PR review tool output or external approval has been captured.
+
+
+## Corrective audit - 2026-10-30
+
+Internal Codex static/security review; not an external independent reviewer.
+PR #1 reviews/comments APIs returned empty arrays (raw JSON in
+`evidence/corrective/pr1-*.json`). EXTERNAL_REVIEW_NOT_AVAILABLE.
+
+| Finding | Severity / reproduction / impact | Fix and commit | Regression evidence |
+|---|---|---|---|
+| BW-C01 | P1: sign in A, receive push, switch B; device-global v1 inbox exposed A entries | UID v2 keys, recipientUid gate in foreground/background/open, guest empty, auth invalidation, stale-role guard; `da73da3` notification_service.dart/app_providers.dart | notification_service_test.dart (2 tests): switching, sign-out, wrong/missing recipient, guest, duplicate |
+| BW-C02 | P2: Auth account creation succeeds then Firestore fails; same-email registration previously cannot recover | Reauthenticate on duplicate email, reconcile only absent parent/non-applicant profile; preserve existing profile display name on login; `1bc63f6` auth_service.dart | auth_service_test.dart (3 tests): failed-write retry, existing roles, incorrect password, no deletion |
+| BW-C03 | P1 invariant / P2 client: arbitrary proposalId accepted by responses rules, allowing out-of-chat/stale responses | Current same-chat consultant kind/status/pointer/expiry + one response per ID, client transaction; `b8f97c4` workflow_service.dart/firestore.rules | workflow_service_test.dart (3 tests), real rules proposal positive/negative tests |
+| BW-C04 | P1: no executable emulator suite; same batch could create both parent and applicant under pre-write exists checks | getAfter/existsAfter role exclusion and reciprocal request/chat links; own stale installation cleanup for new applicants; `b8f97c4` firestore.rules/rules.test.cjs | 26 real Firestore/Storage emulator tests, ownership, immutability, malformed fields, state, PDF type/size |
+| BW-C05 | P2: runner preflight left no machine-readable blocker and successful AI JSON could be mistaken for verified E2E | BLOCKED manifest, exact pytest exit, PENDING_VERIFICATION, source SHA/hash, fresh output guard, no passwords in TC-26 goal; `114d682` e2e_test/ | 26-case SDK collection, offline harness check, actual blocked preflight manifest |
+| BW-C06 | Build: current Dart/Java incompatible, prior loopback failure had no current reproducible evidence | Pin Flutter 3.47.8/JDK21/Node24 CI; process-local D-drive tooling/caches; `114d682` workflow/scripts | pub/analyze/tests/rules logs; Gradle loopback observed; Android build has separate status |
+
+No review approval was fabricated. The suite uses 3 dev-only dependency overrides
+for published transitive advisories; npm audit reports zero remaining findings.
+No application dependency was upgraded. See backend-contract.md for remaining
+server/FCM/OS/privacy limitations. New proposal fields require staging fixture
+migration; old incomplete proposals deliberately fail closed.
