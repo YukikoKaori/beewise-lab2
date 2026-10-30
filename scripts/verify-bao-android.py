@@ -60,7 +60,7 @@ if args.action == "prepare":
              "wifi": adb("shell", "settings", "get", "global", "wifi_on"),
              "airplane": adb("shell", "settings", "get", "global", "airplane_mode_on"),
              "analytics": adb("shell", "getprop", "debug.firebase.analytics.app")}
-    if state_file.exists():
+    if state_file.exists() and not json.loads(state_file.read_text()).get("restoredAtUtc"):
         raise RuntimeError("Original state already saved; restore it before another prepare.")
     state_file.write_text(json.dumps(state, indent=2), encoding="utf-8")
     adb("shell", "setprop", "debug.firebase.analytics.app", PACKAGE)
@@ -102,6 +102,8 @@ elif args.action == "restore":
         adb("shell", "wm", name, override.group(1) if override else "reset")
     adb("shell", "svc", "wifi", "enable" if state["wifi"] in ("1", "2") else "disable")
     adb("shell", "setprop", "debug.firebase.analytics.app", state["analytics"] or ".none.")
+    state["restoredAtUtc"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    state_file.write_text(json.dumps(state, indent=2), encoding="utf-8")
 manifest = {"timestampUtc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "sourceSha": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
             "action": args.action, "label": args.label, "records": records}
