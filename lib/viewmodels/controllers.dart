@@ -239,7 +239,7 @@ class ConnectionController extends Notifier<AsyncValue<String?>> {
           );
       await ref.read(analyticsServiceProvider).event(
         'connection_request_submitted',
-        {'tutor_id': tutorId, 'request_type': 'parent_connection'},
+        {'request_type': 'parent_connection'},
       );
       state = AsyncData(chatId);
     } catch (error, stack) {
