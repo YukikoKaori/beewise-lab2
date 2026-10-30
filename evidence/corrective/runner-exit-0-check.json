@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Synthetic uv process double only; no device/host/AI execution",
+  "expectedExit": 0,
+  "actualExit": 0,
+  "suiteRuns": 3,
+  "expectedStatus": "PENDING_VERIFICATION",
+  "statusesAndLogHashesVerified": true
+}

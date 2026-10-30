@@ -1,2 +1,3 @@
 *.pdf binary
 *.pptx binary
+evidence/corrective/** text eol=lf

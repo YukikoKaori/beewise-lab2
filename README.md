@@ -88,6 +88,7 @@ by this repository. Do not transmit passwords in model goals/traces.
 uv sync --project .\e2e_test --frozen
 uv run --project .\e2e_test pytest -c .\e2e_test\pyproject.toml .\e2e_test --collect-only -q
 python scripts/check_e2e_harness.py
+python scripts/check_artemis_runner.py # Windows synthetic process checks, no mobile execution
 .\e2e_test\run-artemis.ps1 -RunsPerTest 3 -OutputDirectory evidence/artemis/NEW-RUN
 ```
 
