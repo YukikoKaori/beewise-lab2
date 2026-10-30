@@ -1,0 +1,6 @@
+{
+  "home_tutor_limit": 6,
+  "ai_result_limit": 3,
+  "ai_matching_enabled": true,
+  "gemini_model": "gemini-2.5-flash"
+}
