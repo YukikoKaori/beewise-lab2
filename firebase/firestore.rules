@@ -5,6 +5,7 @@ service cloud.firestore {
     function isParent(parentId) {
       return signedIn()
         && request.auth.uid == parentId
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && !exists(/databases/$(database)/documents/tutorApplications/$(parentId));
     }
 
@@ -17,6 +18,7 @@ service cloud.firestore {
     match /parents/{parentId} {
       allow read: if isParent(parentId);
       allow create, update: if isParent(parentId)
+        && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId))
         && request.resource.data.keys().hasOnly(['displayName', 'phone', 'email', 'createdAt', 'updatedAt'])
         && request.resource.data.displayName is string
         && (!('phone' in request.resource.data) || request.resource.data.phone is string)
@@ -29,7 +31,8 @@ service cloud.firestore {
           && request.resource.data.keys().hasOnly(['installationId', 'platform', 'updatedAt'])
           && request.resource.data.installationId == deviceId
           && request.resource.data.platform == 'android';
-        allow delete: if isParent(parentId);
+        // A newly submitted applicant may need to detach an earlier installation.
+        allow delete: if signedIn() && request.auth.uid == parentId;
       }
     }
 
@@ -38,7 +41,8 @@ service cloud.firestore {
     match /tutorApplications/{userId} {
       allow create: if signedIn()
         && request.auth.uid == userId
-        && !exists(/databases/$(database)/documents/parents/$(userId))
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && !existsAfter(/databases/$(database)/documents/parents/$(userId))
         && request.resource.data.keys().hasOnly([
           'name', 'email', 'phone', 'qualification', 'introduction',
           'subjects', 'grades', 'hourlyFee', 'areas', 'teachingModes',
@@ -98,9 +102,16 @@ service cloud.firestore {
         && request.resource.data.tutorId is string
         && get(/databases/$(database)/documents/tutors/$(request.resource.data.tutorId)).data.active == true
         && request.resource.data.chatId is string
+        && request.resource.data.createdAt == request.time
+        && getAfter(/databases/$(database)/documents/chats/$(request.resource.data.chatId)).data.connectionRequestId == requestId
+        && getAfter(/databases/$(database)/documents/chats/$(request.resource.data.chatId)).data.parentId == request.auth.uid
+        && getAfter(/databases/$(database)/documents/chats/$(request.resource.data.chatId)).data.tutorId == request.resource.data.tutorId
         && request.resource.data.learningGoal is string
         && request.resource.data.area is string
         && request.resource.data.schedule is string
+        && request.resource.data.learningGoal.size() > 0
+        && request.resource.data.area.size() > 0
+        && request.resource.data.schedule.size() > 0
         && request.resource.data.learningGoal.size() <= 500
         && request.resource.data.area.size() <= 120
         && request.resource.data.schedule.size() <= 300
@@ -116,6 +127,9 @@ service cloud.firestore {
         && request.resource.data.onboardingStatus == 'connection_pending_consultant'
         && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'consultantQueue', 'participantRoles', 'connectionRequestId', 'onboardingStatus', 'createdAt', 'updatedAt'])
         && request.resource.data.connectionRequestId is string
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.participantRoles == ['parent', 'tutor', 'consultant']
         && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.parentId == request.auth.uid
         && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.chatId == chatId
         && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.tutorId == request.resource.data.tutorId;
@@ -129,6 +143,7 @@ service cloud.firestore {
           && isParent(
             getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId
           )
+          && request.resource.data.createdAt == request.time
           && (
             (request.resource.data.senderId == request.auth.uid
               && request.resource.data.role == 'parent'
@@ -148,6 +163,21 @@ service cloud.firestore {
       }
 
       match /responses/{responseId} {
+        function eligibleProposal() {
+          let proposal = get(/databases/$(database)/documents/chats/$(chatId)/messages/$(request.resource.data.proposalId)).data;
+          let chat = get(/databases/$(database)/documents/chats/$(chatId)).data;
+          return proposal.role == 'consultant'
+            && proposal.payload.status == 'pending'
+            && proposal.payload.expiresAt > request.time
+            && ((request.resource.data.type in ['trial_accepted', 'trial_alternate_time']
+                && proposal.kind == 'trial_proposal'
+                && chat.onboardingStatus == 'trial_proposed'
+                && chat.currentProposalId == request.resource.data.proposalId)
+              || (request.resource.data.type in ['class_adjustment_requested', 'class_revision_confirmed']
+                && proposal.kind == 'class_revision'
+                && chat.onboardingStatus == 'class_revision_pending'
+                && chat.currentRevisionId == request.resource.data.proposalId));
+        }
         allow read: if isParent(
           get(/databases/$(database)/documents/chats/$(chatId)).data.parentId
         );
@@ -157,6 +187,17 @@ service cloud.firestore {
           )
           && isParent(request.resource.data.parentId)
           && request.resource.data.proposalId is string
+          && responseId == request.resource.data.proposalId
+          && request.resource.data.createdAt == request.time
+          && eligibleProposal()
+          && (request.resource.data.type != 'trial_alternate_time'
+            || (request.resource.data.alternateTime is string
+              && request.resource.data.alternateTime.size() > 0
+              && request.resource.data.alternateTime.size() <= 500))
+          && (request.resource.data.type != 'class_adjustment_requested'
+            || (request.resource.data.reason is string
+              && request.resource.data.reason.size() > 0
+              && request.resource.data.reason.size() <= 500))
           && request.resource.data.type in ['trial_accepted', 'trial_alternate_time', 'class_adjustment_requested', 'class_revision_confirmed']
           && request.resource.data.keys().hasOnly(['parentId', 'proposalId', 'type', 'alternateTime', 'reason', 'createdAt']);
         allow update, delete: if false;
@@ -173,6 +214,7 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId))
         && get(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId)).data.parentId == request.auth.uid
         && request.resource.data.status == 'pending'
+        && request.resource.data.requestedAt == request.time
         && request.resource.data.keys().hasOnly(['invoiceId', 'parentId', 'requestedAt', 'status']);
       allow read: if isParent(resource.data.parentId);
       allow update, delete: if false;
