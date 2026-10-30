@@ -1,3 +1,10 @@
+> **2026-10-31 correction:** Application source `9ef5907`, Flutter 50/50 and
+> Firebase Emulator 27/27 PASS. Native guest discovery/RC gate exercised; synthetic
+> records cannot enter AI as real tutors. Authenticated trusted transitions remain
+> BLOCKED: no test identity, trusted processor, staff/provider or staging. Payment
+> verification and official schedules remain server-trusted. No new backend,
+> rules/index deployment, invoice/schedule write or live payment claim.
+
 # Bảo trusted workflow status
 
 Base: `12f5322655463fd801d64e4925572d6a3a2bbb82`. Application source tested/built:

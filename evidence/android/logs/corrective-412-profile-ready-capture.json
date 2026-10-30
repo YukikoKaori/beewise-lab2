@@ -1,0 +1,33 @@
+{
+  "timestampUtc": "2026-10-30T22:08:10.790287+00:00",
+  "sourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+  "action": "capture",
+  "label": "corrective-412-profile-ready",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/dev/tty"
+      ],
+      "exitCode": 0,
+      "output": "UI hierchary dumped to: /dev/tty\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "2210\r\n"
+    }
+  ]
+}

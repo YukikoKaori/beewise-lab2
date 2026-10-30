@@ -1,0 +1,36 @@
+{
+  "timestampUtc": "2026-10-30T22:05:06.565845+00:00",
+  "sourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+  "action": "launch",
+  "label": "corrective-4gb-installed-launch",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "force-stop",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 0,
+      "output": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 16090\r\nComplete\r\n"
+    }
+  ]
+}

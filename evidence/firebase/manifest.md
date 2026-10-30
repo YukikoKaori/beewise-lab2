@@ -1,34 +1,27 @@
-# Firebase evidence index — Bảo
+# Firebase evidence index — Bao
 
-Correct project: `beewise-lab-3`, package `com.beewise.beewise`. App source
-`db1f12e`; base `12f5322655463fd801d64e4925572d6a3a2bbb82`. Date 2026-10-30.
-Full SHA and exact commands/exits are in `../cloud/checks/verified/*.json`.
-The rules suite uses isolated **`demo-beewise`**, never the shared live project.
+2026-10-31 local; project `beewise-lab-3`, package `com.beewise.beewise`.
+App source `9ef5907b2d296fcdafaa869a53e9780692f4cc56`.
+Local checks: `../cloud/checks/corrective-final/`. Rules use `demo-beewise` only.
 
-| Mandatory service | Implementation/local verification | Actual live verification | Evidence |
-|---|---|---|---|
-| Authentication | PASS 3 recovery/isolation unit tests; rules owner/applicant separation | BLOCKED: no dedicated identity; Google OAuth clients absent from committed Android config; Email/password enabled; Google provider absent; SHA list empty | `authentication/README.md` |
-| Cloud Storage | PASS actual local PDF; success/cancel/empty-stream/error mocks; owner/type/size emulator rules | BLOCKED: live bucket list empty, billing disabled; no dedicated identity; no real upload URL obtained | `storage/README.md`, `storage/local-tutor-summary.pdf` |
-| FCM | PASS existing lifecycle/route regressions; ownership journal and quarantine preserved | NOT RUN actual foreground/background/terminated delivery; BLOCKED sender access + authenticated receiver | `messaging/README.md` |
-| Analytics | PASS typed privacy/UID mocks, removed tutor identifier from real connection caller | NOT RUN DebugView verification of 7 meaningful events | `analytics/README.md` |
-| Crashlytics | Existing guest/UID/key + handled/fatal SDK adapters | Console receipt NOT RUN; see native attempt status in Android manifest | `crashlytics/README.md` |
-| Remote Config | PASS defaults, bounded cloud values, two limits/feature gate, offline-fetch mocks | PASS template read (empty); NOT RUN publish/restore and visible same-APK behavior | `remote-config/README.md` |
+| Service | Actual device/cloud verification | Remaining blocker |
+|---|---|---|
+| Authentication | Live management configuration read; guest app state observed; unit/rules PASS | Dedicated identity absent; Google provider/SHA absent; sign-in/out/account switching NOT RUN live |
+| Storage | Real local PDF + upload mocks + owner/type/size emulator PASS | No live bucket, billing disabled, no identity; upload/URL/Console NOT RUN |
+| FCM | Native Android notification permission requested and allowed; guest inbox empty; ownership/routes unit/emulator PASS | No authenticated receiver/sender; foreground/background/terminated delivery and live account switching NOT RUN |
+| Analytics | Native SDK initialized; guest navigation exercised; project linked; privacy mocks PASS | Seven meaningful events in DebugView NOT RUN; no Console evidence |
+| Crashlytics | Device log records handled diagnostic; intentional native SDK crash and relaunch exercised | Console receipt/user/custom-key association NOT RUN; guest diagnostic is not a real business-flow failure |
+| Remote Config | LIVE_VERIFIED API publish/restore and same-APK visible gate/limits; original restored to empty version 2 | Console screenshots NOT RUN; native restore confirmation documented in Android manifest |
 
-Supporting Core/App Check/AI Logic are implemented; native initialization and
-errors are reported separately in the Android manifest. Console attestation,
-enforcement, backend/model terms/access are NOT RUN. No protection was disabled.
+Actual PNG/PID evidence: `../android/README.md`; RC receipts:
+`../cloud/remote-config-roundtrip.json`. Never substitute mocks or a snackbar for
+server receipt. Supporting Core initialized on device; App Check management reads
+are not attestation proof; no paid AI request was made.
 
-No Console screenshots are supplied: desktop automation failed before browser
-control; the separate Playwright session is unauthenticated. CLI authentication
-subsequently recovered. Read-only live management receipts are under `../cloud/`.
-`../cloud/console-actions.json` records the timeline and authorized create-only
-insertion of six labeled/unverified fixtures. Public guest SDK queries succeeded
-from server; they do not prove native Android behavior. Remote Config original
-empty template/ETag was backed up privately; no publish/rollback was performed.
-Deployed Firestore rules differ from repository; the required chat index is absent.
-See `firestore/README.md`. No production rules or index deployment was performed.
-
-Do not count unit/emulator results as six working live services. Complete per-service
-external steps below, using a dedicated test identity and this project only. No
-production rules deployment, billing upgrade, resource deletion or global App Check
-enforcement is authorized by this workstream.
+Deployed rules still drift and composite index is missing; no deployment was
+authorized. See `firestore/README.md` and
+`../../docs/workstreams/bao-deployment-plan.md`. Six fixed tutor IDs were audited
+from the real server, all labeled/synthetic/active/unverified. They remain preserved.
+Model now enforces labels and excludes synthetic data from AI. No genuine tutor
+endorsement is asserted. No Console screenshot: native browser tools fail before
+control; isolated browser lacks an authenticated session. Credentials never copied.

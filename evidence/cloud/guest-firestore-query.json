@@ -4,7 +4,91 @@
   "test": "Active tutor query matching repository predicate at two explicit limits; NOT Remote Config/Android visible behavior",
   "records": [
     {
-      "timestampUtc": "2026-10-30T16:11:21.336Z",
+      "timestampUtc": "2026-10-30T21:58:37.960Z",
+      "id": "bao-lab3-20261030-tutor-01",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T21:58:38.100Z",
+      "id": "bao-lab3-20261030-tutor-02",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T21:58:38.208Z",
+      "id": "bao-lab3-20261030-tutor-03",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T21:58:38.333Z",
+      "id": "bao-lab3-20261030-tutor-04",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T21:58:38.442Z",
+      "id": "bao-lab3-20261030-tutor-05",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T21:58:38.536Z",
+      "id": "bao-lab3-20261030-tutor-06",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T21:58:38.678Z",
       "requestedLimit": 6,
       "returnedCount": 6,
       "fromCache": false,
@@ -20,7 +104,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T16:11:21.457Z",
+      "timestampUtc": "2026-10-30T21:58:38.789Z",
       "requestedLimit": 2,
       "returnedCount": 2,
       "fromCache": false,

@@ -1,3 +1,5 @@
+> **2026-10-31 corrective update (supersedes prior runtime status):** Native update: notification permission requested and allowed on isolated API37; guest inbox empty. Authenticated receiver/sender unavailable, so foreground/background/terminated delivery and live account-switch protection remain NOT RUN/BLOCKED. Existing mocked lifecycle/security tests pass; these are not live delivery proof.
+
 # Cloud Messaging
 
 Implementation: `notification_service.dart`, `push_installation_registration.dart`,

@@ -1,21 +1,25 @@
-# Remote Config
+# Remote Config â€” actual integration
 
-Implementation: `remote_config_service.dart`, providers and matching/catalog
-consumers. Source `db1f12e`. BAO-A02 bounds catalog limit to 1..100 and AI limit to
-1..3 (handoff contract); nonpositive values use 6/3, blank model uses existing
-`gemini-2.5-flash`. PASS tests cover defaults, valid changes, malicious/invalid
-values, feature gate and offline fetch with defaults installed first.
-Results: `../../cloud/checks/verified/flutter-test.*`.
+PASS local defaults/bounds/offline-fetch tests. PASS live conditional experiment
+against `beewise-lab-3`, with the user's prior permission for temporary changes
+and restoration. `../../cloud/remote-config-roundtrip.json` has actual API times:
+empty original -> version 1 (home_tutor_limit=2, ai_result_limit=1,
+ai_matching_enabled=false) -> original empty restored as version 2. ETag guards
+reject concurrent changes; original template/ETag remain private on D.
 
-Cloud template read: PASS, empty template with no parameters/version. Original
-template/ETag saved privately on D. Temporary publish/restore and visible
-two-behavior before/after: NOT RUN while latest native installation is BLOCKED.
-No cloud value was changed. Native app's displayed value alone cannot distinguish a cloud
-value equal to its default from actual fetch success.
+Same APK, no rebuild/reinstall between before and after. Native screenshots:
+`../../android/screenshots/corrective-412-profile-ready.png` (enabled, 3),
+`corrective-412-rc-changed-profile.png` (disabled, 1),
+`corrective-412-matching-disabled-result.png` (actual blocked submit),
+`corrective-412-home-limit-two-bottom.png` (Home ends after second tutor).
+Search remains independent (100-query limit) and is not claimed as Home limit proof.
+Five-minute fetch interval respected by relaunch; no app data was cleared.
 
-External action: coordinate teammate test window; save original template/version
-and ETag privately, compare before publishing only authorized test parameters in
-`beewise-lab-3`; retain original and changed timestamps. Observe home count and
-AI limit/gate in same APK after the 5-minute fetch interval/relaunch, plus offline
-fallback. Restore only if the template still matches this test version; if another
-person changed it, stop and coordinate instead of overwriting their config.
+Device restored-default confirmation, if captured, is listed in the Android
+manifest; API restoration is independently confirmed in live-management-state.
+Console template screenshots remain NOT RUN. SDK unit tests alone do not establish
+this live result. Reproduce only in an authorized coordinated test window using
+`scripts/bao-remote-config-roundtrip.cjs` with the explicit experiment flag; always
+restore, and stop rather than overwrite if the server template changed meanwhile.
+
+Native restoration confirmed: `../../android/screenshots/corrective-412-rc-restored-profile.png` shows enabled/3 after refetch.

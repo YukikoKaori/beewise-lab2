@@ -57,7 +57,7 @@ async function get(origin, apiVersion, path, queryParams) {
       const text = content?.[0]?.content ?? '';
       writeFileSync(privateDir + `/deployed-${type}.rules`, text);
       const local = readFileSync(resolve(root, `firebase/${type}.rules`), 'utf8');
-      results.push({type, activeReleaseFound: true, normalizedSha256: hash(text), matchesRepository: hash(text) === hash(local)});
+      results.push({type, activeReleaseFound: true, rulesetName: name, normalizedSha256: hash(text), matchesRepository: hash(text) === hash(local)});
     }
     return results;
   });
@@ -83,7 +83,7 @@ async function get(origin, apiVersion, path, queryParams) {
     return {certificates: (body.certificates ?? []).map(cert => ({certType: cert.certType, shaHash: cert.shaHash})), complete: !body.nextPageToken};
   });
   await inspect('Firestore composite indexes', async () => {
-    const {body} = await get('https://firestore.googleapis.com', 'v1', `/projects/${projectId}/databases/(default)/collectionGroups/-/indexes`, {pageSize: 100});
+    const {body} = await get('https://firestore.googleapis.com', 'v1', `/projects/${projectId}/databases/(default)/collectionGroups/-/indexes`);
     return {indexes: (body.indexes ?? []).map(index => ({name: index.name, state: index.state, queryScope: index.queryScope, fields: index.fields})), complete: !body.nextPageToken};
   });
   await inspect('App Check service enforcement', async () => {

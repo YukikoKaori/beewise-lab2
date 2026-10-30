@@ -1,0 +1,13 @@
+{
+  "timestampUtc": "2026-10-30T22:18:51.973779+00:00",
+  "sourceSha": "93617b8272f7fa1a8a44406c28300350c578553e",
+  "action": "logs",
+  "label": "corrective-detail-process-exit",
+  "records": [
+    {
+      "observedPid": 6589,
+      "logBytes": 57844,
+      "consoleReceiptVerified": false
+    }
+  ]
+}

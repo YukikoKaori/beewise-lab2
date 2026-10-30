@@ -35,7 +35,9 @@
 
 ### B-01 [P0] Android runtime, APK, thiết bị và minh chứng
 
-- [ ] Toolchain và debug APK PASS từ app source `db1f12e`; cài APK mới BLOCKED vì signing key khác bản đang có. Chờ quyền gỡ bản cũ; **chưa cài/mở được APK mới trên Android**, không tính CI artifact thay runtime.
+**2026-10-31 — PARTIALLY COMPLETE:** runtime guest ở 360dp/412dp, dữ liệu test có nhãn, offline cache và khôi phục mạng đã chạy thật. Boot đầu có GMS SIGBUS/System UI ANR; giữ log, không coi đây là full certification. Login/logout BLOCKED vì chưa có test account.
+
+- [x] Toolchain/debug APK PASS từ app source `9ef5907`; cài và mở APK mới trên AVD riêng `emulator-5558` ở D. Không gỡ/xóa dữ liệu package cũ; native PNG/log tại `evidence/android/`.
 - [ ] Test emulator/device tại **360dp và 412dp**; logcat, thao tác điều hướng, login/logout, lỗi mạng; ghi lại crash, overflow, thao tác không phản hồi.
 - [ ] Chụp screenshot thật cho các luồng có dữ liệu và các trạng thái loading/empty/error; không chỉnh giả screenshot.
 - [ ] Lưu `evidence/android/README.md` + device spec, version, SHA, APK hash, screenshots và lệnh chạy.
@@ -44,6 +46,8 @@
 **Done khi:** APK chạy trên thiết bị, có runtime evidence và danh sách lỗi/retest; hoặc blocker cụ thể kèm log chính xác nếu không có thiết bị.
 
 ### B-02 [P0] Firebase Auth + Firestore + nguồn dữ liệu thật
+
+**2026-10-31 — PARTIALLY COMPLETE:** audit 6 record synthetic từ server PASS; nhãn TEST/unverified được bảo vệ ở model, loại khỏi AI. Rules live vẫn drift (FCM/proposal/reciprocal), thiếu index; đã chuẩn bị lệnh deploy/rollback tại `docs/workstreams/bao-deployment-plan.md`, chưa deploy. Google provider/SHA và dedicated account còn BLOCKED.
 
 - [ ] Dùng project do chủ repo sở hữu, kiểm tra project ID khớp `google-services.json`; chuẩn bị **tài khoản test** độc lập, không đưa mật khẩu vào repo.
 - [ ] Cấu hình Google Sign-In Android (OAuth/SHA/support email) nếu có quyền; kiểm thử sign-in, cancel, sign-out, session restore và profile recovery.
@@ -54,6 +58,8 @@
 **Done khi:** Auth và dữ liệu live hoạt động, có ảnh/log xác minh; tính năng nào bị OAuth/quyền truy cập chặn phải ghi BLOCKED, không được gọi PASS.
 
 ### B-03 [P0] 6 dịch vụ Firebase — chứng minh bằng Console + app
+
+**2026-10-31 — PARTIALLY COMPLETE:** RC đổi thật 3→1, bật→tắt, Home giới hạn 2 trên cùng APK; template đã hoàn nguyên version 2 bằng ETag. Notification permission, non-fatal diagnostic và deliberate crash đã chạy trên Android. Console receipt/screenshots, 7 DebugView events, FCM delivery và Storage upload vẫn NOT RUN/BLOCKED.
 
 - [ ] **Authentication:** đủ signed-in/signed-out, Google native account picker/cancel, sign-out xóa session riêng tư.
 - [ ] **Cloud Storage:** tạo PDF từ tutor đang hiển thị; upload `reports/{uid}/...pdf`, progress, download URL, rules cross-user deny, console file list. Nếu Spark không có bucket thì ghi blocker và đề nghị giảng viên giải pháp được duyệt; **không tự nâng Blaze**.
@@ -67,6 +73,8 @@
 
 ### B-04 [P1] Luồng tư vấn / học thử / thanh toán / lịch — đúng scope Lab 2
 
+**2026-10-31 — PARTIALLY COMPLETE:** Flutter 50/50 và Emulator rules 27/27 PASS. Trusted backend/staff/payment provider/staging chưa có; mọi verification/schedule vẫn server-trusted, live E2E BLOCKED.
+
 - [x] Đối chiếu 3 flow Figma/Handoff: search/AI → connect → consultant chat → trial → class revision → invoice → payment verified → official schedule; bảng transition tại `docs/workstreams/bao-workflow-status.md`.
 - [x] Xác minh phần client/rules và phần cần server tin cậy; unit/emulator PASS, backend/staging chưa triển khai, live business flow BLOCKED.
 - [ ] Nếu được phép và Firebase plan hỗ trợ, triển khai **tối thiểu** phần trusted workflow bằng Cloud Functions/Admin SDK hoặc backend test riêng; không phải dựng VPS riêng nếu không cần. Có transaction, authorization, dedupe, không cho client tự đánh dấu `paid`/`verified`.
@@ -76,6 +84,8 @@
 **Done khi:** phân định rõ các trạng thái đã thực thi, staging/emulator evidence và những chỗ cần xác nhận với giảng viên.
 
 ### B-05 [P1] Bàn giao evidence có thể tái sử dụng
+
+**2026-10-31:** đã cập nhật status, manifest 6 service, native PNG/log, fixture audit và kế hoạch deploy. Final HEAD/CI được ghi trong PR handoff; ARTEMIS/external review/final presentation vẫn NOT RUN/BLOCKED, không sửa file Nguyên.
 
 - [x] Viết `docs/workstreams/bao-status.md`: Task ID, PASS/FAIL/NOT RUN/BLOCKED, SHA, tài nguyên test, bằng chứng URL/path, lỗi, bước chạy lại.
 - [x] Không sửa report/slides chung; cung cấp `evidence/firebase/manifest.md` và `evidence/android/README.md` để Nguyên dùng, giữ các ca live chưa chạy BLOCKED.
