@@ -33,6 +33,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: 6.0.0
   mocktail: 1.0.4
+  firebase_messaging_platform_interface: 4.11.1
   shared_preferences_platform_interface: 2.4.2
 
 flutter:

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class AuthService {
   Stream<User?> authStateChanges();
@@ -148,8 +147,8 @@ class FirebaseAuthService implements AuthService {
     } catch (_) {
       // Firebase sign-out must still complete when Google sign-out is offline.
     }
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.clear();
+    // Keep UID-scoped inboxes and the installation cleanup journal. A global
+    // preferences.clear() would erase evidence needed to recover a failed detach.
   }
 
   String _authMessage(FirebaseAuthException error) => switch (error.code) {
