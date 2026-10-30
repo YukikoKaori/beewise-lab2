@@ -45,6 +45,27 @@ test('parent and applicant roles cannot be created together in a batch', async (
   batch.set(doc(store, 'parents/alice'), parent());
   batch.set(doc(store, 'tutorApplications/alice'), application());
   await assertFails(batch.commit());
+  // No parent-side write may piggyback on an application-creation batch.
+  const deviceBatch = writeBatch(store);
+  deviceBatch.set(doc(store, 'tutorApplications/alice'), application());
+  deviceBatch.set(doc(store, 'parents/alice/devices/install'), {installationId: 'install', platform: 'android'});
+  await assertFails(deviceBatch.commit());
+  await seed({'tutors/tutor': {active: true}});
+  const connectionBatch = connection(store);
+  connectionBatch.set(doc(store, 'tutorApplications/alice'), application());
+  await assertFails(connectionBatch.commit());
+  await proposal();
+  await seed({'invoices/invoice': {parentId: 'alice', status: 'issued'}});
+  for (const [path, data] of [
+    ['chats/chat/messages/text', {senderId: 'alice', role: 'parent', kind: 'text', body: 'Hello', createdAt: serverTimestamp()}],
+    ['chats/chat/responses/proposal', response()],
+    ['paymentVerificationRequests/request', {invoiceId: 'invoice', parentId: 'alice', status: 'pending', requestedAt: serverTimestamp()}],
+  ]) {
+    const mixed = writeBatch(store);
+    mixed.set(doc(store, 'tutorApplications/alice'), application());
+    mixed.set(doc(store, path), data);
+    await assertFails(mixed.commit());
+  }
 });
 test('applicant can detach only their own pre-application device registration', async () => {
   await seed({'parents/alice/devices/install': {installationId: 'install', platform: 'android'}, 'tutorApplications/alice': {status: 'pending'}});

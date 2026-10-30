@@ -8,6 +8,10 @@ service cloud.firestore {
         && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && !exists(/databases/$(database)/documents/tutorApplications/$(parentId));
     }
+    function canWriteAsParent(parentId) {
+      return isParent(parentId)
+        && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId));
+    }
 
     // Tutor profiles are managed by trusted staff/backend; clients can only read active profiles.
     match /tutors/{tutorId} {
@@ -17,8 +21,7 @@ service cloud.firestore {
 
     match /parents/{parentId} {
       allow read: if isParent(parentId);
-      allow create, update: if isParent(parentId)
-        && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId))
+      allow create, update: if canWriteAsParent(parentId)
         && request.resource.data.keys().hasOnly(['displayName', 'phone', 'email', 'createdAt', 'updatedAt'])
         && request.resource.data.displayName is string
         && (!('phone' in request.resource.data) || request.resource.data.phone is string)
@@ -27,7 +30,7 @@ service cloud.firestore {
 
       match /devices/{deviceId} {
         allow read: if isParent(parentId);
-        allow create, update: if isParent(parentId)
+        allow create, update: if canWriteAsParent(parentId)
           && request.resource.data.keys().hasOnly(['installationId', 'platform', 'updatedAt'])
           && request.resource.data.installationId == deviceId
           && request.resource.data.platform == 'android';
@@ -96,7 +99,7 @@ service cloud.firestore {
     }
 
     match /connectionRequests/{requestId} {
-      allow create: if isParent(request.resource.data.parentId)
+      allow create: if canWriteAsParent(request.resource.data.parentId)
         && request.resource.data.status == 'submitted'
         && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'chatId', 'learningGoal', 'area', 'schedule', 'note', 'status', 'createdAt'])
         && request.resource.data.tutorId is string
@@ -122,7 +125,7 @@ service cloud.firestore {
 
     match /chats/{chatId} {
       allow read: if isParent(resource.data.parentId);
-      allow create: if isParent(request.resource.data.parentId)
+      allow create: if canWriteAsParent(request.resource.data.parentId)
         && request.resource.data.consultantQueue == true
         && request.resource.data.onboardingStatus == 'connection_pending_consultant'
         && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'consultantQueue', 'participantRoles', 'connectionRequestId', 'onboardingStatus', 'createdAt', 'updatedAt'])
@@ -140,7 +143,7 @@ service cloud.firestore {
           get(/databases/$(database)/documents/chats/$(chatId)).data.parentId
         );
         allow create: if signedIn()
-          && isParent(
+          && canWriteAsParent(
             getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId
           )
           && request.resource.data.createdAt == request.time
@@ -182,10 +185,10 @@ service cloud.firestore {
           get(/databases/$(database)/documents/chats/$(chatId)).data.parentId
         );
         allow create: if signedIn()
-          && isParent(
+          && canWriteAsParent(
             getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId
           )
-          && isParent(request.resource.data.parentId)
+          && canWriteAsParent(request.resource.data.parentId)
           && request.resource.data.proposalId is string
           && responseId == request.resource.data.proposalId
           && request.resource.data.createdAt == request.time
@@ -210,7 +213,7 @@ service cloud.firestore {
     }
 
     match /paymentVerificationRequests/{requestId} {
-      allow create: if isParent(request.resource.data.parentId)
+      allow create: if canWriteAsParent(request.resource.data.parentId)
         && exists(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId))
         && get(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId)).data.parentId == request.auth.uid
         && request.resource.data.status == 'pending'
