@@ -27,9 +27,17 @@ class RemoteConfigService {
     }
   }
 
-  int get homeTutorLimit => _config?.getInt('home_tutor_limit') ?? 6;
-  int get aiResultLimit => _config?.getInt('ai_result_limit') ?? 3;
+  int get homeTutorLimit => _limit('home_tutor_limit', 6, 100);
+  // The handoff permits up to three ranked AI recommendations.
+  int get aiResultLimit => _limit('ai_result_limit', 3, 3);
   bool get matchingEnabled => _config?.getBool('ai_matching_enabled') ?? true;
-  String get modelName =>
-      _config?.getString('gemini_model') ?? 'gemini-2.5-flash';
+  String get modelName {
+    final model = _config?.getString('gemini_model').trim();
+    return model == null || model.isEmpty ? 'gemini-2.5-flash' : model;
+  }
+
+  int _limit(String key, int fallback, int maximum) {
+    final value = _config?.getInt(key) ?? fallback;
+    return value < 1 ? fallback : value.clamp(1, maximum);
+  }
 }
