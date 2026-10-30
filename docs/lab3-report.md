@@ -49,6 +49,7 @@ warning; CI uses supported Node 24. Python 3.12.10 collected the pinned SDK.
 | `run-artemis.ps1` without prerequisites | BLOCKED as intended | 2 (rtk launcher 1) | `artemis-preflight/run-manifest.json` |
 | `flutter build apk --debug` (CI) | PASS, APK downloaded and inspected | 0 | `apk-ci.json`, `ci-code-sha.log` |
 | Local build on original C checkout | FAIL, Kotlin cache registration | 1 | `apk-build.log` |
+| Local clean D checkout, `flutter build apk --debug` | PASS, assembleDebug 1642.8s including downloads | 0 | `apk-build-drive-d.log`, `run-manifest.json` |
 | Android install/launch/360dp/412dp/screenshots | NOT RUN | n/a | No online device/AVD |
 | Live Firebase/backend/ARTEMIS | NOT RUN | n/a | No authorized integration resources |
 
@@ -66,7 +67,12 @@ App Check or security policy was disabled. A thread dump locates the quiet
 Android build in `LegacyDownloader.downloadFully` while installing the required
 NDK 28.2.13676358. The original C/junction build later failed with Kotlin cache registration errors;
 a separate clean checkout on D is recorded in `apk-build-drive-d.log`. CI built
-the APK successfully on Linux. This evidence
+the APK successfully on Linux, and the clean D checkout also built successfully
+with native exit 0 (1642.8 seconds including dependency/CMake downloads).
+The local APK path, size and SHA256 are in the execution manifest. Existing SDK
+licenses were detected by Gradle; no billing or Firebase provider terms changed.
+KGP migration/deprecation warnings remain and must be reviewed before upgrading
+the pinned Flutter/plugin toolchain. This evidence
 does not prove the original machine's historical root cause.
 
 ## Verified CI and APK provenance
@@ -94,6 +100,23 @@ No existing account is deleted. Proposal rules validate same-chat consultant
 message, pending status, current pointer, expiry, ownership and one immutable
 response; trusted state remains server-owned. Reciprocal connection batches and
 batched role exclusion are exercised with getAfter-aware tests.
+
+Final review reproduced one additional batched role bypass: application creation
+could accompany a parent-side device write. The regression failed against the
+previous rules (25 pass / 1 fail), then `865d91d` added post-write applicant
+exclusion to every parent create/update boundary. All 26 emulator tests now pass,
+including mixed device, connection/chat, message, response and payment batches.
+The original failing result is retained as `rules-role-batch-red.log`.
+
+Process-double checks also reproduced missing `Get-FileHash` on this PowerShell
+environment. `7afe6a3` uses .NET SHA256 instead. Synthetic subprocess exits 7 and 0
+now produce three FAIL and three PENDING_VERIFICATION records respectively, with
+correct exit codes and hashes. These are harness checks only, not mobile runs;
+see `runner-hash-red.json` and `runner-exit*-check.json`.
+`567a97f` additionally fixes absolute D-drive evidence output paths. Reproduce
+both exit/status/hash regressions on Windows with
+`python scripts/check_artemis_runner.py`; it uses only synthetic subprocesses,
+retains its output on D and never contacts ARTEMIS or a mobile device.
 
 Emulator tests are not production deployments or App Check integration tests.
 Storage rules enforce metadata, not cryptographic PDF validation. Admin SDK

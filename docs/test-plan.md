@@ -48,7 +48,7 @@ Case definitions live in `e2e_test/test_discovery.py`, `e2e_test/test_account_an
 ## Setup and execution
 
 1. Use Android 36 at 360dp and 412dp with the configured `beewise-lab-3` project and a dedicated non-production test account. Add real, approved tutor data and at least one known matching and one known no-match search term. Never use Lab 2 mock profiles as Firebase records.
-2. Start the pinned ARTEMIS host from `D:\Apps\artemis`, connect the Android device/emulator and install the debug APK. Set `ARTEMIS_BASE_URL` and `ARTEMIS_DEVICE_SERIAL`.
+2. Start an owner-installed host at the pinned ARTEMIS commit, connect the Android device/emulator and install the debug APK. Set `ARTEMIS_BASE_URL` and `ARTEMIS_DEVICE_SERIAL`.
 3. Set `BEEWISE_TEST_ACCOUNT_EMAIL`, `BEEWISE_TEST_TUTOR_NAME`, `BEEWISE_SEARCH_TERM` and `BEEWISE_NO_RESULT_TERM` to dedicated non-production test values. Do not put passwords, tokens or API keys in repository files or prompts.
 4. Install the pinned pytest/SDK dependencies with `uv sync --project .\e2e_test`.
 5. Run `e2e_test\run-artemis.ps1 -RunsPerTest 3` for 21 automated regression cases. Run TC-10, TC-14, TC-15 and TC-26 separately three times each, sending a new Firebase Console test push before every run. Run the exploratory case once with `uv run --project .\e2e_test pytest -c .\e2e_test\pyproject.toml .\e2e_test\test_exploratory.py -m exploratory -q -s` and capture its output.

@@ -1,0 +1,158 @@
+[
+  {
+    "caseId": "TC-01",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-02",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-03",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-04",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-05",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-06",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-07",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Google OAuth/native picker unverified."
+  },
+  {
+    "caseId": "TC-08",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-09",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-10",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Fresh recipientUid-targeted push and Android permission required per repetition."
+  },
+  {
+    "caseId": "TC-11",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Authorized Storage bucket/upload recovery required."
+  },
+  {
+    "caseId": "TC-12",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-13",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-14",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Fresh recipientUid-targeted push and Android permission required per repetition."
+  },
+  {
+    "caseId": "TC-15",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Fresh recipientUid-targeted push and Android permission required per repetition."
+  },
+  {
+    "caseId": "TC-16",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Google OAuth/native picker unverified."
+  },
+  {
+    "caseId": "TC-17",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-18",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-19",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-20",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-21",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-22",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-23",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-24",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Trusted consultant/payment staging backend and fresh proposal fixtures required."
+  },
+  {
+    "caseId": "TC-25",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures."
+  },
+  {
+    "caseId": "TC-26",
+    "status": "BLOCKED",
+    "executed": false,
+    "reason": "No online Android device/AVD, configured ARTEMIS host/model key or authorized test project/fixtures. Operator-entered disposable credentials and dedicated test project authorization required."
+  }
+]
