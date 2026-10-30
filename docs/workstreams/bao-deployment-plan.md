@@ -73,6 +73,13 @@ in an isolated copy with the same emulator suite. Prepare a private Firebase
 config referencing that approved absolute rules path, and then, only after an
 incident-specific authorization and concurrent-release check, run:
 
+The private `approved-secure-rollback.firebase.json` must contain exactly this
+path (no indexes or Storage section), after the secure rules file is supplied:
+
+```json
+{"firestore":{"rules":"D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/approved-secure-rollback.rules"}}
+```
+
 ```powershell
 & .\firebase\node_modules\.bin\firebase.cmd deploy --only firestore:rules --project beewise-lab-3 --config D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/approved-secure-rollback.firebase.json --non-interactive
 node scripts/inspect-bao-cloud-state.cjs

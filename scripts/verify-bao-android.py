@@ -21,7 +21,7 @@ for directory in (OUT / "screenshots", OUT / "logs", PRIVATE):
 
 
 def redact(value):
-    value = re.sub(r"(?im)^.*(?:debug token|AppCheckDebugProvider|Authorization:|Bearer |Dart VM service is listening|(?:FCM|registration) token\s*[:=]).*$", "[credential-bearing line omitted]", value)
+    value = re.sub(r"(?im)^.*(?:debug token|AppCheckDebugProvider|DebugAppCheckProvider|Authorization:|Bearer |Dart VM service is listening|(?:FCM|registration) token\s*[:=]).*$", "[credential-bearing line omitted]", value)
     value = re.sub(r"AIza[\w-]+", "[client-key omitted]", value)
     value = re.sub(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", "[email omitted]", value)
     value = re.sub(r"\beyJ[\w.-]{30,}", "[JWT omitted]", value)
@@ -44,7 +44,8 @@ def adb(*args, binary=False):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("action", choices=["prepare", "install", "launch", "capture", "tap", "back", "resize", "offline", "online", "inspect", "restore"])
+parser.add_argument("action", choices=["prepare", "install", "launch", "capture", "logs", "tap", "back", "resize", "offline", "online", "inspect", "restore"])
+parser.add_argument("--pid", type=int)
 parser.add_argument("--label", default="runtime")
 parser.add_argument("--apk")
 parser.add_argument("--width", type=int)
@@ -82,6 +83,13 @@ elif args.action == "capture":
         (OUT / "logs" / (args.label + "-logcat.log")).write_text(redact(raw.decode(errors="replace")), encoding="utf-8")
 elif args.action == "tap":
     adb("shell", "input", "tap", str(args.x), str(args.y))
+elif args.action == "logs":
+    if args.pid is None or args.pid < 1:
+        raise ValueError("Use the process ID observed before the deliberate crash.")
+    raw = adb("logcat", "-d", "--pid=" + str(args.pid), "-v", "threadtime", binary=True)
+    (PRIVATE / (args.label + "-raw.log")).write_bytes(raw)
+    (OUT / "logs" / (args.label + "-logcat.log")).write_text(redact(raw.decode(errors="replace")), encoding="utf-8")
+    records.append({"observedPid": args.pid, "logBytes": len(raw), "consoleReceiptVerified": False})
 elif args.action == "back":
     adb("shell", "input", "keyevent", "4")
 elif args.action == "resize":

@@ -1,0 +1,13 @@
+{
+  "timestampUtc": "2026-10-30T22:15:02.346863+00:00",
+  "sourceSha": "93617b8272f7fa1a8a44406c28300350c578553e",
+  "action": "logs",
+  "label": "corrective-deliberate-crash",
+  "records": [
+    {
+      "observedPid": 5565,
+      "logBytes": 54113,
+      "consoleReceiptVerified": false
+    }
+  ]
+}

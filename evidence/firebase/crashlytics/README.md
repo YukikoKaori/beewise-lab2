@@ -1,3 +1,5 @@
+> **2026-10-31 corrective update (supersedes prior runtime status):** Native update: handled Profile diagnostic and deliberate Crashlytics SDK crash actually exercised on isolated API37; sanitized PID log `../../android/logs/corrective-deliberate-crash-logcat.log`. Console receipt, signed-in UID/custom-key association and a real business-flow failure remain NOT RUN/BLOCKED. The snackbar is not proof of delivery.
+
 # Crashlytics
 
 Implementation: `crash_reporting_service.dart`, `main.dart`, auth provider and

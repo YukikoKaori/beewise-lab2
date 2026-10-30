@@ -1,0 +1,25 @@
+{
+  "timestampUtc": "2026-10-30T22:01:47.012602+00:00",
+  "sourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+  "action": "install",
+  "label": "corrective-source",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "install",
+        "-r",
+        "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk"
+      ],
+      "exitCode": 0,
+      "output": "Performing Streamed Install\r\nSuccess\r\n"
+    },
+    {
+      "apk": "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+      "sha256": "f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d",
+      "bytes": 227800966
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+> **2026-10-31 corrective update (supersedes prior runtime status):** Native update: Analytics SDK initialization and guest screen navigation exercised on isolated API37. Seven DebugView event receipts remain NOT RUN; no authenticated event or Console screenshot is claimed.
+
 # Analytics
 
 Implementation: `analytics_service.dart`, controllers/providers;

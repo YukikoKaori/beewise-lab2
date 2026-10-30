@@ -1,3 +1,5 @@
+> **2026-10-31 corrective update (supersedes prior runtime status):** Current update: live API again returns no buckets and billing disabled. No authenticated identity; real upload/download URL/Console evidence remain BLOCKED. No billing change or Storage deployment occurred.
+
 # Cloud Storage / PDF
 
 Implementation: `lib/services/export_service.dart`; source `db1f12e`.

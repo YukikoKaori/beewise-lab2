@@ -1,54 +1,63 @@
-# Android verification — Bảo
+# Android actual verification — Bao, 2026-10-31
 
-Date: 2026-10-30. Application source `db1f12e`; base `12f5322` (PR #2 merge).
-Full source SHA in `../cloud/checks/verified/apk-build.json`.
+**PARTIALLY COMPLETE.** Latest app source `9ef5907b2d296fcdafaa869a53e9780692f4cc56`
+built on D and actually installed/launched on **separate** `emulator-5558`.
+APK SHA-256 `f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d`,
+227,800,966 bytes. Exact install/Success/hash: `logs/corrective-4gb-source-install.json`.
+APK path remains `D:/CodexTemp/beewise-lab3-build/build/app/outputs/flutter-apk/app-debug.apk`.
+Toolchain Flutter 3.47.8/Dart 3.13.7, JDK21, Gradle9.3.1/AGP9.1.0. Future Kotlin
+plugin warnings remain; this is a debug build, not release/hardware certification.
 
-PASS: D-drive Flutter 3.47.8 / Dart 3.13.7, JDK 21.0.13+9, Android SDK
-`D:\Android\SDK`, API 37 x86_64 AVD online, debug APK build (exit 0).
-Gradle 9.3.1 / AGP 9.1.0. Doctor exits 0 but has warnings about local Flutter
-channel, Android command-line tools/licenses, and unrelated Windows C++ tools;
-it is not an all-green doctor. Build also reports future Flutter/Kotlin plugin
-migration warnings; no unsupported package upgrade was attempted.
+## Native evidence actually inspected
 
-APK retained on D:
-`D:\CodexTemp\beewise-lab3-build\build\app\outputs\flutter-apk\app-debug.apk`
-(227,799,947 bytes). SHA-256:
-`b3fa9f9d3b596d240cb24fe8dd4c422cc8d0376dd92cf42b2be6c3cf2483c9db`.
-No large APK/toolchain/cache is added to Git or installed on C.
+All PNGs are original `adb exec-out screencap -p` bytes. SHA/dimensions and
+VERIFIED_SCREEN vs HISTORICAL_ATTEMPT_ONLY classification are in
+`runtime-manifest.json`. Failed/splash/black screenshots do not count as PASS.
 
-**Latest installation BLOCKED:** `adb install -r` returns
-`INSTALL_FAILED_UPDATE_INCOMPATIBLE: Existing package com.beewise.beewise signatures do not match newer version; ignoring!`.
-The installed older APK is not evidence for this source. Do not clear/uninstall
-without permission: user AGENTS.md explicitly requires asking before uninstall.
-A decision is pending. Original app data was preserved.
+| Scenario | Actual evidence/result |
+|---|---|
+| 360dp Home/Profile | `screenshots/corrective-360-home.png`, `corrective-360-profile.png` |
+| 412dp Profile | `screenshots/corrective-412-profile-ready.png` |
+| Native permission | `screenshots/corrective-360-permission.png`; Allow tap receipt |
+| Firestore catalog | `screenshots/corrective-412-search-data.png`: six TEST/unverified synthetic tutors |
+| Guest Chats | `screenshots/corrective-412-chats-ready.png`: login gate |
+| Offline/recovery | Both Wi-Fi/cellular disabled; active default network none observed; PID log has Firestore UNAVAILABLE/DNS failure; `corrective-412-offline-error.png` renders cached Home (filename does not mean error screen). Restored network then fetched changed RC successfully |
+| RC before/change/restore | `corrective-412-profile-ready.png` enabled/3 -> `corrective-412-rc-changed-profile.png` disabled/1 -> `corrective-412-rc-restored-profile.png` enabled/3 |
+| Actual behavior gates | `corrective-412-matching-disabled-result.png`, `corrective-412-home-limit-two-bottom.png`; same APK, no reinstall/rebuild |
+| Handled diagnostic | `logs/corrective-360-nonfatal-logcat.log`: Profile diagnostic StateError; not a business-flow failure or Console receipt |
+| Intentional crash | `logs/corrective-deliberate-crash-logcat.log`: native FlutterFirebaseCrashlytics test exception, PID5565; app relaunched |
 
-Alternative fresh D data images were attempted, without deleting original AVD
-data. Shared read-only launch was rejected by the emulator; fresh headless boot
-did not establish ADB, and an attempted boot property was reported unsupported.
-Those instances were stopped. Original AVD was restarted and is online again.
-Original display/network/Analytics debug setting restoration is recorded in
-`logs/original-restored-restore.json`. No screenshot of an earlier APK is supplied.
+## Failures and limits
 
-Latest launch, Firebase native initialization, navigation, offline/recovery,
-360dp/412dp, native notification permission/delivery and Crashlytics triggering:
-**NOT RUN**. Authenticated session cases: **BLOCKED**, no dedicated test identity.
-Device/package inspection is in `logs/initial-device-inspect.json`; requested
-permissions in a package dump do not prove the latest APK's granted permissions.
+Original emulator's `INSTALL_FAILED_UPDATE_INCOMPATIBLE` was bypassed by a fully
+independent AVD on D, not by removing its package/data. Original AVD only shut
+down for RAM. New API37 revision6 AVD uses 4096MB, software GPU, 2 cores.
+Initial 2GB run had GMS SIGBUS; that crash buffer was observed but not retained
+across reboot. 4GB first boot had System UI ANR and slow initialization, followed
+by successful rendering. Do not claim an app-code fix resolved those failures.
+API37 minimum-memory guidance: [official emulator release notes](https://developer.android.com/studio/releases/emulator).
 
-Reproduce after approved install resolution:
+Tutor-detail retest interrupted: `logs/corrective-gms-package-update.log` proves
+PID6589 was killed for Google Play services package update. Detail is not PASS.
+Host C filled from paging and some captures could not be written; after restoring
+and stopping the isolated emulator about 6.3GB returned. Generated dart cache was
+moved intact to D; no personal file deleted, no registry/pagefile setting changed.
+No RenderFlex overflow observed in selected package logs; not comprehensive QA.
+Status-only `.xml` outputs from the first hierarchy method are not XML evidence.
 
-```powershell
-scripts/verify-bao-cloud.ps1 -Action toolchain -RunName retest
-scripts/verify-bao-cloud.ps1 -Action build -BuildDirectory D:/CodexTemp/beewise-lab3-build -RunName retest
-python scripts/verify-bao-android.py prepare --serial emulator-5554 --label retest-original
-python scripts/verify-bao-android.py install --serial emulator-5554 --apk D:/CodexTemp/beewise-lab3-build/build/app/outputs/flutter-apk/app-debug.apk --label retest-apk
-python scripts/verify-bao-android.py resize --serial emulator-5554 --width 360 --label retest-360
-python scripts/verify-bao-android.py launch --serial emulator-5554 --label retest-start
-python scripts/verify-bao-android.py capture --serial emulator-5554 --label retest-home-360
-# Observe screenshots/XML before choosing tap coordinates; repeat at 412dp.
-python scripts/verify-bao-android.py restore --serial emulator-5554 --label retest-restored
-```
+Dedicated account absent: authenticated session/native Google picker/signout/
+account switch/private workflows BLOCKED. FCM delivery, real Storage upload,
+seven Analytics DebugView events and Crashlytics Console receipt NOT RUN/BLOCKED.
+Staging, ARTEMIS, external review and physical hardware NOT RUN.
 
-The capture helper preserves PNG bytes from `adb exec-out screencap -p` and
-captures package PID logs. Raw logs remain private on D; committed copies omit
-credential-bearing lines. Do not infer Console receipt from device logs.
+Display/network/Analytics debug restoration:
+`logs/corrective-restored-device-restore.json`. Isolated AVD then shut down;
+no user app uninstall, clear-data or wipe was executed. Cloud RC restored empty
+version2 with ETag guards; native enabled/3 confirms refetch. Raw logs/configs
+remain private on D; committed PID logs redact credential-bearing lines.
+
+Reproduce in a coordinated test window:
+`scripts/start-bao-isolated-android.ps1`, then prepare/install/resize/launch/capture
+with `scripts/verify-bao-android.py --serial emulator-5558`; observe each screen
+before tapping, and always restore device state. Account-dependent cases need a
+dedicated authorized identity first. Never install over or clear the original AVD.
