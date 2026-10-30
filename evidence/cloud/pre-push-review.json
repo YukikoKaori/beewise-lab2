@@ -1,0 +1,7 @@
+{
+  "ownershipViolations": [],
+  "secretPatternHitFiles": [],
+  "projectConfigConsistent": true,
+  "appSourceUnchangedSinceBuild": true,
+  "excludedUntrackedBrowserArtifacts": true
+}

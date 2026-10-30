@@ -1,0 +1,8 @@
+{
+    "startedAtUtc":  "2026-10-30T15:50:27.1617315Z",
+    "completedAtUtc":  "2026-10-30T15:53:13.7266376Z",
+    "sourceSha":  "db1f12ecdceca61504181e4f9d9ba54fe1d37de7",
+    "workingDirectory":  "D:\\CodexTemp\\beewise-lab3-build",
+    "command":  "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat build apk --debug",
+    "nativeExitCode":  0
+}

@@ -29,14 +29,16 @@ def redact(value):
 
 
 def adb(*args, binary=False):
-    result = subprocess.run([ADB, "-s", "emulator-5554", *args], capture_output=True, timeout=120)
+    result = subprocess.run([ADB, "-s", args_config.serial, *args], capture_output=True, timeout=120)
     if binary:
         if result.returncode:
             raise RuntimeError(redact(result.stderr.decode(errors="replace")))
         return result.stdout
     output = redact((result.stdout + result.stderr).decode("utf-8", errors="replace"))
-    records.append({"command": ["adb", "-s", "emulator-5554", *args], "exitCode": result.returncode, "output": output})
+    records.append({"command": ["adb", "-s", args_config.serial, *args], "exitCode": result.returncode, "output": output})
     if result.returncode:
+        (OUT / "logs" / (args_config.label + "-failed-command.json")).write_text(
+            json.dumps({"timestampUtc": datetime.datetime.now(datetime.timezone.utc).isoformat(), "records": records}, indent=2), encoding="utf-8")
         raise RuntimeError(output)
     return output.strip()
 
@@ -48,9 +50,11 @@ parser.add_argument("--apk")
 parser.add_argument("--width", type=int)
 parser.add_argument("--x", type=int)
 parser.add_argument("--y", type=int)
+parser.add_argument("--serial", default="emulator-5556")
 args = parser.parse_args()
+args_config = args
 records = []
-state_file = PRIVATE / "original-device-state.json"
+state_file = PRIVATE / (args.serial + "-original-device-state.json")
 if args.action == "prepare":
     state = {"size": adb("shell", "wm", "size"), "density": adb("shell", "wm", "density"),
              "wifi": adb("shell", "settings", "get", "global", "wifi_on"),
