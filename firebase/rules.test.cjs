@@ -172,6 +172,19 @@ test('responses reject missing, other-chat, stale, expired, wrong-kind and malfo
   await seed({'chats/chat': {parentId: 'alice', onboardingStatus: 'trial_proposed', currentProposalId: 'new-proposal'}});
   await assertFails(setDoc(target, response()));
 });
+
+test('concurrent duplicate responses admit one immutable response only', async () => {
+  await proposal();
+  const results = await Promise.allSettled([
+    setDoc(doc(db(), 'chats/chat/responses/proposal'), response()),
+    setDoc(doc(db(), 'chats/chat/responses/proposal'), response()),
+  ]);
+  require('node:assert/strict').equal(results.filter(result => result.status === 'fulfilled').length, 1);
+  const rejected = results.find(result => result.status === 'rejected');
+  require('node:assert/strict').equal(rejected.reason.code, 'permission-denied');
+  const stored = await assertSucceeds(getDoc(doc(db(), 'chats/chat/responses/proposal')));
+  require('node:assert/strict').equal(stored.data().type, 'trial_accepted');
+});
 test('invoice verification and official schedule are trusted backend only', async () => {
   await seed({'invoices/invoice': {parentId: 'alice', status: 'issued'}, 'classes/verified': {parentId: 'alice', paymentStatus: 'verified'}, 'classes/unverified': {parentId: 'alice', paymentStatus: 'pending'}});
   await assertSucceeds(getDoc(doc(db(), 'invoices/invoice')));
