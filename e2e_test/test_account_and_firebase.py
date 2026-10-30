@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 import os
-import secrets
-import uuid
 
 import pytest
 
@@ -266,18 +264,18 @@ async def test_tc17_deliberate_crash_is_reported_and_app_recovers(run_flow):
     assert require(observed, "screen_after_relaunch", str).strip()
 
 
+@pytest.mark.manual_setup
 async def test_tc26_tutor_registration_waits_for_staff_review(run_flow):
     """TC-26; project-added tutor flow; creates an isolated disposable account."""
-    domain = os.environ.get("BEEWISE_TUTOR_TEST_EMAIL_DOMAIN", "example.test")
-    assert "@" not in domain, "Set only a test email domain, without the @ sign."
-    email = f"lab3-tutor-{uuid.uuid4().hex[:12]}@{domain}"
-    password = f"{secrets.token_urlsafe(18)}A1!"
+    assert os.environ.get("BEEWISE_DEDICATED_TEST_PROJECT") == "1", (
+        "Authorize only a dedicated test project and have the operator enter "
+        "disposable credentials directly on the device, outside model traces."
+    )
     observed = await run_flow(
         case_id="TC-26",
-        start="BeeWise is signed out and on Login or Register. A disposable test email is ready.",
+        start="Operator has opened the tutor form and entered disposable test credentials directly on the device.",
         steps=(
-            "Open the tutor application form. Enter this one-time disposable email: "
-            f"{email}; use this one-time password: {password}. Enter name Lab3 Tutor Test, "
+            "Do not read, repeat, record or change the credential fields. Enter name Lab3 Tutor Test, "
             "phone 0900000000, qualification Bachelor of Mathematics, subjects Toán, "
             "grades Lớp 8, introduction I have experience teaching secondary school "
             "mathematics, fee 300000, area Hà Nội, availability weekday evenings, "

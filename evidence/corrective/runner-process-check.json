@@ -1,0 +1,21 @@
+{
+  "scope": "Synthetic process doubles only; Android/host/AI NOT RUN",
+  "status": "PASS",
+  "checks": [
+    {
+      "expectedExit": 7,
+      "actualExit": 7,
+      "status": "FAIL",
+      "suiteRuns": 3,
+      "hashesVerified": true
+    },
+    {
+      "expectedExit": 0,
+      "actualExit": 0,
+      "status": "PENDING_VERIFICATION",
+      "suiteRuns": 3,
+      "hashesVerified": true
+    }
+  ],
+  "retainedOutput": "D:\\CodexTemp\\beewise-runner-checks\\3750b36702de41638dd74c8bfefa3720"
+}

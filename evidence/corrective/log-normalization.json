@@ -1,0 +1,98 @@
+[
+  {
+    "path": "evidence/corrective/analyze.log",
+    "beforeSha256": "c969c88eadd583638e22d796dfbec3f759f8c964266951eac713caf22c41fab5",
+    "afterSha256": "3295ddea1092d98452dcf3f5d69406724b71dd73840e20431e248ba44ac3aa95",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\analyze.log"
+  },
+  {
+    "path": "evidence/corrective/apk-build-drive-d.log",
+    "beforeSha256": "4bc0e62d24c004404874e9bbbd81112f0b66fa8c113c6f666d17d7698e472743",
+    "afterSha256": "bb6d587502c28c71cd7a52a41fb2e5fcb8160a075ce68f49c64c08d42e41e0de",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\apk-build-drive-d.log"
+  },
+  {
+    "path": "evidence/corrective/apk-build.log",
+    "beforeSha256": "6d9ae7c588e4e746e55a09deafe7af6ef686f6bc716d540d1cf01649ff310a1e",
+    "afterSha256": "a1bf50f8b057bde7888a6280ee2feb223ea1550a1d5e8a08fbff10463a9d320d",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\apk-build.log"
+  },
+  {
+    "path": "evidence/corrective/ci-code-sha.log",
+    "beforeSha256": "158ead0cba285e40b2ba5c9d84ce5944f5949629a741b7d5e957ae8696abbfb4",
+    "afterSha256": "6db9682106e3c8a5aa4e5f81d1bacfa13ab690f1b5bd4b97c1a30a27d5f4f016",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\ci-code-sha.log"
+  },
+  {
+    "path": "evidence/corrective/doctor.log",
+    "beforeSha256": "af99ab2d6e47b3db4d8fcd61500ca7d5cd4ea5d62558a499b25eedf98890a85e",
+    "afterSha256": "9da970b8a309c21a4912638ec16f9ebf71588e31360c5e8873be07928c7e84c9",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\doctor.log"
+  },
+  {
+    "path": "evidence/corrective/e2e-collection.log",
+    "beforeSha256": "9724ab9cb2dcb8767cb60eee58dc37d207ff73430908da50eab81b75a3e14b67",
+    "afterSha256": "c0a5475af5eb79b5ae922505bea67a42a3dd8c5fb392133b4fab2004314d568a",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\e2e-collection.log"
+  },
+  {
+    "path": "evidence/corrective/flutter-test.log",
+    "beforeSha256": "dd4aadee9d0488dfd0d5ec14ac198148c44d2f07d3f59fe0868b4c03c53f91b3",
+    "afterSha256": "b31f466580df58d44af4dbb1c3061b40a6fcbf1ba4677b264319dfe7fedeebb6",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\flutter-test.log"
+  },
+  {
+    "path": "evidence/corrective/format.log",
+    "beforeSha256": "22cd66577a665484ce0ee8e8baac20185677245962ee2fce8b4a6f8c1e5da2e9",
+    "afterSha256": "ddf92a6364b3ae1179301473f3c1af8ff88e562c62cb5fe52c84c1a1b1de033d",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\format.log"
+  },
+  {
+    "path": "evidence/corrective/gradle-threads.log",
+    "beforeSha256": "d43fcc351172b41848c2c3c529747cd89d1c0926503820290515874bba8b772b",
+    "afterSha256": "e145aa337e7158bb1690466198f1d5574f7602422700bef2c3403f176a1c2bd4",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\gradle-threads.log"
+  },
+  {
+    "path": "evidence/corrective/harness.log",
+    "beforeSha256": "b85325c1c67e47e147dba6f39e10b8e9d3d337fd3d061e8fd28a76ea0fb845a9",
+    "afterSha256": "10710f2f883654ccf00600c6b4caf20e00a7e8cf045123bac1a7c4e2b4578e9d",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\harness.log"
+  },
+  {
+    "path": "evidence/corrective/local-apk-badging.log",
+    "beforeSha256": "579435a3bdf3414567bacb3ae014b2d7e1725c75d5993caaabc05896f2dd64c1",
+    "afterSha256": "eeb2c4ff7af4d7ef67dad272010d85b280a7d36a750488d59727830ce618aa99",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\local-apk-badging.log"
+  },
+  {
+    "path": "evidence/corrective/pub-get.log",
+    "beforeSha256": "7e14e9f1a91968f8e50ad588c261f875bad4c21cdc4ea40eacecf0814f5cbc83",
+    "afterSha256": "fa9923fae178f88fae2c787bf4864b7afe5bcda0e52f7b201e6813f767050d85",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\pub-get.log"
+  },
+  {
+    "path": "evidence/corrective/rules-role-batch-red.log",
+    "beforeSha256": "fc246e4420d26e28fbcaf6d6869c12f92bd329b5b025fa433a46d37758bf6108",
+    "afterSha256": "3c8ffdcced0efb872db215cb558252d35b15c4f31e3b185c3f3b55f040a351e6",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\rules-role-batch-red.log"
+  },
+  {
+    "path": "evidence/corrective/rules-test-initial.log",
+    "beforeSha256": "2eb272ffe00922b42fae72695af85476ed964914db184278bfebb3ffa8308233",
+    "afterSha256": "650db557b5358395b6817b4771017519c81ac0f15a888b4ebcb9aeb86e7ec411",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\rules-test-initial.log"
+  },
+  {
+    "path": "evidence/corrective/rules-test.log",
+    "beforeSha256": "091d623442fdf345fa971828f5029f8094bf15c12db6dc797032bee13cce7da2",
+    "afterSha256": "ee67e229ff0b243558c0aec5f1cab55ddbbed79e613d48b1ae040b61cf0befad",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\rules-test.log"
+  },
+  {
+    "path": "evidence/corrective/runner-absolute-path-red.log",
+    "beforeSha256": "a74321f053ef281fa9dfc67937edd9ff4d760882f7b3fd68458c62d94af7c075",
+    "afterSha256": "47795f50865ee5394efe130ccfbb79d777ca18f0bb93147495fe2b27ec749327",
+    "originalCopy": "D:\\CodexTemp\\beewise-lab3-tools\\evidence-before-whitespace\\runner-absolute-path-red.log"
+  }
+]

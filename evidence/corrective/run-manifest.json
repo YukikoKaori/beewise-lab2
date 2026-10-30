@@ -1,0 +1,477 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-30T07:25:22.507162+00:00",
+  "baseSha": "dd8b0e165039886b52b08cab81e17dd08c4af7ff",
+  "testedApplicationSourceSha": "114d682c17098f7b96255c42eb3b8aa4ffeb66fc",
+  "testedRulesSourceSha": "865d91d",
+  "testedE2ERunnerSha": "567a97f",
+  "evidenceParentSha": "567a97fd5c820c98d98ecf841a79b5e4ba4d71f3",
+  "prUrl": "https://github.com/YukikoKaori/beewise-lab2/pull/2",
+  "environment": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "java": "Temurin 21.0.13+9",
+    "nodeLocal": "25.9.0",
+    "nodeCi": "24",
+    "python": "3.12.10",
+    "newToolingRoot": "D:/CodexTemp/beewise-lab3-tools"
+  },
+  "commands": [
+    {
+      "command": "flutter pub get",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "pub-get.log"
+    },
+    {
+      "command": "dart format --output=none --set-exit-if-changed .",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "format.log"
+    },
+    {
+      "command": "flutter analyze",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "analyze.log"
+    },
+    {
+      "command": "flutter test --reporter expanded",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "flutter-test.log"
+    },
+    {
+      "command": "npm --prefix firebase test",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "rules-test.log"
+    },
+    {
+      "command": "npm audit --prefix firebase --json",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "npm-audit.json"
+    },
+    {
+      "command": "python scripts/check_e2e_harness.py",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "harness.log"
+    },
+    {
+      "command": "python scripts/check_artemis_runner.py (synthetic process doubles only)",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "runner-process-check.json"
+    },
+    {
+      "command": "pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q",
+      "status": "PASS_COLLECTION_ONLY",
+      "nativeExitCode": 0,
+      "log": "e2e-collection.log"
+    },
+    {
+      "command": "flutter build apk --debug (original C/junction checkout)",
+      "status": "FAIL",
+      "nativeExitCode": 1,
+      "log": "apk-build.log"
+    },
+    {
+      "command": "flutter build apk --debug (CI)",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "ci-code-sha.log"
+    },
+    {
+      "command": "flutter build apk --debug (clean D checkout)",
+      "status": "PASS",
+      "nativeExitCode": 0,
+      "log": "apk-build-drive-d.log"
+    },
+    {
+      "command": "run-artemis.ps1 without prerequisites",
+      "status": "BLOCKED",
+      "nativeExitCode": 2,
+      "log": "artemis-preflight/run-manifest.json"
+    }
+  ],
+  "ci": {
+    "conclusion": "success",
+    "headSha": "114d682c17098f7b96255c42eb3b8aa4ffeb66fc",
+    "jobs": [
+      {
+        "completedAt": "2026-10-30T06:46:35Z",
+        "conclusion": "success",
+        "databaseId": 123932469750,
+        "name": "e2e-harness",
+        "startedAt": "2026-10-30T06:46:24Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-30T06:46:25Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-30T06:46:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:27Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-30T06:46:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:27Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-30T06:46:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:29Z",
+            "conclusion": "success",
+            "name": "Run astral-sh/setup-uv@v6",
+            "number": 4,
+            "startedAt": "2026-10-30T06:46:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:31Z",
+            "conclusion": "success",
+            "name": "Run uv sync --project e2e_test --frozen",
+            "number": 5,
+            "startedAt": "2026-10-30T06:46:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:31Z",
+            "conclusion": "success",
+            "name": "Run uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q",
+            "number": 6,
+            "startedAt": "2026-10-30T06:46:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:32Z",
+            "conclusion": "success",
+            "name": "Run python scripts/check_e2e_harness.py",
+            "number": 7,
+            "startedAt": "2026-10-30T06:46:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:33Z",
+            "conclusion": "success",
+            "name": "Post Run astral-sh/setup-uv@v6",
+            "number": 12,
+            "startedAt": "2026-10-30T06:46:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 13,
+            "startedAt": "2026-10-30T06:46:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 14,
+            "startedAt": "2026-10-30T06:46:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:34Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-10-30T06:46:34Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254/job/123932469750"
+      },
+      {
+        "completedAt": "2026-10-30T06:52:33Z",
+        "conclusion": "success",
+        "databaseId": 123932470131,
+        "name": "flutter-android",
+        "startedAt": "2026-10-30T06:46:24Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-30T06:46:26Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-30T06:46:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:29Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-30T06:46:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:29Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v4",
+            "number": 3,
+            "startedAt": "2026-10-30T06:46:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:47:15Z",
+            "conclusion": "success",
+            "name": "Run subosito/flutter-action@v2",
+            "number": 4,
+            "startedAt": "2026-10-30T06:46:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:47:26Z",
+            "conclusion": "success",
+            "name": "Run flutter pub get --enforce-lockfile",
+            "number": 5,
+            "startedAt": "2026-10-30T06:47:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:47:26Z",
+            "conclusion": "success",
+            "name": "Run dart format --output=none --set-exit-if-changed .",
+            "number": 6,
+            "startedAt": "2026-10-30T06:47:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:47:37Z",
+            "conclusion": "success",
+            "name": "Run flutter analyze",
+            "number": 7,
+            "startedAt": "2026-10-30T06:47:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:47:46Z",
+            "conclusion": "success",
+            "name": "Run flutter test --reporter expanded",
+            "number": 8,
+            "startedAt": "2026-10-30T06:47:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:51:57Z",
+            "conclusion": "success",
+            "name": "Run flutter build apk --debug",
+            "number": 9,
+            "startedAt": "2026-10-30T06:47:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:52:03Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 10,
+            "startedAt": "2026-10-30T06:51:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:52:30Z",
+            "conclusion": "success",
+            "name": "Post Run subosito/flutter-action@v2",
+            "number": 18,
+            "startedAt": "2026-10-30T06:52:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:52:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v4",
+            "number": 19,
+            "startedAt": "2026-10-30T06:52:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:52:31Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 20,
+            "startedAt": "2026-10-30T06:52:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:52:31Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 21,
+            "startedAt": "2026-10-30T06:52:31Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254/job/123932470131"
+      },
+      {
+        "completedAt": "2026-10-30T06:46:57Z",
+        "conclusion": "success",
+        "databaseId": 123932470164,
+        "name": "firebase-rules",
+        "startedAt": "2026-10-30T06:46:24Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-30T06:46:26Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-30T06:46:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:27Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-30T06:46:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:28Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-java@v4",
+            "number": 3,
+            "startedAt": "2026-10-30T06:46:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:29Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 4,
+            "startedAt": "2026-10-30T06:46:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:38Z",
+            "conclusion": "success",
+            "name": "Run npm ci --prefix firebase --ignore-scripts",
+            "number": 5,
+            "startedAt": "2026-10-30T06:46:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:53Z",
+            "conclusion": "success",
+            "name": "Run npm --prefix firebase test",
+            "number": 6,
+            "startedAt": "2026-10-30T06:46:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:55Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 10,
+            "startedAt": "2026-10-30T06:46:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:55Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-java@v4",
+            "number": 11,
+            "startedAt": "2026-10-30T06:46:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:55Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "startedAt": "2026-10-30T06:46:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-30T06:46:55Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "startedAt": "2026-10-30T06:46:55Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254/job/123932470164"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41016040254"
+  },
+  "androidRuntime": {
+    "status": "NOT_RUN",
+    "reason": "No online adb device or configured AVD"
+  },
+  "liveFirebase": "NOT_RUN",
+  "trustedBackend": "ABSENT",
+  "externalReview": "EXTERNAL_REVIEW_NOT_AVAILABLE",
+  "productionOrBillingChanges": false,
+  "releaseReadiness": "NOT_READY",
+  "artifacts": {
+    "pdfPages": 9,
+    "slides": 13,
+    "status": "DRAFT",
+    "allPagesAndSlidesVisuallyInspected": true,
+    "nativePowerPointRenderingVerified": false
+  },
+  "fileHashesSha256": {
+    "evidence/corrective/analyze.log": "3295ddea1092d98452dcf3f5d69406724b71dd73840e20431e248ba44ac3aa95",
+    "evidence/corrective/apk-build-drive-d.log": "bb6d587502c28c71cd7a52a41fb2e5fcb8160a075ce68f49c64c08d42e41e0de",
+    "evidence/corrective/apk-build.log": "a1bf50f8b057bde7888a6280ee2feb223ea1550a1d5e8a08fbff10463a9d320d",
+    "evidence/corrective/apk-ci.json": "b162b6c57fc305c867b0e022f7f05c53a2e336e39ae96fa1d26c1fa54a0db9f2",
+    "evidence/corrective/artemis-latest-blocked.json": "4eb79bfc9ae7f737494c6f4cb358955b21f97b8ab3006d991bca37c2ad03e4d3",
+    "evidence/corrective/artifact-validation.json": "bcb1f1316d7e765dba28903b6984b7809b33b125e3f432bfe196e9ab7e6feae9",
+    "evidence/corrective/ci-code-sha.json": "eaffac285fdbbcd30c20395cccfa7aed70c1aadea460674742ee94fb6e3f82ba",
+    "evidence/corrective/ci-code-sha.log": "6db9682106e3c8a5aa4e5f81d1bacfa13ab690f1b5bd4b97c1a30a27d5f4f016",
+    "evidence/corrective/ci-rules-sha.json": "46782b9deaf1b7b0b5984e2d5ed453c86f3e1a86af8d6cdabc433c83818c91fd",
+    "evidence/corrective/device-cases.json": "80a16b7939019b36fcb442f032e0ffa8aa861a98efc706cbef664ca21edf414e",
+    "evidence/corrective/doctor.log": "9da970b8a309c21a4912638ec16f9ebf71588e31360c5e8873be07928c7e84c9",
+    "evidence/corrective/e2e-collection.log": "c0a5475af5eb79b5ae922505bea67a42a3dd8c5fb392133b4fab2004314d568a",
+    "evidence/corrective/flutter-test.log": "b31f466580df58d44af4dbb1c3061b40a6fcbf1ba4677b264319dfe7fedeebb6",
+    "evidence/corrective/format.log": "ddf92a6364b3ae1179301473f3c1af8ff88e562c62cb5fe52c84c1a1b1de033d",
+    "evidence/corrective/gradle-threads.log": "e145aa337e7158bb1690466198f1d5574f7602422700bef2c3403f176a1c2bd4",
+    "evidence/corrective/harness.log": "10710f2f883654ccf00600c6b4caf20e00a7e8cf045123bac1a7c4e2b4578e9d",
+    "evidence/corrective/local-apk-badging.log": "eeb2c4ff7af4d7ef67dad272010d85b280a7d36a750488d59727830ce618aa99",
+    "evidence/corrective/log-normalization.json": "70a6f4068f73282fd9aaebb6f479d23927ef9e244f1c5f7ab7debd8b7c03f0c8",
+    "evidence/corrective/npm-audit.json": "9005bd38a166246c902556a949259be3b171f483473b82c9cf4d111c4c5d4499",
+    "evidence/corrective/pr1-comments.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "evidence/corrective/pr1-reviews.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "evidence/corrective/pub-get.log": "fa9923fae178f88fae2c787bf4864b7afe5bcda0e52f7b201e6813f767050d85",
+    "evidence/corrective/README.md": "4de4de12f53ed9d308aa1dfe9e6faa64dbef39fc4612d6b1985d027063cd46c1",
+    "evidence/corrective/rules-role-batch-red.log": "3c8ffdcced0efb872db215cb558252d35b15c4f31e3b185c3f3b55f040a351e6",
+    "evidence/corrective/rules-test-initial.log": "650db557b5358395b6817b4771017519c81ac0f15a888b4ebcb9aeb86e7ec411",
+    "evidence/corrective/rules-test.log": "ee67e229ff0b243558c0aec5f1cab55ddbbed79e613d48b1ae040b61cf0befad",
+    "evidence/corrective/runner-absolute-path-red.log": "47795f50865ee5394efe130ccfbb79d777ca18f0bb93147495fe2b27ec749327",
+    "evidence/corrective/runner-exit-0-check.json": "e3e4b9cedc920fdf414426b41caacc6c83d0c9201732fbc9151e270a8841bb4f",
+    "evidence/corrective/runner-exit-check.json": "b3c222171475a33f692821851bccf596dc5c45a2072ee3fcdd19c9c1132ac07d",
+    "evidence/corrective/runner-hash-red.json": "e12f875b3ec453fe94ef6ac9bf32298fc0b12ad13ae06ec975431b55dd35c598",
+    "evidence/corrective/runner-process-check.json": "daea3cf51126aed89d1a121a19d1d596ae363232cfc4cc6fc6bfd490b2aa9547",
+    "evidence/corrective/secret-scan.json": "b79c5efdbdef0c01b910968f29d0fabc36b1540c4ed61c807876f363b775ac69",
+    "output/pdf/BeeWise-Lab3-Implementation-Report-DRAFT.pdf": "6e298aeb63ce378c59f849693baf56fb032642ecd394a619a9157d1d50376911",
+    "output/presentations/BeeWise-Lab3-Review-DRAFT.pptx": "18d61380ded4cc603ec1d9a9b9248ed5791007de476d1d56166de9f5b0fcce4f"
+  },
+  "localApk": {
+    "path": "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "sha256": "0965a7389bcaf02ee458f8627c6eec53268c05f2b3e9498d99fa5a1453c094ca",
+    "sizeBytes": 187312907
+  }
+}

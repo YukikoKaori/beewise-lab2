@@ -1,0 +1,6 @@
+Exception calling "GetFullPath" with "1" argument(s): "The given path's format is not supported."
+At C:\Users\THIS PC\Desktop\Semester_8\prm\beewise-lab2\e2e_test\run-artemis.ps1:10 char:1
++ $resolvedOutput = [System.IO.Path]::GetFullPath((Join-Path $repoRoot  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : NotSupportedException

@@ -1,0 +1,4 @@
+*.pdf binary
+*.pptx binary
+evidence/corrective/** text eol=lf
+evidence/pr2-lifecycle/** text eol=lf
