@@ -53,7 +53,7 @@ Future<void> saveReceivedNotification(
     'id': message.messageId ?? DateTime.now().microsecondsSinceEpoch.toString(),
     'title': message.notification?.title ?? 'BeeWise',
     'body': message.notification?.body ?? '',
-    'route': message.data['route']?.toString() ?? '/home',
+    'route': message.data['route']?.toString() ?? '',
     'receivedAt': DateTime.now().toIso8601String(),
   };
   items.insert(0, jsonEncode(record));
@@ -84,7 +84,7 @@ class BeeWiseNotification {
       id: data['id'] as String? ?? '',
       title: data['title'] as String? ?? 'BeeWise',
       body: data['body'] as String? ?? '',
-      route: data['route'] as String? ?? '/home',
+      route: data['route'] as String? ?? '',
       receivedAt:
           DateTime.tryParse(data['receivedAt'] as String? ?? '') ??
           DateTime.now(),

@@ -528,6 +528,27 @@ void main() {
     expect(await service.routeForNotification(item), isNull);
     expect(await service.notifications(), isEmpty);
   });
+  test(
+    'missing routes are rejected consistently in saved and opened messages',
+    () async {
+      final message = RemoteMessage(data: {'recipientUid': 'alice'});
+      await saveReceivedNotification(message, 'alice');
+      final saved = (await service.notifications()).single;
+      expect(await service.routeForNotification(saved), isNull);
+      final legacy = BeeWiseNotification.fromJson(
+        jsonEncode({'id': 'missing'}),
+        ownerUid: 'alice',
+      );
+      expect(await service.routeForNotification(legacy), isNull);
+      final opened = <BeeWiseNotification>[];
+      final subscription = service.openedNotifications.listen(opened.add);
+      await start();
+      FirebaseMessagingPlatform.onMessageOpenedApp.add(message);
+      await settle();
+      expect(await service.routeForNotification(opened.single), isNull);
+      await subscription.cancel();
+    },
+  );
   test('route authorization rejects auth changes during an awaited chat read and offline errors', () async {
     await start();
     records['chats/own'] = {'parentId': 'alice'};
