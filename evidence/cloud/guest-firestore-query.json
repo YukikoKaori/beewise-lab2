@@ -1,0 +1,35 @@
+{
+  "projectId": "beewise-lab-3",
+  "authentication": "No Firebase Auth instance/identity; public client SDK only",
+  "test": "Active tutor query matching repository predicate at two explicit limits; NOT Remote Config/Android visible behavior",
+  "records": [
+    {
+      "timestampUtc": "2026-10-30T16:11:21.336Z",
+      "requestedLimit": 6,
+      "returnedCount": 6,
+      "fromCache": false,
+      "ownFixtureIds": [
+        "bao-lab3-20261030-tutor-01",
+        "bao-lab3-20261030-tutor-02",
+        "bao-lab3-20261030-tutor-03",
+        "bao-lab3-20261030-tutor-04",
+        "bao-lab3-20261030-tutor-05",
+        "bao-lab3-20261030-tutor-06"
+      ],
+      "ownFixturesRemainUnverified": true,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-30T16:11:21.457Z",
+      "requestedLimit": 2,
+      "returnedCount": 2,
+      "fromCache": false,
+      "ownFixtureIds": [
+        "bao-lab3-20261030-tutor-01",
+        "bao-lab3-20261030-tutor-02"
+      ],
+      "ownFixturesRemainUnverified": true,
+      "status": "PASS"
+    }
+  ]
+}

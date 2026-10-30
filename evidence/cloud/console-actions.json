@@ -1,0 +1,107 @@
+{
+  "projectId": "beewise-lab-3",
+  "mutationsPerformed": [
+    "Six authorized create-only labeled test tutors; see fixture-actions.json"
+  ],
+  "fixtureWritesPerformed": [
+    {
+      "documentId": "bao-lab3-20261030-tutor-01",
+      "timestampUtc": "2026-10-30T16:10:46.854Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-02",
+      "timestampUtc": "2026-10-30T16:10:47.041Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-03",
+      "timestampUtc": "2026-10-30T16:10:47.383Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-04",
+      "timestampUtc": "2026-10-30T16:10:47.564Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-05",
+      "timestampUtc": "2026-10-30T16:10:47.686Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-06",
+      "timestampUtc": "2026-10-30T16:10:48.019Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    }
+  ],
+  "remoteConfigChangesPerformed": [],
+  "accessAttempts": [
+    {
+      "interface": "desktop computer-use and Node runtime",
+      "before": "User reports authenticated Chrome Console",
+      "after": "No browser control established",
+      "status": "BLOCKED",
+      "evidence": "failed to write kernel assets: The system cannot find the path specified. (os error 3)",
+      "timestamp": "2026-10-30 (initial audit; exact attempt time not retained)",
+      "rollback": "None; no mutation"
+    },
+    {
+      "interface": "isolated Playwright browser",
+      "before": "Requested correct project overview",
+      "after": "Redirected to Google sign-in; stopped before authentication",
+      "status": "BLOCKED",
+      "timestamp": "2026-10-30 (initial audit; exact attempt time not retained)",
+      "rollback": "None; no mutation"
+    },
+    {
+      "interface": "Firebase CLI 15.34.1",
+      "before": "One saved account",
+      "after": "projects:list failed to authenticate; later read-only access recovered at 2026-10-30T16:03:03.207Z",
+      "status": "BLOCKED",
+      "evidence": "Failed to authenticate, have you run firebase login?",
+      "timestamp": "2026-10-30 (initial audit; exact attempt time not retained)",
+      "rollback": "None; user will reauthenticate manually"
+    }
+  ],
+  "authorizedButNotExecuted": [
+    "Temporary Remote Config change with restoration; native app install blocked, so no visible before/after possible"
+  ],
+  "notAuthorized": [
+    "Billing upgrade",
+    "Production rules deployment",
+    "Resource deletion",
+    "Global App Check enforcement"
+  ],
+  "consoleAreasNotInspected": [
+    "Users screenshots",
+    "DebugView event receipts",
+    "Crashlytics reports",
+    "Native FCM sender workflow",
+    "AI Logic model/backend settings"
+  ],
+  "managementInspectionEvidence": [
+    "management-access.json",
+    "config-inventory.json",
+    "live-management-state.json"
+  ],
+  "rollback": "No RC/settings change to roll back. Labeled fixtures remain; no deletion authorization assumed."
+}

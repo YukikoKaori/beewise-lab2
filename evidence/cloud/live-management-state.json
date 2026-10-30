@@ -1,0 +1,129 @@
+{
+  "projectId": "beewise-lab-3",
+  "readOnly": true,
+  "records": [
+    {
+      "name": "Authentication local providers",
+      "timestampUtc": "2026-10-30T16:13:27.266Z",
+      "status": "PASS",
+      "result": {
+        "emailPasswordEnabled": true,
+        "passwordRequired": true,
+        "anonymousEnabled": false,
+        "configurationReturned": true
+      }
+    },
+    {
+      "name": "Google provider",
+      "timestampUtc": "2026-10-30T16:13:27.994Z",
+      "status": "BLOCKED",
+      "summary": "HTTP 404: CONFIGURATION_NOT_FOUND"
+    },
+    {
+      "name": "Storage buckets",
+      "timestampUtc": "2026-10-30T16:13:27.994Z",
+      "status": "PASS",
+      "result": {
+        "buckets": [],
+        "complete": true
+      }
+    },
+    {
+      "name": "Billing state (read only)",
+      "timestampUtc": "2026-10-30T16:13:28.708Z",
+      "status": "PASS",
+      "result": {
+        "billingEnabled": false
+      }
+    },
+    {
+      "name": "Deployed rules comparison",
+      "timestampUtc": "2026-10-30T16:13:30.071Z",
+      "status": "PASS",
+      "result": [
+        {
+          "type": "firestore",
+          "activeReleaseFound": true,
+          "normalizedSha256": "be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448",
+          "matchesRepository": false
+        },
+        {
+          "type": "storage",
+          "activeReleaseFound": false
+        }
+      ]
+    },
+    {
+      "name": "Remote Config template",
+      "timestampUtc": "2026-10-30T16:13:32.736Z",
+      "status": "PASS",
+      "result": {
+        "versionNumber": null,
+        "parameterCount": 0,
+        "parameters": {
+          "home_tutor_limit": null,
+          "ai_result_limit": null,
+          "ai_matching_enabled": null,
+          "gemini_model": null
+        }
+      }
+    },
+    {
+      "name": "Firestore collection names (no document data)",
+      "timestampUtc": "2026-10-30T16:13:33.130Z",
+      "status": "PASS",
+      "result": {
+        "expectedCollectionsPresent": {
+          "tutors": true,
+          "parents": false,
+          "tutorApplications": false,
+          "connectionRequests": false,
+          "chats": false,
+          "invoices": false,
+          "paymentVerificationRequests": false,
+          "classes": false
+        },
+        "complete": true,
+        "nestedMessagesAndResponses": "NOT RUN; no personal chat documents inspected"
+      }
+    },
+    {
+      "name": "Android app registration",
+      "timestampUtc": "2026-10-30T16:13:33.339Z",
+      "status": "PASS",
+      "result": {
+        "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+        "packageName": "com.beewise.beewise",
+        "state": "ACTIVE"
+      }
+    },
+    {
+      "name": "App Check service enforcement",
+      "timestampUtc": "2026-10-30T16:13:33.777Z",
+      "status": "PASS",
+      "result": {
+        "services": [],
+        "complete": true
+      }
+    },
+    {
+      "name": "App Check Play Integrity provider",
+      "timestampUtc": "2026-10-30T16:13:35.123Z",
+      "status": "PASS",
+      "result": {
+        "settingsReturned": true,
+        "tokenTtl": "3600s",
+        "attestationVerified": false
+      }
+    },
+    {
+      "name": "Analytics project linkage",
+      "timestampUtc": "2026-10-30T16:13:36.254Z",
+      "status": "PASS",
+      "result": {
+        "linked": true,
+        "streamCount": 1
+      }
+    }
+  ]
+}
