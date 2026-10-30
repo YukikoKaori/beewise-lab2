@@ -20,6 +20,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
   Future<void> googleSignIn() async {
     state = const AsyncLoading();
     try {
+      await ref.read(notificationServiceProvider).detachCurrentUser();
       final credential = await ref.read(authServiceProvider).signInWithGoogle();
       final uid = credential.user?.uid;
       await ref.read(analyticsServiceProvider).login('google');
@@ -31,12 +32,15 @@ class AuthController extends Notifier<AsyncValue<void>> {
           .read(crashReportingServiceProvider)
           .recordHandled(error, stack, 'Google sign-in failed/cancelled');
       state = AsyncError(error, stack);
+    } finally {
+      await ref.read(notificationServiceProvider).retryRegistration();
     }
   }
 
   Future<void> emailSignIn(String email, String password) async {
     state = const AsyncLoading();
     try {
+      await ref.read(notificationServiceProvider).detachCurrentUser();
       final credential = await ref
           .read(authServiceProvider)
           .signInWithEmail(email, password);
@@ -50,6 +54,8 @@ class AuthController extends Notifier<AsyncValue<void>> {
           .read(crashReportingServiceProvider)
           .recordHandled(error, stack, 'Email sign-in failed');
       state = AsyncError(error, stack);
+    } finally {
+      await ref.read(notificationServiceProvider).retryRegistration();
     }
   }
 
@@ -61,6 +67,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
   }) async {
     state = const AsyncLoading();
     try {
+      await ref.read(notificationServiceProvider).detachCurrentUser();
       final credential = await ref
           .read(authServiceProvider)
           .registerParent(
@@ -82,6 +89,8 @@ class AuthController extends Notifier<AsyncValue<void>> {
           .read(crashReportingServiceProvider)
           .recordHandled(error, stack, 'Parent registration failed');
       state = AsyncError(error, stack);
+    } finally {
+      await ref.read(notificationServiceProvider).retryRegistration();
     }
   }
 
@@ -98,6 +107,8 @@ class AuthController extends Notifier<AsyncValue<void>> {
       ref.invalidate(notificationsProvider);
     } catch (error, stack) {
       state = AsyncError(error, stack);
+    } finally {
+      await ref.read(notificationServiceProvider).retryRegistration();
     }
   }
 }
@@ -127,6 +138,7 @@ class TutorApplicationController extends Notifier<AsyncValue<void>> {
   }) async {
     state = const AsyncLoading();
     try {
+      await ref.read(notificationServiceProvider).detachCurrentUser();
       final service = ref.read(tutorApplicationServiceProvider);
       if (service == null) throw const FirebaseNotConfiguredException();
       final uid = await service.submit(
@@ -159,6 +171,8 @@ class TutorApplicationController extends Notifier<AsyncValue<void>> {
           .read(crashReportingServiceProvider)
           .recordHandled(error, stack, 'Tutor application submission failed');
       state = AsyncError(error, stack);
+    } finally {
+      await ref.read(notificationServiceProvider).retryRegistration();
     }
   }
 }
