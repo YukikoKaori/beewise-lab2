@@ -10,6 +10,7 @@ const cli = resolve(root, 'firebase/node_modules/firebase-tools/lib/bin/firebase
 const projectId = 'beewise-lab-3';
 const appId = '1:840483888286:android:50c11fbb460437ed6a2f8f';
 const privateDir = 'D:/CodexTemp/beewise-lab3-tools/bao-cloud-private';
+const runId = new Date().toISOString().replace(/[:.]/g, '-');
 mkdirSync(privateDir, {recursive: true});
 const pick = (item, keys) => Object.fromEntries(keys.filter(key => item?.[key] !== undefined).map(key => [key, item[key]]));
 const list = value => Array.isArray(value) ? value : value?.databases ?? [];
@@ -25,7 +26,7 @@ const commands = [
     return {versionNumber: value?.version?.versionNumber,
       parameters: Object.fromEntries(['home_tutor_limit', 'ai_result_limit', 'ai_matching_enabled', 'gemini_model'].map(key => [key, value?.parameters?.[key]?.defaultValue ?? null]))};
   }],
-  [['apps:sdkconfig', 'ANDROID', appId, '--out', privateDir + '/google-services-current.json'], value => {
+  [['apps:sdkconfig', 'ANDROID', appId, '--out', privateDir + `/google-services-${runId}.json`], value => {
     const config = JSON.parse(value.fileContents);
     if (config.project_info?.project_id !== projectId) throw Error('Unexpected project, refusing config.');
     return {projectId: config.project_info.project_id,
@@ -37,9 +38,9 @@ const commands = [
 ];
 (async () => {
   const records = [];
-  // Bound Windows CLI process memory; an initial eight-process probe crashed one.
-  for (let offset = 0; offset < commands.length; offset += 2) {
-    records.push(...await Promise.all(commands.slice(offset, offset + 2).map(async ([args, sanitize]) => {
+  // One CLI child at a time: Android plus parallel Node VMs exceeded host memory.
+  for (let offset = 0; offset < commands.length; offset += 1) {
+    records.push(...await Promise.all(commands.slice(offset, offset + 1).map(async ([args, sanitize]) => {
     const command = [...args, '--project', projectId, '--json', '--non-interactive'];
     try {
       const {stdout} = await run(process.execPath, [cli, ...command], {cwd: root, timeout: 120000, maxBuffer: 4 * 1024 * 1024});

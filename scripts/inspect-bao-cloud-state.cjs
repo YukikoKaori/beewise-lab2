@@ -78,6 +78,14 @@ async function get(origin, apiVersion, path, queryParams) {
     const {body} = await get('https://firebase.googleapis.com', 'v1beta1', `/projects/${projectId}/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f`);
     return {appId: body.appId, packageName: body.packageName, state: body.state};
   });
+  await inspect('Android SHA registrations', async () => {
+    const {body} = await get('https://firebase.googleapis.com', 'v1beta1', `/projects/${projectId}/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha`);
+    return {certificates: (body.certificates ?? []).map(cert => ({certType: cert.certType, shaHash: cert.shaHash})), complete: !body.nextPageToken};
+  });
+  await inspect('Firestore composite indexes', async () => {
+    const {body} = await get('https://firestore.googleapis.com', 'v1', `/projects/${projectId}/databases/(default)/collectionGroups/-/indexes`, {pageSize: 100});
+    return {indexes: (body.indexes ?? []).map(index => ({name: index.name, state: index.state, queryScope: index.queryScope, fields: index.fields})), complete: !body.nextPageToken};
+  });
   await inspect('App Check service enforcement', async () => {
     const {body} = await get('https://firebaseappcheck.googleapis.com', 'v1', '/projects/840483888286/services');
     return {services: (body.services ?? []).map(service => ({name: service.name, enforcementMode: service.enforcementMode})), complete: !body.nextPageToken};

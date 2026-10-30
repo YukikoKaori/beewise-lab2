@@ -21,7 +21,7 @@ for directory in (OUT / "screenshots", OUT / "logs", PRIVATE):
 
 
 def redact(value):
-    value = re.sub(r"(?im)^.*(?:debug token|AppCheckDebugProvider|Authorization:|Bearer ).*$", "[credential-bearing line omitted]", value)
+    value = re.sub(r"(?im)^.*(?:debug token|AppCheckDebugProvider|Authorization:|Bearer |Dart VM service is listening|(?:FCM|registration) token\s*[:=]).*$", "[credential-bearing line omitted]", value)
     value = re.sub(r"AIza[\w-]+", "[client-key omitted]", value)
     value = re.sub(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", "[email omitted]", value)
     value = re.sub(r"\beyJ[\w.-]{30,}", "[JWT omitted]", value)
@@ -90,7 +90,12 @@ elif args.action == "resize":
     adb("shell", "wm", "density", "320")
     adb("shell", "wm", "size", "720x1600" if args.width == 360 else "824x1830")
 elif args.action in ("offline", "online"):
+    state = json.loads(state_file.read_text())
+    if "mobileData" not in state:
+        state["mobileData"] = adb("shell", "settings", "get", "global", "mobile_data")
+        state_file.write_text(json.dumps(state, indent=2), encoding="utf-8")
     adb("shell", "svc", "wifi", "disable" if args.action == "offline" else "enable")
+    adb("shell", "svc", "data", "disable" if args.action == "offline" else "enable")
 elif args.action == "inspect":
     for command in [("shell", "getprop", "ro.build.version.release"), ("shell", "getprop", "ro.build.version.sdk"),
                     ("shell", "wm", "size"), ("shell", "wm", "density"), ("shell", "dumpsys", "package", PACKAGE)]:
@@ -101,6 +106,8 @@ elif args.action == "restore":
         override = re.search(r"Override " + name + r": (\S+)", state[name], re.I)
         adb("shell", "wm", name, override.group(1) if override else "reset")
     adb("shell", "svc", "wifi", "enable" if state["wifi"] in ("1", "2") else "disable")
+    if "mobileData" in state:
+        adb("shell", "svc", "data", "enable" if state["mobileData"] == "1" else "disable")
     adb("shell", "setprop", "debug.firebase.analytics.app", state["analytics"] or ".none.")
     state["restoredAtUtc"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
     state_file.write_text(json.dumps(state, indent=2), encoding="utf-8")
