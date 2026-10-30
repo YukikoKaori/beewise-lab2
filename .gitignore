@@ -38,6 +38,11 @@ __pycache__/
 /coverage/
 /.codex-presentation-build/
 /tmp/
+/firebase/node_modules/
+/.firebase/
+firebase-debug.log
+firestore-debug.log
+storage-debug.log
 
 # Symbolication related
 app.*.symbols

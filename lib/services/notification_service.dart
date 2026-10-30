@@ -9,19 +9,44 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
 
-const _notificationStorageKey = 'beewise.received_notifications.v1';
+// Legacy device-global v1 records have no trustworthy owner and are never read.
+String notificationStorageKey(String uid) =>
+    'beewise.received_notifications.v2.${Uri.encodeComponent(uid)}';
+
+bool notificationBelongsTo(RemoteMessage message, String? uid) =>
+    uid != null && message.data['recipientUid'] == uid;
 
 @pragma('vm:entry-point')
 Future<void> beewiseMessagingBackgroundHandler(RemoteMessage message) async {
   final options = DefaultFirebaseOptions.currentPlatform;
   if (options == null) return;
   await Firebase.initializeApp(options: options);
-  await _saveMessage(message);
+  final user = FirebaseAuth.instance.currentUser;
+  await saveReceivedNotification(
+    message,
+    user == null || user.isAnonymous ? null : user.uid,
+  );
 }
 
-Future<void> _saveMessage(RemoteMessage message) async {
-  final preferences = await SharedPreferences.getInstance();
-  final items = preferences.getStringList(_notificationStorageKey) ?? [];
+Future<void> saveReceivedNotification(
+  RemoteMessage message,
+  String? uid,
+) async {
+  if (!notificationBelongsTo(message, uid)) return;
+  // Async preferences bypass the per-isolate cache used by background FCM.
+  final preferences = SharedPreferencesAsync();
+  final key = notificationStorageKey(uid!);
+  final items = await preferences.getStringList(key) ?? [];
+  if (message.messageId != null &&
+      items.any((raw) {
+        try {
+          return BeeWiseNotification.fromJson(raw).id == message.messageId;
+        } catch (_) {
+          return false;
+        }
+      })) {
+    return;
+  }
   final record = {
     'id': message.messageId ?? DateTime.now().microsecondsSinceEpoch.toString(),
     'title': message.notification?.title ?? 'BeeWise',
@@ -30,10 +55,7 @@ Future<void> _saveMessage(RemoteMessage message) async {
     'receivedAt': DateTime.now().toIso8601String(),
   };
   items.insert(0, jsonEncode(record));
-  await preferences.setStringList(
-    _notificationStorageKey,
-    items.take(100).toList(),
-  );
+  await preferences.setStringList(key, items.take(100).toList());
 }
 
 class BeeWiseNotification {
@@ -122,15 +144,14 @@ class NotificationService {
       if (_currentToken == installationId) _currentToken = null;
     });
     _authSubscription = _auth?.authStateChanges().listen((user) async {
+      _registeredUid = null;
+      _updates.add(null);
       try {
-        final previousUid = _registeredUid;
         final nextUid = user == null || user.isAnonymous ? null : user.uid;
         final isTutorApplicant =
             nextUid != null && await _hasTutorApplication(nextUid);
         final parentUid = isTutorApplicant ? null : nextUid;
-        if (previousUid != null && previousUid != parentUid) {
-          await _removeToken(previousUid);
-        }
+        if (_auth.currentUser?.uid != nextUid) return;
         _registeredUid = parentUid;
         if (parentUid != null) {
           final token = _currentToken;
@@ -154,7 +175,7 @@ class NotificationService {
       message,
     ) async {
       try {
-        await _saveMessage(message);
+        await saveReceivedNotification(message, _notificationUid);
         _updates.add(null);
       } catch (_) {
         _recordRegistrationFailure(
@@ -165,10 +186,12 @@ class NotificationService {
     _openedMessageSubscription = FirebaseMessaging.onMessageOpenedApp.listen((
       message,
     ) {
-      _openedRoutes.add(_safeRoute(message.data['route']?.toString()));
+      if (notificationBelongsTo(message, _notificationUid)) {
+        _openedRoutes.add(_safeRoute(message.data['route']?.toString()));
+      }
     });
     final initial = await messaging.getInitialMessage();
-    if (initial != null) {
+    if (initial != null && notificationBelongsTo(initial, _notificationUid)) {
       _openedRoutes.add(_safeRoute(initial.data['route']?.toString()));
     }
   }
@@ -189,16 +212,38 @@ class NotificationService {
   }
 
   Future<List<BeeWiseNotification>> notifications() async {
-    final preferences = await SharedPreferences.getInstance();
-    return (preferences.getStringList(_notificationStorageKey) ?? [])
-        .map(BeeWiseNotification.fromJson)
+    final uid = _notificationUid;
+    if (uid == null) return [];
+    final items =
+        await SharedPreferencesAsync().getStringList(
+          notificationStorageKey(uid),
+        ) ??
+        [];
+    if (_notificationUid != uid) return [];
+    return items
+        .expand((raw) {
+          try {
+            return [BeeWiseNotification.fromJson(raw)];
+          } catch (_) {
+            return <BeeWiseNotification>[];
+          }
+        })
         .toList(growable: false);
+  }
+
+  String? get _notificationUid {
+    final user = _auth?.currentUser;
+    return user == null || user.isAnonymous ? null : user.uid;
   }
 
   static String _safeRoute(String? route) {
     if (route == null || !route.startsWith('/')) return '/home';
     const allowed = ['/home', '/search', '/matching', '/profile', '/chats/'];
-    if (allowed.any((item) => route == item || route.startsWith(item))) {
+    if (allowed.any(
+      (item) =>
+          route == item ||
+          (item == '/chats/' && RegExp(r'^/chats/[^/?#]+$').hasMatch(route)),
+    )) {
       return route;
     }
     return '/home';
@@ -208,8 +253,14 @@ class NotificationService {
     _currentToken = installationId;
     final uid = _auth?.currentUser?.uid;
     final firestore = _firestore;
-    if (uid == null || firestore == null) return;
+    if (uid == null ||
+        firestore == null ||
+        uid != _registeredUid ||
+        _auth!.currentUser!.isAnonymous) {
+      return;
+    }
     if (await _hasTutorApplication(uid)) return;
+    if (_auth.currentUser?.uid != uid || _registeredUid != uid) return;
     await firestore
         .collection('parents')
         .doc(uid)

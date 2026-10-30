@@ -152,6 +152,7 @@ final notificationServiceProvider = Provider<NotificationService>(
 );
 
 final notificationsProvider = StreamProvider((ref) async* {
+  ref.watch(authStateProvider);
   final service = ref.watch(notificationServiceProvider);
   yield await service.notifications();
   yield* service.updates.asyncMap((_) => service.notifications());
