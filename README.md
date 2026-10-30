@@ -8,6 +8,10 @@ hình theo [handoff](handoff/flutter-handoff.md), [PRODUCT](PRODUCT.md) và
 
 ## Verified corrective baseline - 2026-10-30
 
+Latest PR #2 follow-up: [notification ownership and route review](docs/pr2-lifecycle-review.md).
+It supersedes the historical 8-test baseline below with 34 Flutter tests and
+documents owner-authorized cleanup, quarantine recovery and remaining blockers.
+
 Base main/PR #1 merge: `dd8b0e165039886b52b08cab81e17dd08c4af7ff`.
 The postmerge audit replaces old machine/cloud claims: committed configuration
 does not prove any live Firebase service is enabled or deployed.

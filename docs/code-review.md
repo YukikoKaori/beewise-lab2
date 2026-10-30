@@ -1,5 +1,9 @@
 # Lab 3 AI code review record
 
+Latest PR #2 review: [installation lifecycle and notification routes](pr2-lifecycle-review.md).
+That follow-up targets PR HEAD `6ba7519` and supersedes the earlier notification
+findings and test counts below. It is still an in-repository Codex review.
+
 Historical PR #1 notes below describe the premerge work. Statements about
 "working tree" or "pending commits" apply to that historical review only;
 they are superseded by the 2026-10-30 corrective audit at the end of this file.
