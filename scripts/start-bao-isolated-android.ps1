@@ -15,7 +15,7 @@ avd.ini.encoding=UTF-8
 abi.type=x86_64
 hw.cpu.arch=x86_64
 hw.cpu.ncore=2
-hw.ramSize=2048
+hw.ramSize=4096
 hw.gpu.enabled=yes
 hw.gpu.mode=software
 hw.lcd.width=720
@@ -41,7 +41,7 @@ $env:ANDROID_HOME = $Sdk
 $env:ANDROID_SDK_ROOT = $Sdk
 $env:TEMP = 'D:\CodexTemp\beewise-lab3-tools'
 $env:TMP = $env:TEMP
-$arguments = @('-avd', $name, '-port', "$Port", '-no-window', '-no-snapshot', '-no-boot-anim', '-memory', '2048', '-gpu', 'software', '-cores', '2', '-no-audio', '-show-kernel')
+$arguments = @('-avd', $name, '-port', "$Port", '-no-window', '-no-snapshot', '-no-boot-anim', '-memory', '4096', '-gpu', 'software', '-cores', '2', '-no-audio', '-show-kernel')
 $process = Start-Process -FilePath "$Sdk\emulator\emulator.exe" -ArgumentList $arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput "$avdRoot\stdout.log" -RedirectStandardError "$avdRoot\stderr.log"
 @{createdAtUtc=[DateTime]::UtcNow.ToString('o'); name=$name; directory=$content; port=$Port; processId=$process.Id; arguments=$arguments; noWipe=$true} | ConvertTo-Json | Set-Content -LiteralPath "$avdRoot\launch.json" -Encoding UTF8
 Write-Output "Started isolated $name on emulator-$Port (PID $($process.Id)); original emulator untouched."
