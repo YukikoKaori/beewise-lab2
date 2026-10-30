@@ -1,0 +1,50 @@
+{
+  "appPackage": "com.beewise.beewise",
+  "runsPerScenario": 3,
+  "scenarios": [
+    {
+      "id": "guest_home",
+      "goal": "Open BeeWise. Verify the Home screen has search, tutor discovery and AI matching entry points. If Firebase is not configured, verify the app clearly explains this and does not show fabricated tutor profiles. Return the observed state."
+    },
+    {
+      "id": "manual_search",
+      "goal": "Open the Tìm gia sư tab, enter Toán, then verify the app renders real Firestore matches, a truthful empty state, or a Firebase configuration/network error with recovery. Do not infer data that is not visible."
+    },
+    {
+      "id": "tutor_profile",
+      "goal": "From Home or search, open a visible active tutor profile if one exists. Verify profile details and the connection action. If the catalog is empty, verify the empty/error recovery and report that the profile cannot be exercised."
+    },
+    {
+      "id": "ai_matching_validation",
+      "goal": "Open Ghép AI, submit a non-identifying request for grade 8 algebra tutoring. Verify a real AI result maps to an active tutor profile, or a truthful no-match/configuration/error state is shown with retry/manual search. Do not claim a match unless a tutor is shown."
+    },
+    {
+      "id": "login_validation",
+      "goal": "Open the account/login flow. Verify email and Google sign-in options, field validation, busy/error state, and return navigation. Do not enter credentials unless the operator has provided a designated test account on-device."
+    },
+    {
+      "id": "register_validation",
+      "goal": "Open registration. Verify name, phone, email, password validation and required consent are visible. Do not submit personal data or create an account unless the operator has provided designated test values."
+    },
+    {
+      "id": "tutor_application_pending",
+      "goal": "Use a dedicated disposable test identity to submit a tutor application. Verify the app shows pending review, clearly says the profile is not visible to parents before approval, and does not expose parent navigation or controls to set verified/active. Sign out after collecting the observations."
+    },
+    {
+      "id": "chat_validation",
+      "goal": "Open Tin nhắn while signed out. Verify the authentication gate is clear and its login action opens login. If already signed in, report only chats actually returned by Firebase."
+    },
+    {
+      "id": "notification_and_config",
+      "goal": "Open Tài khoản. Verify notification empty/error state, Remote Config display, Firebase configuration notice if applicable, and Crashlytics diagnostic controls. Do not tap the deliberate crash control."
+    },
+    {
+      "id": "payment_trust_boundary",
+      "goal": "Open the app without an invoice and verify it does not claim a payment succeeded or expose an official schedule. If an invoice exists, verify status is shown from Firebase and the app explains server-side verification. Do not submit a real transfer."
+    },
+    {
+      "id": "responsive_recovery",
+      "goal": "Navigate Home, Search, Ghép AI and Profile with Android back/navigation. Verify Vietnamese labels wrap, controls remain usable, and configuration/empty/error states do not overflow the screen. Report any clipped content."
+    }
+  ]
+}
