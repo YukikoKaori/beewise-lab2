@@ -4,7 +4,7 @@ const {readFileSync, writeFileSync} = require('node:fs');
 const {resolve} = require('node:path');
 const root = resolve(__dirname, '..');
 const {initializeApp, deleteApp} = require(resolve(root, 'firebase/node_modules/firebase/app'));
-const {getFirestore, collection, query, where, limit, getDocsFromServer, terminate} = require(resolve(root, 'firebase/node_modules/firebase/firestore'));
+const {getFirestore, collection, query, where, limit, getDocsFromServer, doc, getDocFromServer, terminate} = require(resolve(root, 'firebase/node_modules/firebase/firestore'));
 if (process.env.FIRESTORE_EMULATOR_HOST) throw Error('Refused emulator redirection for live guest evidence.');
 const config = JSON.parse(readFileSync(resolve(root, 'android/app/google-services.json')));
 if (config.project_info.project_id !== 'beewise-lab-3') throw Error('Wrong project.');
@@ -14,6 +14,19 @@ const db = getFirestore(app);
 const records = [];
 (async () => {
   try {
+    for (let index = 1; index <= 6; index++) {
+      const id = `bao-lab3-20261030-tutor-${String(index).padStart(2, '0')}`;
+      const snapshot = await getDocFromServer(doc(db, 'tutors', id));
+      const data = snapshot.data() ?? {};
+      const checks = {exists: snapshot.exists(), active: data.active === true,
+        labeled: typeof data.name === 'string' && data.name.startsWith('[TEST]'),
+        unverified: data.verified === false, synthetic: data.syntheticTestFixture === true,
+        namespace: data.fixtureNamespace === 'bao-lab3-20261030'};
+      const passed = Object.values(checks).every(Boolean) && !snapshot.metadata.fromCache;
+      records.push({timestampUtc: new Date().toISOString(), id, checks, fromCache: snapshot.metadata.fromCache,
+        status: passed ? 'PASS' : 'FAIL'});
+      if (!passed) process.exitCode = 1;
+    }
     for (const requestedLimit of [6, 2]) {
       const snapshot = await getDocsFromServer(query(collection(db, 'tutors'), where('active', '==', true), limit(requestedLimit)));
       const fixtures = snapshot.docs.filter(doc => doc.id.startsWith('bao-lab3-20261030-tutor-'));

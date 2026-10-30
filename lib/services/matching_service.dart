@@ -31,7 +31,9 @@ class MatchingService {
         'Tính năng ghép gia sư đang tạm dừng. Bạn có thể tự tìm theo bộ lọc.',
       );
     }
-    final tutors = await _repository.activeTutors(limit: 100);
+    final tutors = (await _repository.activeTutors(limit: 100))
+        .where((tutor) => !tutor.isSyntheticTestFixture)
+        .toList(growable: false);
     if (tutors.isEmpty) return const [];
 
     final candidates = tutors
