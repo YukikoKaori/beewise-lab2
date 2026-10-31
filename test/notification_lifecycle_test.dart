@@ -238,6 +238,91 @@ void main() {
     },
   );
   test(
+    'first login ignores a stale registered callback during role lookup',
+    () async {
+      currentUser = null;
+      await start();
+      final roleStarted = Completer<void>();
+      final roleGate = Completer<void>();
+      beforeRead = (path) async {
+        if (path == 'tutorApplications/alice' && !roleStarted.isCompleted) {
+          roleStarted.complete();
+          await roleGate.future;
+        }
+      };
+      changeUser(alice);
+      await roleStarted.future;
+      // Native events have no auth generation. This one belongs to a request
+      // completed before the current role lookup, not the upcoming register().
+      registered.add(fid);
+      roleGate.complete();
+      await settle();
+      expect(records.keys, contains('parents/alice/devices/install-old'));
+      expect(service.registrationError, isNull);
+    },
+  );
+
+  test(
+    'role-read error fails closed and explicit retry requires a fresh read',
+    () async {
+      beforeRead = (_) async => throw FirebaseException(
+        plugin: 'cloud_firestore',
+        code: 'unavailable',
+      );
+      await start();
+      expect(operations.where((op) => op.startsWith('register:')), isEmpty);
+      expect(records, isEmpty);
+      expect(service.registrationError, isNotNull);
+      beforeRead = null;
+      await service.retryRegistration();
+      await settle();
+      expect(records.keys, contains('parents/alice/devices/install-old'));
+      expect(service.registrationError, isNull);
+    },
+  );
+
+  test('same-owner session restoration cleans journal then acknowledges a new binding', () async {
+    await start();
+    await service.dispose();
+    operations.clear();
+    service = NotificationService(messaging, firestore, auth);
+    await start();
+    expect(service.registrationError, isNull);
+    expect(records.keys, ['parents/alice/devices/install-old']);
+    expect(
+      operations.indexOf('delete:alice:parents/alice/devices/install-old'),
+      lessThan(
+        operations.indexOf('set:alice:parents/alice/devices/install-old'),
+      ),
+    );
+  });
+
+  test('missing native acknowledgement becomes retryable instead of pending forever', () async {
+    final registration = PushInstallationRegistration(
+      messaging,
+      firestore,
+      auth,
+      onChanged: () {},
+      acknowledgementTimeout: Duration.zero,
+    );
+    when(() => messaging.register()).thenAnswer((_) async {});
+    await registration.initialize();
+    await settle();
+    expect(records, isEmpty);
+    expect(registration.error, contains('Chưa đồng bộ'));
+    registered.add(fid);
+    await settle();
+    expect(records, isEmpty);
+    expect(registration.error, isNotNull);
+    when(() => messaging.register())
+        .thenAnswer((_) async => registered.add(fid));
+    await registration.retry();
+    await settle();
+    expect(registration.error, isNull);
+    expect(records.keys, contains('parents/alice/devices/install-old'));
+    await registration.dispose();
+  });
+  test(
     'managed switch detaches under A before assigning the same FID to B',
     () async {
       await start();
@@ -634,6 +719,7 @@ void main() {
       final initialization = service.initialize();
       await started.future;
       changeUser(bob);
+      registered.add(fid);
       gate.complete();
       await initialization;
       await settle();

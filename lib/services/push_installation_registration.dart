@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Serializes installation ownership changes. A foreign pending mapping blocks
@@ -14,10 +15,13 @@ class PushInstallationRegistration {
     this._firestore,
     this._auth, {
     required this.onChanged,
+    this.acknowledgementTimeout = _timeout,
   });
 
   static const journalKey = 'beewise.push_installations.v1';
   static const _timeout = Duration(seconds: 15);
+  // Override only in deterministic deadline tests; production uses 15 seconds.
+  final Duration acknowledgementTimeout;
   final FirebaseMessaging _messaging;
   final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
@@ -29,6 +33,7 @@ class PushInstallationRegistration {
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<String>? _registeredSubscription;
   StreamSubscription<String>? _unregisteredSubscription;
+  Timer? _acknowledgementTimer;
   bool _loaded = false;
   bool _initialized = false;
   bool _disposed = false;
@@ -55,16 +60,27 @@ class PushInstallationRegistration {
     _registeredSubscription = _messaging.onRegistered.listen((id) {
       final uid = _requestedUid;
       final generation = _generation;
+      _trace('registered-callback');
+      if (uid == null || !_current(uid, generation)) {
+        _schedule(() async {
+          // A callback delivered during role lookup must not enqueue a revoke
+          // that runs after that lookup has started a newer registration.
+          if (generation == _generation && _requestedUid == null) {
+            await _stopDelivery();
+          } else {
+            _trace('stale-callback-ignored');
+          }
+        });
+        return;
+      }
       _installationId = id;
       _schedule(() async {
-        if (uid == null || !_current(uid, generation)) {
-          await _stopDelivery();
-          return;
-        }
+        if (!_current(uid, generation)) return;
         await _bind(uid, id, generation);
       });
     });
     _unregisteredSubscription = _messaging.onUnregistered.listen((id) {
+      _trace('unregistered-callback');
       final expected = _expectedUnregistrations.entries
           .where((entry) => entry.value == null || entry.value == id)
           .firstOrNull;
@@ -88,6 +104,7 @@ class PushInstallationRegistration {
       if (detachedUid != uid) detachedUid = null;
       _requestedUid = null;
       final generation = ++_generation;
+      _trace('auth-change');
       onChanged();
       _schedule(() => _reconcile(uid, generation));
     });
@@ -153,11 +170,24 @@ class PushInstallationRegistration {
     }
     _requestedUid = uid;
     _setError('Đang đồng bộ đăng ký thông báo. Hãy thử lại nếu chưa hoàn tất.');
+    _trace('register-start');
+    _acknowledgementTimer = Timer(acknowledgementTimeout, () {
+      _schedule(() async {
+        if (_current(uid, generation) &&
+            _requestedUid == uid &&
+            error != null) {
+          _trace('acknowledgement-timeout');
+          throw TimeoutException('Installation acknowledgement not received');
+        }
+      });
+    });
     await _messaging.register().timeout(_timeout);
+    _trace('register-sdk-complete');
     // Only onRegistered + an acknowledged Firestore write clears an error.
   }
 
   Future<void> _bind(String uid, String id, int generation) async {
+    _trace('bind-start');
     if (id.isEmpty || id.contains('/')) {
       throw const FormatException('Invalid FID');
     }
@@ -189,10 +219,14 @@ class PushInstallationRegistration {
         }, SetOptions(merge: true))
         .timeout(_timeout);
     if (!_current(uid, generation) || _installationId != id) return;
+    _acknowledgementTimer?.cancel();
+    _trace('firestore-acknowledged');
     _setError(null);
   }
 
   Future<void> _stopDelivery() async {
+    _acknowledgementTimer?.cancel();
+    _trace('stop-delivery');
     final previousId = _installationId;
     _requestedUid = null;
     _installationId = null;
@@ -205,7 +239,10 @@ class PushInstallationRegistration {
       }
       try {
         await _messaging.unregister().timeout(_timeout);
-      } catch (_) {
+      } catch (failure) {
+        _trace(
+          'failed-${failure is FirebaseException ? failure.code : failure.runtimeType}',
+        );
         _expectedUnregistrations.remove(operation);
         rethrow;
       }
@@ -232,7 +269,7 @@ class PushInstallationRegistration {
       (await _firestore
               .collection('tutorApplications')
               .doc(uid)
-              .get()
+              .get(const GetOptions(source: Source.server))
               .timeout(_timeout))
           .exists;
 
@@ -265,7 +302,10 @@ class PushInstallationRegistration {
       if (_disposed) return;
       try {
         await action();
-      } catch (_) {
+      } catch (failure) {
+        _trace(
+          'failed-${failure is FirebaseException ? failure.code : failure.runtimeType}',
+        );
         try {
           await _stopDelivery();
         } catch (_) {
@@ -290,8 +330,18 @@ class PushInstallationRegistration {
     if (!_disposed) onChanged();
   }
 
+  void _trace(String stage) {
+    if (kDebugMode) {
+      debugPrint(
+        'BeeWisePush $stage generation=$_generation '
+        'requested=${_requestedUid != null} installation=${_installationId != null}',
+      );
+    }
+  }
+
   Future<void> dispose() async {
     _disposed = true;
+    _acknowledgementTimer?.cancel();
     ++_generation;
     await _authSubscription?.cancel();
     await _registeredSubscription?.cancel();
