@@ -1,11 +1,20 @@
 # Bao Android Google OAuth preflight
 
-Prepared 2026-10-31 from the actual installed debug APK. Not executed.
+Prepared 2026-10-31 from the actual installed debug APK. Executed after explicit
+owner approval of exactly these two SHA fingerprints. Server list readback after
+each addition confirms only the approved certificates; receipt:
+`evidence/cloud/google-sha-approved.json`. Firebase CLI Node 25 exit assertions
+are retained separately from successful API responses and verified server state.
+The downloaded config adds only the matching Android OAuth client; project/app,
+package, existing web OAuth client and client key remain unchanged. Repository
+config synchronized; native Google authentication is still NOT RUN until the
+user completes the dedicated Google account flow on the isolated emulator.
 Project: `beewise-lab-3`; Android app:
 `1:840483888286:android:50c11fbb460437ed6a2f8f`; package `com.beewise.beewise`.
 The web OAuth client supplied by the owner is already preserved in the repository.
-Google provider is enabled; the latest management inventory contains no Android
-SHA registrations. Recheck immediately before mutation; stop on unexpected drift.
+Google provider was already enabled. Preflight SHA inventory was empty; after
+the authorized operation it contains exactly the SHA-1 and SHA-256 below.
+The commands are retained as the executed plan, not instructions to repeat them.
 
 APK SHA-256:
 `c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`.
