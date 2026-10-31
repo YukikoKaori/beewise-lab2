@@ -1,40 +1,45 @@
-## Approved Google SHA configuration follow-up — 2026-10-31 (current)
+## Google live verification follow-up — 2026-10-31 (current)
 
-Owner explicitly authorized exactly the APK SHA-1/SHA-256 and confirmed a
-dedicated Google test account with user-operated sign-in. **B-02 configuration
-PASS:** both certificate resources created and read back from the server after
-each addition, with no extra SHA. Firebase generated only the matching Android
-OAuth client; repository config now includes it. Existing project/app/package,
-web client and client key are unchanged. No provider, App Check, Storage, billing
-or rules/index mutation. Firebase CLI Node 25 exit assertions are retained in
-the receipt, separately from successful API results and server verification.
+**B-01/B-03 PARTIALLY COMPLETE:** actual dedicated Google sign-in, parent
+creation, signed-in Profile, process-death session restore, managed logout and
+guest cold relaunch **PASS** on isolated `emulator-5558`, current same-signer
+APK. Provider `google.com`, sign-in 08:17:19.108Z and parent creation
+08:17:21.874249Z corroborate actual UI; Users metadata alone is not Auth proof.
+Google installation appeared only under its owner after relaunch; managed logout
+removed it while A/B registrations stayed empty and all parent records survived.
+Initial automatic Google registration remained pending until relaunch: **OPEN**
+reliability finding, consistent with earlier B retry. A transient role read after
+the diagnostic crash failed closed; explicit retry restored Home/Profile.
 
-**B-01/B-03 runtime pending user interaction:** same-signer APK rebuilt from
-`ff6ed0982d713d0336a029ee790117937f6a5239`, installed with `-r` on isolated
-`emulator-5558` without uninstall/clear-data, launched and reached guest Home,
-Profile and Login. Binary SHA remains
-`c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`;
-the web client resource used by the app is unchanged. Initial white/loading
-capture is not Home success; settled capture is. Google cancellation **PASS**:
-user returned from the native flow and the actual app shows the localized
-cancelled message with guest Profile; account metadata/device ownership stayed
-unchanged. Google sign-in/session restore/logout are **NOT RUN** until actual
-device outcomes are captured after the user finishes entering credentials.
-Do not infer authentication from SHA registration or Auth Users metadata.
+**B-02:** exact approved SHA registration and additive Android OAuth config
+verified; strict rules/index remain as previously authorized and deployed. No new
+rules, provider, Storage, App Check or billing changes. Authenticated cross-UID
+malicious client denial remains **NOT RUN**; IAM snapshots do not establish it.
 
-**B-04/B-05:** local formatter/analyzer and 59 Flutter tests PASS; APK build PASS.
-Current rules/CI results and final pushed SHA are reported in the handoff.
-No Nguyen UI/theme/router/ARTEMIS/review/final-presentation edits. Storage stays
-explicitly DEFERRED for team discussion. Existing App Check, authenticated
-cross-UID negative, trusted backend/staging, ARTEMIS/external review blockers
-remain; earlier Analytics/Crashlytics Console proof remains valid.
+**B-04:** new deliberate fatal received in actual Firebase Console at displayed
+3:21:38 PM, Android 17 / version 0.1.0(1). Crashlytics Data > User ID hashes to
+the dedicated Google UID alias; custom keys inspected. Broad browser metadata
+ID matches were rejected; only the visible User ID leaf was compared. Fatal
+persisted keys describe the prior nonfatal diagnostic, not its trigger. Google
+Analytics method and logout UID-clear are **NOT VERIFIED**. Previously verified
+five business Analytics event types remain five of seven; SDK events do not
+close the gap. Native first-request spinner and stale callback failure retained;
+fresh user-operated Google retry succeeded without credentials being collected.
 
-Receipts: `evidence/cloud/google-sha-approved.json`,
-`evidence/cloud/google-user-before-login.json`,
-`evidence/android/google-approved-apk.json`,
-`evidence/android/logs/google-*`, `evidence/cloud/checks/google-sha-approved/`.
-Raw Console/Android authenticated images and CLI/config originals remain private
-on D. No credential fields were requested, printed or exported.
+**B-05:** formatter/analyzer PASS, Flutter **59/59**, Firebase Emulator rules
+**28/28**, APK build/install PASS; application/config and prior evidence HEAD CI
+3/3 PASS. Final evidence HEAD CI is checked after push. Original authenticated
+screenshots are private on D; sanitized XML, metadata, screenshot hashes and
+guest/error images are reviewable. Emulator debug/display/network settings restored.
+No Nguyen UI/theme/router/ARTEMIS/review/final-presentation edits. Storage remains
+**DEFERRED** for team discussion. App Check, trusted backend/payment/official
+schedules, staging, physical device, ARTEMIS and external review remain
+**BLOCKED/NOT RUN** as applicable. Overall **PARTIALLY COMPLETE**.
+
+Primary receipt: `evidence/cloud/google-runtime-validation.json`; account
+snapshots `evidence/cloud/google-user-*.json`; runtime `evidence/android/logs/google-*`.
+
+
 
 # Bao cloud + Android status
 

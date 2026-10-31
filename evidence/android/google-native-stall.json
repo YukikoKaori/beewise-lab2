@@ -1,0 +1,46 @@
+{
+  "timestampUtc": "2026-10-31T08:12:44.090172+00:00",
+  "activeActivity": "com.google.android.gms/.auth.api.credentials.assistedsignin.ui.GoogleSignInActivity",
+  "screen": "Native Choose an account spinner; BeeWise login visible behind; no credential returned to Firebase observed",
+  "googleDnsPing": "PASS accounts.google.com resolves and ping exits zero",
+  "activeDefaultNetwork": 101,
+  "processDiagnostics": {
+    "com.google.android.gms": {
+      "pid": 2013,
+      "logBytes": 1283896,
+      "diagnosticTermCounts": {
+        "NetworkError": 2,
+        "TransactionTooLargeException": 575,
+        "Account added": 6,
+        "INTERNAL_ERROR": 1
+      }
+    },
+    "com.google.android.gms:identitycredentials": {
+      "pid": 5778,
+      "logBytes": 21497,
+      "diagnosticTermCounts": {}
+    },
+    "com.google.android.gms.ui": {
+      "pid": 5840,
+      "logBytes": 732582,
+      "diagnosticTermCounts": {
+        "Account added": 1
+      }
+    }
+  },
+  "credentialContentPrinted": false,
+  "scope": "Read-only process diagnostic term counts; private raw originals never emitted",
+  "diagnosticLimitations": "TransactionTooLargeException counts in GMS are NullBinder RECOMMEND_NETWORKS messages, not established credential request failures. Existing Phenotype certificate warning is not proven causal. Do not map these counts to the documented older GetGoogleIdOption issue; this app uses button-flow GetSignInWithGoogleOption.",
+  "recoveryAttempt": {
+    "action": "Force-stop only BeeWise then am start primary display",
+    "userdataCleared": false,
+    "outcome": "GMS consent activity persisted; start delivered to existing top activity; BeeWise PID absent due explicit force-stop. Not a proven application crash and not successful Home launch.",
+    "captureHelperExit": 1,
+    "captureFailureReason": "pidof returned no app PID after private screenshot was saved",
+    "nextStep": "User closes obsolete Google request; relaunch BeeWise and retry user-operated Google flow"
+  },
+  "officialReferences": [
+    "https://developer.android.com/identity/sign-in/credential-manager-troubleshooting-guide",
+    "https://pub.dev/packages/google_sign_in_android"
+  ]
+}

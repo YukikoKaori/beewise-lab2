@@ -94,7 +94,7 @@
     "uninstallOrDataClear": false
   },
   "remaining": {
-    "Google": "Configuration PASS exact owner-approved SHA readback and additive Android OAuth config; dedicated Google runtime pending user-operated cancel/sign-in. See google-sha-approved.json and Android google-* receipts.",
+    "Google": "Live sign-in/profile/restore/logout and Crashlytics signed-in UID association PASS. Initial native request, FCM pending/relaunch and transient role retry retained; Analytics Google method and logout UID clear not verified. See google-runtime-validation.json.",
     "Storage": "DEFERRED explicitly by user pending team discussion; no action",
     "AppCheck": "BLOCKED API disabled/403 finding retained; no configuration/enforcement changes",
     "authenticatedCrossUidFirestoreClientDenial": "NOT RUN",
@@ -223,5 +223,6 @@
       "source": "Computer Use @oai/sky actual Chrome window"
     }
   ],
-  "googleConfigurationFollowUp": "evidence/cloud/google-sha-approved.json"
+  "googleConfigurationFollowUp": "evidence/cloud/google-sha-approved.json",
+  "googleLiveFollowUp": "evidence/cloud/google-runtime-validation.json"
 }

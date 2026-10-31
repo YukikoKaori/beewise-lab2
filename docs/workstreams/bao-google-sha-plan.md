@@ -7,8 +7,9 @@ each addition confirms only the approved certificates; receipt:
 are retained separately from successful API responses and verified server state.
 The downloaded config adds only the matching Android OAuth client; project/app,
 package, existing web OAuth client and client key remain unchanged. Repository
-config synchronized; native Google authentication is still NOT RUN until the
-user completes the dedicated Google account flow on the isolated emulator.
+config synchronized; actual dedicated Google cancel/sign-in/Profile/session restore/
+logout now PASS on the isolated emulator. See google-runtime-validation.json for
+initial native request failure, pending FCM recovery and transient role retry.
 Project: `beewise-lab-3`; Android app:
 `1:840483888286:android:50c11fbb460437ed6a2f8f`; package `com.beewise.beewise`.
 The web OAuth client supplied by the owner is already preserved in the repository.

@@ -1,5 +1,5 @@
 {
-  "recordedAtUtc": "2026-10-31T08:04:40.498233+00:00",
+  "recordedAtUtc": "2026-10-31T08:32:58.239117+00:00",
   "projectId": "beewise-lab-3",
   "apkReceipt": "evidence/android/google-approved-apk.json",
   "configurationReceipt": "evidence/cloud/google-sha-approved.json",
@@ -12,9 +12,26 @@
     "accountMetadataUnchanged": true,
     "oldAccountDevicesEmpty": true
   },
-  "signIn": "PENDING USER INTERACTION; no capture/log collection during account entry",
-  "sessionRestore": "NOT RUN",
-  "logout": "NOT RUN",
+  "signIn": {
+    "status": "PASS actual user-operated Google sign-in and signed-in Android Profile; not inferred from Users list",
+    "accountAlias": "uid-sha256:e82554223119b7ff",
+    "provider": "google.com",
+    "lastSignInAtUtc": "2026-10-31T08:17:19.108Z",
+    "parentCreatedAtUtc": "2026-10-31T08:17:21.874249Z",
+    "deviceUi": "evidence/android/logs/google-authenticated-return.xml",
+    "metadata": "evidence/cloud/google-user-authenticated.json"
+  },
+  "sessionRestore": {
+    "status": "PASS same Google Firebase sign-in timestamp after force-stop/relaunch, signed-in Profile, own device registration",
+    "deviceUi": "evidence/android/logs/google-restored-profile.xml",
+    "metadata": "evidence/cloud/google-user-session-restored.json"
+  },
+  "logout": {
+    "status": "PASS managed logout shows guest Profile, clears Google installation, A/B devices remain empty, parent records preserved; cold relaunch reaches guest Home",
+    "deviceUi": "evidence/android/logs/google-after-logout.xml",
+    "metadata": "evidence/cloud/google-user-managed-logout.json",
+    "coldRelaunch": "evidence/android/logs/google-post-logout-guest.xml"
+  },
   "localGates": {
     "format": "PASS 32 files zero changed",
     "analyze": "PASS no issues",
@@ -31,11 +48,94 @@
   "publicGuestScreenshotSha256": {
     "google-approved-settled": "0704a2a3bbca821faf173e86767c179f0de7faeb12cf9387bd37e3e3ce20de1d",
     "google-guest-profile": "11d5079e66bc2b578c3298eda85dd8f1fe5004307800d3e78c173af3104eb010",
-    "google-cancel-returned": "1c4ee7a4176e85add858234617a67d3ec2fc803f38707fb8445d14ec8b6d3b67"
+    "google-cancel-returned": "1c4ee7a4176e85add858234617a67d3ec2fc803f38707fb8445d14ec8b6d3b67",
+    "google-post-logout-guest": "707a4c16f3ddade2e9e5164aa6d3b0e6ba8c95e7c1021c194cff658955496fb9",
+    "google-before-logout-profile": "f59259ca7441b73d18afc5f277e14c57b8ee69a393c315a2d9f0eedf2fe02104"
   },
   "invalidAttempts": {
-    "google-approved-home": "Initial white/loading screen; not Home PASS"
+    "google-approved-home": "Initial white/loading screen; not Home PASS",
+    "google-stall-recovery-state": "Helper exit 1: app PID absent after explicit force-stop while GMS consent remained; not app crash or successful launch",
+    "google-before-logout-profile": "Fail-closed role network error; not normal Profile success"
   },
   "privacy": "No credentials requested, read or printed; authenticated/credential-entry screenshots not captured during user entry; original private evidence on D",
-  "storage": "DEFERRED by user; no cloud Storage or billing action"
+  "storage": "DEFERRED by user; no cloud Storage or billing action",
+  "openFindings": {
+    "initialNativeFlow": "Native GMS spinner before Firebase identity; stale request accepted after app force-stop returned Launcher; fresh user-operated request succeeded. Root cause unproven.",
+    "registrationReliability": "Initial Google registration pending despite successful Auth/Profile; recovered only after process relaunch. Earlier B needed explicit retry. OPEN, not fixed.",
+    "roleLookup": "After deliberate diagnostic crash, initial role read failed closed; explicit retry restored Home/Profile. Retain failure and recovery.",
+    "analyticsGoogleMethod": "NOT VERIFIED in Console: follow-up showed screen_view, user_engagement and app_exception; did not inspect login(method=google). Prior five business event types remain five, not seven.",
+    "crossUidClientDenial": "NOT RUN; IAM account/device snapshots do not replace authenticated malicious client tests."
+  },
+  "deviceSettingsRestored": "PASS display/density/network and Analytics debug flag restored; see google-runtime-state-restored-restore.json",
+  "consoleFollowUp": [
+    {
+      "observedAtUtc": "2026-10-31T08:26:20.971Z",
+      "label": "google-crashlytics-fatal-stack",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/google-crashlytics-fatal-stack.png",
+      "sha256": "46f2ce8ebab468c58ad6c312045ee2332be187345eeaf686e096e2b98f9feb2c",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T08:30:46.934Z",
+      "label": "google-crashlytics-user-data",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/google-crashlytics-user-data.png",
+      "sha256": "ce85634e7da52965127679cb3c8546145b187b16f2dc3b048c6e38e5ad05b8ff",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T08:31:10.858Z",
+      "label": "google-crashlytics-custom-keys",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/google-crashlytics-custom-keys.png",
+      "sha256": "6d53d2883f2b3cc4e539fb53d164fe0ac5ebe74d439f59072351585dd5e5af04",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T08:31:54.652Z",
+      "label": "google-analytics-debugview-followup",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/google-analytics-debugview-followup.png",
+      "sha256": "cbca618a6650f9aa456e58a031fdd0cd40832cf2302a1cae7f90091bc46d661b",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    }
+  ],
+  "crashlyticsGoogleIdentity": {
+    "status": "PASS new actual uploaded diagnostic fatal, signed-in user ID matches Google UID hash",
+    "userVerification": {
+      "verifiedAt": "2026-10-31T08:30:41.198Z",
+      "source": "Visible Data > User > ID leaf; broad accessibility ID regex rejected because it matched browser metadata",
+      "observedUidAlias": "uid-sha256:e82554223119b7ff",
+      "expectedUidAlias": "uid-sha256:e82554223119b7ff",
+      "matches": true,
+      "eventTime": "Oct 31 2026 3:21:38 PM",
+      "rawUserIdExported": false
+    },
+    "consoleEventTime": "Oct 31, 2026, 3:21:38 PM",
+    "fatal": "FirebaseCrashlyticsTestCrash",
+    "keys": {
+      "app_area": "beewise_mobile",
+      "flutter_error_exception": "Bad state: BeeWise non-fatal diagnostic sample",
+      "flutter_error_reason": "thrown Profile diagnostic button"
+    },
+    "limits": "Persisted custom keys describe the prior nonfatal diagnostic, not the fatal trigger. New nonfatal issue count increased, but newest nonfatal event/user ID not individually inspected. Logout Crashlytics UID clear NOT VERIFIED."
+  },
+  "privateDeviceImages": {
+    "google-authenticated-return": {
+      "privateOriginal": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\google-authenticated-return.png",
+      "sha256": "d5f08679d20a1b5444b6d897d519da410b42d55ea44d2a3cd24f55a13ade63ba",
+      "privacy": "Original identity-bearing screenshot retained privately on D; sanitized XML in repository"
+    },
+    "google-restored-profile": {
+      "privateOriginal": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\google-restored-profile.png",
+      "sha256": "0a23a301631ae7f410743f6bca3cbb2e3fd431d0b6b9dd55e2ec9f280c3ac7f1",
+      "privacy": "Original identity-bearing screenshot retained privately on D; sanitized XML in repository"
+    },
+    "google-role-recovered-profile": {
+      "privateOriginal": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\google-role-recovered-profile.png",
+      "sha256": "7f578ce448f5d752bd8216178f1cf13753d139374ecfff068f56c009037fd236",
+      "privacy": "Original identity-bearing screenshot retained privately on D; sanitized XML in repository"
+    }
+  }
 }

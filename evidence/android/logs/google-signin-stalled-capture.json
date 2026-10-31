@@ -1,0 +1,50 @@
+{
+  "timestampUtc": "2026-10-31T08:10:45.871159+00:00",
+  "sourceSha": "b053591848ea40d1c30b1a6b798580b5c67163f3",
+  "action": "capture",
+  "label": "google-signin-stalled",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "UI hierchary dumped to: /sdcard/bao-ui.xml\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "cat",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation=\"0\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[18,568][702,1032]\" drawing-order=\"0\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.LinearLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,1032]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/content\" class=\"android.widget.FrameLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,1032]\" drawing-order=\"2\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"com.google.android.gms:id/google_sign_in_container\" class=\"android.widget.FrameLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,1032]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.RelativeLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,1032]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"com.google.android.gms:id/container_overlay\" class=\"android.view.View\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,1032]\" drawing-order=\"2\" hint=\"\" /><node index=\"1\" text=\"\" resource-id=\"com.google.android.gms:id/content\" class=\"android.widget.LinearLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,1032]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"com.google.android.gms:id/header\" class=\"android.widget.LinearLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,568][670,870]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"com.google.android.gms:id/app_icon\" class=\"android.widget.ImageView\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[324,616][396,688]\" drawing-order=\"1\" hint=\"\" /><node index=\"1\" text=\"Choose an account\" resource-id=\"com.google.android.gms:id/title\" class=\"android.widget.TextView\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[98,720][622,780]\" drawing-order=\"2\" hint=\"\" /><node index=\"2\" text=\"to continue to BeeWise\" resource-id=\"com.google.android.gms:id/subtitle\" class=\"android.widget.TextView\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[98,796][622,838]\" drawing-order=\"3\" hint=\"\" /></node><node index=\"1\" text=\"\" resource-id=\"com.google.android.gms:id/list\" class=\"android.support.v7.widget.RecyclerView\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,886][670,984]\" drawing-order=\"2\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"com.google.android.gms:id/container\" class=\"android.widget.LinearLayout\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,886][670,984]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"com.google.android.gms:id/add_account_profile_picture\" class=\"android.widget.ImageView\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[98,914][138,954]\" drawing-order=\"1\" hint=\"\" /><node index=\"1\" text=\"Add another account\" resource-id=\"com.google.android.gms:id/add_account_chip_title\" class=\"android.widget.TextView\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[170,914][622,956]\" drawing-order=\"2\" hint=\"\" /></node></node></node><node index=\"2\" text=\"\" resource-id=\"com.google.android.gms:id/loading_progress\" class=\"android.widget.ProgressBar\" package=\"com.google.android.gms\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[312,752][408,848]\" drawing-order=\"3\" hint=\"\" /></node></node></node></node></node></hierarchy>"
+    },
+    {
+      "imagePath": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\google-signin-stalled.png",
+      "imageSha256": "2d9566d42094bd908fabc3daa5323fbd94542e7bb964087a1b492df53de04640",
+      "privateImage": true
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "5453\r\n"
+    }
+  ]
+}
