@@ -12,7 +12,12 @@
           "package_name": "com.beewise.beewise"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "840483888286-pd3lf9pg3els0cnitcglkmodqflqtmfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAp43qx39hEbjXzvGhYZXB7EsnJ9g38Cgc"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840483888286-pd3lf9pg3els0cnitcglkmodqflqtmfv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
