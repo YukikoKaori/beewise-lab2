@@ -1,0 +1,65 @@
+{
+  "timestampUtc": "2026-10-31T09:09:42.775Z",
+  "projectId": "beewise-lab-3",
+  "stage": "reliability-google-first",
+  "readOnly": true,
+  "requestedPersonalOrCredentialFields": false,
+  "accounts": [
+    {
+      "accountAlias": "uid-sha256:4a7de057a03aa476",
+      "dedicatedGoogleCandidate": false,
+      "enabled": true,
+      "providers": [
+        "password"
+      ],
+      "lastSignInAtUtc": "2026-10-31T09:02:25.408Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T03:28:26.692446Z",
+        "updateTime": "2026-10-31T09:02:29.219993Z"
+      },
+      "devices": [],
+      "deviceListComplete": true
+    },
+    {
+      "accountAlias": "uid-sha256:564b131109a53e16",
+      "dedicatedGoogleCandidate": false,
+      "enabled": true,
+      "providers": [
+        "password"
+      ],
+      "lastSignInAtUtc": "2026-10-31T09:07:04.972Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T04:01:53.191769Z",
+        "updateTime": "2026-10-31T09:07:07.072589Z"
+      },
+      "devices": [],
+      "deviceListComplete": true
+    },
+    {
+      "accountAlias": "uid-sha256:e82554223119b7ff",
+      "dedicatedGoogleCandidate": true,
+      "enabled": true,
+      "providers": [
+        "google.com"
+      ],
+      "lastSignInAtUtc": "2026-10-31T09:09:26.039Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T08:17:21.874249Z",
+        "updateTime": "2026-10-31T09:09:27.934732Z"
+      },
+      "devices": [
+        {
+          "installationAlias": "uid-sha256:ebcb4701b9f0d08b",
+          "platform": "android",
+          "updateTime": "2026-10-31T09:09:30.700029Z"
+        }
+      ],
+      "deviceListComplete": true
+    }
+  ],
+  "googleCandidateCount": 1,
+  "limitation": "IAM metadata only. Candidate must match the user-confirmed dedicated Google device flow. This is not proof of client authentication/authorization or cross-UID denial."
+}

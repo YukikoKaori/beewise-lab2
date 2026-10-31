@@ -1,0 +1,85 @@
+{
+  "timestampUtc": "2026-10-31T08:58:02.985751+00:00",
+  "sourceSha": "cda68fb4d58765915cfd30a5e295856dfd1f2fef",
+  "action": "prepare",
+  "label": "reliability-original-state",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "size"
+      ],
+      "exitCode": 0,
+      "output": "Physical size: 720x1600\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "density"
+      ],
+      "exitCode": 0,
+      "output": "Physical density: 320\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "wifi_on"
+      ],
+      "exitCode": 0,
+      "output": "1\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "airplane_mode_on"
+      ],
+      "exitCode": 0,
+      "output": "0\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "getprop",
+        "debug.firebase.analytics.app"
+      ],
+      "exitCode": 0,
+      "output": ".none.\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "setprop",
+        "debug.firebase.analytics.app",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

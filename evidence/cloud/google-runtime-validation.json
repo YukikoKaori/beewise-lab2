@@ -137,5 +137,7 @@
       "sha256": "7f578ce448f5d752bd8216178f1cf13753d139374ecfff068f56c009037fd236",
       "privacy": "Original identity-bearing screenshot retained privately on D; sanitized XML in repository"
     }
-  }
+  },
+  "newestCorrectiveValidation": "evidence/cloud/reliability-validation.json",
+  "historicalSnapshotNotice": "Original observations retained. Reliability validation supersedes older pending FCM, 5/7 analytics and no authenticated negative-read statements."
 }

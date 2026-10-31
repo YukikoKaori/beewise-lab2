@@ -1,0 +1,111 @@
+--------- beginning of main
+10-31 16:28:00.627 20604 20604 I libprocessgroup: Created cgroup /sys/fs/cgroup/apps/uid_10235/pid_20604
+10-31 16:28:00.662 20604 20604 I Zygote  : Process 20604 created for com.beewise.beewise
+10-31 16:28:00.662 20604 20604 I beewise.beewise: Late-enabling -Xcheck:jni
+10-31 16:28:01.126 20604 20604 I beewise.beewise: Using generational CollectorTypeCMC GC.
+10-31 16:28:01.129 20604 20604 W beewise.beewise: Unexpected CPU variant for x86: x86_64.
+10-31 16:28:01.129 20604 20604 W beewise.beewise: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+10-31 16:28:01.487 20604 20604 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-31 16:28:02.847 20604 20604 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-31 16:28:02.848 20604 20604 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-31 16:28:08.076 20604 20604 D nativeloader: Configuring clns-9 for other apk /data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/lib/x86_64:/data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.beewise.beewise
+10-31 16:28:08.786 20604 20604 V GraphicsEnvironment: Currently set values for:
+10-31 16:28:08.787 20604 20604 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-31 16:28:08.787 20604 20604 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-31 16:28:08.787 20604 20604 V GraphicsEnvironment: com.beewise.beewise is not listed in per-application setting
+10-31 16:28:08.788 20604 20604 V GraphicsEnvironment: No special selections for ANGLE, returning default driver choice
+10-31 16:28:08.891 20604 20604 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-31 16:28:09.534 20604 20604 W beewise.beewise: Verification of void com.google.firebase.FirebaseApp.<init>(android.content.Context, java.lang.String, com.google.firebase.FirebaseOptions) took 109.090ms (2062.51 bytecodes/s) (0B arena alloc)
+10-31 16:28:10.871 20604 20604 W beewise.beewise: Verification of java.util.List kotlin.collections.ArraysKt___ArraysJvmKt.asList(byte[]) took 113.422ms (114.62 bytecodes/s) (0B arena alloc)
+10-31 16:28:11.494 20604 20604 W beewise.beewise: Verification of java.lang.Object com.google.firebase.sessions.api.FirebaseSessionsDependencies.getRegisteredSubscribers$com_google_firebase_firebase_sessions(kotlin.coroutines.Continuation) took 114.991ms (1826.22 bytecodes/s) (0B arena alloc)
+10-31 16:28:11.512 20604 20604 D FirebaseSessions: Dependency to CRASHLYTICS added.
+10-31 16:28:11.597 20604 20604 I FirebaseApp: Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+10-31 16:28:11.979 20604 20639 W beewise.beewise: Verification of int com.google.android.gms.dynamite.DynamiteModule.zzc(android.content.Context, java.lang.String, boolean, boolean) took 109.027ms (3833.89 bytecodes/s) (0B arena alloc)
+10-31 16:28:12.461 20604 20642 W beewise.beewise: Verification of int com.google.firebase.messaging.SharedPreferencesQueue.size() took 118.629ms (118.01 bytecodes/s) (0B arena alloc)
+10-31 16:28:12.687 20604 20639 I DynamiteModule: Considering local module com.google.android.gms.measurement.dynamite:216 and remote module com.google.android.gms.measurement.dynamite:217
+10-31 16:28:12.696 20604 20639 I DynamiteModule: Selected remote version of com.google.android.gms.measurement.dynamite, version >= 217
+10-31 16:28:12.696 20604 20639 V DynamiteModule: Dynamite loader version >= 2, using loadModule2NoCrashUtils
+10-31 16:28:12.726 20604 20640 W beewise.beewise: Verification of void com.google.android.gms.common.api.internal.zabk.zaI(com.google.android.gms.common.api.Status, java.lang.Exception, boolean) took 219.306ms (314.63 bytecodes/s) (0B arena alloc)
+10-31 16:28:12.829 20604 20644 W beewise.beewise: Verification of com.google.firebase.remoteconfig.interop.rollouts.RolloutsState com.google.firebase.remoteconfig.internal.rollouts.RolloutsStateFactory.getActiveRolloutsState(com.google.firebase.remoteconfig.internal.ConfigContainer) took 432.158ms (289.25 bytecodes/s) (0B arena alloc)
+10-31 16:28:13.082 20604 20639 W System  : ClassLoader referenced unknown path: 
+10-31 16:28:13.083 20604 20639 D nativeloader: Configuring clns-10 for other apk . target_sdk_version=37, uses_libraries=, library_path=/data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/lib/x86_64:/data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+10-31 16:28:13.144 20604 20644 W beewise.beewise: Verification of java.lang.String com.google.firebase.remoteconfig.internal.ConfigRealtimeHttpClient.getFingerprintHashForPackage() took 215.404ms (380.68 bytecodes/s) (0B arena alloc)
+10-31 16:28:13.301 20604 20604 D nativeloader: Load /data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/base.apk!/lib/x86_64/libdatastore_shared_counter.so using class loader ns clns-9 (caller=/data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/base.apk!classes17.dex): ok
+10-31 16:28:13.413 20604 20639 D DesktopExperienceFlags: Toggle override initialized to: false
+10-31 16:28:13.711 20604 20604 D FirebaseSessions: Initializing Firebase Sessions 4.0.1.
+10-31 16:28:13.731 20604 20604 I FirebaseCrashlytics: Initializing Firebase Crashlytics 21.0.1 for com.beewise.beewise
+10-31 16:28:13.886 20604 20604 W FA      : Failed to register event listener on calling thread. Trying again on the dynamite thread.
+10-31 16:28:13.915 20604 20604 D FirebaseSessions: Subscriber CRASHLYTICS registered.
+10-31 16:28:14.123 20604 20659 W beewise.beewise: Verification of void kotlinx.serialization.modules.SerialModuleImpl.dumpTo(kotlinx.serialization.modules.SerializersModuleCollector) took 196.574ms (1648.23 bytecodes/s) (0B arena alloc)
+10-31 16:28:14.190 20604 20668 I beewise.beewise: hiddenapi: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (runtime_flags=0, domain=core-platform, api=unsupported) from Lm7/ang; (domain=app, TargetSdkVersion=36) using reflection: allowed
+10-31 16:28:14.271 20604 20664 W beewise.beewise: Verification of void kotlinx.coroutines.EventLoopImplPlatform.reschedule(long, kotlinx.coroutines.EventLoopImplBase$DelayedTask) took 267.126ms (22.46 bytecodes/s) (0B arena alloc)
+10-31 16:28:14.418 20604 20659 W beewise.beewise: Verification of java.util.Map kotlin.collections.MapsKt__MapsKt.toMap(java.lang.Iterable, java.util.Map) took 116.621ms (137.20 bytecodes/s) (0B arena alloc)
+10-31 16:28:14.729 20604 20660 W beewise.beewise: Verification of kotlinx.serialization.KSerializer[] kotlinx.serialization.internal.GeneratedSerializer.typeParametersSerializers() took 112.448ms (26.68 bytecodes/s) (0B arena alloc)
+10-31 16:28:14.764 20604 20604 I FirebaseCrashlytics: Registering with ProfilingManager; heap dump collection is disabled
+10-31 16:28:14.785 20604 20604 I FirebaseInitProvider: FirebaseApp initialization successful
+10-31 16:28:14.787 20604 20604 D FLTFireContextHolder: received application context.
+10-31 16:28:15.189 20604 20609 W beewise.beewise: Suspending all threads took: 73.894ms
+--------- beginning of system
+10-31 16:28:15.238 20604 20674 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+10-31 16:28:15.258 20604 20664 D FirebaseSessions: Notified CRASHLYTICS of new session d091769601214e079d693e208b83eb81
+10-31 16:28:15.404 20604 20643 W beewise.beewise: Verification of com.google.firebase.crashlytics.internal.model.CrashlyticsReport$Session$OperatingSystem$Builder com.google.firebase.crashlytics.internal.model.AutoValue_CrashlyticsReport_Session_OperatingSystem$Builder.setJailbroken(boolean) took 220.668ms (45.32 bytecodes/s) (0B arena alloc)
+10-31 16:28:15.427 20604 20667 V FA      : sdkVersion bundled with app, dynamiteVersion: 192000, 217
+10-31 16:28:15.591 20604 20643 W beewise.beewise: Verification of boolean com.google.firebase.crashlytics.internal.model.AutoValue_CrashlyticsReport_Session.equals(java.lang.Object) took 150.218ms (1437.91 bytecodes/s) (0B arena alloc)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: Failed to register flag update listener which may lead to stale flags.
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: java.util.concurrent.ExecutionException: java.lang.SecurityException: GoogleCertificatesRslt: not allowed: pkg=com.beewise.beewise, sha256=[4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004], atk=false, ver=264231038.true (go/gsrlt)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.apt.j(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):21)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.apt.get(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):40)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.asc.a(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):2)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.arg.g(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):7)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.abq.run(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):3)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:323)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at java.lang.Thread.run(Thread.java:1572)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: Caused by: java.lang.SecurityException: GoogleCertificatesRslt: not allowed: pkg=com.beewise.beewise, sha256=[4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004], atk=false, ver=264231038.true (go/gsrlt)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3392)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Parcel.createException(Parcel.java:3376)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Parcel.readException(Parcel.java:3359)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Parcel.readException(Parcel.java:3301)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.ag.c(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):11)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.vt.a(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):32)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.du.b(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):5)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.ck.d(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):9)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.cj.g(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):1)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.dh.v(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):10)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.dh.w(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):263)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.dh.e(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):16)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at m7.dn.handleMessage(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):814)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Handler.dispatchMessageImpl(Handler.java:138)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Looper.loopOnce(Looper.java:296)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.Looper.loop(Looper.java:397)
+10-31 16:28:15.694 20604 20668 I PhFlagUpdateRegistry: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+10-31 16:28:15.732 20604 20639 V FA      : onActivityCreated
+10-31 16:28:15.795 20604 20667 V FA      : App measurement collection enabled
+10-31 16:28:15.913 20604 20674 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+10-31 16:28:15.913 20604 20674 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+10-31 16:28:15.914 20604 20674 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-31 16:28:15.922 20604 20674 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-31 16:28:15.961 20604 20686 D FlutterJNI: Beginning load of flutter...
+10-31 16:28:15.962 20604 20687 I ResourceExtractor: Found extracted resources res_timestamp-1-1793437396296
+10-31 16:28:15.962 20604 20687 I ResourceExtractor: Resource version mismatch res_timestamp-1-1793438864160
+10-31 16:28:15.993 20604 20609 I beewise.beewise: Background concurrent mark compact GC freed 2898KB AllocSpace bytes, 12(292KB) LOS objects, 49% free, 4370KB/8740KB, paused 110.051ms,147.166ms total 1.225s
+10-31 16:28:16.008 20604 20686 D nativeloader: Load /data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/base.apk!/lib/x86_64/libflutter.so using class loader ns clns-9 (caller=/data/app/~~GDSeLnrxlidC2zZ42UXw6A==/com.beewise.beewise-HkCnc1PUlcGVMesGq0xcNA==/base.apk): ok
+10-31 16:28:16.013 20604 20686 D FlutterJNI: flutter (null) was loaded normally!
+10-31 16:28:16.038 20604 20667 E beewise.beewise: No package ID 6b found for resource ID 0x6b0b0013.
+10-31 16:28:16.039 20604 20667 V FA      : App measurement enabled for app package, google app id: com.beewise.beewise, 1:840483888286:android:50c11fbb460437ed6a2f8f
+10-31 16:28:16.107 20604 20667 I FA      : App measurement initialized, version: 193007
+10-31 16:28:16.107 20604 20667 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-31 16:28:16.107 20604 20667 I FA      : Faster debug mode event logging enabled. To disable, run:
+10-31 16:28:16.107 20604 20667 I FA      :   adb shell setprop debug.firebase.analytics.app .none.
+10-31 16:28:16.108 20604 20667 D FA      : Debug-level message logging enabled
+10-31 16:28:16.110 20604 20667 D FA      : TCF client enabled.
+10-31 16:28:16.110 20604 20667 D FA      : Register tcfPrefChangeListener.
+10-31 16:28:16.110 20604 20667 V FA      : Default prefs file: com.beewise.beewise_preferences
+10-31 16:28:16.138 20604 20688 D skia    : [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+10-31 16:28:16.142 20604 20643 I FirebaseCrashlytics: Saved version control info
+10-31 16:28:16.161 20604 20667 D FA      : Handle tcf update.
+10-31 16:28:16.267 20604 20667 V FA      : Tcf preferences read

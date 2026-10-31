@@ -1,0 +1,213 @@
+{
+  "recordedAtUtc": "2026-10-31T09:31:57.712119+00:00",
+  "applicationSourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "pr": "https://github.com/YukikoKaori/beewise-lab2/pull/3",
+  "verifiedMainSha": "12f5322655463fd801d64e4925572d6a3a2bbb82",
+  "verdict": "PARTIALLY COMPLETE; NOT MERGE READY",
+  "fcm": {
+    "status": "PASS scoped native first-login and ownership lifecycle",
+    "rootCause": "A callback from an earlier native register arrives while a later auth/controller reconciliation has no requested UID. Old code queued stopDelivery behind the new register, revoking it and leaving pending. Reproduced red regression; native A/B/Google show the same stale callback ordering.",
+    "fix": "Capture generation, defer cleanup only while that generation and guest state still hold; ignore stale queued callbacks instead of revoking new ownership. Bound missing acknowledgement to 15 seconds, retain journal and expose retry. UID ownership and foreign journal quarantine retained.",
+    "native": [
+      {
+        "account": "Email/Password A",
+        "firstLogin": "PASS default lib/main.dart APK",
+        "staleIgnoredLocalTime": "16:02:30.378",
+        "firestoreAckLocalTime": "16:02:30.624",
+        "evidence": "evidence/android/logs/reliability-a-first-login-logcat.log"
+      },
+      {
+        "account": "Email/Password B",
+        "firstLogin": "PASS explicit diagnostic APK; unchanged production services/UI",
+        "staleIgnoredLocalTime": "16:07:08.806",
+        "firestoreAckLocalTime": "16:07:08.996",
+        "evidence": "evidence/android/logs/reliability-b-first-login-logcat.log"
+      },
+      {
+        "account": "Authorized Google test",
+        "firstLogin": "PASS explicit diagnostic APK; unchanged production services/UI",
+        "staleIgnoredLocalTime": "16:09:29.214",
+        "firestoreAckLocalTime": "16:09:29.430",
+        "evidence": "evidence/android/logs/reliability-google-first-login-logcat.log"
+      }
+    ],
+    "foregroundDelivery": "PASS actual targeted A/B notification receipt and inbox route, not merely FCM API acceptance",
+    "logout": "PASS A/B/Google and approved new signup own installation removed, other owners empty, Parent records preserved",
+    "sessionRestore": "PASS A same sign-in timestamp, own server read and rebind after diagnostic APK install/relaunch",
+    "backgroundAndTerminatedDeliveryOnThisSource": "NOT RUN; historical proof is not a fresh retest",
+    "nativeTimeoutAndFailedWriteInjection": "NOT RUN; deterministic regression coverage only"
+  },
+  "roleRecovery": {
+    "status": "PASS unit and native fail-closed recovery",
+    "fix": "Explicit Source.server and bounded read for applicant checks in AuthService, TutorApplicationService and push registration. Cached absence cannot grant Parent during transient offline failure.",
+    "nativeOffline": "unavailable; parentGranted=false; actual account-check route",
+    "nativeOnline": "fresh server-confirmed applicant=false; actual retry returns Home",
+    "evidence": [
+      "evidence/cloud/reliability-a-role-offline.json",
+      "evidence/cloud/reliability-a-role-recovered.json"
+    ]
+  },
+  "authorization": {
+    "status": "PASS 9/9 real authenticated foreign reads denied",
+    "sessions": [
+      "A to B",
+      "B to A",
+      "Google to A"
+    ],
+    "perSession": [
+      "foreign Parent get",
+      "foreign tutorApplications get",
+      "foreign devices query"
+    ],
+    "positiveControl": "Own Parent read from server succeeds in each native session",
+    "execution": "Actual least-privilege native Firebase Auth/Firestore SDK through debug-only VM extension; IAM used only to resolve authorized identity aliases, never to make client authorization checks",
+    "writes": "NOT RUN live; emulator write-negative coverage retained",
+    "evidence": [
+      "evidence/cloud/reliability-a-to-b.json",
+      "evidence/cloud/reliability-b-to-a.json",
+      "evidence/cloud/reliability-google-to-a.json"
+    ]
+  },
+  "analytics": {
+    "verifiedBusinessEventCount": 7,
+    "events": [
+      "login",
+      "logout",
+      "search",
+      "view_tutor",
+      "ai_match_no_results",
+      "sign_up",
+      "export_report"
+    ],
+    "priorFiveReceipt": "evidence/cloud/console-runtime-validation.json",
+    "newEvents": {
+      "sign_up": {
+        "action": "User manually created exactly one authorized labeled test Parent account, returned Home; no credentials collected",
+        "consoleDisplayedTime": "2026-10-31 4:15:01 PM",
+        "parameters": {
+          "method": "password",
+          "account_type": "parent"
+        },
+        "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+        "metadata": "evidence/cloud/reliability-approved-signup.json"
+      },
+      "export_report": {
+        "action": "After managed logout, guest opened existing labeled TEST tutor detail and tapped export. Actual local PDF generated; guest authentication gate prevents Storage upload.",
+        "consoleDisplayedTime": "2026-10-31 4:24:01 PM",
+        "parameters": {
+          "subject_count": 1,
+          "file_size_kb": 16
+        },
+        "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+        "artifact": "evidence/cloud/reliability-local-pdf.json"
+      }
+    },
+    "googleLoginMethod": {
+      "status": "PASS actual DebugView login(method=google)",
+      "consoleDisplayedTime": "2026-10-31 4:09:27 PM",
+      "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746"
+    },
+    "uidClearing": {
+      "status": "NOT VERIFIED / acceptance blocked",
+      "observation": "Managed logout reaches guest and removes FCM installation, but DebugView User properties of later genuine guest export still displays the last dedicated signup user_id. No clear success claimed; UI historical property persistence versus collection attribution not established.",
+      "evidenceLabel": "reliability-guest-export-user-id-observed"
+    },
+    "consoleScreenshotReceipts": [
+      {
+        "observedAtUtc": "2026-10-31T09:12:00.916Z",
+        "label": "reliability-google-login-method",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-google-login-method.png",
+        "sha256": "257bbce768ada4a841ab3385a1d0a975300eb092daa3d0f40deea3ef70460401",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      },
+      {
+        "observedAtUtc": "2026-10-31T09:13:16.140Z",
+        "label": "reliability-google-logout-debugview",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-google-logout-debugview.png",
+        "sha256": "e36209f7ee96c1db3aa668ab2f6afb121eaa6d3216c14d775b5663e987ed1427",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      },
+      {
+        "observedAtUtc": "2026-10-31T09:22:17.223Z",
+        "label": "reliability-signup-account-type",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-signup-account-type.png",
+        "sha256": "863fb3c1a0f3875f17f197a6e3548a9b74498cb7310578d9824a02c43d5cfaee",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      },
+      {
+        "observedAtUtc": "2026-10-31T09:21:31.772Z",
+        "label": "reliability-signup-method",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-signup-method.png",
+        "sha256": "692bdf761fca800ce37b225b63216ede8a0674d8268c1bcb80ab3d76c00a91e1",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      },
+      {
+        "observedAtUtc": "2026-10-31T09:25:25.721Z",
+        "label": "reliability-export-file-size",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-export-file-size.png",
+        "sha256": "df3d32534681e5533b2e3e2e771bb1c0c1d87c72596c60be22a495a08b1db1c1",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      },
+      {
+        "observedAtUtc": "2026-10-31T09:25:57.452Z",
+        "label": "reliability-export-subject-count",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-export-subject-count.png",
+        "sha256": "e921f4ea21b591b12bbe74025e03b2640526ebaf170ba486450bb358b0f905c5",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      },
+      {
+        "observedAtUtc": "2026-10-31T09:26:29.842Z",
+        "label": "reliability-guest-export-user-id-observed",
+        "projectId": "beewise-lab-3",
+        "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/reliability-guest-export-user-id-observed.png",
+        "sha256": "53e3c041bb5fc3a1dd9529e17216b3cea0c243a7637a43ebb39e8fabc119b66b",
+        "source": "Computer Use @oai/sky actual Chrome window"
+      }
+    ],
+    "timestampLimit": "Console displayed timestamps retained verbatim; UTC action/metadata timestamps recorded separately. No timezone equivalence inferred."
+  },
+  "quality": {
+    "format": "PASS 33 files, 0 changes",
+    "analyze": "PASS no issues",
+    "flutter": "PASS 64/64",
+    "firebaseEmulatorRules": "PASS 28/28 demo-beewise Firestore/Storage emulator; not live Storage",
+    "defaultApkBuild": "PASS",
+    "sourceMapping": "Quality receipts record invocation HEAD cda68fb with working fixes then committed as be2b445; default/probe builds and native checks identify be2b445. Delivery-only evidence does not alter app code.",
+    "logs": [
+      "evidence/cloud/checks/reliability-final",
+      "evidence/cloud/checks/reliability-corrective/rules-test.log"
+    ],
+    "failedAttempts": "Initial reliability-corrective analyze failed four lints; fixed, final analyze PASS. Retained as failed attempt.",
+    "applicationHeadCi": {
+      "sha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+      "status": "PASS 3/3",
+      "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41186750700"
+    },
+    "deliveryHeadCi": "See latest PR description and GitHub checks for exact delivery HEAD; no stale-run substitution"
+  },
+  "android": {
+    "device": "BeeWise_Bao_PR3_API37 / emulator-5558 / API37 / Android17",
+    "defaultApk": "evidence/android/reliability-default-apk.json",
+    "probeApk": "evidence/android/reliability-probe-apk.json",
+    "installation": "PASS same-signer adb install -r; no uninstall or data clear",
+    "finalRuntime": "Reinstall exposed genuine slow-start/input ANR before Flutter startup. Relaunch renders Home; retain failure and settled screenshots separately. No clean-launch claim.",
+    "anr": "2026-10-31 16:29:15 input dispatch focus timeout 5020ms; native main stack truncated in DropBox, root cause not proven",
+    "viewport": "360/412 captures distinguish transient blank/ANR and settled UI; not full responsive certification"
+  },
+  "remaining": {
+    "Storage": "DEFERRED by user; no billing, bucket or upload",
+    "AppCheck": "BLOCKED / out of corrective scope",
+    "trustedPaymentsAndOfficialSchedules": "BLOCKED trusted backend/provider; remain server-trusted",
+    "staging": "NOT RUN / out of scope",
+    "ARTEMIS": "NOT RUN Nguyen-owned; CI e2e harness collect is not runtime",
+    "externalReview": "NOT RUN human handoff",
+    "physicalAndroid": "NOT RUN"
+  },
+  "privacy": "Private authenticated screenshots/log originals on D; public sanitized XML/logs, aliased metadata and genuine guest/error screenshots. No password/token/raw identity exported."
+}

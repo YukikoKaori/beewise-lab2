@@ -224,5 +224,7 @@
     }
   ],
   "googleConfigurationFollowUp": "evidence/cloud/google-sha-approved.json",
-  "googleLiveFollowUp": "evidence/cloud/google-runtime-validation.json"
+  "googleLiveFollowUp": "evidence/cloud/google-runtime-validation.json",
+  "newestCorrectiveValidation": "evidence/cloud/reliability-validation.json",
+  "historicalSnapshotNotice": "Original observations retained. Reliability validation supersedes older pending FCM, 5/7 analytics and no authenticated negative-read statements."
 }

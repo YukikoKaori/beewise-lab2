@@ -1,0 +1,303 @@
+--------- beginning of main
+10-31 16:01:36.203 17711 17711 I libprocessgroup: Created cgroup /sys/fs/cgroup/apps/uid_10235/pid_17711
+10-31 16:01:36.256 17711 17711 I Zygote  : Process 17711 created for com.beewise.beewise
+10-31 16:01:36.256 17711 17711 I beewise.beewise: Late-enabling -Xcheck:jni
+10-31 16:01:36.491 17711 17711 I beewise.beewise: Using generational CollectorTypeCMC GC.
+10-31 16:01:36.500 17711 17711 W beewise.beewise: Unexpected CPU variant for x86: x86_64.
+10-31 16:01:36.500 17711 17711 W beewise.beewise: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+10-31 16:01:36.689 17711 17711 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-31 16:01:37.027 17711 17711 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-31 16:01:37.027 17711 17711 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-31 16:01:39.512 17711 17711 D nativeloader: Configuring clns-9 for other apk /data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/lib/x86_64:/data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.beewise.beewise
+10-31 16:01:39.624 17711 17711 V GraphicsEnvironment: Currently set values for:
+10-31 16:01:39.624 17711 17711 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-31 16:01:39.625 17711 17711 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-31 16:01:39.625 17711 17711 V GraphicsEnvironment: com.beewise.beewise is not listed in per-application setting
+10-31 16:01:39.625 17711 17711 V GraphicsEnvironment: No special selections for ANGLE, returning default driver choice
+10-31 16:01:39.637 17711 17711 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-31 16:01:39.825 17711 17711 D FirebaseSessions: Dependency to CRASHLYTICS added.
+10-31 16:01:39.858 17711 17711 I FirebaseApp: Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+10-31 16:01:40.222 17711 17727 W beewise.beewise: Verification of com.google.android.gms.dynamic.IObjectWrapper com.google.android.gms.dynamite.zzq.zzf(com.google.android.gms.dynamic.IObjectWrapper, java.lang.String, int, com.google.android.gms.dynamic.IObjectWrapper) took 175.230ms (188.32 bytecodes/s) (0B arena alloc)
+10-31 16:01:40.223 17711 17727 I DynamiteModule: Considering local module com.google.android.gms.measurement.dynamite:216 and remote module com.google.android.gms.measurement.dynamite:217
+10-31 16:01:40.224 17711 17727 I DynamiteModule: Selected remote version of com.google.android.gms.measurement.dynamite, version >= 217
+10-31 16:01:40.270 17711 17727 V DynamiteModule: Dynamite loader version >= 2, using loadModule2NoCrashUtils
+10-31 16:01:40.751 17711 17736 W beewise.beewise: Verification of void com.google.firebase.messaging.TopicsStore.initStore() took 241.806ms (82.71 bytecodes/s) (0B arena alloc)
+10-31 16:01:40.855 17711 17711 W beewise.beewise: Verification of com.google.firebase.remoteconfig.internal.ConfigFetchHttpClient com.google.firebase.remoteconfig.RemoteConfigComponent.getFrcBackendApiClient(java.lang.String, java.lang.String, com.google.firebase.remoteconfig.internal.ConfigSharedPrefsClient) took 234.887ms (119.21 bytecodes/s) (0B arena alloc)
+10-31 16:01:41.027 17711 17727 W System  : ClassLoader referenced unknown path: 
+10-31 16:01:41.028 17711 17727 D nativeloader: Configuring clns-10 for other apk . target_sdk_version=37, uses_libraries=, library_path=/data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/lib/x86_64:/data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+10-31 16:01:41.087 17711 17735 W beewise.beewise: Verification of void com.google.android.gms.cloudmessaging.zzp.zzd(int, java.lang.String, java.lang.Throwable) took 172.486ms (858.04 bytecodes/s) (0B arena alloc)
+10-31 16:01:41.117 17711 17736 W beewise.beewise: Verification of void com.google.firebase.messaging.TopicSubscriptionClient.setConnectionFactoryForTesting(com.google.firebase.messaging.TopicSubscriptionClient$HttpConnectionFactory) took 158.213ms (75.85 bytecodes/s) (0B arena alloc)
+10-31 16:01:41.368 17711 17738 W beewise.beewise: Verification of com.google.android.gms.tasks.Task com.google.firebase.remoteconfig.internal.ConfigCacheClient.get() took 256.047ms (179.65 bytecodes/s) (0B arena alloc)
+10-31 16:01:41.627 17711 17738 W beewise.beewise: Verification of void com.google.firebase.remoteconfig.internal.ConfigGetParameterHandler.callListeners(java.lang.String, com.google.firebase.remoteconfig.internal.ConfigContainer) took 121.438ms (329.38 bytecodes/s) (0B arena alloc)
+10-31 16:01:41.656 17711 17711 D nativeloader: Load /data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk!/lib/x86_64/libdatastore_shared_counter.so using class loader ns clns-9 (caller=/data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk!classes17.dex): ok
+10-31 16:01:41.682 17711 17732 W beewise.beewise: Verification of void com.google.android.gms.common.api.internal.zabk.onConnected(android.os.Bundle) took 796.992ms (41.41 bytecodes/s) (0B arena alloc)
+10-31 16:01:41.725 17711 17727 D DesktopExperienceFlags: Toggle override initialized to: false
+10-31 16:01:42.059 17711 17711 D FirebaseSessions: Initializing Firebase Sessions 4.0.1.
+10-31 16:01:42.100 17711 17711 I FirebaseCrashlytics: Initializing Firebase Crashlytics 21.0.1 for com.beewise.beewise
+10-31 16:01:42.232 17711 17711 D FirebaseSessions: Subscriber CRASHLYTICS registered.
+10-31 16:01:42.241 17711 17745 W beewise.beewise: Verification of void kotlinx.coroutines.flow.internal.SafeCollector.checkContext(kotlin.coroutines.CoroutineContext, kotlin.coroutines.CoroutineContext, java.lang.Object) took 136.601ms (102.49 bytecodes/s) (0B arena alloc)
+10-31 16:01:42.319 17711 17732 W beewise.beewise: Verification of void com.google.android.gms.common.internal.BaseGmsClient.zzp(int, android.os.IInterface) took 100.934ms (4735.75 bytecodes/s) (0B arena alloc)
+10-31 16:01:42.478 17711 17747 W beewise.beewise: Verification of java.util.Map kotlin.collections.MapsKt__MapsJVMKt.toSingletonMap(java.util.Map) took 252.495ms (150.50 bytecodes/s) (0B arena alloc)
+10-31 16:01:42.489 17711 17746 W beewise.beewise: Verification of java.lang.Object kotlinx.coroutines.flow.FlowKt__ErrorsKt$catchImpl$1.invokeSuspend(java.lang.Object) took 315.391ms (57.07 bytecodes/s) (0B arena alloc)
+10-31 16:01:42.716 17711 17743 W beewise.beewise: Verification of kotlin.jvm.functions.Function1 kotlin.text.StringsKt__IndentKt.getIndentFunction$StringsKt__IndentKt(java.lang.String) took 124.617ms (216.66 bytecodes/s) (0B arena alloc)
+10-31 16:01:42.821 17711 17744 W beewise.beewise: Verification of kotlinx.coroutines.DisposableHandle kotlinx.coroutines.CancellableContinuationImpl.installParentHandle() took 205.232ms (190.03 bytecodes/s) (0B arena alloc)
+10-31 16:01:42.947 17711 17743 W beewise.beewise: Verification of java.lang.String kotlin.text.StringsKt__IndentKt.reindent$StringsKt__IndentKt(java.util.List, int, kotlin.jvm.functions.Function1, kotlin.jvm.functions.Function1) took 230.204ms (760.19 bytecodes/s) (0B arena alloc)
+10-31 16:01:43.205 17711 17754 I beewise.beewise: hiddenapi: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (runtime_flags=0, domain=core-platform, api=unsupported) from Lm7/ang; (domain=app, TargetSdkVersion=36) using reflection: allowed
+10-31 16:01:43.265 17711 17711 I FirebaseCrashlytics: Registering with ProfilingManager; heap dump collection is disabled
+10-31 16:01:43.381 17711 17711 I FirebaseInitProvider: FirebaseApp initialization successful
+10-31 16:01:43.393 17711 17711 D FLTFireContextHolder: received application context.
+10-31 16:01:43.473 17711 17743 W beewise.beewise: Verification of boolean kotlinx.serialization.json.internal.StreamingJsonDecoder.coerceInputValue(kotlinx.serialization.descriptors.SerialDescriptor, int) took 187.246ms (635.53 bytecodes/s) (0B arena alloc)
+--------- beginning of system
+10-31 16:01:43.648 17711 17757 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+10-31 16:01:43.763 17711 17757 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+10-31 16:01:43.763 17711 17757 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+10-31 16:01:43.763 17711 17757 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-31 16:01:43.781 17711 17757 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-31 16:01:43.825 17711 17751 E beewise.beewise: No package ID 6b found for resource ID 0x6b0b0013.
+10-31 16:01:43.839 17711 17743 W beewise.beewise: Verification of kotlinx.coroutines.flow.Flow kotlinx.coroutines.flow.FlowKt__ChannelsKt.receiveAsFlow(kotlinx.coroutines.channels.ReceiveChannel) took 169.640ms (94.32 bytecodes/s) (0B arena alloc)
+10-31 16:01:43.852 17711 17751 I FA      : App measurement initialized, version: 193007
+10-31 16:01:43.852 17711 17751 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-31 16:01:43.852 17711 17751 I FA      : Faster debug mode event logging enabled. To disable, run:
+10-31 16:01:43.852 17711 17751 I FA      :   adb shell setprop debug.firebase.analytics.app .none.
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: Failed to register flag update listener which may lead to stale flags.
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: java.util.concurrent.ExecutionException: java.lang.SecurityException: GoogleCertificatesRslt: not allowed: pkg=com.beewise.beewise, sha256=[4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004], atk=false, ver=264231038.true (go/gsrlt)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.apt.j(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):21)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.apt.get(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):40)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.asc.a(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):2)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.arg.g(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):7)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.abq.run(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):3)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:323)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at java.lang.Thread.run(Thread.java:1572)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: Caused by: java.lang.SecurityException: GoogleCertificatesRslt: not allowed: pkg=com.beewise.beewise, sha256=[4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004], atk=false, ver=264231038.true (go/gsrlt)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3392)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Parcel.createException(Parcel.java:3376)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Parcel.readException(Parcel.java:3359)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Parcel.readException(Parcel.java:3301)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.ag.c(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):11)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.vt.a(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):32)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.du.b(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):5)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.ck.d(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):9)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.cj.g(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):1)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.dh.v(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):10)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.dh.w(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):263)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.dh.e(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):16)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at m7.dn.handleMessage(:com.google.android.gms.dynamite_measurementdynamite@264231038@26.42.31 (260800-0):814)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Handler.dispatchMessageImpl(Handler.java:138)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Looper.loopOnce(Looper.java:296)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.Looper.loop(Looper.java:397)
+10-31 16:01:43.890 17711 17754 I PhFlagUpdateRegistry: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+10-31 16:01:43.982 17711 17745 W beewise.beewise: Verification of com.google.firebase.encoders.json.JsonValueObjectEncoderContext com.google.firebase.encoders.json.JsonValueObjectEncoderContext.add(java.lang.Object, boolean) took 124.213ms (3099.51 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.013 17711 17761 I ResourceExtractor: Found extracted resources res_timestamp-1-1793422282239
+10-31 16:01:44.013 17711 17761 I ResourceExtractor: Resource version mismatch res_timestamp-1-1793437276815
+10-31 16:01:44.023 17711 17760 D FlutterJNI: Beginning load of flutter...
+10-31 16:01:44.055 17711 17742 W beewise.beewise: Verification of void kotlinx.serialization.internal.MapLikeSerializer.readAll(kotlinx.serialization.encoding.CompositeDecoder, java.util.Map, int, int) took 372.796ms (201.18 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.092 17711 17760 D nativeloader: Load /data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk!/lib/x86_64/libflutter.so using class loader ns clns-9 (caller=/data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk): ok
+10-31 16:01:44.112 17711 17760 D FlutterJNI: flutter (null) was loaded normally!
+10-31 16:01:44.116 17711 17746 W beewise.beewise: Verification of void com.google.firebase.datastorage.JavaDataStorage$$ExternalSyntheticLambda1.<init>(com.google.firebase.datastorage.JavaDataStorage) took 210.383ms (28.52 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.180 17711 17762 D skia    : [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+10-31 16:01:44.262 17711 17742 W beewise.beewise: Verification of kotlinx.serialization.KSerializer[] com.google.firebase.sessions.ProcessData$$serializer.typeParametersSerializers() took 205.081ms (24.38 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.315 17711 17746 W beewise.beewise: Verification of void kotlinx.coroutines.internal.LimitedDispatcher.dispatchInternal(java.lang.Runnable, kotlin.jvm.functions.Function1) took 120.972ms (429.85 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.533 17711 17745 I FirebaseCrashlytics: Saved version control info
+10-31 16:01:44.547 17711 17742 W beewise.beewise: Verification of java.lang.String com.google.firebase.sessions.ProcessData.component2() took 153.880ms (19.50 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.743 17711 17737 D FirebaseSessions: Notified CRASHLYTICS of new session 4090e99d38814950bce671ff00acd73a
+10-31 16:01:44.751 17711 17746 W beewise.beewise: Verification of java.io.File androidx.datastore.preferences.PreferenceDataStoreSingletonDelegate.$r8$lambda$n_JROCQhFBE9lHuSpefRs1uNEcA(android.content.Context, androidx.datastore.preferences.PreferenceDataStoreSingletonDelegate) took 293.336ms (17.05 bytecodes/s) (0B arena alloc)
+10-31 16:01:44.892 17711 17746 W beewise.beewise: Verification of androidx.datastore.core.DataStore androidx.datastore.preferences.core.PreferenceDataStoreFactory.create(androidx.datastore.core.Storage, androidx.datastore.core.handlers.ReplaceFileCorruptionHandler, java.util.List, kotlinx.coroutines.CoroutineScope) took 136.058ms (242.54 bytecodes/s) (0B arena alloc)
+10-31 16:01:45.075 17711 17746 W beewise.beewise: Verification of kotlin.jvm.functions.Function2 androidx.datastore.preferences.SharedPreferencesMigrationKt.getShouldRunMigration(java.util.Set) took 130.195ms (69.13 bytecodes/s) (0B arena alloc)
+10-31 16:01:45.107 17711 17751 W beewise.beewise: Verification of java.lang.String com.google.firebase.analytics.FirebaseAnalytics.getFirebaseInstanceId() took 153.272ms (300.12 bytecodes/s) (0B arena alloc)
+10-31 16:01:45.943 17711 17746 W beewise.beewise: Verification of java.lang.Object androidx.datastore.preferences.core.PreferencesKt.edit(androidx.datastore.core.DataStore, kotlin.jvm.functions.Function2, kotlin.coroutines.Continuation) took 262.503ms (49.52 bytecodes/s) (0B arena alloc)
+10-31 16:01:46.695 17711 17765 W beewise.beewise: Verification of void androidx.datastore.preferences.protobuf.UnknownFieldSetLite.writeField(int, java.lang.Object, androidx.datastore.preferences.protobuf.Writer) took 165.772ms (675.63 bytecodes/s) (0B arena alloc)
+10-31 16:01:47.389 17711 17751 I FA      : Tag Manager is not found and thus will not be used
+10-31 16:01:47.451 17711 17716 I beewise.beewise: Background concurrent mark compact GC freed 3719KB AllocSpace bytes, 16(372KB) LOS objects, 49% free, 3781KB/7563KB, paused 4.674ms,5.065ms total 822.723ms
+10-31 16:01:49.093 17711 17761 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/kernel_blob.bin
+10-31 16:01:49.093 17711 17761 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/vm_snapshot_data
+10-31 16:01:49.185 17711 17761 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/isolate_snapshot_data
+10-31 16:01:49.340 17711 17768 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-31 16:01:49.252 17711 17711 W beewise.beewise: type=1400 audit(0.0:53): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=18813 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.beewise.beewise
+10-31 16:01:49.455 17711 17768 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+10-31 16:01:49.467 17711 17769 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+[credential-bearing line omitted]
+10-31 16:01:52.516 17711 17711 D FLTFireContextHolder: received application context.
+10-31 16:01:52.583 17711 17711 D nativeloader: Load /data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk!/lib/x86_64/libdartjni.so using class loader ns clns-9 (caller=/data/app/~~LvfRUnwA0BxUXLEHWWoR1g==/com.beewise.beewise-r3cUxm_uwhlxpZ7thd2oAA==/base.apk!classes7.dex): ok
+10-31 16:01:52.695 17711 17711 I beewise.beewise: hiddenapi: Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (runtime_flags=0, domain=platform, api=unsupported,test-api) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+10-31 16:01:52.695 17711 17711 I beewise.beewise: hiddenapi: Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+10-31 16:01:52.695 17711 17711 I beewise.beewise: hiddenapi: Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+10-31 16:01:52.696 17711 17711 I beewise.beewise: hiddenapi: Accessing hidden method Landroid/util/LongArray;->get(I)J (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+10-31 16:01:52.703 17711 17711 D AccessibilityBridge: Setting not found: accessibility_display_inversion_enabled, using default: 0
+10-31 16:01:52.722 17711 17711 D FlutterRenderer: Width is zero. 0,0
+10-31 16:01:52.729 17711 17711 D CompatChangeReporter: Compat change id reported: 377864165; UID 10235; state: ENABLED
+10-31 16:01:52.743 17711 17711 D FirebaseSessions: App foregrounded on com.beewise.beewise
+10-31 16:01:52.743 17711 17711 D FirebaseSessions: Session 4090e99d38814950bce671ff00acd73a has not backgrounded yet
+10-31 16:01:52.743 17711 17711 D FirebaseSessions: Process com.beewise.beewise is stale
+10-31 16:01:52.756 17711 17711 W HWUI    : Unknown dataspace 0
+10-31 16:01:52.790 17711 17746 D FirebaseSessions: Session 4090e99d38814950bce671ff00acd73a has not backgrounded yet
+10-31 16:01:52.821 17711 17746 D FirebaseSessions: Cold app start detected
+10-31 16:01:52.821 17711 17746 D FirebaseSessions: Process com.beewise.beewise is stale
+10-31 16:01:52.922 17711 17789 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+10-31 16:01:52.988 17711 17746 D FirebaseSessions: Session Event Type: SESSION_START
+10-31 16:01:52.989 17711 17746 D FirebaseSessions: Successfully logged Session Start event.
+10-31 16:01:53.039 17711 17737 D FirebaseSessions: Notified CRASHLYTICS of new session c2ca37ad081b49cc913cefffcb18da6e
+10-31 16:01:53.201 17711 17711 I Choreographer: Skipped 583 frames!  The application may be doing too much work on its main thread.
+10-31 16:01:53.203 17711 17711 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fbca036
+10-31 16:01:53.232 17711 17711 I WindowExtensionsImpl: Initializing Window Extensions, vendor API level=10, activity embedding enabled=true
+10-31 16:01:53.245 17711 17711 W UiContextUtils: Requested context is a non-UI Context. Creating a UI-Context with display: 0. Context: Context=android.app.Application@fc55f92, of which baseContext=android.app.ContextImpl@bfdf2ca
+10-31 16:01:53.255 17711 17711 D VRI[MainActivity]: WindowInsets changed: 720x1600 statusBars:[0,48,0,0] navigationBars:[0,0,0,48] mandatorySystemGestures:[0,48,0,64] 
+10-31 16:01:53.255 17711 17711 D FlutterRenderer: Width is zero. 0,0
+10-31 16:01:53.271 17711 17711 I Surface : Creating surface for consumer unnamed-17711-0 with slotExpansion=1 for 64 slots
+10-31 16:01:53.302 17711 17711 I Surface : Creating surface for consumer VRI[MainActivity]#0(BLAST Consumer)0 with slotExpansion=1 for 64 slots
+10-31 16:01:53.320 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:01:53.350 17711 17711 I Surface : Creating surface for consumer unnamed-17711-1 with slotExpansion=1 for 64 slots
+10-31 16:01:53.352 17711 17711 I Surface : Creating surface for consumer d3ae904 SurfaceView[com.beewise.beewise/com.beewise.beewise.MainActivity]#1(BLAST Consumer)1 with slotExpansion=1 for 64 slots
+10-31 16:01:54.364 17711 17715 I beewise.beewise: Compiler allocated 5230KB to compile void android.view.ViewRootImpl.performTraversals(long)
+10-31 16:01:54.373 17711 17711 I Choreographer: Skipped 66 frames!  The application may be doing too much work on its main thread.
+10-31 16:01:54.399 17711 17711 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.beewise.beewise.MainActivity@ea8531e, of which baseContext=android.app.ContextImpl@8e7bea5
+10-31 16:01:54.406 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:01:54.635 17711 17716 I beewise.beewise: Background young concurrent mark compact GC freed 2198KB AllocSpace bytes, 19(560KB) LOS objects, 37% free, 4745KB/7563KB, paused 9.245ms,4.668ms total 134.169ms
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+10-31 16:01:59.124 17711 17711 I Choreographer: Skipped 262 frames!  The application may be doing too much work on its main thread.
+10-31 16:01:59.307 17711 17804 D ProfileInstaller: Installing profile for com.beewise.beewise
+10-31 16:01:59.334 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:01:59.412 17711 17711 I flutter : BeeWisePush stop-delivery generation=1 requested=false installation=false
+10-31 16:01:59.422 17711 17711 I flutter : BeeWisePush auth-change generation=2 requested=false installation=false
+10-31 16:01:59.534 17711 17742 W beewise.beewise: Verification of void com.google.android.gms.tasks.zzo.run() took 156.309ms (537.40 bytecodes/s) (0B arena alloc)
+10-31 16:01:59.949 17711 17811 W DynamiteModule: Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+10-31 16:01:59.987 17711 17811 I DynamiteModule: Considering local module com.google.android.gms.providerinstaller.dynamite:0 and remote module com.google.android.gms.providerinstaller.dynamite:0
+10-31 16:01:59.990 17711 17811 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+10-31 16:02:00.008 17711 17811 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+10-31 16:02:00.008 17711 17811 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.location.provider.jar
+10-31 16:02:00.008 17711 17811 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.media.remotedisplay.jar
+10-31 16:02:00.008 17711 17811 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-31 16:02:00.008 17711 17811 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-31 16:02:00.099 17711 17811 W beewise.beewise: Loading /data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/oat/x86_64/base.odex non-executable as it requires an image which we failed to load
+10-31 16:02:00.145 17711 17811 D nativeloader: Configuring clns-11 for other apk /data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/base.apk. target_sdk_version=37, uses_libraries=, library_path=/data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/lib/x86_64:/data/app/~~iTqzAzavfIsH7u_6OK3MeA==/com.google.android.gms-76FzH-SstlHyFGW-o8Eq_A==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+10-31 16:02:00.314 17711 17786 W beewise.beewise: Verification of com.google.protobuf.GeneratedMessageLite$Builder com.google.protobuf.GeneratedMessageLite$Builder.clone() took 148.975ms (100.69 bytecodes/s) (0B arena alloc)
+10-31 16:02:00.559 17711 17786 W beewise.beewise: Verification of byte com.google.protobuf.CodedInputStream$ArrayDecoder.readRawByte() took 116.260ms (189.23 bytecodes/s) (0B arena alloc)
+10-31 16:02:00.660 17711 17810 W beewise.beewise: Verification of void com.google.firebase.firestore.local.LocalStore.lambda$notifyLocalViewChanges$7$com-google-firebase-firestore-local-LocalStore(java.util.List) took 101.864ms (1217.31 bytecodes/s) (0B arena alloc)
+10-31 16:02:00.671 17711 17786 W beewise.beewise: Verification of void com.google.protobuf.SchemaUtil.<clinit>() took 109.441ms (127.92 bytecodes/s) (0B arena alloc)
+10-31 16:02:00.707 17711 17711 I flutter : BeeWisePush stop-delivery generation=2 requested=false installation=false
+10-31 16:02:00.945 17711 17810 W beewise.beewise: Verification of void com.google.firebase.firestore.local.SQLiteIndexManager.<init>(com.google.firebase.firestore.local.SQLitePersistence, com.google.firebase.firestore.local.LocalSerializer, com.google.firebase.firestore.auth.User) took 134.907ms (504.05 bytecodes/s) (0B arena alloc)
+10-31 16:02:00.975 17711 17711 D InsetsController: hide(ime())
+10-31 16:02:00.975 17711 17711 I ImeTracker: com.beewise.beewise:fe0c5d6e: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-31 16:02:01.141 17711 17811 I ProviderInstaller: Installed default security provider AndroidOpenSSL (via CompatProvider)
+10-31 16:02:01.346 17711 17822 I hiyd    : Unable to retrieve flag snapshot for com.google.android.gms.providerinstaller#com.beewise.beewise, using defaults.
+10-31 16:02:01.573 17711 17822 W hiyd    : Failed to update snapshot for com.google.android.gms.providerinstaller#com.beewise.beewise flags may be stale.
+10-31 16:02:01.573 17711 17822 W hiyd    : java.io.IOException: Unable to create parent directories of /data/user/0/com.google.android.gms/files/phenotype/shared/com.google.android.gms.providerinstaller#com.beewise.beewise.pb
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at ifso.c(:com.google.android.gms@264231038@26.42.31 (260800-1005867181):36)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at hjfu.call(:com.google.android.gms@264231038@26.42.31 (260800-1005867181):19)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at ikul.a(:com.google.android.gms@264231038@26.42.31 (260800-1005867181):3)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at iktl.run(:com.google.android.gms@264231038@26.42.31 (260800-1005867181):18)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at ikum.run(:com.google.android.gms@264231038@26.42.31 (260800-1005867181):5)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:323)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+10-31 16:02:01.573 17711 17822 W hiyd    : 	at java.lang.Thread.run(Thread.java:1572)
+10-31 16:02:01.615 17711 17716 I beewise.beewise: Background concurrent mark compact GC freed 2132KB AllocSpace bytes, 19(444KB) LOS objects, 49% free, 5802KB/11MB, paused 7.532ms,26.269ms total 471.926ms
+[credential-bearing line omitted]
+10-31 16:02:05.666 17711 17711 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@6e3bd68
+10-31 16:02:07.850 17711 17711 I ImeTracker: com.beewise.beewise:abade91c: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+10-31 16:02:07.856 17711 17711 I HWUI    : Using FreeType backend (prop=Auto)
+10-31 16:02:07.868 17711 17711 D InsetsController: show(ime())
+10-31 16:02:07.869 17711 17711 D InsetsController: Setting requestedVisibleTypes to 511 (was 503)
+10-31 16:02:08.037 17711 17711 I AssistStructure: Flattened final assist data: 456 bytes, containing 1 windows, 3 views
+10-31 16:02:08.040 17711 17711 D InputConnectionAdaptor: The input method toggled cursor monitoring on
+10-31 16:02:08.536 17711 17711 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@20e8275
+10-31 16:02:08.915 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:08.992 17711 17711 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=false, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.beewise.beewise
+10-31 16:02:08.995 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:09.066 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:09.103 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:09.185 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:09.227 17711 17711 I ImeTracker: com.beewise.beewise:abade91c: onShown
+10-31 16:02:09.247 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:09.270 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:11.313 17711 17711 I ImeTracker: com.beewise.beewise:5c8060d5: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+10-31 16:02:11.314 17711 17711 D InsetsController: show(ime())
+10-31 16:02:11.314 17711 17711 I ImeTracker: com.beewise.beewise:5c8060d5: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-31 16:02:17.439 17711 17711 I ImeTracker: com.beewise.beewise:8411dabd: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+10-31 16:02:17.439 17711 17711 D InsetsController: show(ime())
+10-31 16:02:17.439 17711 17711 I ImeTracker: com.beewise.beewise:8411dabd: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-31 16:02:17.452 17711 17711 I ImeTracker: com.beewise.beewise:ec30ffd: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+10-31 16:02:17.452 17711 17711 D InsetsController: show(ime())
+10-31 16:02:17.452 17711 17711 I ImeTracker: com.beewise.beewise:ec30ffd: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-31 16:02:17.489 17711 17711 I AssistStructure: Flattened final assist data: 448 bytes, containing 1 windows, 3 views
+10-31 16:02:17.491 17711 17711 D InputConnectionAdaptor: The input method toggled cursor monitoring on
+10-31 16:02:23.001 17711 17711 I flutter : BeeWisePush stop-delivery generation=3 requested=false installation=false
+10-31 16:02:23.064 17711 17711 I FirebaseAuth: Logging in as [email omitted] with empty reCAPTCHA token
+10-31 16:02:23.099 17711 17742 W System  : Ignoring header X-Firebase-Locale because its value was null.
+[credential-bearing line omitted]
+10-31 16:02:23.290 17711 17742 W LocalRequestInterceptor: Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: Error returned from API. code: 403 body: Firebase App Check API has not been used in project 840483888286 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com/overview?project=840483888286 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+10-31 16:02:24.306 17711 17742 W System  : Ignoring header X-Firebase-Locale because its value was null.
+[credential-bearing line omitted]
+10-31 16:02:24.410 17711 17742 W LocalRequestInterceptor: Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: Too many attempts.
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+10-31 16:02:26.049 17711 17711 I flutter : BeeWisePush auth-change generation=4 requested=false installation=false
+10-31 16:02:26.067 17711 17711 I flutter : BeeWisePush stop-delivery generation=4 requested=false installation=false
+[credential-bearing line omitted]
+10-31 16:02:26.603 17711 17711 I flutter : BeeWisePush register-start generation=4 requested=true installation=false
+10-31 16:02:26.817 17711 17711 I ImeTracker: com.beewise.beewise:70e1b3fd: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+10-31 16:02:26.818 17711 17711 D InsetsController: hide(ime())
+10-31 16:02:26.818 17711 17711 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@fbca036
+10-31 16:02:26.819 17711 17711 D InsetsController: Setting requestedVisibleTypes to 503 (was 511)
+10-31 16:02:26.826 17711 17711 D CompatChangeReporter: Compat change id reported: 395521150; UID 10235; state: ENABLED
+10-31 16:02:26.957 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:26.972 17711 17711 I ImeTracker: system_server:d5b63381: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+10-31 16:02:26.975 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: Build configuration failed!
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: java.lang.IllegalArgumentException: Must pass in a valid surface control if only instrument surface; 
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.jank.InteractionJankMonitor$Configuration.validate(InteractionJankMonitor.java:946)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:882)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:0)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.jank.InteractionJankMonitor$Configuration$Builder.build(InteractionJankMonitor.java:852)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.jank.InteractionJankMonitor.begin(InteractionJankMonitor.java:400)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.view.inputmethod.ImeTracker$ImeJankTracker.lambda$onRequestAnimation$0(ImeTracker.java:970)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.view.inputmethod.ImeTracker$ImeJankTracker$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.os.Handler.handleCallback(Handler.java:1095)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.os.Looper.loopOnce(Looper.java:296)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.os.Looper.loop(Looper.java:397)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at android.app.ActivityThread.main(ActivityThread.java:9523)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at java.lang.reflect.Method.invoke(Native Method)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+10-31 16:02:27.013 17711 17711 D InteractionJankMonitor: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)
+10-31 16:02:27.064 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:27.109 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:27.114 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:27.237 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+10-31 16:02:27.238 17711 17711 D FlutterJNI: Sending viewport metrics to the engine.
+[credential-bearing line omitted]
+10-31 16:02:28.031 17711 17711 I flutter : BeeWisePush register-sdk-complete generation=5 requested=false installation=false
+10-31 16:02:28.032 17711 17711 I flutter : BeeWisePush stop-delivery generation=5 requested=false installation=false
+10-31 16:02:28.065 17711 17711 I flutter : BeeWisePush registered-callback generation=5 requested=false installation=false
+10-31 16:02:29.050 17711 17711 I flutter : BeeWisePush unregistered-callback generation=5 requested=false installation=false
+10-31 16:02:29.143 17711 17711 I flutter : BeeWisePush register-start generation=5 requested=true installation=false
+10-31 16:02:30.376 17711 17711 I flutter : BeeWisePush registered-callback generation=5 requested=true installation=false
+10-31 16:02:30.377 17711 17711 I flutter : BeeWisePush register-sdk-complete generation=5 requested=true installation=true
+10-31 16:02:30.378 17711 17711 I flutter : BeeWisePush stale-callback-ignored generation=5 requested=true installation=true
+10-31 16:02:30.379 17711 17711 I flutter : BeeWisePush bind-start generation=5 requested=true installation=true
+10-31 16:02:30.624 17711 17711 I flutter : BeeWisePush firestore-acknowledged generation=5 requested=true installation=true
+10-31 16:02:33.224 17711 17749 I TRuntime.CctTransportBackend: Making request to: https://firebaselogging-pa.googleapis.com/v1/firelog/legacy/batchlog
+10-31 16:02:36.822 17711 17749 I TRuntime.CctTransportBackend: Status Code: 200

@@ -351,5 +351,7 @@
     }
   ],
   "historicalSnapshot": true,
-  "supersededForCurrentApprovedRuntimeBy": "evidence/cloud/approved-runtime-validation.json"
+  "supersededForCurrentApprovedRuntimeBy": "evidence/cloud/approved-runtime-validation.json",
+  "newestCorrectiveValidation": "evidence/cloud/reliability-validation.json",
+  "historicalSnapshotNotice": "Original observations retained. Reliability validation supersedes older pending FCM, 5/7 analytics and no authenticated negative-read statements."
 }

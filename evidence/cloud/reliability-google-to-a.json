@@ -1,0 +1,21 @@
+{
+  "timestampUtc": "2026-10-31T09:09:49.332Z",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "device": "emulator-5558",
+  "label": "google-to-a",
+  "mode": "client",
+  "expectedAccountAlias": "uid-sha256:e82554223119b7ff",
+  "foreignAccountAlias": "uid-sha256:4a7de057a03aa476",
+  "result": {
+    "client": "Android Firebase Auth + Firestore SDK; no IAM/Admin bypass",
+    "ownParentServerRead": true,
+    "outcomes": {
+      "foreign_parent_read": "PASS permission-denied",
+      "foreign_application_read": "PASS permission-denied",
+      "foreign_devices_query": "PASS permission-denied"
+    },
+    "status": "PASS",
+    "rawIdentityOrDataExported": false
+  },
+  "credentialOrDocumentDataExported": false
+}
