@@ -1,7 +1,7 @@
 # BeeWise Lab 3 — Phân công song song: Bảo & Nguyên
 
 > **Mục đích:** Hoàn thành PRM393 Lab 3 theo đề ngày 21/10/2026; làm song song tối đa, **không đụng file, không chờ người kia để bắt đầu**, giữ các sửa bảo mật từ PR #2 đã merge.
-> **Repo:** https://github.com/YukikoKaori/beewise-lab2  
+> **Repo:** https://github.com/YukikoKaori/beewise-lab2
 > **PR #2 đã merge:** https://github.com/YukikoKaori/beewise-lab2/pull/2
 > **Trạng thái kiểm tra lại 30/10/2026:** `origin/main` = `12f5322655463fd801d64e4925572d6a3a2bbb82`, merge PR #2. Hai người tạo branch độc lập từ latest main; không tiếp tục branch PR #2.
 > **Firebase:** `beewise-lab-3` / Android `com.beewise.beewise`. Bảo xác nhận có quyền Console; Computer Use hiện đã điều khiển được Chrome đã đăng nhập và xác minh Console đúng project; xem cập nhật Bảo bên dưới. Project `beewise-8ba7c` không thuộc ứng dụng này và không được sử dụng.
@@ -113,9 +113,6 @@ schedules, staging, physical device, ARTEMIS and external review remain
 Primary receipt: `evidence/cloud/google-runtime-validation.json`; account
 snapshots `evidence/cloud/google-user-*.json`; runtime `evidence/android/logs/google-*`.
 
-
-
-
 ## Computer Use Console follow-up — 2026-10-31 (historical)
 
 **PARTIALLY COMPLETE.** Computer Use now controls the existing authenticated
@@ -155,7 +152,6 @@ Public native proof: `evidence/android/screenshots/console-search-submitted.png`
 `console-tutor-detail.png`, `console-ai-no-results.png`. Failed first taps and
 System UI ANR are classified separately in the manifest. No uninstall/data clear.
 Final pushed HEAD/CI are reported in the handoff; earlier checks remain historical.
-
 
 ## Approved deployment and actual Android follow-up — 2026-10-31
 
@@ -201,7 +197,6 @@ Receipts: `evidence/cloud/authorized-deploy-*.json`, `firestore-release-state.js
 `test-users-*.json`, `fcm-*.json`, `checks/authorized-profile-final/`, and
 `evidence/android/logs/auth-*`. Four real unauthenticated private reads were
 denied; those and IAM snapshots are not authenticated cross-UID client tests.
-
 
 **Snapshot 30/10 trước deployment (lịch sử):**
 **Cập nhật Bảo 30/10/2026:** audit trước sửa tại `docs/workstreams/bao-initial-audit.md`; trạng thái thực thi và blocker tại `docs/workstreams/bao-status.md`. Đã sửa BAO-A01/A02/A03 trong ba commit riêng; 45 Flutter tests và 27 Firestore/Storage emulator tests PASS. Không đánh dấu hoàn thành các checklist live dưới đây chỉ bằng unit test. Chưa có dedicated test account: các ca cần đăng nhập giữ BLOCKED theo xác nhận của Bảo. Fixture có nhãn và Remote Config tạm đổi/có hoàn nguyên được phép, đã tạo 6 fixture Firestore có nhãn `[TEST]`, verified=false; Remote Config chưa đổi vì runtime mới đang BLOCKED bởi signing key. Live API xác nhận Google provider/SHA chưa cấu hình, chưa có Storage bucket/billing, rules đang deploy khác repo và thiếu chat index; chưa deploy thay đổi nào.

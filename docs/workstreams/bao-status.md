@@ -80,8 +80,6 @@ schedules, staging, physical device, ARTEMIS and external review remain
 Primary receipt: `evidence/cloud/google-runtime-validation.json`; account
 snapshots `evidence/cloud/google-user-*.json`; runtime `evidence/android/logs/google-*`.
 
-
-
 # Bao cloud + Android status
 
 ## Computer Use Console follow-up — 2026-10-31 (historical)
