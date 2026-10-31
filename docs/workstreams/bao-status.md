@@ -1,5 +1,37 @@
 # Bao cloud + Android status
 
+## Approved deployment and authenticated runtime follow-up (current)
+
+Owner approved and the exact frozen Firestore rules/index bundle was deployed.
+Preflight hashes/baseline unchanged; **28/28 frozen rules tests rerun PASS**.
+Index reached READY before rules release; both CLI exits 0. Live rules now match
+repository hash `759a35e...`, ruleset `2aff57c1-3693-4bfa-9cd2-d77471ef08d6`,
+including the missing own-application match. Four real guest private-read denials
+and public server tutor reads PASS; these are not authenticated cross-UID tests.
+
+Account A actually signed in after deployment and created its parent profile.
+Cold-start restored its Auth SDK session and registered its own Android device.
+Profile then exposed `Bad state: No element` for a blank restored display name.
+Owner granted an explicit exception for that fallback only; correction committed
+with six widget regressions (before: 3 FAIL; after: 6 PASS). Full Flutter **59/59**,
+format/analyzer and APK build PASS. Same-signer install preserved A; restored
+Profile and managed logout PASS. A registration removed and guest inbox empty.
+B switching remains in progress. Real foreground/background/process-death FCM
+delivery and Search routing PASS; malformed/inaccessible routes rejected.
+No other Nguyen UI/theme/router/ARTEMIS/review/final files changed.
+
+The owner-supplied Google config update was preserved (same project/app/client
+key; one web OAuth client). Google provider became enabled externally; Android
+SHA remains absent in the latest inspection, so Google login is not verified.
+Storage/billing unchanged. Console/DebugView receipts, staging, trusted
+backend/provider, ARTEMIS and external review remain NOT RUN/BLOCKED.
+
+Deployment receipts and exact scope are in `bao-deployment-plan.md` and
+`evidence/cloud/authorized-deploy-*.json`; account metadata snapshots are
+`evidence/cloud/test-users-*.json`. No passwords/tokens requested or exported.
+
+## Earlier readiness snapshot (superseded by approved deployment above)
+
 ## Auth provisioning follow-up — 2026-10-31
 
 **PARTIALLY COMPLETE.** Fetched PR #3 HEAD
@@ -67,7 +99,7 @@ See `evidence/cloud/live-management-state.json` and six-service manifest.
 Correct project `beewise-lab-3`; no alternate project used. Email/password enabled,
 anonymous disabled, Google provider CONFIGURATION_NOT_FOUND, Android SHA list empty.
 No Storage bucket/release; billing disabled. Analytics linked, not DebugView proof.
-Deployed Firestore rules hash still differs: missing FCM UID ownership, current
+Deployed Firestore rules hash still differs: missing applicant separation for parent/device writes, current
 proposal/revision/expiry guards and reciprocal request/chat creation. Composite
 index audit/receipts are separate from emulator tests. No malicious live write.
 `bao-deployment-plan.md` has exact commands, preflight/READY-index checks and a

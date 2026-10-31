@@ -1,0 +1,13 @@
+{
+  "timestampUtc": "2026-10-31T03:49:54.481Z",
+  "projectId": "beewise-lab-3",
+  "stage": "background",
+  "probeId": "bao-pr3-background-1793418594319",
+  "ownerAlias": "uid-sha256:4a7de057a03aa476",
+  "recipientAlias": "uid-sha256:4a7de057a03aa476",
+  "installationAlias": "uid-sha256:ebcb4701b9f0d08b",
+  "statusCode": 200,
+  "acceptedMessageName": "projects/beewise-lab-3/messages/0:1793418594448207%bef6fff1bef6fff1",
+  "errorStatus": null,
+  "limitation": "API acceptance is not device delivery; correlate genuine device/PID/UI evidence. No topic/bulk send or service configuration change."
+}
