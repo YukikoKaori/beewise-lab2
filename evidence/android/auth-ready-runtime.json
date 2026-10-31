@@ -1,0 +1,73 @@
+{
+  "recordedAtUtc": "2026-10-31T03:09:13.202077+00:00",
+  "startingPrHead": "f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882",
+  "applicationSourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+  "serial": "emulator-5558",
+  "avd": "BeeWise_Bao_PR3_API37",
+  "installedApk": {
+    "timestampUtc": "2026-10-31T03:05:48.375211+00:00",
+    "serial": "emulator-5558",
+    "package": "com.beewise.beewise",
+    "localApkSha256": "f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d",
+    "installedBaseApkSha256": "f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d",
+    "bytes": 227800966,
+    "matches": true,
+    "applicationSourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+    "uninstallOrDataClearPerformed": false
+  },
+  "coldLaunch": "Status ok; TotalTime 6412ms; PID 3473",
+  "screenshots": [
+    {
+      "path": "evidence/android/screenshots/auth-ready-360-settled.png",
+      "sha256": "c4be114408f759cacdc2418b7b025ec857f5d9ebd1d6b576a565e54238f70881",
+      "dimensionsPx": [
+        720,
+        1600
+      ],
+      "observed": "Guest Home/Profile or six labeled synthetic cached Search results, manually inspected"
+    },
+    {
+      "path": "evidence/android/screenshots/auth-ready-360.png",
+      "sha256": "f6c9f63e19fc0fdf9c20cde6f4bb7cd13ec009cea80a9b2f8464841b433edbe1",
+      "dimensionsPx": [
+        720,
+        1600
+      ],
+      "observed": "System UI ANR over guest Home; not a passing screen"
+    },
+    {
+      "path": "evidence/android/screenshots/auth-ready-412-offline.png",
+      "sha256": "9bcafdbb7865fab26ab996e46d69c51dce473ee1126f6851846294190e9ddc67",
+      "dimensionsPx": [
+        824,
+        1830
+      ],
+      "observed": "Guest Home/Profile or six labeled synthetic cached Search results, manually inspected"
+    },
+    {
+      "path": "evidence/android/screenshots/auth-ready-412-online.png",
+      "sha256": "ff6dbf82005aa9669d38626b82164727c5b2dc01c57b0f86d6157abb6c6d5dbc",
+      "dimensionsPx": [
+        824,
+        1830
+      ],
+      "observed": "Guest Home/Profile or six labeled synthetic cached Search results, manually inspected"
+    },
+    {
+      "path": "evidence/android/screenshots/auth-ready-412-profile.png",
+      "sha256": "6c52f48930cd150c3ff0d9c9a96dc108f648ac1ae67351c234a2c04d9b994fb1",
+      "dimensionsPx": [
+        824,
+        1830
+      ],
+      "observed": "Guest Home/Profile or six labeled synthetic cached Search results, manually inspected"
+    }
+  ],
+  "uiDumpRegression": "Real /sdcard XML read and hierarchy validated on device; /dev/tty status message no longer presented as hierarchy",
+  "guestNavigation": "PASS Home 360dp to Profile/Search 412dp; profile explicitly signed out",
+  "network": "WiFi+mobile disabled then enabled by svc; six cached TEST records remained visible; screenshot after reconnection and separate host SDK server read PASS. No fresh device server-read assertion.",
+  "systemFinding": "System UI ANR after boot; Wait selected, subsequent screens usable. No claim of emulator stability certification.",
+  "restoration": "Display, WiFi, mobile data and Analytics debug property restored; see logs/auth-ready-restored-restore.json",
+  "authenticatedScenarios": "NOT RUN; deployment permission pending, no credentials used",
+  "originalDeviceData": "No original BeeWise uninstall/data clear; only separate AVD controlled"
+}

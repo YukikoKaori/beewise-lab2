@@ -1,0 +1,28 @@
+{
+  "recordedAtUtc": "2026-10-31T03:09:04.438180+00:00",
+  "validatedContentCommit": "974ff2cb1256d2d202825c70dab4275bab0dde78",
+  "startingHead": "f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882",
+  "fileSha256": {
+    "firebase/firestore.rules": "c1dad4250814abcf0c80adb940dc612dbee133db0e80574fd0d055c5dcf86bb8",
+    "firebase/firestore.indexes.json": "c7907062a2db5f9fc07a7aef733c1c0e590f133c0f265f1f4a4ff1072c7ace55",
+    "firebase/rules.test.cjs": "20b23844f1a135ddea782999e91d189e47bc03353281dffc1cf2ac4371ede3f9",
+    "test/auth_service_test.dart": "a67d719cfff43725870226921fc5c0853696b5ac706ffdb8766a34b41d1ea5d2"
+  },
+  "localChecks": {
+    "originalRules": "27/27 PASS",
+    "extendedRules": "28/28 PASS",
+    "exactFrozenBundle": "28/28 PASS",
+    "focusedAuthMocks": "6/6 PASS",
+    "fullFlutter": "53/53 PASS",
+    "format": "PASS 31 files 0 changed",
+    "analyze": "PASS no issues"
+  },
+  "apk": "Existing application source unchanged; installed artifact hash verified; final HEAD Android build checked separately in GitHub Actions",
+  "sharedDeployment": "NOT RUN; explicit owner permission pending",
+  "liveAuth": "NOT RUN; account metadata is not authentication evidence",
+  "stagingArtemisExternalReview": "NOT RUN/BLOCKED",
+  "historicalSnapshot": true,
+  "supersededForCurrentApprovedRuntimeBy": "evidence/cloud/approved-runtime-validation.json",
+  "newestCorrectiveValidation": "evidence/cloud/reliability-validation.json",
+  "historicalSnapshotNotice": "Original observations retained. Reliability validation supersedes older pending FCM, 5/7 analytics and no authenticated negative-read statements."
+}

@@ -1,0 +1,8 @@
+{
+    "startedAtUtc":  "2026-10-30T21:50:40.7161890Z",
+    "completedAtUtc":  "2026-10-30T21:51:56.5769675Z",
+    "sourceSha":  "18bd6d47a7d9135b3054217faef2dd4835be5976",
+    "workingDirectory":  "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+    "command":  "npm.cmd --prefix firebase test",
+    "nativeExitCode":  0
+}

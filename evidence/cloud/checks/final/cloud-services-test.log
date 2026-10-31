@@ -1,0 +1,42 @@
+Resolving dependencies...
+Downloading packages...
+  code_assets 1.2.1 (2.1.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  crypto 3.0.7 (3.0.8 available)
+  cupertino_ui 1.1.4 (1.1.5 available)
+  go_router 18.1.1 (18.1.2 available)
+  hooks 2.0.2 (2.2.0 available)
+  jni 1.1.0 (1.1.1 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.8.0 (1.9.0 available)
+  meta 1.18.3 (1.19.0 available)
+  mocktail 1.0.4 (1.0.5 available)
+  objective_c 9.5.0 (9.6.2 available)
+  petitparser 7.0.2 (7.1.0 available)
+  posix 6.5.2 (6.5.4 available)
+  qr 3.0.2 (4.0.1 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences_android 2.5.3 (2.5.4 available)
+  shared_preferences_foundation 2.5.7 (2.6.1 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+21 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Remote Config without Firebase keeps documented defaults
+00:00 +1: invalid Remote Config values cannot break catalog or Iterable.take
+00:00 +2: valid Remote Config values change both behavior limits and feature gate
+00:00 +3: Remote Config installs defaults before fetch and survives offline fetch
+00:00 +4: Analytics search is typed and contains no query text or document IDs
+00:00 +5: successful connection logs only the privacy-approved request category
+00:00 +6: actual tutor PDF generation uses bundled Vietnamese fonts and writes a PDF
+LOCAL_PDF_EVIDENCE=D:\CodexTemp\beewise-lab3-tools/beewise-tutor-bao-synthetic-local-only.pdf
+00:00 +7: Storage upload terminal state success reports progress and owner path with actual SDK URL result
+00:00 +8: Storage upload terminal state cancellation never returns a previous object URL as upload success
+00:00 +9: Storage upload terminal state permission and network errors propagate and never request a URL
+00:00 +10: Storage upload terminal state an empty completion stream cannot claim a successful upload
+00:00 +11: (tearDownAll)
+00:00 +11: All tests passed!

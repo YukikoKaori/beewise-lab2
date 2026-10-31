@@ -1,0 +1,136 @@
+{
+  "recordedAtUtc": "2026-10-31T04:46:52.250215+00:00",
+  "sourceHead": "ec0983bff9d6f6d1efd49d2b3a6ff996abbda4d5",
+  "projectId": "beewise-lab-3",
+  "androidAppId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+  "packageName": "com.beewise.beewise",
+  "authorization": "Owner explicitly approved exactly the two APK SHA fingerprints; dedicated Google test account will be entered by user",
+  "before": [],
+  "created": [
+    {
+      "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/25559c4689983405",
+      "shaHash": "6e3c8dbe21224f09538eecc6932af45405ce38d8",
+      "certType": "SHA_1"
+    },
+    {
+      "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/addb962b250be0e3",
+      "shaHash": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+      "certType": "SHA_256"
+    }
+  ],
+  "verifiedServerReadback": [
+    {
+      "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/25559c4689983405",
+      "shaHash": "6e3c8dbe21224f09538eecc6932af45405ce38d8",
+      "certType": "SHA_1"
+    },
+    {
+      "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/addb962b250be0e3",
+      "shaHash": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+      "certType": "SHA_256"
+    }
+  ],
+  "steps": [
+    {
+      "label": "sha-before",
+      "exitCode": 3221226505,
+      "apiStatus": "success",
+      "nodeExitAnomaly": true
+    },
+    {
+      "label": "sdk-before",
+      "exitCode": 3221226505,
+      "apiStatus": "success",
+      "nodeExitAnomaly": true
+    },
+    {
+      "label": "create-1",
+      "exitCode": 3221226505,
+      "apiStatus": "success",
+      "nodeExitAnomaly": true
+    },
+    {
+      "label": "readback-1",
+      "exitCode": 0,
+      "apiStatus": "success",
+      "nodeExitAnomaly": false
+    },
+    {
+      "label": "create-2",
+      "exitCode": 3221226505,
+      "apiStatus": "success",
+      "nodeExitAnomaly": true
+    },
+    {
+      "label": "readback-2",
+      "exitCode": 3221226505,
+      "apiStatus": "success",
+      "nodeExitAnomaly": true
+    },
+    {
+      "label": "sdk-after",
+      "exitCode": 3221226505,
+      "apiStatus": "success",
+      "nodeExitAnomaly": true
+    }
+  ],
+  "status": "PASS both exact SHA registrations verified through server list after each creation; CLI Node exit anomaly retained separately",
+  "config": {
+    "sameProjectAppPackage": true,
+    "sameClientKey": true,
+    "beforeOAuth": [
+      {
+        "clientType": 3,
+        "certificateHash": null,
+        "packageName": null,
+        "clientIdSha256": "30bf7f74c7807172b2524926d82a39d59d164ccd1bffdb1809837663b54c4ec5"
+      }
+    ],
+    "afterOAuth": [
+      {
+        "clientType": 1,
+        "certificateHash": "6e3c8dbe21224f09538eecc6932af45405ce38d8",
+        "packageName": "com.beewise.beewise",
+        "clientIdSha256": "d72d07557a24bcda131b11e95edfafb52eb3783a235738af42f0b468d18fab55"
+      },
+      {
+        "clientType": 3,
+        "certificateHash": null,
+        "packageName": null,
+        "clientIdSha256": "30bf7f74c7807172b2524926d82a39d59d164ccd1bffdb1809837663b54c4ec5"
+      }
+    ],
+    "repositoryOAuth": [
+      {
+        "clientType": 3,
+        "certificateHash": null,
+        "packageName": null,
+        "clientIdSha256": "30bf7f74c7807172b2524926d82a39d59d164ccd1bffdb1809837663b54c4ec5"
+      }
+    ],
+    "repositoryMatchesDownloadedConfig": false,
+    "privateBefore": "D:\\CodexTemp\\beewise-lab3-tools\\bao-cloud-private\\google-sha-approved-20261031\\before-google-services.json",
+    "privateAfter": "D:\\CodexTemp\\beewise-lab3-tools\\bao-cloud-private\\google-sha-approved-20261031\\after-google-services.json"
+  },
+  "unchangedScope": "No provider toggle, rules/index, App Check, Storage, billing or unrelated OAuth client mutation",
+  "googleRuntime": "NOT RUN; certificate configuration is not sign-in proof",
+  "independentStableReadback": {
+    "timestampUtc": "2026-10-31T08:09:14.145Z",
+    "projectId": "beewise-lab-3",
+    "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+    "readOnly": true,
+    "status": "PASS exact two approved SHA resources independently read back using Firebase management client",
+    "certificates": [
+      {
+        "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/25559c4689983405",
+        "shaHash": "6e3c8dbe21224f09538eecc6932af45405ce38d8",
+        "certType": "SHA_1"
+      },
+      {
+        "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/addb962b250be0e3",
+        "shaHash": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+        "certType": "SHA_256"
+      }
+    ]
+  }
+}

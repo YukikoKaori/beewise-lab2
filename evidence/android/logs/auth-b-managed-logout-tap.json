@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T04:03:46.760150+00:00",
+  "sourceSha": "0e78bedd703c0e9eac4907388f1935251405bd5a",
+  "action": "tap",
+  "label": "auth-b-managed-logout",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "696",
+        "280"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

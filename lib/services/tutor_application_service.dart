@@ -69,7 +69,12 @@ class TutorApplicationService {
   }
 
   Future<bool> hasApplication(String uid) async =>
-      (await _firestore.collection('tutorApplications').doc(uid).get()).exists;
+      (await _firestore
+              .collection('tutorApplications')
+              .doc(uid)
+              .get(const GetOptions(source: Source.server))
+              .timeout(const Duration(seconds: 15)))
+          .exists;
 
   Future<String> status(String uid) async {
     final snapshot = await _firestore

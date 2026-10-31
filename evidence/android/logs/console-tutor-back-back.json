@@ -1,0 +1,23 @@
+{
+  "timestampUtc": "2026-10-31T04:27:40.724312+00:00",
+  "sourceSha": "5acef657a826bfd6d404d5633fd4ce0c45e1d221",
+  "action": "back",
+  "label": "console-tutor-back",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "keyevent",
+        "4"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

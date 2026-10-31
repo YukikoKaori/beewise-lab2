@@ -1,0 +1,8 @@
+{
+    "startedAtUtc":  "2026-10-30T15:42:04.0986177Z",
+    "completedAtUtc":  "2026-10-30T15:42:39.3647625Z",
+    "sourceSha":  "badb7d33cf8d0b9b54ab4552e2c6142d07d37ff6",
+    "workingDirectory":  "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+    "command":  "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat test test/cloud_services_test.dart --reporter expanded",
+    "nativeExitCode":  1
+}

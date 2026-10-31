@@ -1,0 +1,22 @@
+{
+  "timestampUtc": "2026-10-30T22:16:13.221731+00:00",
+  "sourceSha": "93617b8272f7fa1a8a44406c28300350c578553e",
+  "action": "tap",
+  "label": "corrective-search-detail-again",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "tap",
+        "246",
+        "1737"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

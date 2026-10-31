@@ -1,0 +1,230 @@
+{
+  "recordedAtUtc": "2026-10-31T04:34:54.321649+00:00",
+  "startingPrHead": "5acef657a826bfd6d404d5633fd4ce0c45e1d221",
+  "projectId": "beewise-lab-3",
+  "source": "Actual existing authenticated Chrome Firebase Console via Computer Use @oai/sky; actual isolated Android app",
+  "apkSourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "apkSha256": "c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701",
+  "device": "BeeWise_Bao_PR3_API37 / emulator-5558 / sdk_gphone64_x86_64 / Android 17",
+  "analytics": {
+    "status": "PARTIALLY COMPLETE: five distinct business event types verified, not seven",
+    "businessEvents": {
+      "login": {
+        "consoleTime": "11:01:53 AM",
+        "parameter": "method=password",
+        "flow": "Prior genuine account B sign-in"
+      },
+      "logout": {
+        "consoleTime": "11:03:47 AM",
+        "flow": "Prior genuine account B managed logout"
+      },
+      "search": {
+        "consoleTime": "11:26:03 AM",
+        "flow": "Guest entered TEST; six labeled synthetic results"
+      },
+      "view_tutor": {
+        "consoleTime": "11:27:01 AM",
+        "parameter": "entry_source=profile_route",
+        "flow": "Guest opened labeled synthetic tutor detail"
+      },
+      "ai_match_no_results": {
+        "consoleTime": "11:28:37 AM",
+        "flow": "Guest submitted matching prompt; synthetic-only catalog excluded; actual empty result"
+      }
+    },
+    "additionalSdkEventsObserved": [
+      "screen_view",
+      "notification_foreground",
+      "notification_receive"
+    ],
+    "limits": "Eight distinct observed types across captures are not eight business events. Top Events TOTAL counts occurrences, not types. sign_up/export_report and authenticated UID set/clear inspection NOT RUN. Search custom parameters not expanded/verified. Displayed Console times are retained without assuming a timezone."
+  },
+  "crashlytics": {
+    "status": "PASS genuine Console fatal/nonfatal receipt and inspected custom keys; identity criterion incomplete",
+    "deliberateFatal": {
+      "exception": "FirebaseCrashlyticsTestCrash",
+      "frame": "FlutterFirebaseCrashlyticsPlugin.crash$lambda$0",
+      "consoleTime": "Oct 31, 2026, 5:14:51 AM",
+      "events": 1
+    },
+    "realBusinessNonfatal": {
+      "frame": "MatchingService.match (matching_service.dart:30)",
+      "reason": "thrown AI matching failed",
+      "meaning": "Matching disabled by Remote Config; handled localized failure",
+      "consoleTime": "Oct 31, 2026, 5:13:33 AM",
+      "events": 1
+    },
+    "inspectedKeys": {
+      "app_area": "beewise_mobile",
+      "flutter_error_reason": "thrown AI matching failed",
+      "flutter_error_exception": "Localized matching-disabled message"
+    },
+    "otherObservedIssues": [
+      {
+        "issue": "StringCharacters.first / characters_impl.dart:31",
+        "events": 2,
+        "state": "Historical blank-name Profile crash, already corrected separately"
+      },
+      {
+        "issue": "ProfileScreen nonfatal diagnostic sample",
+        "events": 1,
+        "state": "Diagnostic, not business-flow proof"
+      },
+      {
+        "issue": "_ioctl / libc.so ANR waiting for binder transaction",
+        "events": 1,
+        "state": "Open runtime/environment finding"
+      }
+    ],
+    "limits": "Existing actual uploaded events inspected; no new deliberate crash triggered this turn. Signed-in Crashlytics user-ID association NOT RUN. Persisted custom keys on fatal do not prove its initiating action or identity. Displayed Console times have no assumed timezone."
+  },
+  "remoteConfig": {
+    "console": "Empty Create configuration landing observed; consistent with previous empty-template restore",
+    "versionNumberVisible": false,
+    "limits": "Does not independently prove version 2 or replace prior API publish/restore receipts; no publish this turn"
+  },
+  "android": {
+    "PASS": [
+      "Guest TEST search",
+      "Actual tutor detail now retested",
+      "Synthetic-only matching empty result"
+    ],
+    "retainedFailure": "System UI not responding on cold boot, Wait selected; initial search/card taps did not navigate and are not counted as success",
+    "restoration": "evidence/android/logs/console-debug-state-restored-restore.json",
+    "uninstallOrDataClear": false
+  },
+  "remaining": {
+    "Google": "Live sign-in/profile/restore/logout and Crashlytics signed-in UID association PASS. Initial native request, FCM pending/relaunch and transient role retry retained; Analytics Google method and logout UID clear not verified. See google-runtime-validation.json.",
+    "Storage": "DEFERRED explicitly by user pending team discussion; no action",
+    "AppCheck": "BLOCKED API disabled/403 finding retained; no configuration/enforcement changes",
+    "authenticatedCrossUidFirestoreClientDenial": "NOT RUN",
+    "backendStagingArtemisExternalReviewPhysicalHardware": "NOT RUN/BLOCKED"
+  },
+  "privacy": "Unmodified Console PNG originals stay private on D due browser/account chrome. Public receipts contain hashes and observations only; no emails, passwords, tokens or private UID values.",
+  "consoleScreenshotReceipts": [
+    {
+      "observedAtUtc": "2026-10-31T04:32:58.193Z",
+      "label": "analytics-ai-match-no-results",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-ai-match-no-results.png",
+      "sha256": "7204f3181bf03006521d124fd183dcd8933a5b4335709302ba773236313531f9",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:25:32.225Z",
+      "label": "analytics-debug-device-initial",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-debug-device-initial.png",
+      "sha256": "bbe8831c31cd3921aba8af8e844a5c969dc72b4bad8c1124a892d1fba816f337",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:30:12.161Z",
+      "label": "analytics-login-method-password",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-login-method-password.png",
+      "sha256": "6250b66e50baa7e4f668004791021fbbf99d3df81aefa1d3a46439fb284345eb",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:29:07.740Z",
+      "label": "analytics-login-receipt",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-login-receipt.png",
+      "sha256": "3e5b10d562a17fa1f633ea86729a2b3fce235589d63e35a86376de76c553ab83",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:30:20.338Z",
+      "label": "analytics-logout-receipt",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-logout-receipt.png",
+      "sha256": "b2750a983952d77b550e581cd0c32bb890b4f9767532a6048841e3f1b70e0e05",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:27:38.840Z",
+      "label": "analytics-search-view-tutor-stream",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-search-view-tutor-stream.png",
+      "sha256": "64f018432888d2470bd580b01f5d75b5f5c647ed197cc75420d01fcdbcbd905e",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:28:22.799Z",
+      "label": "analytics-view-tutor-entry-source",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/analytics-view-tutor-entry-source.png",
+      "sha256": "65c6af04305d058a424fdd2aa3240d46ac011511fd87036b3e7e790786217ffb",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:22:32.349Z",
+      "label": "crashlytics-all-issues",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-all-issues.png",
+      "sha256": "9329584ade064829ea09446b4dfa92a7e0a9747beb0887dd43c3fb5665ff5966",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:21:32.430Z",
+      "label": "crashlytics-crash-issues",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-crash-issues.png",
+      "sha256": "75b39cdf930ce5bc2d1e04d35a9ea7956d677b5156eaa6dd4fb0caacbe8344fe",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:21:16.707Z",
+      "label": "crashlytics-dashboard",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-dashboard.png",
+      "sha256": "5567abaf8aa779c7bf7cb07c280df47634f93601b735ddda39d35c4549201b87",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:22:04.343Z",
+      "label": "crashlytics-fatal-keys",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-fatal-keys.png",
+      "sha256": "32300bccae3e4ad79430703e910f71c19c3a603d6d80ba1b75637330cfc79f03",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:21:56.934Z",
+      "label": "crashlytics-fatal-stack",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-fatal-stack.png",
+      "sha256": "3b350e48f967810990e0e2f516abe8546c1ddbef654ff172b7c03700136de75f",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:23:14.841Z",
+      "label": "crashlytics-real-nonfatal-keys",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-real-nonfatal-keys.png",
+      "sha256": "dd9746d8cc05fc4b54d88ffff77bd0108301ffa06534e234696400383fa2fc1b",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:22:44.913Z",
+      "label": "crashlytics-real-nonfatal-stack",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/crashlytics-real-nonfatal-stack.png",
+      "sha256": "cb5d66ea3af7ff1c1ea4f982538fcdb915412a3a010b81adad4b7777ab308694",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    },
+    {
+      "observedAtUtc": "2026-10-31T04:33:36.311Z",
+      "label": "remote-config-empty-console",
+      "projectId": "beewise-lab-3",
+      "privateOriginal": "D:/CodexTemp/beewise-lab3-tools/bao-console-evidence/remote-config-empty-console.png",
+      "sha256": "7239cba9a53a34808fec39a3477e5f414113db40b90f9cf66082cb8e579c7acf",
+      "source": "Computer Use @oai/sky actual Chrome window"
+    }
+  ],
+  "googleConfigurationFollowUp": "evidence/cloud/google-sha-approved.json",
+  "googleLiveFollowUp": "evidence/cloud/google-runtime-validation.json",
+  "newestCorrectiveValidation": "evidence/cloud/reliability-validation.json",
+  "historicalSnapshotNotice": "Original observations retained. Reliability validation supersedes older pending FCM, 5/7 analytics and no authenticated negative-read statements."
+}

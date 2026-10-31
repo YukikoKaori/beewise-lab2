@@ -1,0 +1,37 @@
+{
+  "timestampUtc": "2026-10-31T03:58:13.176Z",
+  "projectId": "beewise-lab-3",
+  "readOnly": true,
+  "credentialFieldsRequested": false,
+  "accountMetadata": [
+    {
+      "accountAlias": "uid-sha256:4a7de057a03aa476",
+      "disabled": false,
+      "providers": [
+        "password"
+      ],
+      "createdAtUtc": "2026-10-31T02:27:45.448Z",
+      "hasPriorSignInTimestamp": true
+    },
+    {
+      "accountAlias": "uid-sha256:564b131109a53e16",
+      "disabled": false,
+      "providers": [
+        "password"
+      ],
+      "createdAtUtc": "2026-10-31T02:27:55.335Z",
+      "hasPriorSignInTimestamp": false
+    }
+  ],
+  "enabledPasswordAccountCount": 2,
+  "identityScope": "Metadata confirms account existence/provider only; owner identifies which are authorized test users. This read-only inspection uses no password and does not test login or session.",
+  "firestore": {
+    "rulesetName": "projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+    "deployedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "repositorySha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "deployedTutorApplicationsMatch": true,
+    "repositoryTutorApplicationsMatch": true,
+    "consequence": "Own application match present; still require actual device login/profile/session verification."
+  },
+  "actualParentLogin": "NOT DETERMINED by metadata inspection; see separate deployment and genuine device evidence"
+}

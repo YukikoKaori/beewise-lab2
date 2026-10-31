@@ -1,0 +1,36 @@
+{
+  "timestampUtc": "2026-10-30T22:15:28.227729+00:00",
+  "sourceSha": "93617b8272f7fa1a8a44406c28300350c578553e",
+  "action": "launch",
+  "label": "corrective-post-crash-relaunch",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "force-stop",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 0,
+      "output": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: timeout\r\nLaunchState: UNKNOWN (-1)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 20070\r\nComplete\r\n"
+    }
+  ]
+}

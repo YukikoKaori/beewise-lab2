@@ -123,10 +123,15 @@ class ExportService {
       report.file,
       SettableMetadata(contentType: 'application/pdf'),
     );
+    TaskState? finalState;
     await for (final snapshot in task.snapshotEvents) {
+      finalState = snapshot.state;
       if (snapshot.totalBytes > 0) {
         onProgress(snapshot.bytesTransferred / snapshot.totalBytes);
       }
+    }
+    if (finalState != TaskState.success) {
+      throw const ExportException('Tải tệp chưa hoàn tất. Hãy thử lại.');
     }
     return UploadResult(await reference.getDownloadURL(), path);
   }

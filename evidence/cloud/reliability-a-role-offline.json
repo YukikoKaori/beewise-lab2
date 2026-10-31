@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-10-31T09:04:27.158Z",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "device": "emulator-5558",
+  "label": "a-role-offline",
+  "mode": "role",
+  "expectedAccountAlias": "uid-sha256:4a7de057a03aa476",
+  "foreignAccountAlias": null,
+  "result": {
+    "status": "fail-closed",
+    "parentGranted": false,
+    "errorCode": "unavailable"
+  },
+  "credentialOrDocumentDataExported": false
+}

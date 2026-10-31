@@ -1,0 +1,33 @@
+{
+  "timestampUtc": "2026-10-30T22:04:15.602936+00:00",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "force-stop",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 1,
+      "output": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nError type 3\r\nError: Activity class {com.beewise.beewise/com.beewise.beewise.MainActivity} does not exist.\r\n"
+    }
+  ]
+}

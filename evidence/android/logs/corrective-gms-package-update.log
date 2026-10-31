@@ -1,0 +1,17 @@
+I/ActivityManager(  627): Force stopping com.beewise.beewise appid=10235 user=0: killDueToPackageUpdate
+I/ActivityManager(  627): Killing 1782:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to killDueToPackageUpdate
+I/ActivityManager(  627): Start proc 6589:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+I/ActivityManager(  627): Force stopping com.android.vending appid=10157 user=-1: killDueToPackageUpdate
+I/ActivityManager(  627): Killing 4069:com.android.vending:instant_app_installer/u0a157 (adj 925): stop com.android.vending due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 1905:com.android.vending/u0a157 (adj 227): stop com.android.vending due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 2879:com.android.vending:background/u0a157 (adj 227): stop com.android.vending due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 3400:com.android.vending:quick_launch/u0a157 (adj 905): stop com.android.vending due to killDueToPackageUpdate
+I/ActivityManager(  627): Force stopping com.google.android.gms appid=10214 user=-1: killDueToPackageUpdate
+I/ActivityManager(  627): Killing 2290:com.google.android.apps.wellbeing/u0a163 (adj 905): stop com.google.android.gms due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 1276:com.google.android.inputmethod.latin/u0a171 (adj 201): stop com.google.android.gms due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 4166:com.google.android.gms.persistent/u0a214 (adj 100): stop com.google.android.gms due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 3435:com.google.android.gms.unstable/u0a214 (adj 905): stop com.google.android.gms due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 5939:com.google.android.gms.ui/u0a214 (adj 905): stop com.google.android.gms due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 5318:com.google.android.gms/u0a214 (adj 905): stop com.google.android.gms due to killDueToPackageUpdate
+I/ActivityManager(  627): Killing 6589:com.beewise.beewise/u0a235 (adj 0): stop com.google.android.gms due to killDueToPackageUpdate
+W/ActivityManager(  627): setHasOverlayUi called on unknown pid: 6589

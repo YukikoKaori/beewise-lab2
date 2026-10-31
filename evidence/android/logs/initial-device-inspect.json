@@ -1,0 +1,69 @@
+{
+  "timestampUtc": "2026-10-30T15:52:40.166196+00:00",
+  "sourceSha": "db1f12ecdceca61504181e4f9d9ba54fe1d37de7",
+  "action": "inspect",
+  "label": "initial-device",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.version.release"
+      ],
+      "exitCode": 0,
+      "output": "17\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "exitCode": 0,
+      "output": "37\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "wm",
+        "size"
+      ],
+      "exitCode": 0,
+      "output": "Physical size: 720x1280\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "wm",
+        "density"
+      ],
+      "exitCode": 0,
+      "output": "Physical density: 320\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5554",
+        "shell",
+        "dumpsys",
+        "package",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "Activity Resolver Table:\r\n  Schemes:\r\n      genericidp:\r\n        d203714 com.beewise.beewise/com.google.firebase.auth.internal.GenericIdpActivity filter 4f7bbbd\r\n          Action: \"android.intent.action.VIEW\"\r\n          Category: \"android.intent.category.DEFAULT\"\r\n          Category: \"android.intent.category.BROWSABLE\"\r\n          Scheme: \"genericidp\"\r\n          Authority: \"firebase.auth\": -1\r\n          Path: \"PatternMatcher{LITERAL: /}\"\r\n      recaptcha:\r\n        9dcb5b2 com.beewise.beewise/com.google.firebase.auth.internal.RecaptchaActivity filter c01c903\r\n          Action: \"android.intent.action.VIEW\"\r\n          Category: \"android.intent.category.DEFAULT\"\r\n          Category: \"android.intent.category.BROWSABLE\"\r\n          Scheme: \"recaptcha\"\r\n          Authority: \"firebase.auth\": -1\r\n          Path: \"PatternMatcher{LITERAL: /}\"\r\n\r\n  Non-Data Actions:\r\n      android.intent.action.MAIN:\r\n        8feed26 com.beewise.beewise/.MainActivity filter 230bd67\r\n          Action: \"android.intent.action.MAIN\"\r\n          Category: \"android.intent.category.LAUNCHER\"\r\n\r\nReceiver Resolver Table:\r\n  Non-Data Actions:\r\n      androidx.profileinstaller.action.SAVE_PROFILE:\r\n        d81490a com.beewise.beewise/androidx.profileinstaller.ProfileInstallReceiver filter ef223f1\r\n          Action: \"androidx.profileinstaller.action.SAVE_PROFILE\"\r\n      EXTRA_CHOSEN_COMPONENT:\r\n        a5c7afe com.beewise.beewise/dev.fluttercommunity.plus.share.SharePlusPendingIntent filter 54df25f\r\n          Action: \"EXTRA_CHOSEN_COMPONENT\"\r\n      androidx.profileinstaller.action.INSTALL_PROFILE:\r\n        d81490a com.beewise.beewise/androidx.profileinstaller.ProfileInstallReceiver filter c09557b\r\n          Action: \"androidx.profileinstaller.action.INSTALL_PROFILE\"\r\n      com.google.android.c2dm.intent.RECEIVE:\r\n        353b080 com.beewise.beewise/io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver filter d6956b9\r\n          Action: \"com.google.android.c2dm.intent.RECEIVE\"\r\n        68354ac com.beewise.beewise/com.google.firebase.iid.FirebaseInstanceIdReceiver filter 2bfa575\r\n          Action: \"com.google.android.c2dm.intent.RECEIVE\"\r\n      androidx.profileinstaller.action.SKIP_FILE:\r\n        d81490a com.beewise.beewise/androidx.profileinstaller.ProfileInstallReceiver filter 270f98\r\n          Action: \"androidx.profileinstaller.action.SKIP_FILE\"\r\n      androidx.profileinstaller.action.BENCHMARK_OPERATION:\r\n        d81490a com.beewise.beewise/androidx.profileinstaller.ProfileInstallReceiver filter 172ebd6\r\n          Action: \"androidx.profileinstaller.action.BENCHMARK_OPERATION\"\r\n\r\nService Resolver Table:\r\n  Non-Data Actions:\r\n      com.google.firebase.MESSAGING_EVENT:\r\n        f4dce57 com.beewise.beewise/io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService filter 7498d44\r\n          Action: \"com.google.firebase.MESSAGING_EVENT\"\r\n        9f40e2d com.beewise.beewise/com.google.firebase.messaging.FirebaseMessagingService filter d09ef62\r\n          Action: \"com.google.firebase.MESSAGING_EVENT\"\r\n          mPriority=-500, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false\r\n\r\nDomain verification status:\r\n\r\nPermissions:\r\n  Permission [com.beewise.beewise.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (4dd62fe):\r\n    sourcePackage=com.beewise.beewise\r\n    uid=10235 gids=[] type=0 prot=signature\r\n    perm=PermissionInfo{4e0ba5f com.beewise.beewise.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}\r\n    flags=0x0\r\n\r\nRegistered ContentProviders:\r\n  com.beewise.beewise/io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider:\r\n    Provider{f27cac com.beewise.beewise/io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider}\r\n  com.beewise.beewise/com.google.firebase.provider.FirebaseInitProvider:\r\n    Provider{243ad75 com.beewise.beewise/com.google.firebase.provider.FirebaseInitProvider}\r\n  com.beewise.beewise/androidx.startup.InitializationProvider:\r\n    Provider{328b10a com.beewise.beewise/androidx.startup.InitializationProvider}\r\n  com.beewise.beewise/dev.fluttercommunity.plus.share.ShareFileProvider:\r\n    Provider{6009d7b com.beewise.beewise/dev.fluttercommunity.plus.share.ShareFileProvider}\r\n\r\nContentProvider Authorities:\r\n  [com.beewise.beewise.firebaseinitprovider]:\r\n    Provider{243ad75 com.beewise.beewise/com.google.firebase.provider.FirebaseInitProvider}\r\n      applicationInfo=ApplicationInfo{660b798 com.beewise.beewise}\r\n  [com.beewise.beewise.flutterfirebasemessaginginitprovider]:\r\n    Provider{f27cac com.beewise.beewise/io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider}\r\n      applicationInfo=ApplicationInfo{6aeabf1 com.beewise.beewise}\r\n  [com.beewise.beewise.androidx-startup]:\r\n    Provider{328b10a com.beewise.beewise/androidx.startup.InitializationProvider}\r\n      applicationInfo=ApplicationInfo{e28d3d6 com.beewise.beewise}\r\n  [com.beewise.beewise.flutter.share_provider]:\r\n    Provider{6009d7b com.beewise.beewise/dev.fluttercommunity.plus.share.ShareFileProvider}\r\n      applicationInfo=ApplicationInfo{5719657 com.beewise.beewise}\r\n\r\nKey Set Manager:\r\n  [com.beewise.beewise]\r\n      Signing KeySets: 70\r\n\r\nPackages:\r\n  Package [com.beewise.beewise] (b75b544):\r\n    appId=10235\r\n    pccId=-1\r\n    pkg=Package{4f1162d com.beewise.beewise}\r\n    codePath=/data/app/~~raaUKa8L7pnYngiR5cGrNg==/com.beewise.beewise-26JGL3A6mISfyDdyng5V6g==\r\n    resourcePath=/data/app/~~raaUKa8L7pnYngiR5cGrNg==/com.beewise.beewise-26JGL3A6mISfyDdyng5V6g==\r\n    legacyNativeLibraryDir=/data/app/~~raaUKa8L7pnYngiR5cGrNg==/com.beewise.beewise-26JGL3A6mISfyDdyng5V6g==/lib\r\n    extractNativeLibs=false\r\n    primaryCpuAbi=x86_64\r\n    secondaryCpuAbi=null\r\n    cpuAbiOverride=null\r\n    versionCode=1 minSdk=24 targetSdk=36\r\n    minExtensionVersions=[]\r\n    versionName=0.1.0\r\n    hiddenApiEnforcementPolicy=2\r\n    usesNonSdkApi=false\r\n    splits=[base]\r\n    apkSigningVersion=2\r\n    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP KILL_AFTER_RESTORE ]\r\n    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]\r\n    forceQueryable=false\r\n    pageSizeCompat=0\r\n    queriesIntents=[Intent { act=android.intent.action.PROCESS_TEXT dat=content://*/... typ=text/plain }]\r\n    scannedAsStoppedSystemApp=false\r\n    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]\r\n    usesOptionalLibraries:\r\n      androidx.window.extensions\r\n      androidx.window.sidecar\r\n      android.ext.adservices\r\n    usesLibraryFiles:\r\n      /system_ext/framework/androidx.window.extensions.jar\r\n      /system_ext/framework/androidx.window.sidecar.jar\r\n    timeStamp=2026-10-30 19:14:01\r\n    lastUpdateTime=2026-10-30 19:14:01\r\n    installerPackageName=null\r\n    installerPackageUid=-1\r\n    initiatingPackageName=com.android.shell\r\n    originatingPackageName=null\r\n    packageSource=1\r\n    appMetadataFilePath=null\r\n    appMetadataSource=0\r\n    signatures=PackageSignatures{3365762 version:2, signatures:[50aa6f7a], past signatures:[]}\r\n    installPermissionsFixed=false\r\n    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP KILL_AFTER_RESTORE ]\r\n    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]\r\n    apexModuleName=null\r\n    declared permissions:\r\n      com.beewise.beewise.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature\r\n    requested permissions:\r\n      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE\r\n      android.permission.POST_NOTIFICATIONS\r\n      com.google.android.c2dm.permission.RECEIVE\r\n      com.google.android.providers.gsf.permission.READ_GSERVICES\r\n      android.permission.ACCESS_LOCAL_NETWORK\r\n      android.permission.ACCESS_ADSERVICES_AD_ID\r\n      android.permission.INTERNET\r\n      android.permission.ACCESS_NETWORK_STATE\r\n      com.beewise.beewise.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION\r\n      android.permission.ACCESS_ADSERVICES_ATTRIBUTION\r\n      android.permission.USE_FINGERPRINT\r\n      android.permission.USE_BIOMETRIC\r\n      com.google.android.gms.permission.AD_ID\r\n      android.permission.WAKE_LOCK\r\n    install permissions:\r\n      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE: granted=true\r\n      com.google.android.c2dm.permission.RECEIVE: granted=true\r\n      com.google.android.providers.gsf.permission.READ_GSERVICES: granted=true\r\n      android.permission.ACCESS_ADSERVICES_AD_ID: granted=true\r\n      android.permission.INTERNET: granted=true\r\n      android.permission.ACCESS_NETWORK_STATE: granted=true\r\n      com.beewise.beewise.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true\r\n      android.permission.ACCESS_ADSERVICES_ATTRIBUTION: granted=true\r\n      android.permission.USE_FINGERPRINT: granted=true\r\n      android.permission.USE_BIOMETRIC: granted=true\r\n      com.google.android.gms.permission.AD_ID: granted=true\r\n      android.permission.WAKE_LOCK: granted=true\r\n    User 0: ceDataInode=352844 deDataInode=81938 pccCeDataInode=0 pccDeDataInode=0 installed=true hidden=false suspended=false appLockEnabled=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false\r\n      installReason=0\r\n      dataDir=/data/user/0/com.beewise.beewise\r\n      firstInstallTime=2026-10-30 19:14:01\r\n      uninstallReason=0\r\n      overlay paths:\r\n        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk\r\n        /data/resource-cache/com.android.systemui-neutral-EwOB.frro\r\n        /data/resource-cache/com.android.systemui-accent-N94i.frro\r\n        /data/resource-cache/com.android.systemui-dynamic-NsGL.frro\r\n      legacy overlay paths:\r\n        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk\r\n      gids=[3003]\r\n      runtime permissions:\r\n        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n        android.permission.ACCESS_LOCAL_NETWORK: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]\r\n\r\nQueries:\r\n  system apps queryable: false\r\n  queries via forceQueryable:\r\n  queries via package name:\r\n  queries via component:\r\n    com.google.android.as.oss:\r\n      com.beewise.beewise\r\n    com.google.android.apps.messaging:\r\n      com.beewise.beewise\r\n    com.google.android.settings.intelligence:\r\n      com.beewise.beewise\r\n    com.beewise.beewise:\r\n      com.google.android.googlequicksearchbox\r\n  queryable via interaction:\r\n    User 0:\r\n  queryable via uses-library:\r\n\r\nDexopt state:\r\n  [com.beewise.beewise]\r\n    path: /data/app/~~raaUKa8L7pnYngiR5cGrNg==/com.beewise.beewise-26JGL3A6mISfyDdyng5V6g==/base.apk\r\n      x86_64: [status=run-from-apk] [reason=unknown] [primary-abi]\r\n        [location is error]\r\n"
+    }
+  ]
+}

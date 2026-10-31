@@ -1,0 +1,148 @@
+{
+  "projectId": "beewise-lab-3",
+  "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+  "readOnly": true,
+  "records": [
+    {
+      "command": [
+        "apps:list",
+        "ANDROID",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:08:40.555Z",
+      "nativeExitCode": 0,
+      "status": "PASS",
+      "result": [
+        {
+          "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+          "displayName": "BeeWise Android",
+          "platform": "ANDROID",
+          "packageName": "com.beewise.beewise",
+          "projectId": "beewise-lab-3"
+        }
+      ]
+    },
+    {
+      "command": [
+        "apps:android:sha:list",
+        "1:840483888286:android:50c11fbb460437ed6a2f8f",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:08:45.075Z",
+      "nativeExitCode": 0,
+      "status": "PASS",
+      "result": []
+    },
+    {
+      "command": [
+        "firestore:databases:list",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:08:56.394Z",
+      "nativeExitCode": 0,
+      "status": "PASS",
+      "result": [
+        {
+          "name": "projects/beewise-lab-3/databases/(default)",
+          "locationId": "asia-southeast1",
+          "type": "FIRESTORE_NATIVE",
+          "databaseEdition": "STANDARD"
+        }
+      ]
+    },
+    {
+      "command": [
+        "firestore:indexes",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:09:08.037Z",
+      "nativeExitCode": 3221226505,
+      "status": "BLOCKED",
+      "summary": "Read failed; inspect authenticated CLI privately."
+    },
+    {
+      "command": [
+        "appcheck:apps:list",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:09:18.480Z",
+      "nativeExitCode": 1,
+      "status": "BLOCKED",
+      "summary": "Read failed; inspect authenticated CLI privately."
+    },
+    {
+      "command": [
+        "appcheck:services:list",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:09:28.862Z",
+      "nativeExitCode": 1,
+      "status": "BLOCKED",
+      "summary": "Read failed; inspect authenticated CLI privately."
+    },
+    {
+      "command": [
+        "remoteconfig:get",
+        "--output",
+        "D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/remote-config-original.json",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:09:49.684Z",
+      "nativeExitCode": 0,
+      "status": "PASS",
+      "result": {
+        "versionNumber": "1",
+        "parameters": {
+          "home_tutor_limit": {
+            "value": "2"
+          },
+          "ai_result_limit": {
+            "value": "1"
+          },
+          "ai_matching_enabled": {
+            "value": "false"
+          },
+          "gemini_model": null
+        }
+      }
+    },
+    {
+      "command": [
+        "apps:sdkconfig",
+        "ANDROID",
+        "1:840483888286:android:50c11fbb460437ed6a2f8f",
+        "--out",
+        "D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/google-services-2026-10-30T22-08-36-748Z.json",
+        "--project",
+        "beewise-lab-3",
+        "--json",
+        "--non-interactive"
+      ],
+      "timestampUtc": "2026-10-30T22:10:01.016Z",
+      "nativeExitCode": 134,
+      "status": "BLOCKED",
+      "summary": "Read failed; inspect authenticated CLI privately."
+    }
+  ]
+}

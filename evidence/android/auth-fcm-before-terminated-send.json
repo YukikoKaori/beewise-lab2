@@ -1,0 +1,40 @@
+{
+  "timestampUtc": "2026-10-31T03:51:14.519697+00:00",
+  "serial": "emulator-5558",
+  "records": [
+    {
+      "command": [
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "keyevent",
+        "3"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "4226"
+    },
+    {
+      "command": [
+        "shell",
+        "am",
+        "kill",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ],
+  "pidAfterKill": "4226",
+  "processAbsentBeforeSend": false,
+  "forceStopOrDataClear": false
+}

@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T09:06:35.937747+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "tap",
+  "label": "reliability-b-open-login",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "539",
+        "358"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

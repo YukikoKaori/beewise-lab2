@@ -1,4 +1,5 @@
 import 'package:beewise/services/auth_service.dart';
+import 'package:beewise/services/tutor_application_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -69,7 +70,8 @@ void main() {
       ),
     ).thenAnswer((_) async => credential);
     when(() => parent.get()).thenAnswer((_) async => profileSnapshot);
-    when(() => application.get()).thenAnswer((_) async => applicationSnapshot);
+    when(() => application.get(const GetOptions(source: Source.server)))
+        .thenAnswer((_) async => applicationSnapshot);
     when(() => profileSnapshot.exists).thenReturn(false);
     when(() => applicationSnapshot.exists).thenReturn(false);
     when(() => parent.set(any(), any())).thenAnswer((_) async {});
@@ -80,6 +82,90 @@ void main() {
     email: 'alice@example.test',
     phone: '0900000000',
     password: 'test-only-password',
+  );
+  test(
+    'email login bootstraps an absent parent only after its role lookup',
+    () async {
+      expect(
+        await service.signInWithEmail(
+          ' Alice@Example.test ',
+          'test-only-password',
+        ),
+        same(credential),
+      );
+      verifyInOrder([
+        () => auth.signInWithEmailAndPassword(
+          email: 'alice@example.test',
+          password: 'test-only-password',
+        ),
+        () => application.get(const GetOptions(source: Source.server)),
+        () => parent.get(),
+        () => parent.set(any(), any()),
+      ]);
+      verifyNever(() => user.delete());
+    },
+  );
+  test('role retry never uses cached absence after a server error', () async {
+    final roles = TutorApplicationService(auth, store);
+    when(() => application.get(const GetOptions(source: Source.server)))
+        .thenThrow(
+          FirebaseException(plugin: 'cloud_firestore', code: 'unavailable'),
+        );
+    await expectLater(
+      roles.hasApplication('alice'),
+      throwsA(isA<FirebaseException>()),
+    );
+    verifyNever(() => parent.set(any(), any()));
+    when(() => applicationSnapshot.exists).thenReturn(true);
+    when(() => application.get(const GetOptions(source: Source.server)))
+        .thenAnswer((_) async => applicationSnapshot);
+    expect(await roles.hasApplication('alice'), isTrue);
+    verifyNever(() => application.get());
+    verifyNever(() => parent.set(any(), any()));
+  });
+  test(
+    'post-auth role permission denial never bypasses parent separation',
+    () async {
+      when(
+        () => application.get(const GetOptions(source: Source.server)),
+      ).thenThrow(
+        FirebaseException(plugin: 'cloud_firestore', code: 'permission-denied'),
+      );
+      await expectLater(
+        service.signInWithEmail('alice@example.test', 'test-only-password'),
+        throwsA(
+          isA<FirebaseException>().having(
+            (e) => e.code,
+            'code',
+            'permission-denied',
+          ),
+        ),
+      );
+      verify(
+        () => auth.signInWithEmailAndPassword(
+          email: 'alice@example.test',
+          password: 'test-only-password',
+        ),
+      ).called(1);
+      verifyNever(() => parent.get());
+      verifyNever(() => parent.set(any(), any()));
+      verifyNever(() => user.delete());
+    },
+  );
+  test(
+    'email login for an existing applicant never creates a parent',
+    () async {
+      when(() => applicationSnapshot.exists).thenReturn(true);
+      expect(
+        await service.signInWithEmail(
+          'alice@example.test',
+          'test-only-password',
+        ),
+        same(credential),
+      );
+      verifyNever(() => parent.get());
+      verifyNever(() => parent.set(any(), any()));
+    },
   );
   test(
     'failed profile write is recoverable by authenticated registration retry',

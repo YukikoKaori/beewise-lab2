@@ -1,0 +1,10 @@
+{
+  "observedAtUtc": "2026-10-31T09:35:21.352484+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "Actual guest tutor-detail PDF export button; labeled existing synthetic tutor 01",
+  "bytes": 16419,
+  "sha256": "3f3394ceb494acf8d3d5855370922a4e955c9ee98aa2761ca632b6e6f5990da9",
+  "validPdfHeader": true,
+  "privateOriginal": "D:\\CodexTemp\\beewise-lab3-tools\\bao-artifacts\\reliability-local-export.pdf",
+  "storageUpload": "DEFERRED; guest branch throws before upload; no bucket created"
+}

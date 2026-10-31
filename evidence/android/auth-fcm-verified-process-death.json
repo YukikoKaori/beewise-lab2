@@ -1,0 +1,17 @@
+{
+  "timestampUtc": "2026-10-31T03:51:54.098817+00:00",
+  "beforePid": "4226",
+  "command": [
+    "shell",
+    "run-as",
+    "com.beewise.beewise",
+    "kill",
+    "-9",
+    "4226"
+  ],
+  "exitCode": 0,
+  "pidAfterKill": "",
+  "processAbsentBeforeSend": true,
+  "forceStopOrDataClear": false,
+  "scope": "Debug test app own UID; simulate OS process death after backgrounding"
+}

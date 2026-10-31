@@ -1,0 +1,48 @@
+{
+  "timestampUtc": "2026-10-31T03:07:12.799776+00:00",
+  "sourceSha": "f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882",
+  "action": "offline",
+  "label": "auth-ready-offline",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "settings",
+        "get",
+        "global",
+        "mobile_data"
+      ],
+      "exitCode": 0,
+      "output": "1\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "svc",
+        "wifi",
+        "disable"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "svc",
+        "data",
+        "disable"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

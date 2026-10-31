@@ -1,0 +1,20 @@
+{
+  "timestampUtc": "2026-10-31T09:27:35.412Z",
+  "projectId": "beewise-lab-3",
+  "authorization": "Owner approved exactly one dedicated Email/Password signup plus Parent; user entered all credentials and consent",
+  "createdIdentityCount": 1,
+  "accountAlias": "uid-sha256:c8021f740130a289",
+  "providers": [
+    "password"
+  ],
+  "authCreatedAtUtc": "2026-10-31T09:14:56.384Z",
+  "lastSignInAtUtc": "2026-10-31T09:14:56.384Z",
+  "parent": {
+    "exists": true,
+    "createTime": "2026-10-31T09:15:01.156888Z",
+    "labelMatchesAuthorizedTestName": true
+  },
+  "devices": [],
+  "limitation": "Read-only IAM metadata corroborates user-operated native signup and DebugView; not itself client authentication proof",
+  "credentialsOrPersonalFieldsExported": false
+}

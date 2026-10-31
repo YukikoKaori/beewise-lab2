@@ -1,0 +1,9 @@
+{
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "entrypoint": "tool/bao_live_probe.dart",
+  "debugOnly": true,
+  "apk": "D:\\CodexTemp\\beewise-lab3-tools\\bao-artifacts\\reliability-probe.apk",
+  "sha256": "66ee633598f2643ffb00c6e865a7797f2be7d8e778b3f5838e941dc97fee0d2b",
+  "bytes": 227814148,
+  "limitation": "Explicit diagnostic entrypoint runs the same app and services plus read-only VM extensions; not the submitted default entrypoint"
+}

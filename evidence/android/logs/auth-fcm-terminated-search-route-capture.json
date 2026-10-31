@@ -1,0 +1,50 @@
+{
+  "timestampUtc": "2026-10-31T03:52:33.228612+00:00",
+  "sourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "action": "capture",
+  "label": "auth-fcm-terminated-search-route",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "UI hierchary dumped to: /sdcard/bao-ui.xml\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "cat",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation=\"0\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"com.beewise.beewise\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][720,1600]\" drawing-order=\"0\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.LinearLayout\" package=\"com.beewise.beewise\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][720,1600]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/content\" class=\"android.widget.FrameLayout\" package=\"com.beewise.beewise\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][720,1600]\" drawing-order=\"2\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"com.beewise.beewise\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][720,1600]\" drawing-order=\"1\" hint=\"\" /></node></node></node></hierarchy>"
+    },
+    {
+      "imagePath": "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2\\evidence\\android\\screenshots\\auth-fcm-terminated-search-route.png",
+      "imageSha256": "5abd159b791e4240a9b76a41cfcdc1d72e29a188c11d788eaa51a93ef525a5af",
+      "privateImage": false
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "4812\r\n"
+    }
+  ]
+}

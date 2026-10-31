@@ -1,0 +1,147 @@
+{
+  "projectId": "beewise-lab-3",
+  "authentication": "No Firebase Auth instance/identity; public client SDK only",
+  "test": "Live public tutor queries and read-only guest private-document denials; NOT authenticated cross-account/Remote Config/Android visible behavior",
+  "records": [
+    {
+      "timestampUtc": "2026-10-31T03:34:22.179Z",
+      "id": "bao-lab3-20261030-tutor-01",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:22.302Z",
+      "id": "bao-lab3-20261030-tutor-02",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:22.427Z",
+      "id": "bao-lab3-20261030-tutor-03",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:22.536Z",
+      "id": "bao-lab3-20261030-tutor-04",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:22.660Z",
+      "id": "bao-lab3-20261030-tutor-05",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:22.801Z",
+      "id": "bao-lab3-20261030-tutor-06",
+      "checks": {
+        "exists": true,
+        "active": true,
+        "labeled": true,
+        "unverified": true,
+        "synthetic": true,
+        "namespace": true
+      },
+      "fromCache": false,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:22.927Z",
+      "requestedLimit": 6,
+      "returnedCount": 6,
+      "fromCache": false,
+      "ownFixtureIds": [
+        "bao-lab3-20261030-tutor-01",
+        "bao-lab3-20261030-tutor-02",
+        "bao-lab3-20261030-tutor-03",
+        "bao-lab3-20261030-tutor-04",
+        "bao-lab3-20261030-tutor-05",
+        "bao-lab3-20261030-tutor-06"
+      ],
+      "ownFixturesRemainUnverified": true,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:23.052Z",
+      "requestedLimit": 2,
+      "returnedCount": 2,
+      "fromCache": false,
+      "ownFixtureIds": [
+        "bao-lab3-20261030-tutor-01",
+        "bao-lab3-20261030-tutor-02"
+      ],
+      "ownFixturesRemainUnverified": true,
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:23.146Z",
+      "test": "Guest private-document read denied",
+      "path": "parents/bao-negative-no-user",
+      "outcome": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:23.274Z",
+      "test": "Guest private-document read denied",
+      "path": "tutorApplications/bao-negative-no-user",
+      "outcome": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:23.366Z",
+      "test": "Guest private-document read denied",
+      "path": "parents/bao-negative-no-user/devices/bao-negative-no-device",
+      "outcome": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "timestampUtc": "2026-10-31T03:34:23.491Z",
+      "test": "Guest private-document read denied",
+      "path": "invoices/bao-negative-no-invoice",
+      "outcome": "permission-denied",
+      "status": "PASS"
+    }
+  ]
+}

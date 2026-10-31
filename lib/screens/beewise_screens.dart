@@ -1813,7 +1813,11 @@ class ProfileScreen extends ConsumerWidget {
                   ),
                 );
               }
-              final display = user.displayName ?? user.email ?? 'BeeWise';
+              final display = user.displayName?.trim().isNotEmpty == true
+                  ? user.displayName!.trim()
+                  : user.email?.trim().isNotEmpty == true
+                  ? user.email!.trim()
+                  : 'BeeWise';
               return Card(
                 child: ListTile(
                   leading: CircleAvatar(

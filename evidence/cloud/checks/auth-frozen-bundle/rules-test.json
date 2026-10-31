@@ -1,0 +1,18 @@
+{
+  "sourceSha": "f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882",
+  "startedAtUtc": "2026-10-31T03:19:26.4452447Z",
+  "projectId": "demo-beewise",
+  "sharedDeploymentPerformed": false,
+  "bundleDirectory": "D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/firestore-auth-bootstrap-20261031",
+  "fileSha256": {
+    "firebase.deploy.json": "858e30724765b212940de948a67e05865947e9568a52a4de1d77e22f3a1b4bfe",
+    "firebase.validation.json": "8093caad571888caa56399c14102ee1729903b233fce2313f0e8b8aff7719c5d",
+    "firestore.indexes.json": "c7907062a2db5f9fc07a7aef733c1c0e590f133c0f265f1f4a4ff1072c7ace55",
+    "firestore.rules": "c1dad4250814abcf0c80adb940dc612dbee133db0e80574fd0d055c5dcf86bb8",
+    "previous-deployed-firestore.rules": "be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448",
+    "rules.test.cjs": "20b23844f1a135ddea782999e91d189e47bc03353281dffc1cf2ac4371ede3f9",
+    "storage.rules": "318652b610b248664f6fdfee6c879950561c4870dd5d1c4d124f95b667f182fa"
+  },
+  "nativeExitCode": 0,
+  "completedAtUtc": "2026-10-31T03:19:40.6157568Z"
+}

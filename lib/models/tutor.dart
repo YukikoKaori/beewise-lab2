@@ -16,6 +16,7 @@ class Tutor {
     this.reviewCount = 0,
     this.experienceYears = 0,
     this.avatarUrl,
+    this.isSyntheticTestFixture = false,
   });
 
   final String id;
@@ -34,25 +35,35 @@ class Tutor {
   final int reviewCount;
   final int experienceYears;
   final String? avatarUrl;
+  final bool isSyntheticTestFixture;
 
-  factory Tutor.fromMap(String id, Map<String, dynamic> map) => Tutor(
-    id: id,
-    name: map['name'] as String? ?? '',
-    credential: map['credential'] as String? ?? '',
-    introduction: map['introduction'] as String? ?? '',
-    subjects: _stringList(map['subjects']),
-    grades: _stringList(map['grades']),
-    hourlyFee: (map['hourlyFee'] as num?)?.round() ?? 0,
-    areas: _stringList(map['areas']),
-    teachingModes: _stringList(map['teachingModes']),
-    availability: map['availability'] as String? ?? '',
-    verified: map['verified'] as bool? ?? false,
-    active: map['active'] as bool? ?? false,
-    rating: (map['rating'] as num?)?.toDouble(),
-    reviewCount: (map['reviewCount'] as num?)?.round() ?? 0,
-    experienceYears: (map['experienceYears'] as num?)?.round() ?? 0,
-    avatarUrl: map['avatarUrl'] as String?,
-  );
+  factory Tutor.fromMap(String id, Map<String, dynamic> map) {
+    final namespace = map['fixtureNamespace'];
+    final synthetic =
+        map['syntheticTestFixture'] == true ||
+        (namespace is String && namespace.trim().isNotEmpty) ||
+        id.startsWith('bao-lab3-');
+    final name = map['name'] as String? ?? '';
+    return Tutor(
+      id: id,
+      name: synthetic && !name.startsWith('[TEST]') ? '[TEST] $name' : name,
+      credential: map['credential'] as String? ?? '',
+      introduction: map['introduction'] as String? ?? '',
+      subjects: _stringList(map['subjects']),
+      grades: _stringList(map['grades']),
+      hourlyFee: (map['hourlyFee'] as num?)?.round() ?? 0,
+      areas: _stringList(map['areas']),
+      teachingModes: _stringList(map['teachingModes']),
+      availability: map['availability'] as String? ?? '',
+      verified: !synthetic && (map['verified'] as bool? ?? false),
+      active: map['active'] as bool? ?? false,
+      rating: (map['rating'] as num?)?.toDouble(),
+      reviewCount: (map['reviewCount'] as num?)?.round() ?? 0,
+      experienceYears: (map['experienceYears'] as num?)?.round() ?? 0,
+      avatarUrl: map['avatarUrl'] as String?,
+      isSyntheticTestFixture: synthetic,
+    );
+  }
 
   static List<String> _stringList(Object? value) => value is Iterable
       ? value.whereType<String>().toList(growable: false)
