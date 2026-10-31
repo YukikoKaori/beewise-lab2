@@ -113,5 +113,24 @@
     "privateAfter": "D:\\CodexTemp\\beewise-lab3-tools\\bao-cloud-private\\google-sha-approved-20261031\\after-google-services.json"
   },
   "unchangedScope": "No provider toggle, rules/index, App Check, Storage, billing or unrelated OAuth client mutation",
-  "googleRuntime": "NOT RUN; certificate configuration is not sign-in proof"
+  "googleRuntime": "NOT RUN; certificate configuration is not sign-in proof",
+  "independentStableReadback": {
+    "timestampUtc": "2026-10-31T08:09:14.145Z",
+    "projectId": "beewise-lab-3",
+    "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+    "readOnly": true,
+    "status": "PASS exact two approved SHA resources independently read back using Firebase management client",
+    "certificates": [
+      {
+        "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/25559c4689983405",
+        "shaHash": "6e3c8dbe21224f09538eecc6932af45405ce38d8",
+        "certType": "SHA_1"
+      },
+      {
+        "name": "projects/beewise-lab-3/androidApps/1:840483888286:android:50c11fbb460437ed6a2f8f/sha/addb962b250be0e3",
+        "shaHash": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+        "certType": "SHA_256"
+      }
+    ]
+  }
 }

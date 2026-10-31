@@ -1,0 +1,60 @@
+{
+  "timestampUtc": "2026-10-31T08:31:37.401502+00:00",
+  "sourceSha": "b053591848ea40d1c30b1a6b798580b5c67163f3",
+  "action": "restore",
+  "label": "google-runtime-state-restored",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "size",
+        "reset"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "density",
+        "reset"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "svc",
+        "wifi",
+        "enable"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "setprop",
+        "debug.firebase.analytics.app",
+        ".none."
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}
