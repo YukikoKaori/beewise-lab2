@@ -4,7 +4,7 @@
   "records": [
     {
       "name": "Authentication local providers",
-      "timestampUtc": "2026-10-30T22:21:50.007Z",
+      "timestampUtc": "2026-10-31T02:29:26.787Z",
       "status": "PASS",
       "result": {
         "emailPasswordEnabled": true,
@@ -15,13 +15,13 @@
     },
     {
       "name": "Google provider",
-      "timestampUtc": "2026-10-30T22:21:50.810Z",
+      "timestampUtc": "2026-10-31T02:29:27.681Z",
       "status": "BLOCKED",
       "summary": "HTTP 404: CONFIGURATION_NOT_FOUND"
     },
     {
       "name": "Storage buckets",
-      "timestampUtc": "2026-10-30T22:21:50.810Z",
+      "timestampUtc": "2026-10-31T02:29:27.681Z",
       "status": "PASS",
       "result": {
         "buckets": [],
@@ -30,7 +30,7 @@
     },
     {
       "name": "Billing state (read only)",
-      "timestampUtc": "2026-10-30T22:21:51.437Z",
+      "timestampUtc": "2026-10-31T02:29:28.070Z",
       "status": "PASS",
       "result": {
         "billingEnabled": false
@@ -38,7 +38,7 @@
     },
     {
       "name": "Deployed rules comparison",
-      "timestampUtc": "2026-10-30T22:21:52.776Z",
+      "timestampUtc": "2026-10-31T02:29:29.487Z",
       "status": "PASS",
       "result": [
         {
@@ -56,7 +56,7 @@
     },
     {
       "name": "Remote Config template",
-      "timestampUtc": "2026-10-30T22:21:55.438Z",
+      "timestampUtc": "2026-10-31T02:29:32.250Z",
       "status": "PASS",
       "result": {
         "versionNumber": "2",
@@ -71,7 +71,7 @@
     },
     {
       "name": "Firestore collection names (no document data)",
-      "timestampUtc": "2026-10-30T22:21:56.023Z",
+      "timestampUtc": "2026-10-31T02:29:32.907Z",
       "status": "PASS",
       "result": {
         "expectedCollectionsPresent": {
@@ -90,7 +90,7 @@
     },
     {
       "name": "Android app registration",
-      "timestampUtc": "2026-10-30T22:21:56.260Z",
+      "timestampUtc": "2026-10-31T02:29:33.461Z",
       "status": "PASS",
       "result": {
         "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
@@ -100,7 +100,7 @@
     },
     {
       "name": "Android SHA registrations",
-      "timestampUtc": "2026-10-30T22:21:57.100Z",
+      "timestampUtc": "2026-10-31T02:29:34.016Z",
       "status": "PASS",
       "result": {
         "certificates": [],
@@ -109,7 +109,7 @@
     },
     {
       "name": "Firestore composite indexes",
-      "timestampUtc": "2026-10-30T22:21:57.815Z",
+      "timestampUtc": "2026-10-31T02:29:34.734Z",
       "status": "PASS",
       "result": {
         "indexes": [],
@@ -118,7 +118,7 @@
     },
     {
       "name": "App Check service enforcement",
-      "timestampUtc": "2026-10-30T22:21:57.907Z",
+      "timestampUtc": "2026-10-31T02:29:35.079Z",
       "status": "PASS",
       "result": {
         "services": [],
@@ -127,7 +127,7 @@
     },
     {
       "name": "App Check Play Integrity provider",
-      "timestampUtc": "2026-10-30T22:21:58.491Z",
+      "timestampUtc": "2026-10-31T02:29:36.426Z",
       "status": "PASS",
       "result": {
         "settingsReturned": true,
@@ -137,7 +137,7 @@
     },
     {
       "name": "Analytics project linkage",
-      "timestampUtc": "2026-10-30T22:22:00.798Z",
+      "timestampUtc": "2026-10-31T02:29:38.456Z",
       "status": "PASS",
       "result": {
         "linked": true,

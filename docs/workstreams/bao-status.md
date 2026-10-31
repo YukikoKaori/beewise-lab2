@@ -1,5 +1,35 @@
 # Bao cloud + Android status
 
+## Auth provisioning follow-up — 2026-10-31
+
+**PARTIALLY COMPLETE.** Fetched PR #3 HEAD
+`f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882`; preserved existing fixes.
+This section supersedes historical statements below about missing test users.
+
+| Task | Current evidence | Remaining blocker |
+|---|---|---|
+| B-01 | Installed base APK hash matches the existing current build; fresh cold launch Status ok, Home 360dp and guest Profile 412dp PNG/XML/PID logs | System UI ANR on boot retained; parent login/logout/session restore/isolation NOT RUN |
+| B-02 | Two enabled password identities verified using server-projected metadata only; six synthetic tutors re-audited; deployed rules lack tutorApplications match | Explicit owner permission for frozen rules/index deployment pending; Google provider/SHA still absent |
+| B-03 | Fresh read-only six-service management audit; previous real RC publish/restore remains valid | Authenticated FCM/Storage and Console receipts remain NOT RUN/BLOCKED; no credentials used |
+| B-04 | Original 27/27 rules PASS, extended 28/28 PASS in repo and exact frozen bundle; 6/6 Auth mocks and 53/53 full Flutter tests PASS | These do not prove live Auth; trusted payment/staff/backend/staging still absent |
+| B-05 | Updated readiness, frozen deployment manifest, native evidence and status; formatter/analyzer PASS | Latest pushed HEAD/CI reported in handoff; ARTEMIS/external review/final presentation NOT RUN/BLOCKED |
+
+Root cause: Auth reads its own `tutorApplications/{uid}` before parent bootstrap.
+The deployed rules deny that read even for an absent document. Repository rules
+already allow the strict owner lookup; retain fail-closed client behavior.
+New tests cover missing-own-document bootstrap, cross-UID denial, ordered parent
+creation, role lookup permission denial and applicant separation. No app source
+or rules were weakened. No shared deployment or account login was performed.
+
+Receipts: `evidence/cloud/auth-provisioning-readiness.json`,
+`prepared-firestore-deployment.json`, `checks/auth-provisioned-20261031/`
+(original 27), `checks/auth-bootstrap-regression/` (28),
+`checks/auth-frozen-bundle/` (28), `checks/auth-bootstrap-final/` (53).
+Exact commands/preflight/secure forward-repair policy: `bao-deployment-plan.md`.
+Device evidence: `evidence/android/auth-ready-runtime.json`.
+
+## Previous corrective delivery (historical)
+
 **PARTIALLY COMPLETE**, 2026-10-31 local (receipts use UTC 2026-10-30).
 Fetched PR #3 HEAD `18bd6d47a7d9135b3054217faef2dd4835be5976` before editing;
 preserved its fixes. App source tested/built: `9ef5907b2d296fcdafaa869a53e9780692f4cc56`.

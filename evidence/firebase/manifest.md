@@ -1,5 +1,28 @@
 # Firebase evidence index — Bao
 
+## 2026-10-31 Auth provisioning follow-up (current)
+
+Two enabled Password identities exist, verified through metadata-only API fields;
+no passwords, emails, hashes or tokens requested or stored. This supersedes prior
+"identity absent" blockers below. **Actual Auth login/profile/logout/session
+restore/cross-account isolation: NOT RUN**, pending explicit owner authorization
+and completion of the strict Firestore deployment, then user-entered device login.
+Deployed `tutorApplications/{uid}` match is missing; repository rules are strict
+and already contain it. Readiness and exact frozen deployment receipts are in
+`../cloud/auth-provisioning-readiness.json` and
+`../cloud/prepared-firestore-deployment.json`.
+
+Fresh checks: original rules **27/27**, extended rules **28/28** (also exact frozen
+bundle), Flutter **53/53**, formatter/analyzer PASS. These are local checks.
+Read-only live service audit refreshed in `../cloud/live-management-state.json`:
+Google provider/SHA absent; no Storage bucket/release; billing disabled;
+Analytics linkage is not DebugView; Crashlytics Console receipt and authenticated
+FCM delivery remain NOT RUN/BLOCKED. Previous RC roundtrip restored empty version
+2; no new live mutation. Six existing labeled synthetic tutors re-audited and
+preserved. New native guest receipts: `../android/auth-ready-runtime.json`.
+
+## Previous corrective delivery (historical)
+
 2026-10-31 local; project `beewise-lab-3`, package `com.beewise.beewise`.
 App source `9ef5907b2d296fcdafaa869a53e9780692f4cc56`.
 Local checks: `../cloud/checks/corrective-final/`. Rules use `demo-beewise` only.
