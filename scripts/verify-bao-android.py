@@ -74,7 +74,11 @@ elif args.action == "launch":
     adb("shell", "am", "start", "-W", "-n", PACKAGE + "/.MainActivity")
 elif args.action == "capture":
     (OUT / "screenshots" / (args.label + ".png")).write_bytes(adb("exec-out", "screencap", "-p", binary=True))
-    xml = adb("shell", "uiautomator", "dump", "/dev/tty")
+    # API37 may print only a completion message for /dev/tty; read the real file.
+    adb("shell", "uiautomator", "dump", "/sdcard/bao-ui.xml")
+    xml = adb("shell", "cat", "/sdcard/bao-ui.xml")
+    if "<hierarchy" not in xml:
+        raise RuntimeError("UI hierarchy unavailable; do not present a status message as XML evidence.")
     (OUT / "logs" / (args.label + ".xml")).write_text(xml, encoding="utf-8")
     pid = adb("shell", "pidof", PACKAGE)
     if pid:
