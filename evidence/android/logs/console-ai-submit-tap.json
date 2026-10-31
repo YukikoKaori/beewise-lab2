@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T04:28:33.785257+00:00",
+  "sourceSha": "5acef657a826bfd6d404d5633fd4ce0c45e1d221",
+  "action": "tap",
+  "label": "console-ai-submit",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "360",
+        "835"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}
