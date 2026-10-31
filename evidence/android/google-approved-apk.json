@@ -1,0 +1,10 @@
+{
+  "recordedAtUtc": "2026-10-31T04:51:17.802460+00:00",
+  "sourceSha": "ff6ed0982d713d0336a029ee790117937f6a5239",
+  "apkPath": "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+  "sha256": "c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701",
+  "bytes": 227800538,
+  "signerSha1": "6e3c8dbe21224f09538eecc6932af45405ce38d8",
+  "signerSha256": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+  "sameApprovedSigner": true
+}

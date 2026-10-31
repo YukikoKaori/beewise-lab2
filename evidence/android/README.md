@@ -1,3 +1,41 @@
+## Approved Google SHA configuration follow-up — 2026-10-31 (current)
+
+Owner explicitly authorized exactly the APK SHA-1/SHA-256 and confirmed a
+dedicated Google test account with user-operated sign-in. **B-02 configuration
+PASS:** both certificate resources created and read back from the server after
+each addition, with no extra SHA. Firebase generated only the matching Android
+OAuth client; repository config now includes it. Existing project/app/package,
+web client and client key are unchanged. No provider, App Check, Storage, billing
+or rules/index mutation. Firebase CLI Node 25 exit assertions are retained in
+the receipt, separately from successful API results and server verification.
+
+**B-01/B-03 runtime pending user interaction:** same-signer APK rebuilt from
+`ff6ed0982d713d0336a029ee790117937f6a5239`, installed with `-r` on isolated
+`emulator-5558` without uninstall/clear-data, launched and reached guest Home,
+Profile and Login. Binary SHA remains
+`c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`;
+the web client resource used by the app is unchanged. Initial white/loading
+capture is not Home success; settled capture is. Google cancellation **PASS**:
+user returned from the native flow and the actual app shows the localized
+cancelled message with guest Profile; account metadata/device ownership stayed
+unchanged. Google sign-in/session restore/logout are **NOT RUN** until actual
+device outcomes are captured after the user finishes entering credentials.
+Do not infer authentication from SHA registration or Auth Users metadata.
+
+**B-04/B-05:** local formatter/analyzer and 59 Flutter tests PASS; APK build PASS.
+Current rules/CI results and final pushed SHA are reported in the handoff.
+No Nguyen UI/theme/router/ARTEMIS/review/final-presentation edits. Storage stays
+explicitly DEFERRED for team discussion. Existing App Check, authenticated
+cross-UID negative, trusted backend/staging, ARTEMIS/external review blockers
+remain; earlier Analytics/Crashlytics Console proof remains valid.
+
+Receipts: `evidence/cloud/google-sha-approved.json`,
+`evidence/cloud/google-user-before-login.json`,
+`evidence/android/google-approved-apk.json`,
+`evidence/android/logs/google-*`, `evidence/cloud/checks/google-sha-approved/`.
+Raw Console/Android authenticated images and CLI/config originals remain private
+on D. No credential fields were requested, printed or exported.
+
 # Android actual verification — Bao, 2026-10-31
 
 ## Computer Use Console follow-up — 2026-10-31 (current)
