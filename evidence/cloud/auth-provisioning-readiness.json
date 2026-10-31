@@ -1,0 +1,37 @@
+{
+  "timestampUtc": "2026-10-31T02:30:27.699Z",
+  "projectId": "beewise-lab-3",
+  "readOnly": true,
+  "credentialFieldsRequested": false,
+  "accountMetadata": [
+    {
+      "accountAlias": "uid-sha256:4a7de057a03aa476",
+      "disabled": false,
+      "providers": [
+        "password"
+      ],
+      "createdAtUtc": "2026-10-31T02:27:45.448Z",
+      "hasPriorSignInTimestamp": false
+    },
+    {
+      "accountAlias": "uid-sha256:564b131109a53e16",
+      "disabled": false,
+      "providers": [
+        "password"
+      ],
+      "createdAtUtc": "2026-10-31T02:27:55.335Z",
+      "hasPriorSignInTimestamp": false
+    }
+  ],
+  "enabledPasswordAccountCount": 2,
+  "identityScope": "Metadata confirms account existence/provider only; owner identifies which are authorized test users. No password used, login or session tested.",
+  "firestore": {
+    "rulesetName": "projects/beewise-lab-3/rulesets/14c0a112-21ce-4077-876b-fa6a298db91c",
+    "deployedSha256": "be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448",
+    "repositorySha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "deployedTutorApplicationsMatch": false,
+    "repositoryTutorApplicationsMatch": true,
+    "consequence": "Auth SDK success is distinct from post-auth application-role read and parent profile creation. Missing match denies that read even when the application document does not exist; never bypass the role check."
+  },
+  "actualParentLogin": "NOT RUN; shared deployment authorization and user-entered device login required"
+}
