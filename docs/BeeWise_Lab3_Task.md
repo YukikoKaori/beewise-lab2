@@ -49,7 +49,13 @@ debug APK build PASS. Same-signer install `-r` preserved A's data. Source APK
 `9657d1b2f0c57a425298aab58fefbccb7119ac47`, SHA-256
 `c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`.
 Fixed restored Profile and managed logout PASS; A's own device registration was
-removed and guest inbox emptied. B account-switch validation follows separately.
+removed and guest inbox emptied. B login/profile/session restore/logout PASS;
+A inbox is absent under B, A profile unchanged, same installation belongs only
+to B after explicit retry, and both registrations are absent after B logout.
+Initial B automatic registration remained pending; manual retry recovered it.
+This is a retained reliability finding, not an automatic-registration PASS.
+B received its exact foreground probe; new-APK 360dp/412dp and guest offline
+cache/reconnected Search were captured. Original device settings restored.
 
 Real FCM API sends plus exact probe IDs on device establish foreground receipt,
 background notification/tap and verified process-death notification/cold-start
@@ -76,7 +82,7 @@ denied; those and IAM snapshots are not authenticated cross-UID client tests.
 
 ### B-01 [P0] Android runtime, APK, thiết bị và minh chứng
 
-**2026-10-31 — PARTIALLY COMPLETE:** APK source `9657d1b`, same-signer install giữ dữ liệu PASS. A login/profile/session restore/logout đã chạy thật; crash Profile blank-name được owner cho ngoại lệ sửa đúng fallback, 6 regression PASS. Guest navigation/offline recovery 360dp/412dp có evidence trước đó; account B và viewport trên APK mới đang tiếp tục. Boot SystemUI ANR giữ nguyên là finding.
+**2026-10-31 — PARTIALLY COMPLETE:** APK source `9657d1b`, same-signer install giữ dữ liệu PASS. A login/profile/session restore/logout đã chạy thật; crash Profile blank-name được owner cho ngoại lệ sửa đúng fallback, 6 regression PASS. Guest navigation/offline recovery 360dp/412dp có evidence trước đó; B login/profile/restore/logout, inbox isolation và viewport 360dp/412dp trên APK mới đã chạy thật; B registration ban đầu pending, retry mới PASS. Boot SystemUI ANR giữ nguyên là finding.
 
 - [x] Toolchain/debug APK PASS từ app source `9ef5907`; cài và mở APK mới trên AVD riêng `emulator-5558` ở D. Không gỡ/xóa dữ liệu package cũ; native PNG/log tại `evidence/android/`.
 - [ ] Test emulator/device tại **360dp và 412dp**; logcat, thao tác điều hướng, login/logout, lỗi mạng; ghi lại crash, overflow, thao tác không phản hồi.
@@ -88,7 +94,7 @@ denied; those and IAM snapshots are not authenticated cross-UID client tests.
 
 ### B-02 [P0] Firebase Auth + Firestore + nguồn dữ liệu thật
 
-**2026-10-31 — PARTIALLY COMPLETE:** Owner cho phép đúng strict bundle; 28/28 Emulator PASS trước deploy, index READY trước rules, live hash khớp repo. A đăng nhập sau release và tạo parent profile thật; logout gỡ own device. B/cross-account còn tiếp tục. Bốn guest private-read denials chạy thật, không thay cho authenticated cross-UID test. Google provider enabled bên ngoài; SHA/Google runtime BLOCKED. Sáu TEST tutor giữ nguyên, unverified.
+**2026-10-31 — PARTIALLY COMPLETE:** Owner cho phép đúng strict bundle; 28/28 Emulator PASS trước deploy, index READY trước rules, live hash khớp repo. A đăng nhập sau release và tạo parent profile thật; logout gỡ own device. B login/profile/restore/logout PASS; inbox A không lộ ở B, ownership chỉ ở B sau retry; authenticated cross-UID client denial vẫn NOT RUN. Bốn guest private-read denials chạy thật, không thay cho authenticated cross-UID test. Google provider enabled bên ngoài; SHA/Google runtime BLOCKED. Sáu TEST tutor giữ nguyên, unverified.
 
 - [ ] Dùng project do chủ repo sở hữu, kiểm tra project ID khớp `google-services.json`; chuẩn bị **tài khoản test** độc lập, không đưa mật khẩu vào repo.
 - [ ] Cấu hình Google Sign-In Android (OAuth/SHA/support email) nếu có quyền; kiểm thử sign-in, cancel, sign-out, session restore và profile recovery.
@@ -100,7 +106,7 @@ denied; those and IAM snapshots are not authenticated cross-UID client tests.
 
 ### B-03 [P0] 6 dịch vụ Firebase — chứng minh bằng Console + app
 
-**2026-10-31 — PARTIALLY COMPLETE:** A Email/Password/profile/restore/logout và FCM foreground/background/process-death delivery + tap Search đã xác minh trên thiết bị, route malformed/inaccessible chat bị chặn. RC publish/restore đã chạy thật. Storage bucket không có, billing tắt; Analytics DebugView/Crashlytics Console/Google runtime NOT RUN/BLOCKED. B isolation đang tiếp tục.
+**2026-10-31 — PARTIALLY COMPLETE:** A Email/Password/profile/restore/logout và FCM foreground/background/process-death delivery + tap Search đã xác minh trên thiết bị, route malformed/inaccessible chat bị chặn. RC publish/restore đã chạy thật. Storage bucket không có, billing tắt; Analytics DebugView/Crashlytics Console/Google runtime NOT RUN/BLOCKED. B inbox/registration isolation quan sát thật PASS sau retry; B automatic registration pending được ghi là reliability finding.
 
 - [ ] **Authentication:** đủ signed-in/signed-out, Google native account picker/cancel, sign-out xóa session riêng tư.
 - [ ] **Cloud Storage:** tạo PDF từ tutor đang hiển thị; upload `reports/{uid}/...pdf`, progress, download URL, rules cross-user deny, console file list. Nếu Spark không có bucket thì ghi blocker và đề nghị giảng viên giải pháp được duyệt; **không tự nâng Blaze**.

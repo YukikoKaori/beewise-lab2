@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T04:03:58.214340+00:00",
+  "sourceSha": "0e78bedd703c0e9eac4907388f1935251405bd5a",
+  "action": "tap",
+  "label": "auth-final-home-412-open",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "75",
+        "1680"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

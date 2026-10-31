@@ -1,0 +1,34 @@
+{
+  "timestampUtc": "2026-10-31T04:04:22.854681+00:00",
+  "sourceSha": "0e78bedd703c0e9eac4907388f1935251405bd5a",
+  "action": "resize",
+  "label": "auth-final-360-viewport",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "density",
+        "320"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "size",
+        "720x1600"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

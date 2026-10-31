@@ -1,5 +1,5 @@
 {
-  "recordedAtUtc": "2026-10-31T03:59:24.982693+00:00",
+  "recordedAtUtc": "2026-10-31T04:05:21.229153+00:00",
   "startingPrHead": "32793369e6e42f36377593e673a33299e88c2497",
   "apkSourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
   "apkSha256": "c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701",
@@ -40,7 +40,20 @@
       "profile": "FAIL before fix; PASS after owner-approved fallback correction",
       "managedLogout": "PASS guest UI, empty inbox, own registration removed"
     },
-    "accountB": "PENDING direct user login; no capture/log while credentials entered",
+    "accountB": {
+      "login": "PASS genuine Home/Profile plus new sign-in timestamp and own parent creation",
+      "isolation": "PASS A inbox absent in B; A parent/sign-in unchanged; after retry same installation registered only under B",
+      "registrationRecovery": "Initial automatic registration remained pending; explicit in-app retry recovered. Automatic registration reliability remains a finding.",
+      "sessionRestore": "PASS same sign-in timestamp, own device and B-only notification persisted after force-stop/relaunch",
+      "managedLogout": "PASS guest UI, empty inbox, A and B devices both absent; parents preserved",
+      "receipts": [
+        "test-users-account-b-after-login.json",
+        "test-users-account-b-registration-settled.json",
+        "test-users-account-b-after-retry.json",
+        "test-users-account-b-session-restored.json",
+        "test-users-account-b-managed-logout.json"
+      ]
+    },
     "authenticatedCrossUidFirestoreDenial": "NOT RUN; IAM snapshots and guest denials do not prove this"
   },
   "fcm": {
@@ -72,6 +85,11 @@
       "status": "PASS same Profile after tap; absent/inaccessible target, not existing cross-UID document proof",
       "probeId": "bao-pr3-unauthorized-chat-1793418983788",
       "ui": "auth-fcm-forbidden-rejected.xml"
+    },
+    "accountBForeground": {
+      "status": "PASS exact probe received in B inbox; no earlier A probe visible",
+      "probeId": "bao-pr3-foreground-1793419380626",
+      "ui": "auth-b-fcm-received.xml"
     }
   },
   "invalidOrHistoricalAttempts": {
@@ -89,7 +107,9 @@
     "Analytics": "Console DebugView NOT RUN; native SDK/event invocation only",
     "Crashlytics": "Console receipt NOT RUN; genuine prior device diagnostic/crash only",
     "RemoteConfig": "Prior live publish/restore PASS; Console screenshots NOT RUN",
-    "backendStagingArtemisExternalReview": "NOT RUN/BLOCKED"
+    "backendStagingArtemisExternalReview": "NOT RUN/BLOCKED",
+    "registrationReliability": "B initial automatic registration remained pending; visible explicit retry succeeds; not a complete automatic-registration certification",
+    "AppCheck": "Native Auth log reports API disabled/403 and placeholder token. No enforcement or service configuration changed; attestation BLOCKED."
   },
   "githubActions": "Verify exact final pushed HEAD separately; no merge authorized",
   "originalScreenshotSha256": {
@@ -97,6 +117,15 @@
     "auth-a-confirmed-home.png": "db1988032bbaeeb13f7a7968a537e156953ad7e4483ce257686c501814da504e",
     "auth-a-logged-out.png": "20cdc19da9491fdec340d033c53793a821d53563987525b00229ae1a70df4143",
     "auth-fcm-terminated-notification.png": "2857afbcb9d3f04b746003aa7e0d053f904a6c0714e9fb32586170b3097d9c52",
-    "auth-fcm-cold-route-settled.png": "65adeb87072048bca0cf3ce89f6e4296760fec0796a038b8fe5e86061493c600"
+    "auth-fcm-cold-route-settled.png": "65adeb87072048bca0cf3ce89f6e4296760fec0796a038b8fe5e86061493c600",
+    "auth-b-logged-out-412.png": "80df7f21b0fbf8193631ddbcf3bd7dc511e9ca93af1dee2233d990aed36ed6ab",
+    "auth-final-home-412.png": "20ecd5ac89ff14b542c5d23c3d8556dccdd28d1569440d02389ea00e8c9488cc",
+    "auth-final-offline-cache-412.png": "399f3a07b5738418f33d090b5522061400c6fa6f7b9ec1499783ed315edf12ae",
+    "auth-final-recovered-search-360.png": "16c18ea0768ac4e655b70c0f6f216050e954f66b1209a71c4d10eeff9f8c4370"
+  },
+  "newApkViewportsAndNetwork": {
+    "status": "PASS actual 360dp/412dp native screens, guest offline cached catalog, reconnected Search six labeled test records",
+    "deviceSettings": "Restored original size/density/Wi-Fi/mobile/Analytics debug property",
+    "limits": "Does not prove every business flow or physical hardware"
   }
 }

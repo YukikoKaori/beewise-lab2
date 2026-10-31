@@ -16,7 +16,11 @@ Owner granted an explicit exception for that fallback only; correction committed
 with six widget regressions (before: 3 FAIL; after: 6 PASS). Full Flutter **59/59**,
 format/analyzer and APK build PASS. Same-signer install preserved A; restored
 Profile and managed logout PASS. A registration removed and guest inbox empty.
-B switching remains in progress. Real foreground/background/process-death FCM
+B login/profile/restore/logout and visible inbox isolation PASS; same installation
+belongs only to B after explicit retry, then neither account after logout. B
+automatic registration initially stalled pending; manual retry recovered it.
+Keep that reliability finding open. Fresh new-APK 360dp/412dp PNGs and guest
+offline cache/reconnected Search captured; device settings restored. Real foreground/background/process-death FCM
 delivery and Search routing PASS; malformed/inaccessible routes rejected.
 No other Nguyen UI/theme/router/ARTEMIS/review/final files changed.
 

@@ -20,5 +20,7 @@
   "apk": "Existing application source unchanged; installed artifact hash verified; final HEAD Android build checked separately in GitHub Actions",
   "sharedDeployment": "NOT RUN; explicit owner permission pending",
   "liveAuth": "NOT RUN; account metadata is not authentication evidence",
-  "stagingArtemisExternalReview": "NOT RUN/BLOCKED"
+  "stagingArtemisExternalReview": "NOT RUN/BLOCKED",
+  "historicalSnapshot": true,
+  "supersededForCurrentApprovedRuntimeBy": "evidence/cloud/approved-runtime-validation.json"
 }

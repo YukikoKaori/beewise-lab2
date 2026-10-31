@@ -1,0 +1,46 @@
+{
+  "timestampUtc": "2026-10-31T04:03:23.470Z",
+  "projectId": "beewise-lab-3",
+  "stage": "account-b-session-restored",
+  "readOnly": true,
+  "requestedPersonalOrCredentialFields": false,
+  "accounts": [
+    {
+      "accountAlias": "uid-sha256:4a7de057a03aa476",
+      "enabled": true,
+      "providers": [
+        "password"
+      ],
+      "lastSignInAtUtc": "2026-10-31T03:28:24.962Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T03:28:26.692446Z",
+        "updateTime": "2026-10-31T03:28:26.692446Z"
+      },
+      "devices": [],
+      "deviceListComplete": true
+    },
+    {
+      "accountAlias": "uid-sha256:564b131109a53e16",
+      "enabled": true,
+      "providers": [
+        "password"
+      ],
+      "lastSignInAtUtc": "2026-10-31T04:01:51.972Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T04:01:53.191769Z",
+        "updateTime": "2026-10-31T04:01:53.191769Z"
+      },
+      "devices": [
+        {
+          "installationAlias": "uid-sha256:ebcb4701b9f0d08b",
+          "platform": "android",
+          "updateTime": "2026-10-31T04:03:18.592457Z"
+        }
+      ],
+      "deviceListComplete": true
+    }
+  ],
+  "limitation": "Admin/IAM metadata only. Requires separate genuine device login/session evidence; does not demonstrate client authorization or cross-account denial."
+}
