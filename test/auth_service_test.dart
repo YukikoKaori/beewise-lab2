@@ -82,6 +82,70 @@ void main() {
     password: 'test-only-password',
   );
   test(
+    'email login bootstraps an absent parent only after its role lookup',
+    () async {
+      expect(
+        await service.signInWithEmail(
+          ' Alice@Example.test ',
+          'test-only-password',
+        ),
+        same(credential),
+      );
+      verifyInOrder([
+        () => auth.signInWithEmailAndPassword(
+          email: 'alice@example.test',
+          password: 'test-only-password',
+        ),
+        () => application.get(),
+        () => parent.get(),
+        () => parent.set(any(), any()),
+      ]);
+      verifyNever(() => user.delete());
+    },
+  );
+  test(
+    'post-auth role permission denial never bypasses parent separation',
+    () async {
+      when(() => application.get()).thenThrow(
+        FirebaseException(plugin: 'cloud_firestore', code: 'permission-denied'),
+      );
+      await expectLater(
+        service.signInWithEmail('alice@example.test', 'test-only-password'),
+        throwsA(
+          isA<FirebaseException>().having(
+            (e) => e.code,
+            'code',
+            'permission-denied',
+          ),
+        ),
+      );
+      verify(
+        () => auth.signInWithEmailAndPassword(
+          email: 'alice@example.test',
+          password: 'test-only-password',
+        ),
+      ).called(1);
+      verifyNever(() => parent.get());
+      verifyNever(() => parent.set(any(), any()));
+      verifyNever(() => user.delete());
+    },
+  );
+  test(
+    'email login for an existing applicant never creates a parent',
+    () async {
+      when(() => applicationSnapshot.exists).thenReturn(true);
+      expect(
+        await service.signInWithEmail(
+          'alice@example.test',
+          'test-only-password',
+        ),
+        same(credential),
+      );
+      verifyNever(() => parent.get());
+      verifyNever(() => parent.set(any(), any()));
+    },
+  );
+  test(
     'failed profile write is recoverable by authenticated registration retry',
     () async {
       when(() => parent.set(any(), any())).thenThrow(
