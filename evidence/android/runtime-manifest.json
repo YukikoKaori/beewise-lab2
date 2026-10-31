@@ -349,5 +349,7 @@
       "classification": "HISTORICAL_ATTEMPT_ONLY",
       "observation": "Transition/splash/failed attempt; not counted as successful screen evidence"
     }
-  ]
+  ],
+  "historicalSnapshot": true,
+  "supersededForCurrentApprovedRuntimeBy": "evidence/cloud/approved-runtime-validation.json"
 }

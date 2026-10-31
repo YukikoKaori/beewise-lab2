@@ -18,7 +18,13 @@ debug APK build PASS. Same-signer install `-r` preserved A's data. Source APK
 `9657d1b2f0c57a425298aab58fefbccb7119ac47`, SHA-256
 `c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`.
 Fixed restored Profile and managed logout PASS; A's own device registration was
-removed and guest inbox emptied. B account-switch validation follows separately.
+removed and guest inbox emptied. B login/profile/session restore/logout PASS;
+A inbox is absent under B, A profile unchanged, same installation belongs only
+to B after explicit retry, and both registrations are absent after B logout.
+Initial B automatic registration remained pending; manual retry recovered it.
+This is a retained reliability finding, not an automatic-registration PASS.
+B received its exact foreground probe; new-APK 360dp/412dp and guest offline
+cache/reconnected Search were captured. Original device settings restored.
 
 Real FCM API sends plus exact probe IDs on device establish foreground receipt,
 background notification/tap and verified process-death notification/cold-start
