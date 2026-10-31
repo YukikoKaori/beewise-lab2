@@ -1,2 +1,3 @@
-  ANR time: Oct 31, 2026 4:29:15 PM
-  Reason: Input dispatching timed out (4932ec com.beewise.beewise/com.beewise.beewise.MainActivity is not responding. Waited 5020ms for FocusEvent(hasFocus=true)).
+  ANR time: Oct 31, 2026 4:29:15 PM
+
+  Reason: Input dispatching timed out (4932ec com.beewise.beewise/com.beewise.beewise.MainActivity is not responding. Waited 5020ms for FocusEvent(hasFocus=true)).

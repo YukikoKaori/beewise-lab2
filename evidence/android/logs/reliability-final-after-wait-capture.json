@@ -1,50 +1,50 @@
-{
-  "timestampUtc": "2026-10-31T09:30:40.160783+00:00",
-  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
-  "action": "capture",
-  "label": "reliability-final-after-wait",
-  "records": [
-    {
-      "command": [
-        "adb",
-        "-s",
-        "emulator-5558",
-        "shell",
-        "uiautomator",
-        "dump",
-        "/sdcard/bao-ui.xml"
-      ],
-      "exitCode": 0,
-      "output": "UI hierchary dumped to: /sdcard/bao-ui.xml\r\n"
-    },
-    {
-      "command": [
-        "adb",
-        "-s",
-        "emulator-5558",
-        "shell",
-        "cat",
-        "/sdcard/bao-ui.xml"
-      ],
-      "exitCode": 0,
-      "output": "<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation=\"0\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[18,604][702,996]\" drawing-order=\"0\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/content\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/parentPanel\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/topPanel\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,726]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/title_template\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,726]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"BeeWise isn't responding\" resource-id=\"android:id/alertTitle\" class=\"android.widget.TextView\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[98,672][622,726]\" drawing-order=\"2\" hint=\"\" /></node></node><node index=\"1\" text=\"\" resource-id=\"android:id/customPanel\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,726][670,964]\" drawing-order=\"3\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/custom\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,726][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,726][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"Close app\" resource-id=\"android:id/aerr_close\" class=\"android.widget.Button\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,756][670,852]\" drawing-order=\"1\" hint=\"\" /><node index=\"1\" text=\"Wait\" resource-id=\"android:id/aerr_wait\" class=\"android.widget.Button\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,852][670,948]\" drawing-order=\"2\" hint=\"\" /></node></node></node></node></node></node></node></hierarchy>"
-    },
-    {
-      "imagePath": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\reliability-final-after-wait.png",
-      "imageSha256": "f26381ae87bd20ec4a193de8d7de9e89908b8b0912fc8068a1ce0226744b427e",
-      "privateImage": true
-    },
-    {
-      "command": [
-        "adb",
-        "-s",
-        "emulator-5558",
-        "shell",
-        "pidof",
-        "com.beewise.beewise"
-      ],
-      "exitCode": 0,
-      "output": "20952\r\n"
-    }
-  ]
+{
+  "timestampUtc": "2026-10-31T09:30:40.160783+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "capture",
+  "label": "reliability-final-after-wait",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "UI hierchary dumped to: /sdcard/bao-ui.xml\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "cat",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation=\"0\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[18,604][702,996]\" drawing-order=\"0\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/content\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/parentPanel\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/topPanel\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,726]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/title_template\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,636][670,726]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"BeeWise isn't responding\" resource-id=\"android:id/alertTitle\" class=\"android.widget.TextView\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[98,672][622,726]\" drawing-order=\"2\" hint=\"\" /></node></node><node index=\"1\" text=\"\" resource-id=\"android:id/customPanel\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,726][670,964]\" drawing-order=\"3\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"android:id/custom\" class=\"android.widget.FrameLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,726][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.LinearLayout\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,726][670,964]\" drawing-order=\"1\" hint=\"\"><node index=\"0\" text=\"Close app\" resource-id=\"android:id/aerr_close\" class=\"android.widget.Button\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,756][670,852]\" drawing-order=\"1\" hint=\"\" /><node index=\"1\" text=\"Wait\" resource-id=\"android:id/aerr_wait\" class=\"android.widget.Button\" package=\"android\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"true\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[50,852][670,948]\" drawing-order=\"2\" hint=\"\" /></node></node></node></node></node></node></node></hierarchy>"
+    },
+    {
+      "imagePath": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\reliability-final-after-wait.png",
+      "imageSha256": "f26381ae87bd20ec4a193de8d7de9e89908b8b0912fc8068a1ce0226744b427e",
+      "privateImage": true
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "20952\r\n"
+    }
+  ]
 }
