@@ -1,0 +1,8 @@
+{
+  "startedAtUtc": "2026-10-31T03:38:17.7338052Z",
+  "completedAtUtc": "2026-10-31T03:38:34.7410925Z",
+  "sourceSha": "4b2e1caf82233389fcbf488b60f7cbbb8f2edfa3",
+  "workingDirectory": "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+  "command": "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat analyze",
+  "nativeExitCode": 0
+}

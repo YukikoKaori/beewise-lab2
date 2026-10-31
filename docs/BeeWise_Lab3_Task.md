@@ -31,11 +31,52 @@
 
 ## 2. BẢO — Task độc lập (Cloud + Android)
 
+## Approved deployment and actual Android follow-up — 2026-10-31
+
+**PARTIALLY COMPLETE.** Owner approved the exact frozen strict Firestore bundle.
+28/28 emulator tests rerun PASS before deploy. Additive chats index reached READY
+before rules release; both deploy commands exited 0. Active ruleset
+`2aff57c1-3693-4bfa-9cd2-d77471ef08d6` matches repository normalized SHA-256
+`759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578`.
+Missing own `tutorApplications/{uid}` lookup is now present. No Storage/provider/
+billing change, weak rollback, record deletion or rules weakening was performed.
+
+Actual Email/Password account A login after release created its parent profile;
+force-stop/relaunch restored the SDK session. This exposed a real blank-name
+Profile crash. Owner authorized exactly the fallback exception: six regressions
+PASS (three failed before correction), full Flutter 59/59, format/analyzer and
+debug APK build PASS. Same-signer install `-r` preserved A's data. Source APK
+`9657d1b2f0c57a425298aab58fefbccb7119ac47`, SHA-256
+`c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`.
+Fixed restored Profile and managed logout PASS; A's own device registration was
+removed and guest inbox emptied. B account-switch validation follows separately.
+
+Real FCM API sends plus exact probe IDs on device establish foreground receipt,
+background notification/tap and verified process-death notification/cold-start
+Search routing. Malformed URL and inaccessible chat taps keep Profile visible.
+An earlier terminated attempt retained its PID and is explicitly NOT counted.
+API acceptance alone is never treated as delivery. Original authenticated PNGs
+remain private on D; sanitized XML/logs and non-identifying screenshots are public.
+
+Google provider became enabled externally and owner-supplied web OAuth config
+was preserved separately; Android SHA registration/Google runtime remain BLOCKED.
+No Storage bucket/release; billing disabled. Analytics DebugView/Crashlytics
+Console receipts, staging, trusted payment/staff backend, ARTEMIS and external
+review remain NOT RUN/BLOCKED. Previous live Remote Config publish/restore remains
+valid; all six labeled synthetic tutor records remain preserved and unverified.
+
+Receipts: `evidence/cloud/authorized-deploy-*.json`, `firestore-release-state.json`,
+`test-users-*.json`, `fcm-*.json`, `checks/authorized-profile-final/`, and
+`evidence/android/logs/auth-*`. Four real unauthenticated private reads were
+denied; those and IAM snapshots are not authenticated cross-UID client tests.
+
+
+**Snapshot 30/10 trước deployment (lịch sử):**
 **Cập nhật Bảo 30/10/2026:** audit trước sửa tại `docs/workstreams/bao-initial-audit.md`; trạng thái thực thi và blocker tại `docs/workstreams/bao-status.md`. Đã sửa BAO-A01/A02/A03 trong ba commit riêng; 45 Flutter tests và 27 Firestore/Storage emulator tests PASS. Không đánh dấu hoàn thành các checklist live dưới đây chỉ bằng unit test. Chưa có dedicated test account: các ca cần đăng nhập giữ BLOCKED theo xác nhận của Bảo. Fixture có nhãn và Remote Config tạm đổi/có hoàn nguyên được phép, đã tạo 6 fixture Firestore có nhãn `[TEST]`, verified=false; Remote Config chưa đổi vì runtime mới đang BLOCKED bởi signing key. Live API xác nhận Google provider/SHA chưa cấu hình, chưa có Storage bucket/billing, rules đang deploy khác repo và thiếu chat index; chưa deploy thay đổi nào.
 
 ### B-01 [P0] Android runtime, APK, thiết bị và minh chứng
 
-**2026-10-31 — PARTIALLY COMPLETE:** runtime guest ở 360dp/412dp, dữ liệu test có nhãn, offline cache và khôi phục mạng đã chạy thật. Lượt tiếp tục xác minh APK đang cài khớp hash, cold launch Status ok và PNG/XML/log mới. Boot có GMS SIGBUS/System UI ANR; giữ log, không coi đây là full certification. Đã có 2 password identity; login/logout/session restore/isolation NOT RUN, chờ quyền deploy strict rules rồi thao tác đăng nhập trực tiếp trên emulator riêng.
+**2026-10-31 — PARTIALLY COMPLETE:** APK source `9657d1b`, same-signer install giữ dữ liệu PASS. A login/profile/session restore/logout đã chạy thật; crash Profile blank-name được owner cho ngoại lệ sửa đúng fallback, 6 regression PASS. Guest navigation/offline recovery 360dp/412dp có evidence trước đó; account B và viewport trên APK mới đang tiếp tục. Boot SystemUI ANR giữ nguyên là finding.
 
 - [x] Toolchain/debug APK PASS từ app source `9ef5907`; cài và mở APK mới trên AVD riêng `emulator-5558` ở D. Không gỡ/xóa dữ liệu package cũ; native PNG/log tại `evidence/android/`.
 - [ ] Test emulator/device tại **360dp và 412dp**; logcat, thao tác điều hướng, login/logout, lỗi mạng; ghi lại crash, overflow, thao tác không phản hồi.
@@ -47,7 +88,7 @@
 
 ### B-02 [P0] Firebase Auth + Firestore + nguồn dữ liệu thật
 
-**2026-10-31 — PARTIALLY COMPLETE:** audit lại 6 record synthetic từ server PASS; nhãn TEST/unverified được bảo vệ ở model, loại khỏi AI. API metadata xác nhận 2 password identity enabled, không đọc mật khẩu/email/token, không tính là Auth PASS. Rules live thiếu cả `tutorApplications/{uid}`, khiến role lookup trước parent bootstrap bị deny; còn drift FCM/proposal/reciprocal và thiếu chat index. Repo rules đã có strict match; không bypass lỗi permission ở client. Bundle đóng băng/hash, Emulator 28/28 PASS, lệnh và rollback an toàn tại `docs/workstreams/bao-deployment-plan.md`; chưa deploy, đang chờ owner cho phép rõ ràng. Google provider/SHA vẫn BLOCKED.
+**2026-10-31 — PARTIALLY COMPLETE:** Owner cho phép đúng strict bundle; 28/28 Emulator PASS trước deploy, index READY trước rules, live hash khớp repo. A đăng nhập sau release và tạo parent profile thật; logout gỡ own device. B/cross-account còn tiếp tục. Bốn guest private-read denials chạy thật, không thay cho authenticated cross-UID test. Google provider enabled bên ngoài; SHA/Google runtime BLOCKED. Sáu TEST tutor giữ nguyên, unverified.
 
 - [ ] Dùng project do chủ repo sở hữu, kiểm tra project ID khớp `google-services.json`; chuẩn bị **tài khoản test** độc lập, không đưa mật khẩu vào repo.
 - [ ] Cấu hình Google Sign-In Android (OAuth/SHA/support email) nếu có quyền; kiểm thử sign-in, cancel, sign-out, session restore và profile recovery.
@@ -59,7 +100,7 @@
 
 ### B-03 [P0] 6 dịch vụ Firebase — chứng minh bằng Console + app
 
-**2026-10-31 — PARTIALLY COMPLETE:** RC đổi thật 3→1, bật→tắt, Home giới hạn 2 trên cùng APK; template đã hoàn nguyên version 2 bằng ETag. Notification permission, non-fatal diagnostic và deliberate crash đã chạy trên Android. Audit API mới vẫn xác nhận Google provider/SHA thiếu, không có Storage bucket/release, billing tắt; 2 password identity tồn tại nhưng chưa có live Auth. Console receipt/screenshots, 7 DebugView events, FCM delivery và Storage upload vẫn NOT RUN/BLOCKED.
+**2026-10-31 — PARTIALLY COMPLETE:** A Email/Password/profile/restore/logout và FCM foreground/background/process-death delivery + tap Search đã xác minh trên thiết bị, route malformed/inaccessible chat bị chặn. RC publish/restore đã chạy thật. Storage bucket không có, billing tắt; Analytics DebugView/Crashlytics Console/Google runtime NOT RUN/BLOCKED. B isolation đang tiếp tục.
 
 - [ ] **Authentication:** đủ signed-in/signed-out, Google native account picker/cancel, sign-out xóa session riêng tư.
 - [ ] **Cloud Storage:** tạo PDF từ tutor đang hiển thị; upload `reports/{uid}/...pdf`, progress, download URL, rules cross-user deny, console file list. Nếu Spark không có bucket thì ghi blocker và đề nghị giảng viên giải pháp được duyệt; **không tự nâng Blaze**.
@@ -73,7 +114,7 @@
 
 ### B-04 [P1] Luồng tư vấn / học thử / thanh toán / lịch — đúng scope Lab 2
 
-**2026-10-31 — PARTIALLY COMPLETE:** bộ 27 Emulator rules ban đầu PASS; thêm regression missing-own-application/cross-UID thành 28/28 PASS, cả frozen bundle. Auth mocks 6/6, toàn bộ Flutter 53/53, format/analyze PASS. Unit/emulator không phải live Auth. Trusted backend/staff/payment provider/staging chưa có; mọi verification/schedule vẫn server-trusted, live E2E BLOCKED.
+**2026-10-31 — PARTIALLY COMPLETE:** Frozen rules 28/28 PASS trước deploy; full Flutter 59/59, formatter/analyzer/APK PASS. Không dùng unit/emulator để khẳng định live Auth. Payment verification và official schedule giữ server-trusted; trusted backend/staff/provider/staging vẫn BLOCKED.
 
 - [x] Đối chiếu 3 flow Figma/Handoff: search/AI → connect → consultant chat → trial → class revision → invoice → payment verified → official schedule; bảng transition tại `docs/workstreams/bao-workflow-status.md`.
 - [x] Xác minh phần client/rules và phần cần server tin cậy; unit/emulator PASS, backend/staging chưa triển khai, live business flow BLOCKED.
@@ -85,7 +126,7 @@
 
 ### B-05 [P1] Bàn giao evidence có thể tái sử dụng
 
-**2026-10-31:** đã cập nhật status, manifest 6 service, auth-provisioning-readiness, frozen deployment manifest, native PNG/XML/log, fixture audit và kế hoạch deploy. Các nhận định lịch sử “chưa có account” được thay bằng metadata tồn tại nhưng live Auth chưa chạy. Final HEAD/CI được ghi trong PR handoff; ARTEMIS/external review/final presentation vẫn NOT RUN/BLOCKED, không sửa file Nguyên.
+**2026-10-31 — PARTIALLY COMPLETE:** Bổ sung receipts deployment có quyền owner, profile regression, APK/hash/install, A Auth lifecycle và FCM thật. Manifest/status phân biệt attempt lỗi với proof hợp lệ. Final SHA/CI ghi tại handoff khi push. Chỉ sửa UI fallback được owner cấp ngoại lệ; không sửa theme/router/ARTEMIS/review/final presentation.
 
 - [x] Viết `docs/workstreams/bao-status.md`: Task ID, PASS/FAIL/NOT RUN/BLOCKED, SHA, tài nguyên test, bằng chứng URL/path, lỗi, bước chạy lại.
 - [x] Không sửa report/slides chung; cung cấp `evidence/firebase/manifest.md` và `evidence/android/README.md` để Nguyên dùng, giữ các ca live chưa chạy BLOCKED.

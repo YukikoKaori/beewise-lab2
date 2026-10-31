@@ -4,7 +4,7 @@
   "records": [
     {
       "name": "Authentication local providers",
-      "timestampUtc": "2026-10-31T02:29:26.787Z",
+      "timestampUtc": "2026-10-31T03:27:13.679Z",
       "status": "PASS",
       "result": {
         "emailPasswordEnabled": true,
@@ -15,13 +15,16 @@
     },
     {
       "name": "Google provider",
-      "timestampUtc": "2026-10-31T02:29:27.681Z",
-      "status": "BLOCKED",
-      "summary": "HTTP 404: CONFIGURATION_NOT_FOUND"
+      "timestampUtc": "2026-10-31T03:27:14.358Z",
+      "status": "PASS",
+      "result": {
+        "enabled": true,
+        "clientIdConfigured": true
+      }
     },
     {
       "name": "Storage buckets",
-      "timestampUtc": "2026-10-31T02:29:27.681Z",
+      "timestampUtc": "2026-10-31T03:27:14.644Z",
       "status": "PASS",
       "result": {
         "buckets": [],
@@ -30,7 +33,7 @@
     },
     {
       "name": "Billing state (read only)",
-      "timestampUtc": "2026-10-31T02:29:28.070Z",
+      "timestampUtc": "2026-10-31T03:27:15.059Z",
       "status": "PASS",
       "result": {
         "billingEnabled": false
@@ -38,15 +41,15 @@
     },
     {
       "name": "Deployed rules comparison",
-      "timestampUtc": "2026-10-31T02:29:29.487Z",
+      "timestampUtc": "2026-10-31T03:27:16.435Z",
       "status": "PASS",
       "result": [
         {
           "type": "firestore",
           "activeReleaseFound": true,
-          "rulesetName": "projects/beewise-lab-3/rulesets/14c0a112-21ce-4077-876b-fa6a298db91c",
-          "normalizedSha256": "be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448",
-          "matchesRepository": false
+          "rulesetName": "projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+          "normalizedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+          "matchesRepository": true
         },
         {
           "type": "storage",
@@ -56,7 +59,7 @@
     },
     {
       "name": "Remote Config template",
-      "timestampUtc": "2026-10-31T02:29:32.250Z",
+      "timestampUtc": "2026-10-31T03:27:19.174Z",
       "status": "PASS",
       "result": {
         "versionNumber": "2",
@@ -71,7 +74,7 @@
     },
     {
       "name": "Firestore collection names (no document data)",
-      "timestampUtc": "2026-10-31T02:29:32.907Z",
+      "timestampUtc": "2026-10-31T03:27:19.791Z",
       "status": "PASS",
       "result": {
         "expectedCollectionsPresent": {
@@ -90,7 +93,7 @@
     },
     {
       "name": "Android app registration",
-      "timestampUtc": "2026-10-31T02:29:33.461Z",
+      "timestampUtc": "2026-10-31T03:27:20.064Z",
       "status": "PASS",
       "result": {
         "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
@@ -100,7 +103,7 @@
     },
     {
       "name": "Android SHA registrations",
-      "timestampUtc": "2026-10-31T02:29:34.016Z",
+      "timestampUtc": "2026-10-31T03:27:21.034Z",
       "status": "PASS",
       "result": {
         "certificates": [],
@@ -109,16 +112,36 @@
     },
     {
       "name": "Firestore composite indexes",
-      "timestampUtc": "2026-10-31T02:29:34.734Z",
+      "timestampUtc": "2026-10-31T03:27:21.486Z",
       "status": "PASS",
       "result": {
-        "indexes": [],
+        "indexes": [
+          {
+            "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/chats/indexes/CICAgOjXh4EK",
+            "state": "READY",
+            "queryScope": "COLLECTION",
+            "fields": [
+              {
+                "fieldPath": "parentId",
+                "order": "ASCENDING"
+              },
+              {
+                "fieldPath": "updatedAt",
+                "order": "DESCENDING"
+              },
+              {
+                "fieldPath": "__name__",
+                "order": "DESCENDING"
+              }
+            ]
+          }
+        ],
         "complete": true
       }
     },
     {
       "name": "App Check service enforcement",
-      "timestampUtc": "2026-10-31T02:29:35.079Z",
+      "timestampUtc": "2026-10-31T03:27:21.787Z",
       "status": "PASS",
       "result": {
         "services": [],
@@ -127,7 +150,7 @@
     },
     {
       "name": "App Check Play Integrity provider",
-      "timestampUtc": "2026-10-31T02:29:36.426Z",
+      "timestampUtc": "2026-10-31T03:27:22.609Z",
       "status": "PASS",
       "result": {
         "settingsReturned": true,
@@ -137,7 +160,7 @@
     },
     {
       "name": "Analytics project linkage",
-      "timestampUtc": "2026-10-31T02:29:38.456Z",
+      "timestampUtc": "2026-10-31T03:27:24.678Z",
       "status": "PASS",
       "result": {
         "linked": true,

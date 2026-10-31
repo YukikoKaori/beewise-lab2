@@ -1,0 +1,17 @@
+{
+  "timestampUtc": "2026-10-31T03:42:44.032742+00:00",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "install",
+        "-r",
+        "D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk"
+      ],
+      "exitCode": 1,
+      "output": "Performing Streamed Install\r\nadb.exe: failed to install D:\\CodexTemp\\beewise-lab3-build\\build\\app\\outputs\\flutter-apk\\app-debug.apk: cmd: Can't find service: package\r\n\r\n"
+    }
+  ]
+}
