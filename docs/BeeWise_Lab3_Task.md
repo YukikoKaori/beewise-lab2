@@ -31,7 +31,48 @@
 
 ## 2. BẢO — Task độc lập (Cloud + Android)
 
-## Google live verification follow-up — 2026-10-31 (current)
+## Reliability corrective validation — 2026-10-31 (latest)
+
+Application source: `be2b44515af637db1c7ded6b94797d1cf4adc746`.
+This update supersedes the historical status entries below. Final delivery HEAD
+and its CI are recorded in PR #3 description; no merge or new PR.
+
+- **B-01 PARTIALLY COMPLETE:** same-signer default APK build/install PASS without
+  data clearing. Native A first-login PASS on default entrypoint; B/Google PASS on
+  explicit debug diagnostic entrypoint using the same production services/UI.
+  A session restore, actual A/B foreground FCM receipt/tap and managed logout PASS.
+  Role failure stays on account-check; restored network plus explicit retry returns
+  Home. Final default APK reinstall hit a genuine input ANR/slow startup; subsequent
+  relaunch renders Home. Failure evidence retained; clean cold-start is not PASS.
+- **B-02 scoped checks COMPLETE:** actual native authenticated A→B, B→A, Google→A
+  each allow own server Parent read and deny foreign Parent/application/devices
+  reads: **9/9 permission-denied**, no Admin bypass. Live malicious writes NOT RUN.
+  Existing strict rules/index and approved SHA configuration preserved; no deploy.
+  Six labeled synthetic tutors preserved; no new tutor/request/payment records.
+- **B-03 PARTIALLY COMPLETE:** FCM race reproduced and fixed with generation guards
+  and acknowledgement deadline; first-login A/B/Google succeed without retry or
+  restart. Exactly one owner-authorized test signup and Parent confirmed. Analytics
+  **7 distinct business events** have real DebugView receipts, adding `sign_up`
+  (`method=password`, `account_type=parent`) and guest `export_report`
+  (`subject_count=1`, `file_size_kb=16`). Google `login(method=google)` verified.
+  UID-clear acceptance remains **NOT VERIFIED**: later guest event's DebugView
+  properties still show prior dedicated UID. No successful clear claim.
+  Local PDF is real (16,419 bytes); Storage upload stays **DEFERRED**. Prior real
+  Crashlytics and RC receipts retained; not rerun or substituted with unit tests.
+- **B-04 PARTIALLY COMPLETE:** transient role reads use bounded server reads and
+  fail closed; unit/native retry PASS. Trusted payments/official schedules still
+  require backend/provider and are **BLOCKED**, with no client privilege changes.
+- **B-05 PARTIALLY COMPLETE:** formatter/analyzer PASS; Flutter **64/64**; Firebase
+  Emulator rules **28/28**; APK build PASS; application HEAD CI **3/3 PASS**.
+  Final evidence HEAD checks must match newest PR SHA. Actual client negative
+  probe and aliased logs are reviewable; originals private on D. ARTEMIS/external
+  review/physical hardware **NOT RUN**; staging/App Check out of scope. No Nguyen
+  UI/router/theme/review/presentation edits. **NOT MERGE READY** overall.
+
+Primary current manifest: `evidence/cloud/reliability-validation.json`.
+Root cause, implementation and regressions: `docs/workstreams/bao-reliability.md`.
+
+## Google live verification follow-up — 2026-10-31 (historical)
 
 **B-01/B-03 PARTIALLY COMPLETE:** actual dedicated Google sign-in, parent
 creation, signed-in Profile, process-death session restore, managed logout and
@@ -75,7 +116,7 @@ snapshots `evidence/cloud/google-user-*.json`; runtime `evidence/android/logs/go
 
 
 
-## Computer Use Console follow-up — 2026-10-31 (current)
+## Computer Use Console follow-up — 2026-10-31 (historical)
 
 **PARTIALLY COMPLETE.** Computer Use now controls the existing authenticated
 Chrome Firebase tab. Actual Console evidence from `beewise-lab-3` supersedes the
