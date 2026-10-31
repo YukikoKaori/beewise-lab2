@@ -6,7 +6,8 @@ Owner explicitly authorized only this fallback plus regression/build/install.
 Applied in `4b2e1ca`; six widget regressions PASS (three failed before the fix).
 Same-signer APK from `9657d1b` installed with `-r`, preserving account A.
 Actual restored Profile renders without the crash; managed logout returns to
-guest, clears the inbox, and removes A's own device registration. No other
+guest, clears the inbox, and removes A's own device registration. B restored
+Profile/logout also PASS at 360dp/412dp; no blank-name crash recurred. No other
 Nguyen UI/theme/router/ARTEMIS/review/presentation files were changed.
 
 The failure investigation and proposed patch below are retained as history.
