@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T08:21:03.410944+00:00",
+  "sourceSha": "b053591848ea40d1c30b1a6b798580b5c67163f3",
+  "action": "tap",
+  "label": "google-nonfatal-trigger",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "360",
+        "920"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}
