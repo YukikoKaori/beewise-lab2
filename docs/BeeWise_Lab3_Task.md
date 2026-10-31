@@ -4,7 +4,7 @@
 > **Repo:** https://github.com/YukikoKaori/beewise-lab2  
 > **PR #2 đã merge:** https://github.com/YukikoKaori/beewise-lab2/pull/2
 > **Trạng thái kiểm tra lại 30/10/2026:** `origin/main` = `12f5322655463fd801d64e4925572d6a3a2bbb82`, merge PR #2. Hai người tạo branch độc lập từ latest main; không tiếp tục branch PR #2.
-> **Firebase:** `beewise-lab-3` / Android `com.beewise.beewise`. Bảo xác nhận có quyền Console; automation hiện không điều khiển được Chrome đã đăng nhập, CLI đã xác minh lại quyền truy cập đúng project; browser Console vẫn không điều khiển được. Project `beewise-8ba7c` không thuộc ứng dụng này và không được sử dụng.
+> **Firebase:** `beewise-lab-3` / Android `com.beewise.beewise`. Bảo xác nhận có quyền Console; Computer Use hiện đã điều khiển được Chrome đã đăng nhập và xác minh Console đúng project; xem cập nhật Bảo bên dưới. Project `beewise-8ba7c` không thuộc ứng dụng này và không được sử dụng.
 > **Nguồn yêu cầu:** `PRM393 - Lab 3 Cloud-Enabled Mobile App (Firebase, Patrol, AI Code Review).pdf` (18 trang); Figma Lab 2, `handoff/flutter-handoff.md`, `docs/design-traceability.md`.
 
 ## 0. Quy tắc bất di bất dịch
@@ -30,6 +30,47 @@
 **Sau PR #2:** mỗi người fetch latest main và chỉ sửa file mình sở hữu. Không còn phải chờ PR #2; giữ nguyên notification ownership/route validation và các rules đã sửa. Không chỉnh tài liệu final chung trong lượt Bảo.
 
 ## 2. BẢO — Task độc lập (Cloud + Android)
+
+## Computer Use Console follow-up — 2026-10-31 (current)
+
+**PARTIALLY COMPLETE.** Computer Use now controls the existing authenticated
+Chrome Firebase tab. Actual Console evidence from `beewise-lab-3` supersedes the
+previous browser-unavailable and no-receipt statements below.
+
+- **B-01:** Existing same-key APK on isolated `emulator-5558` relaunched; actual
+  guest TEST search, labeled synthetic tutor detail and AI empty result captured.
+  Detail retest now PASS. System UI ANR recurred on boot; retained, not fixed.
+  Original display/network/Analytics debug settings restored after testing.
+- **B-02:** Existing approved strict rules/Auth evidence preserved. Exact installed
+  APK certificate hashes and guarded commands prepared in
+  `docs/workstreams/bao-google-sha-plan.md`; owner SHA permission and a dedicated
+  Google account remain pending. No Google login claim or shared OAuth mutation.
+  Authenticated cross-UID Firestore client denial remains NOT RUN.
+- **B-03:** DebugView shows five distinct business event types: `login` with
+  `method=password`, `logout`, `search`, `view_tutor` with
+  `entry_source=profile_route`, and `ai_match_no_results`. Three additional SDK
+  types (`screen_view`, `notification_foreground`, `notification_receive`) do not
+  complete the seven-business-event requirement. Crashlytics actually contains
+  the deliberate fatal test and real matching-disabled handled failure; inspected
+  keys include `app_area=beewise_mobile` and matching error reason/exception.
+  Signed-in Crashlytics user association remains NOT RUN. Historical Profile
+  crash and binder ANR retained. RC Console shows empty configuration landing,
+  consistent with prior API restore; version number is not visible. **Storage is
+  explicitly DEFERRED by user for team discussion; no bucket/billing action.**
+- **B-04:** Existing 59 Flutter/28 emulator rules and secure server-trusted payment
+  and official schedule gates preserved. No app/rules code change this turn;
+  no paid AI invocation or backend/staging completion claimed.
+- **B-05:** New actual receipts and sanitized Android logs indexed in
+  `evidence/cloud/console-runtime-validation.json`. Unmodified Console screenshots
+  stay private on D with public SHA-256 receipts because browser/account chrome
+  contains identifying information. Nguyen UI/theme/router/ARTEMIS/review/final
+  presentation untouched. ARTEMIS/external review/physical hardware NOT RUN.
+
+Public native proof: `evidence/android/screenshots/console-search-submitted.png`,
+`console-tutor-detail.png`, `console-ai-no-results.png`. Failed first taps and
+System UI ANR are classified separately in the manifest. No uninstall/data clear.
+Final pushed HEAD/CI are reported in the handoff; earlier checks remain historical.
+
 
 ## Approved deployment and actual Android follow-up — 2026-10-31
 

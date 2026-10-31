@@ -103,10 +103,10 @@
   "privacy": "Authenticated Profile PNGs/raw logs stay on D privately; public XML/PID logs redact identity paths, email, keys and tokens. Screenshots are unmodified originals.",
   "remaining": {
     "Google": "BLOCKED Android SHA absent; provider enabled externally, owner-supplied web client preserved",
-    "Storage": "BLOCKED no bucket/rules release; billing disabled",
-    "Analytics": "Console DebugView NOT RUN; native SDK/event invocation only",
-    "Crashlytics": "Console receipt NOT RUN; genuine prior device diagnostic/crash only",
-    "RemoteConfig": "Prior live publish/restore PASS; Console screenshots NOT RUN",
+    "Storage": "DEFERRED explicitly by user pending team discussion; no action",
+    "Analytics": "PARTIALLY COMPLETE: five distinct business event types verified, not seven",
+    "Crashlytics": "PASS genuine Console fatal/nonfatal receipt and inspected custom keys; identity criterion incomplete",
+    "RemoteConfig": "Empty Create configuration landing observed; consistent with previous empty-template restore; no version number visible; prior API roundtrip remains evidence",
     "backendStagingArtemisExternalReview": "NOT RUN/BLOCKED",
     "registrationReliability": "B initial automatic registration remained pending; visible explicit retry succeeds; not a complete automatic-registration certification",
     "AppCheck": "Native Auth log reports API disabled/403 and placeholder token. No enforcement or service configuration changed; attestation BLOCKED."
@@ -127,5 +127,6 @@
     "status": "PASS actual 360dp/412dp native screens, guest offline cached catalog, reconnected Search six labeled test records",
     "deviceSettings": "Restored original size/density/Wi-Fi/mobile/Analytics debug property",
     "limits": "Does not prove every business flow or physical hardware"
-  }
+  },
+  "consoleFollowUp": "evidence/cloud/console-runtime-validation.json"
 }

@@ -1,5 +1,45 @@
 # Android actual verification — Bao, 2026-10-31
 
+## Computer Use Console follow-up — 2026-10-31 (current)
+
+**PARTIALLY COMPLETE.** Computer Use now controls the existing authenticated
+Chrome Firebase tab. Actual Console evidence from `beewise-lab-3` supersedes the
+previous browser-unavailable and no-receipt statements below.
+
+- **B-01:** Existing same-key APK on isolated `emulator-5558` relaunched; actual
+  guest TEST search, labeled synthetic tutor detail and AI empty result captured.
+  Detail retest now PASS. System UI ANR recurred on boot; retained, not fixed.
+  Original display/network/Analytics debug settings restored after testing.
+- **B-02:** Existing approved strict rules/Auth evidence preserved. Exact installed
+  APK certificate hashes and guarded commands prepared in
+  `docs/workstreams/bao-google-sha-plan.md`; owner SHA permission and a dedicated
+  Google account remain pending. No Google login claim or shared OAuth mutation.
+  Authenticated cross-UID Firestore client denial remains NOT RUN.
+- **B-03:** DebugView shows five distinct business event types: `login` with
+  `method=password`, `logout`, `search`, `view_tutor` with
+  `entry_source=profile_route`, and `ai_match_no_results`. Three additional SDK
+  types (`screen_view`, `notification_foreground`, `notification_receive`) do not
+  complete the seven-business-event requirement. Crashlytics actually contains
+  the deliberate fatal test and real matching-disabled handled failure; inspected
+  keys include `app_area=beewise_mobile` and matching error reason/exception.
+  Signed-in Crashlytics user association remains NOT RUN. Historical Profile
+  crash and binder ANR retained. RC Console shows empty configuration landing,
+  consistent with prior API restore; version number is not visible. **Storage is
+  explicitly DEFERRED by user for team discussion; no bucket/billing action.**
+- **B-04:** Existing 59 Flutter/28 emulator rules and secure server-trusted payment
+  and official schedule gates preserved. No app/rules code change this turn;
+  no paid AI invocation or backend/staging completion claimed.
+- **B-05:** New actual receipts and sanitized Android logs indexed in
+  `evidence/cloud/console-runtime-validation.json`. Unmodified Console screenshots
+  stay private on D with public SHA-256 receipts because browser/account chrome
+  contains identifying information. Nguyen UI/theme/router/ARTEMIS/review/final
+  presentation untouched. ARTEMIS/external review/physical hardware NOT RUN.
+
+Public native proof: `evidence/android/screenshots/console-search-submitted.png`,
+`console-tutor-detail.png`, `console-ai-no-results.png`. Failed first taps and
+System UI ANR are classified separately in the manifest. No uninstall/data clear.
+Final pushed HEAD/CI are reported in the handoff; earlier checks remain historical.
+
 ## Approved deployment and actual Android follow-up — 2026-10-31
 
 **PARTIALLY COMPLETE.** Owner approved the exact frozen strict Firestore bundle.

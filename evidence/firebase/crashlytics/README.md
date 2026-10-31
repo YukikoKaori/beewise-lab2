@@ -1,19 +1,24 @@
-> **2026-10-31 corrective update (supersedes prior runtime status):** Native update: handled Profile diagnostic and deliberate Crashlytics SDK crash actually exercised on isolated API37; sanitized PID log `../../android/logs/corrective-deliberate-crash-logcat.log`. Console receipt, signed-in UID/custom-key association and a real business-flow failure remain NOT RUN/BLOCKED. The snackbar is not proof of delivery.
+# Crashlytics — actual Console follow-up 2026-10-31
 
-# Crashlytics
+**PARTIALLY COMPLETE.** Existing authenticated Chrome Console for `beewise-lab-3`
+actually shows uploaded Android version 0.1.0(1), Android 17 test-device events:
 
-Implementation: `crash_reporting_service.dart`, `main.dart`, auth provider and
-existing Profile diagnostic buttons. App source `db1f12e`. Guest identity and
-`app_area=beewise_mobile` are configured in code; `demo_action` has a service API.
-Runtime triggering/relaunch results are in `../../android/runtime-manifest.json`.
+- Fatal `FirebaseCrashlyticsTestCrash`, `FlutterFirebaseCrashlyticsPlugin.crash$lambda$0`,
+  one event; displayed Oct 31, 2026, 5:14:51 AM. Stack explicitly identifies the
+  deliberate Dart `.crash()` diagnostic. No new fatal triggered this turn.
+- Real handled business failure `MatchingService.match (matching_service.dart:30)`
+  through MatchingController; displayed Oct 31, 2026, 5:13:33 AM, one event.
+  Remote Config disabled matching; localized exception and reason
+  `thrown AI matching failed` inspected. This is distinct from the sample diagnostic.
+- Inspected keys: `app_area=beewise_mobile`, `flutter_error_exception` matching
+  the localized disabled message, `flutter_error_reason=thrown AI matching failed`.
+  Keys persist across events; their presence on fatal does not identify its action.
+- Retained issues: two historical blank-name Profile fatal events (separately
+  fixed with owner-approved fallback), one Profile diagnostic nonfatal, and one
+  `_ioctl` binder-wait ANR. No claim the ANR has been fixed.
 
-Console report receipt, report identity/custom-key inspection: NOT RUN / BLOCKED
-latest native app installation and browser Console control. No Console receipt is inferred from a success snackbar, a
-local SDK log or a process closing. Controlled test crash is allowed only on the
-dedicated development emulator; no real user session is used.
-
-External action: inspect the correct project's Crashlytics after native triggers
-and relaunch, allow report upload, capture non-fatal and deliberate fatal issue
-with key/guest identity; later repeat real handled workflow failure using a
-dedicated identity. Preserve distinction between diagnostic sample and real
-business error. Do not claim a production crash or verified authenticated UID.
+Fatal/nonfatal receipt and custom-key inspection **PASS**. Signed-in Crashlytics
+user-ID association **NOT RUN**; these captures do not complete that rubric item.
+Displayed Console times have no assumed timezone. A snackbar or SDK log alone
+was never counted as receipt. Private unmodified Console PNG hashes/paths and
+observed facts: `../../cloud/console-runtime-validation.json`.
