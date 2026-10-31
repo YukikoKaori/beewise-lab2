@@ -24,6 +24,16 @@ before(async () => {
 beforeEach(async () => { await env.clearFirestore(); await env.clearStorage(); });
 after(async () => { await env?.cleanup(); });
 
+test('parent bootstrap can read its missing application without exposing another UID', async () => {
+  const absent = await assertSucceeds(getDoc(doc(db(), 'tutorApplications/alice')));
+  if (absent.exists()) throw Error('Expected an absent application before parent bootstrap.');
+  await assertFails(getDoc(doc(db('bob'), 'tutorApplications/alice')));
+  await assertFails(getDoc(doc(env.unauthenticatedContext().firestore(), 'tutorApplications/alice')));
+  await assertSucceeds(setDoc(doc(db(), 'parents/alice'), parent()));
+  await assertSucceeds(getDoc(doc(db(), 'parents/alice')));
+  await assertFails(getDoc(doc(db('bob'), 'parents/alice')));
+});
+
 test('tutor application is private, pending, immutable and never self-approves', async () => {
   const own = doc(db(), 'tutorApplications/alice');
   await assertSucceeds(setDoc(own, application()));
