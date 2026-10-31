@@ -1,0 +1,13 @@
+{
+  "timestampUtc": "2026-10-31T03:05:28.990167+00:00",
+  "sourceSha": "f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882",
+  "action": "logs",
+  "label": "auth-ready-pid3473",
+  "records": [
+    {
+      "observedPid": 3473,
+      "logBytes": 24981,
+      "consoleReceiptVerified": false
+    }
+  ]
+}

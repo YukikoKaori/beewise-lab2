@@ -1,5 +1,68 @@
 # Firestore deployment preparation — NOT EXECUTED
 
+## 2026-10-31 Auth provisioning follow-up: concrete reviewed bundle
+
+Two enabled Password identities now exist (metadata-only; no credentials requested
+or login attempted). Live ruleset `14c0a112-21ce-4077-876b-fa6a298db91c` has **no
+`tutorApplications/{uid}` match**. `auth_service.dart` authenticates, then reads
+that own document before creating/reconciling a parent. Missing collection data
+does not grant read access: this lookup is denied by deployed rules even when the
+document does not exist. Auth state alone is therefore not successful onboarding.
+Keep the client role check; do not convert permission-denied into "not applicant".
+
+Repository rules already contain strict owner-only application reads and guarded
+pending creation; no production rule weakening or client workaround is needed.
+The original **27/27** emulator suite passed; new missing-document/cross-UID
+bootstrap regression makes **28/28**, also PASS on the exact frozen bundle.
+Three new Auth unit tests verify sequencing, role-denial fail-closed behavior and
+applicant separation (6/6 focused Auth tests). These are not live Auth evidence.
+
+Frozen directory on D:
+`D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/firestore-auth-bootstrap-20261031`.
+Reviewable manifest: `evidence/cloud/prepared-firestore-deployment.json`.
+Rules normalized SHA-256:
+`759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578`.
+Exact-file SHA-256:
+`c1dad4250814abcf0c80adb940dc612dbee133db0e80574fd0d055c5dcf86bb8`.
+Baseline live hash:
+`be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448`.
+Fresh index inventory has no indexes or field overrides; proposed config adds only
+`chats(parentId ASC, updatedAt DESC)`. Preserve the frozen file hashes; stop if
+either live rules release/hash or index inventory changes before execution.
+
+Preparation and verification commands (no shared writes):
+
+```powershell
+python scripts/prepare-bao-firestore-deployment.py
+# Preparation refuses overwrite of an existing frozen bundle.
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-bao-firestore-bundle.ps1
+```
+
+**Owner deployment authorization is still REQUIRED.** After explicit approval,
+recheck live release/hash/indexes and frozen hashes, then execute exactly:
+
+```powershell
+& .\firebase\node_modules\.bin\firebase.cmd deploy --only firestore:indexes --project beewise-lab-3 --config D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/firestore-auth-bootstrap-20261031/firebase.deploy.json --non-interactive
+if ($LASTEXITCODE -ne 0) { throw 'Index deployment failed; stop.' }
+node scripts/inspect-bao-cloud-state.cjs
+# Require the new chats index state READY before continuing.
+& .\firebase\node_modules\.bin\firebase.cmd deploy --only firestore:rules --project beewise-lab-3 --config D:/CodexTemp/beewise-lab3-tools/bao-cloud-private/firestore-auth-bootstrap-20261031/firebase.deploy.json --non-interactive
+if ($LASTEXITCODE -ne 0) { throw 'Rules deployment failed; inspect release before any retry.' }
+node scripts/inspect-bao-auth-readiness.cjs
+node scripts/inspect-bao-cloud-state.cjs
+```
+
+Require active rules hash matching the frozen repository hash, application match
+present, index READY, and isolated-device live tests. Owner/user enters Password
+test login directly on the emulator; never request, print or store passwords.
+Do not capture the password form while credentials are entered. Parent document
+creation, logout, session restore and two-account isolation each require actual
+client/server observations; an Auth Users list or IAM read is insufficient.
+Never roll back automatically to the current weaker rules. Secure rollback and
+forward-repair policy below remains in force. No Storage/provider/billing changes
+are included. The earlier generic preparation below is historical guidance;
+execute the frozen config above for this reviewed deployment.
+
 Project: `beewise-lab-3` only. Shared-project deployment requires explicit owner
 authorization. No rules, indexes, provider, billing or enforcement changes were
 made by this preparation. Existing production rules are weaker than the PR rules;

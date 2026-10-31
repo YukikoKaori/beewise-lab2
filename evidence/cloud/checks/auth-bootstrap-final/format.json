@@ -1,0 +1,8 @@
+{
+    "startedAtUtc":  "2026-10-31T03:00:49.5265239Z",
+    "completedAtUtc":  "2026-10-31T03:00:51.0258083Z",
+    "sourceSha":  "f0fd2f73c5e8aa39bb5626169d5d0c9d1ea1e882",
+    "workingDirectory":  "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+    "command":  "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\dart.bat format --output=none --set-exit-if-changed .",
+    "nativeExitCode":  0
+}

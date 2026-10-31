@@ -1,4 +1,11 @@
-> **2026-10-31 corrective update (supersedes prior runtime status):** Current update: user reconfirmed no dedicated test identity. Keep every authenticated runtime case BLOCKED. Live configuration still has email/password enabled, Google provider missing and no registered Android SHA; no provider configuration was changed.
+> **2026-10-31 provisioning follow-up (current):** Owner provisioned dedicated users. Metadata-only API confirms two enabled password identities; no credentials requested. This confirms existence, not successful Auth. Live rules lack `tutorApplications/{uid}` and block post-auth role lookup. Strict frozen rules/index bundle passed 28/28 emulator tests; deployment awaits explicit owner permission. Parent login/profile/logout/session restore/two-account isolation remain NOT RUN. Google provider/SHA remain absent. See `../../cloud/auth-provisioning-readiness.json` and `../../../docs/workstreams/bao-deployment-plan.md`.
+
+Current regressions: 6/6 focused Auth mocks, 53/53 full Flutter tests, original
+27/27 and extended 28/28 rules tests PASS. Client preserves role-check denial;
+no permission-denied bypass or account deletion was introduced. Current device
+remains a guest; no Users-list result is counted as a live login.
+
+Historical evidence below predates provisioning.
 
 # Authentication
 

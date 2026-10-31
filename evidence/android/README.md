@@ -1,5 +1,31 @@
 # Android actual verification — Bao, 2026-10-31
 
+## Auth provisioning follow-up
+
+`auth-ready-installed-apk.json` hashes the installed base APK itself: matches
+`f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d`.
+No app source changed in this follow-up. Cold launch Status ok / 6412ms on isolated
+`emulator-5558`; Home 360dp and guest Profile/Search 412dp inspected. Original
+PNG hashes/dimensions and precise limitations: `auth-ready-runtime.json`.
+
+`screenshots/auth-ready-360.png` records a real **System UI ANR**, not PASS.
+After Wait, `auth-ready-360-settled.png` shows Home and
+`auth-ready-412-profile.png` explicitly shows signed-out state. Offline/online
+Search captures retain six labeled TEST records. Network toggles and restoration
+receipts are in `logs/auth-ready-*`; no fresh device server-read claim. Separate
+host SDK server reads are in `../cloud/guest-firestore-query.json`.
+UI dump now reads actual XML from the device instead of the `/dev/tty` completion
+message. Sanitized PID3473 logs retained; raw originals stay privately on D.
+Display/network/Analytics debug state restored. Original BeeWise data untouched.
+
+Two password identities are provisioned, but parent login/profile creation,
+logout/session restore/account isolation are **NOT RUN**, pending explicit owner
+permission for strict rules/index deployment and direct user login. Password
+forms must not be captured while credentials are entered. Console/real hardware,
+ARTEMIS and external review remain NOT RUN/BLOCKED.
+
+## Earlier install and service runtime evidence
+
 **PARTIALLY COMPLETE.** Latest app source `9ef5907b2d296fcdafaa869a53e9780692f4cc56`
 built on D and actually installed/launched on **separate** `emulator-5558`.
 APK SHA-256 `f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d`,

@@ -4,7 +4,7 @@
   "test": "Active tutor query matching repository predicate at two explicit limits; NOT Remote Config/Android visible behavior",
   "records": [
     {
-      "timestampUtc": "2026-10-30T21:58:37.960Z",
+      "timestampUtc": "2026-10-31T03:07:48.156Z",
       "id": "bao-lab3-20261030-tutor-01",
       "checks": {
         "exists": true,
@@ -18,7 +18,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.100Z",
+      "timestampUtc": "2026-10-31T03:07:48.218Z",
       "id": "bao-lab3-20261030-tutor-02",
       "checks": {
         "exists": true,
@@ -32,7 +32,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.208Z",
+      "timestampUtc": "2026-10-31T03:07:48.393Z",
       "id": "bao-lab3-20261030-tutor-03",
       "checks": {
         "exists": true,
@@ -46,7 +46,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.333Z",
+      "timestampUtc": "2026-10-31T03:07:48.455Z",
       "id": "bao-lab3-20261030-tutor-04",
       "checks": {
         "exists": true,
@@ -60,7 +60,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.442Z",
+      "timestampUtc": "2026-10-31T03:07:48.545Z",
       "id": "bao-lab3-20261030-tutor-05",
       "checks": {
         "exists": true,
@@ -74,7 +74,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.536Z",
+      "timestampUtc": "2026-10-31T03:07:48.593Z",
       "id": "bao-lab3-20261030-tutor-06",
       "checks": {
         "exists": true,
@@ -88,7 +88,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.678Z",
+      "timestampUtc": "2026-10-31T03:07:48.672Z",
       "requestedLimit": 6,
       "returnedCount": 6,
       "fromCache": false,
@@ -104,7 +104,7 @@
       "status": "PASS"
     },
     {
-      "timestampUtc": "2026-10-30T21:58:38.789Z",
+      "timestampUtc": "2026-10-31T03:07:48.764Z",
       "requestedLimit": 2,
       "returnedCount": 2,
       "fromCache": false,

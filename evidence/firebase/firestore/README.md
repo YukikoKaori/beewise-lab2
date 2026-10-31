@@ -2,6 +2,22 @@
 
 # Firestore live deployment audit
 
+## 2026-10-31 provisioning blocker (current)
+
+Live release is still ruleset `14c0a112-21ce-4077-876b-fa6a298db91c`, normalized
+hash `be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448`.
+It also lacks `tutorApplications/{uid}`: post-auth own role lookup is denied even
+when the application is absent. Repository already contains the strict owner
+read; retain the client check. Two enabled Password users do not establish live
+login success. Readiness: `../../cloud/auth-provisioning-readiness.json`.
+Original 27 tests PASS; added bootstrap/cross-UID regression yields 28/28 PASS,
+including the frozen deployment bundle. No shared deployment was authorized or
+performed. Hashes, index-preserving preflight and exact commands/secure repair
+policy: `../../cloud/prepared-firestore-deployment.json` and
+`../../../docs/workstreams/bao-deployment-plan.md`.
+
+## Previous drift audit
+
 Read-only API/CLI inspection on 2026-10-30, `beewise-lab-3`. Default database is
 Firestore Native Standard, asia-southeast1. Receipt timestamps/commands are in
 `../../cloud/config-inventory.json`, `live-management-state.json`.

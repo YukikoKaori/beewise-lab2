@@ -1,0 +1,11 @@
+{
+  "timestampUtc": "2026-10-31T03:05:48.375211+00:00",
+  "serial": "emulator-5558",
+  "package": "com.beewise.beewise",
+  "localApkSha256": "f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d",
+  "installedBaseApkSha256": "f6a66bc0d90ad68d64052b7beda0c33bc54c4f59c1da1d16561f13e1fbdc578d",
+  "bytes": 227800966,
+  "matches": true,
+  "applicationSourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+  "uninstallOrDataClearPerformed": false
+}
