@@ -1,24 +1,24 @@
-{
-  "timestampUtc": "2026-10-31T09:22:18.732469+00:00",
-  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
-  "action": "tap",
-  "label": "reliability-export-search-tab",
-  "records": [
-    {
-      "command": [
-        "adb",
-        "-s",
-        "emulator-5558",
-        "shell",
-        "input",
-        "-d",
-        "0",
-        "tap",
-        "216",
-        "1472"
-      ],
-      "exitCode": 0,
-      "output": ""
-    }
-  ]
+{
+  "timestampUtc": "2026-10-31T09:22:18.732469+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "tap",
+  "label": "reliability-export-search-tab",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "216",
+        "1472"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
 }
