@@ -94,7 +94,7 @@
     "uninstallOrDataClear": false
   },
   "remaining": {
-    "Google": "BLOCKED pending exact SHA owner authorization and dedicated Google test account; concrete plan docs/workstreams/bao-google-sha-plan.md",
+    "Google": "Configuration PASS exact owner-approved SHA readback and additive Android OAuth config; dedicated Google runtime pending user-operated cancel/sign-in. See google-sha-approved.json and Android google-* receipts.",
     "Storage": "DEFERRED explicitly by user pending team discussion; no action",
     "AppCheck": "BLOCKED API disabled/403 finding retained; no configuration/enforcement changes",
     "authenticatedCrossUidFirestoreClientDenial": "NOT RUN",
@@ -222,5 +222,6 @@
       "sha256": "7239cba9a53a34808fec39a3477e5f414113db40b90f9cf66082cb8e579c7acf",
       "source": "Computer Use @oai/sky actual Chrome window"
     }
-  ]
+  ],
+  "googleConfigurationFollowUp": "evidence/cloud/google-sha-approved.json"
 }

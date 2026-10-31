@@ -1,0 +1,41 @@
+{
+  "recordedAtUtc": "2026-10-31T08:04:40.498233+00:00",
+  "projectId": "beewise-lab-3",
+  "apkReceipt": "evidence/android/google-approved-apk.json",
+  "configurationReceipt": "evidence/cloud/google-sha-approved.json",
+  "device": "BeeWise_Bao_PR3_API37 / emulator-5558",
+  "cancel": {
+    "status": "PASS user-operated native cancellation; app displays localized cancelled message and guest Profile",
+    "userConfirmedNativeFlow": true,
+    "nativeXml": "evidence/android/logs/google-cancel-returned.xml",
+    "metadata": "evidence/cloud/google-user-after-cancel.json",
+    "accountMetadataUnchanged": true,
+    "oldAccountDevicesEmpty": true
+  },
+  "signIn": "PENDING USER INTERACTION; no capture/log collection during account entry",
+  "sessionRestore": "NOT RUN",
+  "logout": "NOT RUN",
+  "localGates": {
+    "format": "PASS 32 files zero changed",
+    "analyze": "PASS no issues",
+    "flutter": "PASS 59/59",
+    "rules": "PASS 28/28 demo-beewise only",
+    "apk": "PASS same approved signer and identical binary hash"
+  },
+  "applicationCi": {
+    "headSha": "ff6ed0982d713d0336a029ee790117937f6a5239",
+    "status": "PASS 3/3",
+    "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41170016225",
+    "e2eHarness": "Collect/check only, not ARTEMIS runtime"
+  },
+  "publicGuestScreenshotSha256": {
+    "google-approved-settled": "0704a2a3bbca821faf173e86767c179f0de7faeb12cf9387bd37e3e3ce20de1d",
+    "google-guest-profile": "11d5079e66bc2b578c3298eda85dd8f1fe5004307800d3e78c173af3104eb010",
+    "google-cancel-returned": "1c4ee7a4176e85add858234617a67d3ec2fc803f38707fb8445d14ec8b6d3b67"
+  },
+  "invalidAttempts": {
+    "google-approved-home": "Initial white/loading screen; not Home PASS"
+  },
+  "privacy": "No credentials requested, read or printed; authenticated/credential-entry screenshots not captured during user entry; original private evidence on D",
+  "storage": "DEFERRED by user; no cloud Storage or billing action"
+}

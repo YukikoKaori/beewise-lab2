@@ -102,7 +102,7 @@
   },
   "privacy": "Authenticated Profile PNGs/raw logs stay on D privately; public XML/PID logs redact identity paths, email, keys and tokens. Screenshots are unmodified originals.",
   "remaining": {
-    "Google": "BLOCKED Android SHA absent; provider enabled externally, owner-supplied web client preserved",
+    "Google": "Configuration PASS exact owner-approved SHA readback and additive Android OAuth config; dedicated Google runtime pending user-operated cancel/sign-in. See google-sha-approved.json and Android google-* receipts.",
     "Storage": "DEFERRED explicitly by user pending team discussion; no action",
     "Analytics": "PARTIALLY COMPLETE: five distinct business event types verified, not seven",
     "Crashlytics": "PASS genuine Console fatal/nonfatal receipt and inspected custom keys; identity criterion incomplete",
@@ -128,5 +128,6 @@
     "deviceSettings": "Restored original size/density/Wi-Fi/mobile/Analytics debug property",
     "limits": "Does not prove every business flow or physical hardware"
   },
-  "consoleFollowUp": "evidence/cloud/console-runtime-validation.json"
+  "consoleFollowUp": "evidence/cloud/console-runtime-validation.json",
+  "googleConfigurationFollowUp": "evidence/cloud/google-sha-approved.json"
 }

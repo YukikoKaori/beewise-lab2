@@ -1,0 +1,38 @@
+{
+  "timestampUtc": "2026-10-31T04:51:27.855798+00:00",
+  "sourceSha": "ff6ed0982d713d0336a029ee790117937f6a5239",
+  "action": "launch",
+  "label": "google-approved-launch",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "force-stop",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "--display",
+        "0",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 0,
+      "output": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nWarning: Activity not started, intent has been delivered to currently running top-most instance.\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.android.systemui/com.android.wm.shell.packageupdate.PackageUpdateActivity\r\nTotalTime: 0\r\nWaitTime: 220\r\nComplete\r\n"
+    }
+  ]
+}

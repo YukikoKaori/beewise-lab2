@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T04:52:29.417230+00:00",
+  "sourceSha": "ff6ed0982d713d0336a029ee790117937f6a5239",
+  "action": "tap",
+  "label": "google-login-open",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "539",
+        "358"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}
