@@ -35,6 +35,17 @@ const records = [];
         ownFixturesRemainUnverified: fixtures.every(doc => doc.data().verified === false && doc.data().syntheticTestFixture === true),
         status: snapshot.size === requestedLimit && !snapshot.metadata.fromCache ? 'PASS' : 'FAIL'});
     }
+    // Real read-only negative checks; never create records or use an Auth identity.
+    for (const path of ['parents/bao-negative-no-user', 'tutorApplications/bao-negative-no-user',
+      'parents/bao-negative-no-user/devices/bao-negative-no-device', 'invoices/bao-negative-no-invoice']) {
+      let outcome = 'unexpected-allowed';
+      try { await getDocFromServer(doc(db, path)); }
+      catch (error) { outcome = String(error.code ?? 'unknown'); }
+      const passed = outcome === 'permission-denied';
+      records.push({timestampUtc: new Date().toISOString(), test: 'Guest private-document read denied',
+        path, outcome, status: passed ? 'PASS' : 'FAIL'});
+      if (!passed) process.exitCode = 1;
+    }
   } catch (error) {
     records.push({status: 'BLOCKED', summary: String(error.code ?? 'Client query failed')});
     process.exitCode = 1;
@@ -42,7 +53,7 @@ const records = [];
     await terminate(db);
     await deleteApp(app);
     const receipt = {projectId: 'beewise-lab-3', authentication: 'No Firebase Auth instance/identity; public client SDK only',
-      test: 'Active tutor query matching repository predicate at two explicit limits; NOT Remote Config/Android visible behavior', records};
+      test: 'Live public tutor queries and read-only guest private-document denials; NOT authenticated cross-account/Remote Config/Android visible behavior', records};
     writeFileSync(resolve(root, 'evidence/cloud/guest-firestore-query.json'), JSON.stringify(receipt, null, 2) + '\n');
     console.log(JSON.stringify(receipt, null, 2));
   }

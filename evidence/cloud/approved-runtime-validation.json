@@ -1,0 +1,102 @@
+{
+  "recordedAtUtc": "2026-10-31T03:59:24.982693+00:00",
+  "startingPrHead": "32793369e6e42f36377593e673a33299e88c2497",
+  "apkSourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "apkSha256": "c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701",
+  "device": {
+    "avd": "BeeWise_Bao_PR3_API37",
+    "serial": "emulator-5558",
+    "dataPreserved": true,
+    "originalPackageUninstalledOrCleared": false
+  },
+  "ownerAuthorization": [
+    "Exact frozen strict Firestore rules plus additive chats index",
+    "Only blank-name Profile fallback plus regression/build/install"
+  ],
+  "deployment": {
+    "rules": "PASS active hash equals repository",
+    "index": "PASS READY before rules release",
+    "ruleset": "2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+    "receipts": [
+      "evidence/cloud/authorized-deploy-indexes.json",
+      "evidence/cloud/authorized-pre-rules-state.json",
+      "evidence/cloud/authorized-deploy-rules.json",
+      "evidence/cloud/firestore-release-state.json"
+    ]
+  },
+  "localGates": {
+    "format": "PASS 32 files zero changed",
+    "analyze": "PASS no issues",
+    "flutter": "PASS 59/59",
+    "profileRegression": "Before 3 FAIL / 3 PASS; after 6 PASS",
+    "frozenRulesBeforeDeployment": "PASS 28/28",
+    "androidDebugApk": "PASS",
+    "receipts": "evidence/cloud/checks/authorized-profile-final/"
+  },
+  "auth": {
+    "accountA": {
+      "loginAfterDeployment": "PASS actual Home plus new server sign-in timestamp and parent creation",
+      "sessionRestore": "PASS unchanged sign-in timestamp plus restored device/Profile",
+      "profile": "FAIL before fix; PASS after owner-approved fallback correction",
+      "managedLogout": "PASS guest UI, empty inbox, own registration removed"
+    },
+    "accountB": "PENDING direct user login; no capture/log while credentials entered",
+    "authenticatedCrossUidFirestoreDenial": "NOT RUN; IAM snapshots and guest denials do not prove this"
+  },
+  "fcm": {
+    "foreground": {
+      "status": "PASS",
+      "probeId": "bao-pr3-foreground-1793418560466",
+      "ui": "auth-fcm-primary-foreground.xml",
+      "tap": "auth-fcm-valid-search-route.xml"
+    },
+    "background": {
+      "status": "PASS notification and tap Search",
+      "probeId": "bao-pr3-background-1793418594319",
+      "ui": "auth-fcm-background-shade.xml",
+      "tap": "auth-fcm-background-search-route.xml"
+    },
+    "terminated": {
+      "status": "PASS verified absent process before send; notification plus cold Search and new PID",
+      "probeId": "bao-pr3-terminated-1793418725135",
+      "death": "evidence/android/auth-fcm-verified-process-death.json",
+      "ui": "auth-fcm-terminated-shade.xml",
+      "tap": "auth-fcm-cold-route-settled.xml"
+    },
+    "malformedRoute": {
+      "status": "PASS same Profile after tap",
+      "probeId": "bao-pr3-malformed-1793418815104",
+      "ui": "auth-fcm-malformed-rejected.xml"
+    },
+    "inaccessibleChat": {
+      "status": "PASS same Profile after tap; absent/inaccessible target, not existing cross-UID document proof",
+      "probeId": "bao-pr3-unauthorized-chat-1793418983788",
+      "ui": "auth-fcm-forbidden-rejected.xml"
+    }
+  },
+  "invalidOrHistoricalAttempts": {
+    "test-users-account-a-after-login.json": "No parent; first claimed login was tutor form/pre-release attempt, not Auth completion",
+    "auth-profile-fixed-restored": "SystemUI ANR; not Profile success",
+    "auth-profile-fixed-settled": "Launcher due secondary-display focus; not app success",
+    "bao-pr3-terminated-1793418679535": "PID remained; not terminated proof",
+    "auth-fcm-terminated-search-route": "Initial cold loading state; settled capture establishes destination",
+    "auth-fcm-background-shade.png": "Animation/blank capture kept private; XML plus actual tap establish background result"
+  },
+  "privacy": "Authenticated Profile PNGs/raw logs stay on D privately; public XML/PID logs redact identity paths, email, keys and tokens. Screenshots are unmodified originals.",
+  "remaining": {
+    "Google": "BLOCKED Android SHA absent; provider enabled externally, owner-supplied web client preserved",
+    "Storage": "BLOCKED no bucket/rules release; billing disabled",
+    "Analytics": "Console DebugView NOT RUN; native SDK/event invocation only",
+    "Crashlytics": "Console receipt NOT RUN; genuine prior device diagnostic/crash only",
+    "RemoteConfig": "Prior live publish/restore PASS; Console screenshots NOT RUN",
+    "backendStagingArtemisExternalReview": "NOT RUN/BLOCKED"
+  },
+  "githubActions": "Verify exact final pushed HEAD separately; no merge authorized",
+  "originalScreenshotSha256": {
+    "auth-a-profile-error-before-fix.png": "f451f5da110a567697ca9ac9e27ffe7ec879ccd53ea4f77da1a75f3111930f6d",
+    "auth-a-confirmed-home.png": "db1988032bbaeeb13f7a7968a537e156953ad7e4483ce257686c501814da504e",
+    "auth-a-logged-out.png": "20cdc19da9491fdec340d033c53793a821d53563987525b00229ae1a70df4143",
+    "auth-fcm-terminated-notification.png": "2857afbcb9d3f04b746003aa7e0d053f904a6c0714e9fb32586170b3097d9c52",
+    "auth-fcm-cold-route-settled.png": "65adeb87072048bca0cf3ce89f6e4296760fec0796a038b8fe5e86061493c600"
+  }
+}

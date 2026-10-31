@@ -21,9 +21,11 @@ for directory in (OUT / "screenshots", OUT / "logs", PRIVATE):
 
 
 def redact(value):
-    value = re.sub(r"(?im)^.*(?:debug token|AppCheckDebugProvider|DebugAppCheckProvider|Authorization:|Bearer |Dart VM service is listening|(?:FCM|registration) token\s*[:=]).*$", "[credential-bearing line omitted]", value)
+    value = re.sub(r"(?im)^.*(?:debug token|AppCheckDebugProvider|DebugAppCheckProvider|Authorization:|Bearer |Dart VM service is listening|(?:FCM|registration) token\s*[:=]|FirebaseAuth.*(?:user \(|password)).*$", "[credential-bearing line omitted]", value)
     value = re.sub(r"AIza[\w-]+", "[client-key omitted]", value)
     value = re.sub(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", "[email omitted]", value)
+    value = re.sub(r"(parents|tutorApplications)/[A-Za-z0-9_-]{20,}", r"\1/[test-uid omitted]", value)
+    value = re.sub(r"devices/[A-Za-z0-9_-]{20,}", "devices/[installation omitted]", value)
     value = re.sub(r"\beyJ[\w.-]{30,}", "[JWT omitted]", value)
     return value
 
@@ -52,6 +54,7 @@ parser.add_argument("--width", type=int)
 parser.add_argument("--x", type=int)
 parser.add_argument("--y", type=int)
 parser.add_argument("--serial", default="emulator-5556")
+parser.add_argument("--private-image", action="store_true", help="Keep authenticated screenshots off the public evidence tree.")
 args = parser.parse_args()
 args_config = args
 records = []
@@ -71,22 +74,28 @@ elif args.action == "install":
     records.append({"apk": str(apk), "sha256": hashlib.file_digest(apk.open("rb"), "sha256").hexdigest(), "bytes": apk.stat().st_size})
 elif args.action == "launch":
     adb("shell", "am", "force-stop", PACKAGE)
-    adb("shell", "am", "start", "-W", "-n", PACKAGE + "/.MainActivity")
+    # A visible API37 emulator can have a second display; align launch/input
+    # with the primary display captured by screencap and viewport measurements.
+    adb("shell", "am", "start", "-W", "--display", "0", "-n", PACKAGE + "/.MainActivity")
 elif args.action == "capture":
-    (OUT / "screenshots" / (args.label + ".png")).write_bytes(adb("exec-out", "screencap", "-p", binary=True))
     # API37 may print only a completion message for /dev/tty; read the real file.
     adb("shell", "uiautomator", "dump", "/sdcard/bao-ui.xml")
     xml = adb("shell", "cat", "/sdcard/bao-ui.xml")
     if "<hierarchy" not in xml:
         raise RuntimeError("UI hierarchy unavailable; do not present a status message as XML evidence.")
     (OUT / "logs" / (args.label + ".xml")).write_text(xml, encoding="utf-8")
+    # Dump waits for UI idle; capture afterwards rather than mid-transition.
+    image_path = (PRIVATE if args.private_image else OUT / "screenshots") / (args.label + ".png")
+    image_bytes = adb("exec-out", "screencap", "-p", binary=True)
+    image_path.write_bytes(image_bytes)
+    records.append({"imagePath": str(image_path), "imageSha256": hashlib.sha256(image_bytes).hexdigest(), "privateImage": args.private_image})
     pid = adb("shell", "pidof", PACKAGE)
     if pid:
         raw = adb("logcat", "-d", "--pid=" + pid, "-v", "threadtime", binary=True)
         (PRIVATE / (args.label + "-raw.log")).write_bytes(raw)
         (OUT / "logs" / (args.label + "-logcat.log")).write_text(redact(raw.decode(errors="replace")), encoding="utf-8")
 elif args.action == "tap":
-    adb("shell", "input", "tap", str(args.x), str(args.y))
+    adb("shell", "input", "-d", "0", "tap", str(args.x), str(args.y))
 elif args.action == "logs":
     if args.pid is None or args.pid < 1:
         raise ValueError("Use the process ID observed before the deliberate crash.")
@@ -95,7 +104,7 @@ elif args.action == "logs":
     (OUT / "logs" / (args.label + "-logcat.log")).write_text(redact(raw.decode(errors="replace")), encoding="utf-8")
     records.append({"observedPid": args.pid, "logBytes": len(raw), "consoleReceiptVerified": False})
 elif args.action == "back":
-    adb("shell", "input", "keyevent", "4")
+    adb("shell", "input", "-d", "0", "keyevent", "4")
 elif args.action == "resize":
     if args.width not in (360, 412):
         raise ValueError("Only the two requested viewport widths are supported.")

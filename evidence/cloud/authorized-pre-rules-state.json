@@ -1,0 +1,32 @@
+{
+  "timestampUtc": "2026-10-31T03:25:18.490Z",
+  "projectId": "beewise-lab-3",
+  "readOnly": true,
+  "rulesetName": "projects/beewise-lab-3/rulesets/14c0a112-21ce-4077-876b-fa6a298db91c",
+  "deployedNormalizedSha256": "be6beebec1e872de3f89163f4623ea020af3be698482c22ae8e1049463865448",
+  "repositoryNormalizedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+  "matchesRepository": false,
+  "tutorApplicationsMatch": false,
+  "indexes": [
+    {
+      "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/chats/indexes/CICAgOjXh4EK",
+      "state": "READY",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "parentId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "complete": true
+}

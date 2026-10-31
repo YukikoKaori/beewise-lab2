@@ -40,11 +40,13 @@ const hash = text => createHash('sha256').update(text.replace(/\r\n/g, '\n').tri
   const receipt = {timestampUtc: new Date().toISOString(), projectId: project, readOnly: true,
     credentialFieldsRequested: false, accountMetadata: accounts,
     enabledPasswordAccountCount: accounts.filter(user => !user.disabled && user.providers.includes('password')).length,
-    identityScope: 'Metadata confirms account existence/provider only; owner identifies which are authorized test users. No password used, login or session tested.',
+    identityScope: 'Metadata confirms account existence/provider only; owner identifies which are authorized test users. This read-only inspection uses no password and does not test login or session.',
     firestore: {rulesetName, deployedSha256: hash(deployed), repositorySha256: hash(local),
       deployedTutorApplicationsMatch: hasApplicationMatch(deployed), repositoryTutorApplicationsMatch: hasApplicationMatch(local),
-      consequence: 'Auth SDK success is distinct from post-auth application-role read and parent profile creation. Missing match denies that read even when the application document does not exist; never bypass the role check.'},
-    actualParentLogin: 'NOT RUN; shared deployment authorization and user-entered device login required',
+      consequence: hasApplicationMatch(deployed)
+        ? 'Own application match present; still require actual device login/profile/session verification.'
+        : 'Auth SDK success is distinct from post-auth application-role read and parent profile creation. Missing match denies that read even when the application document does not exist; never bypass the role check.'},
+    actualParentLogin: 'NOT DETERMINED by metadata inspection; see separate deployment and genuine device evidence',
   };
   writeFileSync(resolve(root, 'evidence/cloud/auth-provisioning-readiness.json'), JSON.stringify(receipt, null, 2) + '\n');
   console.log(JSON.stringify(receipt, null, 2));

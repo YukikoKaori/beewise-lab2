@@ -1,4 +1,32 @@
-# Firestore deployment preparation — NOT EXECUTED
+# Firestore reviewed deployment and secure repair plan
+
+## Owner-authorized release — 2026-10-31 (current)
+
+Owner explicitly approved the exact frozen rules + additive chat index bundle.
+All frozen hashes and live baseline were rechecked; the frozen emulator suite
+passed **28/28 again before deployment**. Index deployment exited 0, its state
+was observed CREATING then **READY** before rules deployment. Rules deployment
+then exited 0. Post-release API read verifies:
+
+- Active ruleset `projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6`.
+- Normalized rules hash `759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578`, matching repository/frozen rules; application match present.
+- Exactly one `chats(parentId ASC, updatedAt DESC)` COLLECTION index, READY;
+  Firestore's automatic `__name__ DESC` suffix is expected.
+
+Actual CLI receipts: `evidence/cloud/authorized-deploy-indexes.json`,
+`authorized-deploy-rules.json`; READY-before-rules receipt:
+`authorized-pre-rules-state.json`; current post-release:
+`firestore-release-state.json`. No Storage/provider/billing change was made by
+these commands; no fixture deletion and no rollback. A later external Google
+provider enablement was observed read-only, not performed by this deployment.
+
+Account A login after release created its parent profile; a cold-start restored
+its SDK session and registered its device. Authenticated Profile exposed an
+empty-display-name UI crash; owner separately authorized only the fallback fix
+and regression. Further runtime results belong in the Auth/native manifests.
+Metadata alone remains insufficient to claim client authorization or live Auth.
+
+## Reviewed preparation (historical baseline; executed as recorded above)
 
 ## 2026-10-31 Auth provisioning follow-up: concrete reviewed bundle
 
@@ -38,7 +66,7 @@ python scripts/prepare-bao-firestore-deployment.py
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-bao-firestore-bundle.ps1
 ```
 
-**Owner deployment authorization is still REQUIRED.** After explicit approval,
+**Owner authorization for this exact bundle was subsequently granted.** The reviewed execution sequence was:
 recheck live release/hash/indexes and frozen hashes, then execute exactly:
 
 ```powershell
@@ -92,7 +120,7 @@ The current audit finds no composite indexes; the repository adds only
 or field override, STOP and prepare a reviewed union with those existing entries.
 Never accept a CLI index-deletion prompt or use `--force`.
 
-Missing deployed guards: UID-bound global FCM installations; current proposal ID,
+Missing deployed guards: applicant separation for parent/device writes; current proposal ID,
 revision, expiry and pending-kind eligibility; reciprocal atomic request/chat
 creation. The repository's emulator suite covers those denials. No malicious
 write was attempted against the shared project.

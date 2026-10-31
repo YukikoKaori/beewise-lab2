@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T03:52:28.180633+00:00",
+  "sourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "action": "tap",
+  "label": "auth-fcm-terminated-opened",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "360",
+        "590"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

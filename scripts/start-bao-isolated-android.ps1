@@ -1,4 +1,4 @@
-param([string]$Sdk = 'D:\Android\SDK', [int]$Port = 5558)
+param([string]$Sdk = 'D:\Android\SDK', [int]$Port = 5558, [switch]$Visible)
 # Creates/reuses only this workstream's separate AVD; never wipes or copies user data.
 $ErrorActionPreference = 'Stop'
 $avdRoot = 'D:\CodexTemp\beewise-lab3-tools\bao-isolated-avd'
@@ -41,7 +41,10 @@ $env:ANDROID_HOME = $Sdk
 $env:ANDROID_SDK_ROOT = $Sdk
 $env:TEMP = 'D:\CodexTemp\beewise-lab3-tools'
 $env:TMP = $env:TEMP
-$arguments = @('-avd', $name, '-port', "$Port", '-no-window', '-no-snapshot', '-no-boot-anim', '-memory', '4096', '-gpu', 'software', '-cores', '2', '-no-audio', '-show-kernel')
-$process = Start-Process -FilePath "$Sdk\emulator\emulator.exe" -ArgumentList $arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput "$avdRoot\stdout.log" -RedirectStandardError "$avdRoot\stderr.log"
+$arguments = @('-avd', $name, '-port', "$Port", '-no-snapshot', '-no-boot-anim', '-memory', '4096', '-gpu', 'software', '-cores', '2', '-no-audio', '-show-kernel')
+$windowStyle = 'Hidden'
+if ($Visible) { $windowStyle = 'Normal' } else { $arguments += '-no-window' }
+# Visible mode is only for the user's interactive test login; no credentials scripted.
+$process = Start-Process -FilePath "$Sdk\emulator\emulator.exe" -ArgumentList $arguments -WindowStyle $windowStyle -PassThru -RedirectStandardOutput "$avdRoot\stdout.log" -RedirectStandardError "$avdRoot\stderr.log"
 @{createdAtUtc=[DateTime]::UtcNow.ToString('o'); name=$name; directory=$content; port=$Port; processId=$process.Id; arguments=$arguments; noWipe=$true} | ConvertTo-Json | Set-Content -LiteralPath "$avdRoot\launch.json" -Encoding UTF8
 Write-Output "Started isolated $name on emulator-$Port (PID $($process.Id)); original emulator untouched."
