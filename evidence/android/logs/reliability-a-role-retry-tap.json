@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T09:05:00.234760+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "tap",
+  "label": "reliability-a-role-retry",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "360",
+        "522"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

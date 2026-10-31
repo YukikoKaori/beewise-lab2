@@ -1,0 +1,9 @@
+{
+  "timestampUtc": "2026-10-31T09:35:20.076058+00:00",
+  "actualProperties": {
+    "log.tag.FA": "",
+    "log.tag.FA-SVC": "",
+    "debug.firebase.analytics.app": ".none."
+  },
+  "faOriginalValuesRestored": true
+}

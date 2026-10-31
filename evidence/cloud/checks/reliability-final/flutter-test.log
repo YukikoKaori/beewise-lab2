@@ -1,0 +1,474 @@
+Resolving dependencies...
+Downloading packages...
+  code_assets 1.2.1 (2.1.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  crypto 3.0.7 (3.0.8 available)
+  cupertino_ui 1.1.4 (1.1.5 available)
+  go_router 18.1.1 (18.1.2 available)
+  hooks 2.0.2 (2.2.0 available)
+  jni 1.1.0 (1.1.1 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.8.0 (1.9.0 available)
+  meta 1.18.3 (1.19.0 available)
+  mocktail 1.0.4 (1.0.5 available)
+  objective_c 9.5.0 (9.6.2 available)
+  petitparser 7.0.2 (7.1.0 available)
+  posix 6.5.2 (6.5.4 available)
+  qr 3.0.2 (4.0.1 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences_android 2.5.3 (2.5.4 available)
+  shared_preferences_foundation 2.5.7 (2.6.1 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+21 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart
+00:00 +0: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: email login bootstraps an absent parent only after its role lookup
+00:00 +1: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: role retry never uses cached absence after a server error
+00:00 +2: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: post-auth role permission denial never bypasses parent separation
+00:00 +3: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: email login for an existing applicant never creates a parent
+00:00 +4: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: failed profile write is recoverable by authenticated registration retry
+00:00 +5: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: existing parent or applicant is never overwritten by registration retry
+00:00 +6: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: incorrect password cannot reconcile another account
+00:03 +7: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: (setUpAll)
+00:03 +7: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Remote Config without Firebase keeps documented defaults
+00:03 +8: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: invalid Remote Config values cannot break catalog or Iterable.take
+00:03 +9: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: valid Remote Config values change both behavior limits and feature gate
+00:03 +10: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Remote Config installs defaults before fetch and survives offline fetch
+00:03 +11: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Analytics search is typed and contains no query text or document IDs
+00:03 +12: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: successful connection logs only the privacy-approved request category
+00:03 +13: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: actual tutor PDF generation uses bundled Vietnamese fonts and writes a PDF
+00:03 +13: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: startup disables auto-init and journals ownership before writing the FID
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:03 +14: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: actual tutor PDF generation uses bundled Vietnamese fonts and writes a PDF
+00:03 +14: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: first login ignores a stale registered callback during role lookup
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush auth-change generation=2 requested=false installation=false
+00:03 +14: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: actual tutor PDF generation uses bundled Vietnamese fonts and writes a PDF
+LOCAL_PDF_EVIDENCE=D:\CodexTemp\beewise-lab3-tools/beewise-tutor-bao-synthetic-local-only.pdf
+00:03 +15: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: first login ignores a stale registered callback during role lookup
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush registered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush stale-callback-ignored generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+00:03 +16: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Storage upload terminal state success reports progress and owner path with actual SDK URL result
+00:03 +17: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: role-read error fails closed and explicit retry requires a fresh read
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush failed-unavailable generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+00:03 +18: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: role-read error fails closed and explicit retry requires a fresh read
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+00:03 +19: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Storage upload terminal state permission and network errors propagate and never request a URL
+00:03 +20: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+00:03 +20: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: same-owner session restoration cleans journal then acknowledges a new binding
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:03 +21: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+00:03 +21: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: same-owner session restoration cleans journal then acknowledges a new binding
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+00:03 +21: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+00:03 +21: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: same-owner session restoration cleans journal then acknowledges a new binding
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:03 +22: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+00:03 +22: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: missing native acknowledgement becomes retryable instead of pending forever
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=false
+BeeWisePush acknowledgement-timeout generation=1 requested=true installation=false
+BeeWisePush failed-TimeoutException generation=1 requested=true installation=false
+BeeWisePush stop-delivery generation=1 requested=true installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+00:03 +23: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+00:03 +24: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: managed switch detaches under A before assigning the same FID to B
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:03 +25: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: managed switch detaches under A before assigning the same FID to B
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush auth-change generation=3 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+BeeWisePush register-start generation=3 requested=true installation=false
+BeeWisePush registered-callback generation=3 requested=true installation=false
+BeeWisePush register-sdk-complete generation=3 requested=true installation=true
+BeeWisePush bind-start generation=3 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=3 requested=true installation=true
+00:03 +26: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: unexpected account switch quarantines FID and never deletes another UID
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush auth-change generation=2 requested=false installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush failed-StateError generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+BeeWisePush failed-StateError generation=3 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+BeeWisePush auth-change generation=4 requested=false installation=false
+BeeWisePush stop-delivery generation=4 requested=false installation=false
+BeeWisePush unregistered-callback generation=4 requested=false installation=false
+BeeWisePush register-start generation=4 requested=true installation=false
+BeeWisePush registered-callback generation=4 requested=true installation=false
+BeeWisePush register-sdk-complete generation=4 requested=true installation=true
+BeeWisePush bind-start generation=4 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=4 requested=true installation=true
+BeeWisePush stop-delivery generation=5 requested=false installation=true
+BeeWisePush unregistered-callback generation=5 requested=false installation=false
+BeeWisePush auth-change generation=6 requested=false installation=false
+BeeWisePush stop-delivery generation=6 requested=false installation=false
+BeeWisePush unregistered-callback generation=6 requested=false installation=false
+BeeWisePush register-start generation=6 requested=true installation=false
+BeeWisePush registered-callback generation=6 requested=true installation=false
+BeeWisePush register-sdk-complete generation=6 requested=true installation=true
+BeeWisePush bind-start generation=6 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=6 requested=true installation=true
+00:03 +27: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: external sign-out revokes delivery; owner reauthentication recovers cleanup
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush auth-change generation=2 requested=false installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush failed-StateError generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush auth-change generation=3 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+BeeWisePush register-start generation=3 requested=true installation=false
+BeeWisePush registered-callback generation=3 requested=true installation=false
+BeeWisePush register-sdk-complete generation=3 requested=true installation=true
+BeeWisePush bind-start generation=3 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=3 requested=true installation=true
+BeeWisePush stop-delivery generation=4 requested=false installation=true
+BeeWisePush unregistered-callback generation=4 requested=false installation=false
+BeeWisePush auth-change generation=5 requested=false installation=false
+BeeWisePush stop-delivery generation=5 requested=false installation=false
+BeeWisePush unregistered-callback generation=5 requested=false installation=false
+00:03 +28: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: rotation removes the prior FID before writing new and ignores late old unregister
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush registered-callback generation=1 requested=true installation=true
+BeeWisePush unregistered-callback generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:03 +29: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: failed detach preserves recovery journal and propagates until retry succeeds
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush failed-StateError generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+BeeWisePush register-start generation=3 requested=true installation=false
+BeeWisePush registered-callback generation=3 requested=true installation=false
+BeeWisePush register-sdk-complete generation=3 requested=true installation=true
+BeeWisePush bind-start generation=3 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=3 requested=true installation=true
+BeeWisePush stop-delivery generation=4 requested=false installation=true
+BeeWisePush unregistered-callback generation=4 requested=false installation=false
+00:04 +30: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: failed binding is not forgotten and retries cleanup before re-registering
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush failed-StateError generation=1 requested=true installation=true
+BeeWisePush stop-delivery generation=1 requested=true installation=true
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+00:04 +31: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: a late write ack after account switch stays quarantined, never transferred
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush auth-change generation=2 requested=false installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush failed-StateError generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+00:04 +32: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: restart retains foreign ownership and blocks unsafe reuse
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush failed-StateError generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+00:04 +33: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: registration and revocation failures remain retryable and visible
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush failed-StateError generation=1 requested=true installation=false
+BeeWisePush stop-delivery generation=1 requested=true installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+BeeWisePush stop-delivery generation=3 requested=false installation=true
+BeeWisePush failed-StateError generation=3 requested=false installation=false
+BeeWisePush failed-StateError generation=3 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush failed-StateError generation=3 requested=false installation=false
+BeeWisePush stop-delivery generation=4 requested=false installation=false
+BeeWisePush unregistered-callback generation=4 requested=false installation=false
+BeeWisePush register-start generation=4 requested=true installation=false
+BeeWisePush registered-callback generation=4 requested=true installation=false
+BeeWisePush register-sdk-complete generation=4 requested=true installation=true
+BeeWisePush bind-start generation=4 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=4 requested=true installation=true
+00:04 +34: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: current unregister cleans its owned record; duplicate/late unregister cannot delete the next ID
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush unregistered-callback generation=1 requested=true installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+BeeWisePush unregistered-callback generation=2 requested=true installation=true
+00:04 +35: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: applicant transition removes only own stale registration and never re-registers
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+00:04 +36: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: guest and corrupt cleanup state fail closed without Firestore registration
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush failed-FormatException generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+00:04 +37: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: canonical route parser rejects malformed, encoded and unapproved paths
+00:04 +38: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: inbox routes require same recipient, parent role and actual chat ownership
+00:04 +39: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: saved item from account A cannot be tapped after B signs in
+00:04 +40: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: missing routes are rejected consistently in saved and opened messages
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:04 +41: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: route authorization rejects auth changes during an awaited chat read and offline errors
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush auth-change generation=2 requested=false installation=true
+BeeWisePush auth-change generation=3 requested=false installation=true
+BeeWisePush stop-delivery generation=3 requested=false installation=true
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+00:04 +42: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: foreground, opened and cold-start notifications use the same guarded resolver
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:04 +43: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: late expected unregister of a reused FID never removes the new account mapping
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush auth-change generation=3 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush register-start generation=3 requested=true installation=false
+BeeWisePush registered-callback generation=3 requested=true installation=false
+BeeWisePush register-sdk-complete generation=3 requested=true installation=true
+BeeWisePush bind-start generation=3 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=3 requested=true installation=true
+BeeWisePush unregistered-callback generation=3 requested=true installation=true
+BeeWisePush unregistered-callback generation=3 requested=true installation=true
+00:04 +44: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: detach before initialization does not leave an unobserved revocation marker
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=3 requested=false installation=false
+BeeWisePush unregistered-callback generation=3 requested=false installation=false
+BeeWisePush register-start generation=3 requested=true installation=false
+BeeWisePush registered-callback generation=3 requested=true installation=false
+BeeWisePush register-sdk-complete generation=3 requested=true installation=true
+BeeWisePush bind-start generation=3 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=3 requested=true installation=true
+BeeWisePush unregistered-callback generation=3 requested=true installation=true
+00:04 +45: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: stale role lookup completing after auth changes cannot register old UID
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush auth-change generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush register-start generation=2 requested=true installation=false
+BeeWisePush registered-callback generation=2 requested=true installation=false
+BeeWisePush register-sdk-complete generation=2 requested=true installation=true
+BeeWisePush bind-start generation=2 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=2 requested=true installation=true
+00:04 +46: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: a newer rotation wins over an older in-flight binding
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush registered-callback generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush registered-callback generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+00:04 +47: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: sign-out keeps the installation journal and UID inbox needed for recovery
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush auth-change generation=2 requested=false installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush failed-StateError generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+00:04 +48: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: v2 legacy identity comes only from its key; forged recipients and global legacy are ignored
+00:04 +49: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: opened-event recipient is rechecked at the final navigation boundary
+BeeWisePush stop-delivery generation=1 requested=false installation=false
+BeeWisePush unregistered-callback generation=1 requested=false installation=false
+BeeWisePush register-start generation=1 requested=true installation=false
+BeeWisePush registered-callback generation=1 requested=true installation=false
+BeeWisePush register-sdk-complete generation=1 requested=true installation=true
+BeeWisePush bind-start generation=1 requested=true installation=true
+BeeWisePush firestore-acknowledged generation=1 requested=true installation=true
+BeeWisePush auth-change generation=2 requested=false installation=true
+BeeWisePush stop-delivery generation=2 requested=false installation=true
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+BeeWisePush failed-StateError generation=2 requested=false installation=false
+BeeWisePush stop-delivery generation=2 requested=false installation=false
+BeeWisePush unregistered-callback generation=2 requested=false installation=false
+00:04 +50: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: (tearDownAll)
+00:09 +50: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +51: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +52: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +53: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +54: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +55: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:10 +56: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:10 +57: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:10 +58: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:11 +59: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name:    ) without losing logout
+00:12 +60: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: null) without losing logout
+00:12 +61: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: null, initial: B, name: null) without losing logout
+00:12 +62: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email:    , initial: B, name: ) without losing logout
+00:12 +63: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: Y, name: Yuki) without losing logout
+00:12 +64: All tests passed!
