@@ -1,0 +1,223 @@
+{
+  "timestampUtc": "2026-11-01T12:08:09.065784+00:00",
+  "serial": "emulator-5560",
+  "requestedMode": "warm",
+  "userdataCleared": false,
+  "anrDetectionSuppressed": false,
+  "logIdentityPolicy": "All buffers retained; Auth UID aliases and credential-line redaction applied in memory before disk",
+  "pidBefore": "4888",
+  "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nWarning: Activity not started, its current task has been brought to the front\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 77\r\nComplete",
+  "amStartWallMs": 344,
+  "pidAfter": "4888",
+  "homeUiPresent": true,
+  "anrDialogInUi": false,
+  "screenshotSha256": "dc77d1c7480acc3dbb1bb9b2d27a880199370fa6e5ff5a4610118aa8eeb0e277",
+  "interpretation": "OBSERVED; inspect post-marker logs and actual UI before declaring PASS",
+  "commands": [
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "cpuinfo"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "meminfo"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "activity",
+        "activities"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_HOME"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "log",
+        "-t",
+        "BaoStartup",
+        "settled-360-warm"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "--display",
+        "0",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/bao-startup-ui.xml"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "cat",
+        "/sdcard/bao-startup-ui.xml"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "cpuinfo"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "activity",
+        "lastanr"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "activity",
+        "exit-info",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "window",
+        "displays"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "gfxinfo",
+        "com.beewise.beewise",
+        "framestats"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "run-as",
+        "com.beewise.beewise",
+        "cat",
+        "/proc/4888/task/4888/stat"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "run-as",
+        "com.beewise.beewise",
+        "cat",
+        "/proc/4888/task/4888/wchan"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "run-as",
+        "com.beewise.beewise",
+        "cat",
+        "/proc/4888/task/4888/stack"
+      ],
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "logcat",
+        "-b",
+        "all",
+        "-d",
+        "-v",
+        "threadtime"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "markerFound": true,
+  "applicationAnrAfterMarker": false,
+  "systemAnrsAfterMarker": [],
+  "firstDrawLog": [],
+  "flutter": {
+    "isolates": [
+      {
+        "name": "main",
+        "firstFrame": {
+          "enabled": "true",
+          "type": "_extensionType",
+          "method": "ext.flutter.didSendFirstFrameEvent"
+        },
+        "hasProbeExtension": false
+      }
+    ],
+    "frameworkInitializationMs": 86.326,
+    "timingLimitation": "Framework initialization is not process start-to-first-frame; see Android Displayed separately."
+  },
+  "status": "OBSERVED rendered Home; review full native evidence"
+}

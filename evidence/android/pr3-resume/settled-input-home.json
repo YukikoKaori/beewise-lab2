@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:10:49.124603+00:00",
+  "label": "settled-input-home",
+  "pid": "5254",
+  "screenshotSha256": "3fff828e580da0a9947d83097815c00fbd0fd8f644f254976707f06640cb207a",
+  "hasTestNotification": false,
+  "searchRoute": false,
+  "selectedTabs": [
+    "Trang ch\u1ee7\nTab 1 of 5"
+  ],
+  "hasAnrDialog": false,
+  "notificationProbeIds": [],
+  "privateImage": true,
+  "initialHeuristicSuperseded": "Search text in navbar alone is not route evidence; selected tab and actual screenshot must agree."
+}

@@ -1,0 +1,78 @@
+{
+  "recordedAtUtc": "2026-10-31T14:15:49.925467+00:00",
+  "privateLogSha256": "03e545df87a600709b02ce9c033b5f22fcb90c81ff273b544139dd78b6d33a96",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "10-31 21:13:47.267",
+      "servicePid": "1285"
+    },
+    {
+      "nativeLogTime": "10-31 21:13:47.504",
+      "servicePid": "1285"
+    },
+    {
+      "nativeLogTime": "10-31 21:13:47.879",
+      "servicePid": "1285"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "10-31 21:09:28.750",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "login",
+          "timestampMillis": "1793455768129",
+          "parameters": {
+            "method": "password"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 21:13:46.867",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "logout",
+          "timestampMillis": "1793456025606",
+          "parameters": {}
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 21:14:35.531",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "search",
+          "timestampMillis": "1793456074490",
+          "parameters": {
+            "filter_count": "0",
+            "outcome": "results",
+            "sort_mode": "relevance",
+            "result_count": "6",
+            "query_length": "4"
+          }
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}

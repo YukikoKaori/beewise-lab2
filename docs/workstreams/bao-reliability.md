@@ -1,4 +1,194 @@
-# Bao reliability corrective pass — 2026-10-31
+# Bao reliability corrective pass
+
+## PR #3 follow-up — 2026-11-01
+
+Fetched PR HEAD `dd5be3aa7e71db62a744dc379c6de3d503a4c7a3` and main
+`12f5322655463fd801d64e4925572d6a3a2bbb82` before this investigation. Work stays
+on `feat/lab3-bao-cloud-runtime`; do not merge. The sections below dated October
+31 are historical observations, superseded only where this follow-up supplies
+stronger evidence.
+
+The existing uncommitted October 31 startup/identity evidence was preserved and
+audited against private originals. Six native Analytics receipts were rebuilt
+from complete multi-process logcat; 76 private startup artifacts and 34 complete
+ANR traces were checked/hashed. The older historical projection omitted the
+now-allowlisted `entry_source=profile_route`; identity fields and event timing
+agree. See `evidence/cloud/pr3-recovered-integrity.json`.
+
+### Startup diagnosis
+
+The complete original BeeWise ANR trace is now available privately, with a public
+main-thread excerpt in `evidence/android/startup-uid/original-main-thread.txt`.
+PID 20604 had an input focus timeout of 5,020 ms. Its main thread was sampled in
+ART JNI transition / `MessageQueue.nativePollOnce` / Looper, with 21.44 seconds
+scheduled CPU and 29.78 seconds runnable wait. Binding the application took
+12,514 ms; activity dispatch took 32,661 ms. A later dialog referred to that old
+PID after another process had started. This is not evidence of a second ANR in
+the replacement process.
+
+System-wide scheduling/ART/GMS contention is supported by the logs; a reproducible
+application lock or Dart main blocking operation is not established. An idle
+Looper sample can also be taken too late to reveal the original stall, so it
+does not prove the application innocent. Android's diagnostic guidance explains
+this limit: https://developer.android.com/topic/performance/anrs/diagnose-and-fix-anrs.
+No speculative production change, startup delay, ANR suppression or dialog
+masking was added.
+
+The original isolated clean-control first launch timed out. Later settled
+process launches drew in 4,604 / 4,550 / 4,837 ms; same-process resume waited
+251 ms. Complete lifecycle logs also show GMS updating and killing the first
+BeeWise process. A separate reboot overlapping a local build produced ANRs in
+phone, System UI, GMS, keyboard and Launcher before BeeWise started. Those failed
+and confounded runs remain in the manifest. Actual 360dp/412dp screenshots show
+rendered Home for the scoped settled runs, not universal startup reliability.
+
+### Analytics identity ordering and native behavior
+
+`authStateProvider` serializes restored/auth-change users with `asyncMap`, awaits
+`AnalyticsService.setUserId(uid-or-null)` and Crashlytics identity before exposing
+the user. Managed logout logs `logout` while still signed in, detaches FCM, awaits
+`setUserId(null)`, clears Crashlytics, then signs out of Firebase Auth. The subsequent
+guest auth-state emission clears the ID again. Controllers also identify after
+login/signup; their explicit login event precedes that explicit assignment, so
+the observed login attribution is evidence for the tested sessions, not a proof
+of every possible concurrent sign-in ordering.
+
+The pinned firebase_analytics 13.0.1 Android Kotlin plugin passes nullable
+`String?` directly to native `analytics.setUserId(userId)` on its executor. Its
+Future acknowledges that call returning, not native worker execution or backend
+receipt. The lifecycle tests deliberately check the Future/publication ordering;
+they are not native SDK proof. Actual FA-SVC removal acknowledgements and complete
+uploaded bundles supply the separate native evidence:
+
+| Actual event on October 31 (Android local time) | Native uploaded identity |
+|---|---|
+| A login, 21:09:28.750 | A alias |
+| A logout, 21:13:46.867 | A alias, expected pre-clear event |
+| Guest search, 21:14:35.531 | No `_id` property |
+| B login, 21:16:24.010 | B alias, different from A |
+| B logout, 21:19:02.942 | B alias, expected pre-clear event |
+| Guest view_tutor, 21:20:44.903 | No `_id` property |
+
+FA-SVC records `User property removed: user_id(_id)` after both logouts. The
+original disputed guest export at 16:24:00.283 also has no `_id` in its complete
+native bundle. Thus the previously displayed DebugView User properties value
+does not demonstrate that those guest events were sent with the prior UID.
+App instance/session identity remains separate from optional Auth user ID.
+No empty/dummy ID, Analytics reset or app-data clear was used.
+
+The parser follows each service PID/TID and accepts absence only in a complete
+bundle for this package. Tests reject truncated bundles and cross-process
+identity contamination. Raw UIDs and payloads stay private; public receipts use
+SHA-256 aliases. See `evidence/cloud/startup-uid-b-guest-native.json` and
+`evidence/cloud/startup-uid-historical-native.json`. These show native upload
+contents, not an event-level backend export. Firebase documents that identity
+changes do not rewrite previously recorded events:
+https://firebase.google.com/docs/analytics/userid.
+
+### Current validation
+
+Fresh format validation PASS; analyzer PASS; Flutter **66/66**; isolated Firebase
+Emulator rules **28/28**; receipt-parser checks **4/4**. Native and mock evidence
+are kept distinct. The first APK build on C failed with Kotlin incremental-cache
+`different roots` errors against dependencies on D. Rebuilding the exact fetched
+source in the existing clean D worktree passed. Both attempts are retained under
+`evidence/cloud/checks/pr3-resume*`; no application configuration workaround was
+committed. The Storage emulator tests are local only; Storage deployment remains
+**DEFERRED**.
+
+### Fresh default APK native run and remaining gates
+
+The D build reproduced the exact default APK hash already tested on the clean
+isolated control: `2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65`.
+It was installed with `adb install -r`; original and isolated AVD userdata were
+preserved. The default entrypoint has no diagnostic probe VM extension.
+
+On November 1, the immediate post-boot process start again timed out (14,328 ms
+Android wait; 14,422 ms host wall). It later rendered Home. The Android system
+was resource saturated before launch, with load around 35–42 on two vCPUs and
+98% total CPU in the captured boot sample. These are retained failures/limitations.
+They are not reclassified as a clean first-boot launch.
+
+With the same APK, 2 GB/two-vCPU/software-GPU configuration and the system settled
+(observed load 0.09 before the repeat), the controlled measurements were:
+
+| Width | Process start → Android first draw | Warm resume host wall | Result |
+|---|---:|---:|---|
+| 360dp | 5,164 ms | 344 ms | Home rendered; no new ANR |
+| 412dp | 5,466 ms | 422 ms | Home rendered; no new ANR |
+
+Actual subsequent Search → Home taps changed the selected tab in the same PID
+5254 without an ANR dialog. Post-marker complete logs contain no new BeeWise ANR;
+`dumpsys activity lastanr` reports none since that boot. The sampled main thread
+was sleeping (`S`, `do_epoll_wait`); its kernel stack was permission denied,
+explicitly retained as a collection limit. Flutter acknowledged the first frame;
+the 360dp framework initialization timeline spans 86.326 ms. This span is not the
+full Android process-to-first-frame duration. These measurements support a
+**scoped controlled startup PASS**, not a universal boot-time reliability claim.
+See `evidence/android/pr3-resume/manifest.json` and its real 360dp/412dp screenshots.
+
+The emulator window became offscreen during viewport resizing. After the user
+requested recovery, only that AVD's window position/scale preferences were backed
+up and adjusted; the same userdata was reopened. A host RAM compatibility warning
+was observed, without selecting “never show again.” No ANR dialog or detector was
+disabled. Display overrides and Analytics/FA debug properties were restored after
+testing; the user-requested window position/scale is retained.
+
+The user manually completed fresh A/B sign-ins and managed logouts, without sharing
+credentials. The default APK's complete FA-SVC bundles now show:
+
+| November 1 Android local upload time | Business event | Uploaded identity |
+|---|---|---|
+| 18:58:27.905 | A login | A alias |
+| 19:02:35.803 | A logout | A alias, before clear |
+| 19:04:03.341 | Genuine guest search | No `_id` |
+| 19:04:52.657 | B login | Different B alias |
+| 19:05:51.588 | B logout | B alias, before clear |
+| 19:06:46.781 | Genuine guest search | No `_id` |
+
+Native removal acknowledgements follow both logouts. New collection aliases Auth
+UIDs in memory before saving, and omits credential-bearing lines. The immutable
+aliased source hash and all six complete bundles are in
+`evidence/cloud/pr3-identity-native-final.json`. IAM metadata separately confirms
+installation ownership A → none → B → none, with Parent records preserved; it
+does not replace native authentication or authorization proof.
+
+**Native null clearing PASS for these tested sessions; fresh DebugView correlation
+BLOCKED.** The embedded Firebase Analytics frame stayed blank after refresh. The
+direct Analytics property page returned “Missing permissions”; the actual
+screenshot is retained. This does not establish why the embedded frame failed.
+No access request or permission/configuration change was made. An event-level
+backend/BigQuery identity export is unavailable. No Analytics reset, empty/dummy
+ID, UI-driven identity workaround or production identity change was added.
+
+Fresh FCM background and terminated notifications both reached this actual default
+APK. The first `am kill` was too early and left PID 2824 alive; its failed receipt
+is retained. After the background grace period, PID 2824 was absent before the
+terminated send. Delivery started receiver PID 3881 and displayed the unique test
+notification. This was process termination, not Android force-stop. API HTTP 200,
+notification screenshots, matching probe IDs and process lifecycle are correlated
+in `evidence/cloud/pr3-followup-validation.json`. **Delivery PASS; terminated tap
+route NOT VERIFIED:** the initial post-tap screenshot still shows Home/loading.
+The earlier navbar-text route heuristic was discarded; it cannot establish Search
+navigation. Existing generation/journal/cross-UID/fail-closed protections are
+unchanged. Fresh native timeout/write-failure injection is NOT RUN.
+
+Overall remains **NOT MERGE READY** because the required fresh DebugView correlation
+is blocked. Startup sensitivity immediately after API37 boot remains documented;
+no reproducible application blocking root cause was established to fix. Storage
+is DEFERRED. No Nguyen UI, ARTEMIS, report, billing, bucket, enforcement or backend
+expansion change was made. Final delivery SHA and exact-head Actions results are
+recorded in the existing PR description after push; no new PR or merge.
+
+Earlier APK comparison: **BLOCKED** on a separate fresh API37 AVD. Before
+BeeWise was installed, GMS persistent ANR and sustained system load prevented
+the controlled settle gate (240 seconds). The earlier candidate was never
+installed over existing userdata; no known-working comparison is claimed. See
+evidence/android/pr3-resume/earlier-comparison.json and
+earlier-before-app-baseline.json. This is a separate system-resource failure,
+not evidence of a Flutter defect.
+
+## Historical corrective pass — 2026-10-31
 
 Application source: `be2b44515af637db1c7ded6b94797d1cf4adc746`.
 Main re-fetched and verified: `12f5322655463fd801d64e4925572d6a3a2bbb82`.
