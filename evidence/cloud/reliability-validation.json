@@ -256,5 +256,5 @@
     "physicalAndroid": "NOT RUN"
   },
   "privacy": "Private authenticated screenshots/log originals on D; public sanitized XML/logs, aliased metadata and genuine guest/error screenshots. No password/token/raw identity exported.",
-  "followup": "evidence/cloud/pr3-followup-validation.json"
+  "followup": "evidence/cloud/pr3-completion-validation.json"
 }

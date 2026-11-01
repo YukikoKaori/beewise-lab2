@@ -1,5 +1,112 @@
 # Bao reliability corrective pass
 
+## PR #3 continuation after Console recovery — 2026-11-01
+
+Fetched HEAD `55b74ec201828fa6bd0cbc4260c092aed6fa34f1` and main
+`12f5322655463fd801d64e4925572d6a3a2bbb82` before continuing. Production source
+and the installed default APK remain unchanged. This section supersedes the
+previous delivery's fresh-DebugView and terminated-tap blockers; immediate
+post-boot startup still fails acceptance.
+
+### DebugView correlation recovered
+
+The actual Firebase DebugView is accessible again. Its timeline showed A logout
+19:02:35, guest search 19:04:02, B identity assignment 19:04:51, B login 19:04:52,
+B logout 19:05:50 and guest search 19:06:45 (November 1, Android local UTC+7).
+Both guest search events were opened individually: their `query_length` values
+4 and 3 match their exact native event timestamps/parameters. Genuine cropped
+Console screenshots exclude identity values. The earlier A login was outside the
+rolling 30-minute Console window and remains separately supported by its complete
+native bundle; it is not claimed as a newly re-observed Console event.
+
+**PASS tested native null clearing plus actual guest-event DebugView receipt.**
+Both complete post-logout FA-SVC bundles have zero `_id` properties. Console's
+Current User Properties and the selected guest event's User properties tab still
+presented the last B value. That retained presentation is documented; its internal
+cause and an event-level backend `user_id` export are not established. Do not infer
+a new UID-bearing guest upload from that display, or claim that the display itself
+cleared. No empty/dummy ID, Analytics data reset or identity behavior change.
+See `evidence/cloud/pr3-debugview-correlation.json`. Firebase's
+[DebugView documentation](https://firebase.google.com/docs/analytics/debugview)
+distinguishes event parameters from current device properties, and the Android
+[setUserId reference](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#setUserId(java.lang.String))
+specifies that null removes the user ID. The evidence, rather than the Console
+presentation alone, supports the scoped native conclusion.
+
+### Immediate post-boot startup remains unresolved
+
+Four fresh cold boots reused the same isolated AVD userdata and default APK, with
+no low-load settle gate. The original AVD was not changed. All four activity starts
+timed out; later first draws do not convert those failures into a PASS.
+
+| Run | GPU / vCPUs | Marker after boot completed | Android first draw | System ANRs in collected log |
+|---|---|---:|---:|---|
+| boot-one | software / 2 | 16.52s | 52,706ms | System UI, Photos |
+| boot-two | host / 2 | 12.63s | 56,541ms | System UI |
+| boot-three | host / 4 | 3.85s | 36,610ms | None observed |
+| boot-four | host, Vulkan disabled / 4 | 3.47s | 40,146ms | None observed |
+
+The first two collections performed expensive dumps before launching. The new
+optional `--immediate` collector mode moves those dumps after launch; the last two
+therefore begin within four seconds of observed `sys.boot_completed=1`. No startup
+sleep, ANR detection suppression, background-package disabling or dialog hiding
+was used. The Vulkan toggle is an emulator experiment, not an application fix.
+
+**Configuration correction:** the emulator explicitly increased requested
+`-memory 2048` to **4096 MiB** in all four logs. The preceding `pr3-resume` stdout
+also confirms this effective 4 GiB allocation; its manifest is corrected. Earlier
+references to a 2 GB configuration describe the requested value. The obsolete
+`-scale` launch flag is ignored by this emulator version; backed-up window
+preferences were used to restore a fully visible window. No warning suppression
+checkbox was selected.
+
+A complete bugreport and 23 complete ANR trace artifacts were retained privately
+with public hashes. The current System UI trace shows 16.93 seconds runnable wait
+versus 1.22 seconds CPU on its main thread while initializing System UI. This
+supports resource/scheduling pressure and is not an application deadlock trace.
+No new BeeWise ANR appears in these collected boot logs; nevertheless, the app
+main thread was sampled runnable and first draws took 36–57 seconds. Absence of
+an app ANR does not establish acceptable startup. Kernel stack access was denied;
+full logs, lifecycle, stat/wchan, and Flutter first-frame acknowledgements are
+retained. Framework timing is not substituted for process-to-first-frame time.
+
+Failed UI dumps exposed a collector defect: Android could leave a previous XML
+file in place. The collector now records failure, avoids reading that file and
+reports UI assertions as unknown. Earlier failed dumps in this follow-up are
+explicitly marked non-authoritative; their real screenshots remain failure
+evidence. No production app root cause was reproduced to justify a speculative
+code change. See `evidence/cloud/pr3-completion-validation.json`.
+
+### Terminated notification tap verified
+
+After the user signed in A again, registration metadata showed only the expected
+test installation owned by A. A normal background grace period followed by
+`am kill` left PID 1724 absent in two samples before sending; no force-stop.
+Unique probe `bao-pr3-terminated-1793537409160` displayed a real notification and
+created native receiver PID 3796. A single tap on that observed notification body
+was followed without manually navigating the app.
+
+The first capture at 7.84 seconds still showed Home. At 12.84 seconds, the actual
+Search page, search field, filters, tutor results and selected Search tab were
+visible; the 18.47-second capture remained on Search in the same PID. **PASS actual
+terminated delivery and tap route for this tested session.** This supersedes the
+earlier initial-frame-only uncertainty; it does not assert the old capture proved
+navigation or that every race is covered. Generation, journal, cross-UID and
+fail-closed role checks remain unchanged. See
+`evidence/android/pr3-completion/terminated-tap-sequence.json`.
+
+Managed logout restored genuine guest UI, removed A's installation registration,
+left other owners empty and preserved Parent records. Display overrides were
+reset and the emulator stopped gracefully before validation. No userdata or
+Analytics data was cleared. Credentials are absent from files/evidence/PR text.
+
+Current merge readiness: **NOT MERGE READY**, because immediate post-boot startup
+still fails. Fresh DebugView guest-event correlation and terminated tap route
+are now verified within the limits above. No Storage/billing/bucket deployment,
+App Check enforcement/backend expansion, Nguyen UI, ARTEMIS or report changes.
+Local rerun receipts are under `evidence/cloud/checks/pr3-completion`; final SHA
+and exact-head Actions results are recorded in existing PR #3 after push.
+
 ## PR #3 follow-up — 2026-11-01
 
 Fetched PR HEAD `dd5be3aa7e71db62a744dc379c6de3d503a4c7a3` and main

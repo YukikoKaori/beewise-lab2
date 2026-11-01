@@ -33,7 +33,10 @@
     "pid": 10436,
     "originalAvdUntouched": true,
     "isolatedAvdUserdataReused": true,
-    "reasonVisible": "User authorized manual test-account sign-in after startup measurements"
+    "reasonVisible": "User authorized manual test-account sign-in after startup measurements",
+    "requestedRamMiB": 2048,
+    "effectiveRamMiB": 4096,
+    "effectiveRamEvidence": "Private emulator-stdout.log explicitly reports Increasing RAM size to 4096MB; original hash retained."
   },
   "measurements": [
     "cold: 14422 ms; home=False",
@@ -769,5 +772,6 @@
     "evidence/android/pr3-resume/settled-input-home.json"
   ],
   "mainThreadSample": "Settled app main state S / do_epoll_wait; kernel stack permission denied. Original complete ANR Java/native stack retained privately and excerpted separately.",
-  "currentDefaultApkMatchesEarlierCleanControl": true
+  "currentDefaultApkMatchesEarlierCleanControl": true,
+  "immediateBootFollowup": "evidence/cloud/pr3-completion-validation.json"
 }
