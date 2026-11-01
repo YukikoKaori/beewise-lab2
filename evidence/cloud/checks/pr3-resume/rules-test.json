@@ -1,0 +1,18 @@
+{
+  "startedAtUtc": "2026-11-01T11:42:27.935811+00:00",
+  "completedAtUtc": "2026-11-01T11:43:08.891511+00:00",
+  "sourceSha": "dd5be3aa7e71db62a744dc379c6de3d503a4c7a3",
+  "workingTreeIncludes": [
+    "test/analytics_identity_lifecycle_test.dart"
+  ],
+  "command": [
+    "npm.cmd",
+    "--prefix",
+    "firebase",
+    "test"
+  ],
+  "workingDirectory": "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+  "nativeExitCode": 0,
+  "originalLogSha256": "a6eae3fb24cc2b67decfa254e3c7abc36d15635285d4ccb383c1c1e542a85c22",
+  "publicLogProjection": "Trailing line whitespace normalized; original log preserved privately"
+}

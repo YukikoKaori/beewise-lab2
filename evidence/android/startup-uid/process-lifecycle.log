@@ -1,0 +1,45 @@
+original | 10-31 11:22:39.453   644  1424 E ActivityManager: ANR in com.android.phone
+original | 10-31 11:22:50.029   644  1523 E ActivityManager: ANR in com.android.systemui
+original | 10-31 11:22:56.578   644   691 I ActivityManager: Start proc 1776:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 11:23:04.178   644  1660 E ActivityManager: ANR in com.google.android.inputmethod.latin
+original | 10-31 11:23:04.354   644  1660 E ActivityManager: ANR in com.google.android.googlequicksearchbox:interactor
+original | 10-31 11:23:04.407   644  1660 E ActivityManager: ANR in com.google.android.gms
+original | 10-31 11:23:06.531   644  2007 E ActivityManager: ANR in com.android.phone
+original | 10-31 11:51:22.240   644   683 I ActivityManager: Killing 1776:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to killDueToPackageUpdate
+original | 10-31 11:51:30.610   644   691 I ActivityManager: Start proc 5453:com.beewise.beewise/u0a235 for top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 15:10:04.683   644 13783 E ActivityManager: ANR in com.google.android.dialer
+original | 10-31 15:10:09.372   644 13783 E ActivityManager: ANR in com.google.android.glasses.core:sysui
+original | 10-31 15:13:39.225   644  1012 I ActivityManager: Killing 5453:com.beewise.beewise/u0a235 (adj 101): stop com.beewise.beewise due to from pid 14617
+original | 10-31 15:15:56.830   644   691 I ActivityManager: Start proc 14773:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 15:19:30.901   644  1715 I ActivityManager: Killing 14773:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to from pid 15219
+original | 10-31 15:19:32.224   644   691 I ActivityManager: Start proc 15234:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 15:21:40.569   644   691 I ActivityManager: Start proc 15567:com.beewise.beewise/u0a235 for bound-service {com.beewise.beewise/com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService}
+original | 10-31 15:21:42.897   644  1411 I ActivityManager: Killing 15567:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to from pid 15583
+original | 10-31 15:21:43.093   644   691 I ActivityManager: Start proc 15592:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 15:30:56.679   644  1411 I ActivityManager: Killing 15592:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to from pid 16278
+original | 10-31 15:30:57.171   644   691 I ActivityManager: Start proc 16289:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 16:01:16.725   644   683 I ActivityManager: Killing 16289:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to killDueToPackageUpdate
+original | 10-31 16:01:36.071   644   691 I ActivityManager: Start proc 17711:com.beewise.beewise/u0a235 for top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 16:03:16.232   644   683 I ActivityManager: Killing 17711:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to killDueToPackageUpdate
+original | 10-31 16:03:18.157   644   691 I ActivityManager: Start proc 17992:com.beewise.beewise/u0a235 for top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 16:03:18.615   644  1310 I ActivityManager: Killing 17992:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to from pid 18013
+original | 10-31 16:03:19.339   644   691 I ActivityManager: Start proc 18034:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 16:27:44.086   644   683 I ActivityManager: Killing 18034:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to killDueToPackageUpdate
+original | 10-31 16:28:00.537   644   691 I ActivityManager: Start proc 20604:com.beewise.beewise/u0a235 for top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 16:29:15.316   644   780 I WindowManager: ANR in Window{4932ec u0 com.beewise.beewise/com.beewise.beewise.MainActivity}. Reason:Input dispatching timed out (4932ec com.beewise.beewise/com.beewise.beewise.MainActivity is not responding. Waited 5020ms for FocusEvent(hasFocus=true)).
+original | 10-31 16:29:27.087   644  2659 I ActivityManager: Killing 20604:com.beewise.beewise/u0a235 (adj 0): stop com.beewise.beewise due to from pid 20939
+original | 10-31 16:29:29.158   644   691 I ActivityManager: Start proc 20952:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+original | 10-31 16:29:35.107   644 20903 E ActivityManager: ANR in com.beewise.beewise (com.beewise.beewise/.MainActivity)
+original | 10-31 16:29:57.286   644   680 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +28s979ms
+clean-reboot-build-overlap | 10-31 21:00:09.194   650  1353 E ActivityManager: ANR in com.android.phone
+clean-reboot-build-overlap | 10-31 21:00:32.000   650  1478 E ActivityManager: ANR in com.android.systemui
+clean-reboot-build-overlap | 10-31 21:00:46.809   650  1478 E ActivityManager: ANR in com.google.android.gms
+clean-reboot-build-overlap | 10-31 21:00:49.482   650  1478 E ActivityManager: ANR in com.google.android.inputmethod.latin
+clean-reboot-build-overlap | 10-31 21:00:58.962   650  1478 E ActivityManager: ANR in com.google.android.providers.media.module
+clean-reboot-build-overlap | 10-31 21:01:00.784   650  1478 E ActivityManager: ANR in com.google.android.googlequicksearchbox:interactor
+clean-reboot-build-overlap | 10-31 21:01:03.076   650  1478 E ActivityManager: ANR in com.google.android.as
+clean-reboot-build-overlap | 10-31 21:01:05.709   650  1478 E ActivityManager: ANR in com.android.phone
+clean-reboot-build-overlap | 10-31 21:01:13.623   650  1478 E ActivityManager: ANR in com.google.android.apps.nexuslauncher
+clean-reboot-build-overlap | 10-31 21:01:14.796   650  1478 E ActivityManager: ANR in com.google.android.apps.photos
+clean-reboot-build-overlap | 10-31 21:01:28.738   650   685 I ActivityManager: Start proc 2067:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+clean-reboot-build-overlap | 10-31 21:01:41.138   650  2307 E ActivityManager: ANR in com.android.phone

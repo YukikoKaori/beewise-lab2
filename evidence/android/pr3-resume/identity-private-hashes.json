@@ -1,0 +1,260 @@
+{
+  "files": [
+    {
+      "privateFileName": "emulator-user-before.ini",
+      "bytes": 119,
+      "sha256": "1409d58b72581cb9a92cd24bb8e24bf4b2f7f0875d12da88ce80bbe1ff38ff7b"
+    },
+    {
+      "privateFileName": "identity-capture.json",
+      "bytes": 317,
+      "sha256": "1a6a18e1668cec1dcfe8e3416ac54d04534f6cade3bbf493e2b1534fd906e1be"
+    },
+    {
+      "privateFileName": "identity-progress.json",
+      "bytes": 1635,
+      "sha256": "453c7e26808e51ef6c123983b91256750e0113b8ae73bd7cc056e58fbe34d97e"
+    },
+    {
+      "privateFileName": "identity-session-aliased-logcat.txt",
+      "bytes": 8163516,
+      "sha256": "35b1e1ff661bbdfcc1b39d08e80a88aa74c3211a5fb1027dec81ddc299301590"
+    },
+    {
+      "privateFileName": "live-a-background-notifications.txt",
+      "bytes": 167671,
+      "sha256": "11b02768b2fb2161f4864d183a5030a2ad4ec53c6cb8baea887868d663721138"
+    },
+    {
+      "privateFileName": "live-a-background-opened-notifications.txt",
+      "bytes": 162326,
+      "sha256": "9c71324a318c479aad22b4dd85db4a2504f618c86004b26ac4a70a72ee618709"
+    },
+    {
+      "privateFileName": "live-a-background-opened.json",
+      "bytes": 348,
+      "sha256": "4568b087ee2cdd9abd5f197a33cb2faf1616db80e94e33a9d9a1a452b59ccf5b"
+    },
+    {
+      "privateFileName": "live-a-background-opened.png",
+      "bytes": 173671,
+      "sha256": "e5758e7a3dbef380190611f39653135fff0c2389b549d4b71fcfffd42a2d5220"
+    },
+    {
+      "privateFileName": "live-a-background-opened.xml",
+      "bytes": 16837,
+      "sha256": "191c3ec4ff9eb9e7456bef944c6192aac618a4cdd4d107211382a046cfe880f1"
+    },
+    {
+      "privateFileName": "live-a-background.json",
+      "bytes": 385,
+      "sha256": "28a3e4a90ae2b89ce5afbb2673e335085811508fb8fa7bda5b6abaf991bad3c8"
+    },
+    {
+      "privateFileName": "live-a-background.png",
+      "bytes": 281349,
+      "sha256": "e3299ce92f2f6fd7ab551e85dfef4502cd8d1716db0959f9dfdf4da4d71e6dca"
+    },
+    {
+      "privateFileName": "live-a-background.xml",
+      "bytes": 48037,
+      "sha256": "e37fe7281cc1169005d23f2f750c623bf29f5733fe1c05799f5c413095c7be9a"
+    },
+    {
+      "privateFileName": "live-a-guest-search-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "live-a-guest-search.json",
+      "bytes": 343,
+      "sha256": "680bb15140f7529c1379c293d81fd448c8e6fcb737d534db1377a0d7cd0efc32"
+    },
+    {
+      "privateFileName": "live-a-guest-search.png",
+      "bytes": 122866,
+      "sha256": "2fbe0f8936c4a3c687552c6867466b0f6b2fa2fa7474e96c97e8d10b7de10604"
+    },
+    {
+      "privateFileName": "live-a-guest-search.xml",
+      "bytes": 17290,
+      "sha256": "9568cbfed4cb5af6214ed2ebd8d8a50877e31f62cebb09c52f1c451ddb45895d"
+    },
+    {
+      "privateFileName": "live-a-guest-ui-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "live-a-guest-ui.json",
+      "bytes": 339,
+      "sha256": "c47035cc35d6c4d22aa1b308de411058eab02e42f19ee57f46b2d6b72fc107c6"
+    },
+    {
+      "privateFileName": "live-a-guest-ui.png",
+      "bytes": 160410,
+      "sha256": "7abcdf7efdb8cc62e17a5649445c2162f57d693b673871aa9294203c37b6aeb8"
+    },
+    {
+      "privateFileName": "live-a-guest-ui.xml",
+      "bytes": 18507,
+      "sha256": "e625b60b96c7586c576adf3cc2a627cd7d819492383cdbf989bb77e4d9cecd22"
+    },
+    {
+      "privateFileName": "live-a-terminated-notifications.txt",
+      "bytes": 167803,
+      "sha256": "51d20cc13cb95896a124e0512a138a690fba5056b47bec21d6a70043297ad05f"
+    },
+    {
+      "privateFileName": "live-a-terminated-opened-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "live-a-terminated-opened.json",
+      "bytes": 348,
+      "sha256": "2eef20abd90543814affe1d1bdb11cdd134076327a9e9eff26e8d3d7cded8d7a"
+    },
+    {
+      "privateFileName": "live-a-terminated-opened.png",
+      "bytes": 139184,
+      "sha256": "9d3475b3a9b6d5f26b5ab6cf5cca1380ec9906fc35d00506500eb044261ca776"
+    },
+    {
+      "privateFileName": "live-a-terminated-opened.xml",
+      "bytes": 15566,
+      "sha256": "d246bd31cbe9bf990208a3a5087a9fc1fe96da596b5b4d8c78e18a7bbf49234c"
+    },
+    {
+      "privateFileName": "live-a-terminated.json",
+      "bytes": 385,
+      "sha256": "7a53bc45180618d00ea5156f688ed734e94bbc9be6c9a174a2f2aa27a5fbaf6e"
+    },
+    {
+      "privateFileName": "live-a-terminated.png",
+      "bytes": 278873,
+      "sha256": "43082f44b44fb5c35e86576d2465e5239417cc76edceb43686ac93933162d2c9"
+    },
+    {
+      "privateFileName": "live-a-terminated.xml",
+      "bytes": 48038,
+      "sha256": "05dd209e3b18c61e6d60c1301107aee761616bb9865e3472de0b947eaae6c52a"
+    },
+    {
+      "privateFileName": "live-b-guest-search-before-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "live-b-guest-search-before.json",
+      "bytes": 417,
+      "sha256": "d1835a10b49c3ed2ad1b54e5d8e5afa8f31cb538a7a9b83ea61e95902f813fcb"
+    },
+    {
+      "privateFileName": "live-b-guest-search-before.png",
+      "bytes": 152942,
+      "sha256": "a2f94d93eef05956bf9c2db28ae0101a9f6774f94225ed27dc20c5337a7dd66a"
+    },
+    {
+      "privateFileName": "live-b-guest-search-before.xml",
+      "bytes": 19057,
+      "sha256": "7666736c98d44c996646c00b9ad6c1ca88d9b734c5986ebf382c034e5f89cf15"
+    },
+    {
+      "privateFileName": "live-b-guest-search-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "live-b-guest-search.json",
+      "bytes": 410,
+      "sha256": "06b33b973924052dfaa0e1db9e7a2d0d08cd26d40aee1875deb264b803b14603"
+    },
+    {
+      "privateFileName": "live-b-guest-search.png",
+      "bytes": 146856,
+      "sha256": "dfa83b53e79bbabc22eaecf95b804c9fc966162376942ccd0e3649bd38ffe133"
+    },
+    {
+      "privateFileName": "live-b-guest-search.xml",
+      "bytes": 19371,
+      "sha256": "563fcfd479740ac73a0cbe55e405f81d6811b664b8dce037ff3d995d2c2499b2"
+    },
+    {
+      "privateFileName": "live-b-guest-ui-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "live-b-guest-ui.json",
+      "bytes": 339,
+      "sha256": "8f0094e0d286fe124947d7b74b9d25e141a11c9f98ad65dbe30b0aa4570143b2"
+    },
+    {
+      "privateFileName": "live-b-guest-ui.png",
+      "bytes": 154252,
+      "sha256": "385253367c61d36e90d443228a8606f2862570228ae4a9fbc5e377da6ad2f792"
+    },
+    {
+      "privateFileName": "live-b-guest-ui.xml",
+      "bytes": 11462,
+      "sha256": "5bb867dedbc8789929f607ab31937070db7087e404d56a17b47bf24b5e92f66a"
+    },
+    {
+      "privateFileName": "recovery.json",
+      "bytes": 577,
+      "sha256": "5876cd35a7e3562dca55b9af159ebe68998193c9119aed5f60762523287f2b67"
+    },
+    {
+      "privateFileName": "settled-input-home-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "settled-input-home.json",
+      "bytes": 404,
+      "sha256": "f3b0fd580399db73294e61b9e4d8e1b5043032fa66dda332a1793164fd806b90"
+    },
+    {
+      "privateFileName": "settled-input-home.png",
+      "bytes": 173691,
+      "sha256": "3fff828e580da0a9947d83097815c00fbd0fd8f644f254976707f06640cb207a"
+    },
+    {
+      "privateFileName": "settled-input-home.xml",
+      "bytes": 16837,
+      "sha256": "191c3ec4ff9eb9e7456bef944c6192aac618a4cdd4d107211382a046cfe880f1"
+    },
+    {
+      "privateFileName": "settled-input-search-notifications.txt",
+      "bytes": 162333,
+      "sha256": "a5836752e2d1eae3a2e954790d200f7f585d7bb3931fe49b9d174f4ecdef8fb1"
+    },
+    {
+      "privateFileName": "settled-input-search.json",
+      "bytes": 411,
+      "sha256": "fb6af761fbf68c399535e34a2b8aaf4a8dc992e0614c14ae80c91f46fb19d02c"
+    },
+    {
+      "privateFileName": "settled-input-search.png",
+      "bytes": 152488,
+      "sha256": "3ec4b7451564a151eb6671fe2566654aadac930a5043655496b170c11e1343b6"
+    },
+    {
+      "privateFileName": "settled-input-search.xml",
+      "bytes": 19058,
+      "sha256": "6f4677c0eb6e1f5d01f7268bb52e1e93ed352345e01684fe422160b403e23654"
+    },
+    {
+      "privateFileName": "stderr.log",
+      "bytes": 41,
+      "sha256": "b6eaeacb382b7c62d87f5577e442ba03e94d6c5e94ed6b0b8ab42c99c677cbb8"
+    },
+    {
+      "privateFileName": "stdout.log",
+      "bytes": 15443,
+      "sha256": "06e742457f59ecee85e6164e1ea346bf182e6b39a01ea026c04ee2b04556e6b3"
+    }
+  ],
+  "uidPolicy": "New identity log aliases 28-character Auth UIDs in memory before disk; raw UID is never intentionally logged by app/test code or included in public artifacts."
+}

@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:01:53.756401+00:00",
+  "label": "live-a-terminated-opened",
+  "pid": "3881",
+  "screenshotSha256": "9d3475b3a9b6d5f26b5ab6cf5cca1380ec9906fc35d00506500eb044261ca776",
+  "hasTestNotification": false,
+  "hasAnrDialog": false,
+  "notificationProbeIds": [],
+  "privateImage": true,
+  "selectedTabs": [
+    "Trang ch\u1ee7\nTab 1 of 5"
+  ],
+  "routeVerdict": "NOT VERIFIED from transition capture; navbar/selected XML alone is insufficient and the terminated screenshot was still Home/loading.",
+  "initialHeuristicSuperseded": "Search text in navbar alone is not route evidence; selected tab and actual screenshot must agree."
+}

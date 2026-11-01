@@ -1,0 +1,31 @@
+{
+  "timestampUtc": "2026-11-01T12:11:17.858469+00:00",
+  "emulatorCommand": [
+    "D:/Android/SDK/emulator/emulator.exe",
+    "-avd",
+    "BeeWise_PR3_Earlier_API37",
+    "-port",
+    "5562",
+    "-no-window",
+    "-no-snapshot",
+    "-no-boot-anim",
+    "-memory",
+    "2048",
+    "-gpu",
+    "software",
+    "-cores",
+    "2",
+    "-no-audio"
+  ],
+  "hostPid": 15016,
+  "freshIsolatedUserdata": true,
+  "existingUserdataUntouched": true,
+  "earlierSourceSha": "6ba751968c285daac443cb86e86af32185d2606a",
+  "comparisonLimitation": "Earlier CI candidate, not asserted known-working on this newly created AVD; signer differs and was never installed over existing test/user packages.",
+  "status": "BLOCKED comparison: System load did not settle below 2 within 240s",
+  "privateManifestSha256": "668660c46c33ffbfd22af4029fd073d4fed29dc553285fe151ae9def37b40de4",
+  "beforeAppBaseline": "evidence/android/pr3-resume/earlier-before-app-baseline.json",
+  "apkInstalled": false,
+  "earlierApkSha256": "38b5312db84237af2424a144cfe704f1150dea4103e37c75fd84d11add33bdb9",
+  "verdict": "BLOCKED: fresh API37 control had GMS persistent ANR before BeeWise installation; no earlier APK launch comparison claimed."
+}

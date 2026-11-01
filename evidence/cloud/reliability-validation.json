@@ -34,7 +34,7 @@
     "foregroundDelivery": "PASS actual targeted A/B notification receipt and inbox route, not merely FCM API acceptance",
     "logout": "PASS A/B/Google and approved new signup own installation removed, other owners empty, Parent records preserved",
     "sessionRestore": "PASS A same sign-in timestamp, own server read and rebind after diagnostic APK install/relaunch",
-    "backgroundAndTerminatedDeliveryOnThisSource": "NOT RUN; historical proof is not a fresh retest",
+    "backgroundAndTerminatedDeliveryOnThisSource": "PASS fresh native notification delivery 2026-11-01; route limitation and process evidence in followup",
     "nativeTimeoutAndFailedWriteInjection": "NOT RUN; deterministic regression coverage only"
   },
   "roleRecovery": {
@@ -110,7 +110,8 @@
     "uidClearing": {
       "status": "NOT VERIFIED / acceptance blocked",
       "observation": "Managed logout reaches guest and removes FCM installation, but DebugView User properties of later genuine guest export still displays the last dedicated signup user_id. No clear success claimed; UI historical property persistence versus collection attribution not established.",
-      "evidenceLabel": "reliability-guest-export-user-id-readback"
+      "evidenceLabel": "reliability-guest-export-user-id-readback",
+      "supersededBy": "Native collection evidence resolves SDK null clearing for tested guest events; fresh DebugView correlation still blocked. See followup."
     },
     "consoleScreenshotReceipts": [
       {
@@ -242,7 +243,8 @@
       "deviceReceipt": "evidence/android/logs/reliability-state-restored-restore.json",
       "debugReceipt": "evidence/android/logs/reliability-debug-properties-restored.json",
       "browserZoom": "Restored to 100 percent"
-    }
+    },
+    "followupStartup": "Controlled settled 360dp/412dp default APK startup and responsive navigation verified; historical failures retained. See followup."
   },
   "remaining": {
     "Storage": "DEFERRED by user; no billing, bucket or upload",
@@ -253,5 +255,6 @@
     "externalReview": "NOT RUN human handoff",
     "physicalAndroid": "NOT RUN"
   },
-  "privacy": "Private authenticated screenshots/log originals on D; public sanitized XML/logs, aliased metadata and genuine guest/error screenshots. No password/token/raw identity exported."
+  "privacy": "Private authenticated screenshots/log originals on D; public sanitized XML/logs, aliased metadata and genuine guest/error screenshots. No password/token/raw identity exported.",
+  "followup": "evidence/cloud/pr3-followup-validation.json"
 }
