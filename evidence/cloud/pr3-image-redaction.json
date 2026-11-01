@@ -1,0 +1,13 @@
+{
+  "path": "evidence/android/screenshots/auth-fcm-valid-search-route.png",
+  "reason": "Owner-authorized local privacy redaction of test-account email only; native evidence otherwise unchanged. Screenshot retains historical observed Profile screen, not a new Search-route claim.",
+  "redactionRectanglePixels": [
+    168,
+    281,
+    457,
+    333
+  ],
+  "privateOriginalSha256": "b8425fc7c4598db65a76bee43e30d4e9c936095fdb559d9c9789a86c4190b82c",
+  "publicRedactedSha256": "6fcd36964ee803806f88c9d8c00cd50c27ad39278cee278a6428fac00e0f1b78",
+  "historyLimitation": "Prior commit retains the test email; no password or UID visible in this image. No history rewrite performed."
+}

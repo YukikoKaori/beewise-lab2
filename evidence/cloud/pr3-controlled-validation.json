@@ -1,0 +1,66 @@
+{
+  "recordedAtUtc": "2026-11-01T15:25:56.826856+00:00",
+  "fetchedHeadBeforeWork": "d23bb905822a44e7003b6ae95c465f141e5caab1",
+  "baseSha": "12f5322655463fd801d64e4925572d6a3a2bbb82",
+  "assessment": "APPROVE_MERGE for tested Lab 3 scope, conditional on final exact-HEAD GitHub Actions passing",
+  "productionCodeChanged": false,
+  "nativeStartupStatus": "PASS three controlled cold-process starts; earlier immediate-boot API37 failures remain an environmental limitation, not retroactive PASS",
+  "applicationSpecificAnrReproduced": false,
+  "exclusiveEnvironmentRootCauseProven": false,
+  "rootCauseEvidence": "Material emulator/host boot resource contention supported by high boot load, System UI runnable-wait ANR, prior GMS ANR before BeeWise installation, slow minimal Flutter control during boot and clean settled paired runs. Additional BeeWise startup cost is observed. No speculative application fix.",
+  "nativeEvidence": "evidence/android/pr3-controlled/manifest.json",
+  "incomingFileAudit": "evidence/cloud/pr3-file-audit.json",
+  "privacyFix": "evidence/cloud/pr3-image-redaction.json",
+  "validation": {
+    "analyze": {
+      "status": "PASS",
+      "exitCode": 0,
+      "receipt": "evidence/cloud/checks/pr3-controlled/analyze.json"
+    },
+    "apk-build": {
+      "status": "PASS",
+      "exitCode": 0,
+      "receipt": "evidence/cloud/checks/pr3-controlled/apk-build.json"
+    },
+    "flutter-test": {
+      "status": "PASS",
+      "exitCode": 0,
+      "receipt": "evidence/cloud/checks/pr3-controlled/flutter-test.json"
+    },
+    "format": {
+      "status": "PASS",
+      "exitCode": 0,
+      "receipt": "evidence/cloud/checks/pr3-controlled/format.json"
+    },
+    "parser-test": {
+      "status": "PASS",
+      "exitCode": 0,
+      "receipt": "evidence/cloud/checks/pr3-controlled/parser-test.json"
+    },
+    "rules-test": {
+      "status": "PASS",
+      "exitCode": 0,
+      "receipt": "evidence/cloud/checks/pr3-controlled/rules-test.json"
+    }
+  },
+  "flutterTestsPassed": 66,
+  "firebaseRulesTestsPassed": 28,
+  "parserTestsPassed": 4,
+  "apkSha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+  "installedApkMatches": true,
+  "preserved": [
+    "Emulator userdata",
+    "Working Firebase config",
+    "Verified Auth/Analytics/FCM/Crashlytics/Remote Config behavior",
+    "FCM generation/journal/cross-UID/fail-closed role protection"
+  ],
+  "remainingRisks": [
+    "No API35/36 image or physical device available; NOT RUN",
+    "Immediate post-boot API37 debug startup can take 36\u201357s; no universal launch SLA claimed",
+    "Controlled current emulator uses headless GUI mode; cannot isolate a unique host/emulator component",
+    "Kernel stack access denied; sampling does not replace complete stack proof",
+    "Release-mode/hardware startup and ARTEMIS runtime NOT RUN"
+  ],
+  "scope": "Storage DEFERRED; no billing, Storage deployment, App Check enforcement, backend or Nguyen UI/report changes. Do not merge automatically.",
+  "ci": "Final delivery SHA and exact-HEAD Actions outcome are recorded in the existing PR description after push, avoiding a recursive evidence-only CI commit."
+}
