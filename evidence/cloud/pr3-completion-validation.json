@@ -106,5 +106,9 @@
     "ANRSuppression": "None",
     "credentials": "No credentials written to files or evidence"
   },
-  "mergeReadiness": "NOT MERGE READY: immediate post-boot startup acceptance still fails. No reproducible production app cause established; no speculative fix."
+  "mergeReadiness": "NOT MERGE READY: immediate post-boot startup acceptance still fails. No reproducible production app cause established; no speculative fix.",
+  "supersededAssessment": {
+    "manifest": "evidence/cloud/pr3-controlled-validation.json",
+    "reason": "New settled three-run BeeWise/minimal-Flutter comparison supports scoped merge approval; historical immediate-boot observations remain unchanged."
+  }
 }

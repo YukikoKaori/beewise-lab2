@@ -1,5 +1,110 @@
 # Bao reliability corrective pass
 
+## Controlled startup comparison and PR assessment — 2026-11-01
+
+**APPROVE_MERGE for the tested Lab 3 scope**, subject to the final exact-HEAD
+GitHub Actions checks recorded in the PR. This supersedes the earlier blanket
+startup merge blocker, without turning the four immediate-post-boot failures
+into successful launches. Firebase/Analytics findings remain accepted for their
+documented tested scope and were not reopened.
+
+Fetched latest PR HEAD `d23bb905822a44e7003b6ae95c465f141e5caab1` and main
+`12f5322655463fd801d64e4925572d6a3a2bbb82` before this continuation. Incoming
+HEAD CI passed 3/3 in run `41309090759`. No production source change was needed.
+The installed default `lib/main.dart` debug APK hash matches the built artifact:
+`2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65`.
+The native VM reports no diagnostic probe extension.
+
+The existing isolated API37 Play x86_64 AVD reused its userdata. Original AVD and
+working Firebase configuration were untouched. WHPX, software GPU, two vCPUs and
+effective 4096 MiB RAM were recorded. This controlled run used the headless
+emulator GUI mode; Android still rendered real frames captured with screencap.
+This is a host rendering difference from the previous visible-window boot runs,
+so the comparison does not isolate one particular emulator or host component.
+No background package disabling, ANR suppression, data clear or app startup
+delay was introduced. Resolution was restored to 720×1600 after the 412dp check;
+the AVD then shut down gracefully.
+
+The emulator boot workload reached guest load 32.49 with host free memory falling
+to about 4.1 GiB. A minimal unmodified Flutter counter app, built with the same SDK
+and debug mode, took 9,173 ms to draw during that workload. Initial settling
+required boot complete plus guest 1-minute load below 0.5 for three consecutive
+15-second samples. Subsequent paired runs required two direct CPU samples with
+at least 90% idle across both vCPUs and host available RAM above 2 GiB. Historical
+load averages remained elevated after bursts despite direct CPU samples showing
+idle; both measurements are retained, not silently equated.
+
+| App / cold process run | Activity launch to draw | Process start to Android draw | Process start to first Flutter GPU raster complete |
+|---|---:|---:|---:|
+| BeeWise 1 | 7,145 ms | 7,070 ms | 6,875 ms |
+| BeeWise 2 | 5,194 ms | 5,127 ms | 4,893 ms |
+| BeeWise 3 | 4,516 ms | 4,563 ms | 4,429 ms |
+| Flutter control 1 | 3,164 ms | 3,139 ms | 3,028 ms |
+| Flutter control 2 | 3,526 ms | 3,449 ms | 3,297 ms |
+| Flutter control 3 | 3,294 ms | 3,252 ms | 3,122 ms |
+
+All six launches rendered the expected UI without ANR dialogs or post-marker
+BeeWise/System UI/GMS ANRs in collected logs. Each had a newly started PID and
+native Flutter first-frame confirmation. Android classified BeeWise run 3 WARM
+because its task was retained; process lifecycle proves a new process, so it is
+counted only as a **cold process** start. Android activity time, native process
+time and Flutter timeline times are separate measurements. `/proc` CLK_TCK=100
+and bracketed uptime/VM-clock calibration support the Flutter timing calculation.
+Warm resume at 412dp reused PID 6448 and took 235 ms host wall time; no new
+first-frame duration is asserted for that resume. The extra 412dp cold start
+took 4,841 ms activity time and rendered Home. Genuine new 360dp/412dp screenshots,
+per-run process/main-thread samples and integrity hashes are in
+`evidence/android/pr3-controlled/manifest.json`.
+
+Main-thread samples during launch show CPU execution/runnable states followed by
+event-loop waits; post-launch state is S / `do_epoll_wait`. They do not establish
+a permanent app lock. Kernel stack reads remain permission denied, so this is
+not claimed as complete native stack attribution. The earlier complete System UI
+ANR trace already documents long runnable wait during system initialization, and
+the separate earlier AVD had GMS failure before BeeWise installation. Together
+with the slower control boot and clean settled repeats, evidence supports
+**emulator/host boot resource contention as a material cause of the remaining
+startup observation**. It does not prove exclusive causality or a Flutter defect.
+BeeWise has additional startup cost relative to the control; no reproducible
+BeeWise-specific ANR/root-cause fix is demonstrated, so identity/bootstrap/FCM
+behavior was not speculatively modified.
+
+Actual Search-tab navigation succeeded in BeeWise runs 2 and 3 in the same PID;
+the control counter visibly incremented in all three runs. The initial BeeWise
+run's input helper hit promotional text instead of the tab, and the counter
+helper looked for a text attribute although Flutter exposed a content-desc.
+Original false heuristic receipts are preserved and distinguished from reviewed
+native XML/screenshots; neither was counted as an application failure or mock PASS.
+
+API35/36 images were not installed locally and no physical device was connected.
+Release-mode and real hardware startup are NOT RUN. Immediate post-boot API37
+startup remains a documented environmental limitation (earlier 36–57 second
+draws/timeouts), not a claimed launch PASS or an indefinite blocker on this scoped
+PR. Follow-up action: repeat these matched BeeWise/control measurements on an
+already available API35/36 or physical device; reopen an application blocker if
+BeeWise alone reproduces input ANR after the environment settles. No deployment
+or release-wide startup guarantee is inferred from this scoped approval.
+
+### Incoming 1010-file audit
+
+`evidence/cloud/pr3-file-audit.json` inventories every incoming changed path,
+size and hash. About 23.84 MB total, no file over 1 MiB, and 54 identical-byte
+groups with 113 redundant copies (~2.27 MB). Those historical named receipts
+remain linked rather than deleting unique evidence or claiming duplicate files
+as independent proof. New complete native logs stay private with public hashes.
+Text candidates were reviewed without exporting their values; no raw Auth UID,
+private key, bearer credential or real password was found. All 104 PNGs were
+visually surveyed; one historical test-email region was explicitly authorized
+for local redaction. Both existing screenshot hash references were updated.
+Earlier commits retain the test email; no secret-bearing history rewrite was
+needed or performed. Synthetic fixture emails/passwords remain test data.
+
+This continuation changes evidence and Bao workstream documentation only.
+Verified FCM generation/journal/cross-UID/role behavior, Auth, Analytics,
+Crashlytics and Remote Config remain unchanged. Storage DEFERRED. No billing,
+Storage/App Check enforcement, backend expansion, Nguyen UI, ARTEMIS or report
+implementation change. Final validation receipts: `evidence/cloud/checks/pr3-controlled/`.
+
 ## PR #3 continuation after Console recovery — 2026-11-01
 
 Fetched HEAD `55b74ec201828fa6bd0cbc4260c092aed6fa34f1` and main

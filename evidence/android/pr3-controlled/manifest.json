@@ -1,0 +1,2437 @@
+{
+  "measurementSourceHead": "d23bb905822a44e7003b6ae95c465f141e5caab1",
+  "baseSha": "12f5322655463fd801d64e4925572d6a3a2bbb82",
+  "applicationSourceUnchanged": true,
+  "apkKind": "debug default lib/main.dart; no diagnostic probe entrypoint",
+  "beeWiseApkSha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+  "controlApkSha256": "1fc569e1918f229735e1cbca70374f738dc3e00fb93bbb5c1eefd304a67566f3",
+  "controlSourceMainSha256": "2e73660d17441987859c11b2ff5be835e72fdd9f6b8d967f9f5ca69e736a4883",
+  "controlCreation": "Same Flutter SDK: flutter create --platforms=android --org com.beewise.control --project-name startup_control <separate-D-directory>; unmodified counter template; flutter build apk --debug",
+  "environment": "API37 Play x86_64, WHPX, software GPU, 2 vCPUs, requested 2048 MiB raised by emulator to 4096 MiB, existing isolated userdata reused; headless GUI rendering, native screencap and uiautomator retained; no suppression flags",
+  "settleGate": {
+    "gate": "boot complete and 1-minute guest load <0.5 on three consecutive 15-second samples; no application delay added",
+    "samples": [
+      {
+        "utc": "2026-11-01T15:09:33.826027+00:00",
+        "boot": "",
+        "load": "1.77 0.41 0.13 13/912 1312",
+        "hostAvailableBytes": 5811818496
+      },
+      {
+        "utc": "2026-11-01T15:09:49.372287+00:00",
+        "boot": "1",
+        "load": "11.08 2.53 0.83 68/1351 1903",
+        "hostAvailableBytes": 5887696896
+      },
+      {
+        "utc": "2026-11-01T15:10:04.516814+00:00",
+        "boot": "1",
+        "load": "24.18 5.82 1.94 42/1911 2553",
+        "hostAvailableBytes": 4966133760
+      },
+      {
+        "utc": "2026-11-01T15:10:19.636615+00:00",
+        "boot": "1",
+        "load": "32.49 8.57 2.90 11/2640 3521",
+        "hostAvailableBytes": 4576141312
+      },
+      {
+        "utc": "2026-11-01T15:10:34.915204+00:00",
+        "boot": "1",
+        "load": "25.50 8.54 3.02 8/2670 3919",
+        "hostAvailableBytes": 4369338368
+      },
+      {
+        "utc": "2026-11-01T15:10:50.254357+00:00",
+        "boot": "1",
+        "load": "20.78 8.32 3.03 5/2648 4008",
+        "hostAvailableBytes": 7319982080
+      },
+      {
+        "utc": "2026-11-01T15:11:05.349466+00:00",
+        "boot": "1",
+        "load": "18.63 8.47 3.17 5/2584 4188",
+        "hostAvailableBytes": 8016818176
+      },
+      {
+        "utc": "2026-11-01T15:11:20.430319+00:00",
+        "boot": "1",
+        "load": "14.57 8.07 3.12 1/2534 4232",
+        "hostAvailableBytes": 7967354880
+      },
+      {
+        "utc": "2026-11-01T15:11:35.512848+00:00",
+        "boot": "1",
+        "load": "11.34 7.67 3.07 1/2495 4238",
+        "hostAvailableBytes": 7964823552
+      },
+      {
+        "utc": "2026-11-01T15:11:50.612584+00:00",
+        "boot": "1",
+        "load": "8.83 7.30 3.02 1/2475 4242",
+        "hostAvailableBytes": 7893893120
+      },
+      {
+        "utc": "2026-11-01T15:12:05.700656+00:00",
+        "boot": "1",
+        "load": "6.87 6.94 2.97 2/2471 4261",
+        "hostAvailableBytes": 7721361408
+      },
+      {
+        "utc": "2026-11-01T15:12:20.794508+00:00",
+        "boot": "1",
+        "load": "5.35 6.60 2.92 1/2464 4267",
+        "hostAvailableBytes": 7677976576
+      },
+      {
+        "utc": "2026-11-01T15:12:35.880084+00:00",
+        "boot": "1",
+        "load": "4.24 6.29 2.88 1/2480 4303",
+        "hostAvailableBytes": 7632519168
+      },
+      {
+        "utc": "2026-11-01T15:12:50.968899+00:00",
+        "boot": "1",
+        "load": "3.38 6.00 2.84 1/2473 4307",
+        "hostAvailableBytes": 7413985280
+      },
+      {
+        "utc": "2026-11-01T15:13:06.049190+00:00",
+        "boot": "1",
+        "load": "2.63 5.70 2.79 1/2471 4313",
+        "hostAvailableBytes": 7048310784
+      },
+      {
+        "utc": "2026-11-01T15:13:21.124639+00:00",
+        "boot": "1",
+        "load": "2.05 5.42 2.75 2/2472 4320",
+        "hostAvailableBytes": 6905585664
+      },
+      {
+        "utc": "2026-11-01T15:13:36.206063+00:00",
+        "boot": "1",
+        "load": "1.59 5.16 2.70 1/2472 4324",
+        "hostAvailableBytes": 6672064512
+      },
+      {
+        "utc": "2026-11-01T15:13:51.286429+00:00",
+        "boot": "1",
+        "load": "1.24 4.90 2.66 1/2469 4336",
+        "hostAvailableBytes": 6761422848
+      },
+      {
+        "utc": "2026-11-01T15:14:06.362918+00:00",
+        "boot": "1",
+        "load": "0.96 4.66 2.61 1/2469 4340",
+        "hostAvailableBytes": 6753312768
+      },
+      {
+        "utc": "2026-11-01T15:14:21.444909+00:00",
+        "boot": "1",
+        "load": "0.75 4.43 2.57 1/2461 4344",
+        "hostAvailableBytes": 6780444672
+      },
+      {
+        "utc": "2026-11-01T15:14:36.521516+00:00",
+        "boot": "1",
+        "load": "0.58 4.22 2.53 1/2460 4349",
+        "hostAvailableBytes": 6853492736
+      },
+      {
+        "utc": "2026-11-01T15:14:51.616180+00:00",
+        "boot": "1",
+        "load": "0.45 4.01 2.49 1/2462 4357",
+        "hostAvailableBytes": 6862856192
+      },
+      {
+        "utc": "2026-11-01T15:15:06.690284+00:00",
+        "boot": "1",
+        "load": "0.35 3.81 2.45 1/2460 4362",
+        "hostAvailableBytes": 6753918976
+      },
+      {
+        "utc": "2026-11-01T15:15:21.769019+00:00",
+        "boot": "1",
+        "load": "0.27 3.62 2.41 1/2469 4389",
+        "hostAvailableBytes": 6787997696
+      }
+    ],
+    "satisfied": true
+  },
+  "subsequentGate": "After initial full settle: two consecutive top samples each >=180% idle of 200% on 2 vCPUs, host available memory >2GiB. Historical one-minute load is retained even when current CPU is idle. 412 followup not included in the three matched gate comparisons.",
+  "clockMethod": "Native Start proc to Displayed uses same logcat clock. Flutter timeline clock calibrated against bracketed /proc/uptime; /proc/PID/stat starttime uses observed getconf CLK_TCK=100. First Dart Frame completion and first GPU raster completion are distinct from Android first draw; didSendFirstFrameEvent independently confirms delivery.",
+  "limitations": [
+    "Sampling is observational, not complete native stack tracing; run-as kernel stack read is permission denied. No lock-root-cause inference from an idle sample.",
+    "BeeWise settled run 3 has Android LaunchState WARM but a newly started PID; this is a cold PROCESS start with a retained task.",
+    "API35/36 system images absent locally; no connected physical device. Neither is claimed tested.",
+    "No release-mode, hardware, immediate-post-boot clean launch guarantee. Earlier four immediate boot failures remain valid.",
+    "No Firebase/Analytics findings reopened."
+  ],
+  "rows": [
+    {
+      "label": "control-boot",
+      "package": "com.beewise.control.startup_control",
+      "pidBefore": "",
+      "pidAfter": "3951",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 9173,
+      "amStartWallMs": 9265,
+      "processStartToAndroidFirstDrawMs": 8692,
+      "processStartUptimeSeconds": 101.09,
+      "processToFirstDartFrameCompletedMs": null,
+      "processToFirstRasterCompletedMs": null,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": null,
+      "interaction": null,
+      "hostAvailableGiBMin": 6.614,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:10:44.974054+00:00",
+          "pid": "",
+          "mainStatAndWchan": "",
+          "load": "21.98 8.35 3.01 5/2630 3938",
+          "hostAvailableBytes": 7493697536,
+          "collectionMs": 500
+        },
+        {
+          "utc": "2026-11-01T15:10:46.374953+00:00",
+          "pid": "",
+          "mainStatAndWchan": "",
+          "load": "21.98 8.35 3.01 29/2637 3958",
+          "hostAvailableBytes": 7476883456,
+          "collectionMs": 386
+        },
+        {
+          "utc": "2026-11-01T15:10:48.018820+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "21.98 8.35 3.01 6/2644 3989",
+          "hostAvailableBytes": 7392591872,
+          "collectionMs": 764
+        },
+        {
+          "utc": "2026-11-01T15:10:49.610987+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "21.98 8.35 3.01 6/2649 4004",
+          "hostAvailableBytes": 7330594816,
+          "collectionMs": 467
+        },
+        {
+          "utc": "2026-11-01T15:10:51.233288+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.78 8.32 3.03 9/2656 4025",
+          "hostAvailableBytes": 7273226240,
+          "collectionMs": 588
+        },
+        {
+          "utc": "2026-11-01T15:10:52.574332+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.78 8.32 3.03 2/2661 4038",
+          "hostAvailableBytes": 7414497280,
+          "collectionMs": 255
+        },
+        {
+          "utc": "2026-11-01T15:10:53.798095+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.78 8.32 3.03 4/2658 4046",
+          "hostAvailableBytes": 7658041344,
+          "collectionMs": 211
+        },
+        {
+          "utc": "2026-11-01T15:10:55.289504+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.07 8.38 3.08 14/2658 4065",
+          "hostAvailableBytes": 7178919936,
+          "collectionMs": 643
+        },
+        {
+          "utc": "2026-11-01T15:10:56.756938+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.07 8.38 3.08 2/2665 4085",
+          "hostAvailableBytes": 7101964288,
+          "collectionMs": 306
+        },
+        {
+          "utc": "2026-11-01T15:10:58.018604+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.07 8.38 3.08 1/2651 4093",
+          "hostAvailableBytes": 7837446144,
+          "collectionMs": 220
+        },
+        {
+          "utc": "2026-11-01T15:10:59.422100+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "20.07 8.38 3.08 83/2641 4122",
+          "hostAvailableBytes": 7763951616,
+          "collectionMs": 442
+        },
+        {
+          "utc": "2026-11-01T15:11:00.670457+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "19.91 8.54 3.16 2/2629 4131",
+          "hostAvailableBytes": 7682625536,
+          "collectionMs": 191
+        },
+        {
+          "utc": "2026-11-01T15:11:01.875402+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "19.91 8.54 3.16 2/2623 4171",
+          "hostAvailableBytes": 7625867264,
+          "collectionMs": 192
+        },
+        {
+          "utc": "2026-11-01T15:11:03.830966+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "0",
+          "load": "19.91 8.54 3.16 1/2610 4184",
+          "hostAvailableBytes": 7688450048,
+          "collectionMs": 150
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": null
+    },
+    {
+      "label": "bee-settled-1",
+      "package": "com.beewise.beewise",
+      "pidBefore": "",
+      "pidAfter": "4422",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 7145,
+      "amStartWallMs": 7219,
+      "processStartToAndroidFirstDrawMs": 7070,
+      "processStartUptimeSeconds": 378.51,
+      "processToFirstDartFrameCompletedMs": 6307.056,
+      "processToFirstRasterCompletedMs": 6875.471,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "395.58 533.66\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 395587664
+        },
+        "uptimeAfter": "395.63 533.74\r\n"
+      },
+      "interaction": {
+        "label": "bee-settled-1",
+        "baselineLoad": "0.27 3.62 2.41 1/2468 4391",
+        "package": "com.beewise.beewise",
+        "uiInitially": true,
+        "vmQueryExitCode": 0,
+        "responseDumpSucceeded": true,
+        "pidAfterInput": "4422",
+        "responseObserved": false,
+        "reviewedResponseObserved": false,
+        "reviewNote": "Initial harness tapped the Home promotional text instead of tab; retained as a mis-targeted input attempt. Later two runs have actual Search navigation."
+      },
+      "hostAvailableGiBMin": 5.943,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:15:22.945592+00:00",
+          "pid": "",
+          "mainStatAndWchan": "",
+          "load": "0.27 3.62 2.41 3/2474 4407",
+          "hostAvailableBytes": 6772604928,
+          "hostCpuBusyPercentSincePreviousSample": 53.12,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 154
+        },
+        {
+          "utc": "2026-11-01T15:15:24.290049+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) R 420 420 0 0 -1 4194624 13340 0 0 0 28 19 0 0 10 -10 13 0 37851 18106986496 38111 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 4612 1 1073775864 0 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "0.27 3.62 2.41 5/2504 4458",
+          "hostAvailableBytes": 6746316800,
+          "hostCpuBusyPercentSincePreviousSample": 62.94,
+          "guestCpuBusyPercentSincePreviousSample": 89.11,
+          "collectionMs": 355
+        },
+        {
+          "utc": "2026-11-01T15:15:25.603709+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) R 420 420 0 0 -1 4194624 24211 0 146 0 56 43 0 0 10 -10 58 0 37851 26302255104 79640 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "0.49 3.61 2.41 4/2539 4507",
+          "hostAvailableBytes": 6734991360,
+          "hostCpuBusyPercentSincePreviousSample": 48.66,
+          "guestCpuBusyPercentSincePreviousSample": 95.77,
+          "collectionMs": 309
+        },
+        {
+          "utc": "2026-11-01T15:15:26.929319+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) R 420 420 0 0 -1 4194624 48163 0 462 0 98 91 0 0 10 -10 63 0 37851 26321248256 123252 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "0.49 3.61 2.41 4/2541 4521",
+          "hostAvailableBytes": 6710423552,
+          "hostCpuBusyPercentSincePreviousSample": 33.33,
+          "guestCpuBusyPercentSincePreviousSample": 79.45,
+          "collectionMs": 316
+        },
+        {
+          "utc": "2026-11-01T15:15:28.313336+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) R 420 420 0 0 -1 4194624 52973 0 463 0 145 107 0 0 10 -10 68 0 37851 26337148928 128136 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "0.49 3.61 2.41 2/2543 4540",
+          "hostAvailableBytes": 6583336960,
+          "hostCpuBusyPercentSincePreviousSample": 64.24,
+          "guestCpuBusyPercentSincePreviousSample": 77.9,
+          "collectionMs": 399
+        },
+        {
+          "utc": "2026-11-01T15:15:29.688467+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) R 420 420 0 0 -1 4194624 62228 0 477 0 246 136 0 0 10 -10 68 0 37851 26347896832 136390 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "0.49 3.61 2.41 10/2542 4553",
+          "hostAvailableBytes": 6652153856,
+          "hostCpuBusyPercentSincePreviousSample": 51.99,
+          "guestCpuBusyPercentSincePreviousSample": 63.53,
+          "collectionMs": 361
+        },
+        {
+          "utc": "2026-11-01T15:15:31.424944+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 67985 0 482 0 279 155 0 0 10 -10 84 0 37851 26654339072 155755 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "1.33 3.74 2.46 9/2560 4602",
+          "hostAvailableBytes": 6441836544,
+          "hostCpuBusyPercentSincePreviousSample": 68.81,
+          "guestCpuBusyPercentSincePreviousSample": 99.39,
+          "collectionMs": 737
+        },
+        {
+          "utc": "2026-11-01T15:15:32.770047+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 70215 0 483 0 322 169 0 0 10 -10 93 0 37851 26664714240 157507 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "1.33 3.74 2.46 1/2575 4627",
+          "hostAvailableBytes": 6430912512,
+          "hostCpuBusyPercentSincePreviousSample": 57.22,
+          "guestCpuBusyPercentSincePreviousSample": 78.66,
+          "collectionMs": 297
+        },
+        {
+          "utc": "2026-11-01T15:15:34.145696+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 70355 0 483 0 325 170 0 0 10 -10 89 0 37851 26137575424 150386 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "1.33 3.74 2.46 3/2591 4671",
+          "hostAvailableBytes": 6476779520,
+          "hostCpuBusyPercentSincePreviousSample": 30.48,
+          "guestCpuBusyPercentSincePreviousSample": 51.87,
+          "collectionMs": 375
+        },
+        {
+          "utc": "2026-11-01T15:15:35.880708+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 70355 0 483 0 325 170 0 0 10 -10 89 0 37851 26137575424 150065 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "54.08 14.63 5.99 2/2544 4735",
+          "hostAvailableBytes": 6399930368,
+          "hostCpuBusyPercentSincePreviousSample": 43.41,
+          "guestCpuBusyPercentSincePreviousSample": 88.86,
+          "collectionMs": 694
+        },
+        {
+          "utc": "2026-11-01T15:15:37.240566+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 70355 0 483 0 325 170 0 0 10 -10 89 0 37851 26137575424 150065 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "54.08 14.63 5.99 2/2541 4775",
+          "hostAvailableBytes": 6380892160,
+          "hostCpuBusyPercentSincePreviousSample": 34.05,
+          "guestCpuBusyPercentSincePreviousSample": 49.25,
+          "collectionMs": 367
+        },
+        {
+          "utc": "2026-11-01T15:15:39.693343+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 70367 0 483 0 325 170 0 0 10 -10 85 0 37851 26134085632 150062 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "54.08 14.63 5.99 1/2529 4792",
+          "hostAvailableBytes": 6384480256,
+          "hostCpuBusyPercentSincePreviousSample": 38.21,
+          "guestCpuBusyPercentSincePreviousSample": 14.23,
+          "collectionMs": 1416
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": null
+    },
+    {
+      "label": "control-settled-1",
+      "package": "com.beewise.control.startup_control",
+      "pidBefore": "3951",
+      "pidAfter": "4900",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 3164,
+      "amStartWallMs": 3219,
+      "processStartToAndroidFirstDrawMs": 3139,
+      "processStartUptimeSeconds": 526.52,
+      "processToFirstDartFrameCompletedMs": 2060.587,
+      "processToFirstRasterCompletedMs": 3028.385,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "537.34 796.90\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 537346964
+        },
+        "uptimeAfter": "537.38 796.97\r\n"
+      },
+      "interaction": {
+        "label": "control-settled-1",
+        "baselineLoad": "6.33 9.51 5.22 1/2489 4864",
+        "package": "com.beewise.control.startup_control",
+        "uiInitially": true,
+        "vmQueryExitCode": 0,
+        "responseDumpSucceeded": true,
+        "pidAfterInput": "4900",
+        "responseObserved": false,
+        "reviewedResponseObserved": true
+      },
+      "hostAvailableGiBMin": 5.656,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:17:51.092018+00:00",
+          "pid": "3951",
+          "mainStatAndWchan": "3951 (startup_control) S 420 420 0 0 -1 4194624 29620 0 11 0 173 104 0 0 20 0 29 0 10109 25784856576 39272 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_freezer_trap",
+          "load": "5.83 9.35 5.19 2/2466 4893",
+          "hostAvailableBytes": 6249615360,
+          "hostCpuBusyPercentSincePreviousSample": 53.12,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 323
+        },
+        {
+          "utc": "2026-11-01T15:17:52.448495+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) R 420 420 0 0 -1 4194624 19125 0 133 0 34 11 0 0 10 -10 32 0 52652 26103287808 71995 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "5.83 9.35 5.19 3/2505 4955",
+          "hostAvailableBytes": 6233116672,
+          "hostCpuBusyPercentSincePreviousSample": 63.79,
+          "guestCpuBusyPercentSincePreviousSample": 94.94,
+          "collectionMs": 342
+        },
+        {
+          "utc": "2026-11-01T15:17:53.686219+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 27783 0 138 0 119 15 0 0 10 -10 32 0 52652 26120413184 81240 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "5.83 9.35 5.19 2/2505 4965",
+          "hostAvailableBytes": 6248361984,
+          "hostCpuBusyPercentSincePreviousSample": 46.91,
+          "guestCpuBusyPercentSincePreviousSample": 90.76,
+          "collectionMs": 224
+        },
+        {
+          "utc": "2026-11-01T15:17:55.143161+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 28342 0 138 0 126 18 0 0 10 -10 36 0 52652 26128642048 83756 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "6.56 9.45 5.24 7/2519 4997",
+          "hostAvailableBytes": 6099746816,
+          "hostCpuBusyPercentSincePreviousSample": 61.11,
+          "guestCpuBusyPercentSincePreviousSample": 82.22,
+          "collectionMs": 464
+        },
+        {
+          "utc": "2026-11-01T15:17:56.423984+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 28958 0 138 0 135 19 0 0 10 -10 36 0 52652 26129821696 84149 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "6.56 9.45 5.24 1/2510 5009",
+          "hostAvailableBytes": 6098292736,
+          "hostCpuBusyPercentSincePreviousSample": 24.6,
+          "guestCpuBusyPercentSincePreviousSample": 17.97,
+          "collectionMs": 256
+        },
+        {
+          "utc": "2026-11-01T15:17:57.735187+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 28959 0 138 0 135 19 0 0 10 -10 35 0 52652 26129772544 84149 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "6.56 9.45 5.24 2/2511 5052",
+          "hostAvailableBytes": 6073085952,
+          "hostCpuBusyPercentSincePreviousSample": 31.43,
+          "guestCpuBusyPercentSincePreviousSample": 35.66,
+          "collectionMs": 310
+        },
+        {
+          "utc": "2026-11-01T15:17:58.951656+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 28962 0 138 0 135 19 0 0 10 -10 35 0 52652 26129772544 84252 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "6.56 9.45 5.24 1/2506 5063",
+          "hostAvailableBytes": 6092488704,
+          "hostCpuBusyPercentSincePreviousSample": 38.14,
+          "guestCpuBusyPercentSincePreviousSample": 54.77,
+          "collectionMs": 231
+        },
+        {
+          "utc": "2026-11-01T15:18:01.515723+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 28974 0 138 0 135 19 0 0 10 -10 33 0 52652 26128576512 84307 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "6.04 9.29 5.21 1/2501 5112",
+          "hostAvailableBytes": 6112006144,
+          "hostCpuBusyPercentSincePreviousSample": 26.91,
+          "guestCpuBusyPercentSincePreviousSample": 14.0,
+          "collectionMs": 1476
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": [
+        200,
+        195
+      ]
+    },
+    {
+      "label": "bee-settled-2",
+      "package": "com.beewise.beewise",
+      "pidBefore": "4422",
+      "pidAfter": "5196",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 5194,
+      "amStartWallMs": 5266,
+      "processStartToAndroidFirstDrawMs": 5127,
+      "processStartUptimeSeconds": 542.06,
+      "processToFirstDartFrameCompletedMs": 4464.36,
+      "processToFirstRasterCompletedMs": 4892.772,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "555.23 812.77\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 555239330
+        },
+        "uptimeAfter": "555.28 812.85\r\n"
+      },
+      "interaction": {
+        "label": "bee-settled-2",
+        "baselineLoad": "6.04 9.29 5.21 1/2511 5161",
+        "package": "com.beewise.beewise",
+        "uiInitially": true,
+        "vmQueryExitCode": 0,
+        "responseDumpSucceeded": true,
+        "pidAfterInput": "5196",
+        "responseObserved": true,
+        "reviewedResponseObserved": true
+      },
+      "hostAvailableGiBMin": 5.401,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:18:06.620933+00:00",
+          "pid": "4422",
+          "mainStatAndWchan": "4422 (beewise.beewise) S 420 420 0 0 -1 4194624 71456 0 483 0 344 173 0 0 20 0 70 0 37851 26120646656 150980 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "5.55 9.13 5.18 1/2443 5189",
+          "hostAvailableBytes": 6111842304,
+          "hostCpuBusyPercentSincePreviousSample": 62.5,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 364
+        },
+        {
+          "utc": "2026-11-01T15:18:07.960093+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 14717 0 0 0 51 11 0 0 10 -10 43 0 54206 17385566208 47349 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 4612 1 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "5.55 9.13 5.18 5/2495 5259",
+          "hostAvailableBytes": 6122893312,
+          "hostCpuBusyPercentSincePreviousSample": 78.06,
+          "guestCpuBusyPercentSincePreviousSample": 95.33,
+          "collectionMs": 342
+        },
+        {
+          "utc": "2026-11-01T15:18:09.249051+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 47730 0 0 0 112 25 0 0 10 -10 58 0 54206 26299338752 122903 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "5.55 9.13 5.18 3/2501 5276",
+          "hostAvailableBytes": 6118637568,
+          "hostCpuBusyPercentSincePreviousSample": 57.83,
+          "guestCpuBusyPercentSincePreviousSample": 98.82,
+          "collectionMs": 268
+        },
+        {
+          "utc": "2026-11-01T15:18:10.538338+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) R 420 420 0 0 -1 4194624 54990 0 0 0 175 29 0 0 10 -10 64 0 54206 26308636672 128137 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "5.19 9.00 5.16 2/2508 5296",
+          "hostAvailableBytes": 6111260672,
+          "hostCpuBusyPercentSincePreviousSample": 52.9,
+          "guestCpuBusyPercentSincePreviousSample": 82.56,
+          "collectionMs": 287
+        },
+        {
+          "utc": "2026-11-01T15:18:11.886357+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 65926 0 0 0 278 38 0 0 10 -10 73 0 54206 26620272640 150702 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "5.19 9.00 5.16 12/2516 5321",
+          "hostAvailableBytes": 5931012096,
+          "hostCpuBusyPercentSincePreviousSample": 60.74,
+          "guestCpuBusyPercentSincePreviousSample": 77.01,
+          "collectionMs": 410
+        },
+        {
+          "utc": "2026-11-01T15:18:13.288125+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 66997 0 0 0 303 43 0 0 10 -10 79 0 54206 26628861952 153895 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "5.19 9.00 5.16 4/2537 5359",
+          "hostAvailableBytes": 5941919744,
+          "hostCpuBusyPercentSincePreviousSample": 82.14,
+          "guestCpuBusyPercentSincePreviousSample": 95.06,
+          "collectionMs": 349
+        },
+        {
+          "utc": "2026-11-01T15:18:14.583454+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) R 420 420 0 0 -1 4194624 68212 0 0 0 334 50 0 0 10 -10 89 0 54206 26643066880 156546 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "5.19 9.00 5.16 3/2531 5376",
+          "hostAvailableBytes": 5905727488,
+          "hostCpuBusyPercentSincePreviousSample": 73.34,
+          "guestCpuBusyPercentSincePreviousSample": 80.25,
+          "collectionMs": 266
+        },
+        {
+          "utc": "2026-11-01T15:18:15.824575+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 69710 0 0 0 354 50 0 0 10 -10 89 0 54206 26643066880 157980 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "46.41 17.48 7.93 2/2543 5412",
+          "hostAvailableBytes": 5893156864,
+          "hostCpuBusyPercentSincePreviousSample": 39.38,
+          "guestCpuBusyPercentSincePreviousSample": 56.02,
+          "collectionMs": 218
+        },
+        {
+          "utc": "2026-11-01T15:18:17.041345+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 69710 0 0 0 354 50 0 0 10 -10 89 0 54206 26643066880 157980 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "46.41 17.48 7.93 1/2536 5452",
+          "hostAvailableBytes": 5814616064,
+          "hostCpuBusyPercentSincePreviousSample": 45.19,
+          "guestCpuBusyPercentSincePreviousSample": 50.42,
+          "collectionMs": 219
+        },
+        {
+          "utc": "2026-11-01T15:18:19.395498+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 69724 0 0 0 354 50 0 0 10 -10 85 0 54206 26117058560 150228 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "46.41 17.48 7.93 1/2531 5467",
+          "hostAvailableBytes": 5798854656,
+          "hostCpuBusyPercentSincePreviousSample": 24.01,
+          "guestCpuBusyPercentSincePreviousSample": 10.63,
+          "collectionMs": 215
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": [
+        184,
+        197
+      ]
+    },
+    {
+      "label": "control-settled-2",
+      "package": "com.beewise.control.startup_control",
+      "pidBefore": "4900",
+      "pidAfter": "5549",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 3526,
+      "amStartWallMs": 3578,
+      "processStartToAndroidFirstDrawMs": 3449,
+      "processStartUptimeSeconds": 560.38,
+      "processToFirstDartFrameCompletedMs": 2182.717,
+      "processToFirstRasterCompletedMs": 3297.147,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "571.53 831.15\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 571543428
+        },
+        "uptimeAfter": "571.58 831.23\r\n"
+      },
+      "interaction": {
+        "label": "control-settled-2",
+        "baselineLoad": "42.86 17.23 7.89 2/2534 5512",
+        "package": "com.beewise.control.startup_control",
+        "uiInitially": true,
+        "vmQueryExitCode": 0,
+        "responseDumpSucceeded": true,
+        "pidAfterInput": "5549",
+        "responseObserved": false,
+        "reviewedResponseObserved": true
+      },
+      "hostAvailableGiBMin": 5.186,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:18:24.906145+00:00",
+          "pid": "4900",
+          "mainStatAndWchan": "4900 (startup_control) S 420 420 0 0 -1 4194624 30486 0 138 0 155 23 0 0 20 0 33 0 52652 25717522432 87243 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "42.86 17.23 7.89 1/2505 5542",
+          "hostAvailableBytes": 5818191872,
+          "hostCpuBusyPercentSincePreviousSample": 58.33,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 332
+        },
+        {
+          "utc": "2026-11-01T15:18:26.325001+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) R 420 420 0 0 -1 4194624 19446 0 8 0 41 10 0 0 10 -10 30 0 56038 26185437184 73180 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "40.31 17.12 7.91 4/2538 5591",
+          "hostAvailableBytes": 5803847680,
+          "hostCpuBusyPercentSincePreviousSample": 67.47,
+          "guestCpuBusyPercentSincePreviousSample": 95.17,
+          "collectionMs": 341
+        },
+        {
+          "utc": "2026-11-01T15:18:27.623305+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) S 420 420 0 0 -1 4194624 27398 0 8 0 122 18 0 0 10 -10 31 0 56038 26203185152 83049 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "40.31 17.12 7.91 3/2537 5602",
+          "hostAvailableBytes": 5800706048,
+          "hostCpuBusyPercentSincePreviousSample": 57.74,
+          "guestCpuBusyPercentSincePreviousSample": 86.05,
+          "collectionMs": 273
+        },
+        {
+          "utc": "2026-11-01T15:18:29.157161+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) S 420 420 0 0 -1 4194624 27960 0 8 0 130 20 0 0 10 -10 35 0 56038 26212474880 84124 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "40.31 17.12 7.91 8/2551 5633",
+          "hostAvailableBytes": 5673226240,
+          "hostCpuBusyPercentSincePreviousSample": 65.13,
+          "guestCpuBusyPercentSincePreviousSample": 72.85,
+          "collectionMs": 620
+        },
+        {
+          "utc": "2026-11-01T15:18:30.529573+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) R 420 420 0 0 -1 4194624 28565 0 8 0 138 20 0 0 10 -10 35 0 56038 26213654528 84811 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "37.08 16.84 7.87 1/2539 5643",
+          "hostAvailableBytes": 5668630528,
+          "hostCpuBusyPercentSincePreviousSample": 27.61,
+          "guestCpuBusyPercentSincePreviousSample": 25.47,
+          "collectionMs": 279
+        },
+        {
+          "utc": "2026-11-01T15:18:31.773788+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) S 420 420 0 0 -1 4194624 28571 0 8 0 139 20 0 0 10 -10 34 0 56038 26213605376 84786 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "37.08 16.84 7.87 2/2552 5681",
+          "hostAvailableBytes": 5657051136,
+          "hostCpuBusyPercentSincePreviousSample": 21.41,
+          "guestCpuBusyPercentSincePreviousSample": 24.28,
+          "collectionMs": 241
+        },
+        {
+          "utc": "2026-11-01T15:18:32.993772+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) S 420 420 0 0 -1 4194624 28576 0 8 0 139 20 0 0 10 -10 33 0 56038 26213556224 84818 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "37.08 16.84 7.87 1/2546 5692",
+          "hostAvailableBytes": 5568270336,
+          "hostCpuBusyPercentSincePreviousSample": 42.15,
+          "guestCpuBusyPercentSincePreviousSample": 55.14,
+          "collectionMs": 229
+        },
+        {
+          "utc": "2026-11-01T15:18:35.718095+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) S 420 420 0 0 -1 4194624 28587 0 8 0 139 20 0 0 10 -10 31 0 56038 26211262464 84909 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "34.19 16.57 7.83 1/2540 5738",
+          "hostAvailableBytes": 5575168000,
+          "hostCpuBusyPercentSincePreviousSample": 29.38,
+          "guestCpuBusyPercentSincePreviousSample": 15.56,
+          "collectionMs": 1571
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": [
+        184,
+        196
+      ]
+    },
+    {
+      "label": "bee-settled-3",
+      "package": "com.beewise.beewise",
+      "pidBefore": "5196",
+      "pidAfter": "5810",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "WARM",
+      "amTotalTimeMs": 4516,
+      "amStartWallMs": 4563,
+      "processStartToAndroidFirstDrawMs": 4563,
+      "processStartUptimeSeconds": 575.93,
+      "processToFirstDartFrameCompletedMs": 4120.73,
+      "processToFirstRasterCompletedMs": 4428.728,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "588.51 846.54\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 588515926
+        },
+        "uptimeAfter": "588.55 846.62\r\n"
+      },
+      "interaction": {
+        "label": "bee-settled-3",
+        "baselineLoad": "34.19 16.57 7.83 1/2545 5781",
+        "package": "com.beewise.beewise",
+        "uiInitially": true,
+        "vmQueryExitCode": 0,
+        "responseDumpSucceeded": true,
+        "pidAfterInput": "5810",
+        "responseObserved": true,
+        "reviewedResponseObserved": true
+      },
+      "hostAvailableGiBMin": 5.006,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:18:40.537080+00:00",
+          "pid": "5196",
+          "mainStatAndWchan": "5196 (beewise.beewise) S 420 420 0 0 -1 4194624 75343 0 0 0 420 58 0 0 20 0 84 0 54206 26229694464 161372 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "31.45 16.30 7.79 3/2467 5809",
+          "hostAvailableBytes": 5549191168,
+          "hostCpuBusyPercentSincePreviousSample": 60.23,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 324
+        },
+        {
+          "utc": "2026-11-01T15:18:41.914506+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) S 420 420 0 0 -1 4194624 14656 0 0 0 42 11 0 0 10 -10 41 0 57593 17518895104 48781 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 4612 1 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "31.45 16.30 7.79 12/2518 5878",
+          "hostAvailableBytes": 5589438464,
+          "hostCpuBusyPercentSincePreviousSample": 65.73,
+          "guestCpuBusyPercentSincePreviousSample": 96.2,
+          "collectionMs": 336
+        },
+        {
+          "utc": "2026-11-01T15:18:43.206851+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) S 420 420 0 0 -1 4194624 47871 0 0 0 95 23 0 0 10 -10 58 0 57593 26378670080 123653 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "31.45 16.30 7.79 3/2524 5895",
+          "hostAvailableBytes": 5586505728,
+          "hostCpuBusyPercentSincePreviousSample": 47.44,
+          "guestCpuBusyPercentSincePreviousSample": 98.43,
+          "collectionMs": 290
+        },
+        {
+          "utc": "2026-11-01T15:18:44.438380+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) R 420 420 0 0 -1 4194624 56344 0 0 0 174 29 0 0 10 -10 64 0 57593 26387132416 129132 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "31.45 16.30 7.79 2/2529 5912",
+          "hostAvailableBytes": 5591572480,
+          "hostCpuBusyPercentSincePreviousSample": 27.53,
+          "guestCpuBusyPercentSincePreviousSample": 74.9,
+          "collectionMs": 220
+        },
+        {
+          "utc": "2026-11-01T15:18:46.033896+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) R 420 420 0 0 -1 4194624 66412 0 0 0 239 39 0 0 10 -10 78 0 57593 26706112512 152900 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "29.89 16.23 7.81 4/2553 5958",
+          "hostAvailableBytes": 5415190528,
+          "hostCpuBusyPercentSincePreviousSample": 63.5,
+          "guestCpuBusyPercentSincePreviousSample": 91.58,
+          "collectionMs": 635
+        },
+        {
+          "utc": "2026-11-01T15:18:47.420241+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) R 420 420 0 0 -1 4194624 68576 0 0 0 276 55 0 0 10 -10 88 0 57593 26718339072 155946 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "29.89 16.23 7.81 6/2550 5982",
+          "hostAvailableBytes": 5411483648,
+          "hostCpuBusyPercentSincePreviousSample": 69.37,
+          "guestCpuBusyPercentSincePreviousSample": 89.19,
+          "collectionMs": 405
+        },
+        {
+          "utc": "2026-11-01T15:18:48.750597+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) S 420 420 0 0 -1 4194624 69271 0 0 0 303 59 0 0 10 -10 88 0 57593 26718871552 156917 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "29.89 16.23 7.81 2/2563 6020",
+          "hostAvailableBytes": 5393514496,
+          "hostCpuBusyPercentSincePreviousSample": 57.06,
+          "guestCpuBusyPercentSincePreviousSample": 58.2,
+          "collectionMs": 251
+        },
+        {
+          "utc": "2026-11-01T15:18:49.964677+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) S 420 420 0 0 -1 4194624 69271 0 0 0 303 59 0 0 10 -10 88 0 57593 26718871552 156917 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "29.89 16.23 7.81 1/2558 6030",
+          "hostAvailableBytes": 5375307776,
+          "hostCpuBusyPercentSincePreviousSample": 27.56,
+          "guestCpuBusyPercentSincePreviousSample": 54.39,
+          "collectionMs": 216
+        },
+        {
+          "utc": "2026-11-01T15:18:52.664910+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) S 420 420 0 0 -1 4194624 69282 0 0 0 304 59 0 0 10 -10 88 0 57593 26718871552 157129 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "27.50 15.96 7.77 1/2553 6075",
+          "hostAvailableBytes": 5412532224,
+          "hostCpuBusyPercentSincePreviousSample": 25.72,
+          "guestCpuBusyPercentSincePreviousSample": 13.52,
+          "collectionMs": 1517
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": [
+        192,
+        190
+      ]
+    },
+    {
+      "label": "control-settled-3",
+      "package": "com.beewise.control.startup_control",
+      "pidBefore": "5549",
+      "pidAfter": "6154",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 3294,
+      "amStartWallMs": 3375,
+      "processStartToAndroidFirstDrawMs": 3252,
+      "processStartUptimeSeconds": 593.64,
+      "processToFirstDartFrameCompletedMs": 2157.893,
+      "processToFirstRasterCompletedMs": 3122.008,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "604.43 864.84\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 604440337
+        },
+        "uptimeAfter": "604.48 864.92\r\n"
+      },
+      "interaction": {
+        "label": "control-settled-3",
+        "baselineLoad": "25.30 15.69 7.73 16/2554 6119",
+        "package": "com.beewise.control.startup_control",
+        "uiInitially": true,
+        "vmQueryExitCode": 0,
+        "responseDumpSucceeded": true,
+        "pidAfterInput": "6154",
+        "responseObserved": false,
+        "reviewedResponseObserved": true
+      },
+      "hostAvailableGiBMin": 4.879,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:18:58.188270+00:00",
+          "pid": "5549",
+          "mainStatAndWchan": "5549 (startup_control) S 420 420 0 0 -1 4194624 30291 0 8 0 161 26 0 0 20 0 32 0 56038 25801355264 87514 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "25.30 15.69 7.73 1/2525 6148",
+          "hostAvailableBytes": 5358317568,
+          "hostCpuBusyPercentSincePreviousSample": 62.5,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 319
+        },
+        {
+          "utc": "2026-11-01T15:18:59.547988+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) R 420 420 0 0 -1 4194624 18986 0 0 0 35 11 0 0 10 -10 32 0 59364 26134745088 72129 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "25.30 15.69 7.73 5/2560 6198",
+          "hostAvailableBytes": 5389008896,
+          "hostCpuBusyPercentSincePreviousSample": 73.31,
+          "guestCpuBusyPercentSincePreviousSample": 94.98,
+          "collectionMs": 353
+        },
+        {
+          "utc": "2026-11-01T15:19:00.826235+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) S 420 420 0 0 -1 4194624 27232 0 0 0 119 20 0 0 10 -10 32 0 59364 26151870464 81328 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue",
+          "load": "23.43 15.46 7.70 2/2560 6208",
+          "hostAvailableBytes": 5411524608,
+          "hostCpuBusyPercentSincePreviousSample": 50.46,
+          "guestCpuBusyPercentSincePreviousSample": 93.7,
+          "collectionMs": 247
+        },
+        {
+          "utc": "2026-11-01T15:19:02.321881+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) S 420 420 0 0 -1 4194624 28048 0 0 0 126 22 0 0 10 -10 36 0 59364 26161160192 84006 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0",
+          "load": "23.43 15.46 7.70 1/2572 6237",
+          "hostAvailableBytes": 5255065600,
+          "hostCpuBusyPercentSincePreviousSample": 58.38,
+          "guestCpuBusyPercentSincePreviousSample": 78.69,
+          "collectionMs": 495
+        },
+        {
+          "utc": "2026-11-01T15:19:03.549796+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) S 420 420 0 0 -1 4194624 28641 0 0 0 135 25 0 0 10 -10 36 0 59364 26162339840 84803 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "23.43 15.46 7.70 2/2561 6247",
+          "hostAvailableBytes": 5247209472,
+          "hostCpuBusyPercentSincePreviousSample": 19.34,
+          "guestCpuBusyPercentSincePreviousSample": 11.3,
+          "collectionMs": 223
+        },
+        {
+          "utc": "2026-11-01T15:19:04.763823+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) S 420 420 0 0 -1 4194624 28644 0 0 0 135 25 0 0 10 -10 35 0 59364 26162290688 84542 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "23.43 15.46 7.70 2/2570 6282",
+          "hostAvailableBytes": 5244076032,
+          "hostCpuBusyPercentSincePreviousSample": 20.45,
+          "guestCpuBusyPercentSincePreviousSample": 28.22,
+          "collectionMs": 208
+        },
+        {
+          "utc": "2026-11-01T15:19:05.993410+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) S 420 420 0 0 -1 4194624 28644 0 0 0 135 25 0 0 10 -10 35 0 59364 26162290688 84542 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "21.63 15.22 7.66 1/2565 6307",
+          "hostAvailableBytes": 5246394368,
+          "hostCpuBusyPercentSincePreviousSample": 22.94,
+          "guestCpuBusyPercentSincePreviousSample": 53.53,
+          "collectionMs": 223
+        },
+        {
+          "utc": "2026-11-01T15:19:08.611669+00:00",
+          "pid": "6154",
+          "mainStatAndWchan": "6154 (startup_control) S 420 420 0 0 -1 4194624 28656 0 0 0 135 25 0 0 10 -10 32 0 59364 26159947776 84602 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait",
+          "load": "21.63 15.22 7.66 4/2559 6338",
+          "hostAvailableBytes": 5239087104,
+          "hostCpuBusyPercentSincePreviousSample": 25.45,
+          "guestCpuBusyPercentSincePreviousSample": 11.2,
+          "collectionMs": 1591
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": [
+        196,
+        197
+      ]
+    },
+    {
+      "label": "bee-412-cold",
+      "package": "com.beewise.beewise",
+      "pidBefore": "5810",
+      "pidAfter": "6448",
+      "requestedMode": "cold",
+      "androidReportedLaunchState": "COLD",
+      "amTotalTimeMs": 4841,
+      "amStartWallMs": 4922,
+      "processStartToAndroidFirstDrawMs": 4781,
+      "processStartUptimeSeconds": 635.45,
+      "processToFirstDartFrameCompletedMs": 4212.92,
+      "processToFirstRasterCompletedMs": 4617.895,
+      "flutterFirstFrameConfirmed": true,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": {
+        "uptimeBefore": "717.54 1063.62\r\n",
+        "vmClock": {
+          "type": "Timestamp",
+          "timestamp": 717548458
+        },
+        "uptimeAfter": "717.59 1063.69\r\n"
+      },
+      "interaction": null,
+      "hostAvailableGiBMin": 4.604,
+      "samples": [
+        {
+          "utc": "2026-11-01T15:19:40.088625+00:00",
+          "pid": "5810",
+          "mainStatAndWchan": "5810 (beewise.beewise) S 420 420 0 0 -1 4194624 75348 0 0 0 367 67 0 0 20 0 83 0 57593 26307395584 161918 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait\n4348663928 1930058409 3539",
+          "load": "13.17 13.78 7.42 13/2504 6447",
+          "hostAvailableBytes": 5169700864,
+          "hostCpuBusyPercentSincePreviousSample": 77.5,
+          "guestCpuBusyPercentSincePreviousSample": null,
+          "collectionMs": 528
+        },
+        {
+          "utc": "2026-11-01T15:19:41.499229+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) R 420 420 0 0 -1 4194624 16006 0 0 0 45 8 0 0 10 -10 44 0 63545 26332626944 60312 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0\n608998601 437989390 436",
+          "load": "13.56 13.85 7.48 4/2553 6514",
+          "hostAvailableBytes": 5146394624,
+          "hostCpuBusyPercentSincePreviousSample": 68.41,
+          "guestCpuBusyPercentSincePreviousSample": 98.56,
+          "collectionMs": 380
+        },
+        {
+          "utc": "2026-11-01T15:19:42.852307+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) S 420 420 0 0 -1 4194624 47451 0 0 0 99 17 0 0 10 -10 58 0 63545 26369511424 122272 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue\n1172898557 603985966 878",
+          "load": "13.56 13.85 7.48 7/2559 6533",
+          "hostAvailableBytes": 5146324992,
+          "hostCpuBusyPercentSincePreviousSample": 49.57,
+          "guestCpuBusyPercentSincePreviousSample": 99.26,
+          "collectionMs": 353
+        },
+        {
+          "utc": "2026-11-01T15:19:44.175895+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) R 420 420 0 0 -1 4194624 57887 0 0 0 190 26 0 0 10 -10 64 0 63545 26384363520 131243 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 1 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0\n2267059606 657328176 1261",
+          "load": "13.56 13.85 7.48 2/2565 6553",
+          "hostAvailableBytes": 5150564352,
+          "hostCpuBusyPercentSincePreviousSample": 27.23,
+          "guestCpuBusyPercentSincePreviousSample": 75.86,
+          "collectionMs": 293
+        },
+        {
+          "utc": "2026-11-01T15:19:45.968660+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) S 420 420 0 0 -1 4194624 66178 0 0 0 247 39 0 0 10 -10 79 0 63545 26698575872 153728 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\n0\n2913170321 1180833318 1766",
+          "load": "13.03 13.74 7.47 6/2595 6609",
+          "hostAvailableBytes": 4949143552,
+          "hostCpuBusyPercentSincePreviousSample": 65.74,
+          "guestCpuBusyPercentSincePreviousSample": 95.24,
+          "collectionMs": 836
+        },
+        {
+          "utc": "2026-11-01T15:19:47.304086+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) R 420 420 0 0 -1 4194624 68577 0 0 0 289 51 0 0 10 -10 88 0 63545 26710061056 156654 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\nfutex_wait_queue\n3487979736 1545163617 2345",
+          "load": "13.03 13.74 7.47 4/2598 6628",
+          "hostAvailableBytes": 4952223744,
+          "hostCpuBusyPercentSincePreviousSample": 62.64,
+          "guestCpuBusyPercentSincePreviousSample": 83.33,
+          "collectionMs": 271
+        },
+        {
+          "utc": "2026-11-01T15:19:48.589059+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) S 420 420 0 0 -1 4194624 70974 0 0 0 306 55 0 0 10 -10 88 0 63545 26710065152 159574 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait\n3616907153 1596564058 2453",
+          "load": "13.03 13.74 7.47 1/2584 6652",
+          "hostAvailableBytes": 4942979072,
+          "hostCpuBusyPercentSincePreviousSample": 26.83,
+          "guestCpuBusyPercentSincePreviousSample": 31.85,
+          "collectionMs": 279
+        },
+        {
+          "utc": "2026-11-01T15:19:49.842213+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) S 420 420 0 0 -1 4194624 70974 0 0 0 306 55 0 0 10 -10 88 0 63545 26710065152 159574 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait\n3616907153 1596564058 2453",
+          "load": "13.03 13.74 7.47 2/2598 6678",
+          "hostAvailableBytes": 4947472384,
+          "hostCpuBusyPercentSincePreviousSample": 25.0,
+          "guestCpuBusyPercentSincePreviousSample": 56.28,
+          "collectionMs": 248
+        },
+        {
+          "utc": "2026-11-01T15:19:52.957914+00:00",
+          "pid": "6448",
+          "mainStatAndWchan": "6448 (beewise.beewise) S 420 420 0 0 -1 4194624 70986 0 0 0 306 55 0 0 10 -10 84 0 63545 26184056832 151826 18446744073709551615 97407027331072 97407027335504 140722883257520 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 97407027363840 97407027363864 97407349829632 140722883262732 140722883262831 140722883262831 140722883268574 0\ndo_epoll_wait\n3618627792 1597144135 2463",
+          "load": "12.15 13.54 7.45 2/2583 6726",
+          "hostAvailableBytes": 4948045824,
+          "hostCpuBusyPercentSincePreviousSample": 26.12,
+          "guestCpuBusyPercentSincePreviousSample": 16.1,
+          "collectionMs": 1733
+        }
+      ],
+      "gateCpuIdlePercentOfTwoCores": null
+    },
+    {
+      "label": "bee-412-warm",
+      "package": "com.beewise.beewise",
+      "pidBefore": "6448",
+      "pidAfter": "6448",
+      "requestedMode": "warm",
+      "androidReportedLaunchState": "UNKNOWN",
+      "amTotalTimeMs": null,
+      "amStartWallMs": 235,
+      "processStartToAndroidFirstDrawMs": null,
+      "processStartUptimeSeconds": 635.45,
+      "processToFirstDartFrameCompletedMs": null,
+      "processToFirstRasterCompletedMs": null,
+      "flutterFirstFrameConfirmed": null,
+      "diagnosticProbeExtensionPresent": false,
+      "uiPresent": true,
+      "anrDialogInUi": false,
+      "postMarkerAnrLines": [],
+      "postMarkerBeeWiseAnrCount": 0,
+      "mainStateAfter": "S",
+      "mainWchanAfter": "do_epoll_wait",
+      "clockCalibration": null,
+      "interaction": null,
+      "hostAvailableGiBMin": null,
+      "samples": [],
+      "gateCpuIdlePercentOfTwoCores": null
+    }
+  ],
+  "privateArtifacts": [
+    {
+      "file": "analyze-validation-original.log",
+      "bytes": 1085,
+      "sha256": "6acb6015ec96fa50e8ff45782f738350b8e798cd3670327659dbddb344c6713c"
+    },
+    {
+      "file": "audit-contact.png",
+      "bytes": 664881,
+      "sha256": "437eeabd24a6a9335ee1d08c1acbddf5747c240a6f7907fd8582476cb0f79179"
+    },
+    {
+      "file": "bee-412-cold-am-start.txt",
+      "bytes": 179,
+      "sha256": "1153f4c9e277df96246f6938846d01e1ed1077341c8c490b8afca7d2d2be5c62"
+    },
+    {
+      "file": "bee-412-cold-complete-logcat.txt",
+      "bytes": 6972401,
+      "sha256": "138f21e263af39a96d1eb1e19c754f8eb1bde97d7ec7e61917bbf9c7fc65a0ee"
+    },
+    {
+      "file": "bee-412-cold-cpu-after.txt",
+      "bytes": 2275,
+      "sha256": "85dd711648560fe78bb84c86fd44acf326758ba4deedb6ac21e734b00c7e1536"
+    },
+    {
+      "file": "bee-412-cold-exit-info.txt",
+      "bytes": 1432,
+      "sha256": "60533c3799880346fcb35419fd6de8b6a9c8d2008944a78cf67b3502862938d6"
+    },
+    {
+      "file": "bee-412-cold-framestats.txt",
+      "bytes": 8811,
+      "sha256": "ec023b060bee713ef864a5137c5a7d13df374abbaba01856d11474f29af947b1"
+    },
+    {
+      "file": "bee-412-cold-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "bee-412-cold-lifecycle-after.txt",
+      "bytes": 38477,
+      "sha256": "f7d714fa1033439157cd63d54a2af36b478aaae2995436916df94208953254b3"
+    },
+    {
+      "file": "bee-412-cold-live-logcat.txt",
+      "bytes": 6972668,
+      "sha256": "7b292cc57e6e2b344e0cc88f7d3fc9909a5b86640fb0eddfc41c3f4c4f7f97bd"
+    },
+    {
+      "file": "bee-412-cold-load-before.txt",
+      "bytes": 30,
+      "sha256": "2560297d5b961676d59df6387c6169531e4d8ce02e8559191a86ba116a401180"
+    },
+    {
+      "file": "bee-412-cold-main-stack.txt",
+      "bytes": 52,
+      "sha256": "846f273a2731a260689c5e03e70566326fcc7e800082c88b0c835a39d4be26e0"
+    },
+    {
+      "file": "bee-412-cold-main-stat.txt",
+      "bytes": 338,
+      "sha256": "a36d1d728836162773737cc303c487a79a4b1544a2201d095b46f2e45bdb9dc9"
+    },
+    {
+      "file": "bee-412-cold-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "bee-412-cold-memory-after.txt",
+      "bytes": 32170,
+      "sha256": "de769e5bd9f6600c97102ac27775dfd3df8afc524b55355bd9bfbd10b3161089"
+    },
+    {
+      "file": "bee-412-cold-samples.json",
+      "bytes": 6286,
+      "sha256": "3e8b7a43ae10282ad52153d92927c9f1389a3e061aa43b7b355bf33deb49490f"
+    },
+    {
+      "file": "bee-412-cold-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "bee-412-cold-ui.xml",
+      "bytes": 16837,
+      "sha256": "5fe173160919a9ee64e9170c129bb0814607b05de71e3887499b06af725df093"
+    },
+    {
+      "file": "bee-412-cold-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "5166f48498fc06e401d8bca91f921e129fc5304f362623d9409a1621f226cd5c"
+    },
+    {
+      "file": "bee-412-cold-vm.json",
+      "bytes": 70719,
+      "sha256": "da6e8b82f4c0b91686c72e7069861f7e0c7734100bf9d6fd92062cda068d7fe0"
+    },
+    {
+      "file": "bee-412-cold-window.txt",
+      "bytes": 19784,
+      "sha256": "bbcd73c61cf90da3b8774a0a744ab7136fae6c423f53f3dca6322894f8a3efac"
+    },
+    {
+      "file": "bee-412-cold.json",
+      "bytes": 4158,
+      "sha256": "69f99e9ef578622dead39a07881a653585383bb2805614c36d30907fb15cd6d5"
+    },
+    {
+      "file": "bee-412-cold.png",
+      "bytes": 174074,
+      "sha256": "0ad8cb81898a35421c90f7b652e0ea18513a6c83b74ed571985d0a1a66e839fd"
+    },
+    {
+      "file": "bee-412-warm-am-start.txt",
+      "bytes": 246,
+      "sha256": "1fdc8b3e24bb4817027135c6cb357935f7e50ed569a61d3a6d292718cec9b706"
+    },
+    {
+      "file": "bee-412-warm-complete-logcat.txt",
+      "bytes": 7169485,
+      "sha256": "e5dd6c15a87ad92b7ba120d9d3aef044b73e2da2cc36c138b8e33cb81c9a51da"
+    },
+    {
+      "file": "bee-412-warm-cpu-after.txt",
+      "bytes": 3524,
+      "sha256": "5e223ea10083af9bf99a6439df8a7729bf67982281dbc617f4ebe5cff270ec94"
+    },
+    {
+      "file": "bee-412-warm-exit-info.txt",
+      "bytes": 1432,
+      "sha256": "60533c3799880346fcb35419fd6de8b6a9c8d2008944a78cf67b3502862938d6"
+    },
+    {
+      "file": "bee-412-warm-framestats.txt",
+      "bytes": 9336,
+      "sha256": "a40f6a96291ed2d943dc974a2bf818f09c89aef4445aea3ed7dca58bae6b7b29"
+    },
+    {
+      "file": "bee-412-warm-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "bee-412-warm-lifecycle-after.txt",
+      "bytes": 38484,
+      "sha256": "702ab08911d955f3ff1beaa116fe34767cfb33f72e5a40205460b5904837b6f4"
+    },
+    {
+      "file": "bee-412-warm-live-logcat.txt",
+      "bytes": 7169619,
+      "sha256": "326a2eb45f067759147f0d41bd926f620827e1bfd3da417c9d0e04720dfc15c0"
+    },
+    {
+      "file": "bee-412-warm-load-before.txt",
+      "bytes": 29,
+      "sha256": "7d55a34cddafce942b13a551ababfc13d42c1277b858eda0e89bc477903dcd06"
+    },
+    {
+      "file": "bee-412-warm-main-stack.txt",
+      "bytes": 52,
+      "sha256": "846f273a2731a260689c5e03e70566326fcc7e800082c88b0c835a39d4be26e0"
+    },
+    {
+      "file": "bee-412-warm-main-stat.txt",
+      "bytes": 338,
+      "sha256": "9b094c707171e53651ea5b76604d4d09d65cd124eb2b3e864310e7da767289b1"
+    },
+    {
+      "file": "bee-412-warm-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "bee-412-warm-memory-after.txt",
+      "bytes": 32060,
+      "sha256": "1035d9147dac1da11326f8984ce44185a9b079fa12d76a95befded1643ac76a6"
+    },
+    {
+      "file": "bee-412-warm-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "bee-412-warm-ui.xml",
+      "bytes": 16837,
+      "sha256": "5fe173160919a9ee64e9170c129bb0814607b05de71e3887499b06af725df093"
+    },
+    {
+      "file": "bee-412-warm-uptime-before.txt",
+      "bytes": 16,
+      "sha256": "4dd556352f7ac1c579b5faaae7e05d522c5f01a18c8799a1e47feca1127391d6"
+    },
+    {
+      "file": "bee-412-warm-window.txt",
+      "bytes": 19785,
+      "sha256": "9eb9a584cd2cc00169be1341f453b8798ced4aeeaaaac98ee98764b99576e219"
+    },
+    {
+      "file": "bee-412-warm.json",
+      "bytes": 4218,
+      "sha256": "97d871b40b43e664ad31552c20956e6438854ec4d795595932d91f91adcb35e9"
+    },
+    {
+      "file": "bee-412-warm.png",
+      "bytes": 173990,
+      "sha256": "1f2f842d6d846129191f22b19831dafccc9d6fc4dd390859d98982e13d299b98"
+    },
+    {
+      "file": "bee-settled-1-am-start.txt",
+      "bytes": 179,
+      "sha256": "1042b711bf570887f4d21ace263b8c5097c6b72250d22da7c9b51caf332df3f2"
+    },
+    {
+      "file": "bee-settled-1-complete-logcat.txt",
+      "bytes": 5740351,
+      "sha256": "873a3628b2ce23aead9f84061bbec1fc908cd458598300ba83860c89b905147c"
+    },
+    {
+      "file": "bee-settled-1-cpu-after.txt",
+      "bytes": 6887,
+      "sha256": "1667549b6cd5ecc4d8d4f9bfc21f0841d9d0a435f947c2b0e1dfd40b854681e2"
+    },
+    {
+      "file": "bee-settled-1-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "file": "bee-settled-1-framestats.txt",
+      "bytes": 8828,
+      "sha256": "cebe341903eeb934f874c38909014642f7284a609e630f3a055497a2a15c26f6"
+    },
+    {
+      "file": "bee-settled-1-interaction.json",
+      "bytes": 261,
+      "sha256": "c42876a90d46ad5037c3edc3ffc60b75d56a090a67ef984171a7e750ebc5777d"
+    },
+    {
+      "file": "bee-settled-1-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "bee-settled-1-lifecycle-after.txt",
+      "bytes": 38098,
+      "sha256": "c90a75f4b9090950f965188427a08fc4d953bfef84efc7dd6895d3728820eb52"
+    },
+    {
+      "file": "bee-settled-1-live-logcat.txt",
+      "bytes": 5745046,
+      "sha256": "696f3823f07c0ec00a8a460f2c278217bc1b417045432b2fe5ed0713f9601219"
+    },
+    {
+      "file": "bee-settled-1-load-before.txt",
+      "bytes": 28,
+      "sha256": "53f8ce2577f56c174caa7f528aeb975d045d6d7108d9bcfd5ff0ced35a4a18a1"
+    },
+    {
+      "file": "bee-settled-1-main-stack.txt",
+      "bytes": 52,
+      "sha256": "2479078d29ec679f3c7b80ecfd9b9796c19dac62703d0106a2bf6101da994e7a"
+    },
+    {
+      "file": "bee-settled-1-main-stat.txt",
+      "bytes": 341,
+      "sha256": "537e0e80ffc83111e7fb7d2994aeac3ecadcbacf02ebd3a2ca06cce37dca1ddf"
+    },
+    {
+      "file": "bee-settled-1-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "bee-settled-1-memory-after.txt",
+      "bytes": 32108,
+      "sha256": "4a8da134e6293bc3d21d22bc9955942a2bb0b7de3e17c04736f90ff80c7ae4ed"
+    },
+    {
+      "file": "bee-settled-1-response.png",
+      "bytes": 124441,
+      "sha256": "a73dabc3221885ec641779441f75c767bef91b82ab82e54455682e0593d7d978"
+    },
+    {
+      "file": "bee-settled-1-response.xml",
+      "bytes": 14526,
+      "sha256": "179e73ec46bfb2dda198ab13965207bcc74b7ef7922e058d70ce2d3de334d395"
+    },
+    {
+      "file": "bee-settled-1-samples.json",
+      "bytes": 7717,
+      "sha256": "830731eeab84a8d7963f5b306d4232add56fd348fe7746c3b91cc63522ec7c7e"
+    },
+    {
+      "file": "bee-settled-1-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "bee-settled-1-ui.xml",
+      "bytes": 14526,
+      "sha256": "179e73ec46bfb2dda198ab13965207bcc74b7ef7922e058d70ce2d3de334d395"
+    },
+    {
+      "file": "bee-settled-1-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "8fcadf94217bd2dfbaec5c3e5f2e35fac69b55f62688c938fba9666cf1cbeecf"
+    },
+    {
+      "file": "bee-settled-1-vm.json",
+      "bytes": 63549,
+      "sha256": "d3fae8132d807d66abd53c36feba7339c7328a3b11bf7c891a503d1d8146eb3d"
+    },
+    {
+      "file": "bee-settled-1-window.txt",
+      "bytes": 18981,
+      "sha256": "10fd794af6377cd220cb8784f32be77c33c755e32cf5d5ffff5bb80a23a6c788"
+    },
+    {
+      "file": "bee-settled-1.json",
+      "bytes": 4155,
+      "sha256": "15ae55d8e320d73198df48507ae9fe32c7826a6eef412a7aa23416ae4eb06c59"
+    },
+    {
+      "file": "bee-settled-1.png",
+      "bytes": 124441,
+      "sha256": "a73dabc3221885ec641779441f75c767bef91b82ab82e54455682e0593d7d978"
+    },
+    {
+      "file": "bee-settled-2-am-start.txt",
+      "bytes": 179,
+      "sha256": "442420ed28c7f1a3a78ca740e76369eb2696b7e5977643650ed57ac6c872df45"
+    },
+    {
+      "file": "bee-settled-2-complete-logcat.txt",
+      "bytes": 6193106,
+      "sha256": "124af2741918f7539b3d3caea2a2b60f02bbcd46938f340a02ed420dfe1da0a8"
+    },
+    {
+      "file": "bee-settled-2-cpu-after.txt",
+      "bytes": 5459,
+      "sha256": "13d8b286b11e695137b99efc003e1df83609896a8c2c63e54fd3c41866f1cec7"
+    },
+    {
+      "file": "bee-settled-2-exit-info.txt",
+      "bytes": 624,
+      "sha256": "2b00f4e1cd48e640c5996c4923e9e427c7f079ad6519db974b4b9356ae459ecc"
+    },
+    {
+      "file": "bee-settled-2-framestats.txt",
+      "bytes": 8818,
+      "sha256": "72796fae53a5f00b1a75f0b121dd3c3d0c12cd8e8ddac1fe6e5baf5800f8881f"
+    },
+    {
+      "file": "bee-settled-2-gate-top.txt",
+      "bytes": 1278,
+      "sha256": "809dc0e66ba2631c35afc36b30ccbaef50bd7ac81fdba5013dc5cbbae3b6f3fc"
+    },
+    {
+      "file": "bee-settled-2-interaction.json",
+      "bytes": 260,
+      "sha256": "5834e9543a6eff2cd7869bfce7620922dd8d71eb61282ecf8067ffcd88a78cdf"
+    },
+    {
+      "file": "bee-settled-2-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "bee-settled-2-lifecycle-after.txt",
+      "bytes": 38604,
+      "sha256": "7e82b0d0d98fce1a2fcfec75eeb789e0a6c6acb50ae61f9a5c6ad9173466e008"
+    },
+    {
+      "file": "bee-settled-2-live-logcat.txt",
+      "bytes": 6197569,
+      "sha256": "164514fb317e9dda1240776e3d90dfdeb763de8bd71ff0ebd2d2c8ec40d76806"
+    },
+    {
+      "file": "bee-settled-2-load-before.txt",
+      "bytes": 28,
+      "sha256": "886e2550dfa79749a4713dabc12b4800551f50cff1c617b01f51fc77d360ecc6"
+    },
+    {
+      "file": "bee-settled-2-main-stack.txt",
+      "bytes": 52,
+      "sha256": "e702ecf1740b1958599eb1d9db1d5fa6b1a09659e16df809397e7da04a43927e"
+    },
+    {
+      "file": "bee-settled-2-main-stat.txt",
+      "bytes": 338,
+      "sha256": "2c722f403ca3fe037c3c228707b6325b4335596bef082f4e7da1683556615db7"
+    },
+    {
+      "file": "bee-settled-2-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "bee-settled-2-memory-after.txt",
+      "bytes": 32108,
+      "sha256": "6166aeafb6bbbff99804bd45161546e0de0d37a3309b452083b72cf04d9a2056"
+    },
+    {
+      "file": "bee-settled-2-response.png",
+      "bytes": 123672,
+      "sha256": "f6c593b1af8c9419e02307bdeb3f7b397fc3af98158cdd6197bf2bfb03b13687"
+    },
+    {
+      "file": "bee-settled-2-response.xml",
+      "bytes": 17085,
+      "sha256": "cfd239d572581c90842e4cf02c6b6b33a76f56a62550242d93fa291691b4c557"
+    },
+    {
+      "file": "bee-settled-2-samples.json",
+      "bytes": 6703,
+      "sha256": "76e0ccc9f9141e883f02974c52695bbe1fbd5f614453038f2af927ec71eb04f4"
+    },
+    {
+      "file": "bee-settled-2-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "bee-settled-2-ui.xml",
+      "bytes": 14526,
+      "sha256": "179e73ec46bfb2dda198ab13965207bcc74b7ef7922e058d70ce2d3de334d395"
+    },
+    {
+      "file": "bee-settled-2-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "ca499013ca380d96059258e1feb793217d72c90ffaf01ee2cbd8679f05e6426b"
+    },
+    {
+      "file": "bee-settled-2-vm.json",
+      "bytes": 88312,
+      "sha256": "ad14a32493c38739df98aa32b5c0b34edb9e7821f18862101a332d8c01d2906a"
+    },
+    {
+      "file": "bee-settled-2-window.txt",
+      "bytes": 19497,
+      "sha256": "afd0b1e1fb94fa47548fd26d08924365afde98743287c73d83d88d7e5b8e4c6d"
+    },
+    {
+      "file": "bee-settled-2.json",
+      "bytes": 4159,
+      "sha256": "a0e8217e0d4bdc64b24f012bd4457b32831d036a6e2943a81bbadbffc26315c5"
+    },
+    {
+      "file": "bee-settled-2.png",
+      "bytes": 124581,
+      "sha256": "c7535833e1623fb5f208bb2a91af2a53c12717c62a74783bbb24298a51c0f32d"
+    },
+    {
+      "file": "bee-settled-3-am-start.txt",
+      "bytes": 179,
+      "sha256": "703b50a192edfc38394329abdf6ab44b5e5783c9cc18e9e5d1b8bd6c07454a55"
+    },
+    {
+      "file": "bee-settled-3-complete-logcat.txt",
+      "bytes": 6538661,
+      "sha256": "4999272b6a1f91292ed6763d10f5cc01f1c8294961893a65dab8adc1d53e8b66"
+    },
+    {
+      "file": "bee-settled-3-cpu-after.txt",
+      "bytes": 3698,
+      "sha256": "3f84b97132b3404126ffa075d15f3d9dacca269945daae8299367f973da99656"
+    },
+    {
+      "file": "bee-settled-3-exit-info.txt",
+      "bytes": 1028,
+      "sha256": "205f2f237a5960bacca802f6a59f3d82fd740a1aa4f3224e076ae55dc79f6a41"
+    },
+    {
+      "file": "bee-settled-3-framestats.txt",
+      "bytes": 8828,
+      "sha256": "9b9080451b9cb6ba1a2de0390e78741f5e1a38b798f53e80f5445f844e037f8d"
+    },
+    {
+      "file": "bee-settled-3-gate-top.txt",
+      "bytes": 1271,
+      "sha256": "e50b94fb5170a283cac8f5b49aa210988efc1ee91a0d1e39cfbfb0cc8d960397"
+    },
+    {
+      "file": "bee-settled-3-interaction.json",
+      "bytes": 262,
+      "sha256": "95387c89895a479c37966ac7271db0115fad02b7136a6b162ee795102c52d9e5"
+    },
+    {
+      "file": "bee-settled-3-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "bee-settled-3-lifecycle-after.txt",
+      "bytes": 38874,
+      "sha256": "a872bdf32533c4bc6743fbbf53711dddb6e6ad073a5720d5da6cd62de386826d"
+    },
+    {
+      "file": "bee-settled-3-live-logcat.txt",
+      "bytes": 6539106,
+      "sha256": "edf1f82d02c42cf2e9ac1025f317e6578798ec4c9d2bf02ea455558a768b667d"
+    },
+    {
+      "file": "bee-settled-3-load-before.txt",
+      "bytes": 30,
+      "sha256": "034f8e69074a3c987212f14e741268ad7b52c952decba7f739891d8a5df7814f"
+    },
+    {
+      "file": "bee-settled-3-main-stack.txt",
+      "bytes": 52,
+      "sha256": "d527f04345ed89a21fe63a4c15058d36439d6c401c424c2ee02e2f33389ddc6e"
+    },
+    {
+      "file": "bee-settled-3-main-stat.txt",
+      "bytes": 338,
+      "sha256": "6008df7e8979bc027cce983ff26d9be1b91ffbd888a8533aa79b7293619538e1"
+    },
+    {
+      "file": "bee-settled-3-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "bee-settled-3-memory-after.txt",
+      "bytes": 32108,
+      "sha256": "91ec4a1c62e7bdbd8a768209c86436183e0f944cb2a44da66b76a40a3f7f125a"
+    },
+    {
+      "file": "bee-settled-3-response.png",
+      "bytes": 123690,
+      "sha256": "9b9e900a67112d41589b53a94287414654bdab3beb52b7ad9df63bbdead38368"
+    },
+    {
+      "file": "bee-settled-3-response.xml",
+      "bytes": 17085,
+      "sha256": "cfd239d572581c90842e4cf02c6b6b33a76f56a62550242d93fa291691b4c557"
+    },
+    {
+      "file": "bee-settled-3-samples.json",
+      "bytes": 6046,
+      "sha256": "457d0a195466ce9d3683200d68ba9064623937f7dba13ce8debcf23ef7070580"
+    },
+    {
+      "file": "bee-settled-3-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "bee-settled-3-ui.xml",
+      "bytes": 14526,
+      "sha256": "179e73ec46bfb2dda198ab13965207bcc74b7ef7922e058d70ce2d3de334d395"
+    },
+    {
+      "file": "bee-settled-3-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "d6a9f6839241727ac331d7e07b4bc764f6409820cb43b017ee7485ec86fbfd32"
+    },
+    {
+      "file": "bee-settled-3-vm.json",
+      "bytes": 83540,
+      "sha256": "2dfb8d7ff48b28ef035b7516fcc6c4b8696f4251bb6f250f50d8b90d141e645c"
+    },
+    {
+      "file": "bee-settled-3-window.txt",
+      "bytes": 19761,
+      "sha256": "29a9463012a136ae92e5aa0107055aff3a2e66ec00791e858062e936c4c949b5"
+    },
+    {
+      "file": "bee-settled-3.json",
+      "bytes": 4159,
+      "sha256": "16138ea7a25432b620ced4b7d02ba4baaa9a641dea3ac747b6d50ddcbd86d668"
+    },
+    {
+      "file": "bee-settled-3.png",
+      "bytes": 124569,
+      "sha256": "9e4543d871c3e69854bc95ae6fe1be99358ea4e73e36ab26e551b78984997a77"
+    },
+    {
+      "file": "boot.json",
+      "bytes": 289,
+      "sha256": "0f7246fa272222e90183c6bf872017b0b5bdbb42b92621af0bb069ccf36b2f2f"
+    },
+    {
+      "file": "checkout.log",
+      "bytes": 210,
+      "sha256": "b8ba78a7a7df2594ad7016e3000513ac65343c6886667b58c92ecd4987a11c5e"
+    },
+    {
+      "file": "control-boot-am-start.txt",
+      "bytes": 211,
+      "sha256": "191fa5f366179ab16da0ffa562d2eb22f451afdb5da02d6ff3cba27ba796c33c"
+    },
+    {
+      "file": "control-boot-complete-logcat.txt",
+      "bytes": 5245042,
+      "sha256": "43ed95353a3f91afdb6ee3390a5bbcab1be7a55655483163d433906c41b4a51c"
+    },
+    {
+      "file": "control-boot-cpu-after.txt",
+      "bytes": 3403,
+      "sha256": "f6a43b17f307cfaf6f98b005c227873165740f94d27c0ec23438f091a7064531"
+    },
+    {
+      "file": "control-boot-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "file": "control-boot-framestats.txt",
+      "bytes": 9109,
+      "sha256": "f5c124399015fd931142e9c643d34a306515b8bdb6e8d27bf1921f5afc13e23d"
+    },
+    {
+      "file": "control-boot-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "control-boot-lifecycle-after.txt",
+      "bytes": 33060,
+      "sha256": "1512bfa04434584e824f6aecb11d2e12babd6fbfa07889a030c4f4e5941e1e6c"
+    },
+    {
+      "file": "control-boot-live-logcat.txt",
+      "bytes": 5245095,
+      "sha256": "877f26a465ef9b0e0123b2e0b0c4f179849a18bdc6e06a50fb31516efedd7d79"
+    },
+    {
+      "file": "control-boot-load-before.txt",
+      "bytes": 29,
+      "sha256": "cd905bf4e7ada433b6beaea779b3b7075cd41e9ca8d5b71f526899ab815567c3"
+    },
+    {
+      "file": "control-boot-main-stack.txt",
+      "bytes": 52,
+      "sha256": "79455743af578bce70cc251432e26a3404093a8dde84002b7d7b89e4d64c6b20"
+    },
+    {
+      "file": "control-boot-main-stat.txt",
+      "bytes": 339,
+      "sha256": "86d8d0d09c50fa52d731b45c6868179b05697d015648e96f2e91d5acb8eed224"
+    },
+    {
+      "file": "control-boot-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "control-boot-memory-after.txt",
+      "bytes": 31948,
+      "sha256": "98d7336e640bc8c88f0d895e11cc056e2482e30a20534c1fcd1b963968ce9a20"
+    },
+    {
+      "file": "control-boot-samples.json",
+      "bytes": 3034,
+      "sha256": "1b292479f6eba114c860568dbb31099a9ebeb7d58b6cd34dad06a32a6c2d1f3d"
+    },
+    {
+      "file": "control-boot-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "control-boot-ui.xml",
+      "bytes": 4916,
+      "sha256": "7c3537755b1c82d0894aafa2899bcf5a30ecd7930be3f769ff21ec251524027b"
+    },
+    {
+      "file": "control-boot-uptime-before.txt",
+      "bytes": 14,
+      "sha256": "8298264682e93c009f2d2c843a9a6145d4485d9d627266dfa03dc84f9bf393a2"
+    },
+    {
+      "file": "control-boot-vm.json",
+      "bytes": 5170,
+      "sha256": "6201aa8f9c3efe4b70cfdb00ce26ecc110459ce690cca39fcaf416f66a8e6e39"
+    },
+    {
+      "file": "control-boot-window.txt",
+      "bytes": 19130,
+      "sha256": "d6f8752607396221d0ae187d044b6ce21583779a2dd4f5235c3c24aaf7635405"
+    },
+    {
+      "file": "control-boot.json",
+      "bytes": 4331,
+      "sha256": "a64d596c79152c74b289b81f449e895a0703d39505dd9869e9f7fb1e96a157e3"
+    },
+    {
+      "file": "control-boot.png",
+      "bytes": 42062,
+      "sha256": "d2ff7d172a7eed30842611d27cb387402c7d4398d3d48bb1f00e03b58b69c844"
+    },
+    {
+      "file": "control-build.log",
+      "bytes": 127,
+      "sha256": "7f111854696424a4528bba7714b6238c447cda813b8f9b05a036f0f804aeb77e"
+    },
+    {
+      "file": "control-settled-1-am-start.txt",
+      "bytes": 211,
+      "sha256": "666ec8f148bbc6d1173a76168bd68a2f3841384e2e81b0f441339b0c68e6ed78"
+    },
+    {
+      "file": "control-settled-1-complete-logcat.txt",
+      "bytes": 6015466,
+      "sha256": "4b35e79fe0142faef7f72994fb410bd6a7c29a81d7cd4d21b5a5a4628ee28ac2"
+    },
+    {
+      "file": "control-settled-1-cpu-after.txt",
+      "bytes": 4158,
+      "sha256": "a710122a5c639330717459aa0eb8192b29fb359b7ffa76182fa2e0a0bf96f8d8"
+    },
+    {
+      "file": "control-settled-1-exit-info.txt",
+      "bytes": 672,
+      "sha256": "7409eefc7f0c3ab0e6852ef05ccd5f745469b7fe790372801bde6a74901d3386"
+    },
+    {
+      "file": "control-settled-1-framestats.txt",
+      "bytes": 9131,
+      "sha256": "2c8d9e9a226a5f3274b8697b89954b11a60ab7503ec9073c5db91a18c7b3e547"
+    },
+    {
+      "file": "control-settled-1-gate-top.txt",
+      "bytes": 1279,
+      "sha256": "50832c49f8eeb9682fda26ed36e4f65f0361e8fc958f2359eb3e4aae4a0f4275"
+    },
+    {
+      "file": "control-settled-1-interaction.json",
+      "bytes": 281,
+      "sha256": "92f39f8991493e247fbe2b213b71e80fc5420341bfbb293d04e8b5b6223a44f3"
+    },
+    {
+      "file": "control-settled-1-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "control-settled-1-lifecycle-after.txt",
+      "bytes": 38958,
+      "sha256": "c72575df9b4e8109e5fe3807d3754efa12f89b18bbef14c90095751ff31f26fa"
+    },
+    {
+      "file": "control-settled-1-live-logcat.txt",
+      "bytes": 6019924,
+      "sha256": "8ed942dfa0c35d16bbe43196ebc163d42752ed736d4ba677c9d6aa3f297fc050"
+    },
+    {
+      "file": "control-settled-1-load-before.txt",
+      "bytes": 28,
+      "sha256": "98eedf34748cdc6e7b0665b6e745079223611a6c030993101af0e84fb62561bc"
+    },
+    {
+      "file": "control-settled-1-main-stack.txt",
+      "bytes": 52,
+      "sha256": "be93a274e60df21ff0a5f8f9cc50256f67ee8a5f5810d4c72ae7185678e9f890"
+    },
+    {
+      "file": "control-settled-1-main-stat.txt",
+      "bytes": 339,
+      "sha256": "c691c2127b44f359891af7faf16854d34d0e551b7399c735de0808d0987d8e68"
+    },
+    {
+      "file": "control-settled-1-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "control-settled-1-memory-after.txt",
+      "bytes": 32108,
+      "sha256": "bfef2e702812bde9af57d1c296ea067e1486be7cf69ed2bc979627718585a0b5"
+    },
+    {
+      "file": "control-settled-1-response.png",
+      "bytes": 41654,
+      "sha256": "1e76fa5665efdbc05f95243e90ba13cf2dc0e372ea3766a71ed4b4ba9920dfe4"
+    },
+    {
+      "file": "control-settled-1-response.xml",
+      "bytes": 4916,
+      "sha256": "4ed58680a95321f03511f4fbb8c688bb74f13f8519b037d4ec5274587c676769"
+    },
+    {
+      "file": "control-settled-1-samples.json",
+      "bytes": 5383,
+      "sha256": "67f3a7c85f482b3327933863395c061055edbb892e0503633f2221ec57e15c94"
+    },
+    {
+      "file": "control-settled-1-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "control-settled-1-ui.xml",
+      "bytes": 4916,
+      "sha256": "7c3537755b1c82d0894aafa2899bcf5a30ecd7930be3f769ff21ec251524027b"
+    },
+    {
+      "file": "control-settled-1-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "c129b429c527077491274ab838cd5a800a61c10b3fb7848202eb030833bfccae"
+    },
+    {
+      "file": "control-settled-1-vm.json",
+      "bytes": 11681,
+      "sha256": "9b51822fe03ffb31a1b860a86a3ea3d67015efb8d62ac960cb5c7922a8df2611"
+    },
+    {
+      "file": "control-settled-1-window.txt",
+      "bytes": 19779,
+      "sha256": "ae07eac1e708a71808e52829fbd642e6bd84ef69406bd7ac43582d6daf83b404"
+    },
+    {
+      "file": "control-settled-1.json",
+      "bytes": 4340,
+      "sha256": "f38a2bb185a9382bbe862a60869dbf59cb0336cf25f6aa629dc6a3707f09b3b4"
+    },
+    {
+      "file": "control-settled-1.png",
+      "bytes": 42303,
+      "sha256": "5f5ab8d2e80cbfd33dcfc02389d29bd72e0ccb45fdbc3d90fd4d6fcab9ee86ef"
+    },
+    {
+      "file": "control-settled-2-am-start.txt",
+      "bytes": 211,
+      "sha256": "e8d41b4c3c6baa5ac903976be1fbf604d798409b22958493a74febf5f67d3c9c"
+    },
+    {
+      "file": "control-settled-2-complete-logcat.txt",
+      "bytes": 6354233,
+      "sha256": "43780854a37c21008a9cf32d7e8ec78ee0d3eab29279b9ff4b4834984de83810"
+    },
+    {
+      "file": "control-settled-2-cpu-after.txt",
+      "bytes": 3546,
+      "sha256": "312a79acf1af9af84732c3c3304ecde2e9e76971c49728c21a1739c797347cf3"
+    },
+    {
+      "file": "control-settled-2-exit-info.txt",
+      "bytes": 1108,
+      "sha256": "37af04acf29b62720675ad6961abaf37eab349d6edc0923bf0b37e2c51b0a378"
+    },
+    {
+      "file": "control-settled-2-framestats.txt",
+      "bytes": 9176,
+      "sha256": "0cc41be79096faf08d594d3a248c1896e80f60c18f8bc3b69e8275e78dae49af"
+    },
+    {
+      "file": "control-settled-2-gate-top.txt",
+      "bytes": 1331,
+      "sha256": "c0a0aafdfc0d96cd02b55a87bfba556ee950ede4fa68437bae8d57bca752febc"
+    },
+    {
+      "file": "control-settled-2-interaction.json",
+      "bytes": 283,
+      "sha256": "841b8435b19945476263e7b078dbf36c9723f45ec944562e40602f995ce219b8"
+    },
+    {
+      "file": "control-settled-2-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "control-settled-2-lifecycle-after.txt",
+      "bytes": 39477,
+      "sha256": "8a9e8220a6f60b329efb5f49ac7b77f448990a4a8b48196f6999cd05bc03f452"
+    },
+    {
+      "file": "control-settled-2-live-logcat.txt",
+      "bytes": 6358915,
+      "sha256": "5ac13ad0ecd25743552a13ab0d01601f5ce5a62d55b1136989d16625de4625fa"
+    },
+    {
+      "file": "control-settled-2-load-before.txt",
+      "bytes": 30,
+      "sha256": "874603fe19e216390c48c489c043c46e7797b77807825b02cc151fa37118684a"
+    },
+    {
+      "file": "control-settled-2-main-stack.txt",
+      "bytes": 52,
+      "sha256": "c5eed32ad0073801ee2b2b779852d41ab2582b2602ae72c0e69589cc07cee2db"
+    },
+    {
+      "file": "control-settled-2-main-stat.txt",
+      "bytes": 337,
+      "sha256": "45378ac2d884ead554eb96fff6ccfc3025c27e6ad0f6a29644a972ddaa8d1802"
+    },
+    {
+      "file": "control-settled-2-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "control-settled-2-memory-after.txt",
+      "bytes": 32108,
+      "sha256": "53d9b08fbb865fa608e0711d92e79ca9b0648fec4afb5d2b2d54efe25984b104"
+    },
+    {
+      "file": "control-settled-2-response.png",
+      "bytes": 41643,
+      "sha256": "06b9f6fc4ed40c5df6f9b003620981f430174a41573a3356ee04afb9ec8c8130"
+    },
+    {
+      "file": "control-settled-2-response.xml",
+      "bytes": 4916,
+      "sha256": "4ed58680a95321f03511f4fbb8c688bb74f13f8519b037d4ec5274587c676769"
+    },
+    {
+      "file": "control-settled-2-samples.json",
+      "bytes": 5385,
+      "sha256": "fa273474ae8536f86cd10f60dad523ebebed429e38948ee9b19351c2e3808c64"
+    },
+    {
+      "file": "control-settled-2-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "control-settled-2-ui.xml",
+      "bytes": 4916,
+      "sha256": "7c3537755b1c82d0894aafa2899bcf5a30ecd7930be3f769ff21ec251524027b"
+    },
+    {
+      "file": "control-settled-2-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "a0cae4976af787d7679384d8725e31be93712c2c28ffa4f4fef0b11da5e7f37c"
+    },
+    {
+      "file": "control-settled-2-vm.json",
+      "bytes": 13491,
+      "sha256": "33baa255f13aecc16ba2946cab4466dcef14f49a9d7d66c66ff57bc4825a47a5"
+    },
+    {
+      "file": "control-settled-2-window.txt",
+      "bytes": 20304,
+      "sha256": "14738738addd2afbb4f0d1282488b4ac1d92096bb1e70219699446fd65dab0d0"
+    },
+    {
+      "file": "control-settled-2.json",
+      "bytes": 4340,
+      "sha256": "b157310062ffa9950404d5e15511a1712f9e47c1e420b30b2a9fed188476062f"
+    },
+    {
+      "file": "control-settled-2.png",
+      "bytes": 42705,
+      "sha256": "d528e829f6d7bfbbd6b104010a8c705ef532438098f3df91fc940731c5e5673f"
+    },
+    {
+      "file": "control-settled-3-am-start.txt",
+      "bytes": 211,
+      "sha256": "efbe828bc2c90400f68c7b3f469ef229c6f7566c85fc1c49872f9e5a762625b3"
+    },
+    {
+      "file": "control-settled-3-complete-logcat.txt",
+      "bytes": 6690402,
+      "sha256": "e44145b2fce0344652920000ba50f5b8fcef10c76a2d06e9fbac1c48185d97dc"
+    },
+    {
+      "file": "control-settled-3-cpu-after.txt",
+      "bytes": 3216,
+      "sha256": "8c2cbe6270d7f44949323a277e110a3ed7b4f3787b7e5770b3031f4d572de7e5"
+    },
+    {
+      "file": "control-settled-3-exit-info.txt",
+      "bytes": 1544,
+      "sha256": "e44ca60ca694deb51a128234b6b6e6a00d97a2208cad1d8ff9b94805f7cf26c1"
+    },
+    {
+      "file": "control-settled-3-framestats.txt",
+      "bytes": 9179,
+      "sha256": "4942a34c8e2bca3190a536a0f54425122709b9943ac614a77e591a7e1106d706"
+    },
+    {
+      "file": "control-settled-3-gate-top.txt",
+      "bytes": 1297,
+      "sha256": "4fc66650c77c938cbacdc75bb45c3f60adb5fc23f92df9da12e4605443629eed"
+    },
+    {
+      "file": "control-settled-3-interaction.json",
+      "bytes": 284,
+      "sha256": "69221a4e8c5b1b97ba146a2a3dd487aa622e426c06ea81f05965bc3e2e2f111d"
+    },
+    {
+      "file": "control-settled-3-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "control-settled-3-lifecycle-after.txt",
+      "bytes": 39478,
+      "sha256": "1429d97e5783b6a51ca0273a92a478ee2a4c727162bae07279e4c1cc8f40dc74"
+    },
+    {
+      "file": "control-settled-3-live-logcat.txt",
+      "bytes": 6691473,
+      "sha256": "a2179a1f207500f1bd63be46d861aa85c587c8cc787e02db5bee5aea542a8f8f"
+    },
+    {
+      "file": "control-settled-3-load-before.txt",
+      "bytes": 30,
+      "sha256": "ca4e93a8245a632b9939311a04dcf1a301919117de7ab7bf11f7afa29bd0d6d8"
+    },
+    {
+      "file": "control-settled-3-main-stack.txt",
+      "bytes": 52,
+      "sha256": "f3124adef629986e0798c09160f21d75818d7d2fa20c00887a2ca63402903f2e"
+    },
+    {
+      "file": "control-settled-3-main-stat.txt",
+      "bytes": 337,
+      "sha256": "6c01004765b48200bb99547020b570cf45eddfd6bd40a3ae44453c66b0b3ca24"
+    },
+    {
+      "file": "control-settled-3-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "control-settled-3-memory-after.txt",
+      "bytes": 32108,
+      "sha256": "37bc9949f9a56a41eeec79a4ee987827bb0a9e9fa7d08f2acf9b2041268a45f4"
+    },
+    {
+      "file": "control-settled-3-response.png",
+      "bytes": 41580,
+      "sha256": "8f5431c66af57c8d2972cd52b78c4e6fa891c3446a85f8dedcff9789203e69bc"
+    },
+    {
+      "file": "control-settled-3-response.xml",
+      "bytes": 4916,
+      "sha256": "4ed58680a95321f03511f4fbb8c688bb74f13f8519b037d4ec5274587c676769"
+    },
+    {
+      "file": "control-settled-3-samples.json",
+      "bytes": 5367,
+      "sha256": "c23d4d5f4770a633c9afd1a0e27c71ef7f1307c68007834477811bcf3e9adfc6"
+    },
+    {
+      "file": "control-settled-3-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "control-settled-3-ui.xml",
+      "bytes": 4916,
+      "sha256": "7c3537755b1c82d0894aafa2899bcf5a30ecd7930be3f769ff21ec251524027b"
+    },
+    {
+      "file": "control-settled-3-uptime-before.txt",
+      "bytes": 15,
+      "sha256": "19a235aa6ce857137a999400dc177e957f4fa054c0f674a555e89d4710b472d7"
+    },
+    {
+      "file": "control-settled-3-vm.json",
+      "bytes": 11161,
+      "sha256": "4f82781954223df85fa137493ea4006b74850dede6cbf427672ab57b122cfa21"
+    },
+    {
+      "file": "control-settled-3-window.txt",
+      "bytes": 20302,
+      "sha256": "8084b7199ecd8909a973c36ce527d20a64ff534c9c5177f00404ff0b13d30a3c"
+    },
+    {
+      "file": "control-settled-3.json",
+      "bytes": 4340,
+      "sha256": "c2c504a13f383d3052800fd6ab6cde8ed68535df5b6c8013b808a7926566541a"
+    },
+    {
+      "file": "control-settled-3.png",
+      "bytes": 42645,
+      "sha256": "4763ca5806d64de07da2de3d75a33a72fe4afd0e169959d5cbfde355abc158ab"
+    },
+    {
+      "file": "create.log",
+      "bytes": 563,
+      "sha256": "3ca5a0a06aaeaca466b72eded6467f84d2f9db3269c76b0927a9ae06f1dbb684"
+    },
+    {
+      "file": "emulator-stderr.log",
+      "bytes": 41,
+      "sha256": "b6eaeacb382b7c62d87f5577e442ba03e94d6c5e94ed6b0b8ab42c99c677cbb8"
+    },
+    {
+      "file": "emulator-stdout.log",
+      "bytes": 14038,
+      "sha256": "377af1ab3f89a61b1dcde022f0b9c5cde70d58a49a88d6414638cafacf734c42"
+    },
+    {
+      "file": "format-validation-original.log",
+      "bytes": 48,
+      "sha256": "8454dfefbbe673f5148dfc7fd5c5e90558dacc3994172ebb48cec4cc8bd80b68"
+    },
+    {
+      "file": "host-process-snapshot.json",
+      "bytes": 946,
+      "sha256": "4a336bb0d0efaf495dec2e3ad04a351969c1173f21c5b63118b78b449bb71460"
+    },
+    {
+      "file": "image-index.json",
+      "bytes": 6256,
+      "sha256": "908700cdeb1eac508c62ba66b07360c6d0762f8932dedf44ba46b49daa4b2c17"
+    },
+    {
+      "file": "installed-apk-and-finish.json",
+      "bytes": 473,
+      "sha256": "9a4c3e92c0e083eedcf2e9f6c63094f2ddc16cea6a6f057644fdc0d611634070"
+    },
+    {
+      "file": "read-vm.cjs",
+      "bytes": 2598,
+      "sha256": "7ad963f8b68f4508f3ce14383dae0caef253c6db5b01fbbba13276b669186264"
+    },
+    {
+      "file": "settle.json",
+      "bytes": 4260,
+      "sha256": "e35f1ff26e84fa59be2b71c1998a7c88e41715ee2d2094af5519cf329250e813"
+    },
+    {
+      "file": "stop-gradle.log",
+      "bytes": 38,
+      "sha256": "63b3b053d39a00d0131788861236a840924e2034075e93e2733cd8bf4cf52003"
+    }
+  ],
+  "installedApkAndFinish": {
+    "com.beewise.beewise": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+    "com.beewise.control.startup_control": "1fc569e1918f229735e1cbca70374f738dc3e00fb93bbb5c1eefd304a67566f3",
+    "displayBeforeRestore": "Physical size: 720x1600\r\nOverride size: 824x1832",
+    "density": "Physical density: 320",
+    "restore": "",
+    "finalDisplay": "Physical size: 720x1600",
+    "clkTck": "100",
+    "gracefulStop": "OK: killing emulator, bye bye\r\r\nOK"
+  }
+}
