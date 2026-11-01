@@ -1,0 +1,32 @@
+{
+  "timestampUtc": "2026-10-31T13:51:22.001Z",
+  "serial": "emulator-5560",
+  "pid": "7920",
+  "isolates": [
+    {
+      "name": "main",
+      "firstFrame": {
+        "enabled": "true",
+        "type": "_extensionType",
+        "method": "ext.flutter.didSendFirstFrameEvent"
+      },
+      "hasProbeExtension": false
+    }
+  ],
+  "firstFrameTimelineEvents": [
+    {
+      "name": "Framework initialization",
+      "ts": 509784084,
+      "ph": "B"
+    },
+    {
+      "name": "Framework initialization",
+      "ts": 509882678,
+      "ph": "E"
+    }
+  ],
+  "timelineEventCount": 11440,
+  "connectionSecretExported": false,
+  "frameworkInitializationDurationMs": 98.594,
+  "limitation": "Flutter didSendFirstFrameEvent acknowledgement plus actual framework timeline; Android Displayed duration is a separate clock/first-draw measurement, not a Dart main-only duration."
+}

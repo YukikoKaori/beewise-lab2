@@ -1,0 +1,196 @@
+{
+  "reverifiedAtUtc": "2026-11-01T11:45:22.481610+00:00",
+  "status": "PASS recovered native receipt integrity; not a new account login run",
+  "nativeReceiptsReconstructed": [
+    "evidence/cloud/startup-uid-a-signed-in-native.json",
+    "evidence/cloud/startup-uid-a-logout-native.json",
+    "evidence/cloud/startup-uid-a-guest-native.json",
+    "evidence/cloud/startup-uid-b-signed-in-native.json",
+    "evidence/cloud/startup-uid-b-guest-native.json",
+    "evidence/cloud/startup-uid-historical-native.json"
+  ],
+  "privateStartupFilesHashVerified": 76,
+  "fullAnrTraces": [
+    {
+      "privateFileName": "old-anr_2026-10-31-04-57-12-521",
+      "bytes": 22546,
+      "sha256": "ae74185ad55dc0ab1120ad97f5c9c183e8b0f821114e6ac564e1c5197a7ebd76"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-04-58-10-425",
+      "bytes": 11253,
+      "sha256": "a162556d58da4483f7e58639ba9dc477ece302c724218f8d5b7c0e950f61a227"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-04-59-43-798",
+      "bytes": 67769,
+      "sha256": "528a09cc88cf695277bbf46361b02a33e03f3d73f555aeeccf458abf2e47b1c3"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-00-00-356",
+      "bytes": 46778,
+      "sha256": "177a38cb89ebc20eab31bc219f025721b8bb69c2b9b627a62ef178af72f0fefd"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-00-23-961",
+      "bytes": 62857,
+      "sha256": "cd4e1a903a5a6933e50d5a2f9b0d9da28b272c0bc9536c68a48ef2384b3fcc58"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-00-51-505",
+      "bytes": 30011,
+      "sha256": "f99fe79e7d6f537c6b6f5805d3dc5fc6f3c99b669716f209b5043009fdbaf4ab"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-01-48-117",
+      "bytes": 30925,
+      "sha256": "ae71e4b9f9b2296cbadb5cd3be847b372f3d9a3fc090da8aec6ed04f7ad72997"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-02-04-272",
+      "bytes": 32223,
+      "sha256": "8976457da121bbc4b0b3fc443c4e42e8bda2af56efaf9a55378ad89065f0ef17"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-04-41-907",
+      "bytes": 112646,
+      "sha256": "4d9fbdab0d9ecbdff9d3c45e8b6dccdb1158a08b1109bd8fc07fabe3e4aaed8f"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-04-53-182",
+      "bytes": 30923,
+      "sha256": "22497f9aebfeb79d1fd1f9fbebff4aafacfaec98ac716b1b15c3e2e2791053b8"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-05-45-102",
+      "bytes": 98294,
+      "sha256": "8f36b9e93a77aaeb07ef1c578e4c355fe2b17d4ca9e9f3bdafd99b42766aec40"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-05-07-10-283",
+      "bytes": 156670,
+      "sha256": "057fd649102a3b1352052348c3f140cf84a04fef59b91fa676b40b62a1a76d70"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-03-53-158",
+      "bytes": 117017,
+      "sha256": "b317077c8268695c6bdef5d76b3b5b185650e3d8ac00f3d02f66707c4ba5badd"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-22-17-511",
+      "bytes": 9058,
+      "sha256": "9e61756f5ff6698c31c573a1a2aac82590fd400ae1533b998522b540331618f5"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-22-36-395",
+      "bytes": 6066,
+      "sha256": "79edf2f8c0e1355e259ede15ba3d3984da133351f5376fd12d33254efc5aa13f"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-22-41-343",
+      "bytes": 39386,
+      "sha256": "fc3cd614575cbc71ebe1d179d3cd267795cfa505d87c4745120b0cd7d551e925"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-22-42-405",
+      "bytes": 34524,
+      "sha256": "d479102efada28e15369981b477e460c864a88faa1ee15d2739e92f82cc5f08b"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-22-42-766",
+      "bytes": 29936,
+      "sha256": "e603f3e9d084677d93405615ffbfaa38f98b2a65ded182203e24bceecf102910"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-22-45-235",
+      "bytes": 66929,
+      "sha256": "205f3be054df31135650d4595fd80ba4c6a5f18967bb8e43c1bda83e587ebeb6"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-43-27-793",
+      "bytes": 110334,
+      "sha256": "af2277a6ebe808b2430f5b16376252001288e05a20b155be8cb9ae2949a4e658"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-43-38-102",
+      "bytes": 70935,
+      "sha256": "a90e0986fbb18da7d5dcaa75141a7a48024061b01195c769047416dba25462fe"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-43-41-063",
+      "bytes": 53166,
+      "sha256": "dc2c61e6d6c563d4660dcd6b236df8c22b064a0b54ac8c73082d02ee88779b9a"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-43-52-271",
+      "bytes": 34395,
+      "sha256": "6717e0d204b7b770c507c83e7219e28b78736ea81e0e058cc8e06a1ea13be990"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-44-01-874",
+      "bytes": 77118,
+      "sha256": "631cab23ef9ca9abbe6bd1da0ec5b0c097ebf92a39fb9c573b57ac82e70f7548"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-10-44-04-224",
+      "bytes": 42824,
+      "sha256": "cdd8d3ebb160c5b14149b8dc72b52db65dddd83343fbede3c3fe012928872259"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-11-22-35-031",
+      "bytes": 56312,
+      "sha256": "c4fde7c05408f582d51872955861e9886bef63e1c4134d3f92531e18e00cc49a"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-11-22-44-451",
+      "bytes": 104632,
+      "sha256": "41b956a9b9a7178f1519826d8db0baeca7905093df87610c57679477338493ed"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-11-22-52-190",
+      "bytes": 6874,
+      "sha256": "e98770238a70c958b0d69388c6c3e2f3d4165449b2a5e7c4497255f1312fd3d7"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-11-23-04-341",
+      "bytes": 34091,
+      "sha256": "e05db49d95ba5107d054620b4429a9482f4b236192c65d3afd9cf8d6cca91a01"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-11-23-04-386",
+      "bytes": 72190,
+      "sha256": "6415d79dcd1542601c2fea69fd8adf37823e1c9dc58d418a1dbcdea1d5589d03"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-11-23-06-366",
+      "bytes": 46167,
+      "sha256": "d261cd385731d0c12ada8d11855b3bf9b7a473491f04b0dc4c47d92219c3cad6"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-15-09-55-392",
+      "bytes": 3601,
+      "sha256": "bd4391dbc688841f701e1f679fa93ce6a68cb1b17b9eb1c2758d6178d6843d64"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-15-10-08-064",
+      "bytes": 37613,
+      "sha256": "c99c024a14bf8f0811f6d197ea6e7f37e661b5e4375adbedc4144505d5305042"
+    },
+    {
+      "privateFileName": "old-anr_2026-10-31-16-29-16-184",
+      "bytes": 1070780,
+      "sha256": "f306a3886024bb7dad5b803c3881568335a85b1213b7a20ff1dec466872ac067"
+    }
+  ],
+  "consoleReceipt": {
+    "observedAtUtc": "2026-10-31T14:16:17.569Z",
+    "privateFileName": "startup-uid-a-guest-debugview.png",
+    "sha256": "e8d5b9f633e721d0e60c073afbca767a9fa04022ebfc9a1e417eac01edd5f7fe",
+    "status": "Recovered screenshot hash verified; content not re-exported; no new backend A/B receipt claimed"
+  },
+  "freshDebugView": {
+    "observedDate": "2026-11-01",
+    "status": "No debug device/events in last 30 minutes on initial live read"
+  },
+  "rawUidsExported": false
+}

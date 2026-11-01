@@ -1,0 +1,16 @@
+{
+  "startedAtUtc": "2026-11-01T11:40:40.923283+00:00",
+  "completedAtUtc": "2026-11-01T11:42:12.852854+00:00",
+  "sourceSha": "dd5be3aa7e71db62a744dc379c6de3d503a4c7a3",
+  "workingTreeIncludes": [
+    "test/analytics_identity_lifecycle_test.dart"
+  ],
+  "command": [
+    "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+    "analyze"
+  ],
+  "workingDirectory": "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+  "nativeExitCode": 0,
+  "originalLogSha256": "4e3dbc84197dcfd64d337bfd59c3c33aee185386ee055f664ef7eb25b9493bb9",
+  "publicLogProjection": "Trailing line whitespace normalized; original log preserved privately"
+}

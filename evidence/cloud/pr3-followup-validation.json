@@ -1,0 +1,126 @@
+{
+  "recordedAtUtc": "2026-11-01T12:14:18.121437+00:00",
+  "pr": "https://github.com/YukikoKaori/beewise-lab2/pull/3",
+  "headFetchedBeforeWork": "dd5be3aa7e71db62a744dc379c6de3d503a4c7a3",
+  "mainFetchedBeforeWork": "12f5322655463fd801d64e4925572d6a3a2bbb82",
+  "applicationSourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "productionBehaviorChanges": "None; no reproducible app root cause or native clear failure established. Added lifecycle regression tests, safe native measurement/receipt tooling and evidence.",
+  "startup": {
+    "status": "PASS scoped controlled settled startup; initial boot timeout retained as limitation",
+    "manifest": "evidence/android/pr3-resume/manifest.json",
+    "originalInvestigation": "evidence/android/startup-uid/manifest.json",
+    "defaultEntrypoint": "lib/main.dart",
+    "probeExtensionPresent": false,
+    "userdataCleared": false,
+    "anrDetectionSuppressed": false,
+    "coldAndroidFirstDrawMs": [
+      5164,
+      5466
+    ],
+    "warmAmWaitWallMs": [
+      344,
+      422
+    ],
+    "viewportDp": [
+      360,
+      412
+    ],
+    "remaining": "Original resource-contended ANR has no proven application blocking root cause; no masking/delay fix applied.",
+    "earlierComparison": "evidence/android/pr3-resume/earlier-comparison.json"
+  },
+  "analytics": {
+    "status": "PASS native A -> guest -> B -> guest identity clearing; fresh DebugView receipt BLOCKED",
+    "nativeReceipt": "evidence/cloud/pr3-identity-native-final.json",
+    "sequence": [
+      {
+        "event": "login",
+        "nativeUploadLogTime": "11-01 18:58:27.905",
+        "identityAliases": [
+          "uid-sha256:4a7de057a03aa476"
+        ]
+      },
+      {
+        "event": "logout",
+        "nativeUploadLogTime": "11-01 19:02:35.803",
+        "identityAliases": [
+          "uid-sha256:4a7de057a03aa476"
+        ]
+      },
+      {
+        "event": "search",
+        "nativeUploadLogTime": "11-01 19:04:03.341",
+        "identityAliases": []
+      },
+      {
+        "event": "login",
+        "nativeUploadLogTime": "11-01 19:04:52.657",
+        "identityAliases": [
+          "uid-sha256:564b131109a53e16"
+        ]
+      },
+      {
+        "event": "logout",
+        "nativeUploadLogTime": "11-01 19:05:51.588",
+        "identityAliases": [
+          "uid-sha256:564b131109a53e16"
+        ]
+      },
+      {
+        "event": "search",
+        "nativeUploadLogTime": "11-01 19:06:46.781",
+        "identityAliases": []
+      }
+    ],
+    "nativeRemovalAcknowledgementCount": 7,
+    "debugView": "Embedded Firebase Analytics frame remained blank after refresh; direct Analytics property returned Missing permissions. No access request/permissions change made. This does not establish why the embedded frame failed.",
+    "debugViewEvidence": "evidence/android/pr3-resume/debugview-missing-permissions.png",
+    "backendEventLevelUserIdExport": "NOT AVAILABLE; native uploaded bundle contents are not a BigQuery/backend attribution export",
+    "historicalDisputedExport": "Recovered complete native bundle for original disputed guest export has no _id; historical Console user properties cannot establish that event was sent under that ID.",
+    "identityWorkaroundsAdded": false,
+    "rawUidExported": false
+  },
+  "fcm": {
+    "status": "PASS fresh native background/terminated notification delivery; route acceptance limited",
+    "backgroundSend": "evidence/cloud/fcm-bao-pr3-background-1793534378696.json",
+    "terminatedSend": "evidence/cloud/fcm-bao-pr3-terminated-1793534486620.json",
+    "processDeath": "evidence/android/pr3-resume/live-a-verified-process-death-settled.json",
+    "firstKillAttempt": "evidence/android/pr3-resume/live-a-verified-process-death.json",
+    "deviceReceipts": [
+      "evidence/android/pr3-resume/live-a-background.json",
+      "evidence/android/pr3-resume/live-a-background-opened.json",
+      "evidence/android/pr3-resume/live-a-terminated.json",
+      "evidence/android/pr3-resume/live-a-terminated-opened.json"
+    ],
+    "terminatedLifecycle": "PID 2824 absent before send; native receiver created PID 3881. Not force-stopped.",
+    "routeLimitation": "Do not claim route success from navbar text. Initial terminated-open screenshot still Home/loading; Search navigation not established for that capture.",
+    "protections": "Generation-safe registration, journal cleanup, cross-UID quarantine and fail-closed server role checks unchanged.",
+    "ownershipReceipts": [
+      "evidence/cloud/google-user-pr3-live-a.json",
+      "evidence/cloud/google-user-pr3-live-a-logout.json",
+      "evidence/cloud/google-user-pr3-live-b.json",
+      "evidence/cloud/google-user-pr3-live-b-logout.json"
+    ],
+    "nativeTimeoutOrFailedWriteInjection": "NOT RUN; covered only by regression tests"
+  },
+  "validation": {
+    "format": "PASS",
+    "analyze": "PASS",
+    "flutter": "66/66 PASS",
+    "firebaseEmulatorRules": "28/28 PASS; local only",
+    "receiptParser": "4/4 PASS",
+    "apkBuild": "PASS on same-drive clean D worktree; initial C/D Kotlin incremental-cache root failure retained",
+    "localEvidence": [
+      "evidence/cloud/checks/pr3-resume",
+      "evidence/cloud/checks/pr3-resume-d-build"
+    ],
+    "latestHeadCi": "Final delivery SHA and exact-head GitHub Actions run/check results are recorded in the existing PR #3 description after push."
+  },
+  "scope": {
+    "Storage": "DEFERRED; no billing, bucket or Storage deployment",
+    "AppCheck": "No enforcement/config expansion",
+    "NguyenUiArtemisReports": "Unchanged",
+    "physicalHardware": "NOT RUN",
+    "externalHumanReview": "NOT RUN"
+  },
+  "mergeReadiness": "NOT MERGE READY: required fresh DebugView correlation remains blocked; boot-time resource sensitivity remains documented. Do not merge."
+}

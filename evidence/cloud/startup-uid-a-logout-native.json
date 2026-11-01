@@ -1,0 +1,58 @@
+{
+  "recordedAtUtc": "2026-10-31T14:13:55.704380+00:00",
+  "privateLogSha256": "6e19fa11bc6e0afc41a4d04749e6fa1b76ba4c9204d0667d154f1f97f426bd63",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "10-31 21:13:47.267",
+      "servicePid": "1285"
+    },
+    {
+      "nativeLogTime": "10-31 21:13:47.504",
+      "servicePid": "1285"
+    },
+    {
+      "nativeLogTime": "10-31 21:13:47.879",
+      "servicePid": "1285"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "10-31 21:09:28.750",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "login",
+          "timestampMillis": "1793455768129",
+          "parameters": {
+            "method": "password"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 21:13:46.867",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "logout",
+          "timestampMillis": "1793456025606",
+          "parameters": {}
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}
