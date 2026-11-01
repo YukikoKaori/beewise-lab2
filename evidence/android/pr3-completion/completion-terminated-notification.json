@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:50:44.932134+00:00",
+  "label": "completion-terminated-notification",
+  "pid": "3796",
+  "screenshotSha256": "9032232aac9904ce4e459dd73456af54ca8a308332a535b90ab3ffaa870909f9",
+  "hasTestNotification": true,
+  "searchRoute": false,
+  "selectedTabs": [],
+  "hasAnrDialog": false,
+  "notificationProbeIds": [
+    "bao-pr3-terminated-1793537409160"
+  ],
+  "screenshot": "evidence/android/pr3-completion/completion-terminated-notification.png",
+  "scope": "Actual native UI; Search accepted only after visual review of full Search content plus selected tab."
+}

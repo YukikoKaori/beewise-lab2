@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:51:27.777635+00:00",
+  "label": "terminated-tap-5s",
+  "pid": "3796",
+  "screenshotSha256": "27c53d6f9d682077a8406a85a1b23f2ac0963d610d59d268f98a754f8ccb63f1",
+  "hasTestNotification": false,
+  "searchRoute": true,
+  "selectedTabs": [
+    "T\u00ecm gia s\u01b0\nTab 2 of 5"
+  ],
+  "hasAnrDialog": false,
+  "notificationProbeIds": [],
+  "screenshot": "evidence/android/pr3-completion/terminated-tap-5s.png",
+  "scope": "Actual native UI; Search accepted only after visual review of full Search content plus selected tab."
+}

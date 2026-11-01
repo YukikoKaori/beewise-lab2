@@ -1,6 +1,7 @@
 """Record one native startup without clearing userdata or suppressing ANRs.
 
-Usage: python scripts/measure-bao-startup.py SERIAL LABEL cold|warm PRIVATE_DIR
+Usage: python scripts/measure-bao-startup.py SERIAL LABEL cold|warm PRIVATE_DIR [--immediate]
+The immediate mode defers expensive dumps until after launching the activity.
 Complete logs, UI and screenshots stay private: review before publishing.
 """
 import datetime
@@ -29,7 +30,9 @@ def redact(data):
 
 
 def main():
-    serial, label, mode, directory = sys.argv[1:]
+    args = sys.argv[1:]
+    immediate = args[-1:] == ["--immediate"]
+    serial, label, mode, directory = args[:-1] if immediate else args
     if not re.fullmatch(r"emulator-\d+", serial) or not re.fullmatch(r"[a-z0-9-]+", label):
         raise ValueError("Expected emulator serial and safe label")
     if mode not in ("cold", "warm"):
@@ -54,6 +57,7 @@ def main():
     receipt = {"timestampUtc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
                "serial": serial, "requestedMode": mode, "userdataCleared": False,
                "anrDetectionSuppressed": False,
+               "immediateLaunch": immediate,
                "logIdentityPolicy": "All buffers retained; Auth UID aliases and credential-line redaction applied in memory before disk"}
     with (out / (label + "-live-logcat.txt")).open("wb") as stream:
         logger = subprocess.Popen([ADB, "-s", serial, "logcat", "-b", "all", "-v", "threadtime"],
@@ -65,11 +69,15 @@ def main():
         reader = threading.Thread(target=drain, daemon=True)
         reader.start()
         try:
-            for name, args in {
+            before = {
                 "cpu-before.txt": ("dumpsys", "cpuinfo"),
                 "memory-before.txt": ("dumpsys", "meminfo"),
                 "lifecycle-before.txt": ("dumpsys", "activity", "activities"),
-            }.items():
+            } if not immediate else {
+                "uptime-before.txt": ("cat", "/proc/uptime"),
+                "load-before.txt": ("cat", "/proc/loadavg"),
+            }
+            for name, args in before.items():
                 save(name, "shell", *args)
             receipt["pidBefore"] = run("shell", "pidof", PACKAGE).stdout.decode().strip()
             if mode == "cold":
@@ -82,15 +90,19 @@ def main():
                                       "--display", "0", "-n", PACKAGE + "/.MainActivity")
             receipt["amStartWallMs"] = round((time.monotonic() - started) * 1000)
             receipt["pidAfter"] = run("shell", "pidof", PACKAGE).stdout.decode().strip()
-            save("ui-status.txt", "shell", "uiautomator", "dump", "/sdcard/bao-startup-ui.xml")
-            ui = save("ui.xml", "shell", "cat", "/sdcard/bao-startup-ui.xml")
-            receipt["homeUiPresent"] = "BeeWise" in ui and "Trang ch" in ui
-            receipt["anrDialogInUi"] = "isn't responding" in ui or "Close app" in ui
+            ui_status = save("ui-status.txt", "shell", "uiautomator", "dump", "/sdcard/bao-startup-ui.xml")
+            receipt["uiDumpSucceeded"] = "dumped to:" in ui_status
+            # A failed dump can leave a previous launch's XML on the device.
+            ui = save("ui.xml", "shell", "cat", "/sdcard/bao-startup-ui.xml") if receipt["uiDumpSucceeded"] else ""
+            receipt["homeUiPresent"] = ("BeeWise" in ui and "Trang ch" in ui) if receipt["uiDumpSucceeded"] else None
+            receipt["anrDialogInUi"] = ("isn't responding" in ui or "Close app" in ui) if receipt["uiDumpSucceeded"] else None
             picture = run("exec-out", "screencap", "-p")
             (out / (label + ".png")).write_bytes(picture.stdout)
             receipt["screenshotSha256"] = hashlib.sha256(picture.stdout).hexdigest()
             for name, args in {
                 "cpu-after.txt": ("dumpsys", "cpuinfo"),
+                "memory-after.txt": ("dumpsys", "meminfo"),
+                "lifecycle-after.txt": ("dumpsys", "activity", "activities"),
                 "lastanr.txt": ("dumpsys", "activity", "lastanr"),
                 "exit-info.txt": ("dumpsys", "activity", "exit-info", PACKAGE),
                 "window.txt": ("dumpsys", "window", "displays"),

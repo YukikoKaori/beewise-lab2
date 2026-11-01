@@ -1,0 +1,45 @@
+{
+  "observedAtUtc": "2026-11-01T12:46:57.033814+00:00",
+  "status": "PASS actual DebugView guest-event receipt correlated with complete native bundles",
+  "project": "beewise-lab-3",
+  "nativeReceipt": "evidence/cloud/pr3-identity-native-final.json",
+  "consoleObservations": [
+    "Freshly accessible Firebase DebugView timeline showed A logout 19:02:35, guest search 19:04:02, B login 19:04:52, B logout 19:05:50 and guest search 19:06:45.",
+    "B user_id assignment at 19:04:51 preceded B login. A signed-in login was already outside the rolling 30-minute Console window; verified separately by its native bundle.",
+    "The Current User Properties panel and selected guest event User properties tab still presented the last B alias uid-sha256:564b131109a53e16. This presentation is recorded, not used as proof of a new UID-bearing guest upload."
+  ],
+  "events": [
+    {
+      "stage": "guest-after-A",
+      "event": "search",
+      "consoleLocalEventTime": "19:04:02",
+      "nativeEventTimestampMillis": "1793534642257",
+      "matchingQueryLength": 4,
+      "completeNativeBundleUserIdCount": 0,
+      "screenshot": "evidence/android/pr3-completion/debugview-guest-a.png",
+      "screenshotSha256": "d9ee7a010a13b57cb9f26ee75ffb790c3e438cb5f676ed819417ff6cc237039b"
+    },
+    {
+      "stage": "guest-after-B",
+      "event": "search",
+      "consoleLocalEventTime": "19:06:45",
+      "nativeEventTimestampMillis": "1793534805975",
+      "matchingQueryLength": 3,
+      "completeNativeBundleUserIdCount": 0,
+      "screenshot": "evidence/android/pr3-completion/debugview-guest-b.png",
+      "screenshotSha256": "a425a75ceea36d8d0c6a2a714e17db071e22740a251f529de96b3d5ed2ec4234"
+    }
+  ],
+  "interpretation": "Tested native SDK emitted no Auth user ID in either complete post-logout guest business-event upload; the same events reached DebugView. No ID workaround is justified by the retained Console property display.",
+  "limits": [
+    "DebugView User properties display persistence remains observed; its internal cause is not proven.",
+    "No event-level backend user_id or BigQuery export is available; Console event receipt plus native payload evidence is not such an export."
+  ],
+  "rawUidsExported": false,
+  "analyticsReset": false,
+  "identityBehaviorChanged": false,
+  "documentation": [
+    "https://firebase.google.com/docs/analytics/debugview",
+    "https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics#setUserId(java.lang.String)"
+  ]
+}
