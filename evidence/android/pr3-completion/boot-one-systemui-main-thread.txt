@@ -1,0 +1,57 @@
+Subject: executing service com.android.systemui/.keyguard.KeyguardService, waited 22491ms
+Timeout: 20008
+TimeoutStart: 35746
+RssHwmKb: 231852
+RssKb: 231852
+RssAnonKb: 79048
+RssShmemKb: 1680
+VmSwapKb: 0
+BaseFsVerity: false
+
+"main" prio=5 tid=1 Runnable
+  | group="main" sCount=0 ucsCount=0 flags=0 obj=0x71bd6e60 self=0x73e5d22067b0
+  | sysTid=948 nice=0 cgrp=foreground sched=0/0 handle=0x73e6f95c6038
+  | state=R schedstat=( 1218514100 16928735586 1801 ) utm=49 stm=72 core=0 HZ=100
+  | stack=0x7ffd488d5000-0x7ffd488d7000 stackSize=8188KB
+  | held mutexes= "mutator lock"(shared held)
+  native: #00 pc 0082eb38  /apex/com.android.art/lib64/libart.so (art::DumpNativeStack+1960) (BuildId: ee39087e94b33f52a6702ae4ffb86dc0)
+  native: #01 pc 00945765  /apex/com.android.art/lib64/libart.so (art::Thread::DumpStack const+245) (BuildId: ee39087e94b33f52a6702ae4ffb86dc0)
+  native: #02 pc 0096b02c  /apex/com.android.art/lib64/libart.so (art::DumpCheckpoint::Run+636) (BuildId: ee39087e94b33f52a6702ae4ffb86dc0)
+  native: #03 pc 009467c3  /apex/com.android.art/lib64/libart.so (art::Thread::RunCheckpointFunction+195) (BuildId: ee39087e94b33f52a6702ae4ffb86dc0)
+  native: #04 pc 00702d9e  /apex/com.android.art/lib64/libart.so (art::JNI<false>::GetByteArrayElements+1326) (BuildId: ee39087e94b33f52a6702ae4ffb86dc0)
+  native: #05 pc 000254b5  /apex/com.android.conscrypt/lib64/libjavacrypto.so (NativeCrypto_RAND_bytes+37) (BuildId: bba3cdd856ef44f5dbb439f18bec1c45)
+  at com.android.org.conscrypt.NativeCrypto.RAND_bytes(Native method)
+  at com.android.org.conscrypt.OpenSSLRandom.engineNextBytes(OpenSSLRandom.java:45)
+  at java.security.SecureRandom.nextBytes(SecureRandom.java:821)
+  - locked <@addr=0x2727368> (a java.security.SecureRandom)
+  at java.security.SecureRandom.next(SecureRandom.java:875)
+  at java.util.Random.nextInt(Random.java:577)
+  at com.android.internal.logging.InstanceIdSequence.newInstanceId(InstanceIdSequence.java:50)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl.mapOfStringAndQSTileConfig(unavailable:1018)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl$SwitchingProvider.get8(unavailable:400)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl$SwitchingProvider.get(unavailable:4511)
+  at dagger.internal.DoubleCheck.get(unavailable:13)
+  - locked <@addr=0x2073380> (a dagger.internal.DoubleCheck)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl$SwitchingProvider.get10(unavailable:28)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl$SwitchingProvider.get(unavailable:4501)
+  at dagger.internal.DoubleCheck.get(unavailable:13)
+  - locked <@addr=0x2074fa0> (a dagger.internal.DoubleCheck)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl$SwitchingProvider.get20(unavailable:137)
+  at com.google.android.systemui.dagger.DaggerSysUIGoogleGlobalRootComponent$SysUIGoogleSysUIComponentImpl$SwitchingProvider.get(unavailable:4451)
+  at com.android.systemui.application.impl.SystemUIApplicationImpl$$ExternalSyntheticLambda1.run(unavailable:46)
+  at com.android.systemui.application.impl.SystemUIApplicationImpl.timeInitialization(unavailable:27)
+  at com.android.systemui.application.impl.SystemUIApplicationImpl.startServicesIfNeeded(unavailable:232)
+  at com.android.systemui.application.impl.SystemUIApplicationImpl.startSystemUserServicesIfNeeded(unavailable:69)
+  at com.android.systemui.SystemUIService.onCreate(unavailable:9)
+  at android.app.ActivityThread.handleCreateService(ActivityThread.java:5644)
+  at android.app.ActivityThread.-$$Nest$mhandleCreateService(unavailable:0)
+  at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2804)
+  at android.os.Handler.dispatchMessageImpl(Handler.java:142)
+  at android.os.Handler.dispatchMessage(Handler.java:125)
+  at android.os.Looper.loopOnce(Looper.java:296)
+  at android.os.Looper.loop(Looper.java:397)
+  at android.app.ActivityThread.main(ActivityThread.java:9523)
+  at java.lang.reflect.Method.invoke(Native method)
+  at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)
+DumpLatencyMs: 175.014

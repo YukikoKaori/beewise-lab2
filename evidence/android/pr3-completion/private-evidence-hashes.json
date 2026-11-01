@@ -1,0 +1,791 @@
+{
+  "recordedAtUtc": "2026-11-01T12:55:45.714720+00:00",
+  "files": [
+    {
+      "name": "boot-four-am-start.txt",
+      "bytes": 176,
+      "sha256": "9bd7516c54ae2c5df1d3ac70b12625f03c96a775e4ee8218fcd36cb448bb596e"
+    },
+    {
+      "name": "boot-four-complete-boot-logcat.txt",
+      "bytes": 4423313,
+      "sha256": "d2dc1feeb8e4864f17a983965efec189ff9cad4f7170779995549ad83b4248b2"
+    },
+    {
+      "name": "boot-four-complete-logcat.txt",
+      "bytes": 4260094,
+      "sha256": "4e2f842275acb6b50c48ac084ff2a4b1c75bb1723d4ac440a1f38e4017175674"
+    },
+    {
+      "name": "boot-four-cpu-after.txt",
+      "bytes": 6804,
+      "sha256": "7a0ab99718caee2b5388d967ac8b434ec9282bdb3e02bd1745e6fefe8cebc313"
+    },
+    {
+      "name": "boot-four-density.txt",
+      "bytes": 23,
+      "sha256": "92f48d06e54e033152374e8b4e3b9237fefb597504aae5a5696b16649a49fe78"
+    },
+    {
+      "name": "boot-four-display.txt",
+      "bytes": 25,
+      "sha256": "6fc865666980cfcb6c692e53c8d45a7cbad21e4d176e1b6fe300bfd14751b343"
+    },
+    {
+      "name": "boot-four-emulator-stderr.txt",
+      "bytes": 41,
+      "sha256": "b6eaeacb382b7c62d87f5577e442ba03e94d6c5e94ed6b0b8ab42c99c677cbb8"
+    },
+    {
+      "name": "boot-four-emulator-stdout.txt",
+      "bytes": 14530,
+      "sha256": "cbcbe94b3fc13fcc96d7a78a23aeca92c966e68b5e9d76015ac3aef4be093d47"
+    },
+    {
+      "name": "boot-four-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "name": "boot-four-framestats.txt",
+      "bytes": 7356,
+      "sha256": "63b49f34b9c09ad7a1dfa27d570ed20055eec4deb0c27b3a38824fcbbcf4be15"
+    },
+    {
+      "name": "boot-four-lastanr-after.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-four-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-four-launch.json",
+      "bytes": 838,
+      "sha256": "ab159781b90473f70c7b6d52b471c833d736f61fea669b125b8d2dac4e3cf7ca"
+    },
+    {
+      "name": "boot-four-lifecycle-after.txt",
+      "bytes": 32164,
+      "sha256": "4f3cfb8f5268bdae91512449ffaff4ac619502ab653a272a613b99f9f91264ef"
+    },
+    {
+      "name": "boot-four-live-logcat.txt",
+      "bytes": 4323416,
+      "sha256": "9bbe1652a49e415b63ec3fee2cc910972b113af6c488c0dd683de90bab97b068"
+    },
+    {
+      "name": "boot-four-load-after.txt",
+      "bytes": 29,
+      "sha256": "bd0a9bd2811a428c690ac55c12462e2f1bd70b1e8191018e187a157c5e0ad89b"
+    },
+    {
+      "name": "boot-four-load-before.txt",
+      "bytes": 29,
+      "sha256": "23fa5727ada51d51f6232f64c476ed8b78171c01e6cd58d60d0397129e4d2479"
+    },
+    {
+      "name": "boot-four-main-stack.txt",
+      "bytes": 52,
+      "sha256": "7faa8e42ba449ff065d98601810c6a9e76df77b872babadb5963cfa4f1e621e9"
+    },
+    {
+      "name": "boot-four-main-stat.txt",
+      "bytes": 345,
+      "sha256": "25bae55c5a6f765e6105ef03147ff0f8c35fa7acdb74e7042a832bde4a246e6d"
+    },
+    {
+      "name": "boot-four-main-wchan.txt",
+      "bytes": 16,
+      "sha256": "5e06dd2f71c0d4e591cf3c5aa810608740b121a77dc50822cbf554a99f8b027f"
+    },
+    {
+      "name": "boot-four-memory-after.txt",
+      "bytes": 124,
+      "sha256": "883e797526461055d4ae4119ee3ec73951b6ce0bf57a2da7d4ba563b490b7f38"
+    },
+    {
+      "name": "boot-four-ui-status.txt",
+      "bytes": 59,
+      "sha256": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228"
+    },
+    {
+      "name": "boot-four-uptime-before.txt",
+      "bytes": 13,
+      "sha256": "f499bf4c0c16ec8d67acb1f902ae4309bfedc52f61e5c760c0feaa7ff3a538b0"
+    },
+    {
+      "name": "boot-four-vm-result.json",
+      "bytes": 15902,
+      "sha256": "04e7abb863fc3a97e8df19d6d7af7d2a057265000eb621b90edd9dd397444700"
+    },
+    {
+      "name": "boot-four-window.txt",
+      "bytes": 18253,
+      "sha256": "348650b554087d0b5746d569901cf42ee1a197d0e38b0e4731c1717103dd7491"
+    },
+    {
+      "name": "boot-four.json",
+      "bytes": 4011,
+      "sha256": "d8e45dba4745df8eaaec0b8967f5176f978264e64546fc1e584c7bd516228427"
+    },
+    {
+      "name": "boot-four.png",
+      "bytes": 25483,
+      "sha256": "7a2a3a1bd4013e6a0eddf778a790e76507d54f523fc9bb2d1658e47c650cfde0"
+    },
+    {
+      "name": "boot-one-am-start.txt",
+      "bytes": 176,
+      "sha256": "116908821b925f65ac266d4893833a4ef9e95d71967b8acfd9f35705f87b4d87"
+    },
+    {
+      "name": "boot-one-bugreport.zip",
+      "bytes": 5303682,
+      "sha256": "326ff8a4a58c4fba235ba9d6cd73aa4ea9f4221669ab93f3876838508d0d436a"
+    },
+    {
+      "name": "boot-one-complete-boot-logcat.txt",
+      "bytes": 3763385,
+      "sha256": "6df6b3d26eab08e42ea310eedd2dd7d5eb727d1a6a7545749c934c8fd148a407"
+    },
+    {
+      "name": "boot-one-complete-logcat.txt",
+      "bytes": 3147564,
+      "sha256": "8d1c0d9d7ee55c9e2d05d10378cca271f81ed9b4712818ae6b53fd97243c44f3"
+    },
+    {
+      "name": "boot-one-cpu-after.txt",
+      "bytes": 4107,
+      "sha256": "83aa61e02bea87477f01498d5b335bf226d90c770a65716c7f3cbe297d60d9d3"
+    },
+    {
+      "name": "boot-one-cpu-before.txt",
+      "bytes": 2635,
+      "sha256": "eca59cf7c7a47dcb988b9e1ce2097351845fdf05caa4c5e935ff4e17558aa2b8"
+    },
+    {
+      "name": "boot-one-density.txt",
+      "bytes": 23,
+      "sha256": "92f48d06e54e033152374e8b4e3b9237fefb597504aae5a5696b16649a49fe78"
+    },
+    {
+      "name": "boot-one-display.txt",
+      "bytes": 25,
+      "sha256": "6fc865666980cfcb6c692e53c8d45a7cbad21e4d176e1b6fe300bfd14751b343"
+    },
+    {
+      "name": "boot-one-emulator-stderr.txt",
+      "bytes": 41,
+      "sha256": "b6eaeacb382b7c62d87f5577e442ba03e94d6c5e94ed6b0b8ab42c99c677cbb8"
+    },
+    {
+      "name": "boot-one-emulator-stdout.txt",
+      "bytes": 15714,
+      "sha256": "4231fea7263edc876a54936708c3b70b6e0bdcaf261e7f55dfd96d3fb38a2f98"
+    },
+    {
+      "name": "boot-one-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "name": "boot-one-framestats.txt",
+      "bytes": 218,
+      "sha256": "7dabff552f665084e185d1470e68d05ad5347acbc648c723a8f8cbe0cc3bc4be"
+    },
+    {
+      "name": "boot-one-lastanr-after.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-one-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-one-launch.json",
+      "bytes": 773,
+      "sha256": "e3b0d44d9592c4109cd57a412c1f9bcdeda5eda2eb77de84d6e29c8202037769"
+    },
+    {
+      "name": "boot-one-lifecycle-before.txt",
+      "bytes": 22559,
+      "sha256": "0735019851b033ab1fbf44cb14dfa0b97251937abf55566bb9c4ef47f3a5724c"
+    },
+    {
+      "name": "boot-one-live-logcat.txt",
+      "bytes": 3214404,
+      "sha256": "5ac48a2dfb9ec005248415598dfe6f22ae91a78d846d3bc84ddf9054b8b5bbab"
+    },
+    {
+      "name": "boot-one-load-after.txt",
+      "bytes": 31,
+      "sha256": "39f45217414299c6550ac95e6753972625bd01a7d84c1cfe1de3988ebde4c7c7"
+    },
+    {
+      "name": "boot-one-main-stack.txt",
+      "bytes": 52,
+      "sha256": "10e04484b387571468a3a048d573f11313ab437492ca584a3d2baa216f3e71eb"
+    },
+    {
+      "name": "boot-one-main-stat.txt",
+      "bytes": 345,
+      "sha256": "148890a4a19805c0387e2addc0c9ab35615082ef5bbb3930f24bc0733aefb564"
+    },
+    {
+      "name": "boot-one-main-wchan.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "name": "boot-one-memory-before.txt",
+      "bytes": 124,
+      "sha256": "883e797526461055d4ae4119ee3ec73951b6ce0bf57a2da7d4ba563b490b7f38"
+    },
+    {
+      "name": "boot-one-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "boot-one-ui.xml",
+      "bytes": 4429,
+      "sha256": "8674bcf4ccc13a6ab6b7a2495ed5df116be6fd07bbd1f7f658ce9f9b9cd0ee7e"
+    },
+    {
+      "name": "boot-one-vm-result.json",
+      "bytes": 2433,
+      "sha256": "c4bec202609857e11b8c52081bd8bd6f25ec99143ec8eb8f052362e439255d4f"
+    },
+    {
+      "name": "boot-one-window.txt",
+      "bytes": 18104,
+      "sha256": "08ac5cd7b8f61320158b5a062d06c6c62414d49170369c7ae7f89a1780de83c9"
+    },
+    {
+      "name": "boot-one.json",
+      "bytes": 3964,
+      "sha256": "b3d7c377b9ea9c4b8a58e5b6b49eea9e1c600b8db4c184213503b60c01a459fc"
+    },
+    {
+      "name": "boot-one.png",
+      "bytes": 35365,
+      "sha256": "67be59f2e1a307c836c57f579842d24981c740bde59406a5655ecad8e07d3ffa"
+    },
+    {
+      "name": "boot-three-am-start.txt",
+      "bytes": 176,
+      "sha256": "5380ced39902328bf9413c2269dcf75ea1b8265707ca19bde1942333575794fc"
+    },
+    {
+      "name": "boot-three-complete-boot-logcat.txt",
+      "bytes": 4335134,
+      "sha256": "223f4049725d679866376724b7b4a96c6a58cb052d5c43c5b5e819d2715d6e5e"
+    },
+    {
+      "name": "boot-three-complete-logcat.txt",
+      "bytes": 4244178,
+      "sha256": "4f66c32c85ba0716766cf57568368894bf2ba05a45146967e8579e59966918f5"
+    },
+    {
+      "name": "boot-three-cpu-after.txt",
+      "bytes": 7266,
+      "sha256": "a3618924cd52b6b4892861396d2a3306cb43401a9e34a50fbd99e8ccd23ae55f"
+    },
+    {
+      "name": "boot-three-density.txt",
+      "bytes": 23,
+      "sha256": "92f48d06e54e033152374e8b4e3b9237fefb597504aae5a5696b16649a49fe78"
+    },
+    {
+      "name": "boot-three-display.txt",
+      "bytes": 25,
+      "sha256": "6fc865666980cfcb6c692e53c8d45a7cbad21e4d176e1b6fe300bfd14751b343"
+    },
+    {
+      "name": "boot-three-emulator-stderr.txt",
+      "bytes": 41,
+      "sha256": "b6eaeacb382b7c62d87f5577e442ba03e94d6c5e94ed6b0b8ab42c99c677cbb8"
+    },
+    {
+      "name": "boot-three-emulator-stdout.txt",
+      "bytes": 16166,
+      "sha256": "c357e3c70ebba8d9701c91159674356a92652498b1982ba016383f8fa3d8f544"
+    },
+    {
+      "name": "boot-three-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "name": "boot-three-framestats.txt",
+      "bytes": 6943,
+      "sha256": "0c7d5f730dabf6147f8c1a9a88f097eff4d30a25eee0637ad8d6f200f566bb03"
+    },
+    {
+      "name": "boot-three-lastanr-after.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-three-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-three-launch.json",
+      "bytes": 807,
+      "sha256": "23718189fe92a92ff675a794c5faecd1c8fbfaeeb4015c6402d963ff6cbca9b8"
+    },
+    {
+      "name": "boot-three-lifecycle-after.txt",
+      "bytes": 32245,
+      "sha256": "1e44129e60d9bb34aa644a105de88739af15080615897f78fed6b847f37972eb"
+    },
+    {
+      "name": "boot-three-live-logcat.txt",
+      "bytes": 4378669,
+      "sha256": "81fa051859fec91a3124345a443c5c3551971756753bf92b79e548f5d2f33955"
+    },
+    {
+      "name": "boot-three-load-after.txt",
+      "bytes": 29,
+      "sha256": "819f48f712b4f491308890a1819edb1108eba175451b57d27250846d216fc8e8"
+    },
+    {
+      "name": "boot-three-load-before.txt",
+      "bytes": 29,
+      "sha256": "52e2adb45ec5806a5a885d75cd1382ab86901b7bc6d6c599cf9cb27a9a2bef98"
+    },
+    {
+      "name": "boot-three-main-stack.txt",
+      "bytes": 52,
+      "sha256": "2c6b8e0827499be83c72351dd37f2d117fc11ea8f742247ff4fb0cae9216b9a2"
+    },
+    {
+      "name": "boot-three-main-stat.txt",
+      "bytes": 345,
+      "sha256": "c3fd6835bf19da4853b35e62e1a72f8592f8cc8a1f34d8fa9f73c4135d33b655"
+    },
+    {
+      "name": "boot-three-main-wchan.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "name": "boot-three-memory-after.txt",
+      "bytes": 124,
+      "sha256": "883e797526461055d4ae4119ee3ec73951b6ce0bf57a2da7d4ba563b490b7f38"
+    },
+    {
+      "name": "boot-three-ui-status.txt",
+      "bytes": 59,
+      "sha256": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228"
+    },
+    {
+      "name": "boot-three-uptime-before.txt",
+      "bytes": 13,
+      "sha256": "862a9344f5c07a54f7231d571836afe9f1a904fa6115591bb750d6bb271c33ec"
+    },
+    {
+      "name": "boot-three-vm-result.json",
+      "bytes": 14782,
+      "sha256": "38c87e394165a4a4b972eab3013ee76f277a13e4427a6b4bc5bec97f2630f901"
+    },
+    {
+      "name": "boot-three-window.txt",
+      "bytes": 18337,
+      "sha256": "48b3cbae9a9c2973570bbb0cd96bc0d5081824aa4807deae9189dfd7ed976889"
+    },
+    {
+      "name": "boot-three.json",
+      "bytes": 4012,
+      "sha256": "328915a1eefd9aa50b1ef603acc6d855da7b3716b03bc7a4157c0ccb08de0b29"
+    },
+    {
+      "name": "boot-three.png",
+      "bytes": 25382,
+      "sha256": "723e8263f20dffa70d4d9df42c761101454097388a202ec9322be00a791b75c4"
+    },
+    {
+      "name": "boot-two-am-start.txt",
+      "bytes": 176,
+      "sha256": "642269495fa5bc151c01a818640eca2b0069eb6a194b77860e10eb9b1ed92817"
+    },
+    {
+      "name": "boot-two-complete-boot-logcat.txt",
+      "bytes": 4570008,
+      "sha256": "8ac29012bdd060ca2b989f4f96d868162ea14f3c9c20d55c63b5e67f1987f019"
+    },
+    {
+      "name": "boot-two-complete-logcat.txt",
+      "bytes": 4001190,
+      "sha256": "18a1989fdd364e6c4513867470124d35d4143949d9e6379bfb81021e180ba7ca"
+    },
+    {
+      "name": "boot-two-cpu-after.txt",
+      "bytes": 4694,
+      "sha256": "b7605ba5ec5b8d003c910ec08892704eb8907fe7e7c4ab95b28616d0ea29a6dd"
+    },
+    {
+      "name": "boot-two-cpu-before.txt",
+      "bytes": 2566,
+      "sha256": "ad2ac67d3035582c2ab8054947db2c693682fece1678a443352cc48e9e796054"
+    },
+    {
+      "name": "boot-two-density.txt",
+      "bytes": 23,
+      "sha256": "92f48d06e54e033152374e8b4e3b9237fefb597504aae5a5696b16649a49fe78"
+    },
+    {
+      "name": "boot-two-display.txt",
+      "bytes": 25,
+      "sha256": "6fc865666980cfcb6c692e53c8d45a7cbad21e4d176e1b6fe300bfd14751b343"
+    },
+    {
+      "name": "boot-two-emulator-stderr.txt",
+      "bytes": 41,
+      "sha256": "b6eaeacb382b7c62d87f5577e442ba03e94d6c5e94ed6b0b8ab42c99c677cbb8"
+    },
+    {
+      "name": "boot-two-emulator-stdout.txt",
+      "bytes": 16058,
+      "sha256": "3d0c494c23e65b54cf7c59b6e45d44811bffec5d1b5d886e2f16fcd766787c8c"
+    },
+    {
+      "name": "boot-two-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "name": "boot-two-framestats.txt",
+      "bytes": 218,
+      "sha256": "f0e4c830eb35a596ef15151eb8bf8ed4bc956cc7d087b89224fe8165be14bc12"
+    },
+    {
+      "name": "boot-two-lastanr-after.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-two-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-two-launch.json",
+      "bytes": 771,
+      "sha256": "53d5d0652ac9ff763fb102a94c501f9b083625a3b81b5ffc4b4b3ef83691d423"
+    },
+    {
+      "name": "boot-two-lifecycle-before.txt",
+      "bytes": 25001,
+      "sha256": "525a891d91f70f0af5167b958d1247ed5e8380759fbc58979bfcbdb10a6e3793"
+    },
+    {
+      "name": "boot-two-live-logcat.txt",
+      "bytes": 4011678,
+      "sha256": "e7c75cd06089830cfa647b2fc732b481e32faf232b5dad673c39660a85d99069"
+    },
+    {
+      "name": "boot-two-load-after.txt",
+      "bytes": 31,
+      "sha256": "1e42005d1610f34e10ecb38f2a1d4653d0d1b79e060e1410bcd915a4cb3d3755"
+    },
+    {
+      "name": "boot-two-main-stack.txt",
+      "bytes": 52,
+      "sha256": "3b615dcce138f5c775cbf6bc8c8c8f4e837664a84b39e2adf3e90a10255075c1"
+    },
+    {
+      "name": "boot-two-main-stat.txt",
+      "bytes": 340,
+      "sha256": "3622333666075e2cf0bb8113fdd684cb2fd18df464e79af6e9b4e06ab6e74086"
+    },
+    {
+      "name": "boot-two-main-wchan.txt",
+      "bytes": 23,
+      "sha256": "81283860102d79e8a1e3d00d8e42f5309d92ed22930ef1cf1312290881a71243"
+    },
+    {
+      "name": "boot-two-memory-before.txt",
+      "bytes": 124,
+      "sha256": "883e797526461055d4ae4119ee3ec73951b6ce0bf57a2da7d4ba563b490b7f38"
+    },
+    {
+      "name": "boot-two-ui-status.txt",
+      "bytes": 59,
+      "sha256": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228"
+    },
+    {
+      "name": "boot-two-ui.xml",
+      "bytes": 4429,
+      "sha256": "8674bcf4ccc13a6ab6b7a2495ed5df116be6fd07bbd1f7f658ce9f9b9cd0ee7e"
+    },
+    {
+      "name": "boot-two-vm-result.json",
+      "bytes": 838,
+      "sha256": "228ebe53cebd787bc7e03d369f4f44cb9a684d5ba92fab2f80892dd31bddd0dc"
+    },
+    {
+      "name": "boot-two-window.txt",
+      "bytes": 18084,
+      "sha256": "9b1e298c869488a01ed8ff9a39ed15463ad9ca6f0c35ef98a856f3339633f452"
+    },
+    {
+      "name": "boot-two.json",
+      "bytes": 3964,
+      "sha256": "a83e87747b8e1e80f22b1b01989b10a772ab7ad84477d60d36ce6c9041c6169b"
+    },
+    {
+      "name": "boot-two.png",
+      "bytes": 34120,
+      "sha256": "4f0b5c677629f6acea644b313aa07792e282e8e4120ed727fb53800b4505002e"
+    },
+    {
+      "name": "completion-guest-restored-notifications.txt",
+      "bytes": 162330,
+      "sha256": "8e22458cb6f536de9bea4b05634a1c1bb5b5a62fd997158a051f8df130a12da2"
+    },
+    {
+      "name": "completion-guest-restored.json",
+      "bytes": 416,
+      "sha256": "177d21faabc0603731a470b07feac00da24281b655a459b8598050dd2e200a6a"
+    },
+    {
+      "name": "completion-guest-restored.png",
+      "bytes": 154788,
+      "sha256": "1f8ef272233b06a907fe4da721cb64a7c1db9574699abf7916f331f069a74328"
+    },
+    {
+      "name": "completion-guest-restored.xml",
+      "bytes": 11470,
+      "sha256": "9b0c98cece1cd8d7f714ee292e3ea8ac0bf715e2afbc257eb1ffdd60299e683f"
+    },
+    {
+      "name": "completion-terminated-notification-notifications.txt",
+      "bytes": 167671,
+      "sha256": "bbbf3a63c9a3fb6da336f9f940451f0a6e6419a5a6848a9d1885d9b74b91158c"
+    },
+    {
+      "name": "completion-terminated-notification.json",
+      "bytes": 425,
+      "sha256": "05de2787e4c3b1af64605c3b9c35fc5d7d150b7562002531c4f6b997c6acde82"
+    },
+    {
+      "name": "completion-terminated-notification.png",
+      "bytes": 249025,
+      "sha256": "9032232aac9904ce4e459dd73456af54ca8a308332a535b90ab3ffaa870909f9"
+    },
+    {
+      "name": "completion-terminated-notification.xml",
+      "bytes": 47658,
+      "sha256": "4efaaae8a9f933283cac45f9377deee12db073df8922f8c5508917e1fe991510"
+    },
+    {
+      "name": "fcm-capture.json",
+      "bytes": 202,
+      "sha256": "55d83f66d48e204379f0c854ac79957294f719358ee39463840609ab9224a3d0"
+    },
+    {
+      "name": "fcm-complete-aliased-logcat.txt",
+      "bytes": 5697327,
+      "sha256": "b93d2c9b9103284c590c716d1b2e9d62e8d06b049e56749c9139496397ad19e1"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-20-44-03-176",
+      "bytes": 39795,
+      "sha256": "66821082f4ca4eb9b5c43953e6c27dc4077633c7eb0bd27d7cd745094a7c157d"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-20-44-06-452",
+      "bytes": 122594,
+      "sha256": "2d7efebe434d6820bce9dedf5b83195034d532747804c225f3b84c1eb27d40e2"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-20-59-55-354",
+      "bytes": 54199,
+      "sha256": "b68b71d830db141d2b68bf2239828723569ea5791757cb68e8edf698fdc60ff2"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-00-13-329",
+      "bytes": 6329,
+      "sha256": "ac14f0905be04bf55b4eaf0e293188e27a5897ddbadc29bf4e1c7129bea34edb"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-00-33-541",
+      "bytes": 3581,
+      "sha256": "b7717ee3b25bc3c232570a5cace6fc9e09e75bda30f0824a1affa90509891fdd"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-00-48-901",
+      "bytes": 4073,
+      "sha256": "509ad7ded49987acd8a5aa38188d866e52190287b8698d5852a09ab31e716508"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-00-52-637",
+      "bytes": 5079,
+      "sha256": "a63bd8d67b984086b2cf371d6a3e88768b292e77dec087d79f4c6334be6026c0"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-01-00-414",
+      "bytes": 29488,
+      "sha256": "58e6316130f057df0f42e2e940cbc45ec91c6428be3a4b1f0dcf0e67077bfefc"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-01-02-991",
+      "bytes": 30596,
+      "sha256": "068ebd2d3324a5cfc07aae21c26d7c982e6eeef0af882ca7a844f6b00d88f03f"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-01-05-685",
+      "bytes": 31107,
+      "sha256": "1ebb8f2f85a1e27736b2e030925e6ae065e707c60ab2bc60b6142d251afec630"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-01-07-284",
+      "bytes": 73509,
+      "sha256": "044c1514dd218365cd88bf5af6a1484662aea758b64d68da1677ade8b50d7191"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-01-14-246",
+      "bytes": 29206,
+      "sha256": "0efb3c1e38af43acebfe74b6a88750584c52b7a685aa2dc8d337c44e785136fa"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-01-40-453",
+      "bytes": 43190,
+      "sha256": "4373555763deb79cb48a1a27a8f766fdbcb2853f19262a657f42ce5600ca0829"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-06-22-754",
+      "bytes": 34703,
+      "sha256": "a2dc93855ac57e91fc9ee0d967ca1cf53488ad116ed8b33b57f20e5c79a7a676"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-06-25-939",
+      "bytes": 50118,
+      "sha256": "f2d22adc65dd6ede5056ca2777b0ae7fce5c4e9f573a4cbd9f2282cef8fe75f9"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-10-31-21-06-32-270",
+      "bytes": 31018,
+      "sha256": "016a785f58da49424bbad3ce1ae946ce99a01c0cc38a6d30929b760082e7c9e8"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-11-01-18-48-49-183",
+      "bytes": 37482,
+      "sha256": "d46ccb266ee2a9dbb22691c6c35c6a637db8aaff4cbe6541750528724849134b"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-11-01-18-56-57-209",
+      "bytes": 106508,
+      "sha256": "aec48273f941da1437d81bbb243f26aeb1dbff8af12dc3794a12dfc3424e40fc"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-11-01-19-35-33-936",
+      "bytes": 120504,
+      "sha256": "9bc945ddb237b3b4f7798c669d20ab29948755f062d37fa332bb3f4619877daf"
+    },
+    {
+      "name": "full-anr-traces/anr_2026-11-01-19-35-50-394",
+      "bytes": 43607,
+      "sha256": "2abd9d7b5b1898392d14bd107cb36eaac2614c7408c4bff35d226bdc7462b0d0"
+    },
+    {
+      "name": "full-anr-traces/trace_00",
+      "bytes": 92521,
+      "sha256": "b72400cf7d8b8ecacb98a26a8b2a6f06425242dd40efcf24487274c64a8c8086"
+    },
+    {
+      "name": "full-anr-traces/trace_01",
+      "bytes": 349340,
+      "sha256": "17d0c4b975260e48e1dd3999a9d1badb1566153002e51104f81de8c189613d33"
+    },
+    {
+      "name": "full-anr-traces/trace_02",
+      "bytes": 182100,
+      "sha256": "d2178da7ee9f26bd7423c383f94fbbfd78839da7c7f86b1f0178ff0aaabc3381"
+    },
+    {
+      "name": "terminated-before-send.json",
+      "bytes": 282,
+      "sha256": "8a969f9905a1b1ea67c029890273c19d4e9e1e6a034245732a64b9c28013ee6e"
+    },
+    {
+      "name": "terminated-tap-0s-notifications.txt",
+      "bytes": 162330,
+      "sha256": "8e22458cb6f536de9bea4b05634a1c1bb5b5a62fd997158a051f8df130a12da2"
+    },
+    {
+      "name": "terminated-tap-0s.json",
+      "bytes": 403,
+      "sha256": "b3e82ae76cb64125bdd88925a08f3ea7445816a381de526fec045fb123153772"
+    },
+    {
+      "name": "terminated-tap-0s.png",
+      "bytes": 124244,
+      "sha256": "5448f183b0b380176daa86b74cfd5a08299078e554008f523ab37f18cb087047"
+    },
+    {
+      "name": "terminated-tap-0s.xml",
+      "bytes": 14526,
+      "sha256": "179e73ec46bfb2dda198ab13965207bcc74b7ef7922e058d70ce2d3de334d395"
+    },
+    {
+      "name": "terminated-tap-15s-notifications.txt",
+      "bytes": 162330,
+      "sha256": "8e22458cb6f536de9bea4b05634a1c1bb5b5a62fd997158a051f8df130a12da2"
+    },
+    {
+      "name": "terminated-tap-15s.json",
+      "bytes": 409,
+      "sha256": "7cd4d6fc96fa6c56a989d3866f9099abb74944c64740500da0ca8fd48650ec43"
+    },
+    {
+      "name": "terminated-tap-15s.png",
+      "bytes": 123093,
+      "sha256": "1d0239e59955caeea274d03bcfd2456dc587afda38cfb16dbeaa357a56d30a53"
+    },
+    {
+      "name": "terminated-tap-15s.xml",
+      "bytes": 17085,
+      "sha256": "cfd239d572581c90842e4cf02c6b6b33a76f56a62550242d93fa291691b4c557"
+    },
+    {
+      "name": "terminated-tap-5s-notifications.txt",
+      "bytes": 162330,
+      "sha256": "8e22458cb6f536de9bea4b05634a1c1bb5b5a62fd997158a051f8df130a12da2"
+    },
+    {
+      "name": "terminated-tap-5s.json",
+      "bytes": 408,
+      "sha256": "79b4035a7539b635d37641bee3efa71c343954e1c1955fd5109efbc1fd0bfe8e"
+    },
+    {
+      "name": "terminated-tap-5s.png",
+      "bytes": 123100,
+      "sha256": "27c53d6f9d682077a8406a85a1b23f2ac0963d610d59d268f98a754f8ccb63f1"
+    },
+    {
+      "name": "terminated-tap-5s.xml",
+      "bytes": 17085,
+      "sha256": "cfd239d572581c90842e4cf02c6b6b33a76f56a62550242d93fa291691b4c557"
+    },
+    {
+      "name": "terminated-tap-sequence.json",
+      "bytes": 1717,
+      "sha256": "9e7203de0590e80e551be4a4ed034e5af1681827bae01a97d6b4938fbf240b98"
+    },
+    {
+      "name": "window-before-recovery.ini",
+      "bytes": 119,
+      "sha256": "1409d58b72581cb9a92cd24bb8e24bf4b2f7f0875d12da88ce80bbe1ff38ff7b"
+    }
+  ],
+  "privacy": "Complete boot/logcat/process/VM/ANR originals retained privately; no raw identity payload published."
+}

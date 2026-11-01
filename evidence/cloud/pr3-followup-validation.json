@@ -29,7 +29,7 @@
     "earlierComparison": "evidence/android/pr3-resume/earlier-comparison.json"
   },
   "analytics": {
-    "status": "PASS native A -> guest -> B -> guest identity clearing; fresh DebugView receipt BLOCKED",
+    "status": "PASS native null clearing with DebugView guest-event receipt; backend attribution export unavailable",
     "nativeReceipt": "evidence/cloud/pr3-identity-native-final.json",
     "sequence": [
       {
@@ -72,12 +72,13 @@
       }
     ],
     "nativeRemovalAcknowledgementCount": 7,
-    "debugView": "Embedded Firebase Analytics frame remained blank after refresh; direct Analytics property returned Missing permissions. No access request/permissions change made. This does not establish why the embedded frame failed.",
+    "debugView": "Now accessible; actual guest A/B events correlated by event timestamp and query length. See completionFollowup.",
     "debugViewEvidence": "evidence/android/pr3-resume/debugview-missing-permissions.png",
     "backendEventLevelUserIdExport": "NOT AVAILABLE; native uploaded bundle contents are not a BigQuery/backend attribution export",
     "historicalDisputedExport": "Recovered complete native bundle for original disputed guest export has no _id; historical Console user properties cannot establish that event was sent under that ID.",
     "identityWorkaroundsAdded": false,
-    "rawUidExported": false
+    "rawUidExported": false,
+    "debugViewPriorAttempt": "Embedded Firebase Analytics frame remained blank after refresh; direct Analytics property returned Missing permissions. No access request/permissions change made. This does not establish why the embedded frame failed."
   },
   "fcm": {
     "status": "PASS fresh native background/terminated notification delivery; route acceptance limited",
@@ -100,7 +101,8 @@
       "evidence/cloud/google-user-pr3-live-b.json",
       "evidence/cloud/google-user-pr3-live-b-logout.json"
     ],
-    "nativeTimeoutOrFailedWriteInjection": "NOT RUN; covered only by regression tests"
+    "nativeTimeoutOrFailedWriteInjection": "NOT RUN; covered only by regression tests",
+    "terminatedTapFollowup": "PASS new actual Search route capture; see completionFollowup"
   },
   "validation": {
     "format": "PASS",
@@ -122,5 +124,6 @@
     "physicalHardware": "NOT RUN",
     "externalHumanReview": "NOT RUN"
   },
-  "mergeReadiness": "NOT MERGE READY: required fresh DebugView correlation remains blocked; boot-time resource sensitivity remains documented. Do not merge."
+  "mergeReadiness": "NOT MERGE READY: immediate post-boot startup acceptance still fails. No reproducible production app cause established; no speculative fix.",
+  "completionFollowup": "evidence/cloud/pr3-completion-validation.json"
 }
