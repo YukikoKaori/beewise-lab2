@@ -1,7 +1,7 @@
 const {before, after, beforeEach, test} = require('node:test');
 const {readFileSync} = require('node:fs');
 const {initializeTestEnvironment, assertSucceeds, assertFails} = require('@firebase/rules-unit-testing');
-const {doc, getDoc, setDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp} = require('firebase/firestore');
+const {doc, getDoc, getDocFromServer, setDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp} = require('firebase/firestore');
 
 let env;
 const db = (uid = 'alice') => env.authenticatedContext(uid, {
@@ -227,10 +227,10 @@ for (const uid of ['alice', 'bob']) {
     await permittedTutor();
     const store=db(uid), target=doc(store, reportPath(uid));
     await assertSucceeds(setDoc(target, report(uid)));
-    const saved=await assertSucceeds(getDoc(target));
+    const saved=await assertSucceeds(getDocFromServer(target));
     require('node:assert/strict').deepEqual(Buffer.from(saved.data().base64Data,'base64'), Buffer.from('%PDF-1.4\n'));
-    const {getDocs, collection}=require('firebase/firestore');
-    await assertSucceeds(getDocs(collection(store,`reports/${uid}/files`)));
+    const {getDocsFromServer, collection}=require('firebase/firestore');
+    await assertSucceeds(getDocsFromServer(collection(store,`reports/${uid}/files`)));
     await assertFails(updateDoc(target,{fileName:'other.pdf'}));
     await assertFails(setDoc(target,report(uid)));
     await assertFails(deleteDoc(target));
@@ -242,12 +242,12 @@ test('guest, anonymous and cross-UID reports are denied in both directions', asy
   await assertSucceeds(setDoc(doc(db('bob'),reportPath('bob')),report('bob')));
   const anonymous=env.authenticatedContext('alice',{firebase:{sign_in_provider:'anonymous'}}).firestore();
   for (const store of [env.unauthenticatedContext().firestore(),anonymous,db('bob')]) {
-    await assertFails(getDoc(doc(store,reportPath())));
+    await assertFails(getDocFromServer(doc(store,reportPath())));
     await assertFails(setDoc(doc(store,reportPath('alice','12345678901234567890')),report('alice',{reportId:'12345678901234567890'})));
     await assertFails(updateDoc(doc(store,reportPath()),{sizeBytes:1}));
     await assertFails(deleteDoc(doc(store,reportPath())));
   }
-  await assertFails(getDoc(doc(db(),reportPath('bob'))));
+  await assertFails(getDocFromServer(doc(db(),reportPath('bob'))));
   await assertFails(setDoc(doc(db(),reportPath('bob','12345678901234567890')),report('bob',{reportId:'12345678901234567890'})));
   await assertFails(updateDoc(doc(db(),reportPath('bob')),{sizeBytes:1}));
   await assertFails(deleteDoc(doc(db(),reportPath('bob'))));
@@ -256,7 +256,7 @@ test('applicants cannot access parent reports or piggyback creation in a batch',
   await permittedTutor();
   await seed({'tutorApplications/alice': {status:'pending'}});
   await assertFails(setDoc(doc(db(),reportPath()),report()));
-  await assertFails(getDoc(doc(db(),reportPath())));
+  await assertFails(getDocFromServer(doc(db(),reportPath())));
   const store=db('bob'), batch=writeBatch(store);
   batch.set(doc(store,'tutorApplications/bob'),application('bob'));
   batch.set(doc(store,reportPath('bob')),report('bob'));
@@ -295,7 +295,7 @@ test('500 KiB PDF bound succeeds and content is byte-exact',async()=>{
   await permittedTutor();
   const bytes=Buffer.alloc(512000,32); bytes.write('%PDF-1.4\n');
   await assertSucceeds(setDoc(doc(db(),reportPath()),report('alice',{sizeBytes:bytes.length,base64Data:bytes.toString('base64')})));
-  const saved=await assertSucceeds(getDoc(doc(db(),reportPath())));
+  const saved=await assertSucceeds(getDocFromServer(doc(db(),reportPath())));
   require('node:assert/strict').deepEqual(Buffer.from(saved.data().base64Data,'base64'),bytes);
 });
 test('unverified, inactive and synthetic tutor reports are denied',async()=>{
