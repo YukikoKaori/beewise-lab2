@@ -1,5 +1,34 @@
 # Firestore PDF live preflight — 2026-11-02
 
+## Approved deployment follow-up — current
+
+Owner replied **“qb duyệt”** to the exact bundle request. After rechecking all
+six frozen hashes and finding no ruleset/index baseline drift, the scoped command
+below was executed at `2026-11-02T16:52:14Z` and exited **0** at `16:52:26Z`.
+Only Firestore rules/indexes were deployed; no catalog/report write or rollback.
+
+Actual active ruleset is now
+`projects/beewise-lab-3/rulesets/34ff742c-626d-4cd5-abde-59c21cce3522`, normalized
+SHA256 `1d06fd3c1d4ad3462cefc5c13d9669dbc32222231abc65ffb3a2267d54c526d7`.
+Its content matches the approved rule file. All non-report rules still equal the
+previous strict baseline. The existing chat index keeps the same ID and **READY**
+state; `files.base64Data` now has the explicit empty-index exemption, with no TTL
+enabled. All frozen file hashes remain unchanged after deployment.
+
+Actual unauthenticated Firebase client SDK controls (no CLI IAM or emulator):
+public active-tutor server query **PASS**, nine private server reads including
+reports/parents/devices/applications/chats/requests/invoices/payments/classes
+**permission-denied PASS**. These ten checks perform no writes. They do not prove
+authenticated own-report or A/B saved-report access. Catalog still has no eligible
+tutor; there is no live PDF/upload event from this run.
+
+**B-03.2 PARTIALLY VERIFIED; live PDF acceptance remains BLOCKED by permitted tutor
+data.** Deployment approval is resolved. Tutor creation/promotion is not authorized.
+See [approved deployment and post-readback receipt](deployment-20261102.json).
+The proposal/preflight below and original receipt describe the pre-deployment run.
+
+## Original pre-deployment proposal — historical
+
 **B-03.2 BLOCKED; implementation remains IMPLEMENTED — LIVE VERIFICATION PENDING.**
 This is a reviewed proposal, not deployment authorization or live PDF acceptance.
 The owner explicitly requires a new approval for the exact bundle. No deployment,

@@ -16,6 +16,15 @@ BeeWise chuyển thiết kế Lab 2 thành Flutter dùng dữ liệu thật, có
 
 ## 2. Baseline repository/PR đã xác minh
 
+**Cập nhật deploy đã duyệt (02/11, 16:52Z):** qb duyệt đúng frozen bundle.
+Deploy chỉ Firestore rules/indexes exit 0; readback ruleset
+`34ff742c-626d-4cd5-abde-59c21cce3522` khớp bundle, index chat cùng ID vẫn READY,
+exemption Base64 đã live. Client SDK thật: public query PASS, 9 private guest reads
+permission-denied PASS, không dùng IAM/emulator và không ghi dữ liệu. B-03.2
+**PARTIALLY VERIFIED**, live PDF vẫn **BLOCKED do chưa có tutor eligible được phép**.
+Không sửa catalog, tạo report, đổi billing/Storage/App Check hay rollback.
+[Receipt deploy và kiểm tra live](../evidence/cloud/firestore-reports/deployment-20261102.json).
+
 **Live PDF preflight mới (02/11):** fetch main `f4fe42d5246d36c033cec27dc76a32bb5bf97d4f`,
 đúng merge PR #6; Actions main 3/3 SUCCESS. B-03.2 **BLOCKED** cho live acceptance,
 implementation vẫn **IMPLEMENTED — LIVE VERIFICATION PENDING**: rules live chưa có
