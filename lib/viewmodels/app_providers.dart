@@ -99,9 +99,11 @@ final tutorRepositoryProvider = Provider<TutorRepository>((ref) {
 });
 
 final activeTutorsProvider = FutureProvider<List<Tutor>>(
-  (ref) => ref
-      .watch(tutorRepositoryProvider)
-      .activeTutors(limit: ref.watch(remoteConfigProvider).homeTutorLimit),
+  (ref) async => excludeSyntheticTutorFixtures(
+    await ref
+        .watch(tutorRepositoryProvider)
+        .activeTutors(limit: ref.watch(remoteConfigProvider).homeTutorLimit),
+  ),
 );
 
 final tutorProvider = FutureProvider.family<Tutor, String>(
@@ -116,7 +118,7 @@ final tutorSearchProvider =
       final tutors = await ref
           .watch(tutorRepositoryProvider)
           .activeTutors(limit: 100);
-      return filterTutors(tutors, criteria);
+      return filterTutors(excludeSyntheticTutorFixtures(tutors), criteria);
     });
 
 final matchingServiceProvider = Provider<MatchingService>(
