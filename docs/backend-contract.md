@@ -91,3 +91,7 @@ Run the proposal/revision transitions above using a designated parent and
 consultant, verify duplicate delivery and concurrent revision replacement, verify
 replayed/forged payment receipts fail, then verify a real authorized test receipt
 alone unlocks the matching official schedule. No such integration ran here.
+
+## PDF persistence — no new backend
+
+Owner-reported mentor approval replaces Cloud Storage with client Firestore Base64 documents at `reports/{auth.uid}/files/{autoId}`. `ExportService` derives ownership from the current Auth session; the UI never supplies a UID. Parent-only, create-only rules validate bounded PDF metadata, server timestamp and eligible catalog tutor; no report update/delete or public access is added. This requires an explicitly approved rules release before live use. It does not change consultant/payment trust boundaries or permit client-created verified tutors. See [migration details](workstreams/bao-firestore-reports.md).

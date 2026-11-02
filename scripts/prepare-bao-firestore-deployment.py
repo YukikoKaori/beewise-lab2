@@ -38,13 +38,13 @@ def main():
     BUNDLE.mkdir(parents=True)
     inputs = {'firestore.rules': 'firebase/firestore.rules',
               'firestore.indexes.json': 'firebase/firestore.indexes.json',
-              'storage.rules': 'firebase/storage.rules', 'rules.test.cjs': 'firebase/rules.test.cjs'}
+              'rules.test.cjs': 'firebase/rules.test.cjs'}
     for target, source in inputs.items():
         (BUNDLE / target).write_bytes((ROOT / source).read_bytes())
     (BUNDLE / 'previous-deployed-firestore.rules').write_bytes(baseline)
     deploy_config = {'firestore': {'rules': 'firestore.rules', 'indexes': 'firestore.indexes.json'}}
-    validation_config = {**deploy_config, 'storage': {'rules': 'storage.rules'},
-                         'emulators': {'firestore': {'port': 8080}, 'storage': {'port': 9199},
+    validation_config = {**deploy_config,
+                         'emulators': {'firestore': {'port': 8080},
                                        'ui': {'enabled': False}, 'singleProjectMode': True}}
     for name, value in [('firebase.deploy.json', deploy_config), ('firebase.validation.json', validation_config)]:
         (BUNDLE / name).write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')

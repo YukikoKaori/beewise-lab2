@@ -188,28 +188,29 @@ async def test_tc15_terminated_notification_reopens_route(run_flow):
 
 
 async def test_tc11_pdf_export_upload_progress_and_private_path(run_flow):
-    """TC-11; file export/upload; signed in and viewing a real active tutor."""
+    """TC-11; eligible tutor; approved Firestore rules; no public PDF URL."""
     tutor_name = os.environ.get("BEEWISE_TEST_TUTOR_NAME")
-    assert tutor_name, "Set BEEWISE_TEST_TUTOR_NAME to a real active Firebase tutor."
+    assert tutor_name, "Set BEEWISE_TEST_TUTOR_NAME to an authorized active verified non-synthetic tutor."
     observed = await run_flow(
         case_id="TC-11",
-        start="BeeWise is signed in on the real tutor profile with Cloud Storage enabled.",
+        start="BeeWise is signed in as a parent on an eligible tutor; approved Firestore report rules are deployed.",
         steps=(
-            f"On the profile for {tutor_name!r}, export the tutor summary PDF and "
-            "upload it. Wait for completion. Report the visible tutor name, "
-            "whether progress reached completion, the storage path, and whether "
-            "a download URL is displayed. Do not fabricate a URL."
+            f"On the profile for {tutor_name!r}, tap Export PDF. Confirm local generation, "
+            "then explicitly save to private cloud. Observe stage text and indeterminate progress "
+            "until the server-confirmed success state. Download again from server, then locate "
+            "Open/share PDF. Report the report ID only; do not copy the UID, document path, "
+            "PDF contents or credentials into the trace. Do not invent a public download URL."
         ),
         expected=(
-            '{"tutor_name":"configured exact name","progress_complete":true,'
-            '"storage_path":"reports/<own-uid>/<pdf-file>","download_url_visible":true}'
+            '{"server_save_confirmed":true,"report_id":"20-character auto ID",'
+            '"server_download_confirmed":true,"share_action_visible":true}'
         ),
     )
-    assert require(observed, "tutor_name", str) == tutor_name
-    assert require(observed, "progress_complete", bool)
-    assert require(observed, "storage_path", str).startswith("reports/")
-    assert observed["storage_path"].lower().endswith(".pdf")
-    assert require(observed, "download_url_visible", bool)
+    assert require(observed, "server_save_confirmed", bool)
+    report_id = require(observed, "report_id", str)
+    assert len(report_id) == 20 and report_id.isascii() and report_id.isalnum()
+    assert require(observed, "server_download_confirmed", bool)
+    assert require(observed, "share_action_visible", bool)
 
 
 async def test_tc12_remote_config_and_crashlytics_demo_area(run_flow):
