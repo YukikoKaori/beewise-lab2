@@ -1,0 +1,15 @@
+{
+  "suiteRun": 1,
+  "profile": "flash",
+  "selectedCases": [
+    "TC-09"
+  ],
+  "deviceSerial": "emulator-5554",
+  "exitCode": 0,
+  "status": "PENDING_VERIFICATION",
+  "sourceSha": "907ced1481a9c62fd4e0c856982857fd65203f38",
+  "logSha256": "8F32E89C03A2A9F11430F5FD97D9923AC17E9FD952C0A9E075DA994D0996A20F",
+  "log": "D:\\semester 8\\PRM\\beewise-lab2\\tmp\\n03-live-tc09-gemini25-fixed\\flash-suite-run-1.log",
+  "junit": "D:\\semester 8\\PRM\\beewise-lab2\\tmp\\n03-live-tc09-gemini25-fixed\\flash-suite-run-1.junit.xml",
+  "recordedAtUtc": "2026-11-02T11:23:28.7812204Z"
+}

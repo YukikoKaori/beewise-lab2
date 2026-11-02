@@ -35,6 +35,11 @@ class FirebaseTutorRepository implements TutorRepository {
   }
 }
 
+List<Tutor> excludeSyntheticTutorFixtures(Iterable<Tutor> tutors) =>
+    List<Tutor>.unmodifiable(
+      tutors.where((tutor) => !tutor.isSyntheticTestFixture),
+    );
+
 class TutorNotFoundException implements Exception {
   const TutorNotFoundException();
   @override

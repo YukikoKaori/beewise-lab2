@@ -1,0 +1,103 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "bf0031ab-d441-4cb8-8f9d-174ec3848f8e", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+ARTEMIS_RESULT case=TC-01 trace_id=d0b77c28-e582-4e07-a3c4-444f88463fc7 status=completed device=emulator-5554
+F
+================================== FAILURES ===================================
+_______________ test_tc01_guest_home_reports_real_visible_state _______________
+
+output = 'Successfully opened BeeWise and examined the Home screen.\n- Home title: BeeWise\n- Visible top-level destinations: T...")\n- Visible real Firestore results/fabrication check: No tutor cards are displayed, so no fabricated profile claims.'
+
+    def _decode_observation(output: Any) -> dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+>               value = json.loads(candidate)
+                        ^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\conftest.py:127:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x000002A5E3463AD0>
+s = 'Successfully opened BeeWise and examined the Home screen.\n- Home title: BeeWise\n- Visible top-level destinations: T...")\n- Visible real Firestore results/fabrication check: No tutor cards are displayed, so no fabricated profile claims.'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:356: JSONDecodeError
+
+The above exception was the direct cause of the following exception:
+
+run_flow = <function run_flow.<locals>.run at 0x000002A5E5A13920>
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+>       observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the Home title, visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang ch\u1ee7","T\xecm gia s\u01b0","Gh\xe9p AI",'
+                '"Tin nh\u1eafn","T\xe0i kho\u1ea3n"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_discovery.py:12:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:91: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:115: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'Successfully opened BeeWise and examined the Home screen.\n- Home title: BeeWise\n- Visible top-level destinations: T...")\n- Visible real Firestore results/fabrication check: No tutor cards are displayed, so no fabricated profile claims.'
+
+    def _decode_observation(output: Any) -> dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+>               raise AssertionError(
+                    f"ARTEMIS output was not the required JSON observation: {text!r}"
+                ) from error
+E               AssertionError: ARTEMIS output was not the required JSON observation: 'Successfully opened BeeWise and examined the Home screen.\\n- Home title: BeeWise\\n- Visible top-level destinations: Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n (5 tabs)\\n- Firebase setup/error notice: None\\n- Number of tutor cards: 0 (displays "Ch\u01b0a c\xf3 gia s\u01b0 ph\xf9 h\u1ee3p")\\n- Visible real Firestore results/fabrication check: No tutor cards are displayed, so no fabricated profile claims.'
+
+e2e_test\conftest.py:129: AssertionError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_discovery.py::test_tc01_guest_home_reports_real_visible_state
+1 failed, 25 deselected in 54.43s

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="47.221" timestamp="2026-11-02T18:22:41.264281+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_account_and_firebase" name="test_tc09_all_top_level_destinations_are_reachable" time="47.176" /></testsuite></testsuites>
