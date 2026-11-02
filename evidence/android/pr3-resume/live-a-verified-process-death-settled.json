@@ -1,0 +1,7 @@
+{
+  "timestampUtc": "2026-11-01T12:01:17.807195+00:00",
+  "pidBefore": "2824",
+  "pidAfter": "",
+  "command": "am kill after background grace period (not force-stop)",
+  "status": "PASS process absent"
+}

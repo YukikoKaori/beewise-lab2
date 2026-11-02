@@ -24,6 +24,16 @@ before(async () => {
 beforeEach(async () => { await env.clearFirestore(); await env.clearStorage(); });
 after(async () => { await env?.cleanup(); });
 
+test('parent bootstrap can read its missing application without exposing another UID', async () => {
+  const absent = await assertSucceeds(getDoc(doc(db(), 'tutorApplications/alice')));
+  if (absent.exists()) throw Error('Expected an absent application before parent bootstrap.');
+  await assertFails(getDoc(doc(db('bob'), 'tutorApplications/alice')));
+  await assertFails(getDoc(doc(env.unauthenticatedContext().firestore(), 'tutorApplications/alice')));
+  await assertSucceeds(setDoc(doc(db(), 'parents/alice'), parent()));
+  await assertSucceeds(getDoc(doc(db(), 'parents/alice')));
+  await assertFails(getDoc(doc(db('bob'), 'parents/alice')));
+});
+
 test('tutor application is private, pending, immutable and never self-approves', async () => {
   const own = doc(db(), 'tutorApplications/alice');
   await assertSucceeds(setDoc(own, application()));
@@ -171,6 +181,19 @@ test('responses reject missing, other-chat, stale, expired, wrong-kind and malfo
   await assertFails(setDoc(doc(db(), 'chats/chat/responses/random'), response()));
   await seed({'chats/chat': {parentId: 'alice', onboardingStatus: 'trial_proposed', currentProposalId: 'new-proposal'}});
   await assertFails(setDoc(target, response()));
+});
+
+test('concurrent duplicate responses admit one immutable response only', async () => {
+  await proposal();
+  const results = await Promise.allSettled([
+    setDoc(doc(db(), 'chats/chat/responses/proposal'), response()),
+    setDoc(doc(db(), 'chats/chat/responses/proposal'), response()),
+  ]);
+  require('node:assert/strict').equal(results.filter(result => result.status === 'fulfilled').length, 1);
+  const rejected = results.find(result => result.status === 'rejected');
+  require('node:assert/strict').equal(rejected.reason.code, 'permission-denied');
+  const stored = await assertSucceeds(getDoc(doc(db(), 'chats/chat/responses/proposal')));
+  require('node:assert/strict').equal(stored.data().type, 'trial_accepted');
 });
 test('invoice verification and official schedule are trusted backend only', async () => {
   await seed({'invoices/invoice': {parentId: 'alice', status: 'issued'}, 'classes/verified': {parentId: 'alice', paymentStatus: 'verified'}, 'classes/unverified': {parentId: 'alice', paymentStatus: 'pending'}});

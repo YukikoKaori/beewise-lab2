@@ -1,0 +1,8 @@
+{
+    "startedAtUtc":  "2026-10-30T15:41:47.9684035Z",
+    "completedAtUtc":  "2026-10-30T15:41:56.3000070Z",
+    "sourceSha":  "badb7d33cf8d0b9b54ab4552e2c6142d07d37ff6",
+    "workingDirectory":  "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+    "command":  "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat pub get",
+    "nativeExitCode":  0
+}

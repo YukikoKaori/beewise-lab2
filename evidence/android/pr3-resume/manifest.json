@@ -1,0 +1,777 @@
+{
+  "recordedAtUtc": "2026-11-01T12:10:03.107676+00:00",
+  "sourceSha": "dd5be3aa7e71db62a744dc379c6de3d503a4c7a3",
+  "apk": {
+    "sha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+    "bytes": 227803477,
+    "sourceSha": "dd5be3aa7e71db62a744dc379c6de3d503a4c7a3",
+    "defaultEntrypoint": "lib/main.dart",
+    "installReplace": true,
+    "userdataCleared": false
+  },
+  "userdataCleared": false,
+  "anrSuppression": false,
+  "originalAvdPreserved": true,
+  "emulatorLaunch": {
+    "timestampUtc": "2026-11-01T11:47:27.868626+00:00",
+    "command": [
+      "D:/Android/SDK/emulator/emulator.exe",
+      "-avd",
+      "BeeWise_Bao_Startup_API37",
+      "-port",
+      "5560",
+      "-no-snapshot",
+      "-no-boot-anim",
+      "-memory",
+      "2048",
+      "-gpu",
+      "software",
+      "-cores",
+      "2",
+      "-no-audio"
+    ],
+    "pid": 10436,
+    "originalAvdUntouched": true,
+    "isolatedAvdUserdataReused": true,
+    "reasonVisible": "User authorized manual test-account sign-in after startup measurements",
+    "requestedRamMiB": 2048,
+    "effectiveRamMiB": 4096,
+    "effectiveRamEvidence": "Private emulator-stdout.log explicitly reports Increasing RAM size to 4096MB; original hash retained."
+  },
+  "measurements": [
+    "cold: 14422 ms; home=False",
+    "warm: 625 ms; home=True",
+    "cold: 7500 ms; home=True",
+    "warm: 234 ms; home=True",
+    "cold: 5359 ms; home=True",
+    "warm: 344 ms; home=True",
+    "cold: 5656 ms; home=True",
+    "warm: 422 ms; home=True"
+  ],
+  "privateEvidenceHashes": [
+    {
+      "name": "apk.json",
+      "bytes": 266,
+      "sha256": "1ccf3a7164022d65619e1c410b5587f93a76b0470f49338e61791cc1a04f243c"
+    },
+    {
+      "name": "boot-anr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "boot-cpu.txt",
+      "bytes": 2243,
+      "sha256": "c1f68d8ade6b4e601c3fb3f22b58bc89d8276c3bebc8c7c1df00342c4348b89c"
+    },
+    {
+      "name": "install.txt",
+      "bytes": 38,
+      "sha256": "c4aa470acafcf8576c15b0f0b5ae7e852d1ec5413372d0e6a9272e788e1306d3"
+    },
+    {
+      "name": "launch.json",
+      "bytes": 527,
+      "sha256": "9d62d5c5e3134be5b7c0a8637567c86ce9c8e9c3c6c4be0f5dfac154ae29416d"
+    },
+    {
+      "name": "logger-pid.json",
+      "bytes": 14,
+      "sha256": "4f0b102efd39e4c5929faf42515eed148e791ca9bbe9ee1be7fc476afd51c855"
+    },
+    {
+      "name": "original-device-state.json",
+      "bytes": 131,
+      "sha256": "40d3815f20903cfd04fd3f0266662283df9eeaee2d4c5e475dc24ce0313225c8"
+    },
+    {
+      "name": "resume-360-cold-am-start.txt",
+      "bytes": 176,
+      "sha256": "89dfe8f04737b3524d0acf65cc228bf68e72d369e736f2ca997da9b6e3bf70cd"
+    },
+    {
+      "name": "resume-360-cold-complete-logcat.txt",
+      "bytes": 5043205,
+      "sha256": "d757e1a5bf14d990ae41f4d98d5e58c3158d96bd2d50180f4b2ed36753e077d8"
+    },
+    {
+      "name": "resume-360-cold-cpu-after.txt",
+      "bytes": 5702,
+      "sha256": "af0d810ccbfe914e4f30009f1bad616c29e2b66ccea6febbe5dd8528f96005b7"
+    },
+    {
+      "name": "resume-360-cold-cpu-before.txt",
+      "bytes": 5982,
+      "sha256": "79100de876add1ddffd4392776a467907fb39d73bc5afff09fcbd5c40b003761"
+    },
+    {
+      "name": "resume-360-cold-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "name": "resume-360-cold-framestats.txt",
+      "bytes": 6531,
+      "sha256": "5b639ae251a00ec46c4d1488b7f727ac4eca4390f407104b5902bf3282e82d20"
+    },
+    {
+      "name": "resume-360-cold-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "resume-360-cold-lifecycle-before.txt",
+      "bytes": 27223,
+      "sha256": "5ab84d0d4519832f3d28b3b54693330c1c09ce03bc796017129a5402bbc660ab"
+    },
+    {
+      "name": "resume-360-cold-live-logcat.txt",
+      "bytes": 5043205,
+      "sha256": "d757e1a5bf14d990ae41f4d98d5e58c3158d96bd2d50180f4b2ed36753e077d8"
+    },
+    {
+      "name": "resume-360-cold-main-thread.txt",
+      "bytes": 155,
+      "sha256": "00c6503587208130211f9ef2b8045cd46944a3091eb9701d05aeac65909080fe"
+    },
+    {
+      "name": "resume-360-cold-memory-before.txt",
+      "bytes": 124,
+      "sha256": "883e797526461055d4ae4119ee3ec73951b6ce0bf57a2da7d4ba563b490b7f38"
+    },
+    {
+      "name": "resume-360-cold-ui-status.txt",
+      "bytes": 59,
+      "sha256": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228"
+    },
+    {
+      "name": "resume-360-cold-vm-result.json",
+      "bytes": 960,
+      "sha256": "280dada58582d4f2b953c26fbc6dedd56bb8893e4ed2cfa6560a7fcd58170fd3"
+    },
+    {
+      "name": "resume-360-cold-window.txt",
+      "bytes": 18700,
+      "sha256": "df38ef8297e7f6a689085d2f46a2681eddd341a89d0f71001563e09e0afb5b72"
+    },
+    {
+      "name": "resume-360-cold.json",
+      "bytes": 3570,
+      "sha256": "506860612d66aed730ace1afa625a0cfecf0dad3357f51133366c942966b34cd"
+    },
+    {
+      "name": "resume-360-cold.png",
+      "bytes": 25571,
+      "sha256": "1d9db8e79a43dc4866e31e36c652f37ee3ac582cffb4f24edf8a7f224bfdb790"
+    },
+    {
+      "name": "resume-360-warm-am-start.txt",
+      "bytes": 247,
+      "sha256": "4a4ce8aa40731feca6aacd04d64423f630317edf62ae0b734cc541d4fe483f97"
+    },
+    {
+      "name": "resume-360-warm-complete-logcat.txt",
+      "bytes": 5384986,
+      "sha256": "f80fa31a1fdfc986d535061bd2eb00ef325f3493a40af2d37b8440ac1aa0b607"
+    },
+    {
+      "name": "resume-360-warm-cpu-after.txt",
+      "bytes": 7126,
+      "sha256": "d1f782e9cd62f690991225c36bf14f35a1228b056338c993b4f0c55d8a2b8e9b"
+    },
+    {
+      "name": "resume-360-warm-cpu-before.txt",
+      "bytes": 5702,
+      "sha256": "fd23e91507e2b363e50efe6bd883e48114eea6cdbd94a0ad84ec924231d29517"
+    },
+    {
+      "name": "resume-360-warm-exit-info.txt",
+      "bytes": 145,
+      "sha256": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c"
+    },
+    {
+      "name": "resume-360-warm-framestats.txt",
+      "bytes": 9082,
+      "sha256": "52decb979aac9528e49f949bb409c1dd0ab07333642b537eb50e848eac14b031"
+    },
+    {
+      "name": "resume-360-warm-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "resume-360-warm-lifecycle-before.txt",
+      "bytes": 32155,
+      "sha256": "a9cc0eeb741ad9a91e11e86a6e6628f781d41cc23c99277449eb24c35058ff1b"
+    },
+    {
+      "name": "resume-360-warm-live-logcat.txt",
+      "bytes": 5384986,
+      "sha256": "f80fa31a1fdfc986d535061bd2eb00ef325f3493a40af2d37b8440ac1aa0b607"
+    },
+    {
+      "name": "resume-360-warm-main-thread.txt",
+      "bytes": 155,
+      "sha256": "00c6503587208130211f9ef2b8045cd46944a3091eb9701d05aeac65909080fe"
+    },
+    {
+      "name": "resume-360-warm-memory-before.txt",
+      "bytes": 28952,
+      "sha256": "edbec71db977dcf865079be6e834ebefc06fc7a8caeaa2328984cc24bb5c7d7a"
+    },
+    {
+      "name": "resume-360-warm-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "resume-360-warm-vm-result.json",
+      "bytes": 11847,
+      "sha256": "6d850b6ede206c9f0d26d12eaa64d091f7204a8f6b7e73249157f9615af714c6"
+    },
+    {
+      "name": "resume-360-warm-window.txt",
+      "bytes": 18659,
+      "sha256": "9535dbb864e5e122cda49fc9503a0df005fbfbbb7a57419967377d6fa8941e4b"
+    },
+    {
+      "name": "resume-360-warm.json",
+      "bytes": 3638,
+      "sha256": "e0c72dd3fa7d3f8ee6d11f80f4c409f08f338a76fddf54b1c5940cff45410b2a"
+    },
+    {
+      "name": "resume-360-warm.png",
+      "bytes": 124610,
+      "sha256": "dce4284ee436be796992232259f49cc16f0c86735926920436058170f7086eca"
+    },
+    {
+      "name": "resume-412-cold-am-start.txt",
+      "bytes": 179,
+      "sha256": "b5430c9c615413b954a8495f655de655bd59b8c70555bf9efe7e1f81341735bd"
+    },
+    {
+      "name": "resume-412-cold-complete-logcat.txt",
+      "bytes": 5692151,
+      "sha256": "531b0f0740c5ec14e5121c7f628bae08be8f7cbc381212e77f0750590849feb2"
+    },
+    {
+      "name": "resume-412-cold-cpu-after.txt",
+      "bytes": 4070,
+      "sha256": "7d25e06939bac332c3a066eddf695ad85d20e296e06ec4e3e922eba92296fbb1"
+    },
+    {
+      "name": "resume-412-cold-cpu-before.txt",
+      "bytes": 7126,
+      "sha256": "0ed40b4a685fe447e620029f87565f9979bfd0dc890b93ca3f029a03cf700056"
+    },
+    {
+      "name": "resume-412-cold-exit-info.txt",
+      "bytes": 624,
+      "sha256": "ebe7771f2f63abff1b0a67efda30c901b613ccd000784acdd761a7d3db3a3637"
+    },
+    {
+      "name": "resume-412-cold-framestats.txt",
+      "bytes": 8877,
+      "sha256": "d2963d4887039e83e92d05f67ce721c6e7844f5e2366ca44c0e200bf487c40c4"
+    },
+    {
+      "name": "resume-412-cold-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "resume-412-cold-lifecycle-before.txt",
+      "bytes": 31895,
+      "sha256": "f38f7963206fbfecf5ef8fd54c2205c0f278728c6966f90dfcbba81caf1aa294"
+    },
+    {
+      "name": "resume-412-cold-live-logcat.txt",
+      "bytes": 5692151,
+      "sha256": "531b0f0740c5ec14e5121c7f628bae08be8f7cbc381212e77f0750590849feb2"
+    },
+    {
+      "name": "resume-412-cold-main-thread.txt",
+      "bytes": 155,
+      "sha256": "00c6503587208130211f9ef2b8045cd46944a3091eb9701d05aeac65909080fe"
+    },
+    {
+      "name": "resume-412-cold-memory-before.txt",
+      "bytes": 28822,
+      "sha256": "fa421cb61c2f7336768c6511282ece711619ba13da705164656a21f81a12b7ff"
+    },
+    {
+      "name": "resume-412-cold-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "resume-412-cold-vm-result.json",
+      "bytes": 13558,
+      "sha256": "6056b8b40a0f35d895af188cc470139a029e7965d6e6d24b15db7bfbc8c77270"
+    },
+    {
+      "name": "resume-412-cold-window.txt",
+      "bytes": 18818,
+      "sha256": "a00360e34ce608c769a8a9c08f170a39b00c367d6499553a54c6d21a9bb488f2"
+    },
+    {
+      "name": "resume-412-cold.json",
+      "bytes": 3577,
+      "sha256": "6d0297fd4c4cf42b188592c19df969d9043fc359063aceb4608d5dc200b3d892"
+    },
+    {
+      "name": "resume-412-cold.png",
+      "bytes": 139974,
+      "sha256": "42cb11806a12d83161021185772bcbc96242113b1bbe3d184a44ce9b0f8e225b"
+    },
+    {
+      "name": "resume-412-warm-am-start.txt",
+      "bytes": 246,
+      "sha256": "46fe7ca6ed958c5895fac9d72acc9c34803ef6e12c2d80d6133d30fa2f9406ab"
+    },
+    {
+      "name": "resume-412-warm-complete-logcat.txt",
+      "bytes": 5815940,
+      "sha256": "6c39326e506ba0e228505455410d4899f68311d73445a0f4f1c66bc80537b01a"
+    },
+    {
+      "name": "resume-412-warm-cpu-after.txt",
+      "bytes": 4346,
+      "sha256": "8654a268da6087160a82ef69dda8dc6bb0ebec5472a91ffce4ffb4b41abe5cbb"
+    },
+    {
+      "name": "resume-412-warm-cpu-before.txt",
+      "bytes": 4070,
+      "sha256": "cbc12d1159f6e894bf7a8567882da33989d0fb59793b55d9f2d2131d5f8937d2"
+    },
+    {
+      "name": "resume-412-warm-exit-info.txt",
+      "bytes": 624,
+      "sha256": "ebe7771f2f63abff1b0a67efda30c901b613ccd000784acdd761a7d3db3a3637"
+    },
+    {
+      "name": "resume-412-warm-framestats.txt",
+      "bytes": 9433,
+      "sha256": "8a295e93ab17c3ff53317a31644c6e46eac97dde1e4d0ed204244aafd9e0146c"
+    },
+    {
+      "name": "resume-412-warm-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "resume-412-warm-lifecycle-before.txt",
+      "bytes": 32439,
+      "sha256": "05857748b544953253b60f7df1c642a273389baac35c22f02d9dc4d0ba010c33"
+    },
+    {
+      "name": "resume-412-warm-live-logcat.txt",
+      "bytes": 5815940,
+      "sha256": "6c39326e506ba0e228505455410d4899f68311d73445a0f4f1c66bc80537b01a"
+    },
+    {
+      "name": "resume-412-warm-main-thread.txt",
+      "bytes": 155,
+      "sha256": "00c6503587208130211f9ef2b8045cd46944a3091eb9701d05aeac65909080fe"
+    },
+    {
+      "name": "resume-412-warm-memory-before.txt",
+      "bytes": 28774,
+      "sha256": "afac2a126ab33a92d8898e9460e43dc9ab9109ea56e776eac1605c76403a0bfa"
+    },
+    {
+      "name": "resume-412-warm-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "resume-412-warm-vm-result.json",
+      "bytes": 14356,
+      "sha256": "fb29ffbdb71420e941d92253bb6b29a85a1dfb836270451514630f351f2b1f91"
+    },
+    {
+      "name": "resume-412-warm-window.txt",
+      "bytes": 18947,
+      "sha256": "3616fad6169559e1a735fde5d66f07428a7e9d157185a92436b5888a292906f4"
+    },
+    {
+      "name": "resume-412-warm.json",
+      "bytes": 3637,
+      "sha256": "b72644ae4f3d0c438390d8cb0e0d805e4f61d49f33bf8f5a3964c9d9b2611404"
+    },
+    {
+      "name": "resume-412-warm.png",
+      "bytes": 174386,
+      "sha256": "3b2d6faec105833eae19625aa5c6e402cd76af616dec1f1b94da36b72387ed58"
+    },
+    {
+      "name": "settled-360-cold-am-start.txt",
+      "bytes": 179,
+      "sha256": "82f67e93afae833eb0cb929a311288b7c4ba311e935ada58a546be9a2bfc5207"
+    },
+    {
+      "name": "settled-360-cold-complete-logcat.txt",
+      "bytes": 7232526,
+      "sha256": "c2475bff23a1e24c8622dac773ec2db8c60c4abcfda07ffc4357a5d5efeca2a1"
+    },
+    {
+      "name": "settled-360-cold-cpu-after.txt",
+      "bytes": 3074,
+      "sha256": "8d2b1b82840b3e5021f377c6395aca19b33b530f0131a83616b26cc522727640"
+    },
+    {
+      "name": "settled-360-cold-cpu-before.txt",
+      "bytes": 4666,
+      "sha256": "c90279616adcbce811569d30dd55cd9d4aee97371d841124c1bc3bc34404928e"
+    },
+    {
+      "name": "settled-360-cold-exit-info.txt",
+      "bytes": 1143,
+      "sha256": "74fe4d02192400c5b88f03f7c2eed4f485c7b2139bd3eaa5ac12ad00ac356c03"
+    },
+    {
+      "name": "settled-360-cold-framestats.txt",
+      "bytes": 8830,
+      "sha256": "2ad64971c4aae97742631b828eca9481e460845334ab7f46dad185d4d5b28ef6"
+    },
+    {
+      "name": "settled-360-cold-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "settled-360-cold-lifecycle-before.txt",
+      "bytes": 32678,
+      "sha256": "2d0a2edf5dd103fc99e8231293f8a960e2693b82e155b892fe08e472c3902868"
+    },
+    {
+      "name": "settled-360-cold-live-logcat.txt",
+      "bytes": 7234084,
+      "sha256": "e61d9f0d02d117f14f3e88c049b888a01295030f791ca7f16b07268758ba4d72"
+    },
+    {
+      "name": "settled-360-cold-main-stack.txt",
+      "bytes": 52,
+      "sha256": "985e6b7569dbb902eff48c65ddf4d00d9b01616157ae6f1f14ed9b97c42f7d87"
+    },
+    {
+      "name": "settled-360-cold-main-stat.txt",
+      "bytes": 343,
+      "sha256": "ac91899b258c1eb67a01d4869caeb78163e36ef5d57296dda51a4a79a4d79840"
+    },
+    {
+      "name": "settled-360-cold-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "name": "settled-360-cold-memory-before.txt",
+      "bytes": 29838,
+      "sha256": "fc33e9cc3ae6eef7b963e3b6583b853457ab47d13aaadb7dbfdcb79319e41690"
+    },
+    {
+      "name": "settled-360-cold-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "settled-360-cold-vm-result.json",
+      "bytes": 9909,
+      "sha256": "c7f77962dae1b3d9ab0ead31038e625c5b4bf996ec98056ecaabbb928577d574"
+    },
+    {
+      "name": "settled-360-cold-window.txt",
+      "bytes": 19479,
+      "sha256": "443bf3a0a94331e2ee826387fcd154005ac3deca8738c0f0dfddbad0ef5251eb"
+    },
+    {
+      "name": "settled-360-cold.json",
+      "bytes": 3980,
+      "sha256": "16f900ecaae9209507405c2b4766b86d30a711382aebb34c6376dd1db8ab3e21"
+    },
+    {
+      "name": "settled-360-cold.png",
+      "bytes": 124583,
+      "sha256": "bcedd5fcb65837776d79ab28f59514e94cb805beae735a82b074df195eb62b7f"
+    },
+    {
+      "name": "settled-360-warm-am-start.txt",
+      "bytes": 246,
+      "sha256": "0411dd1e891bac0ad8b7db9aa8734ab4db8897fe36217a8c78f06c183511fa83"
+    },
+    {
+      "name": "settled-360-warm-complete-logcat.txt",
+      "bytes": 7361869,
+      "sha256": "6b4207017f893a18e8e9dec40430c3145e9245c8e5de9e4336c6d80b42c502bd"
+    },
+    {
+      "name": "settled-360-warm-cpu-after.txt",
+      "bytes": 5494,
+      "sha256": "bc19ff9fadc3d759d8d8221ba30db4ef302cc0768e2dd9cb8f36095064836afd"
+    },
+    {
+      "name": "settled-360-warm-cpu-before.txt",
+      "bytes": 3074,
+      "sha256": "d996ef38a5e455e656a658ab769dd291f0a8208f7c5b3cb92b79ae20a5b3701b"
+    },
+    {
+      "name": "settled-360-warm-exit-info.txt",
+      "bytes": 1143,
+      "sha256": "74fe4d02192400c5b88f03f7c2eed4f485c7b2139bd3eaa5ac12ad00ac356c03"
+    },
+    {
+      "name": "settled-360-warm-framestats.txt",
+      "bytes": 9359,
+      "sha256": "e3f691351a8010396952e636d823c23f5ce023f5702755e6489ffaaec3323052"
+    },
+    {
+      "name": "settled-360-warm-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "settled-360-warm-lifecycle-before.txt",
+      "bytes": 33095,
+      "sha256": "0bc884c269b861254f3e26f92fb17b3fcfd8b1f81d89efd116323198cc6430f4"
+    },
+    {
+      "name": "settled-360-warm-live-logcat.txt",
+      "bytes": 7378858,
+      "sha256": "732ea7db2d075f3d60c59fce8777d1f9bfacfd6f5e4ff0a5e194ccf5ffaeb92e"
+    },
+    {
+      "name": "settled-360-warm-main-stack.txt",
+      "bytes": 52,
+      "sha256": "985e6b7569dbb902eff48c65ddf4d00d9b01616157ae6f1f14ed9b97c42f7d87"
+    },
+    {
+      "name": "settled-360-warm-main-stat.txt",
+      "bytes": 343,
+      "sha256": "5d06beb94ef3e789ed4d0cccc0b5ac258778926caf23e860dcdcbb61efc88a2a"
+    },
+    {
+      "name": "settled-360-warm-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "name": "settled-360-warm-memory-before.txt",
+      "bytes": 30150,
+      "sha256": "9d71af3dba55bae4f77adbbf1f7b44635ef37e226badd5a409a42cce9b39012e"
+    },
+    {
+      "name": "settled-360-warm-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "settled-360-warm-vm-result.json",
+      "bytes": 10479,
+      "sha256": "604ef7b2e2698c164aad82566930bbdcbabcadd91e6b762b9c048a63c81ae853"
+    },
+    {
+      "name": "settled-360-warm-window.txt",
+      "bytes": 19477,
+      "sha256": "85c919e94203c62e3d46d54c41f50ad56c181a2fec586bf42e6145facee8a87d"
+    },
+    {
+      "name": "settled-360-warm.json",
+      "bytes": 4040,
+      "sha256": "4f687fe2bb0efd9162c53f06952f88263ba5ab16888a3c76e89aac038aec16dc"
+    },
+    {
+      "name": "settled-360-warm.png",
+      "bytes": 124594,
+      "sha256": "dc77d1c7480acc3dbb1bb9b2d27a880199370fa6e5ff5a4610118aa8eeb0e277"
+    },
+    {
+      "name": "settled-412-cold-am-start.txt",
+      "bytes": 179,
+      "sha256": "634d40219f6916ef14d0dd2aef3ee0800ea187288d593d4fd522ad1385d67e2d"
+    },
+    {
+      "name": "settled-412-cold-complete-logcat.txt",
+      "bytes": 7660255,
+      "sha256": "dd426888674f9f758ca3075ff203f7e36a8fb8ef434c464d8127ccee7d777037"
+    },
+    {
+      "name": "settled-412-cold-cpu-after.txt",
+      "bytes": 2399,
+      "sha256": "ad19bb6921231f04993a04c0b4d380c4191d20b3c7e4b972110ad5552e7951a3"
+    },
+    {
+      "name": "settled-412-cold-cpu-before.txt",
+      "bytes": 5494,
+      "sha256": "a5ec7d3697a230fa6ed3cf70f9388f8136077f51a9c3ed07173404ad880bf150"
+    },
+    {
+      "name": "settled-412-cold-exit-info.txt",
+      "bytes": 1617,
+      "sha256": "15fd643a61b3a80932dcd04fdbf29cf6880db384036cdb8aaad9d929e7f005fd"
+    },
+    {
+      "name": "settled-412-cold-framestats.txt",
+      "bytes": 8811,
+      "sha256": "710256327007a80eaad6bccba00d7ca98b4053bbf9860ad302e9111ebc17d461"
+    },
+    {
+      "name": "settled-412-cold-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "settled-412-cold-lifecycle-before.txt",
+      "bytes": 32702,
+      "sha256": "6c251d8e00942ae0ba5059cb6676d1b3266fa092011c594d51e3a00b6b7aa367"
+    },
+    {
+      "name": "settled-412-cold-live-logcat.txt",
+      "bytes": 7664964,
+      "sha256": "1eeaeca051125cf044735e362418718f62f411e1810a3ab051aad50b99a080b0"
+    },
+    {
+      "name": "settled-412-cold-main-stack.txt",
+      "bytes": 52,
+      "sha256": "3af90bc9248ab1e5f2bf032d41443326e3d737432d4e3eec63304421eb4c2f05"
+    },
+    {
+      "name": "settled-412-cold-main-stat.txt",
+      "bytes": 343,
+      "sha256": "0b3da3b5a9030256e98f865e92f1cc602f850a34f8f8d3412f01b5d374480d8f"
+    },
+    {
+      "name": "settled-412-cold-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "name": "settled-412-cold-memory-before.txt",
+      "bytes": 30150,
+      "sha256": "5629cfec5b2f2ee17af3452a0b6889dbb3a28be0426866e3c020e3b5adbdf76a"
+    },
+    {
+      "name": "settled-412-cold-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "settled-412-cold-vm-result.json",
+      "bytes": 11163,
+      "sha256": "0ad629414e16f3f3c652cb71ac64e2dab30abb9b2ee4db93b984a15bfdafb7c6"
+    },
+    {
+      "name": "settled-412-cold-window.txt",
+      "bytes": 19506,
+      "sha256": "18c57871d771508f12722d7b362e6447ada3e9025b36f0ff3cafd9dcf908e440"
+    },
+    {
+      "name": "settled-412-cold.json",
+      "bytes": 3980,
+      "sha256": "207593994663125929a28826646fd6159e3e530ee2a56330a4a0cc893fc4f503"
+    },
+    {
+      "name": "settled-412-cold.png",
+      "bytes": 174185,
+      "sha256": "812ca40604d0e046d8ab155e4a2e3ec54a21515ad24beae65dbf677bd1d68d1c"
+    },
+    {
+      "name": "settled-412-warm-am-start.txt",
+      "bytes": 246,
+      "sha256": "42609761eb934eb4982afb68d68ea217869abf3f194afc5bcff8706ac48df638"
+    },
+    {
+      "name": "settled-412-warm-complete-logcat.txt",
+      "bytes": 7783757,
+      "sha256": "17840454239a623f4ede21044dafa2cf294d73dfb1fdffa092fea975524e9eb9"
+    },
+    {
+      "name": "settled-412-warm-cpu-after.txt",
+      "bytes": 3175,
+      "sha256": "e2ceda3cbc906edda7493bcfa4654a3beaeb8c0bee46c400ec60e9aafe283abc"
+    },
+    {
+      "name": "settled-412-warm-cpu-before.txt",
+      "bytes": 2399,
+      "sha256": "70db97cca326beebd30733497dd35541c059e9b8307ed3ba09ce80975df0628a"
+    },
+    {
+      "name": "settled-412-warm-exit-info.txt",
+      "bytes": 1617,
+      "sha256": "15fd643a61b3a80932dcd04fdbf29cf6880db384036cdb8aaad9d929e7f005fd"
+    },
+    {
+      "name": "settled-412-warm-framestats.txt",
+      "bytes": 9340,
+      "sha256": "47c12b65deff3967c208c4989160fe881c6c3353653798a97d2c4411b4995b65"
+    },
+    {
+      "name": "settled-412-warm-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "name": "settled-412-warm-lifecycle-before.txt",
+      "bytes": 33126,
+      "sha256": "4cfad13744c42505b2d6bbec188a1643ed6af96623094a347168f34bb6d3b4e7"
+    },
+    {
+      "name": "settled-412-warm-live-logcat.txt",
+      "bytes": 7806575,
+      "sha256": "34c3e8c12f2ca6dd2870602700e94f274e7ea337550addae299caf054c07c392"
+    },
+    {
+      "name": "settled-412-warm-main-stack.txt",
+      "bytes": 52,
+      "sha256": "3af90bc9248ab1e5f2bf032d41443326e3d737432d4e3eec63304421eb4c2f05"
+    },
+    {
+      "name": "settled-412-warm-main-stat.txt",
+      "bytes": 343,
+      "sha256": "2128d2f2b5313e2f035bc2e12cde11e4d2fdf9229f3862406fa75ab2e30db7dc"
+    },
+    {
+      "name": "settled-412-warm-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "name": "settled-412-warm-memory-before.txt",
+      "bytes": 30150,
+      "sha256": "36481e2b6ff63ea6be3feee0705f2baae80ae6a2dfc8cc70b753cac06f065ddc"
+    },
+    {
+      "name": "settled-412-warm-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "name": "settled-412-warm-vm-result.json",
+      "bytes": 11733,
+      "sha256": "091f5e0ac380a9e4ec124b26ba416f8da53a4871760fb6c6ae1a76b7de52c9fa"
+    },
+    {
+      "name": "settled-412-warm-window.txt",
+      "bytes": 19507,
+      "sha256": "c430170ec7d8b5d22b7fbbfffc512dd4dc99920d59eb542f4131375e9e4fcd72"
+    },
+    {
+      "name": "settled-412-warm.json",
+      "bytes": 4040,
+      "sha256": "38aeb067862881e711b061a3506c39a8e6e29d24f17a48eabb49362b08dfea46"
+    },
+    {
+      "name": "settled-412-warm.png",
+      "bytes": 174185,
+      "sha256": "812ca40604d0e046d8ab155e4a2e3ec54a21515ad24beae65dbf677bd1d68d1c"
+    }
+  ],
+  "limitation": "Initial boot still resource saturated; no universal clean-start PASS. No production behavior change without reproducible app cause.",
+  "settledVerdict": "PASS scoped controlled default APK startup and responsive navigation at 360dp/412dp; boot-saturated timeout retained, not a universal startup PASS",
+  "responsiveInputReceipts": [
+    "evidence/android/pr3-resume/settled-input-search.json",
+    "evidence/android/pr3-resume/settled-input-home.json"
+  ],
+  "mainThreadSample": "Settled app main state S / do_epoll_wait; kernel stack permission denied. Original complete ANR Java/native stack retained privately and excerpted separately.",
+  "currentDefaultApkMatchesEarlierCleanControl": true,
+  "immediateBootFollowup": "evidence/cloud/pr3-completion-validation.json"
+}

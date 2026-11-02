@@ -1,0 +1,23 @@
+{
+  "timestampUtc": "2026-10-31T09:08:24.889687+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "back",
+  "label": "reliability-b-inbox-back",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "keyevent",
+        "4"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

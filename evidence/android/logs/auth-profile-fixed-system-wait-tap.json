@@ -1,0 +1,22 @@
+{
+  "timestampUtc": "2026-10-31T03:46:26.432401+00:00",
+  "sourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "action": "tap",
+  "label": "auth-profile-fixed-system-wait",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "tap",
+        "250",
+        "900"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

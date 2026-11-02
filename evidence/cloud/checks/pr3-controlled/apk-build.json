@@ -1,0 +1,17 @@
+{
+  "startedAtUtc": "2026-11-01T15:23:44.626863+00:00",
+  "completedAtUtc": "2026-11-01T15:24:39.715170+00:00",
+  "sourceSha": "d23bb905822a44e7003b6ae95c465f141e5caab1",
+  "workingTreeChanges": "Native evidence collection tooling and docs only; production code unchanged",
+  "command": [
+    "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+    "build",
+    "apk",
+    "--debug"
+  ],
+  "workingDirectory": "D:\\CodexTemp\\beewise-lab3-build",
+  "nativeExitCode": 0,
+  "originalLogSha256": "1b4bd45403c24ad37394f1ec8334bd826d82ffc3ac3490aef2cfc22163583cfa",
+  "publicLogProjection": "Trailing line whitespace normalized; complete original preserved privately",
+  "apkSha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65"
+}

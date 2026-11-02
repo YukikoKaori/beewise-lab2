@@ -1,0 +1,204 @@
+--------- beginning of main
+
+10-31 05:05:08.264  2210  2210 I libprocessgroup: Created cgroup /sys/fs/cgroup/apps/uid_10235/pid_2210
+
+10-31 05:05:08.310  2210  2210 I Zygote  : Process 2210 created for com.beewise.beewise
+
+10-31 05:05:08.314  2210  2210 I beewise.beewise: Late-enabling -Xcheck:jni
+
+10-31 05:05:08.352  2210  2210 I beewise.beewise: Using generational CollectorTypeCMC GC.
+
+10-31 05:05:08.353  2210  2210 W beewise.beewise: Unexpected CPU variant for x86: x86_64.
+
+10-31 05:05:08.353  2210  2210 W beewise.beewise: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+
+10-31 05:05:08.371  2210  2210 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+
+10-31 05:05:08.635  2210  2210 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+
+10-31 05:05:08.636  2210  2210 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+
+10-31 05:05:12.077  2210  2210 D nativeloader: Configuring clns-9 for other apk /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/lib/x86_64:/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.beewise.beewise
+
+10-31 05:05:12.117  2210  2210 V GraphicsEnvironment: Currently set values for:
+
+10-31 05:05:12.127  2210  2210 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+
+10-31 05:05:12.127  2210  2210 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+
+10-31 05:05:12.127  2210  2210 V GraphicsEnvironment: com.beewise.beewise is not listed in per-application setting
+
+10-31 05:05:12.128  2210  2210 V GraphicsEnvironment: No special selections for ANGLE, returning default driver choice
+
+10-31 05:05:12.132  2210  2210 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+
+10-31 05:05:12.678  2210  2210 D FirebaseSessions: Dependency to CRASHLYTICS added.
+
+10-31 05:05:12.713  2210  2210 I FirebaseApp: Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+
+10-31 05:05:13.089  2210  2210 I FirebaseCrashlytics: Initializing Firebase Crashlytics 21.0.1 for com.beewise.beewise
+
+10-31 05:05:13.837  2210  2436 W beewise.beewise: Verification of void com.google.firebase.remoteconfig.internal.ConfigSharedPrefsClient.<clinit>() took 174.777ms (97.27 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:13.976  2210  2436 W beewise.beewise: Verification of void com.google.firebase.remoteconfig.internal.ConfigSharedPrefsClient.setConfigSettingsWithoutWaitingOnDiskWrite(com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings) took 136.750ms (270.57 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:14.024  2210  2210 D FirebaseSessions: Subscriber CRASHLYTICS registered.
+
+10-31 05:05:14.131  2210  2436 W beewise.beewise: Verification of void com.google.firebase.remoteconfig.internal.ConfigGetParameterHandler.callListeners(java.lang.String, com.google.firebase.remoteconfig.internal.ConfigContainer) took 144.942ms (275.97 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:15.059  2210  2436 W beewise.beewise: Verification of com.google.firebase.remoteconfig.FirebaseRemoteConfig com.google.firebase.remoteconfig.FirebaseRemoteConfig.getInstance() took 659.366ms (13.65 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:15.665  2210  2436 W beewise.beewise: Verification of com.google.android.gms.tasks.Task com.google.firebase.remoteconfig.FirebaseRemoteConfig.setDefaultsWithStringsMapAsync(java.util.Map) took 584.554ms (83.82 bytecodes/s) (0B arena alloc)
+
+--------- beginning of system
+
+10-31 05:05:16.230  2210  2476 E ActivityThread: Failed to find provider info for com.google.android.gms.chimera
+
+10-31 05:05:16.230  2210  2476 W DynamiteModule: Failed to retrieve remote module version.
+
+10-31 05:05:16.866  2210  2476 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+
+10-31 05:05:16.866  2210  2476 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.location.provider.jar
+
+10-31 05:05:16.866  2210  2476 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.media.remotedisplay.jar
+
+10-31 05:05:16.867  2210  2476 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+
+10-31 05:05:16.867  2210  2476 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+
+10-31 05:05:17.079  2210  2436 W beewise.beewise: Verification of java.lang.String com.google.firebase.remoteconfig.internal.ConfigRealtimeHttpClient.extractProjectNumberFromAppId(java.lang.String) took 177.216ms (112.86 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:17.773  2210  2210 I FirebaseCrashlytics: Registering with ProfilingManager; heap dump collection is disabled
+
+10-31 05:05:18.058  2210  2210 D nativeloader: Load /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64/libdatastore_shared_counter.so using class loader ns clns-9 (caller=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!classes17.dex): ok
+
+10-31 05:05:18.379  2210  2210 D FirebaseSessions: Initializing Firebase Sessions 4.0.1.
+
+10-31 05:05:18.485  2210  2210 I FirebaseInitProvider: FirebaseApp initialization successful
+
+10-31 05:05:18.489  2210  2210 D FLTFireContextHolder: received application context.
+
+10-31 05:05:18.715  2210  2618 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+
+10-31 05:05:18.974  2210  2476 D nativeloader: Configuring clns-10 for other apk /apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/PrebuiltGmsCoreVic.apk. target_sdk_version=37, uses_libraries=, library_path=/apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/lib/x86_64:/apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/PrebuiltGmsCoreVic.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+
+10-31 05:05:18.981  2210  2618 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader: InitApexLibraries:
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_adservices: libhpke_jni.so:libtflite_support_classifiers_native.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_appsearch: libappsearchservice.so:libicing_anywhere.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_art: libartservice.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_bt: libbluetooth_jni.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_conscrypt: libjavacrypto.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_mediaprovider: libpdfclient.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_nfcservices: libnfc_nci_jni.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_npumanager: libnpumanager_service_jni.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_ondevicepersonalization: libfcp_cpp_dep_jni.so:libfcp_hpke_jni.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_os_statsd: libstats_jni.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_tethering: libandroid_net_connectivity_com_android_net_module_util_jni.so:libandroid_net_connectivity_com_android_net_module_util_jni_CommonConnectivityJni.so:libcrypto_httpengine.so:libframework-connectivity-jni.so:libframework-connectivity-tiramisu-jni.so:libhttpengine.so:libservice-connectivity.so:libservice-thread-jni.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_uwb: libuwb_uci_jni_rust.so
+
+10-31 05:05:19.004  2210  2476 D nativeloader:   com_android_virt: MicrodroidExitNativeLib.so:libvirtualizationservice_jni.so:libvirtual
+
+10-31 05:05:19.013  2210  2629 D FlutterJNI: Beginning load of flutter...
+
+10-31 05:05:19.024  2210  2631 I ResourceExtractor: Found extracted resources res_timestamp-1-1793397705367
+
+10-31 05:05:19.024  2210  2631 I ResourceExtractor: Resource version mismatch res_timestamp-1-1793397906676
+
+10-31 05:05:19.046  2210  2618 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+
+10-31 05:05:19.051  2210  2618 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+10-31 05:05:19.056  2210  2618 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+
+10-31 05:05:19.102  2210  2610 W beewise.beewise: Verification of void com.google.android.gms.common.internal.ClientSettings$Builder.<init>() took 152.636ms (52.41 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.107  2210  2578 W beewise.beewise: Verification of void kotlinx.coroutines.BlockingCoroutine.afterCompletion(java.lang.Object) took 244.541ms (114.50 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.233  2210  2629 D nativeloader: Load /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64/libflutter.so using class loader ns clns-9 (caller=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk): ok
+
+10-31 05:05:19.245  2210  2578 W beewise.beewise: Verification of java.lang.Object kotlinx.coroutines.flow.FlowKt__ReduceKt.firstOrNull(kotlinx.coroutines.flow.Flow, kotlin.jvm.functions.Function2, kotlin.coroutines.Continuation) took 136.409ms (1158.28 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.252  2210  2629 D FlutterJNI: flutter (null) was loaded normally!
+
+10-31 05:05:19.334  2210  2643 D skia    : [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+
+10-31 05:05:19.485  2210  2610 W beewise.beewise: Verification of android.content.Intent com.google.android.gms.common.internal.BaseGmsClient.getSignInIntent() took 123.483ms (64.79 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.517  2210  2591 W beewise.beewise: Verification of com.google.firebase.crashlytics.internal.common.InstallIdProvider$InstallIds com.google.firebase.crashlytics.internal.common.InstallIdProvider$InstallIds.create(java.lang.String, com.google.firebase.crashlytics.internal.common.FirebaseInstallationId) took 204.987ms (68.30 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.551  2210  2568 W beewise.beewise: Verification of java.lang.Object kotlinx.serialization.json.Json.decodeFromString(kotlinx.serialization.DeserializationStrategy, java.lang.String) took 223.916ms (169.71 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.581  2210  2592 W beewise.beewise: Verification of androidx.datastore.preferences.core.Preferences com.google.firebase.datastorage.JavaDataStorage.putSync(androidx.datastore.preferences.core.Preferences$Key, java.lang.Object) took 235.517ms (89.17 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.664  2210  2568 W beewise.beewise: Verification of java.lang.String kotlinx.serialization.json.Json.encodeToString(kotlinx.serialization.SerializationStrategy, java.lang.Object) took 113.080ms (265.30 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.852  2210  2610 W GooglePlayServicesUtil: Google Play services out of date for com.beewise.beewise.  Requires 261200000 but found 261136038
+
+10-31 05:05:19.853  2210  2610 W GoogleApiManager: The service for com.google.android.gms.internal.cloudmessaging.zzd is not available: ConnectionResult{statusCode=SERVICE_VERSION_UPDATE_REQUIRED, resolution=null, message=null, clientMethodKey=null}
+
+10-31 05:05:19.929  2210  2591 W beewise.beewise: Verification of com.google.firebase.crashlytics.internal.model.CrashlyticsReport com.google.firebase.crashlytics.internal.model.CrashlyticsReport.withEvents(java.util.List) took 196.319ms (178.28 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:19.941  2210  2568 W beewise.beewise: Verification of kotlin.enums.EnumEntries kotlinx.serialization.json.ClassDiscriminatorMode.getEntries() took 274.581ms (10.93 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.067  2210  2592 W beewise.beewise: Verification of void androidx.datastore.migrations.SharedPreferencesMigration.<init>(android.content.Context, java.lang.String, java.util.Set, kotlin.jvm.functions.Function2, kotlin.jvm.functions.Function3) took 104.641ms (439.60 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.203  2210  2568 W beewise.beewise: Verification of java.util.Map kotlin.collections.MapsKt__MapsKt.plus(java.util.Map, java.util.Map) took 196.735ms (116.91 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.354  2210  2568 W beewise.beewise: Verification of kotlinx.serialization.KSerializer[] com.google.firebase.sessions.settings.SessionConfigs$$serializer.childSerializers() took 147.417ms (400.22 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.377  2210  2598 I FirebaseCrashlytics: Saved version control info
+
+10-31 05:05:20.410  2210  2592 W beewise.beewise: Verification of void kotlinx.coroutines.scheduling.TaskImpl.run() took 102.888ms (58.32 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.669  2210  2592 W beewise.beewise: Verification of java.lang.Object kotlinx.coroutines.scheduling.WorkQueue.getLastScheduledTask$volatile() took 223.488ms (13.42 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.842  2210  2567 W beewise.beewise: Verification of void kotlinx.serialization.json.internal.AbstractJsonLexer.setEscapedString(java.lang.StringBuilder) took 391.898ms (20.41 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:20.973  2210  2567 W beewise.beewise: Verification of void kotlinx.serialization.encoding.AbstractDecoder.endStructure(kotlinx.serialization.descriptors.SerialDescriptor) took 102.359ms (58.62 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:21.217  2210  2665 W beewise.beewise: Verification of int androidx.datastore.preferences.protobuf.GeneratedMessageLite.computeSerializedSize(androidx.datastore.preferences.protobuf.Schema) took 130.665ms (160.72 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:21.755  2210  2567 W beewise.beewise: Verification of void com.google.firebase.sessions.ProcessData.<clinit>() took 151.806ms (59.29 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:21.758  2210  2631 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/kernel_blob.bin
+
+10-31 05:05:21.774  2210  2631 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/vm_snapshot_data
+
+10-31 05:05:21.801  2210  2591 W beewise.beewise: Verification of java.lang.Object androidx.datastore.core.DataStoreImpl$data$1$invokeSuspend$$inlined$map$1.collect(kotlinx.coroutines.flow.FlowCollector, kotlin.coroutines.Continuation) took 169.614ms (159.18 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:21.902  2210  2591 D FirebaseSessions: Notified CRASHLYTICS of new session 8085cfce3d5d488eb8eacc7924a5174f
+
+10-31 05:05:22.066  2210  2218 W beewise.beewise: Suspending all threads took: 49.807ms
+
+10-31 05:05:22.119  2210  2218 I beewise.beewise: Background concurrent mark compact GC freed 2926KB AllocSpace bytes, 9(232KB) LOS objects, 49% free, 3119KB/6238KB, paused 59.671ms,1.280ms total 472.412ms
+
+10-31 05:05:22.159  2210  2567 W beewise.beewise: Verification of java.lang.Object kotlinx.coroutines.channels.ChannelCoroutine.receiveCatching-JP2dKIU(kotlin.coroutines.Continuation) took 120.973ms (82.66 bytecodes/s) (0B arena alloc)
+
+10-31 05:05:22.294  2210  2631 I ResourceExtractor: Extracted baseline resource assets/flutter_assets/isolate_snapshot_data
+
+10-31 05:05:22.500  2210  2210 W beewise.beewise: type=1400 audit(0.0:30): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=21702 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.beewise.beewise
+
+10-31 05:05:22.552  2210  2675 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+10-31 05:05:23.023  2210  2675 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+
+10-31 05:05:23.051  2210  2676 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+[credential-bearing line omitted]
+10-31 05:05:24.868  2210  2476 I DynamiteModule: Considering local module com.google.android.gms.measurement.dynamite:216 and remote module com.google.android.gms.measurement.dynamite:182
+
+10-31 05:05:24.870  2210  2476 I DynamiteModule: Selected local version of com.google.android.gms.measurement.dynamite

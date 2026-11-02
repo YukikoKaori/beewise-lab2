@@ -1,0 +1,30 @@
+{
+  "timestampUtc": "2026-10-30T22:18:39.714342+00:00",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/dev/tty"
+      ],
+      "exitCode": 0,
+      "output": "UI hierchary dumped to: /dev/tty\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 1,
+      "output": ""
+    }
+  ]
+}

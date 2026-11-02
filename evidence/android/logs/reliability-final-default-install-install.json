@@ -1,0 +1,25 @@
+{
+  "timestampUtc": "2026-10-31T09:27:49.138360+00:00",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "action": "install",
+  "label": "reliability-final-default-install",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "install",
+        "-r",
+        "D:\\CodexTemp\\beewise-lab3-tools\\bao-artifacts\\reliability-default.apk"
+      ],
+      "exitCode": 0,
+      "output": "Performing Streamed Install\r\nSuccess\r\n"
+    },
+    {
+      "apk": "D:\\CodexTemp\\beewise-lab3-tools\\bao-artifacts\\reliability-default.apk",
+      "sha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+      "bytes": 227803477
+    }
+  ]
+}

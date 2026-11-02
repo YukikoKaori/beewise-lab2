@@ -1,0 +1,127 @@
+{
+  "bugreportPrivateSha256": "326ff8a4a58c4fba235ba9d6cd73aa4ea9f4221669ab93f3876838508d0d436a",
+  "fullAnrTracesPreserved": [
+    {
+      "privateName": "FS/data/anr/anr_2026-11-01-19-35-50-394",
+      "originalBytes": 43609,
+      "originalSha256": "554821525c52853831ab380dba8d949a2e8548879015d79c76130ca8bcf2bd29"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-11-01-19-35-33-936",
+      "originalBytes": 120506,
+      "originalSha256": "b7efc87b4637c5baa1fce7155290478e084222fe6acaf48e0fe4cabd9cd0b7d5"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-11-01-18-56-57-209",
+      "originalBytes": 106511,
+      "originalSha256": "f385f86797ae05284adf03e32a2912192a164b54e86e96086b163670b305e244"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-11-01-18-48-49-183",
+      "originalBytes": 37484,
+      "originalSha256": "1a5db0cdc3991e170ae490f629f12f7a62126c0451f7eebb4b6e4ced75b58fad"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-06-32-270",
+      "originalBytes": 31020,
+      "originalSha256": "ec0f073d15fe8fac7051e1df6b45abeca6e6df060fe228182927b4243b7bc455"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-06-25-939",
+      "originalBytes": 50120,
+      "originalSha256": "720e2704c6dacc8dd12c92a0f7b9607c1487740adc0c5bb89392128ece172227"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-06-22-754",
+      "originalBytes": 34705,
+      "originalSha256": "ae9e577dc31ccd0077cf143d56bec5449f77581a7c2a610b484ba9a27b85fbe5"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-01-40-453",
+      "originalBytes": 43192,
+      "originalSha256": "87e32ac1955618365e5d91b5135971f0f81a9b34994b648b4813172c319308e7"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-01-14-246",
+      "originalBytes": 29208,
+      "originalSha256": "abd4a98382e491c626d45750a6ea651ad96dbd0ac6119211e5b27f3d901f3d2c"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-01-07-284",
+      "originalBytes": 73511,
+      "originalSha256": "ec190e37efa2927806ed37bb88f3eaa6e4d00722a5b3ebd685d4dcc190dbfd92"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-01-05-685",
+      "originalBytes": 31109,
+      "originalSha256": "4f80f4607709ab3068434fcb16a66e96c1ed6b35772c23ce0f119b68b3b81476"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-01-02-991",
+      "originalBytes": 30598,
+      "originalSha256": "da864c5b229c4bd29680f7813d864f4e7b2a3acb986f78cb5a25555fd86c147d"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-01-00-414",
+      "originalBytes": 29490,
+      "originalSha256": "1494523f3fbe6126c3a226c1c47b6b32e3b003124cec22d2dd850be17718606f"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-00-52-637",
+      "originalBytes": 5079,
+      "originalSha256": "a63bd8d67b984086b2cf371d6a3e88768b292e77dec087d79f4c6334be6026c0"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-00-48-901",
+      "originalBytes": 4073,
+      "originalSha256": "509ad7ded49987acd8a5aa38188d866e52190287b8698d5852a09ab31e716508"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-00-33-541",
+      "originalBytes": 3581,
+      "originalSha256": "b7717ee3b25bc3c232570a5cace6fc9e09e75bda30f0824a1affa90509891fdd"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-21-00-13-329",
+      "originalBytes": 6329,
+      "originalSha256": "ac14f0905be04bf55b4eaf0e293188e27a5897ddbadc29bf4e1c7129bea34edb"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-20-59-55-354",
+      "originalBytes": 54202,
+      "originalSha256": "2def0b0ff5aa7537ecc504da4546e60bb151ab3df68c3a492d1e1ca49a59cf2d"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-20-44-06-452",
+      "originalBytes": 122640,
+      "originalSha256": "b28b9402d81664e01e4716f97fee72c58d211558bf591eff227f6743be7b17f8"
+    },
+    {
+      "privateName": "FS/data/anr/anr_2026-10-31-20-44-03-176",
+      "originalBytes": 39799,
+      "originalSha256": "bd2c0bc7174925dbfa746c356f016c59d97b906d232da5b7c5b31229b9b05dd9"
+    },
+    {
+      "privateName": "FS/data/anr/trace_02",
+      "originalBytes": 182104,
+      "originalSha256": "21bf202d903ba1c0a112e706028627245989c28485cfb2163ae959f4bcc0b28e"
+    },
+    {
+      "privateName": "FS/data/anr/trace_01",
+      "originalBytes": 350114,
+      "originalSha256": "5ccb2e158ce89286d35fd1bfa6d0e767a3a47eb0ec7a194761d4c0e214533710"
+    },
+    {
+      "privateName": "FS/data/anr/trace_00",
+      "originalBytes": 92523,
+      "originalSha256": "82565b74b6e21d3a5c981934b2839efe5af0845859aa7721408685b5d7759d4c"
+    }
+  ],
+  "currentBootAnrProcesses": [
+    "com.android.systemui",
+    "com.google.android.apps.photos"
+  ],
+  "systemUiMainRunnableWaitNs": 16928735586,
+  "systemUiMainCpuNs": 1218514100,
+  "limitation": "System UI trace is not an application main-thread trace; no BeeWise deadlock inferred."
+}

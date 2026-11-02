@@ -1,0 +1,77 @@
+{
+  "recordedAtUtc": "2026-10-31T14:09:18.674297+00:00",
+  "privateLogSha256": "d82c86b274d1c28145b9f0fc29e3a6e4c1c82ea6a6ec0bd2fcc47e1fff1ecabd",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "10-31 16:22:04.267",
+      "servicePid": "2013"
+    },
+    {
+      "nativeLogTime": "10-31 16:22:04.430",
+      "servicePid": "2013"
+    },
+    {
+      "nativeLogTime": "10-31 16:22:04.626",
+      "servicePid": "2013"
+    },
+    {
+      "nativeLogTime": "10-31 16:29:09.336",
+      "servicePid": "2013"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "10-31 16:22:01.920",
+      "servicePid": "2013",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:c8021f740130a289"
+      ],
+      "events": [
+        {
+          "name": "logout",
+          "timestampMillis": "1793438520854",
+          "parameters": {}
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 16:23:30.128",
+      "servicePid": "2013",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "view_tutor",
+          "timestampMillis": "1793438607449",
+          "parameters": {
+            "subject_count": "1"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 16:24:00.283",
+      "servicePid": "2013",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "export_report",
+          "timestampMillis": "1793438638584",
+          "parameters": {
+            "file_size_kb": "16",
+            "subject_count": "1"
+          }
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}

@@ -1,0 +1,13 @@
+{
+  "timestampUtc": "2026-11-01T12:49:21.910652+00:00",
+  "forceStopped": false,
+  "attempts": [
+    {
+      "pidBefore": "1724",
+      "amKillExitCode": 0,
+      "pidAfter": ""
+    }
+  ],
+  "pidConfirmedBeforeSend": "",
+  "status": "PASS process absent before send"
+}

@@ -1,0 +1,43 @@
+{
+  "timestampUtc": "2026-10-31T08:02:00.725Z",
+  "projectId": "beewise-lab-3",
+  "stage": "after-cancel",
+  "readOnly": true,
+  "requestedPersonalOrCredentialFields": false,
+  "accounts": [
+    {
+      "accountAlias": "uid-sha256:4a7de057a03aa476",
+      "dedicatedGoogleCandidate": false,
+      "enabled": true,
+      "providers": [
+        "password"
+      ],
+      "lastSignInAtUtc": "2026-10-31T03:28:24.962Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T03:28:26.692446Z",
+        "updateTime": "2026-10-31T03:28:26.692446Z"
+      },
+      "devices": [],
+      "deviceListComplete": true
+    },
+    {
+      "accountAlias": "uid-sha256:564b131109a53e16",
+      "dedicatedGoogleCandidate": false,
+      "enabled": true,
+      "providers": [
+        "password"
+      ],
+      "lastSignInAtUtc": "2026-10-31T04:01:51.972Z",
+      "parent": {
+        "exists": true,
+        "createTime": "2026-10-31T04:01:53.191769Z",
+        "updateTime": "2026-10-31T04:01:53.191769Z"
+      },
+      "devices": [],
+      "deviceListComplete": true
+    }
+  ],
+  "googleCandidateCount": 0,
+  "limitation": "IAM metadata only. Candidate must match the user-confirmed dedicated Google device flow. This is not proof of client authentication/authorization or cross-UID denial."
+}

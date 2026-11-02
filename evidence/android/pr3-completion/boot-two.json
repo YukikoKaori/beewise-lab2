@@ -1,0 +1,271 @@
+{
+  "timestampUtc": "2026-11-01T12:39:24.468360+00:00",
+  "serial": "emulator-5560",
+  "requestedMode": "cold",
+  "userdataCleared": false,
+  "anrDetectionSuppressed": false,
+  "logIdentityPolicy": "All buffers retained; Auth UID aliases and credential-line redaction applied in memory before disk",
+  "pidBefore": "",
+  "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: timeout\r\nLaunchState: UNKNOWN (-1)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 18516\r\nComplete",
+  "amStartWallMs": 18906,
+  "pidAfter": "1802",
+  "homeUiPresent": null,
+  "anrDialogInUi": null,
+  "screenshotSha256": "4f0b5c677629f6acea644b313aa07792e282e8e4120ed727fb53800b4505002e",
+  "interpretation": "OBSERVED; inspect post-marker logs and actual UI before declaring PASS",
+  "commands": [
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "cpuinfo"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "meminfo"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "activity",
+        "activities"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "shell",
+        "am",
+        "force-stop",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "log",
+        "-t",
+        "BaoStartup",
+        "boot-two"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "--display",
+        "0",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/bao-startup-ui.xml"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "cat",
+        "/sdcard/bao-startup-ui.xml"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "exec-out",
+        "screencap",
+        "-p"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "cpuinfo"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "activity",
+        "lastanr"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "activity",
+        "exit-info",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "window",
+        "displays"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "dumpsys",
+        "gfxinfo",
+        "com.beewise.beewise",
+        "framestats"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "run-as",
+        "com.beewise.beewise",
+        "cat",
+        "/proc/1802/task/1802/stat"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "run-as",
+        "com.beewise.beewise",
+        "cat",
+        "/proc/1802/task/1802/wchan"
+      ],
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "shell",
+        "run-as",
+        "com.beewise.beewise",
+        "cat",
+        "/proc/1802/task/1802/stack"
+      ],
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "logcat",
+        "-b",
+        "all",
+        "-d",
+        "-v",
+        "threadtime"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "launch": {
+    "timestampUtc": "2026-11-01T12:38:30.105075+00:00",
+    "label": "boot-two",
+    "command": [
+      "D:/Android/SDK/emulator/emulator.exe",
+      "-avd",
+      "BeeWise_Bao_Startup_API37",
+      "-port",
+      "5560",
+      "-no-snapshot",
+      "-no-boot-anim",
+      "-memory",
+      "2048",
+      "-gpu",
+      "host",
+      "-cores",
+      "2",
+      "-no-audio",
+      "-scale",
+      "0.35"
+    ],
+    "hostPid": 22356,
+    "userdataCleared": false,
+    "originalAvdUntouched": true,
+    "gate": "First sys.boot_completed=1; no wait-for-low-load gate",
+    "onlineWallMs": 27344,
+    "bootCompletedWallMs": 53453,
+    "uptimeAtBootCompleted": "43.00 17.33",
+    "loadAtBootCompleted": "3.93 0.92 0.30 20/921 1413",
+    "measurementExitCode": 0,
+    "measurementFinishedWallMs": 108906
+  },
+  "status": "FAIL immediate post-boot acceptance: am start timeout; delayed first draw/system failures retained",
+  "systemAnrProcessesSinceBoot": [
+    "com.android.systemui"
+  ],
+  "applicationAnrInCollectedBootLog": false,
+  "firstDrawLog": [
+    "11-01 19:40:33.563   648   677 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +56s541ms"
+  ],
+  "firstDrawMs": 56541,
+  "markerAfterBootCompletedMs": 12631,
+  "uiDumpSucceeded": false,
+  "uiCollectionLimitation": "UI dump failed; earlier file may be stale and is not authoritative. Screenshot and native logs reviewed separately.",
+  "mainThreadStat": "1802 (beewise.beewise) S 422 422 0 0 -1 4194624 49323 0 479 0 191 305 0 0 10 -10 53 0 5907 25801506816 119873 18446744073709551615 98856808955904 98856808960336 140730329947392 0 0 0 2101764 4097 1073775864 1 0 0 17 0 0 0 0 0 0 98856808988672 98856808988696 98857518800896 140730329950476 140730329950575 140730329950575 140730329956318 0",
+  "mainThreadWchan": "binder_ioctl_write_read",
+  "flutter": {
+    "isolates": [
+      {
+        "name": "main",
+        "firstFrame": {
+          "enabled": "true",
+          "type": "_extensionType",
+          "method": "ext.flutter.didSendFirstFrameEvent"
+        },
+        "hasProbeExtension": false
+      }
+    ],
+    "limitation": "First-frame acknowledgement after collection does not turn the earlier launch timeout into PASS."
+  },
+  "requestedRamMiB": 2048,
+  "effectiveRamMiB": 4096,
+  "actualGraphics": [
+    "INFO         | Graphics Adapter Vendor Google (NVIDIA Corporation)",
+    "INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (NVIDIA GeForce GTX 1650/PCIe/SSE2)",
+    "INFO         | Graphics API Version OpenGL ES 3.0 (4.5.0 NVIDIA 576.88)"
+  ],
+  "anrDialogSuppressed": false
+}
