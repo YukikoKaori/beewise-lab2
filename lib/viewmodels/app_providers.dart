@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/tutor.dart';
@@ -141,7 +140,8 @@ final workflowServiceProvider = Provider<WorkflowService?>(
 
 final exportServiceProvider = Provider<ExportService>(
   (ref) => ExportService(
-    ref.watch(firebaseReadyProvider) ? FirebaseStorage.instance : null,
+    ref.watch(firebaseReadyProvider) ? FirebaseFirestore.instance : null,
+    ref.watch(firebaseReadyProvider) ? FirebaseAuth.instance : null,
   ),
 );
 
