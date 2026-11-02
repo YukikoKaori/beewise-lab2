@@ -535,6 +535,7 @@ class TutorCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 4),
+                      if (tutor.isDemoProfile) const Text(Tutor.demoDisclosure),
                       Text(
                         subtitle ?? tutor.credential,
                         style: Theme.of(context).textTheme.bodyMedium
