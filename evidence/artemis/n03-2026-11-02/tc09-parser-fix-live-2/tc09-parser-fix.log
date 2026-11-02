@@ -1,0 +1,4 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "65af71bf-dcc1-4252-90bb-2edbebfe6edc", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+ARTEMIS_RESULT case=TC-09 trace_id=b01a5961-a740-49c4-81c1-aeea844dda0f status=completed device=emulator-5554
+.
+1 passed, 11 deselected in 43.25s

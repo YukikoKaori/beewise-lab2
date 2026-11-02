@@ -1,0 +1,40 @@
+{
+  "step_id": "pre-planning",
+  "step_type": "planning",
+  "session_id": "befbacc5-6b26-467a-998f-5af278b1e49a",
+  "step_number": 0,
+  "timestamp": 1793634569.540153,
+  "operator_native_thinking": "",
+  "operator_raw_thinking": "",
+  "action_taken": null,
+  "last_execution_result": null,
+  "extra_metadata": null,
+  "generic_tools": [
+    {
+      "trace_id": "e1b07b5e-1bfb-4993-9a15-8df91ca84e0f",
+      "parent_trace_id": "946143f0-e446-4f6e-9e14-53088bc8d5e7",
+      "step_id": "70b2b8ce-6e20-4843-8615-c518a9e0c3e2",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793634569.540153,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h10m23.140890032s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 1.8,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "cfd40a00-c587-4879-96b3-acf6938d1a4d",
+        "scheduled_at": 1793634569.540151
+      },
+      "agent_name": "FlashRunner"
+    }
+  ],
+  "token_usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "total_tokens": 0
+}

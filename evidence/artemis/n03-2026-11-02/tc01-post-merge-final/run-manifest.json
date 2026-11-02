@@ -1,0 +1,47 @@
+[
+  {
+    "suiteRun": 1,
+    "profile": "flash",
+    "selectedCases": [
+      "TC-01"
+    ],
+    "deviceSerial": "emulator-5554",
+    "exitCode": 1,
+    "status": "FAIL",
+    "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+    "logSha256": "F3272EA90F977B54789E763EAC3ACC0D7F75F88C3F09D12C918B1495612F2B9E",
+    "log": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc01-post-merge-final\\flash-suite-run-1.log",
+    "junit": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc01-post-merge-final\\flash-suite-run-1.junit.xml",
+    "recordedAtUtc": "2026-11-02T13:24:24.5074410Z"
+  },
+  {
+    "suiteRun": 2,
+    "profile": "flash",
+    "selectedCases": [
+      "TC-01"
+    ],
+    "deviceSerial": "emulator-5554",
+    "exitCode": 1,
+    "status": "FAIL",
+    "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+    "logSha256": "FF9300BCAF5E39C37C82BAA444E7DF38964D3947603B08D1AC87BDEB53D8C44F",
+    "log": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc01-post-merge-final\\flash-suite-run-2.log",
+    "junit": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc01-post-merge-final\\flash-suite-run-2.junit.xml",
+    "recordedAtUtc": "2026-11-02T13:25:09.2709123Z"
+  },
+  {
+    "suiteRun": 3,
+    "profile": "flash",
+    "selectedCases": [
+      "TC-01"
+    ],
+    "deviceSerial": "emulator-5554",
+    "exitCode": 1,
+    "status": "FAIL",
+    "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+    "logSha256": "A314248F030E04ED6F13AAC1B3F78C0251937502CB7180F9936093A417AE2F18",
+    "log": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc01-post-merge-final\\flash-suite-run-3.log",
+    "junit": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc01-post-merge-final\\flash-suite-run-3.junit.xml",
+    "recordedAtUtc": "2026-11-02T13:26:01.5952159Z"
+  }
+]

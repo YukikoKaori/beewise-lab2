@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED",
+  "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+  "missing": [
+    "ARTEMIS_BASE_URL",
+    "ARTEMIS_DEVICE_SERIAL"
+  ],
+  "recordedAtUtc": "2026-11-02T15:31:48.9114623Z"
+}
