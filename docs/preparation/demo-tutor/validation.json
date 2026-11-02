@@ -1,0 +1,141 @@
+{
+  "recordedAtUtc": "2026-11-02T17:18:57.011769+00:00",
+  "localDate": "2026-11-03",
+  "timezone": "Asia/Bangkok",
+  "status": "PREPARATION ONLY — NOT PUBLISHED",
+  "baseMainSha": "a5d2a5ec9f949d7a3d247a30198b2fcdb5da935c",
+  "proposal": {
+    "documentPath": "tutors/tutor_acd3824aa8734c63ac8827df",
+    "file": "tutor_acd3824aa8734c63ac8827df.proposal.json",
+    "fieldCount": 12,
+    "rawFileSha256": "b3d203fc495d92fa347a2ebb7efd37355965142872d0b479cfc28ca3011b690a",
+    "canonicalUtf8JsonSha256": "51f3d67b68f04c5b7cb22c2e15df5f6fca711cfd574e7a6e14a01230390ee3dc",
+    "canonicalization": "UTF-8 JSON, sorted keys, compact separators, Unicode preserved; hash identifies input only, not publishing approval",
+    "introductionCharacters": 171,
+    "ownerConsent": "Owner supplied exact profile for controlled demonstration and requested docs/proposal commit",
+    "profileValidation": "PASS local model/types/content/filter checks; not factual qualification validation",
+    "tutorVerification": "NOT GRANTED; active=false, verified=false",
+    "documentIdAbsentAtBothInspections": true
+  },
+  "liveCatalog": {
+    "before": {
+      "inspectedAtUtc": "2026-11-02T17:14:24.363Z",
+      "projectId": "beewise-lab-3",
+      "readOnly": true,
+      "writesPerformed": false,
+      "totalTutors": 6,
+      "syntheticTutors": 6,
+      "eligibleTutors": 0,
+      "proposedTutorId": "tutor_acd3824aa8734c63ac8827df",
+      "proposedIdAbsent": true,
+      "inventoryComplete": true,
+      "catalogNameUpdateTimeSetSha256": "11c0a658a54e0658c4ed127ef6556649a3137a13a5aa766d3eb3d6a8c223c995"
+    },
+    "after": {
+      "inspectedAtUtc": "2026-11-02T17:18:10.924Z",
+      "projectId": "beewise-lab-3",
+      "readOnly": true,
+      "writesPerformed": false,
+      "totalTutors": 6,
+      "syntheticTutors": 6,
+      "eligibleTutors": 0,
+      "proposedTutorId": "tutor_acd3824aa8734c63ac8827df",
+      "proposedIdAbsent": true,
+      "inventoryComplete": true,
+      "catalogNameUpdateTimeSetSha256": "11c0a658a54e0658c4ed127ef6556649a3137a13a5aa766d3eb3d6a8c223c995"
+    },
+    "sameNameUpdateTimeSetAtBothInspections": true,
+    "operation": "Read-only list of tutors; exported counts/fingerprint only",
+    "catalogWrites": 0
+  },
+  "localValidation": {
+    "runtimeSource": "Unchanged base-main source plus the local proposal; precommit docs/proposal worktree, not a clean final-HEAD claim",
+    "pubGet": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "pub",
+        "get"
+      ],
+      "sourceSha": "a5d2a5ec9f949d7a3d247a30198b2fcdb5da935c",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T17:14:25.417934+00:00",
+      "durationSeconds": 1.93,
+      "exitCode": 0
+    },
+    "format": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/dart.bat",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "."
+      ],
+      "sourceSha": "a5d2a5ec9f949d7a3d247a30198b2fcdb5da935c",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-02T17:17:11.107234+00:00",
+      "durationSeconds": 2.47,
+      "exitCode": 0
+    },
+    "focusedTests": {
+      "startedAtUtc": "2026-11-02T17:17:00.711741+00:00",
+      "baseSha": "a5d2a5ec9f949d7a3d247a30198b2fcdb5da935c",
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "test",
+        ".dart_tool/demo_tutor_preparation_test.dart",
+        "test/tutor_fixture_test.dart",
+        "test/tutor_repository_test.dart",
+        "test/report_service_test.dart",
+        "test/report_controller_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 26.95,
+      "scope": "Three local proposal assertions using actual model/filter plus existing fixture/catalog/report regressions; no Firebase app, native run or live writes"
+    },
+    "passed": 29,
+    "proposalSpecificAssertions": 3,
+    "existingFixtureCatalogAndReportRegressions": 26,
+    "proposalTestSourceSha256": "8832d274e618c2e389866a0a10ede3af2eb9bf41800260cc6a364ba458fee792",
+    "proposalTestArtifact": "Local ignored .dart_tool/demo_tutor_preparation_test.dart; not a tracked runtime/seed/test change",
+    "proposalCases": [
+      "Exact owner values, 12-key allowlist, false flags, empty unresolved fields, ordinary bounded ID",
+      "Actual Tutor.fromMap defaults and unverified inactive non-synthetic state",
+      "Actual pure search name/subject/area/mode/fee filters; not discovery visibility or live eligibility"
+    ],
+    "flutterVersion": "3.47.8",
+    "dartVersion": "3.13.7",
+    "livePdfTesting": "NOT RUN",
+    "nativeTesting": "NOT RUN",
+    "firestoreEmulatorTesting": "NOT RUN in preparation; no rules/index change"
+  },
+  "inspectedSourceSha256": {
+    "lib/models/tutor.dart": "f1324ff5c5205d962444e57ecec4f5393372d55b57a728d95e856c6d0d454ab3",
+    "lib/services/tutor_repository.dart": "9bd50fc5b6db5cdbac88c08d3b173877922114a800c0b6d57d166c7a673e0ff7",
+    "lib/services/export_service.dart": "bf1681f6ccb93aab00646bdce828ed883fa8c827e5817da6c2e652d082d91b2d",
+    "lib/services/report_data.dart": "905ab656ef5e9d2de709cb7d99692b402aba9bd0b9c1c2efb0bc368e8b7165de",
+    "firebase/firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
+    "docs/design-traceability.md": "0446023321d1a290081cc6925f46c248141d92c23753571d7c7495cfb8042d40",
+    "docs/backend-contract.md": "9432ad323fb2a44bba46ae895ba718965e31932de14fe99af82c93ed176834b7",
+    "docs/workstreams/bao-firestore-reports.md": "d346e96724636ae8cd83ce21383f972b656b33b76fcb7f421df99fe1170cdc1a",
+    "lib/viewmodels/app_providers.dart": "f42f46ba02d9842c1f8cb457993aae8c3ebcaf1e05d630599726438bf973348a",
+    "lib/screens/beewise_screens.dart": "7a99961ddfe8bf6baa30ea2a62bae735ad2568e3e474f77e93a3eef4c8e2d9eb",
+    "lib/widgets/bee_wise_widgets.dart": "fdb9a600d2367090c77afc9f6e03e29218c142928937d3ffa956dac6da8546e6",
+    "scripts/seed-bao-firestore.cjs": "1f73108be57ac4a2dd6b02d029688a87ef9c4f7a855dcf085e9fd13cc08f723a",
+    "test/tutor_fixture_test.dart": "d7ff8ca0c0bd4d677da9e9bc85a9d9fad7c09afc1744f5da20ea0a18d0502dbf",
+    "test/tutor_repository_test.dart": "bb203536c706001a5df474f9d514ef6482bff089d56c173a636e8a6826a2c773",
+    "test/report_service_test.dart": "d0c16408bde94602a78bd0c8cc0ba7f680577e6c443b9cba2ce453fa3fc5c85a",
+    "test/report_controller_test.dart": "685e500410794460947a85ad207b78ab8c419c44f907e334d0dd89ef1e465653"
+  },
+  "boundaries": {
+    "liveFirestoreMutation": false,
+    "sixExistingTutorsChanged": false,
+    "rulesIndexesDeployment": false,
+    "authFcmPdfAnalyticsCrashlyticsChanges": false,
+    "billingStorageAppCheckChanges": false,
+    "automaticSeedImportPath": false,
+    "livePublicationAuthorization": false,
+    "verificationActivationAuthorization": false
+  }
+}
