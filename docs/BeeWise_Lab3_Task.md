@@ -1,372 +1,186 @@
-# BeeWise Lab 3 — Phân công song song: Bảo & Nguyên
+# BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
-> **Mục đích:** Hoàn thành PRM393 Lab 3 theo đề ngày 21/10/2026; làm song song tối đa, **không đụng file, không chờ người kia để bắt đầu**, giữ các sửa bảo mật từ PR #2 đã merge.
-> **Repo:** https://github.com/YukikoKaori/beewise-lab2
-> **PR #2 đã merge:** https://github.com/YukikoKaori/beewise-lab2/pull/2
-> **Trạng thái kiểm tra lại 30/10/2026:** `origin/main` = `12f5322655463fd801d64e4925572d6a3a2bbb82`, merge PR #2. Hai người tạo branch độc lập từ latest main; không tiếp tục branch PR #2.
-> **Firebase:** `beewise-lab-3` / Android `com.beewise.beewise`. Bảo xác nhận có quyền Console; Computer Use hiện đã điều khiển được Chrome đã đăng nhập và xác minh Console đúng project; xem cập nhật Bảo bên dưới. Project `beewise-8ba7c` không thuộc ứng dụng này và không được sử dụng.
-> **Nguồn yêu cầu:** `PRM393 - Lab 3 Cloud-Enabled Mobile App (Firebase, Patrol, AI Code Review).pdf` (18 trang); Figma Lab 2, `handoff/flutter-handoff.md`, `docs/design-traceability.md`.
+> Cập nhật **02/11/2026**. Mentor nhắc: **“Lab3 tập trung vào công nghệ các bạn nhé.”**
+> PR #2 và #3 **đã MERGED**. Phần Bảo đã tích hợp không đồng nghĩa toàn bộ Lab 3 hoàn thành.
+> **Storage BẮT BUỘC nhưng đang DEFERRED theo quyết định chủ project: chưa hoàn thành, chưa live verified, phải giải quyết trước khi nộp đủ yêu cầu.**
 
-## 0. Quy tắc bất di bất dịch
+## 1. Tổng quan và nguồn chuẩn
 
-1. **PR #2 đã merge theo yêu cầu chủ repo.** Giữ các sửa bảo mật; Nguyên và Bảo mỗi người một feature branch/working copy từ latest main, PR riêng target main.
-2. **Không thay đổi file do người kia sở hữu.** Nếu cần interface mới: ghi yêu cầu vào `docs/workstreams/<ten>-handoff.md`, giữ phần của mình chạy được với interface hiện tại, chưa sửa hộ.
-3. **Không dùng chung Firebase test account, dữ liệu cá nhân hay thư mục evidence.** Có thể cùng một Firebase test project nếu cả hai đã có quyền, nhưng dùng test UID, document ID, namespace, Android emulator riêng; tránh đổi Remote Config/rules khi người kia đang ghi evidence.
-4. **Không dựng mock/hard-code hồ sơ gia sư trong submitted build.** Test fixtures chỉ dùng môi trường test và phải ghi nhãn. Không tự nâng Blaze, bật billing, chấp thuận terms, deploy rules production, tạo tài khoản thật, hay công bố dữ liệu cá nhân nếu chưa được chủ project cho phép.
-5. Evidence **phải là kết quả chạy thật** (SHA, thời gian, lệnh, device, screenshot/video/console/trace/JUnit). Không ghi PASS cho test mới collect, unit test không thay thế runtime, CI build APK không thay thế việc mở app trên Android.
-6. **Một điểm giao bắt buộc ở cuối:** chạy chung luồng end-to-end và đưa evidence vào report/slides/video. Không thể cam kết *zero dependency* ở bước nộp cuối vì rubric đòi chứng minh cả app hoạt động; nhưng tất cả task phát triển trước bước này được tách file và owner riêng.
+BeeWise chuyển thiết kế Lab 2 thành Flutter dùng dữ liệu thật, có ba luồng người dùng, xử lý lỗi và bằng chứng kiểm chứng được. Ưu tiên sáu dịch vụ Firebase, MVVM, ARTEMIS và demo; không mở rộng payment/backend vượt nhu cầu các luồng đã chọn.
 
-## 1. Chia ownership và ranh giới file
+- **Nguồn kỹ thuật hiện hành:** `PRM393_Lab3_Preparation_Guide_v5_ToiUu.pdf`, bản mentor cung cấp ngoài repo, **25 trang đã đọc đầy đủ**. Dẫn trang v5 bên dưới; không thêm PDF vào PR này.
+- **Thiết kế/phạm vi app:** [handoff Lab 2](../handoff/flutter-handoff.md), [design traceability](design-traceability.md), [architecture](architecture.md), [analytics plan](analytics-plan.md), [backend contract](backend-contract.md), [test plan](test-plan.md), [README](../README.md).
+- **Kết quả hiện hành:** [E1]-[E12] ở mục 12, đọc theo SHA/thời điểm. README, design/test plan, [bao-status](workstreams/bao-status.md) và [Firebase index](../evidence/firebase/manifest.md) còn snapshot cũ; các dòng thiếu Google, 5/7 events, first-login pending hay PR đang mở không phải trạng thái hiện hành.
+- Đề 18 trang cũ chỉ là lịch sử; **không tái sử dụng điểm rubric cũ** như được v5 xác nhận. V5 không nhắc lại mốc “ít nhất 8 màn”; BeeWise vẫn giữ mục tiêu **12 màn Lab 2**. V5 yêu cầu exploration 15-30 phút nhưng không ghi tier “Pro”; **Pro** là cấu hình kế hoạch repo cần giữ khi thực thi.
+- Project đúng: `beewise-lab-3`; Android `com.beewise.beewise`. Chỉ dùng tài khoản/dữ liệu test được phép; không commit credentials, raw UID, token hay khóa mô hình.
 
-| Nhóm | **Bảo (qb) — Cloud + Android/runtime** | **Nguyên — UX + E2E + AI review** |
+## 2. Baseline repository/PR đã xác minh
+
+Đã fetch ngày 02/11/2026; `origin/main` thực tế: `55b11165a6505810f6c66a3736609d3b75aabb34`.
+
+| Mốc | Kết quả đã kiểm chứng |
+|---|---|
+| [PR #1 - Nguyên](https://github.com/YukikoKaori/beewise-lab2/pull/1) | MERGED; app/routes/harness/docs nền. Trong PR #1-#3 chưa thấy PR Nguyên mới hơn; không suy luận tiến độ ngoài repo. |
+| [PR #2](https://github.com/YukikoKaori/beewise-lab2/pull/2) | MERGED; merge `12f5322655463fd801d64e4925572d6a3a2bbb82`. Giữ các sửa security/lifecycle. |
+| [PR #3](https://github.com/YukikoKaori/beewise-lab2/pull/3) | MERGED 02/11/2026; final source HEAD `b338346ce241250cbaaa4fed5c5208caa5290fde`; merge `55b11165a6505810f6c66a3736609d3b75aabb34`. |
+| Local checks PR #3 | Format/analyze/debug APK PASS; **Flutter 66/66**, **Firebase Emulator rules 28/28**, parser 4/4, log/receipt [E1]. Không chạy lại app/cloud trong lượt docs-only này. |
+| [Actions final PR #3 HEAD](https://github.com/YukikoKaori/beewise-lab2/actions/runs/41321277718) | **3/3 SUCCESS**, API xác nhận `headSha=b338346...`; `e2e-harness` collect/check cấu trúc, không phải ARTEMIS runtime. CI docs PR là lần kiểm tra riêng. |
+| [Actions main sau merge](https://github.com/YukikoKaori/beewise-lab2/actions/runs/41384595579) | **3/3 SUCCESS** tại đúng `55b11165...`: flutter-android, firebase-rules, e2e-harness. |
+| Default APK | App source `be2b44515af637db1c7ded6b94797d1cf4adc746`; default `lib/main.dart`, SHA-256 `2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65`; build/install hash khớp, không dùng probe kết luận startup [E2]. |
+| Submission | **PARTIALLY COMPLETE**: Storage, ba flow, QA và bộ nộp chưa đủ bằng chứng. Không giữ merge blocker cũ của PR #3 đã giải quyết. |
+
+Ba cold **process** start API37 đã settle lên Home, process-to-draw **7,070 / 5,127 / 4,563 ms**, không BeeWise ANR, native Flutter first frame được xác nhận. Lần 3 Android báo `WARM` do giữ task nhưng PID mới. Có ảnh thật 360dp/412dp và navigation; warm 412dp 235 ms host wall [E2].
+
+Giới hạn: headless emulator, chưa test release-mode/máy thật/API35-36; bốn lần ngay sau boot trước đó timeout/first draw 36-57 giây. Evidence hỗ trợ contention emulator/host, chưa chứng minh nguyên nhân độc quyền hay Flutter defect. Không gọi là “đã sửa mọi startup”.
+
+## 3. Checklist yêu cầu mentor v5
+
+`[x]` chỉ xác nhận phạm vi có bằng chứng ghi kèm; `[ ]` còn thiếu thực thi hoặc hồ sơ nộp. Owner/status/action ở mục 5-8.
+
+- [ ] **App/ba flow** (v5 tr.1, 4): màn và **3 luồng Lab 2**, dữ liệu thật, loading/data/empty/error/recovery. Source có 12 màn; chưa chứng minh đủ ba flow live. Mốc ≥8 màn thuộc yêu cầu đầu vào/lịch sử, **không được v5 xác nhận lại**.
+- [x] **Kiến trúc** (tr.1, 4): Riverpod/MVVM, View → ViewModel → Service → Firebase SDK; source có provider/controller/service boundary. Nguyên còn audit UI/Figma; kiến trúc không thay E2E.
+- [ ] **Auth** (tr.5-7): Google, auth-state restore, cancel/logout, protected screens, lỗi mạng, ảnh app/Authentication Users Console. Runtime Email/Password + Google đã live verified [E3]; chốt ảnh Console trong gói nộp.
+- [ ] **Storage** (tr.8-10): ít nhất một file (BeeWise dùng PDF), upload `reports/{uid}/...`, progress/download URL/success/error, owner-only rules, unauthorized/offline tests và tệp trong Console. **DEFERRED; bắt buộc, không optional.**
+- [ ] **FCM** (tr.11-13): Android 13+ permission, foreground/background/terminated, inbox/tap; v5 yêu cầu gửi thử từ Console và kiểm tra từ chối quyền. Native delivery/tap/ownership đã verified [E4]; chốt Console-send và denial receipt.
+- [x] **Analytics ≥7 business event types** (tr.14-16): DebugView thật cho `login`, `logout`, `search`, `view_tutor`, `ai_match_no_results`, `sign_up`, `export_report` [E5]. Không đếm SDK auto-events cho đủ bảy.
+- [ ] **Analytics plan/evidence** (tr.15-16): trigger, kiểu tham số, câu hỏi sản phẩm, bước flow, ảnh từng event trong kế hoạch. Plan nhiều hơn bảy event; `upload_report`/workflow events chưa chạy không được gọi verified. Bảo/Nguyên chốt plan theo scope ba flow.
+- [x] **Crashlytics** (tr.17-19): non-fatal từ lỗi Matching thực tế, deliberate fatal, custom keys và signed-in fatal User ID có Console receipts [E6]. Không suy rộng identity của mọi non-fatal hay logout clearing chưa kiểm tra.
+- [ ] **Remote Config** (tr.20-22): ≥2 params đổi hành vi nhìn thấy trên cùng APK; defaults/offline/cache. Thay đổi thực tế và restore verified [E7]; chưa đủ ảnh Console giá trị trước/sau.
+- [ ] **ARTEMIS** (tr.23): ≥10 ca có điều kiện/bước/kết quả; **mỗi ca ≥3 executions**; bao phủ Lab 2, một nhánh lỗi, một tương tác Android native; trace/JUnit/pass rate và kết quả quan sát. Harness 26 ca không thay thực thi [E8].
+- [ ] **Exploration** (tr.23): một session **15-30 phút**, log thời lượng/issue. Repo chọn TC-25 **Pro 20 phút**; chưa có runtime receipt.
+- [ ] **AI Code Review** (tr.24): review PR bằng Copilot/CodeRabbit/tương đương; **≥5 findings thuộc ≥2 nhóm**, file/line, quyết định/lý do; **sửa ≥3 findings accepted**, commit truy vết. V5 không ghi ba commit riêng; self-review hiện có không phải external approval [E9].
+- [ ] **Nộp bài** (tr.25): GitHub, Console/test evidence, design/architecture/analytics docs; **report PDF 8-12 trang, slides PDF 12-15 trang, video 5-10 phút**. Có report PDF/slides PPTX **DRAFT**, chưa verified final/video [E10].
+- [ ] **Ràng buộc BeeWise/Lab 2:** Firestore + strict rules, không submit hard-coded mocks, Figma/responsive **360dp/412dp**. V5 không ghi riêng hai bề rộng hoặc liệt kê Firestore trong sáu dịch vụ.
+
+**Sáu dịch vụ:** Authentication, Storage, FCM, Analytics, Crashlytics, Remote Config. **Firestore là data store theo dõi riêng**; không thay Storage hoặc gọi thành “bảy dịch vụ bắt buộc” của v5.
+
+## 4. Ownership và ranh giới file
+
+| Phạm vi | Bảo | Nguyên |
 |---|---|---|
-| Phần việc chính | 6 Firebase services, dữ liệu Firestore, quy trình tin cậy, chạy APK/thiết bị, console evidence | 12 màn/Figma + responsive, widget/accessibility, ARTEMIS, AI review, trình bày kết quả |
-| Được sửa | `firebase/**`, `android/**`, `lib/services/**`, `lib/viewmodels/**`, `lib/models/**`, `lib/main.dart`, `pubspec.yaml`/lock, `docs/analytics-plan.md`, `docs/backend-contract.md` | `lib/screens/**`, `lib/widgets/**`, `lib/theme/**`, `lib/app/bee_wise_app.dart`, `e2e_test/**`, `docs/design-traceability.md`, `docs/test-plan.md`, `docs/code-review.md` |
-| Evidence riêng | `evidence/firebase/**`, `evidence/android/**`, `evidence/cloud/**` | `evidence/ui/**`, `evidence/artemis/**`, `evidence/ai-review/**` |
-| Notes riêng | `docs/workstreams/bao-*.md` | `docs/workstreams/nguyen-*.md` |
-| Không đụng | UI screen/theme/widgets, ARTEMIS scripts và AI-review docs | Firebase rules/config, auth/messaging/storage services, viewmodels, android config, package files |
-| Chung — **để cuối** | `README.md`, `docs/architecture.md`, `docs/lab3-report.md`, `report/**`, `slides/**`, `output/**`, demo video/link | **Không edit song song.** Nguyên chịu trách nhiệm bản final report/slides/video sau khi nhận bản evidence manifest đã đóng băng từ Bảo; Bảo review tính đúng của các khẳng định cloud. |
-
-**Sau PR #2:** mỗi người fetch latest main và chỉ sửa file mình sở hữu. Không còn phải chờ PR #2; giữ nguyên notification ownership/route validation và các rules đã sửa. Không chỉnh tài liệu final chung trong lượt Bảo.
-
-## 2. BẢO — Task độc lập (Cloud + Android)
-
-## Reliability corrective validation — 2026-10-31 (latest)
-
-Application source: `be2b44515af637db1c7ded6b94797d1cf4adc746`.
-This update supersedes the historical status entries below. Final delivery HEAD
-and its CI are recorded in PR #3 description; no merge or new PR.
-
-- **B-01 PARTIALLY COMPLETE:** same-signer default APK build/install PASS without
-  data clearing. Native A first-login PASS on default entrypoint; B/Google PASS on
-  explicit debug diagnostic entrypoint using the same production services/UI.
-  A session restore, actual A/B foreground FCM receipt/tap and managed logout PASS.
-  Role failure stays on account-check; restored network plus explicit retry returns
-  Home. Final default APK reinstall hit a genuine input ANR/slow startup; subsequent
-  relaunch renders Home. Failure evidence retained; clean cold-start is not PASS.
-- **B-02 scoped checks COMPLETE:** actual native authenticated A→B, B→A, Google→A
-  each allow own server Parent read and deny foreign Parent/application/devices
-  reads: **9/9 permission-denied**, no Admin bypass. Live malicious writes NOT RUN.
-  Existing strict rules/index and approved SHA configuration preserved; no deploy.
-  Six labeled synthetic tutors preserved; no new tutor/request/payment records.
-- **B-03 PARTIALLY COMPLETE:** FCM race reproduced and fixed with generation guards
-  and acknowledgement deadline; first-login A/B/Google succeed without retry or
-  restart. Exactly one owner-authorized test signup and Parent confirmed. Analytics
-  **7 distinct business events** have real DebugView receipts, adding `sign_up`
-  (`method=password`, `account_type=parent`) and guest `export_report`
-  (`subject_count=1`, `file_size_kb=16`). Google `login(method=google)` verified.
-  UID-clear acceptance remains **NOT VERIFIED**: later guest event's DebugView
-  properties still show prior dedicated UID. No successful clear claim.
-  Local PDF is real (16,419 bytes); Storage upload stays **DEFERRED**. Prior real
-  Crashlytics and RC receipts retained; not rerun or substituted with unit tests.
-- **B-04 PARTIALLY COMPLETE:** transient role reads use bounded server reads and
-  fail closed; unit/native retry PASS. Trusted payments/official schedules still
-  require backend/provider and are **BLOCKED**, with no client privilege changes.
-- **B-05 PARTIALLY COMPLETE:** formatter/analyzer PASS; Flutter **64/64**; Firebase
-  Emulator rules **28/28**; APK build PASS; application HEAD CI **3/3 PASS**.
-  Final evidence HEAD checks must match newest PR SHA. Actual client negative
-  probe and aliased logs are reviewable; originals private on D. ARTEMIS/external
-  review/physical hardware **NOT RUN**; staging/App Check out of scope. No Nguyen
-  UI/router/theme/review/presentation edits. **NOT MERGE READY** overall.
-
-Primary current manifest: `evidence/cloud/reliability-validation.json`.
-Root cause, implementation and regressions: `docs/workstreams/bao-reliability.md`.
-
-## Google live verification follow-up — 2026-10-31 (historical)
-
-**B-01/B-03 PARTIALLY COMPLETE:** actual dedicated Google sign-in, parent
-creation, signed-in Profile, process-death session restore, managed logout and
-guest cold relaunch **PASS** on isolated `emulator-5558`, current same-signer
-APK. Provider `google.com`, sign-in 08:17:19.108Z and parent creation
-08:17:21.874249Z corroborate actual UI; Users metadata alone is not Auth proof.
-Google installation appeared only under its owner after relaunch; managed logout
-removed it while A/B registrations stayed empty and all parent records survived.
-Initial automatic Google registration remained pending until relaunch: **OPEN**
-reliability finding, consistent with earlier B retry. A transient role read after
-the diagnostic crash failed closed; explicit retry restored Home/Profile.
-
-**B-02:** exact approved SHA registration and additive Android OAuth config
-verified; strict rules/index remain as previously authorized and deployed. No new
-rules, provider, Storage, App Check or billing changes. Authenticated cross-UID
-malicious client denial remains **NOT RUN**; IAM snapshots do not establish it.
-
-**B-04:** new deliberate fatal received in actual Firebase Console at displayed
-3:21:38 PM, Android 17 / version 0.1.0(1). Crashlytics Data > User ID hashes to
-the dedicated Google UID alias; custom keys inspected. Broad browser metadata
-ID matches were rejected; only the visible User ID leaf was compared. Fatal
-persisted keys describe the prior nonfatal diagnostic, not its trigger. Google
-Analytics method and logout UID-clear are **NOT VERIFIED**. Previously verified
-five business Analytics event types remain five of seven; SDK events do not
-close the gap. Native first-request spinner and stale callback failure retained;
-fresh user-operated Google retry succeeded without credentials being collected.
-
-**B-05:** formatter/analyzer PASS, Flutter **59/59**, Firebase Emulator rules
-**28/28**, APK build/install PASS; application/config and prior evidence HEAD CI
-3/3 PASS. Final evidence HEAD CI is checked after push. Original authenticated
-screenshots are private on D; sanitized XML, metadata, screenshot hashes and
-guest/error images are reviewable. Emulator debug/display/network settings restored.
-No Nguyen UI/theme/router/ARTEMIS/review/final-presentation edits. Storage remains
-**DEFERRED** for team discussion. App Check, trusted backend/payment/official
-schedules, staging, physical device, ARTEMIS and external review remain
-**BLOCKED/NOT RUN** as applicable. Overall **PARTIALLY COMPLETE**.
-
-Primary receipt: `evidence/cloud/google-runtime-validation.json`; account
-snapshots `evidence/cloud/google-user-*.json`; runtime `evidence/android/logs/google-*`.
-
-## Computer Use Console follow-up — 2026-10-31 (historical)
-
-**PARTIALLY COMPLETE.** Computer Use now controls the existing authenticated
-Chrome Firebase tab. Actual Console evidence from `beewise-lab-3` supersedes the
-previous browser-unavailable and no-receipt statements below.
-
-- **B-01:** Existing same-key APK on isolated `emulator-5558` relaunched; actual
-  guest TEST search, labeled synthetic tutor detail and AI empty result captured.
-  Detail retest now PASS. System UI ANR recurred on boot; retained, not fixed.
-  Original display/network/Analytics debug settings restored after testing.
-- **B-02:** Existing approved strict rules/Auth evidence preserved. Exact installed
-  APK certificate hashes and guarded commands prepared in
-  `docs/workstreams/bao-google-sha-plan.md`; owner SHA permission and a dedicated
-  Google account remain pending. No Google login claim or shared OAuth mutation.
-  Authenticated cross-UID Firestore client denial remains NOT RUN.
-- **B-03:** DebugView shows five distinct business event types: `login` with
-  `method=password`, `logout`, `search`, `view_tutor` with
-  `entry_source=profile_route`, and `ai_match_no_results`. Three additional SDK
-  types (`screen_view`, `notification_foreground`, `notification_receive`) do not
-  complete the seven-business-event requirement. Crashlytics actually contains
-  the deliberate fatal test and real matching-disabled handled failure; inspected
-  keys include `app_area=beewise_mobile` and matching error reason/exception.
-  Signed-in Crashlytics user association remains NOT RUN. Historical Profile
-  crash and binder ANR retained. RC Console shows empty configuration landing,
-  consistent with prior API restore; version number is not visible. **Storage is
-  explicitly DEFERRED by user for team discussion; no bucket/billing action.**
-- **B-04:** Existing 59 Flutter/28 emulator rules and secure server-trusted payment
-  and official schedule gates preserved. No app/rules code change this turn;
-  no paid AI invocation or backend/staging completion claimed.
-- **B-05:** New actual receipts and sanitized Android logs indexed in
-  `evidence/cloud/console-runtime-validation.json`. Unmodified Console screenshots
-  stay private on D with public SHA-256 receipts because browser/account chrome
-  contains identifying information. Nguyen UI/theme/router/ARTEMIS/review/final
-  presentation untouched. ARTEMIS/external review/physical hardware NOT RUN.
-
-Public native proof: `evidence/android/screenshots/console-search-submitted.png`,
-`console-tutor-detail.png`, `console-ai-no-results.png`. Failed first taps and
-System UI ANR are classified separately in the manifest. No uninstall/data clear.
-Final pushed HEAD/CI are reported in the handoff; earlier checks remain historical.
-
-## Approved deployment and actual Android follow-up — 2026-10-31
-
-**PARTIALLY COMPLETE.** Owner approved the exact frozen strict Firestore bundle.
-28/28 emulator tests rerun PASS before deploy. Additive chats index reached READY
-before rules release; both deploy commands exited 0. Active ruleset
-`2aff57c1-3693-4bfa-9cd2-d77471ef08d6` matches repository normalized SHA-256
-`759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578`.
-Missing own `tutorApplications/{uid}` lookup is now present. No Storage/provider/
-billing change, weak rollback, record deletion or rules weakening was performed.
-
-Actual Email/Password account A login after release created its parent profile;
-force-stop/relaunch restored the SDK session. This exposed a real blank-name
-Profile crash. Owner authorized exactly the fallback exception: six regressions
-PASS (three failed before correction), full Flutter 59/59, format/analyzer and
-debug APK build PASS. Same-signer install `-r` preserved A's data. Source APK
-`9657d1b2f0c57a425298aab58fefbccb7119ac47`, SHA-256
-`c963e08a7684c54bbc0893524a9a6e9168a38350b9fdfe08ff9475eeb4ef2701`.
-Fixed restored Profile and managed logout PASS; A's own device registration was
-removed and guest inbox emptied. B login/profile/session restore/logout PASS;
-A inbox is absent under B, A profile unchanged, same installation belongs only
-to B after explicit retry, and both registrations are absent after B logout.
-Initial B automatic registration remained pending; manual retry recovered it.
-This is a retained reliability finding, not an automatic-registration PASS.
-B received its exact foreground probe; new-APK 360dp/412dp and guest offline
-cache/reconnected Search were captured. Original device settings restored.
-
-Real FCM API sends plus exact probe IDs on device establish foreground receipt,
-background notification/tap and verified process-death notification/cold-start
-Search routing. Malformed URL and inaccessible chat taps keep Profile visible.
-An earlier terminated attempt retained its PID and is explicitly NOT counted.
-API acceptance alone is never treated as delivery. Original authenticated PNGs
-remain private on D; sanitized XML/logs and non-identifying screenshots are public.
-
-Google provider became enabled externally and owner-supplied web OAuth config
-was preserved separately; Android SHA registration/Google runtime remain BLOCKED.
-No Storage bucket/release; billing disabled. Analytics DebugView/Crashlytics
-Console receipts, staging, trusted payment/staff backend, ARTEMIS and external
-review remain NOT RUN/BLOCKED. Previous live Remote Config publish/restore remains
-valid; all six labeled synthetic tutor records remain preserved and unverified.
-
-Receipts: `evidence/cloud/authorized-deploy-*.json`, `firestore-release-state.json`,
-`test-users-*.json`, `fcm-*.json`, `checks/authorized-profile-final/`, and
-`evidence/android/logs/auth-*`. Four real unauthenticated private reads were
-denied; those and IAM snapshots are not authenticated cross-UID client tests.
-
-**Snapshot 30/10 trước deployment (lịch sử):**
-**Cập nhật Bảo 30/10/2026:** audit trước sửa tại `docs/workstreams/bao-initial-audit.md`; trạng thái thực thi và blocker tại `docs/workstreams/bao-status.md`. Đã sửa BAO-A01/A02/A03 trong ba commit riêng; 45 Flutter tests và 27 Firestore/Storage emulator tests PASS. Không đánh dấu hoàn thành các checklist live dưới đây chỉ bằng unit test. Chưa có dedicated test account: các ca cần đăng nhập giữ BLOCKED theo xác nhận của Bảo. Fixture có nhãn và Remote Config tạm đổi/có hoàn nguyên được phép, đã tạo 6 fixture Firestore có nhãn `[TEST]`, verified=false; Remote Config chưa đổi vì runtime mới đang BLOCKED bởi signing key. Live API xác nhận Google provider/SHA chưa cấu hình, chưa có Storage bucket/billing, rules đang deploy khác repo và thiếu chat index; chưa deploy thay đổi nào.
-
-### B-01 [P0] Android runtime, APK, thiết bị và minh chứng
-
-**2026-10-31 — PARTIALLY COMPLETE:** APK source `9657d1b`, same-signer install giữ dữ liệu PASS. A login/profile/session restore/logout đã chạy thật; crash Profile blank-name được owner cho ngoại lệ sửa đúng fallback, 6 regression PASS. Guest navigation/offline recovery 360dp/412dp có evidence trước đó; B login/profile/restore/logout, inbox isolation và viewport 360dp/412dp trên APK mới đã chạy thật; B registration ban đầu pending, retry mới PASS. Boot SystemUI ANR giữ nguyên là finding.
-
-- [x] Toolchain/debug APK PASS từ app source `9ef5907`; cài và mở APK mới trên AVD riêng `emulator-5558` ở D. Không gỡ/xóa dữ liệu package cũ; native PNG/log tại `evidence/android/`.
-- [ ] Test emulator/device tại **360dp và 412dp**; logcat, thao tác điều hướng, login/logout, lỗi mạng; ghi lại crash, overflow, thao tác không phản hồi.
-- [ ] Chụp screenshot thật cho các luồng có dữ liệu và các trạng thái loading/empty/error; không chỉnh giả screenshot.
-- [ ] Lưu `evidence/android/README.md` + device spec, version, SHA, APK hash, screenshots và lệnh chạy.
-- [ ] Lỗi **UI thuần** ghi `docs/workstreams/bao-ui-handoff.md` để Nguyên sửa, không tự sửa `lib/screens/**`.
-
-**Done khi:** APK chạy trên thiết bị, có runtime evidence và danh sách lỗi/retest; hoặc blocker cụ thể kèm log chính xác nếu không có thiết bị.
-
-### B-02 [P0] Firebase Auth + Firestore + nguồn dữ liệu thật
-
-**2026-10-31 — PARTIALLY COMPLETE:** Owner cho phép đúng strict bundle; 28/28 Emulator PASS trước deploy, index READY trước rules, live hash khớp repo. A đăng nhập sau release và tạo parent profile thật; logout gỡ own device. B login/profile/restore/logout PASS; inbox A không lộ ở B, ownership chỉ ở B sau retry; authenticated cross-UID client denial vẫn NOT RUN. Bốn guest private-read denials chạy thật, không thay cho authenticated cross-UID test. Google provider enabled bên ngoài; SHA/Google runtime BLOCKED. Sáu TEST tutor giữ nguyên, unverified.
-
-- [ ] Dùng project do chủ repo sở hữu, kiểm tra project ID khớp `google-services.json`; chuẩn bị **tài khoản test** độc lập, không đưa mật khẩu vào repo.
-- [ ] Cấu hình Google Sign-In Android (OAuth/SHA/support email) nếu có quyền; kiểm thử sign-in, cancel, sign-out, session restore và profile recovery.
-- [ ] Tạo dữ liệu gia sư **được phép sử dụng và có nguồn gốc rõ ràng** trong Firestore để demo tìm kiếm, chi tiết và request; không công khai dữ liệu mock của Figma như dữ liệu gia sư đã xác minh.
-- [ ] Test quyền truy cập dữ liệu giữa 2 UID và role applicant/parent; kiểm tra rules hiện hành trên project test so với file repo. Chỉ deploy khi được phép.
-- [ ] Lưu Firebase Auth Users screenshot, Firestore/rules evidence đã che thông tin nhạy cảm, log thao tác và test UID dạng ẩn danh.
-
-**Done khi:** Auth và dữ liệu live hoạt động, có ảnh/log xác minh; tính năng nào bị OAuth/quyền truy cập chặn phải ghi BLOCKED, không được gọi PASS.
-
-### B-03 [P0] 6 dịch vụ Firebase — chứng minh bằng Console + app
-
-**2026-10-31 — PARTIALLY COMPLETE:** A Email/Password/profile/restore/logout và FCM foreground/background/process-death delivery + tap Search đã xác minh trên thiết bị, route malformed/inaccessible chat bị chặn. RC publish/restore đã chạy thật. Storage bucket không có, billing tắt; Analytics DebugView/Crashlytics Console/Google runtime NOT RUN/BLOCKED. B inbox/registration isolation quan sát thật PASS sau retry; B automatic registration pending được ghi là reliability finding.
-
-- [ ] **Authentication:** đủ signed-in/signed-out, Google native account picker/cancel, sign-out xóa session riêng tư.
-- [ ] **Cloud Storage:** tạo PDF từ tutor đang hiển thị; upload `reports/{uid}/...pdf`, progress, download URL, rules cross-user deny, console file list. Nếu Spark không có bucket thì ghi blocker và đề nghị giảng viên giải pháp được duyệt; **không tự nâng Blaze**.
-- [ ] **FCM:** test foreground/background/terminated, Android 13+ permission, in-app list, tap đúng route; test account switch không lộ notification/push.
-- [ ] **Analytics:** tối thiểu 7 events theo `docs/analytics-plan.md`, mỗi event có DebugView evidence; không gửi PII/free text.
-- [ ] **Crashlytics:** một non-fatal của luồng lỗi thực + một deliberate crash trên test device, có user ID và custom key trên Console.
-- [ ] **Remote Config:** tối thiểu 2 giá trị thay đổi **hành vi hiển thị** không cần rebuild, có trước/sau + giá trị trên Console.
-- [ ] Mỗi dịch vụ có ảnh trạng thái lỗi/permission/network/cancel nếu liên quan; evidence theo `evidence/firebase/<service>/` và index `evidence/firebase/manifest.md`.
-
-**Done khi:** mỗi yêu cầu có mã nguồn + thao tác thật + minh chứng. Không có điều kiện live thì để NOT RUN/BLOCKED minh bạch.
-
-### B-04 [P1] Luồng tư vấn / học thử / thanh toán / lịch — đúng scope Lab 2
-
-**2026-10-31 — PARTIALLY COMPLETE:** Frozen rules 28/28 PASS trước deploy; full Flutter 59/59, formatter/analyzer/APK PASS. Không dùng unit/emulator để khẳng định live Auth. Payment verification và official schedule giữ server-trusted; trusted backend/staff/provider/staging vẫn BLOCKED.
-
-- [x] Đối chiếu 3 flow Figma/Handoff: search/AI → connect → consultant chat → trial → class revision → invoice → payment verified → official schedule; bảng transition tại `docs/workstreams/bao-workflow-status.md`.
-- [x] Xác minh phần client/rules và phần cần server tin cậy; unit/emulator PASS, backend/staging chưa triển khai, live business flow BLOCKED.
-- [ ] Nếu được phép và Firebase plan hỗ trợ, triển khai **tối thiểu** phần trusted workflow bằng Cloud Functions/Admin SDK hoặc backend test riêng; không phải dựng VPS riêng nếu không cần. Có transaction, authorization, dedupe, không cho client tự đánh dấu `paid`/`verified`.
-- [ ] Nếu Cloud Functions/billing/quyền thiếu: hoàn thiện contract, negative tests + demo rõ trạng thái chờ; báo giảng viên xin cách chứng minh 3 flow end-to-end hợp lệ. **Không coi flow chưa chạy end-to-end là đạt yêu cầu.**
-- [x] Viết `docs/workstreams/bao-workflow-status.md` nêu từng transition, test outcome và blocker.
-
-**Done khi:** phân định rõ các trạng thái đã thực thi, staging/emulator evidence và những chỗ cần xác nhận với giảng viên.
-
-### B-05 [P1] Bàn giao evidence có thể tái sử dụng
-
-**2026-10-31 — PARTIALLY COMPLETE:** Bổ sung receipts deployment có quyền owner, profile regression, APK/hash/install, A Auth lifecycle và FCM thật. Manifest/status phân biệt attempt lỗi với proof hợp lệ. Final SHA/CI ghi tại handoff khi push. Chỉ sửa UI fallback được owner cấp ngoại lệ; không sửa theme/router/ARTEMIS/review/final presentation.
-
-- [x] Viết `docs/workstreams/bao-status.md`: Task ID, PASS/FAIL/NOT RUN/BLOCKED, SHA, tài nguyên test, bằng chứng URL/path, lỗi, bước chạy lại.
-- [x] Không sửa report/slides chung; cung cấp `evidence/firebase/manifest.md` và `evidence/android/README.md` để Nguyên dùng, giữ các ca live chưa chạy BLOCKED.
-
-## 3. NGUYÊN — Task độc lập (UX + ARTEMIS + Review)
-
-### N-01 [P0] Figma fidelity và 12 màn hình Lab 2
-
-- [ ] Audit 12 màn `01 Home` → `12 Official Schedule`, so với `handoff/flutter-handoff.md`/Figma Final UI; check cả 3 flow, path thay thế, loading/empty/error/retry.
-- [ ] Chỉnh **chỉ** `lib/screens/**`, `lib/widgets/**`, `lib/theme/**` và router `lib/app/bee_wise_app.dart` nếu cần; giữ nguyên service/controller APIs hiện tại.
-- [ ] Dùng tokens/theme/reusable widgets; body ≥14sp, tap target ≥48dp, text scale, Vietnamese wrapping, safe area, keyboard, TalkBack semantics.
-- [ ] Widget/golden/layout tests độc lập với Firebase bằng fake providers, không ghi mock vào bản build nộp. Xác minh 360dp/412dp; chụp ảnh test UI hoặc runtime riêng `evidence/ui/`.
-- [ ] Ghi mọi khác biệt Figma ↔ Flutter cùng lý do vào `docs/design-traceability.md`; nếu thay thiết kế thì đồng bộ Figma khi có quyền. Không tự đổi business states/payment gates.
-- [ ] Nếu thấy bug ở `lib/services`/`lib/viewmodels`, ghi `docs/workstreams/nguyen-cloud-handoff.md`, không edit hộ Bảo.
-
-**Done khi:** mapping 12/12 màn, 3 flow, variants/states/semantics, test/UI evidence đầy đủ hoặc có explicit gaps.
-
-### N-02 [P0] ARTEMIS test plan + harness + test execution
-
-- [ ] Review tối thiểu 10 cases theo rubric; repo có kế hoạch TC-01..TC-26. Test coverage phải gồm từng flow Lab 2, alternative/error, Google/native/FCM, từng tab, detail, export/upload, Remote Config, sign-out.
-- [ ] Hoàn thiện các test độc lập trong `e2e_test/**`: assert các giá trị quan sát được, trace IDs, isolation, self-contained preconditions; không chỉ assert `SUCCESS`.
-- [ ] Pin phiên bản ARTEMIS, config bằng environment variables; không commit model API key/test password.
-- [ ] Dùng **emulator/device và test account riêng**; chạy ≥3 lượt **mỗi regression test** khi Firebase/thiết bị đã sẵn sàng; riêng Pro exploratory 15–30 phút; lưu trace/replay/screenshot/JUnit/result table/pass-rate/time/flaky analysis.
-- [ ] Có ít nhất 1 E2E check analytics event qua Logcat/DebugView. Các case FCM thủ công phải có push thật và log riêng từng lượt.
-- [ ] Nếu test cần consultant/invoice/backend mà hiện chưa có, ghi BLOCKED **chỉ các case đó**, vẫn chạy các case độc lập; không sửa backend và không tự gắn PASS.
-- [ ] `docs/test-plan.md` + `evidence/artemis/manifest.md` là phần Nguyên sở hữu. **PR #2 đã merge; tiếp tục trên branch riêng từ latest main**, giữ ownership runner/conftest của Nguyên.
-
-**Done khi:** số lượt, traces và manifest đối chiếu được; report tách test collect vs test chạy thực tế rõ ràng.
-
-### N-03 [P0] AI Code Review theo đề — findings có nguồn gốc
-
-- [ ] Chạy ít nhất **1 AI review tool trên PR**, lưu raw output/transcript/URL, tool và thời điểm (Codex nếu được giảng viên chấp nhận; đề nêu Copilot/CodeRabbit/SonarCloud/Kodus làm ví dụ).
-- [ ] Tối thiểu **5 findings** gắn `file:line`, thuộc ≥2 loại (bug/security/architecture/performance/test gap/maintainability).
-- [ ] Mỗi finding: Accept/Modify/Reject, lý do có căn cứ từ rubric hoặc impact; tối thiểu **3 accepted findings được sửa trong 3 commit riêng** có finding ID. Chỉ sửa findings thuộc file Nguyên sở hữu; findings Cloud đưa vào handoff để Bảo sửa (nếu chọn để tính 3 fix, ghi commit thực tế của Bảo, không nhận vơ).
-- [ ] Update `docs/code-review.md`, lưu `evidence/ai-review/` và công bố tất cả AI tools đã sử dụng. Không bịa external review.
-
-**Done khi:** 5 findings, quyết định và 3 commit minh chứng riêng đáp ứng trang 10, 15 của đề.
-
-### N-04 [P1] Chuẩn bị report/slides/demo — chỉ **khung và script** lúc làm song song
-
-- [ ] Chuẩn bị outline PDF report **8–12 trang**, slide deck **12–15 slide và xuất PDF**, demo script/video **5–10 phút**, theo đề. Dùng đường dẫn riêng `docs/workstreams/nguyen-submission-outline.md` trong giai đoạn làm song song; PR #2 đã merge, ownership `output/**` không đổi.
-- [ ] Tạo bảng `CLAIM → evidence path/console/screenshot/test run`; chừa **MISSING / BLOCKED** nếu Bảo chưa có minh chứng.
-- [ ] Chỉ khi các task chuyên môn đã đóng băng, Nguyên mới là owner tạo **report/**, **slides/** và dựng video thật; Bảo chỉ review phần Firebase, không chỉnh chung file.
-- [ ] Tên file theo đề: `report/Lab03_<StudentID>.pdf`, `slides/Lab03_<StudentID>_slides.pdf`; README có video link. `<StudentID>` phải là mã thật được chủ bài cung cấp, không tự đoán.
-
-**Done khi:** khung nộp đã đầy đủ; bản final chỉ chốt khi nội dung có evidence thật.
-
-### N-05 [P1] Bàn giao QA rõ lỗi không vượt ownership
-
-- [ ] `docs/workstreams/nguyen-status.md`: task checklist, screenshot/trace URLs, SHA, PASS/FAIL/BLOCKED, open bugs, việc cần retest.
-- [ ] Không sửa Firebase hoặc build script; nếu gặp lỗi ở dịch vụ thì báo Bảo bằng issue/handoff có repro.
-
-## 4. Việc được làm NGAY sau khi PR #2 đã merge
-
-**Bảo (branch riêng từ latest main):**
-- Kiểm tra quyền project Firebase và các giới hạn Spark/Storage/Google OAuth; tạo/chọn test account phù hợp nếu được phép.
-- Chuẩn bị Android emulator/device độc lập; build/cài APK đúng SHA, chạy thử và lưu evidence/log dưới `evidence/android/`.
-- Lập `docs/workstreams/bao-status.md` và checklist Firebase Console; sửa lỗi đã xác minh trong ownership Bảo, không deploy rules production khi chưa được phép.
-
-**Nguyên (branch riêng từ latest main; ownership không đổi):**
-- Audit 12 màn và Figma, sửa UI/theme/widgets/router trên feature branch riêng.
-- Chuẩn bị ARTEMIS host/model key local, thiết bị riêng; tiếp tục harness/test files trong ownership Nguyên sau khi cập nhật main đã merge PR #2.
-- Thu thập review transcript thật nếu AI review tool cho phép, chuẩn bị test matrix, report/slides outline và UI evidence ở file riêng.
-
-## 5. Cách làm Git không conflict
-
-```bash
-# Cả hai tự chạy trên clone riêng; không đẩy commit vào PR #2.
-git fetch origin
-# Kiểm tra latest main đã có merge PR #2, GHI SHA đã dùng.
-git rev-parse origin/main
-
-# Máy của Bảo
-git switch -c feat/lab3-bao-cloud-runtime origin/main
-
-# Máy của Nguyên (ở clone riêng)
-git switch -c feat/lab3-nguyen-ux-qa origin/main
-```
-
-- **PR #2 đã merge:** đẩy feature branch riêng, mở PR target `main`; không mở stacked PR vào branch cũ của PR #2.
-- **Trước tích hợp:** mỗi người fetch `main`, cập nhật branch riêng và test lại; review độc lập từng PR rồi mới merge. PR của lượt Bảo này chỉ mở để review, không tự merge.
-- **Không có 2 người cùng chỉnh** `README.md`, `docs/architecture.md`, `docs/lab3-report.md`, `report/**`, `slides/**`, `output/**`. Tài liệu tổng hợp thuộc giai đoạn đóng gói cuối, **Nguyên làm, Bảo duyệt thông tin thuộc scope Bảo**.
-- Những chỉnh sửa liên quan `firebase/**`/`android/**`/`pubspec.*` chỉ Bảo làm; `e2e_test/**`/`lib/screens/**`/`lib/theme/**` chỉ Nguyên làm. Nếu cần thay đổi API chéo, tạo issue với signature dự kiến, không commit file của người kia.
-
-## 6. Giao điểm duy nhất: final integration & submission (không làm song song)
-
-1. **Gate 1 — đã merge:** PR #2 nằm trong `main` tại SHA trên. CI cho feature PR mới vẫn phải kiểm tra theo newest HEAD, không dùng kết quả PR #2 thay thế.
-2. **Gate 2:** PR Bảo + PR Nguyên merge riêng; không có conflict ownership; retest Flutter/Firestore rules/Android.
-3. **Gate 3:** Có Firebase project, device/test account, dữ liệu được phép sử dụng, ARTEMIS key và các flow cần backend; chạy end-to-end thật. Bảo xác nhận cloud/runtime, Nguyên xác nhận UI/E2E. Ghi rõ blocker nào cần giảng viên phê duyệt.
-4. **Gate 4:** Nguyên chốt `docs/lab3-report.md`, `report/Lab03_<StudentID>.pdf`, `slides/Lab03_<StudentID>_slides.pdf`, video 5–10 phút, README link; Bảo kiểm tra tính chính xác của evidence Firebase; kiểm tra mọi link mở được.
-5. **Gate 5:** Nộp repo + report PDF + slides PDF + video link. **Không nộp các DRAFT/PPTX thay thế bản PDF nếu chưa hoàn tất**.
-
-## 7. Đối chiếu rubric để không làm lệch mục tiêu
-
-| Hạng mục theo đề | Điểm | Owner thực thi | Min evidence |
-|---|---:|---|---|
-| Functional: 12 màn, 3 flows, real data + errors | 2.5 | Nguyên (UI/flow), Bảo (data/trusted operations) | Video/screenshot + Firestore records + error paths |
-| Firebase 6 services | 2.0 | **Bảo** | Auth/Storage/FCM/DebugView/Crashlytics/Remote Config Console + app |
-| MVVM / Riverpod | 0.75 | Nguyên audit UI; Bảo giữ service/VM separation | Architecture review + source/tests |
-| UI/UX + 360dp/412dp | 0.75 | **Nguyên** | Figma–app compare + responsive/semantics |
-| ARTEMIS ≥10 cases, ≥3 runs/test + 1 Pro session | 1.5 | **Nguyên** | Real traces, JUnit, pass-rate, exploratory log |
-| AI review ≥5 findings, ≥3 fix commits | 0.5 | **Nguyên** | Raw review, decision table, linked commits |
-| Slides + demo video | 2.0 | **Nguyên** (đóng gói cuối) | PDF slides và video thực tế |
-
-### Tiêu chí báo cáo trạng thái chung
-
-Mọi task cập nhật theo định dạng: `ID | Owner | PASS/FAIL/NOT RUN/BLOCKED | SHA | Evidence link | Blocker/next action`.
-Không dùng `Implemented = PASS`: code hiện diện, CI xanh và end-to-end trên Android là ba cấp chứng minh khác nhau.
-
----
-
-### Kết luận phân công
-
-- **Bảo:** đảm bảo *cloud/data + Android chạy thật + console evidence*.
-- **Nguyên:** đảm bảo *UI/Figma + ARTEMIS chạy thật + AI review + đóng gói nộp bài*.
-- **Không có dependency phát triển trực tiếp** nếu giữ đúng boundary file và API hiện có. Dependency khó tránh duy nhất là **final E2E + report/demo tích hợp**; cần hoàn tất sau khi cả hai workstream có kết quả.
+| Chính | Cloud/data, Android/runtime, secure contracts, Console receipts | UI/Figma/responsive, ARTEMIS/E2E, AI review, report/slides/video |
+| Source | `firebase/**`, `android/**`, `lib/services/**`, `lib/viewmodels/**`, `lib/models/**`, `lib/main.dart`, `pubspec.*` | `lib/screens/**`, `lib/widgets/**`, `lib/theme/**`, `lib/app/bee_wise_app.dart`, `e2e_test/**` |
+| Docs/evidence | `docs/analytics-plan.md`, `docs/backend-contract.md`, `docs/workstreams/bao-*.md`; `evidence/firebase/**`, `evidence/android/**`, `evidence/cloud/**` | `docs/design-traceability.md`, `docs/test-plan.md`, `docs/code-review.md`, `docs/workstreams/nguyen-*.md`; `evidence/ui/**`, `evidence/artemis/**`, `evidence/ai-review/**` |
+| Final integration | Bàn giao/duyệt đúng các claim cloud | Chốt `README.md`, `docs/architecture.md`, `docs/lab3-report.md`, `report/**`, `slides/**`, `output/**`, video sau handoff |
+
+Mỗi người fetch latest main, branch/working copy riêng; không tiếp tục PR #2/#3 đã merge. Không sửa file owner khác nếu chưa thống nhất; interface chéo ghi handoff trước. Docs chung không edit song song. Phối hợp cửa sổ rules/RC, namespace/account/device test riêng; giữ privacy, strict rules, generation/journal/cross-UID/fail-closed protections. Lượt này **chỉ sửa tracker**, không triển khai tính năng hay thay cloud/config.
+
+## 5. Bảng task Bảo (B-01 đến B-05)
+
+| ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
+|---|---|---|---|---|---|---|
+| B-01 | Bảo | Default Android APK; startup/runtime 360dp/412dp | PARTIALLY COMPLETE | Build + ba settled cold-process starts + native UI/navigation [E1] [E2] | Handoff receipts; kiểm tra máy thật/release/API35-36 khi có; giữ immediate-boot limitation | Device/toolchain; không clear userdata/suppress ANR |
+| B-02 | Bảo | Auth + Firestore/role/data thật | PARTIALLY COMPLETE | Email/Password/Google/cancel/restore/logout, role recovery; strict rules/index deployed; **9/9 foreign authenticated reads denied** [E3] [E11] | Chốt Users Console receipt; catalog thật có quyền sử dụng; không gọi fixtures là real product data | Chủ dữ liệu/consent; Nguyên cùng chạy flow |
+| B-03 | Bảo | Sáu Firebase services, nhánh lỗi | PARTIALLY COMPLETE | Năm dịch vụ có scoped runtime/Console proof; B-03.1-6 mục 7; Storage chưa live | Chốt Storage decision và receipts thiếu; không lặp test đã verified khi chưa có lý do | Owner billing/Blaze/bucket; cửa sổ Console |
+| B-04 | Bảo | Trusted business workflows | PARTIALLY COMPLETE; trusted live E2E BLOCKED | Client/rules/unit boundaries có, contract [E12]; trusted producer/payment/schedule chưa live | Chốt ba flow; chỉ trusted staging tối thiểu nếu cần và được phép; không ưu tiên full processor trước Firebase/QA | Mentor/team chốt flow; staff/provider khi cần |
+| B-05 | Bảo | Evidence/integration handoff | PARTIALLY COMPLETE | [E1]-[E7], [E11], hashes/audit; scope probe/default rõ | Bàn giao service → thao tác → SHA/APK/device/time → app/log/Console; bản che PII truy cập được, freeze trước demo | Nguyên nhận; private originals không tự là public link |
+
+**B-02 đã đạt trong scope:** own Parent positive controls; A→B, B→A, Google→A đều bị deny foreign Parent/application/devices qua native SDK. Đây là **read negatives trên debug-only probe**, không Admin bypass hay live malicious-write test. Sáu catalog records là `[TEST]`/synthetic/unverified: đọc từ server nhưng **chưa đủ catalog thật**, AI loại chúng khỏi recommendations.
+
+## 6. Bảng task Nguyên
+
+Đã kiểm tra PR #1-#3, source/routes/docs/artifacts trên latest main. Không có tracked `evidence/artemis/`/`evidence/ai-review/`; API reviews/inline comments ba PR đều rỗng tại lần audit. Chỉ mô tả evidence repo, **không kết luận Nguyên chưa làm ở nơi khác**.
+
+| ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
+|---|---|---|---|---|---|---|
+| N-01 | Nguyên | 12 màn Lab 2, Figma/widgets/theme/router | PARTIALLY COMPLETE | Source/routes, [traceability](design-traceability.md), smoke [E2] | Audit đủ 12 màn với Figma; ghi sai khác/acceptance; smoke Home/Search không chứng nhận toàn UI | Design/handoff + data contract |
+| N-02 | Nguyên | Responsive 360dp/412dp; loading/empty/error/recovery | PARTIALLY COMPLETE | Native widths/guest/offline/role recovery [E2] [E3]; chưa matrix toàn màn | Retest theo màn/flow, font scale/keyboard/safe area/accessibility; sửa UI đúng ownership | APK baseline + Bảo handoff repro |
+| N-03 | Nguyên | ARTEMIS ≥10 ca ×3 + Pro 15-30 phút | NEEDS VERIFICATION (runtime NOT VERIFIED) | 26 ca authored/collected, runner/preflight có; chưa traces/JUnit runtime [E8] | Xác nhận host/key/device riêng; chạy repetitions và TC-25 riêng; review observable state, xuất pass rates | Host/key được phép, data/fixtures, ba flow |
+| N-04 | Nguyên | External AI review ≥5 findings/≥2 nhóm, ≥3 fixes | NEEDS VERIFICATION (external NOT VERIFIED) | Internal findings/fix commits [E9]; chưa external transcript trong repo/PR APIs | Review PR, lưu raw output/dispositions/file-line/fix commits; không đổi nhãn self-review thành external | Tool/account/PR target; human handoff khi cần |
+| N-05 | Nguyên | Final report PDF 8-12 trang, slides PDF 12-15 trang | PARTIALLY COMPLETE | Draft PDF/PPTX/report source [E10]; chưa verified final | Nhận handoff, sửa claim cũ, xuất hai PDF đúng số trang, kiểm tra links | Ba flow, Storage, QA/review thật |
+| N-06 | Nguyên | Demo video 5-10 phút và final links | NEEDS VERIFICATION | [Demo script](demo-script.md); chưa thấy video final/link trong repo | Xác nhận artifact ngoài repo nếu có; quay thật, kiểm tra quyền xem, ghi SHA/giới hạn | App/services sẵn sàng, evidence freeze |
+
+## 7. Ma trận kiểm chứng sáu Firebase services
+
+Mỗi hàng là subtask B-03 riêng. Status xét **đủ receipt v5**, không phủ nhận runtime PASS trong Evidence.
+
+| ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
+|---|---|---|---|---|---|---|
+| B-03.1 Auth | Bảo | Google/Email, restore/cancel/logout, protected/error states, Users Console | PARTIALLY COMPLETE (runtime COMPLETE trong scope) | Native A/B/Google + role/account-check recovery [E3] | Đính kèm/kiểm tra Users Console đã che PII cho gói nộp; không ghi thiếu Google Sign-In | Console access, private handoff |
+| B-03.2 Storage | Bảo | PDF → `reports/{uid}/...` → progress/URL; owner rules, offline/error, Console | **DEFERRED - MANDATORY, NOT COMPLETE / NOT LIVE VERIFIED** | PDF local thật, `export_service.dart`, `firebase/storage.rules`, emulator tests [E1] [E5] | Owner quyết định/ủy quyền billing/Blaze/bucket; sau đó upload/download, cross-UID/offline/retry và Console thật | **Owner decision BLOCKED; code/emulator không thay cloud proof; cần trước final submission đủ chuẩn** |
+| B-03.3 FCM | Bảo | Android 13+ permission/inbox, foreground/background/terminated, tap/ownership | PARTIALLY COMPLETE (delivery/lifecycle scoped COMPLETE) | First-login race fixed; native A/B/Google ownership, 3 states và terminated tap Search [E3] [E4] | Chốt riêng Console-send và permission-denied receipts theo tr.13; giữ generation/journal/quarantine | Account/device, phối hợp sender/Console |
+| B-03.4 Analytics | Bảo | ≥7 business events, DebugView, typed non-PII params/identity | COMPLETE cho minimum bảy loại đã test | Bảy events mục 3; Google method; A→logout→guest→B→logout→guest, guest không `_id`, Console correlation [E5] | Handoff per-event receipts; đối chiếu plan/flow, không gọi mọi planned event verified | Nguyên ghép demo; events Storage/workflow theo task tương ứng |
+| B-03.5 Crashlytics | Bảo | Real non-fatal, deliberate fatal, identity/keys, app recovery | COMPLETE cho scoped Console checks | Matching failure, fatal/custom keys, Google fatal User ID match [E6] | Bản che UID; ghi persisted keys không xác định fatal trigger; không suy rộng non-fatal identity/logout clear | Private originals + handoff |
+| B-03.6 Remote Config | Bảo | ≥2 params đổi UI không rebuild; defaults/offline/cache; Console trước/sau | PARTIALLY COMPLETE (same-APK behavior COMPLETE) | Apply/restore `ai_matching_enabled`, `ai_result_limit`, `home_tutor_limit`; visible gate/limits + tests [E7] | Chốt ảnh Console giá trị trước/sau cùng ảnh app, giải thích fetch/cache; restore sau experiment | Owner authorization, coordinated RC window |
+
+Analytics null clearing đã đủ native FA-SVC removal + complete guest bundles không `_id`, hai guest search tới DebugView. Console có thể giữ property lịch sử; **không tái mở blocker thiếu quyền/UID clearing cũ**, không đổi identity theo stale display. Không có event-level backend export; không suy rộng ngoài scope [E5].
+
+**Firestore riêng:** strict rules/index deployed/verified [E11], native read negatives 9/9 [E3], unit/rules write negatives PASS; live malicious writes chưa chạy. Client không tự tạo verified tutor, paid invoice hay official schedule. Catalog thật và trusted workflow data còn mở ở B-02/B-04.
+
+## 8. Ba flow và evidence công nghệ
+
+Ba flow dưới đây từ traceability/test plan hiện có; không thay bằng ba demo Firebase rời rạc. Nếu thu hẹp flow thứ ba, team xin mentor xác nhận và cập nhật traceability; không tự gọi payment/schedule thành công.
+
+| ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
+|---|---|---|---|---|---|---|
+| F-01 | Nguyên + Bảo | Home → Search/AI → Tutor detail → auth gate → Request → Chat | PARTIALLY COMPLETE | Discovery/Auth native; request/chat source + rules; [test plan](test-plan.md) | Chạy trọn trên catalog thật, kiểm tra Firestore side effects/error/recovery, giữ tutor context qua login | Catalog + safe test parent |
+| F-02 | Nguyên + Bảo | AI matching → tutor thật hoặc no-match/error → retry/Manual Search | PARTIALLY COMPLETE | Empty/disabled recovery + Analytics verified; [matching source](../lib/services/matching_service.dart) loại synthetic data | Nếu giữ AI success, chốt provider/terms/config được phép và catalog thật; ghi output thật | Owner/provider; không tự bật billing/App Check enforcement |
+| F-03 | Nguyên + Bảo | Chat → trial → class revision → invoice → verified payment → official schedule | BLOCKED cho live E2E | Client/rules giữ trust boundary [E12]; chưa trusted producer/provider | Chốt scope công nghệ với mentor; full flow cần staging tối thiểu được phép/receipt-driven state, không tự dựng full processor | Trusted staff/proposals/issuer/provider hoặc scope được mentor duyệt |
+
+Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, thời gian/lệnh, expected/observed, screenshot/video/log/trace, failure/recovery, Console/data link khi cần**. Không ghi PASS từ `SUCCESS`, mock, toast, API acceptance hay JUnit collection đơn lẻ. Không đưa credentials/PII vào model/trace. PDF local và `export_report` **không chứng minh Storage upload**.
+
+## 9. Blockers và quyết định còn mở
+
+1. **Storage bắt buộc / owner defer:** quyết định và ủy quyền billing/Blaze/bucket, rồi cloud evidence. Chưa quyết định thì DEFERRED/BLOCKED, không optional; lượt này không nâng plan, tạo bucket/deploy Storage.
+2. **Catalog/ba flow:** chưa có catalog thật được phép; synthetic records không đủ. Chốt scope Lab 2/trusted staging khi cần; không nới rules demo payment/schedule.
+3. **QA:** Nguyên xác nhận evidence ngoài repo nếu có; repo chưa đủ ARTEMIS traces/JUnit/pass rates, Pro session, external review transcript. Chưa kiểm tra host/key trên máy Nguyên; không kết luận là không có.
+4. **Gói nộp:** Users Console, FCM Console-send/denied permission, RC parameter before/after; chuyển private receipts thành bản chia sẻ đã che PII. DRAFT/PPTX không thay final PDFs/video.
+5. **Android:** immediate-boot API37 và physical/release/API35-36 chưa kiểm tra toàn diện. Giới hạn sau scoped startup PASS, không giữ PR #3 đã merge chờ sửa vô hạn.
+
+## 10. Thứ tự tiếp theo P0/P1/P2
+
+| ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
+|---|---|---|---|---|---|---|
+| P0-1 | Chủ project + Bảo | Quyết định Storage | BLOCKED (implementation DEFERRED) | B-03.2 | Quyết định/ủy quyền billing/Blaze/bucket hoặc ghi rủi ro thiếu v5 trước hạn nộp; chưa được phép không thao tác cloud | Owner decision |
+| P0-2 | Bảo + Nguyên | Catalog/ba flow và evidence handoff | PARTIALLY COMPLETE | B-02/B-04/B-05, [E3] [E12] | Chốt data thật, ba flow và ma trận receipts còn thiếu; bàn giao kết quả đã chốt | Chủ dữ liệu, mentor nếu đổi scope |
+| P0-3 | Nguyên | ARTEMIS/Pro và external review | NEEDS VERIFICATION | N-03/N-04, [E8] [E9] | Xác nhận host/key/device; ≥10 ca ×3 + Pro 15-30 phút; ≥5 findings/≥2 nhóm, ≥3 fixes và commits | Host/key, device/data, review tool |
+| P1-1 | Bảo | Storage live và Console packet | PARTIALLY COMPLETE | B-03.1-6 | Sau authorization: Storage live/error/ownership; chốt Auth/FCM/RC receipts, tránh rerun vô ích | P0-1/P0-2, cửa sổ Console |
+| P1-2 | Nguyên; Bảo review cloud | UI/responsive, final PDFs/video/links | PARTIALLY COMPLETE | N-01/N-02/N-05/N-06, [E10] | Audit UI, integration freeze và đóng gói bản nộp thật | P0-2/P0-3, Storage |
+| P2-1 | Bảo + Nguyên | Mở rộng validation/product nếu scope cần | NEEDS VERIFICATION | B-01/B-04, [E2] [E12] | Physical/release/API35-36 khi có; pagination >100, quota/inbox/backend projection khi cần; không để full payment/backend lấn mandatory Firebase/ARTEMIS/demo | Device hoặc product contract được duyệt |
+
+## 11. Checklist tích hợp và nộp cuối
+
+- [x] PR #2/#3 đã merge; baseline main/source/SHA/CI ghi đúng.
+- [ ] Workstreams cập nhật newest main; checks trên integration HEAD, không dùng PR #3 CI thay kiểm tra code mới.
+- [ ] 12 màn audit Figma, responsive 360dp/412dp đủ scope, loading/empty/error/recovery.
+- [ ] Ba flow Lab 2 chạy E2E thật; không hard-coded submitted catalog/giả payment/schedule.
+- [ ] Sáu Firebase services + Firestore, mỗi service có nhánh lỗi; **Storage upload/URL/Console/ownership live hoàn tất**.
+- [ ] Analytics plan/receipts khớp; Auth/FCM/Crashlytics/RC có gói Console/app/log reviewable, không lộ PII.
+- [ ] ARTEMIS ≥10 ca ×3, Pro exploration 15-30 phút, traces/JUnit/pass rates, phân loại flaky/fail/blocked thật.
+- [ ] External review ≥5 findings/≥2 nhóm; dispositions/lý do và ≥3 accepted fixes có commit truy vết.
+- [ ] Report PDF 8-12 trang, slides PDF 12-15 trang, video 5-10 phút; Bảo duyệt cloud claims, hai người kiểm tra quyền xem links.
+- [ ] Repo/design/architecture/analytics/test docs/evidence index khớp final SHA; không dùng DRAFT/PPTX thay final PDF. Không tự merge PR docs này.
+
+## 12. Evidence references và status conventions
+
+| Ref | Nguồn audit | Phạm vi / cách đọc |
+|---|---|---|
+| [E1] | [Controlled validation](../evidence/cloud/pr3-controlled-validation.json), [check logs](../evidence/cloud/checks/pr3-controlled/) | 66 Flutter / 28 emulator rules / build; không là live Storage/ARTEMIS. |
+| [E2] | [Native manifest](../evidence/android/pr3-controlled/manifest.json), [diagnosis](workstreams/bao-reliability.md) | Default APK/control, widths/first frame/limitations; đọc section mới nhất trước history. |
+| [E3] | [Google runtime](../evidence/cloud/google-runtime-validation.json), [reliability](../evidence/cloud/reliability-validation.json) | Auth, role/FCM fix, 9/9 probe read denials; verdict UID/startup cũ được E2/E5 supersede. |
+| [E4] | [Terminated tap](../evidence/android/pr3-completion/terminated-tap-sequence.json), [follow-up](../evidence/cloud/pr3-followup-validation.json) | Background; terminated PID absent trước send, receiver PID, actual Search 12.84s/18.47s; Home-only cũ không là route proof. |
+| [E5] | [Seven events](../evidence/cloud/reliability-validation.json), [native identity](../evidence/cloud/pr3-identity-native-final.json), [DebugView](../evidence/cloud/pr3-debugview-correlation.json) | Bảy loại là union receipts cũ/mới; null clearing + guest events verified, stale properties không là blocker mới. |
+| [E6] | [Console fatal/non-fatal](../evidence/cloud/console-runtime-validation.json), [fatal identity](../evidence/cloud/google-runtime-validation.json) | Matching failure + deliberate fatal/keys/Google UID; private originals có hashes; không suy rộng non-fatal/logout identity. |
+| [E7] | [RC roundtrip](../evidence/cloud/remote-config-roundtrip.json), [native before/after](../evidence/firebase/remote-config/README.md) | Same-APK gate/limits, defaults và restore; thiếu Console values receipt, không thiếu thay đổi hành vi thật. |
+| [E8] | [Test plan](test-plan.md), [harness](../e2e_test/), [blocked preflight](../evidence/corrective/artemis-latest-blocked.json) | Authored/collect/preflight; chưa committed execution traces/JUnit. Hỏi Nguyên về evidence ngoài repo. |
+| [E9] | [Review record](code-review.md), [PR #2 lifecycle review](pr2-lifecycle-review.md) | Internal Codex findings/fix commits có; external transcript/approval NOT VERIFIED. |
+| [E10] | [Report source](lab3-report.md), [draft PDF](../output/pdf/BeeWise-Lab3-Implementation-Report-DRAFT.pdf), [draft PPTX](../output/presentations/BeeWise-Lab3-Review-DRAFT.pptx), [demo plan](demo-script.md) | History/DRAFT, không phải final submission hay current service baseline. |
+| [E11] | [Rules deploy](../evidence/cloud/authorized-deploy-rules.json), [index deploy](../evidence/cloud/authorized-deploy-indexes.json), [release state](../evidence/cloud/firestore-release-state.json) | Authorized strict bundle, index READY trước rules release; khác local rules tests. |
+| [E12] | [Trusted contract](backend-contract.md), [workflow status](workstreams/bao-workflow-status.md), [UI handoff](workstreams/bao-ui-handoff.md) | Boundaries/history; account/rules blocker cũ superseded E3/E11; trusted live processor chưa proof. |
+
+[E1]: ../evidence/cloud/pr3-controlled-validation.json
+[E2]: ../evidence/android/pr3-controlled/manifest.json
+[E3]: ../evidence/cloud/reliability-validation.json
+[E4]: ../evidence/android/pr3-completion/terminated-tap-sequence.json
+[E5]: ../evidence/cloud/pr3-debugview-correlation.json
+[E6]: ../evidence/cloud/google-runtime-validation.json
+[E7]: ../evidence/cloud/remote-config-roundtrip.json
+[E8]: test-plan.md
+[E9]: code-review.md
+[E10]: lab3-report.md
+[E11]: ../evidence/cloud/firestore-release-state.json
+[E12]: backend-contract.md
+
+**COMPLETE:** hàng có evidence đủ trong scope nêu. **PARTIALLY COMPLETE:** có code/kết quả, thiếu bước/receipt bắt buộc. **NOT STARTED:** đã xác nhận chưa bắt đầu. **BLOCKED:** thiếu dependency cụ thể. **DEFERRED:** owner hoãn, không miễn yêu cầu. **NEEDS VERIFICATION / NOT VERIFIED:** thiếu evidence kết luận, không đồng nghĩa owner chưa làm.
+
+**PASS/FAIL/NOT RUN** mô tả từng phép kiểm tra, không thay status cả task. Phân biệt source, mock/unit, Firebase Emulator rules, CI APK, native emulator, physical device, live Console/service. Giữ evidence gốc/lịch sử tại link; tracker chỉ giữ trạng thái hiện hành, không chép nối snapshots mâu thuẫn.
