@@ -1,0 +1,63 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "b01a5961-a740-49c4-81c1-aeea844dda0f", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+F
+================================== FAILURES ===================================
+__________ test_tc08_registration_validation_does_not_create_account __________
+
+run_flow = <function run_flow.<locals>.run at 0x00000196A3947E20>
+
+    async def test_tc08_registration_validation_does_not_create_account(run_flow):
+        """TC-08; registration validation; signed out, do not submit real personal data."""
+>       observed = await run_flow(
+            case_id="TC-08",
+            start="BeeWise is signed out on Register with all fields blank.",
+            steps=(
+                "Tap the create-account action while leaving all fields blank and "
+                "required consent unchecked. Verify required-field or consent errors "
+                "are visible and registration does not succeed. Do not enter or submit data."
+            ),
+            expected=(
+                '{"register_screen_visible":true,"validation_errors_visible":true,'
+                '"registration_succeeded":false}'
+            ),
+        )
+
+e2e_test\test_account_and_firebase.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:68: in run
+    result: TaskResult = await artemis.run(
+e2e_test\.venv\Lib\site-packages\artemis_client\client.py:328: in run
+    return await self.wait_for_task(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <artemis_client.client.ArtemisClient object at 0x00000196A397B2F0>
+task_id = 'd1bc4675-b103-4856-b011-59166098fd89', timeout = 600
+poll_interval = None
+
+    async def wait_for_task(
+        self,
+        task_id: str,
+        *,
+        timeout: float = 1800.0,
+        poll_interval: float | None = None,
+    ) -> TaskResult:
+        """Wait until a task reaches a terminal state."""
+        if timeout <= 0:
+            raise ValueError("timeout must be greater than zero")
+        interval = self.poll_interval if poll_interval is None else float(poll_interval)
+        if interval <= 0:
+            raise ValueError("poll_interval must be greater than zero")
+    
+        started = time.monotonic()
+        while True:
+            result = await self.get_task(task_id)
+            if result.done:
+                return result
+            elapsed = time.monotonic() - started
+            if elapsed >= timeout:
+>               raise TaskTimeoutError(task_id, timeout)
+E               artemis_client.errors.TaskTimeoutError: Task d1bc4675-b103-4856-b011-59166098fd89 did not finish within 600 seconds
+
+e2e_test\.venv\Lib\site-packages\artemis_client\client.py:292: TaskTimeoutError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_account_and_firebase.py::test_tc08_registration_validation_does_not_create_account
+1 failed, 25 deselected in 601.52s (0:10:01)

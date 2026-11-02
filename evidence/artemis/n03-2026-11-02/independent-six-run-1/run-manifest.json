@@ -1,0 +1,31 @@
+{
+  "batch": "independent-six-run-1",
+  "status": "BLOCKED",
+  "profile": "flash",
+  "requestedRunsPerCase": 3,
+  "selectedCaseIds": [
+    "TC-01",
+    "TC-03",
+    "TC-08",
+    "TC-09",
+    "TC-12",
+    "TC-16",
+    "TC-17"
+  ],
+  "startedCase": "TC-08",
+  "completedCases": [],
+  "blockedCases": [
+    {
+      "attempt": 1,
+      "reason": "Gemini Free Tier daily quota 429 before first UI action",
+      "case": "TC-08",
+      "trace": "40a1eb1f-30dc-403e-9cfa-32c01e3e68f5"
+    }
+  ],
+  "deviceSerial": "emulator-5554",
+  "host": "http://127.0.0.1:8000",
+  "junit": "not produced",
+  "logs": "no runner logs persisted before session cancellation; raw session and trace JSON preserved",
+  "recordedAtUtc": "2026-11-02T15:38:53.661216Z",
+  "notStartedRunCount": 20
+}
