@@ -1,0 +1,14 @@
+{
+  "timestampUtc": "2026-10-31T09:04:52.439Z",
+  "sourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "device": "emulator-5558",
+  "label": "a-role-recovered",
+  "mode": "role",
+  "expectedAccountAlias": "uid-sha256:4a7de057a03aa476",
+  "foreignAccountAlias": null,
+  "result": {
+    "status": "server-confirmed",
+    "applicant": false
+  },
+  "credentialOrDocumentDataExported": false
+}

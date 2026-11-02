@@ -1,0 +1,57 @@
+{
+  "projectId": "beewise-lab-3",
+  "namespace": "bao-lab3-20261030",
+  "action": "Create labeled test tutors only",
+  "authorization": "Explicit user reply permits separate labeled fixtures",
+  "records": [
+    {
+      "documentId": "bao-lab3-20261030-tutor-01",
+      "timestampUtc": "2026-10-30T16:10:46.854Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-02",
+      "timestampUtc": "2026-10-30T16:10:47.041Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-03",
+      "timestampUtc": "2026-10-30T16:10:47.383Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-04",
+      "timestampUtc": "2026-10-30T16:10:47.564Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-05",
+      "timestampUtc": "2026-10-30T16:10:47.686Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    },
+    {
+      "documentId": "bao-lab3-20261030-tutor-06",
+      "timestampUtc": "2026-10-30T16:10:48.019Z",
+      "httpStatus": 200,
+      "status": "PASS",
+      "verified": false,
+      "syntheticTestFixture": true
+    }
+  ],
+  "rollback": "No automatic deletion. Fixtures remain clearly labeled/unverified; removal needs separate user authorization."
+}

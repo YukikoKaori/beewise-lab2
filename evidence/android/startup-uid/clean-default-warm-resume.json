@@ -1,0 +1,18 @@
+{
+  "label": "clean-default-warm-resume",
+  "serial": "emulator-5560",
+  "mode": "warm",
+  "timestampUtc": "2026-10-31T13:49:55.723098+00:00",
+  "userdataCleared": false,
+  "pidBefore": "7225",
+  "amStartWallMs": 422,
+  "amStartExitCode": 0,
+  "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nWarning: Activity not started, its current task has been brought to the front\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 251\r\nComplete",
+  "pidAfter": "7225",
+  "homeUiPresent": true,
+  "anrDialogInUi": false,
+  "screenshotSha256": "58abec174743b8c65b602d429fec582ea7b9cb11ec2c31c632fec6b3a4fc3bd3",
+  "status": "OBSERVED; inspect actual screenshot, post-marker logcat and ANR state before PASS",
+  "evidenceInterpretation": "Home rendered; no ANR dialog observed in this measurement",
+  "requestedModeIsNotAndroidLaunchState": true
+}

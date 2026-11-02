@@ -1,0 +1,33 @@
+control-boot
+11-01 22:10:45.067   624   656 I ActivityManager: Start proc 3951:com.beewise.control.startup_control/u0a236 for next-top-activity {com.beewise.control.startup_control/com.beewise.control.startup_control.MainActivity}
+11-01 22:10:53.759   624   646 I ActivityTaskManager: Displayed com.beewise.control.startup_control/.MainActivity for user 0: +9s173ms
+
+bee-settled-1
+11-01 22:15:22.473   624   656 I ActivityManager: Start proc 4422:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+11-01 22:15:29.543   624   646 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +7s145ms
+
+control-settled-1
+11-01 22:17:50.473   624   656 I ActivityManager: Start proc 4900:com.beewise.control.startup_control/u0a236 for next-top-activity {com.beewise.control.startup_control/com.beewise.control.startup_control.MainActivity}
+11-01 22:17:53.612   624   646 I ActivityTaskManager: Displayed com.beewise.control.startup_control/.MainActivity for user 0: +3s164ms
+
+bee-settled-2
+11-01 22:18:06.015   624   656 I ActivityManager: Start proc 5196:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+11-01 22:18:11.142   624   646 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +5s194ms
+
+control-settled-2
+11-01 22:18:24.330   624   656 I ActivityManager: Start proc 5549:com.beewise.control.startup_control/u0a236 for next-top-activity {com.beewise.control.startup_control/com.beewise.control.startup_control.MainActivity}
+11-01 22:18:27.779   624   646 I ActivityTaskManager: Displayed com.beewise.control.startup_control/.MainActivity for user 0: +3s526ms
+
+bee-settled-3
+11-01 22:18:39.878   624   656 I ActivityManager: Start proc 5810:com.beewise.beewise/u0a235 for bound-service {com.beewise.beewise/com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService}
+11-01 22:18:44.441   624   646 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +4s516ms
+
+control-settled-3
+11-01 22:18:57.593   624   656 I ActivityManager: Start proc 6154:com.beewise.control.startup_control/u0a236 for next-top-activity {com.beewise.control.startup_control/com.beewise.control.startup_control.MainActivity}
+11-01 22:19:00.845   624   646 I ActivityTaskManager: Displayed com.beewise.control.startup_control/.MainActivity for user 0: +3s294ms
+
+bee-412-cold
+11-01 22:19:39.407   624   656 I ActivityManager: Start proc 6448:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}
+11-01 22:19:44.188   624   646 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +4s841ms
+
+bee-412-warm

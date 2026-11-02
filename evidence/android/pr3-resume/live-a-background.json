@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:00:03.549174+00:00",
+  "label": "live-a-background",
+  "pid": "2824",
+  "screenshotSha256": "e3299ce92f2f6fd7ab551e85dfef4502cd8d1716db0959f9dfdf4da4d71e6dca",
+  "hasTestNotification": true,
+  "searchRoute": false,
+  "hasAnrDialog": false,
+  "notificationProbeIds": [
+    "bao-pr3-background-1793534378696"
+  ],
+  "privateImage": true,
+  "selectedTabs": [],
+  "initialHeuristicSuperseded": "Search text in navbar alone is not route evidence; selected tab and actual screenshot must agree."
+}

@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T08:24:13.370997+00:00",
+  "sourceSha": "b053591848ea40d1c30b1a6b798580b5c67163f3",
+  "action": "tap",
+  "label": "google-logout-profile-open",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "648",
+        "1460"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

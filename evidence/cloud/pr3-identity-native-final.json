@@ -1,0 +1,148 @@
+{
+  "recordedAtUtc": "2026-11-01T12:11:17.190474+00:00",
+  "privateLogSha256": "35b1e1ff661bbdfcc1b39d08e80a88aa74c3211a5fb1027dec81ddc299301590",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "11-01 18:57:33.849",
+      "servicePid": "2051"
+    },
+    {
+      "nativeLogTime": "11-01 19:02:36.138",
+      "servicePid": "2051"
+    },
+    {
+      "nativeLogTime": "11-01 19:02:36.224",
+      "servicePid": "2051"
+    },
+    {
+      "nativeLogTime": "11-01 19:02:36.294",
+      "servicePid": "2051"
+    },
+    {
+      "nativeLogTime": "11-01 19:05:52.292",
+      "servicePid": "2051"
+    },
+    {
+      "nativeLogTime": "11-01 19:05:52.328",
+      "servicePid": "2051"
+    },
+    {
+      "nativeLogTime": "11-01 19:05:52.405",
+      "servicePid": "2051"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "11-01 18:58:27.905",
+      "servicePid": "2051",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "login",
+          "timestampMillis": "1793534306992",
+          "parameters": {
+            "method": "password"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-01 19:02:35.803",
+      "servicePid": "2051",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "logout",
+          "timestampMillis": "1793534555197",
+          "parameters": {}
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-01 19:04:03.341",
+      "servicePid": "2051",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "search",
+          "timestampMillis": "1793534642257",
+          "parameters": {
+            "filter_count": "1",
+            "outcome": "empty",
+            "sort_mode": "relevance",
+            "result_count": "0",
+            "query_length": "4"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-01 19:04:52.657",
+      "servicePid": "2051",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:564b131109a53e16"
+      ],
+      "events": [
+        {
+          "name": "login",
+          "timestampMillis": "1793534692099",
+          "parameters": {
+            "method": "password"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-01 19:05:51.588",
+      "servicePid": "2051",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:564b131109a53e16"
+      ],
+      "events": [
+        {
+          "name": "logout",
+          "timestampMillis": "1793534750975",
+          "parameters": {}
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-01 19:06:46.781",
+      "servicePid": "2051",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "search",
+          "timestampMillis": "1793534805975",
+          "parameters": {
+            "filter_count": "0",
+            "outcome": "results",
+            "sort_mode": "relevance",
+            "result_count": "6",
+            "query_length": "3"
+          }
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}

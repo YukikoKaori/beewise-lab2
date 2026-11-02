@@ -1,0 +1,34 @@
+{
+  "timestampUtc": "2026-10-30T22:02:11.077260+00:00",
+  "sourceSha": "9ef5907b2d296fcdafaa869a53e9780692f4cc56",
+  "action": "resize",
+  "label": "corrective-360",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "density",
+        "320"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "wm",
+        "size",
+        "720x1600"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

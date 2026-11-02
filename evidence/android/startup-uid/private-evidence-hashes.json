@@ -1,0 +1,385 @@
+{
+  "files": [
+    {
+      "privateFileName": "clean-default-cold-412-am-start.txt",
+      "bytes": 179,
+      "sha256": "49cf6c444b9d2e99d6ef93bfd2640fb559435509409632b878031d66a655d1d9"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-complete-live-logcat.txt",
+      "bytes": 13914766,
+      "sha256": "1d00fd6685222685c4f1559ae9b9a785519e2e93366f5a862fb739c448d3720f"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-complete-logcat.txt",
+      "bytes": 13618573,
+      "sha256": "2af15a15351a0a4ceb93a84e0520cc49656f6cc3b443468b46bc968d57d2c57a"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-cpu-after.txt",
+      "bytes": 3433,
+      "sha256": "5845d0c1326ca87832fdcfa0f9bcc2c40506e8e469fc06d340c97cbe1abdcdec"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-cpu-before.txt",
+      "bytes": 2341,
+      "sha256": "36767bbc21ea40ed3fcd1b368228d7a8bbe6b5564b02303110952c41be497080"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-gfxinfo.txt",
+      "bytes": 8833,
+      "sha256": "04f4e724f7e3486f813f7a88cd39e6f47a15264811f3e592f09cf7b0587209f0"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-lifecycle-before.txt",
+      "bytes": 32431,
+      "sha256": "5d94b05583646e2e308e1bfe48d943ae95d35d10685d268a3c6773226b45f329"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-memory-before.txt",
+      "bytes": 30410,
+      "sha256": "fcd86cd628be206f653ae7cffaaeeef3d4166d93c38d97178182302002ec0e0b"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-ui-dump-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "privateFileName": "clean-default-cold-412-window.txt",
+      "bytes": 19318,
+      "sha256": "f686c3755761e94409686f95dcd192af13e46da0ef67db2a54936205ba67ca7b"
+    },
+    {
+      "privateFileName": "clean-default-cold-412.png",
+      "bytes": 172599,
+      "sha256": "4dd3f3c68a028534ad271b00e84df00d582b2f9fb479025a2edc348b33f38292"
+    },
+    {
+      "privateFileName": "clean-default-cold-am-start.txt",
+      "bytes": 176,
+      "sha256": "dc197cae8835e859e2c0720117c661233e56f401a6a43055231174e373eccd24"
+    },
+    {
+      "privateFileName": "clean-default-cold-complete-live-logcat.txt",
+      "bytes": 8850485,
+      "sha256": "e9cedc2007e2c1896a58ee750043c8740b107fcb57895a167f92eb0f53d69b88"
+    },
+    {
+      "privateFileName": "clean-default-cold-complete-logcat.txt",
+      "bytes": 8848983,
+      "sha256": "272c212f8554583059b21204ed6f865fcfc9013f0a5eaa37fa54db3772cd2917"
+    },
+    {
+      "privateFileName": "clean-default-cold-cpu-after.txt",
+      "bytes": 9102,
+      "sha256": "b7ad8c36635bd06e1e7fb12217800d4b4c2f86545205cb88dc26ef83d77dc04f"
+    },
+    {
+      "privateFileName": "clean-default-cold-cpu-before.txt",
+      "bytes": 4172,
+      "sha256": "9bf2beff0a09584115aac63ae2968ba63b11efd7d073c59237c4f971814779a7"
+    },
+    {
+      "privateFileName": "clean-default-cold-gfxinfo.txt",
+      "bytes": 220,
+      "sha256": "8b20daa0b3582cae01a342a4a9143699d54a8b14cef849ef584adbb7f6675192"
+    },
+    {
+      "privateFileName": "clean-default-cold-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "clean-default-cold-lifecycle-before.txt",
+      "bytes": 27280,
+      "sha256": "b4ba0020fc52009425a1e45975269eea9921d83dc476f56affaea42b048cd540"
+    },
+    {
+      "privateFileName": "clean-default-cold-memory-before.txt",
+      "bytes": 124,
+      "sha256": "883e797526461055d4ae4119ee3ec73951b6ce0bf57a2da7d4ba563b490b7f38"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-am-start.txt",
+      "bytes": 179,
+      "sha256": "c2813bb1c513390ca94872f73a5e716b9006ab5c67c2e577cbda173095355853"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-complete-live-logcat.txt",
+      "bytes": 13545912,
+      "sha256": "79d8cdb9ff8b873a261e8ee6b517e9522251043e352f47ab25db9305ee3d010d"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-complete-logcat.txt",
+      "bytes": 13545700,
+      "sha256": "85f6a73f6cac1a4c0b260a02343efb2efdb45173c570b4dbcf283e1ce38af16d"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-cpu-after.txt",
+      "bytes": 2341,
+      "sha256": "f16204bfad1eb78a062c3ac0010925a036ce62ac86cd526c78e9f0b64e4c6d80"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-cpu-before.txt",
+      "bytes": 4768,
+      "sha256": "2232d44a3095176aaef44345d9747c7d3fd704285a6bf002c58ecb4969399544"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-gfxinfo.txt",
+      "bytes": 8831,
+      "sha256": "8f98d5321f2d9c027da857c23a9475da2559a82c363776b50f97c8e22321273c"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-lifecycle-before.txt",
+      "bytes": 32553,
+      "sha256": "9dbfa9ecf25290da9a3f7b47c10b94f712394b6d088595f8270ce10dc3fc0643"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-memory-before.txt",
+      "bytes": 29988,
+      "sha256": "09a92ad636ffd3f90bc997568254335dd8a449f662b9d879697b63d43e19c8ac"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-ui-dump-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled-window.txt",
+      "bytes": 19031,
+      "sha256": "162bf6a5fb618aa32ac6c6f1fbc3b6bf2bc298332a07ac7aa6794db5f39c21fc"
+    },
+    {
+      "privateFileName": "clean-default-cold-settled.png",
+      "bytes": 123453,
+      "sha256": "d95535331a8b2cbde196c7591b87d37067c585d66d71c248313f1b952c7e455f"
+    },
+    {
+      "privateFileName": "clean-default-cold-ui-dump-status.txt",
+      "bytes": 59,
+      "sha256": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228"
+    },
+    {
+      "privateFileName": "clean-default-cold-window.txt",
+      "bytes": 18673,
+      "sha256": "404a1d0a7ee7c07eae1bcb776acbd5e1b5dce099023c19e56a218683848a8202"
+    },
+    {
+      "privateFileName": "clean-default-cold.png",
+      "bytes": 24102,
+      "sha256": "4f481583a74a47985e1f69a80c05379b8b546a57aaf9b112b5624687bf30aa60"
+    },
+    {
+      "privateFileName": "clean-default-install-install.txt",
+      "bytes": 38,
+      "sha256": "c4aa470acafcf8576c15b0f0b5ae7e852d1ec5413372d0e6a9272e788e1306d3"
+    },
+    {
+      "privateFileName": "clean-default-warm-am-start.txt",
+      "bytes": 179,
+      "sha256": "35c9a89baa3b8c13404a64ff590c6ee74f03d1adf98c2bdbc0c2b2146fdd46e1"
+    },
+    {
+      "privateFileName": "clean-default-warm-complete-live-logcat.txt",
+      "bytes": 13175424,
+      "sha256": "c70da9ca9c053248c4f15a1e62ea89284228a4e38a9172d82eb7bbd69b94029e"
+    },
+    {
+      "privateFileName": "clean-default-warm-complete-logcat.txt",
+      "bytes": 13175048,
+      "sha256": "cce22734b38271940a1fb2441248dec72f8fe30b11e913dbbb140ce16aa5772b"
+    },
+    {
+      "privateFileName": "clean-default-warm-cpu-after.txt",
+      "bytes": 3178,
+      "sha256": "a1ce92900e99df459bd3959ee41efebc0a708324b80dafa7ea3699d2f4f5568a"
+    },
+    {
+      "privateFileName": "clean-default-warm-cpu-before.txt",
+      "bytes": 7964,
+      "sha256": "c8e4df9886602883831085dac741dc3aaf56fa40de783e3d461313ead183b289"
+    },
+    {
+      "privateFileName": "clean-default-warm-gfxinfo.txt",
+      "bytes": 8837,
+      "sha256": "344d890085478db0c4a7ff05885e9a0dc0feb5959388f0e68a5b6ebe5771a23f"
+    },
+    {
+      "privateFileName": "clean-default-warm-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "clean-default-warm-lifecycle-before.txt",
+      "bytes": 27569,
+      "sha256": "571e2bb94b44858c7bb1ad54efb8fe01f150f3bd1a0678550253e78d7da547d7"
+    },
+    {
+      "privateFileName": "clean-default-warm-memory-before.txt",
+      "bytes": 29570,
+      "sha256": "1cd92e03b4693d0f9878102fb44d8883fb053990d2d285d2a445b150afae75f1"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-am-start.txt",
+      "bytes": 247,
+      "sha256": "722e53a9b8a80a177e1f368e209d566804c88aa06bedaae50247d285de4a63b1"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-complete-live-logcat.txt",
+      "bytes": 13330497,
+      "sha256": "4525d076bc72f0dd922f75101b572e79c04220c48ef455b8d5c0f427a7b8ec31"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-complete-logcat.txt",
+      "bytes": 13330285,
+      "sha256": "715526f72dce88a06571ca3557f4f6e16328fcaeeb9d0102659baf5b898253b4"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-cpu-after.txt",
+      "bytes": 4767,
+      "sha256": "538989b0053dfeca054b811f9547ecb314c762d3d90bc4be9a283d93c6049ac3"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-cpu-before.txt",
+      "bytes": 3178,
+      "sha256": "007046c62d413b889a81a1ea1e7ff2e5c849ea592d121780becb07d50c59f76d"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-gfxinfo.txt",
+      "bytes": 9360,
+      "sha256": "74d130ea83dd2d2e394132c6f70d5cc974a1e399de5205bf4dd7bb475463ef40"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-lifecycle-before.txt",
+      "bytes": 32425,
+      "sha256": "dc091db978ddef10e90154404c5efcba2bc80913b1fbf52e5cc23ca169aa23d6"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-memory-before.txt",
+      "bytes": 29988,
+      "sha256": "c3957ecd76937faa3b5c997bf6bbc5e68841ed0d311a180719ac700d76445904"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-ui-dump-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume-window.txt",
+      "bytes": 18897,
+      "sha256": "e275735260ebaa40b2c2b65d24084492d371347ace4d71f4c9c8202b5d0752c6"
+    },
+    {
+      "privateFileName": "clean-default-warm-resume.png",
+      "bytes": 123465,
+      "sha256": "58abec174743b8c65b602d429fec582ea7b9cb11ec2c31c632fec6b3a4fc3bd3"
+    },
+    {
+      "privateFileName": "clean-default-warm-ui-dump-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "privateFileName": "clean-default-warm-window.txt",
+      "bytes": 18767,
+      "sha256": "3e32f249ed6c8c4d9ad8ab7ded5e91b9240a82d61691b5cebbef0696174bb938"
+    },
+    {
+      "privateFileName": "clean-default-warm.png",
+      "bytes": 123329,
+      "sha256": "886768342979c1a0533387dc59539e3d5f0277d170ebb1562c2421cbee2f61e6"
+    },
+    {
+      "privateFileName": "clean-reboot-bugreport.zip",
+      "bytes": 4862961,
+      "sha256": "9cc5611f205fe3c270a0a9cc66124bd5471926d4b9a0d6374ff4b84e05646fa0"
+    },
+    {
+      "privateFileName": "clean-reboot-complete-logcat.txt",
+      "bytes": 4404461,
+      "sha256": "520381eff100cea6dd047c42b5e92ebc915810154086700aef198a1650e9a687"
+    },
+    {
+      "privateFileName": "clean-reboot-cpu.txt",
+      "bytes": 5353,
+      "sha256": "ad664a0d4605f14b4733df40cfe4d11c22f74609c147249cc6ef7be3d00057ec"
+    },
+    {
+      "privateFileName": "clean-reboot-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "clean-reboot-processes.txt",
+      "bytes": 13120,
+      "sha256": "8bfaefbfb8e7fc1d524686e474ed4ee626d096c973403e0216a60d02043a6014"
+    },
+    {
+      "privateFileName": "old-activities.txt",
+      "bytes": 54378,
+      "sha256": "82568c266bd37fde0818c5ac309e8319e0c5b0bc9b080dafc891c0eae634a001"
+    },
+    {
+      "privateFileName": "old-bugreport.zip",
+      "bytes": 9707571,
+      "sha256": "01b1df025e9d3985655f66b689593200e16b13463a684076087f2a6746ffb6d8"
+    },
+    {
+      "privateFileName": "old-complete-logcat.txt",
+      "bytes": 24822125,
+      "sha256": "d82c86b274d1c28145b9f0fc29e3a6e4c1c82ea6a6ec0bd2fcc47e1fff1ecabd"
+    },
+    {
+      "privateFileName": "old-cpu.txt",
+      "bytes": 2314,
+      "sha256": "4a62cd746c42aef99e66b60d8d3834788fb08c569dbb393e63cf3e319270e841"
+    },
+    {
+      "privateFileName": "old-dropbox-anr.txt",
+      "bytes": 199619,
+      "sha256": "351bd3bfde15907b9088f7e4b1b16da6e3ed85f2692a5f42bd2471bea2bfe649"
+    },
+    {
+      "privateFileName": "old-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "privateFileName": "old-main-thread.txt",
+      "bytes": 155,
+      "sha256": "00c6503587208130211f9ef2b8045cd46944a3091eb9701d05aeac65909080fe"
+    },
+    {
+      "privateFileName": "old-memory.txt",
+      "bytes": 28252,
+      "sha256": "9b99848c611f4fd87993ffead5503a0a28371c728b12a68ef23b211b4f65d6c7"
+    },
+    {
+      "privateFileName": "old-processes.txt",
+      "bytes": 213143,
+      "sha256": "7b859a47b8eeb104a084c6e7754020a2c2aa37ba8fcbd62296eeef8ccd1f01d2"
+    },
+    {
+      "privateFileName": "old-window-displays.txt",
+      "bytes": 34616,
+      "sha256": "9cee9804cecccb39e3e2e1d2f273eab4a6d135bc9434ff2a4b5a9319eb7725df"
+    }
+  ],
+  "reasonPrivate": "Complete bugreports/logs can contain credentials, identities and unrelated device data. Public excerpts omit those fields."
+}

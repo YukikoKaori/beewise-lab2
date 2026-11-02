@@ -1,0 +1,71 @@
+{
+  "recordedAtUtc": "2026-10-31T14:06:07.709708+00:00",
+  "prHeadAtStart": "dd5be3aa7e71db62a744dc379c6de3d503a4c7a3",
+  "mainSha": "12f5322655463fd801d64e4925572d6a3a2bbb82",
+  "applicationSourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "apkSha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+  "defaultEntrypoint": "lib/main.dart",
+  "probeExtensionPresent": false,
+  "userdataCleared": false,
+  "originalAvdPreserved": true,
+  "anrDetectionSuppressed": false,
+  "oldAnr": {
+    "pid": 20604,
+    "focusTimeoutMs": 5020,
+    "mainThreadState": "R",
+    "mainStack": "ART transition / nativePollOnce / MessageQueue / Looper",
+    "mainSchedstatCpuNs": 21437982843,
+    "mainSchedstatRunnableWaitNs": 29781570416,
+    "bindApplicationMs": 12514,
+    "activityDispatchMs": 32661,
+    "laterDialog": "ANR reported for old PID 20604 after it was force-stopped and PID 20952 started; do not confuse it with a second app ANR",
+    "rootCause": "System-wide scheduling/ART/GMS contention is evidenced; an application deadlock or Dart main blocking is not proven."
+  },
+  "cleanInitialBoot": {
+    "firstLaunch": "Timed out; splash first, Home later; initial failure retained",
+    "gmsUpdate": "Android killed BeeWise PID 4848 at 20:47:41.824 due to GMS package update",
+    "settledProcessColdFirstDrawMs": [
+      4604,
+      4550,
+      4837
+    ],
+    "warmResumeWaitMs": 251,
+    "measurements": [
+      "evidence/android/startup-uid/clean-default-cold.json",
+      "evidence/android/startup-uid/clean-default-warm.json",
+      "evidence/android/startup-uid/clean-default-warm-resume.json",
+      "evidence/android/startup-uid/clean-default-cold-settled.json",
+      "evidence/android/startup-uid/clean-default-cold-412.json"
+    ],
+    "viewports": [
+      "evidence/android/screenshots/startup-clean-360.png",
+      "evidence/android/screenshots/startup-clean-412.png"
+    ]
+  },
+  "cleanRebootDuringBuild": {
+    "status": "FAIL environment control; not a clean app startup PASS",
+    "cpuLoad": "37.03 / 13.55 / 4.93 on 2 vCPUs",
+    "systemAnrsBeforeBeeWiseStarted": [
+      "phone",
+      "System UI",
+      "Google Play services",
+      "keyboard",
+      "media provider",
+      "search interactor",
+      "Android System Intelligence",
+      "Pixel Launcher",
+      "Photos"
+    ],
+    "beeWiseStartedAt": "21:01:28.738",
+    "limitation": "Heavy local build overlapped boot; retained as resource-confounded observation, not proof of an app regression."
+  },
+  "earlierApkComparison": {
+    "status": "NOT RUN native comparison",
+    "sourceSha": "6ba751968c285daac443cb86e86af32185d2606a",
+    "apkSha256": "38b5312db84237af2424a144cfe704f1150dea4103e37c75fd84d11add33bdb9",
+    "signerSha256": "6885ea333c378d6d9813b963efdc5981b6eac43877295adc8362a645d2df50c6",
+    "currentSignerSha256": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+    "reason": "Retained earlier CI APK has another signer and is not established as a known-working native APK. Do not uninstall existing packages or call CI a runtime control."
+  },
+  "applicationChange": "None: no reproducible app root cause established; no delays, ANR masking or identity workaround added."
+}

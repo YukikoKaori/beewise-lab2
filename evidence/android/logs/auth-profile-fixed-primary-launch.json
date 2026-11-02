@@ -1,0 +1,38 @@
+{
+  "timestampUtc": "2026-10-31T03:47:47.532769+00:00",
+  "sourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "action": "launch",
+  "label": "auth-profile-fixed-primary",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "force-stop",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "--display",
+        "0",
+        "-n",
+        "com.beewise.beewise/.MainActivity"
+      ],
+      "exitCode": 0,
+      "output": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 6049\r\nWaitTime: 6084\r\nComplete\r\n"
+    }
+  ]
+}

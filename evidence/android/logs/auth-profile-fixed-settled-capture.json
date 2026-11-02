@@ -1,0 +1,50 @@
+{
+  "timestampUtc": "2026-10-31T03:46:36.192409+00:00",
+  "sourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "action": "capture",
+  "label": "auth-profile-fixed-settled",
+  "records": [
+    {
+      "imagePath": "D:\\CodexTemp\\beewise-lab3-tools\\bao-runtime\\auth-profile-fixed-settled.png",
+      "imageSha256": "543f258824a69ccd6bbf51333a37a04a8bb9b8fb104281dc2dbfc0cd2f8844c9",
+      "privateImage": true
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "UI hierchary dumped to: /sdcard/bao-ui.xml\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "cat",
+        "/sdcard/bao-ui.xml"
+      ],
+      "exitCode": 0,
+      "output": "<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation=\"0\"><node index=\"0\" text=\"\" resource-id=\"\" class=\"android.widget.FrameLayout\" package=\"com.google.android.googlequicksearchbox\" content-desc=\"\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" scrollable=\"false\" long-clickable=\"false\" password=\"false\" selected=\"false\" bounds=\"[0,0][720,1600]\" drawing-order=\"0\" hint=\"\" /></hierarchy>"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "3670\r\n"
+    }
+  ]
+}

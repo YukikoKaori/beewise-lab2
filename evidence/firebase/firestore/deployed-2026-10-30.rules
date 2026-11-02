@@ -1,0 +1,122 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isParent(parentId) { return signedIn() && request.auth.uid == parentId; }
+
+    // Tutor profiles are managed by trusted staff/backend; clients can only read active profiles.
+    match /tutors/{tutorId} {
+      allow read: if resource.data.active == true;
+      allow write: if false;
+    }
+
+    match /parents/{parentId} {
+      allow read: if isParent(parentId);
+      allow create, update: if isParent(parentId)
+        && request.resource.data.keys().hasOnly(['displayName', 'phone', 'email', 'createdAt', 'updatedAt'])
+        && request.resource.data.displayName is string
+        && (!('phone' in request.resource.data) || request.resource.data.phone is string)
+        && request.resource.data.email == request.auth.token.email;
+      allow delete: if false;
+
+      match /devices/{deviceId} {
+        allow read: if isParent(parentId);
+        allow create, update: if isParent(parentId)
+          && request.resource.data.keys().hasOnly(['installationId', 'platform', 'updatedAt'])
+          && request.resource.data.installationId == deviceId
+          && request.resource.data.platform == 'android';
+        allow delete: if isParent(parentId);
+      }
+    }
+
+    match /connectionRequests/{requestId} {
+      allow create: if signedIn()
+        && request.resource.data.parentId == request.auth.uid
+        && request.resource.data.status == 'submitted'
+        && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'chatId', 'learningGoal', 'area', 'schedule', 'note', 'status', 'createdAt'])
+        && request.resource.data.tutorId is string
+        && get(/databases/$(database)/documents/tutors/$(request.resource.data.tutorId)).data.active == true
+        && request.resource.data.chatId is string
+        && request.resource.data.learningGoal is string
+        && request.resource.data.area is string
+        && request.resource.data.schedule is string
+        && request.resource.data.learningGoal.size() <= 500
+        && request.resource.data.area.size() <= 120
+        && request.resource.data.schedule.size() <= 300
+        && (!('note' in request.resource.data) || (request.resource.data.note is string && request.resource.data.note.size() <= 500));
+      allow read: if signedIn() && resource.data.parentId == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /chats/{chatId} {
+      allow read: if signedIn() && resource.data.parentId == request.auth.uid;
+      allow create: if signedIn()
+        && request.resource.data.parentId == request.auth.uid
+        && request.resource.data.consultantQueue == true
+        && request.resource.data.onboardingStatus == 'connection_pending_consultant'
+        && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'consultantQueue', 'participantRoles', 'connectionRequestId', 'onboardingStatus', 'createdAt', 'updatedAt'])
+        && request.resource.data.connectionRequestId is string
+        && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.parentId == request.auth.uid
+        && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.chatId == chatId
+        && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.tutorId == request.resource.data.tutorId;
+      allow update, delete: if false;
+
+      match /messages/{messageId} {
+        allow read: if signedIn()
+          && get(/databases/$(database)/documents/chats/$(chatId)).data.parentId == request.auth.uid;
+        allow create: if signedIn()
+          && getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId == request.auth.uid
+          && (
+            (request.resource.data.senderId == request.auth.uid
+              && request.resource.data.role == 'parent'
+              && request.resource.data.kind == 'text'
+              && request.resource.data.keys().hasOnly(['senderId', 'senderName', 'role', 'kind', 'body', 'createdAt', 'delivery'])
+              && request.resource.data.body is string
+              && request.resource.data.body.size() > 0
+              && request.resource.data.body.size() <= 4000)
+            || (messageId == 'request_created'
+              && request.resource.data.keys().hasOnly(['senderId', 'senderName', 'role', 'kind', 'body', 'createdAt'])
+              && request.resource.data.senderId == 'system'
+              && request.resource.data.role == 'system'
+              && request.resource.data.kind == 'system'
+              && request.resource.data.body == 'Yêu cầu kết nối đã được gửi. Tư vấn viên BeeWise sẽ tham gia nhóm sau khi xác nhận.')
+          );
+        allow update, delete: if false;
+      }
+
+      match /responses/{responseId} {
+        allow read: if signedIn()
+          && get(/databases/$(database)/documents/chats/$(chatId)).data.parentId == request.auth.uid;
+        allow create: if signedIn()
+          && getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId == request.auth.uid
+          && request.resource.data.parentId == request.auth.uid
+          && request.resource.data.proposalId is string
+          && request.resource.data.type in ['trial_accepted', 'trial_alternate_time', 'class_adjustment_requested', 'class_revision_confirmed']
+          && request.resource.data.keys().hasOnly(['parentId', 'proposalId', 'type', 'alternateTime', 'reason', 'createdAt']);
+        allow update, delete: if false;
+      }
+    }
+
+    match /invoices/{invoiceId} {
+      allow read: if signedIn() && resource.data.parentId == request.auth.uid;
+      allow write: if false; // Trusted payment backend creates and verifies invoices.
+    }
+
+    match /paymentVerificationRequests/{requestId} {
+      allow create: if signedIn()
+        && request.resource.data.parentId == request.auth.uid
+        && exists(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId))
+        && get(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId)).data.parentId == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.keys().hasOnly(['invoiceId', 'parentId', 'requestedAt', 'status']);
+      allow read: if signedIn() && resource.data.parentId == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /classes/{classId} {
+      allow read: if signedIn() && resource.data.parentId == request.auth.uid
+        && resource.data.paymentStatus == 'verified';
+      allow write: if false;
+    }
+  }
+}

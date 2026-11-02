@@ -1,0 +1,13 @@
+{
+  "command": [
+    "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\dart.bat",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "."
+  ],
+  "nativeExitCode": 0,
+  "scope": "Final unchanged production source; lifecycle test title clarified",
+  "originalLogSha256": "346cb8d7415f7089b63c9bc183a202e93e12cbebcf35900ae2359ff883c4ce39",
+  "publicLogProjection": "Trailing line whitespace normalized; original log preserved privately"
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+    "test",
+    "test/analytics_identity_lifecycle_test.dart",
+    "--reporter",
+    "expanded"
+  ],
+  "nativeExitCode": 0,
+  "scope": "Final unchanged production source; lifecycle test title clarified",
+  "originalLogSha256": "eea00cc959ea7052718f482887d4ccca3fb0fa322120787ab7197572eaa3b488",
+  "publicLogProjection": "Trailing line whitespace normalized; original log preserved privately"
+}
