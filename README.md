@@ -1,3 +1,9 @@
+## Current PDF persistence — 2026-11-02
+
+Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval (**owner-reported**). Status: **IMPLEMENTED — LIVE VERIFICATION PENDING**. PDF ≤500 KiB, one immutable parent-owned document at `reports/{uid}/files/{reportId}`, transaction acknowledgement plus server read before success, authenticated server download and local share/open. Firebase Storage dependencies and active emulator/deployment configuration are removed. No billing upgrade, bucket or new backend. [Implementation, security, tests and live prerequisites](docs/workstreams/bao-firestore-reports.md).
+
+Older dated validation/billing/Storage statements below are historical, not current verification of this migration. New checks/CI must match the migration HEAD.
+
 # BeeWise - Lab 2 + Lab 3
 
 Ứng dụng Android Flutter cho phụ huynh tìm gia sư, kết nối qua tư vấn viên,
@@ -57,7 +63,7 @@ npm.cmd ci --prefix firebase --ignore-scripts
 npm.cmd --prefix firebase test
 ```
 
-This uses only Firestore/Storage emulators and the fake `demo-beewise` project.
+This uses only the Firestore emulator and the fake `demo-beewise` project.
 No Firebase login or production deploy is needed. The dev-only lockfile overrides
 three vulnerable transitive packages; `npm audit --prefix firebase` currently
 reports zero vulnerabilities. Production rules remain unmodified remotely.
