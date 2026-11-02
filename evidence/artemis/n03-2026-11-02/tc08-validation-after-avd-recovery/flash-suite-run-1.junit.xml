@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="277.236" timestamp="2026-11-02T22:18:00.420165+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_account_and_firebase" name="test_tc08_registration_validation_does_not_create_account" time="276.965"><failure message="AssertionError: TC-08 failed: failed&#10;assert False&#10; +  where False = TaskResult(task_id='27fb5578-c3c6-4cc8-9372-f7bea3c3f9a6', status='failed', goal='Test case TC-08. Starting point: Bee...equested values as one JSON object.', profile=None, device_serial='emulator-5554', output=None, error=None, turns=None).succeeded">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000024461AA7A60&gt;
+
+    async def test_tc08_registration_validation_does_not_create_account(run_flow):
+        """TC-08; registration validation; signed out, do not submit real personal data."""
+&gt;       observed = await run_flow(
+            case_id="TC-08",
+            start="BeeWise is signed out on Register with all fields blank.",
+            steps=(
+                "Tap the create-account action while leaving all fields blank and "
+                "required consent unchecked. Verify required-field or consent errors "
+                "are visible and registration does not succeed. Do not enter or submit data."
+            ),
+            expected=(
+                '{"register_screen_visible":true,"validation_errors_visible":true,'
+                '"registration_succeeded":false}'
+            ),
+        )
+
+e2e_test\test_account_and_firebase.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+case_id = 'TC-08'
+start = 'BeeWise is signed out on Register with all fields blank.'
+steps = 'Tap the create-account action while leaving all fields blank and required consent unchecked. Verify required-field or consent errors are visible and registration does not succeed. Do not enter or submit data.'
+expected = '{"register_screen_visible":true,"validation_errors_visible":true,"registration_succeeded":false}'
+profile = 'flash', timeout = 600
+
+    async def run(
+        *,
+        case_id: str,
+        start: str,
+        steps: str,
+        expected: str,
+        profile: str = "flash",
+        timeout: int = 600,
+    ) -&gt; dict[str, Any]:
+        goal = (
+            f"Test case {case_id}. Starting point: {start}.\n"
+            f"Steps: {steps}\n"
+            "Use only visible app/device state. Do not invent records or results. "
+            "At the end report the requested values as one JSON object."
+        )
+        result: TaskResult = await artemis.run(
+            goal,
+            profile=profile,  # type: ignore[arg-type]
+            device_serial=artemis.device_serial,
+            locked_app_package=APP_PACKAGE,
+            expected_output=(
+                "Return a JSON object only, matching this observable contract: "
+                + expected
+            ),
+            enable_outputter=True,
+            timeout=timeout,
+        )
+        print(
+            f"ARTEMIS_RESULT case={case_id} trace_id={result.trace_id} "
+            f"status={result.status} device={result.device_serial}"
+        )
+        assert result.trace_id, f"{case_id} has no trace provenance"
+&gt;       assert result.succeeded, f"{case_id} failed: {result.error or result.status}"
+E       AssertionError: TC-08 failed: failed
+E       assert False
+E        +  where False = TaskResult(task_id='27fb5578-c3c6-4cc8-9372-f7bea3c3f9a6', status='failed', goal='Test case TC-08. Starting point: Bee...equested values as one JSON object.', profile=None, device_serial='emulator-5554', output=None, error=None, turns=None).succeeded
+
+e2e_test\conftest.py:85: AssertionError</failure></testcase></testsuite></testsuites>

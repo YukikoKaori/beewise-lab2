@@ -1,0 +1,11 @@
+{
+  "status": "BLOCKED",
+  "case": "TC-08",
+  "attempt": 1,
+  "profile": "flash",
+  "device": "emulator-5554",
+  "traceId": "40a1eb1f-30dc-403e-9cfa-32c01e3e68f5",
+  "reason": "ARTEMIS Flash model gemini-3.5-flash-lite returned Google Generative Language Free Tier daily generate_content quota 429 before completing UI exploration; session cancelled to prevent repeated retries",
+  "junit": "not produced",
+  "recordedAtUtc": "2026-11-02T15:36:13.8816431Z"
+}
