@@ -48,7 +48,6 @@ void main() {
       tester,
     ) async {
       final semantics = tester.ensureSemantics();
-      addTearDown(semantics.dispose);
       tester.view.devicePixelRatio = 1;
       tester.view.physicalSize = Size(width, 800);
       addTearDown(tester.view.resetPhysicalSize);
@@ -80,6 +79,8 @@ void main() {
         findsOneWidget,
       );
       expect(tester.takeException(), isNull);
+      // Flutter verifies open handles before test-level tearDown callbacks.
+      semantics.dispose();
     });
 
     testWidgets(
