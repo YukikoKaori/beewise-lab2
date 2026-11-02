@@ -9,10 +9,10 @@ Android client written in Flutter with Riverpod controllers/providers, GoRouter 
 | `lib/app/` | App setup, routes, notification deep-link subscription |
 | `lib/screens/` | 12 Lab 2 screens plus account/notification tools; loading, empty, error states |
 | `lib/viewmodels/` | Riverpod service providers and async user-intent controllers |
-| `lib/services/` | Firebase Auth, Firestore, AI Logic, Storage/PDF, Analytics, Crashlytics, Remote Config, FCM, tutor applications |
+| `lib/services/` | Firebase Auth, Firestore, AI Logic, Firestore PDF, Analytics, Crashlytics, Remote Config, FCM, tutor applications |
 | `lib/models/` | Tutor and chat message mapping |
 | `lib/theme/` | Figma colors, typography, radius, spacing and components |
-| `firebase/` | Firestore/Storage rules and Remote Config defaults |
+| `firebase/` | Firestore rules/index exemptions and Remote Config defaults |
 | `docs/` | Product, traceability, analytics, test, review and setup decisions |
 | `e2e_test/` | Pinned ARTEMIS Python SDK, pytest fixtures and independent mobile scenarios |
 | `evidence/` | Captured Firebase, device and ARTEMIS evidence; currently awaiting live runs |
@@ -21,7 +21,7 @@ Android client written in Flutter with Riverpod controllers/providers, GoRouter 
 
 Firestore is the selected tutor catalog adapter. Home/search only read documents with `active: true`; the client does not create or edit tutor profiles. AI matching sends the parent’s non-identifying learning description and active tutor facts to Firebase AI Logic, then accepts only IDs present in the Firestore result. Keep prompts free of parent name, email, phone, and chat history.
 
-The parent can create a connection request, send text in their own chat, and append an allowed workflow response. Only trusted consultant/backend services may publish consultant widgets, create invoices, verify payments, and create official class schedules. The client may request payment verification; it never writes a paid/verified status. Storage reports use `reports/{uid}/...` and rules restrict access to that UID.
+The parent can create a connection request, send text in their own chat, and append an allowed workflow response. Only trusted consultant/backend services may publish consultant widgets, create invoices, verify payments, and create official class schedules. The client may request payment verification; it never writes a paid/verified status. PDF reports use immutable `reports/{uid}/files/{reportId}` documents with Base64 and bounded metadata. Rules permit only the authenticated non-anonymous parent owner and deny applicants/cross-UID access; saves require an eligible active, verified, non-synthetic tutor. See [PDF persistence](workstreams/bao-firestore-reports.md).
 
 ```mermaid
 flowchart TD
@@ -30,7 +30,7 @@ flowchart TD
   SVC --> AUTH[Firebase Auth]
   SVC --> DB[Firestore active tutor catalog and parent-owned workflow]
   SVC --> AI[Firebase AI Logic]
-  SVC --> STORE[Firebase Storage]
+  SVC --> REPORTS[Firestore private Base64 PDF documents]
   SVC --> OBS[Analytics, Crashlytics, Remote Config, FCM]
   TRUST[Consultant/payment backend] --> DB
   TRUST -. verified state only .-> UI
@@ -68,7 +68,7 @@ sequenceDiagram
 | `ConnectionController` | `ChatService`, `AnalyticsService`, `CrashReportingService` | Atomic request/chat submission state |
 | `chatMessagesProvider`, `parentChatsProvider`, `ChatComposerController` | `ChatService`, `CrashReportingService`, `AnalyticsService` | Message/chat streams and send state |
 | `WorkflowController`, `invoiceQueryProvider`, `scheduleProvider` | `WorkflowService`, `AnalyticsService`, `CrashReportingService` | Parent responses, invoice and verified schedule streams |
-| `ReportController` | `ExportService`, `AnalyticsService`, `CrashReportingService`, auth state | PDF build, upload progress/result/error |
+| `ReportController` | `ExportService`, `AnalyticsService`, `CrashReportingService`, auth state | PDF generate/encode/save/server-confirmed/download/error stages; raw Auth stream invalidates private state |
 | notification providers | `NotificationService` | Permission, received notification list, opened-route stream |
 
 Screens consume Riverpod state/providers and call intent controllers. Firebase SDK instances are created at the provider composition boundary and injected into service adapters; widgets do not call Firebase SDKs directly. Search filtering is in the repository utility/service layer, not in `build()`.
@@ -95,3 +95,9 @@ payment/schedule transitions and real installation ownership checks.
 Search still caps at 100 active tutors, guest quota persistence remains a product
 decision, and chat activity ordering requires a trusted projection. No backend,
 live AI matching, console evidence or Android layout validation is claimed.
+
+## PDF persistence decision — 2026-11-02
+
+Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval (owner-reported; no written artifact supplied). Firebase Storage is removed from active dependencies/config/tooling; no backend, public PDF URL, billing, bucket or Storage deployment is required. The PDF layout/fonts stay unchanged. A create-only transaction prevents overwrite and offline queuing; success additionally requires a non-cache server read with no pending writes and exact Base64 equality. Original PDF limit: 500 KiB; encoded limit: 682,668 ASCII characters; conservative document budget: 768 KiB. `files.base64Data` is exempted from indexing. Server rules cannot prove full PDF semantic validity; client validates header, canonical Base64 and decoded length.
+
+Current status: **IMPLEMENTED — LIVE VERIFICATION PENDING**. Prior sections dated 2026-10-30 are historical snapshots. Review [current validation and limits](workstreams/bao-firestore-reports.md) before reusing their counts/status.
