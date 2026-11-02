@@ -1,0 +1,14 @@
+{
+  "name": "Hoàng Quốc Bảo",
+  "subjects": ["Toán", "Tin học"],
+  "grades": ["6", "7", "8", "9", "10", "11", "12"],
+  "hourlyFee": 150000,
+  "areas": ["TP.HCM"],
+  "experienceYears": 3,
+  "teachingModes": ["in_person"],
+  "introduction": "Sinh viên Công nghệ thông tin, nhận hỗ trợ học sinh lớp 6–12 học Toán và Tin học. Hình thức dạy trực tiếp tại TP.HCM. Nội dung và lịch học được trao đổi trước khi bắt đầu.",
+  "credential": "",
+  "availability": "",
+  "verified": false,
+  "active": false
+}
