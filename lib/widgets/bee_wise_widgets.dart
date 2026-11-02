@@ -273,6 +273,112 @@ class LoadingStateView extends StatelessWidget {
   );
 }
 
+class OnboardingStepper extends StatelessWidget {
+  const OnboardingStepper({
+    super.key,
+    required this.currentStep,
+    this.completedThrough = -1,
+  }) : assert(currentStep >= 0 && currentStep < 4),
+       assert(completedThrough >= -1 && completedThrough < 4);
+
+  final int currentStep;
+  final int completedThrough;
+
+  static const _steps = ['Học thử', 'Xác nhận lớp', 'Thanh toán', 'Lịch học'];
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    container: true,
+    label:
+        'Tiến trình tư vấn, bước ${currentStep + 1} trên ${_steps.length}: ${_steps[currentStep]}',
+    child: ExcludeSemantics(
+      child: LayoutBuilder(
+        builder: (context, constraints) => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 28,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                    left: constraints.maxWidth / _steps.length / 2,
+                    right: constraints.maxWidth / _steps.length / 2,
+                    child: Row(
+                      children: [
+                        for (var index = 0; index < _steps.length - 1; index++)
+                          Expanded(
+                            child: Container(
+                              height: 2,
+                              color: index <= completedThrough
+                                  ? BeeWiseColors.success
+                                  : BeeWiseColors.borderStrong,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      for (var index = 0; index < _steps.length; index++)
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: CircleAvatar(
+                              radius: 13,
+                              backgroundColor: index <= completedThrough
+                                  ? BeeWiseColors.success
+                                  : index == currentStep
+                                  ? BeeWiseColors.primary
+                                  : BeeWiseColors.canvas,
+                              foregroundColor: index <= completedThrough
+                                  ? Colors.white
+                                  : BeeWiseColors.muted,
+                              child: index <= completedThrough
+                                  ? const Icon(Icons.check, size: 16)
+                                  : Text('${index + 1}'),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (final step in _steps)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                      child: Text(
+                        step,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: step == _steps[currentStep]
+                                  ? BeeWiseColors.primary
+                                  : BeeWiseColors.muted,
+                              fontWeight: step == _steps[currentStep]
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                            ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 class EmptyStateView extends StatelessWidget {
   const EmptyStateView({
     super.key,
@@ -491,9 +597,12 @@ class TutorCard extends StatelessWidget {
                 Semantics(
                   button: true,
                   label: '$actionLabel: ${tutor.name}',
-                  child: FilledButton(
-                    onPressed: onOpen,
-                    child: Text(actionLabel),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 148),
+                    child: FilledButton(
+                      onPressed: onOpen,
+                      child: Text(actionLabel),
+                    ),
                   ),
                 ),
               ],
@@ -594,7 +703,7 @@ class LoadingTutorList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
           child: Container(
-            height: 178,
+            constraints: const BoxConstraints(minHeight: 112),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(BeeWiseRadius.card),

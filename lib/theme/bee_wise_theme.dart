@@ -203,7 +203,7 @@ class BeeWiseTheme {
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-        height: 80,
+        height: 72,
         backgroundColor: BeeWiseColors.surface,
         indicatorColor: BeeWiseColors.highlight,
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
