@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "recordedAtUtc": "2026-11-02T15:46:25.683768+00:00",
+  "recordedAtUtc": "2026-11-02T15:54:02.423046+00:00",
   "status": "IMPLEMENTED — LIVE VERIFICATION PENDING",
   "projectId": "beewise-lab-3",
   "androidPackage": "com.beewise.beewise",
@@ -47,7 +47,7 @@
     "lib/screens/beewise_screens.dart": "7a99961ddfe8bf6baa30ea2a62bae735ad2568e3e474f77e93a3eef4c8e2d9eb",
     "firebase/firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
     "firebase/firestore.indexes.json": "ddfa75d2c5eedbd9dc1ec01257a223712d98cd0444b1877c3b70a1eb1f9c3c26",
-    "firebase/rules.test.cjs": "623b1bd88531739ef69e93583a7414eb3f33618f865e2823af55ba8df70ae7f2",
+    "firebase/rules.test.cjs": "70c3474f325dfcd2f579b2b9bf8092835de1a810d2de7eaeadf9b2eaf97fea6d",
     "firebase.json": "d3c4507a6edb25b165baf86c884789456b52fc35cf2fedf231f07dd401f7fa5b",
     "firebase/package.json": "9bb1f44c432ed6e751018415e25508782ccd45053857fe0a52bb9cc83deeeaf7",
     "pubspec.yaml": "a196a1d97e87ee85515b50e50df5a957692ea9dd1f13d928470437c1520b6750",
