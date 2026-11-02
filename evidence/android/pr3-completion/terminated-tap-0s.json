@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:51:22.751333+00:00",
+  "label": "terminated-tap-0s",
+  "pid": "3796",
+  "screenshotSha256": "5448f183b0b380176daa86b74cfd5a08299078e554008f523ab37f18cb087047",
+  "hasTestNotification": false,
+  "searchRoute": false,
+  "selectedTabs": [
+    "Trang ch\u1ee7\nTab 1 of 5"
+  ],
+  "hasAnrDialog": false,
+  "notificationProbeIds": [],
+  "screenshot": "evidence/android/pr3-completion/terminated-tap-0s.png",
+  "scope": "Actual native UI; Search accepted only after visual review of full Search content plus selected tab."
+}

@@ -1,0 +1,195 @@
+
+> test
+> firebase emulators:exec --config ../firebase.json --project demo-beewise --only firestore,storage "node --test rules.test.cjs"
+
+(node:17964) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+i  emulators: Starting emulators: firestore, storage
+i  emulators: Detected demo project ID "demo-beewise", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
++  firestore: Firestore Emulator was started in standard edition.
++  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: node --test rules.test.cjs
+✔ parent bootstrap can read its missing application without exposing another UID (6939.508ms)
+[2026-11-01T12:56:28.885Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0bfc error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L98
+[2026-11-01T12:56:28.912Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c00 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L98
+[2026-11-01T12:56:29.025Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c01 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L24:32 for 'create' @ L24, evaluation error at L24:32 for 'update' @ L24, false for 'create' @ L24
+[2026-11-01T12:56:29.108Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c02 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L19, false for 'update' @ L19
+✔ tutor application is private, pending, immutable and never self-approves (673.4848ms)
+[2026-11-01T12:56:29.240Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c03 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects approved (130.6227ms)
+[2026-11-01T12:56:29.374Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c04 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects verified (135.5485ms)
+[2026-11-01T12:56:29.513Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c05 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects active (138.9376ms)
+[2026-11-01T12:56:29.642Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c06 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects consent (127.2044ms)
+[2026-11-01T12:56:29.791Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c07 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects fee (149.9397ms)
+[2026-11-01T12:56:29.918Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c08 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects malformed (126.0609ms)
+[2026-11-01T12:56:30.050Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c09 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects name (131.2712ms)
+[2026-11-01T12:56:30.171Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c0a error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects email (120.62ms)
+[2026-11-01T12:56:30.267Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c0b error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L45, false for 'update' @ L98
+✔ tutor application rejects time (96.2273ms)
+[2026-11-01T12:56:30.367Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c0c error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+✔ tutor application rejects extra (99.7577ms)
+[2026-11-01T12:56:30.662Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c0d error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L24:32 for 'create' @ L24, evaluation error at L24:32 for 'update' @ L24, evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L24
+[2026-11-01T12:56:30.714Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c0e error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, evaluation error at L33:34 for 'create' @ L33, evaluation error at L33:34 for 'update' @ L33, false for 'create' @ L45, false for 'create' @ L33
+[2026-11-01T12:56:30.893Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c10 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L102:24 for 'create' @ L102, false for 'update' @ L123, evaluation error at L128:24 for 'create' @ L128, false for 'update' @ L139, evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L128
+[2026-11-01T12:56:31.113Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c13 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, evaluation error at L145:26 for 'create' @ L145, false for 'update' @ L165, false for 'create' @ L145
+[2026-11-01T12:56:31.163Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c14 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:31.220Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c15 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, evaluation error at L216:24 for 'create' @ L216, false for 'update' @ L223, false for 'create' @ L216
+✔ parent and applicant roles cannot be created together in a batch (852.9743ms)
+[2026-11-01T12:56:31.460Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c17 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L38
+[2026-11-01T12:56:31.622Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c19 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L33:34 for 'create' @ L33, evaluation error at L33:34 for 'update' @ L33, false for 'create' @ L33
+✔ applicant can detach only their own pre-application device registration (401.346ms)
+[2026-11-01T12:56:31.936Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c1a error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L24:32 for 'create' @ L24, evaluation error at L24:32 for 'update' @ L24, false for 'update' @ L24
+[2026-11-01T12:56:31.981Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c1d error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L24:32 for 'update' @ L24, false for 'update' @ L24
+[2026-11-01T12:56:32.008Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c1e error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L29
+[2026-11-01T12:56:32.108Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c1f error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L45:24 for 'create' @ L45, false for 'update' @ L98, false for 'create' @ L45
+[2026-11-01T12:56:32.332Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c20 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L33, false for 'update' @ L33
+[2026-11-01T12:56:32.357Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c23 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L33, false for 'update' @ L33
+✔ parent profile and devices enforce UID, email, fields and platform (749.9061ms)
+[2026-11-01T12:56:32.480Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c25 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L24, false for 'update' @ L24
+[2026-11-01T12:56:32.499Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c26 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L45, false for 'update' @ L98
+✔ anonymous identity cannot write parent data (126.4611ms)
+[2026-11-01T12:56:32.717Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c29 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L19
+[2026-11-01T12:56:32.805Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c2a error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L19
+✔ catalog exposes only active records and prohibits all client writes (306.6361ms)
+[2026-11-01T12:56:32.963Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c2c error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L102:24 for 'create' @ L102, false for 'update' @ L123, evaluation error at L128:24 for 'create' @ L128, false for 'update' @ L139, false for 'create' @ L128
+[2026-11-01T12:56:33.047Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c2d error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L102:24 for 'create' @ L102, false for 'update' @ L123, evaluation error at L128:24 for 'create' @ L128, false for 'update' @ L139, false for 'create' @ L128
+[2026-11-01T12:56:33.135Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c2e error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L102:24 for 'create' @ L102, false for 'update' @ L123, evaluation error at L128:24 for 'create' @ L128, false for 'update' @ L139, false for 'create' @ L128, false for 'create' @ L102
+[2026-11-01T12:56:33.205Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c2f error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L102:24 for 'create' @ L102, false for 'update' @ L123, evaluation error at L128:24 for 'create' @ L128, false for 'update' @ L139, false for 'create' @ L128
+[2026-11-01T12:56:33.509Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c33 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L139
+[2026-11-01T12:56:33.576Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c34 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L123
+✔ connection and chat require reciprocal atomic getAfter links (770.317ms)
+[2026-11-01T12:56:33.748Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c36 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L102:24 for 'create' @ L102, false for 'update' @ L123, Null value error. for 'create' @ L102
+✔ request without corresponding chat is denied (171.746ms)
+[2026-11-01T12:56:34.011Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c3b error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L145:26 for 'create' @ L145, false for 'update' @ L165, false for 'create' @ L145
+[2026-11-01T12:56:34.060Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c3c error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L145:26 for 'create' @ L145, false for 'update' @ L165, false for 'create' @ L145
+[2026-11-01T12:56:34.068Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c38 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L165
+[2026-11-01T12:56:34.079Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c3d error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L165
+✔ parent messages cannot impersonate consultant, change or read another chat (330.8304ms)
+[2026-11-01T12:56:34.189Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c3f error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:34.384Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c43 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'update' @ L206
+[2026-11-01T12:56:34.419Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c44 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L206
+✔ eligible trial_accepted is owner-only, one-time, immutable (339.8284ms)
+[2026-11-01T12:56:34.520Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c46 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:34.724Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c4a error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'update' @ L206
+[2026-11-01T12:56:34.756Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c4b error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L206
+✔ eligible trial_alternate_time is owner-only, one-time, immutable (338.2794ms)
+[2026-11-01T12:56:34.859Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c4d error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.021Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c51 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'update' @ L206
+[2026-11-01T12:56:35.062Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c52 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L206
+✔ eligible class_adjustment_requested is owner-only, one-time, immutable (304.7794ms)
+[2026-11-01T12:56:35.183Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c54 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.353Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c58 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'update' @ L206
+[2026-11-01T12:56:35.392Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c59 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'delete' @ L206
+✔ eligible class_revision_confirmed is owner-only, one-time, immutable (329.6597ms)
+[2026-11-01T12:56:35.492Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c5b error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, Null value error. for 'create' @ L187
+[2026-11-01T12:56:35.561Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c5d error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.641Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c5f error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.721Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c61 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.787Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c63 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.803Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c64 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.846Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c65 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+[2026-11-01T12:56:35.902Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c67 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'create' @ L187
+✔ responses reject missing, other-chat, stale, expired, wrong-kind and malformed proposals (512.2244ms)
+[2026-11-01T12:56:36.034Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c6a error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L187:26 for 'create' @ L187, false for 'update' @ L206, false for 'update' @ L206
+✔ concurrent duplicate responses admit one immutable response only (172.0005ms)
+[2026-11-01T12:56:36.257Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c6f error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L212
+[2026-11-01T12:56:36.293Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c70 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'create' @ L212, false for 'update' @ L212
+[2026-11-01T12:56:36.455Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c74 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L216:24 for 'create' @ L216, false for 'update' @ L223, false for 'create' @ L216
+[2026-11-01T12:56:36.492Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c75 error. Code: 7 Message: 7 PERMISSION_DENIED:
+evaluation error at L216:24 for 'create' @ L216, false for 'update' @ L223, false for 'create' @ L216
+[2026-11-01T12:56:36.531Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c76 error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L223
+[2026-11-01T12:56:36.691Z]  @firebase/firestore: Firestore (12.4.0): GrpcConnection RPC 'Write' stream 0x2b2c0c7a error. Code: 7 Message: 7 PERMISSION_DENIED:
+false for 'update' @ L229
+✔ invoice verification and official schedule are trusted backend only (614.0577ms)
+✔ Storage PDF reports enforce owner, extension, content type and strict size limit (625.798ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18851.969
++  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+!  Firestore Emulator has exited upon receiving signal: SIGINT
+i  storage: Stopping Storage Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

@@ -1,0 +1,24 @@
+{
+  "timestampUtc": "2026-10-31T03:49:42.878642+00:00",
+  "sourceSha": "9657d1b2f0c57a425298aab58fefbccb7119ac47",
+  "action": "tap",
+  "label": "auth-fcm-valid-route",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "-d",
+        "0",
+        "tap",
+        "360",
+        "485"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

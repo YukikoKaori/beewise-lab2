@@ -1,0 +1,33 @@
+{
+  "timestampUtc": "2026-10-30T22:15:51.675463+00:00",
+  "sourceSha": "93617b8272f7fa1a8a44406c28300350c578553e",
+  "action": "capture",
+  "label": "corrective-412-guest-chats",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "uiautomator",
+        "dump",
+        "/dev/tty"
+      ],
+      "exitCode": 0,
+      "output": "ERROR: null root node returned by UiTestAutomationBridge.\r\n"
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "pidof",
+        "com.beewise.beewise"
+      ],
+      "exitCode": 0,
+      "output": "6589\r\n"
+    }
+  ]
+}

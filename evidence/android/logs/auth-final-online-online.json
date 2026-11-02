@@ -1,0 +1,34 @@
+{
+  "timestampUtc": "2026-10-31T04:04:20.759024+00:00",
+  "sourceSha": "0e78bedd703c0e9eac4907388f1935251405bd5a",
+  "action": "online",
+  "label": "auth-final-online",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "svc",
+        "wifi",
+        "enable"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "svc",
+        "data",
+        "enable"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

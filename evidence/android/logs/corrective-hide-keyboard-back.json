@@ -1,0 +1,21 @@
+{
+  "timestampUtc": "2026-10-30T22:13:31.190405+00:00",
+  "sourceSha": "93617b8272f7fa1a8a44406c28300350c578553e",
+  "action": "back",
+  "label": "corrective-hide-keyboard",
+  "records": [
+    {
+      "command": [
+        "adb",
+        "-s",
+        "emulator-5558",
+        "shell",
+        "input",
+        "keyevent",
+        "4"
+      ],
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}

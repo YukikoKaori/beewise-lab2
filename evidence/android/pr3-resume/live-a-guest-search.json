@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:04:06.061425+00:00",
+  "label": "live-a-guest-search",
+  "pid": "3881",
+  "screenshotSha256": "2fbe0f8936c4a3c687552c6867466b0f6b2fa2fa7474e96c97e8d10b7de10604",
+  "hasTestNotification": false,
+  "searchRoute": true,
+  "hasAnrDialog": false,
+  "notificationProbeIds": [],
+  "privateImage": true,
+  "selectedTabs": [
+    "T\u00ecm gia s\u01b0\nTab 2 of 5"
+  ],
+  "initialHeuristicSuperseded": "Search text in navbar alone is not route evidence; selected tab and actual screenshot must agree."
+}

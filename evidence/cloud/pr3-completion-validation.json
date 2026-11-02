@@ -1,0 +1,114 @@
+{
+  "recordedAtUtc": "2026-11-01T12:55:45.718241+00:00",
+  "fetchedHeadBeforeWork": "55b74ec201828fa6bd0cbc4260c092aed6fa34f1",
+  "fetchedMainBeforeWork": "12f5322655463fd801d64e4925572d6a3a2bbb82",
+  "applicationSourceSha": "be2b44515af637db1c7ded6b94797d1cf4adc746",
+  "apkSha256": "2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65",
+  "productionCodeChanged": false,
+  "startup": {
+    "status": "FAIL immediate post-boot acceptance; application root cause still unproven",
+    "sameApkAndUserdata": true,
+    "measurements": [
+      {
+        "label": "boot-one",
+        "gpu": "software",
+        "cores": "2",
+        "markerAfterBootCompletedMs": 16523,
+        "amWaitWallMs": 18921,
+        "androidFirstDrawMs": 52706,
+        "systemAnrs": [
+          "com.android.systemui",
+          "com.google.android.apps.photos"
+        ],
+        "applicationAnrObserved": false
+      },
+      {
+        "label": "boot-two",
+        "gpu": "host",
+        "cores": "2",
+        "markerAfterBootCompletedMs": 12631,
+        "amWaitWallMs": 18906,
+        "androidFirstDrawMs": 56541,
+        "systemAnrs": [
+          "com.android.systemui"
+        ],
+        "applicationAnrObserved": false
+      },
+      {
+        "label": "boot-three",
+        "gpu": "host",
+        "cores": "4",
+        "markerAfterBootCompletedMs": 3851,
+        "amWaitWallMs": 13328,
+        "androidFirstDrawMs": 36610,
+        "systemAnrs": [],
+        "applicationAnrObserved": false
+      },
+      {
+        "label": "boot-four",
+        "gpu": "host",
+        "cores": "4",
+        "markerAfterBootCompletedMs": 3472,
+        "amWaitWallMs": 15875,
+        "androidFirstDrawMs": 40146,
+        "systemAnrs": [],
+        "applicationAnrObserved": false
+      }
+    ],
+    "effectiveRamMiB": 4096,
+    "requestedRamMiB": 2048,
+    "ramCorrection": "Emulator explicitly increased requested 2048 MiB to 4096 MiB; also verified in the preceding pr3-resume emulator stdout.",
+    "limits": [
+      "First two launches performed expensive pre-launch dumps and occurred 12.63-16.52 seconds after boot completion; third/fourth immediate mode deferred those dumps until after launch and marked within 3.47-3.85 seconds.",
+      "Four CPUs reduced observed system ANRs in this sample, but 36-40 second first draws still fail acceptance; GPU/Vulkan changes are not an established fix.",
+      "No new BeeWise ANR in collected logs does not establish a responsive first boot.",
+      "Two-CPU System UI trace has 16.93 seconds runnable wait and 1.22 seconds CPU, demonstrating scheduling pressure; not a trace of an application deadlock."
+    ],
+    "nativeManifest": "evidence/android/pr3-completion/private-evidence-hashes.json",
+    "anrIntegrity": "evidence/android/pr3-completion/boot-one-anr-integrity.json",
+    "previousSettled360And412": "evidence/android/pr3-resume/manifest.json"
+  },
+  "analytics": {
+    "status": "PASS tested native null clearing and newly observed DebugView guest-event correlation",
+    "receipt": "evidence/cloud/pr3-debugview-correlation.json",
+    "remaining": "Console retained last B User properties presentation; internal presentation cause and backend event-level attribution are not independently established. No behavior workaround."
+  },
+  "fcm": {
+    "status": "PASS native terminated delivery and actual tap to Search",
+    "receipt": "evidence/android/pr3-completion/terminated-tap-sequence.json",
+    "ownershipBefore": "evidence/cloud/google-user-pr3-completion-a.json",
+    "ownershipAfter": "evidence/cloud/google-user-pr3-completion-a-logout.json",
+    "postTestGuestRestored": true,
+    "protectionsChanged": false
+  },
+  "collectionFixes": [
+    "Optional immediate-launch mode postpones expensive dumps until after activity launch.",
+    "Failed uiautomator dump cannot reuse earlier XML or claim absence of an ANR dialog."
+  ],
+  "validation": {
+    "local": "evidence/cloud/checks/pr3-completion",
+    "latestHeadCi": "Exact final SHA and Actions result recorded in existing PR #3 description after push.",
+    "results": {
+      "format": "PASS",
+      "analyze": "PASS",
+      "flutterTests": "66/66 PASS",
+      "firebaseEmulatorRules": "28/28 PASS",
+      "receiptParser": "4/4 PASS",
+      "androidApkBuild": "PASS same-drive D worktree; production source unchanged"
+    }
+  },
+  "scope": {
+    "Storage": "DEFERRED",
+    "billingBucketDeployment": "No change",
+    "AppCheckBackendExpansion": "No change",
+    "NguyenUiArtemisReports": "No change",
+    "originalAndControlUserdata": "Preserved",
+    "ANRSuppression": "None",
+    "credentials": "No credentials written to files or evidence"
+  },
+  "mergeReadiness": "NOT MERGE READY: immediate post-boot startup acceptance still fails. No reproducible production app cause established; no speculative fix.",
+  "supersededAssessment": {
+    "manifest": "evidence/cloud/pr3-controlled-validation.json",
+    "reason": "New settled three-run BeeWise/minimal-Flutter comparison supports scoped merge approval; historical immediate-boot observations remain unchanged."
+  }
+}

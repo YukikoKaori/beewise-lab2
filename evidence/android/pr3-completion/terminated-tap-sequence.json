@@ -1,0 +1,57 @@
+{
+  "timestampUtc": "2026-11-01T12:51:14.962810+00:00",
+  "probeId": "bao-pr3-terminated-1793537409160",
+  "action": "Tap observed Android notification body at 360,590; no manual navigation afterward",
+  "observations": [
+    {
+      "timestampUtc": "2026-11-01T12:51:22.751333+00:00",
+      "label": "terminated-tap-0s",
+      "pid": "3796",
+      "screenshotSha256": "5448f183b0b380176daa86b74cfd5a08299078e554008f523ab37f18cb087047",
+      "hasTestNotification": false,
+      "searchRoute": false,
+      "selectedTabs": [
+        "Trang ch\u1ee7\nTab 1 of 5"
+      ],
+      "hasAnrDialog": false,
+      "notificationProbeIds": [],
+      "elapsedWallMs": 7844,
+      "screenshot": "evidence/android/pr3-completion/terminated-tap-0s.png"
+    },
+    {
+      "timestampUtc": "2026-11-01T12:51:27.777635+00:00",
+      "label": "terminated-tap-5s",
+      "pid": "3796",
+      "screenshotSha256": "27c53d6f9d682077a8406a85a1b23f2ac0963d610d59d268f98a754f8ccb63f1",
+      "hasTestNotification": false,
+      "searchRoute": true,
+      "selectedTabs": [
+        "T\u00ecm gia s\u01b0\nTab 2 of 5"
+      ],
+      "hasAnrDialog": false,
+      "notificationProbeIds": [],
+      "elapsedWallMs": 12844,
+      "screenshot": "evidence/android/pr3-completion/terminated-tap-5s.png"
+    },
+    {
+      "timestampUtc": "2026-11-01T12:51:33.380414+00:00",
+      "label": "terminated-tap-15s",
+      "pid": "3796",
+      "screenshotSha256": "1d0239e59955caeea274d03bcfd2456dc587afda38cfb16dbeaa357a56d30a53",
+      "hasTestNotification": false,
+      "searchRoute": true,
+      "selectedTabs": [
+        "T\u00ecm gia s\u01b0\nTab 2 of 5"
+      ],
+      "hasAnrDialog": false,
+      "notificationProbeIds": [],
+      "elapsedWallMs": 18469,
+      "screenshot": "evidence/android/pr3-completion/terminated-tap-15s.png"
+    }
+  ],
+  "status": "PASS terminated notification tap reaches genuine Search content without manual navigation; first Home frame retained",
+  "nativeSend": "evidence/cloud/fcm-bao-pr3-terminated-1793537409160.json",
+  "processLifecycle": "PID 1724 absent twice before send; notification receipt created PID 3796; tap UI stayed in PID 3796.",
+  "routeFirstObservedByMs": 12844,
+  "stableRouteObservedByMs": 18469
+}

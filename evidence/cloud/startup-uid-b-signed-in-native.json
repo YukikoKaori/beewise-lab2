@@ -1,0 +1,96 @@
+{
+  "recordedAtUtc": "2026-10-31T14:18:15.698535+00:00",
+  "privateLogSha256": "67bb3a4743a8ba42bc19bf5a0ac80df224a78181edc26056feb11cff53f9c33b",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "10-31 21:13:47.267",
+      "servicePid": "1285"
+    },
+    {
+      "nativeLogTime": "10-31 21:13:47.504",
+      "servicePid": "1285"
+    },
+    {
+      "nativeLogTime": "10-31 21:13:47.879",
+      "servicePid": "1285"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "10-31 21:09:28.750",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "login",
+          "timestampMillis": "1793455768129",
+          "parameters": {
+            "method": "password"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 21:13:46.867",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:4a7de057a03aa476"
+      ],
+      "events": [
+        {
+          "name": "logout",
+          "timestampMillis": "1793456025606",
+          "parameters": {}
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 21:14:35.531",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "search",
+          "timestampMillis": "1793456074490",
+          "parameters": {
+            "filter_count": "0",
+            "outcome": "results",
+            "sort_mode": "relevance",
+            "result_count": "6",
+            "query_length": "4"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "10-31 21:16:24.010",
+      "servicePid": "1285",
+      "completeBundle": true,
+      "userIdPropertyCount": 1,
+      "userIdAliases": [
+        "uid-sha256:564b131109a53e16"
+      ],
+      "events": [
+        {
+          "name": "login",
+          "timestampMillis": "1793456183394",
+          "parameters": {
+            "method": "password"
+          }
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}

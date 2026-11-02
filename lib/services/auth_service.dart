@@ -135,7 +135,8 @@ class FirebaseAuthService implements AuthService {
     return (await _firestore
             .collection('tutorApplications')
             .doc(user.uid)
-            .get())
+            .get(const GetOptions(source: Source.server))
+            .timeout(const Duration(seconds: 15)))
         .exists;
   }
 

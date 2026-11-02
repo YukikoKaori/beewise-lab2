@@ -1,0 +1,7 @@
+{
+  "timestampUtc": "2026-11-01T12:00:46.216425+00:00",
+  "pidBefore": "2824",
+  "pidAfter": "2824",
+  "command": "am kill (background process, not force-stop)",
+  "status": "FAIL still running"
+}

@@ -1,0 +1,66 @@
+00:00 +0: loading C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart
+00:00 +0: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: email login bootstraps an absent parent only after its role lookup
+00:00 +1: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: post-auth role permission denial never bypasses parent separation
+00:00 +2: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: email login for an existing applicant never creates a parent
+00:00 +3: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: failed profile write is recoverable by authenticated registration retry
+00:00 +4: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: existing parent or applicant is never overwritten by registration retry
+00:00 +5: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/auth_service_test.dart: incorrect password cannot reconcile another account
+00:03 +6: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: (setUpAll)
+00:03 +6: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Remote Config without Firebase keeps documented defaults
+00:03 +7: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: invalid Remote Config values cannot break catalog or Iterable.take
+00:03 +8: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: valid Remote Config values change both behavior limits and feature gate
+00:03 +9: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Remote Config installs defaults before fetch and survives offline fetch
+00:03 +10: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Analytics search is typed and contains no query text or document IDs
+00:03 +11: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: successful connection logs only the privacy-approved request category
+00:03 +12: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: actual tutor PDF generation uses bundled Vietnamese fonts and writes a PDF
+LOCAL_PDF_EVIDENCE=D:\CodexTemp\beewise-lab3-tools/beewise-tutor-bao-synthetic-local-only.pdf
+00:03 +13: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Storage upload terminal state success reports progress and owner path with actual SDK URL result
+00:03 +14: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Storage upload terminal state cancellation never returns a previous object URL as upload success
+00:03 +15: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Storage upload terminal state permission and network errors propagate and never request a URL
+00:03 +16: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: Storage upload terminal state an empty completion stream cannot claim a successful upload
+00:03 +17: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/cloud_services_test.dart: (tearDownAll)
+00:03 +17: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: (setUpAll)
+00:03 +17: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: startup disables auto-init and journals ownership before writing the FID
+00:04 +18: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: managed switch detaches under A before assigning the same FID to B
+00:04 +19: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: unexpected account switch quarantines FID and never deletes another UID
+00:04 +20: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: external sign-out revokes delivery; owner reauthentication recovers cleanup
+00:04 +21: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: rotation removes the prior FID before writing new and ignores late old unregister
+00:04 +22: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: failed detach preserves recovery journal and propagates until retry succeeds
+00:04 +23: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: failed binding is not forgotten and retries cleanup before re-registering
+00:04 +24: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: a late write ack after account switch stays quarantined, never transferred
+00:04 +25: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: restart retains foreign ownership and blocks unsafe reuse
+00:04 +26: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: registration and revocation failures remain retryable and visible
+00:04 +27: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: current unregister cleans its owned record; duplicate/late unregister cannot delete the next ID
+00:04 +28: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: applicant transition removes only own stale registration and never re-registers
+00:04 +29: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: guest and corrupt cleanup state fail closed without Firestore registration
+00:04 +30: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: canonical route parser rejects malformed, encoded and unapproved paths
+00:04 +31: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: inbox routes require same recipient, parent role and actual chat ownership
+00:04 +32: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: saved item from account A cannot be tapped after B signs in
+00:04 +33: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: missing routes are rejected consistently in saved and opened messages
+00:04 +34: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: route authorization rejects auth changes during an awaited chat read and offline errors
+00:04 +35: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: foreground, opened and cold-start notifications use the same guarded resolver
+00:04 +36: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: late expected unregister of a reused FID never removes the new account mapping
+00:04 +37: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: detach before initialization does not leave an unobserved revocation marker
+00:04 +38: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: stale role lookup completing after auth changes cannot register old UID
+00:04 +39: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: a newer rotation wins over an older in-flight binding
+00:04 +40: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: sign-out keeps the installation journal and UID inbox needed for recovery
+00:04 +41: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: v2 legacy identity comes only from its key; forged recipients and global legacy are ignored
+00:04 +42: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: opened-event recipient is rechecked at the final navigation boundary
+00:04 +43: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_lifecycle_test.dart: (tearDownAll)
+00:04 +43: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: account switching and sign-out never return another UID inbox
+00:04 +44: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/notification_service_test.dart: unknown recipients, guests and duplicate delivery are safe
+00:09 +45: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +46: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +47: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +48: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +49: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:09 +50: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: ) without losing logout
+00:10 +51: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name:    ) without losing logout
+00:10 +52: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name:    ) without losing logout
+00:10 +53: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name:    ) without losing logout
+00:10 +54: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name:    ) without losing logout
+00:10 +55: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: A, name: null) without losing logout
+00:10 +56: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: null, initial: B, name: null) without losing logout
+00:10 +57: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email:    , initial: B, name: ) without losing logout
+00:10 +58: C:/Users/THIS PC/Desktop/Semester_8/prm/beewise-lab2/test/profile_identity_test.dart: Profile handles identity (email: [email omitted], initial: Y, name: Yuki) without losing logout
+00:10 +59: All tests passed!

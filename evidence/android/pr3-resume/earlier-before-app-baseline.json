@@ -1,0 +1,25 @@
+{
+  "timestampUtc": "2026-11-01T12:15:12.886577+00:00",
+  "packageAbsent": true,
+  "systemAnrPackages": [
+    "com.google.android.gms.persistent"
+  ],
+  "files": [
+    {
+      "name": "before-app-complete-logcat.txt",
+      "sha256": "57f763e795d39ccfafdcba9073858da70f041693b300c31a0f2112d61e3adff4"
+    },
+    {
+      "name": "before-app-cpu.txt",
+      "sha256": "c07e2d60499cac2a85601d1c6ecf6e9807a433a137246df5a734f43240eba1ea"
+    },
+    {
+      "name": "before-app-package.txt",
+      "sha256": "ab98e5fb59b3ba50ee555ea63c2eeed5c8b47ffbeb30b08f6b8327eb19c2ac29"
+    },
+    {
+      "name": "before-app-lastanr.txt",
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    }
+  ]
+}

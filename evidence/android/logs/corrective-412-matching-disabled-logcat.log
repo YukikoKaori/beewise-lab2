@@ -1,0 +1,574 @@
+--------- beginning of main
+
+10-31 05:12:05.308  5565  5565 I libprocessgroup: Created cgroup /sys/fs/cgroup/apps/uid_10235/pid_5565
+
+10-31 05:12:05.328  5565  5565 I Zygote  : Process 5565 created for com.beewise.beewise
+
+10-31 05:12:05.329  5565  5565 I beewise.beewise: Late-enabling -Xcheck:jni
+
+10-31 05:12:05.365  5565  5565 I beewise.beewise: Using generational CollectorTypeCMC GC.
+
+10-31 05:12:05.366  5565  5565 W beewise.beewise: Unexpected CPU variant for x86: x86_64.
+
+10-31 05:12:05.366  5565  5565 W beewise.beewise: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+
+10-31 05:12:05.375  5565  5565 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+
+10-31 05:12:05.583  5565  5565 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+
+10-31 05:12:05.583  5565  5565 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+
+10-31 05:12:06.362  5565  5565 D nativeloader: Configuring clns-9 for other apk /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/lib/x86_64:/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.beewise.beewise
+
+10-31 05:12:06.404  5565  5565 V GraphicsEnvironment: Currently set values for:
+
+10-31 05:12:06.404  5565  5565 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+
+10-31 05:12:06.404  5565  5565 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+
+10-31 05:12:06.405  5565  5565 V GraphicsEnvironment: com.beewise.beewise is not listed in per-application setting
+
+10-31 05:12:06.405  5565  5565 V GraphicsEnvironment: No special selections for ANGLE, returning default driver choice
+
+10-31 05:12:06.408  5565  5565 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+
+10-31 05:12:06.704  5565  5565 D FirebaseSessions: Dependency to CRASHLYTICS added.
+
+10-31 05:12:06.721  5565  5565 I FirebaseApp: Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+
+10-31 05:12:06.885  5565  5565 I FirebaseCrashlytics: Initializing Firebase Crashlytics 21.0.1 for com.beewise.beewise
+
+10-31 05:12:07.238  5565  5565 D FirebaseSessions: Subscriber CRASHLYTICS registered.
+
+10-31 05:12:07.368  5565  5587 I DynamiteModule: Considering local module com.google.android.gms.measurement.dynamite:216 and remote module com.google.android.gms.measurement.dynamite:182
+
+10-31 05:12:07.378  5565  5587 I DynamiteModule: Selected local version of com.google.android.gms.measurement.dynamite
+
+10-31 05:12:07.922  5565  5565 I FirebaseCrashlytics: Registering with ProfilingManager; heap dump collection is disabled
+
+10-31 05:12:08.039  5565  5595 W beewise.beewise: Verification of void com.google.android.gms.tasks.TaskExecutors.<clinit>() took 105.922ms (141.61 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:08.188  5565  5596 W beewise.beewise: Verification of void com.google.android.gms.measurement.internal.zzmz.<init>(com.google.android.gms.measurement.internal.zzii) took 212.017ms (202.81 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:08.249  5565  5592 W beewise.beewise: Verification of boolean com.google.android.gms.common.internal.BaseGmsClient.getUseDynamicLookup() took 132.223ms (105.88 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:08.462  5565  5565 D nativeloader: Load /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64/libdatastore_shared_counter.so using class loader ns clns-9 (caller=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!classes17.dex): ok
+
+10-31 05:12:08.484  5565  5599 I beewise.beewise: hiddenapi: Accessing hidden method Ldalvik/system/VMStack;->getStackClass2()Ljava/lang/Class; (runtime_flags=0, domain=core-platform, api=unsupported) from Lcom/google/android/gms/internal/measurement/zzack; (domain=app, TargetSdkVersion=36) using reflection: allowed
+
+10-31 05:12:08.560  5565  5595 W beewise.beewise: Verification of java.lang.String com.google.firebase.crashlytics.internal.model.AutoValue_StaticSessionData_DeviceData.model() took 109.103ms (27.50 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:08.649  5565  5599 D Phlogger: Application doesn't implement PhenotypeApplication interface, falling back to globally set context. See go/phenotype-flag#process-stable-init for more info.
+
+10-31 05:12:08.658  5565  5596 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzrh.zzr(com.google.common.util.concurrent.ListenableFuture) took 313.137ms (517.35 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:08.691  5565  5592 W beewise.beewise: Verification of java.lang.String com.google.android.gms.common.internal.zzs.zzb() took 193.265ms (15.52 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:08.868  5565  5595 I FirebaseCrashlytics: Saved version control info
+
+10-31 05:12:09.305  5565  5565 D FirebaseSessions: Initializing Firebase Sessions 4.0.1.
+
+10-31 05:12:09.364  5565  5596 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzahb.zzd(java.lang.Object, java.lang.Object) took 155.920ms (3822.46 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:09.385  5565  5597 W beewise.beewise: Verification of void kotlinx.coroutines.internal.ScopeCoroutine.afterCompletionUndispatched() took 104.313ms (9.59 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:09.422  5565  5592 W GooglePlayServicesUtil: Google Play services out of date for com.beewise.beewise.  Requires 261200000 but found 261136038
+
+10-31 05:12:09.427  5565  5592 W GoogleApiManager: The service for com.google.android.gms.internal.cloudmessaging.zzd is not available: ConnectionResult{statusCode=SERVICE_VERSION_UPDATE_REQUIRED, resolution=null, message=null, clientMethodKey=null}
+
+10-31 05:12:09.450  5565  5565 I FirebaseInitProvider: FirebaseApp initialization successful
+
+10-31 05:12:09.471  5565  5565 D FLTFireContextHolder: received application context.
+
+10-31 05:12:09.476  5565  5596 W beewise.beewise: Verification of int com.google.android.gms.internal.measurement.zzahb.zzi(java.lang.Object, byte[], int, int, int, com.google.android.gms.internal.measurement.zzaeh) took 110.337ms (36325.04 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:09.628  5565  5596 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzaew.zzN(java.util.List) took 148.787ms (1156.01 bytecodes/s) (0B arena alloc)
+
+--------- beginning of system
+
+10-31 05:12:09.748  5565  5623 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+
+10-31 05:12:09.791  5565  5596 W beewise.beewise: Verification of java.io.Writer com.google.common.io.BaseEncoding.separatingWriter(java.io.Writer, java.lang.String, int) took 104.383ms (95.80 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:09.882  5565  5630 D FlutterJNI: Beginning load of flutter...
+
+10-31 05:12:09.886  5565  5631 I ResourceExtractor: Found extracted resources res_timestamp-1-1793397906676
+
+10-31 05:12:09.913  5565  5630 D nativeloader: Load /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64/libflutter.so using class loader ns clns-9 (caller=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk): ok
+
+10-31 05:12:09.931  5565  5595 W beewise.beewise: Verification of androidx.datastore.migrations.SharedPreferencesMigration androidx.datastore.preferences.SharedPreferencesMigrationKt.SharedPreferencesMigration(android.content.Context, java.lang.String) took 271.017ms (62.73 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:09.939  5565  5623 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+
+10-31 05:12:09.939  5565  5623 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+
+10-31 05:12:09.943  5565  5623 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+10-31 05:12:09.943  5565  5630 D FlutterJNI: flutter (null) was loaded normally!
+
+10-31 05:12:09.964  5565  5596 W beewise.beewise: Verification of com.google.common.io.ByteSink com.google.common.io.BaseEncoding.encodingSink(com.google.common.io.CharSink) took 172.485ms (52.18 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:10.002  5565  5632 D skia    : [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+
+10-31 05:12:10.022  5565  5623 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+
+10-31 05:12:10.109  5565  5633 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+10-31 05:12:10.060  5565  5565 W beewise.beewise: type=1400 audit(0.0:39): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=21702 scontext=u:r:untrusted_app_34:s0:c235,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.beewise.beewise
+
+10-31 05:12:10.124  5565  5588 W beewise.beewise: Verification of void kotlinx.coroutines.CancellableContinuationImpl.completeResume(java.lang.Object) took 258.097ms (112.36 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:10.329  5565  5590 W beewise.beewise: Verification of java.lang.Object kotlinx.serialization.json.Json.decodeFromString(java.lang.String) took 438.636ms (75.23 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:10.442  5565  5633 I flutter : [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+
+10-31 05:12:10.444  5565  5634 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+10-31 05:12:10.458  5565  5595 W beewise.beewise: Verification of androidx.datastore.preferences.PreferencesProto$Value androidx.datastore.preferences.core.PreferencesFileSerializer.getValueProto(java.lang.Object) took 381.561ms (731.21 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:10.534  5565  5590 W beewise.beewise: Verification of java.lang.Object kotlinx.serialization.json.Json.decodeFromString(kotlinx.serialization.DeserializationStrategy, java.lang.String) took 204.193ms (186.10 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:10.593  5565  5596 W beewise.beewise: Verification of boolean com.google.common.io.BaseEncoding$Alphabet.hasLowerCase() took 474.718ms (44.24 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:10.759  5565  5595 W beewise.beewise: Verification of java.lang.Object com.google.firebase.datastorage.JavaDataStorage$editSync$1.invokeSuspend(java.lang.Object) took 159.990ms (900.06 bytecodes/s) (0B arena alloc)
+
+[credential-bearing line omitted]
+10-31 05:12:11.022  5565  5596 W beewise.beewise: Verification of int com.google.common.math.IntMath.mod(int, int) took 427.897ms (88.81 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:11.312  5565  5599 I Phlogger: Shared storage file not found for com.google.android.gms.measurement#com.beewise.beewise
+
+10-31 05:12:11.816  5565  5592 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzafb.zzn(int, com.google.android.gms.internal.measurement.zzaes) took 236.012ms (0.00 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:11.897  5565  5589 W beewise.beewise: Verification of java.lang.Object kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(kotlinx.serialization.DeserializationStrategy) took 204.339ms (2207.12 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:11.953  5565  5592 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzaex.zzb(int, int) took 136.206ms (51.39 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:11.988  5565  5596 I FA      : App measurement initialized, version: 192000
+
+10-31 05:12:12.025  5565  5596 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+
+10-31 05:12:12.039  5565  5596 I FA      : To enable faster debug mode event logging run:
+
+10-31 05:12:12.039  5565  5596 I FA      :   adb shell setprop debug.firebase.analytics.app com.beewise.beewise
+
+10-31 05:12:12.355  5565  5598 D FirebaseSessions: Notified CRASHLYTICS of new session f754555268f54615b0094762030ffb1e
+
+10-31 05:12:13.361  5565  5565 D FLTFireContextHolder: received application context.
+
+10-31 05:12:13.502  5565  5565 D nativeloader: Load /data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!/lib/x86_64/libdartjni.so using class loader ns clns-9 (caller=/data/app/~~5TwkIWrtU5fEfwmhLS7CrA==/com.beewise.beewise-A1DBLRVqayXayalqSdQ-_g==/base.apk!classes7.dex): ok
+
+10-31 05:12:13.844  5565  5565 I beewise.beewise: hiddenapi: Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (runtime_flags=0, domain=platform, api=unsupported,test-api) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+
+10-31 05:12:13.844  5565  5565 I beewise.beewise: hiddenapi: Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+
+10-31 05:12:13.844  5565  5565 I beewise.beewise: hiddenapi: Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+
+10-31 05:12:13.844  5565  5565 I beewise.beewise: hiddenapi: Accessing hidden method Landroid/util/LongArray;->get(I)J (runtime_flags=0, domain=platform, api=unsupported) from Lio/flutter/view/AccessibilityViewEmbedder$ReflectionAccessors; (domain=app, TargetSdkVersion=36) using reflection: allowed
+
+10-31 05:12:13.861  5565  5565 D AccessibilityBridge: Setting not found: accessibility_display_inversion_enabled, using default: 0
+
+10-31 05:12:13.897  5565  5565 D FlutterRenderer: Width is zero. 0,0
+
+10-31 05:12:13.911  5565  5565 D CompatChangeReporter: Compat change id reported: 377864165; UID 10235; state: ENABLED
+
+10-31 05:12:13.930  5565  5565 D FirebaseSessions: App foregrounded on com.beewise.beewise
+
+10-31 05:12:13.930  5565  5565 D FirebaseSessions: Session f754555268f54615b0094762030ffb1e has not backgrounded yet
+
+10-31 05:12:13.931  5565  5565 D FirebaseSessions: Process com.beewise.beewise is stale
+
+10-31 05:12:13.948  5565  5565 W HWUI    : Unknown dataspace 0
+
+10-31 05:12:13.979  5565  5596 I FA      : Tag Manager is not found and thus will not be used
+
+10-31 05:12:14.038  5565  5597 D FirebaseSessions: Session f754555268f54615b0094762030ffb1e has not backgrounded yet
+
+10-31 05:12:14.061  5565  5687 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+
+10-31 05:12:14.140  5565  5597 D FirebaseSessions: Cold app start detected
+
+10-31 05:12:14.141  5565  5597 D FirebaseSessions: Process com.beewise.beewise is stale
+
+10-31 05:12:14.177  5565  5596 W beewise.beewise: Verification of java.util.Map com.google.android.gms.common.util.CollectionUtils.mapOfKeyValueArrays(java.lang.Object[], java.lang.Object[]) took 102.407ms (1035.08 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:14.277  5565  5598 D FirebaseSessions: Session Event Type: SESSION_START
+
+10-31 05:12:14.288  5565  5598 D FirebaseSessions: Successfully logged Session Start event.
+
+10-31 05:12:14.305  5565  5596 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzga.<clinit>() took 107.890ms (74.15 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:14.335  5565  5565 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@cbe468c
+
+10-31 05:12:14.362  5565  5565 I WindowExtensionsImpl: Initializing Window Extensions, vendor API level=10, activity embedding enabled=true
+
+10-31 05:12:14.402  5565  5565 W UiContextUtils: Requested context is a non-UI Context. Creating a UI-Context with display: 0. Context: Context=android.app.Application@8dd1608, of which baseContext=android.app.ContextImpl@a006eab
+
+10-31 05:12:14.420  5565  5565 D VRI[MainActivity]: WindowInsets changed: 824x1830 statusBars:[0,48,0,0] navigationBars:[0,0,0,48] mandatorySystemGestures:[0,48,0,64]
+
+10-31 05:12:14.420  5565  5565 D FlutterRenderer: Width is zero. 0,0
+
+10-31 05:12:14.430  5565  5565 I Surface : Creating surface for consumer unnamed-5565-0 with slotExpansion=1 for 64 slots
+
+10-31 05:12:14.431  5565  5565 I Surface : Creating surface for consumer VRI[MainActivity]#0(BLAST Consumer)0 with slotExpansion=1 for 64 slots
+
+10-31 05:12:14.431  5565  5597 D FirebaseSessions: Notified CRASHLYTICS of new session aa4414d8a5c94371be7dbcc4e6acd96c
+
+10-31 05:12:14.435  5565  5565 D FlutterJNI: Sending viewport metrics to the engine.
+
+10-31 05:12:14.459  5565  5565 I Surface : Creating surface for consumer unnamed-5565-1 with slotExpansion=1 for 64 slots
+
+10-31 05:12:14.460  5565  5565 I Surface : Creating surface for consumer e1adddd SurfaceView[com.beewise.beewise/com.beewise.beewise.MainActivity]#1(BLAST Consumer)1 with slotExpansion=1 for 64 slots
+
+10-31 05:12:14.784  5565  5596 W beewise.beewise: Verification of java.lang.Object androidx.collection.ArrayMap$KeyIterator.elementAt(int) took 154.623ms (45.27 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:16.105  5565  5565 I Choreographer: Skipped 100 frames!  The application may be doing too much work on its main thread.
+
+10-31 05:12:16.108  5565  5565 W JobService: onNetworkChanged() not implemented in com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService. Must override in a subclass.
+
+10-31 05:12:16.118  5565  5565 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.beewise.beewise.MainActivity@1b8fbae, of which baseContext=android.app.ContextImpl@cc54013
+
+10-31 05:12:16.144  5565  5565 D FlutterJNI: Sending viewport metrics to the engine.
+
+10-31 05:12:16.154  5565  5696 D ProfileInstaller: Installing profile for com.beewise.beewise
+
+10-31 05:12:16.527  5565  5570 I beewise.beewise: Background concurrent mark compact GC freed 5169KB AllocSpace bytes, 27(708KB) LOS objects, 49% free, 4427KB/8855KB, paused 9.812ms,1.528ms total 483.633ms
+
+10-31 05:12:16.603  5565  5593 I TRuntime.CctTransportBackend: Making request to: https://crashlyticsreports-pa.googleapis.com/v1/firelog/legacy/batchlog
+
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+
+[credential-bearing line omitted]
+[credential-bearing line omitted]
+
+10-31 05:12:23.057  5565  5565 I Choreographer: Skipped 376 frames!  The application may be doing too much work on its main thread.
+
+10-31 05:12:23.307  5565  5565 D DesktopExperienceFlags: Toggle override initialized to: false
+
+10-31 05:12:23.493  5565  5565 D FlutterJNI: Sending viewport metrics to the engine.
+
+10-31 05:12:23.660  5565  5599 W beewise.beewise: Verification of void com.google.common.io.Files.<clinit>() took 134.302ms (59.57 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:23.846  5565  5693 W beewise.beewise: Verification of com.google.firestore.v1.Value com.google.firebase.firestore.UserDataReader.parseBsonObjectId(com.google.firebase.firestore.BsonObjectId) took 100.715ms (407.09 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:23.952  5565  5596 W beewise.beewise: Verification of com.google.android.gms.internal.measurement.zzpf com.google.android.gms.internal.measurement.zzpf.zzb(com.google.android.gms.internal.measurement.zzaev) took 107.918ms (1260.22 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:24.380  5565  5693 W beewise.beewise: Verification of com.google.firebase.firestore.model.mutation.MutationResult com.google.firebase.firestore.remote.RemoteSerializer.decodeMutationResult(com.google.firestore.v1.WriteResult, com.google.firebase.firestore.model.SnapshotVersion) took 105.235ms (427.61 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:24.821  5565  5693 W beewise.beewise: Verification of com.google.firebase.firestore.remote.WatchChange com.google.firebase.firestore.remote.RemoteSerializer.decodeWatchChange(com.google.firestore.v1.ListenResponse) took 110.148ms (2687.29 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:24.890  5565  5565 D InsetsController: hide(ime())
+
+10-31 05:12:24.894  5565  5565 I ImeTracker: com.beewise.beewise:a98fb659: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+
+10-31 05:12:25.150  5565  5732 W DynamiteModule: Local module descriptor class for com.google.android.gms.providerinstaller.dynamite not found.
+
+10-31 05:12:25.192  5565  5732 I DynamiteModule: Considering local module com.google.android.gms.providerinstaller.dynamite:0 and remote module com.google.android.gms.providerinstaller.dynamite:0
+
+10-31 05:12:25.192  5565  5732 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module com.google.android.gms.providerinstaller.dynamite found. Local version is 0 and remote version is 0.
+
+10-31 05:12:25.200  5565  5732 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+
+10-31 05:12:25.208  5565  5732 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.location.provider.jar
+
+10-31 05:12:25.208  5565  5732 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/com.android.media.remotedisplay.jar
+
+10-31 05:12:25.208  5565  5732 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+
+10-31 05:12:25.208  5565  5732 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+
+10-31 05:12:25.254  5565  5693 W beewise.beewise: Verification of void com.google.firebase.firestore.Query.lambda$addSnapshotListenerInternal$3$com-google-firebase-firestore-Query(com.google.firebase.firestore.EventListener, com.google.firebase.firestore.core.ViewSnapshot, com.google.firebase.firestore.FirebaseFirestoreException) took 197.698ms (156.80 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:25.526  5565  5731 W beewise.beewise: Verification of void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache.<init>(com.google.firebase.firestore.local.SQLitePersistence, com.google.firebase.firestore.local.LocalSerializer) took 167.971ms (95.25 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:25.711  5565  5596 W beewise.beewise: Verification of com.google.common.collect.Ordering com.google.common.collect.Ordering.usingToString() took 1.544s (1.94 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:25.816  5565  5693 W beewise.beewise: Verification of java.lang.Iterable com.google.firebase.firestore.util.Util.values(java.lang.Iterable) took 189.500ms (31.66 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:25.987  5565  5693 W beewise.beewise: Verification of com.google.firebase.firestore.core.UserData$Source com.google.firebase.firestore.core.UserData$Source.valueOf(java.lang.String) took 169.157ms (53.20 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:26.344  5565  5731 W beewise.beewise: Verification of com.google.firebase.firestore.local.TargetData com.google.firebase.firestore.local.LocalStore.allocateTarget(com.google.firebase.firestore.core.TargetOrPipeline) took 123.456ms (510.30 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:26.584  5565  5596 W beewise.beewise: Verification of java.util.List com.google.common.collect.Ordering.leastOf(java.util.Iterator, int) took 470.377ms (150.94 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:26.713  5565  5731 W beewise.beewise: Verification of void com.google.firebase.firestore.local.LocalStore.setLastStreamToken(com.google.protobuf.ByteString) took 129.538ms (100.36 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:26.836  5565  5565 W JobService: onNetworkChanged() not implemented in com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService. Must override in a subclass.
+
+10-31 05:12:26.970  5565  5731 W beewise.beewise: Verification of com.google.firebase.firestore.model.mutation.MutationBatch com.google.firebase.firestore.local.SQLiteMutationQueue.decodeInlineMutationBatch(int, byte[]) took 120.924ms (802.15 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:27.119  5565  5731 W beewise.beewise: Verification of void com.google.firebase.firestore.remote.AbstractStream.start() took 144.132ms (603.61 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:27.443  5565  5693 W beewise.beewise: Verification of boolean com.google.firestore.v1.Value$Builder.hasDoubleValue() took 145.578ms (61.82 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:27.510  5565  5731 W beewise.beewise: Verification of java.lang.Object com.google.protobuf.Internal.mergeMessage(java.lang.Object, java.lang.Object) took 156.722ms (121.23 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:27.693  5565  5731 W beewise.beewise: Verification of void com.google.protobuf.CodedInputStream$ArrayDecoder.readMessage(com.google.protobuf.MessageLite$Builder, com.google.protobuf.ExtensionRegistryLite) took 114.981ms (95.67 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:27.843  5565  5693 W beewise.beewise: Verification of void com.google.protobuf.SchemaUtil.writeSFixed64(int, long, com.google.protobuf.CodedOutputStreamWriter) took 132.240ms (75.62 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:28.092  5565  5596 W beewise.beewise: Verification of com.google.common.collect.ImmutableCollection com.google.common.collect.ImmutableSortedSet$Builder.build() took 219.747ms (22.75 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:28.171  5565  5731 W beewise.beewise: Verification of io.grpc.MethodDescriptor com.google.firestore.v1.FirestoreGrpc.getBeginTransactionMethod() took 107.485ms (716.38 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:28.328  5565  5596 W beewise.beewise: Verification of void com.google.android.gms.internal.measurement.zzow.<init>(long, java.lang.String, int, long, java.lang.Object) took 235.046ms (387.16 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:28.449  5565  5731 W beewise.beewise: Verification of java.lang.String io.grpc.MethodDescriptor.extractFullServiceName(java.lang.String) took 102.741ms (243.33 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:28.618  5565  5731 W beewise.beewise: Verification of int com.google.firestore.v1.ListenRequest.getLabelsCount() took 120.723ms (74.55 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:28.674  5565  5693 W beewise.beewise: Verification of boolean com.google.firebase.firestore.core.FieldFilter.equals(java.lang.Object) took 142.059ms (281.57 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:29.481  5565  5731 W beewise.beewise: Verification of void com.google.firebase.firestore.core.SyncEngine.updateTrackedLimboDocuments(java.util.List, int) took 127.749ms (829.75 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:30.239  5565  5731 W beewise.beewise: Verification of java.lang.Object com.google.firebase.firestore.local.IndexBackfiller$$ExternalSyntheticLambda1.get() took 248.702ms (28.15 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:30.636  5565  5731 W beewise.beewise: Verification of void com.google.firebase.firestore.proto.Target$1.<clinit>() took 153.567ms (657.69 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:31.169  5565  5731 W beewise.beewise: Verification of com.google.firestore.v1.Cursor com.google.firestore.v1.StructuredQuery.getEndAt() took 115.243ms (104.13 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:32.066  5565  5731 W beewise.beewise: Verification of java.util.Comparator kotlin.comparisons.ComparisonsKt__ComparisonsKt.thenBy(java.util.Comparator, java.util.Comparator, kotlin.jvm.functions.Function1) took 126.635ms (181.62 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:32.598  5565  5732 D nativeloader: Configuring clns-10 for other apk /apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/PrebuiltGmsCoreVic.apk. target_sdk_version=37, uses_libraries=, library_path=/apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/lib/x86_64:/apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/PrebuiltGmsCoreVic.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+
+10-31 05:12:32.599  5565  5732 D nativeloader: InitApexLibraries:
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_adservices: libhpke_jni.so:libtflite_support_classifiers_native.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_appsearch: libappsearchservice.so:libicing_anywhere.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_art: libartservice.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_bt: libbluetooth_jni.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_conscrypt: libjavacrypto.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_mediaprovider: libpdfclient.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_nfcservices: libnfc_nci_jni.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_npumanager: libnpumanager_service_jni.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_ondevicepersonalization: libfcp_cpp_dep_jni.so:libfcp_hpke_jni.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_os_statsd: libstats_jni.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_tethering: libandroid_net_connectivity_com_android_net_module_util_jni.so:libandroid_net_connectivity_com_android_net_module_util_jni_CommonConnectivityJni.so:libcrypto_httpengine.so:libframework-connectivity-jni.so:libframework-connectivity-tiramisu-jni.so:libhttpengine.so:libservice-connectivity.so:libservice-thread-jni.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_uwb: libuwb_uci_jni_rust.so
+
+10-31 05:12:32.599  5565  5732 D nativeloader:   com_android_virt: MicrodroidExitNativeLib.so:libvirtualizationservice_jni.so:libvirtual
+
+10-31 05:12:32.831  5565  5731 W beewise.beewise: Verification of com.google.firebase.firestore.remote.BloomFilter com.google.firebase.firestore.remote.WatchChangeAggregator.parseBloomFilter(com.google.firebase.firestore.remote.WatchChange$ExistenceFilterWatchChange) took 148.397ms (626.70 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:32.974  5565  5747 W beewise.beewise: Verification of void dan.<init>(dan) took 112.343ms (89.01 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:33.339  5565  5747 W beewise.beewise: Verification of hgkg gguc.d(ghao) took 197.487ms (460.79 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:33.613  5565  5590 W System  : Ignoring header If-None-Match because its value was null.
+
+10-31 05:12:34.096  5565  5749 W beewise.beewise: Verification of void joav.e(java.lang.Object, java.lang.String) took 215.506ms (83.52 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:34.096  5565  5570 W beewise.beewise: Suspending all threads took: 77.155ms
+
+10-31 05:12:34.539  5565  5570 I beewise.beewise: Background young concurrent mark compact GC freed 3106KB AllocSpace bytes, 16(320KB) LOS objects, 15% free, 7510KB/8855KB, paused 99.619ms,15.872ms total 1.853s
+
+10-31 05:12:34.912  5565  5749 W beewise.beewise: Verification of android.os.IInterface ewzx.c(android.os.IBinder) took 113.396ms (202.83 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:35.371  5565  5732 D nativeloader: Load /apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/PrebuiltGmsCoreVic.apk!/lib/x86_64/libconscrypt_gmscore_jni.so using class loader ns clns-10 (caller=/apex/com.google.android.gmssystem/priv-app/PrebuiltGmsCoreVic@CE2A.260420.019/PrebuiltGmsCoreVic.apk): ok
+
+10-31 05:12:35.374  5565  5732 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 334 native methods...
+
+10-31 05:12:35.475  5565  5749 W beewise.beewise: Verification of java.lang.Object j$.util.j.compute(java.lang.Object, java.util.function.BiFunction) took 257.563ms (54.36 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:35.751  5565  5570 W beewise.beewise: Suspending all threads took: 15.455ms
+
+10-31 05:12:35.884  5565  5565 W JobService: onNetworkChanged() not implemented in com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService. Must override in a subclass.
+
+10-31 05:12:35.905  5565  5570 I beewise.beewise: Background concurrent mark compact GC freed 1436KB AllocSpace bytes, 1(1200KB) LOS objects, 49% free, 6464KB/12MB, paused 43.342ms,1.350ms total 485.601ms
+
+10-31 05:12:36.041  5565  5771 I ggtn    : Unable to retrieve flag snapshot for com.google.android.gms.providerinstaller#com.beewise.beewise, using defaults.
+
+10-31 05:12:36.076  5565  5732 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+
+10-31 05:12:36.125  5565  5749 W beewise.beewise: Verification of void com.google.android.gms.common.internal.GetServiceRequest.<clinit>() took 155.944ms (109.01 bytecodes/s) (0B arena alloc)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: Failed to get service from broker.
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3392)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:3376)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3359)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3301)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at bhqq.a(:com.google.android.gms@261136038@26.11.36 (260800-892401869):36)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at bhor.z(:com.google.android.gms@261136038@26.11.36 (260800-892401869):143)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at bgut.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):42)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:1095)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at cwwb.mr(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at cwwb.dispatchMessage(:com.google.android.gms@261136038@26.11.36 (260800-892401869):5)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Looper.loopOnce(Looper.java:296)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:397)
+
+10-31 05:12:36.132  5565  5749 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+
+10-31 05:12:36.133  5565  5749 W GoogleApiManager: Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: Failed to register com.google.android.gms.providerinstaller#com.beewise.beewise
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: ggtz: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at ggub.a(:com.google.android.gms@261136038@26.11.36 (260800-892401869):13)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hggj.d(:com.google.android.gms@261136038@26.11.36 (260800-892401869):3)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hggl.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):130)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hgis.execute(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hggt.f(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hggt.m(:com.google.android.gms@261136038@26.11.36 (260800-892401869):99)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hggt.r(:com.google.android.gms@261136038@26.11.36 (260800-892401869):17)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at fymg.hB(:com.google.android.gms@261136038@26.11.36 (260800-892401869):35)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at flah.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):12)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at hgis.execute(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at flai.b(:com.google.android.gms@261136038@26.11.36 (260800-892401869):18)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at flax.b(:com.google.android.gms@261136038@26.11.36 (260800-892401869):34)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at flaz.d(:com.google.android.gms@261136038@26.11.36 (260800-892401869):25)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgsc.c(:com.google.android.gms@261136038@26.11.36 (260800-892401869):9)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgur.q(:com.google.android.gms@261136038@26.11.36 (260800-892401869):48)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgur.d(:com.google.android.gms@261136038@26.11.36 (260800-892401869):10)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgur.g(:com.google.android.gms@261136038@26.11.36 (260800-892401869):191)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgur.onConnectionFailed(:com.google.android.gms@261136038@26.11.36 (260800-892401869):2)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgut.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):70)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at android.os.Handler.handleCallback(Handler.java:1095)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at cwwb.mr(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at cwwb.dispatchMessage(:com.google.android.gms@261136038@26.11.36 (260800-892401869):5)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at android.os.Looper.loopOnce(Looper.java:296)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at android.os.Looper.loop(Looper.java:397)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: Caused by: bgqj: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bhod.a(:com.google.android.gms@261136038@26.11.36 (260800-892401869):15)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgsf.a(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	at bgsc.c(:com.google.android.gms@261136038@26.11.36 (260800-892401869):5)
+
+10-31 05:12:36.182  5565  5747 W FlagRegistrar: 	... 13 more
+
+10-31 05:12:38.744  5565  5565 W JobService: onNetworkChanged() not implemented in com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService. Must override in a subclass.
+
+[credential-bearing line omitted]
+10-31 05:12:41.013  5565  5569 I beewise.beewise: Compiler allocated 5228KB to compile void android.view.ViewRootImpl.performTraversals(long)
+
+10-31 05:12:41.740  5565  5565 W JobService: onNetworkChanged() not implemented in com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService. Must override in a subclass.
+
+10-31 05:12:45.243  5565  5593 I TRuntime.CctTransportBackend: Status Code: 200
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: Failed to get service from broker.
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3392)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:3376)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3359)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:3301)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at bhqq.a(:com.google.android.gms@261136038@26.11.36 (260800-892401869):36)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at bhor.z(:com.google.android.gms@261136038@26.11.36 (260800-892401869):143)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at bgut.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):42)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:1095)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at cwwb.mr(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at cwwb.dispatchMessage(:com.google.android.gms@261136038@26.11.36 (260800-892401869):5)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Looper.loopOnce(Looper.java:296)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:397)
+
+10-31 05:12:46.050  5565  5749 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+
+10-31 05:12:46.050  5565  5749 W GoogleApiManager: Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+
+10-31 05:12:57.239  5565  5593 I TRuntime.CctTransportBackend: Making request to: https://firebaselogging-pa.googleapis.com/v1/firelog/legacy/batchlog
+
+10-31 05:12:59.822  5565  5565 W JobService: onNetworkChanged() not implemented in com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService. Must override in a subclass.
+
+10-31 05:13:00.291  5565  5593 I TRuntime.CctTransportBackend: Status Code: 200

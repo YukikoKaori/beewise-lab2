@@ -1,0 +1,15 @@
+{
+  "timestampUtc": "2026-11-01T12:10:45.425819+00:00",
+  "label": "settled-input-search",
+  "pid": "5254",
+  "screenshotSha256": "3ec4b7451564a151eb6671fe2566654aadac930a5043655496b170c11e1343b6",
+  "hasTestNotification": false,
+  "searchRoute": true,
+  "selectedTabs": [
+    "T\u00ecm gia s\u01b0\nTab 2 of 5"
+  ],
+  "hasAnrDialog": false,
+  "notificationProbeIds": [],
+  "privateImage": true,
+  "initialHeuristicSuperseded": "Search text in navbar alone is not route evidence; selected tab and actual screenshot must agree."
+}

@@ -1,0 +1,16 @@
+{
+  "startedAtUtc": "2026-11-01T12:55:55.330160+00:00",
+  "completedAtUtc": "2026-11-01T12:56:38.155251+00:00",
+  "sourceSha": "55b74ec201828fa6bd0cbc4260c092aed6fa34f1",
+  "workingTreeChanges": "Native evidence collection tooling and docs only; production code unchanged",
+  "command": [
+    "npm.cmd",
+    "--prefix",
+    "firebase",
+    "test"
+  ],
+  "workingDirectory": "C:\\Users\\THIS PC\\Desktop\\Semester_8\\prm\\beewise-lab2",
+  "nativeExitCode": 0,
+  "originalLogSha256": "0b284800a3c45199f6e4c73fbe337a51b77ef4196bad003b646904bad4a9145b",
+  "publicLogProjection": "Trailing line whitespace normalized; complete original preserved privately"
+}
