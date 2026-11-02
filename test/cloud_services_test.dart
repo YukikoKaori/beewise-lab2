@@ -3,9 +3,10 @@
 
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -25,14 +26,6 @@ class MockAnalytics extends Mock implements FirebaseAnalytics {}
 
 class MockChat extends Mock implements ChatService {}
 
-class MockStorage extends Mock implements FirebaseStorage {}
-
-class MockReference extends Mock implements Reference {}
-
-class MockUpload extends Mock implements UploadTask {}
-
-class MockSnapshot extends Mock implements TaskSnapshot {}
-
 class TestPaths extends PathProviderPlatform {
   @override
   Future<String?> getTemporaryPath() async => Directory.systemTemp.path;
@@ -42,7 +35,6 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() {
     registerFallbackValue(File('unused.pdf'));
-    registerFallbackValue(SettableMetadata(contentType: 'application/pdf'));
     registerFallbackValue(
       RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
@@ -218,7 +210,7 @@ void main() {
       verified: false,
       active: false,
     );
-    final report = await ExportService(null).buildTutorSummary(tutor);
+    final report = await ExportService(null, null).buildTutorSummary(tutor);
     final bytes = await report.file.readAsBytes();
     expect(String.fromCharCodes(bytes.take(5)), '%PDF-');
     expect(bytes.length, report.sizeBytes);
@@ -227,101 +219,5 @@ void main() {
     // This fixture is never inserted into Firestore or the application catalog.
     // ignore: avoid_print
     print('LOCAL_PDF_EVIDENCE=${report.file.path}');
-  });
-
-  group('Storage upload terminal state', () {
-    late MockStorage storage;
-    late MockReference reference;
-    late MockUpload task;
-    late ExportedReport report;
-    setUp(() {
-      storage = MockStorage();
-      reference = MockReference();
-      task = MockUpload();
-      report = ExportedReport(
-        file: File('${Directory.systemTemp.path}/bao-test.pdf'),
-        sizeBytes: 100,
-      );
-      when(() => storage.ref('reports/alice/bao-test.pdf'))
-          .thenReturn(reference);
-      when(() => reference.putFile(any(), any())).thenAnswer((_) => task);
-      when(
-        () => reference.getDownloadURL(),
-      ).thenAnswer((_) async => 'https://example.invalid/previous-object.pdf');
-    });
-    TaskSnapshot snapshot(TaskState state, int transferred) {
-      final value = MockSnapshot();
-      when(() => value.state).thenReturn(state);
-      when(() => value.bytesTransferred).thenReturn(transferred);
-      when(() => value.totalBytes).thenReturn(100);
-      return value;
-    }
-
-    test(
-      'success reports progress and owner path with actual SDK URL result',
-      () async {
-        final events = [
-          snapshot(TaskState.running, 25),
-          snapshot(TaskState.success, 100),
-        ];
-        when(() => task.snapshotEvents)
-            .thenAnswer((_) => Stream.fromIterable(events));
-        final progress = <double>[];
-        final result = await ExportService(storage)
-            .upload(uid: 'alice', report: report, onProgress: progress.add);
-        expect(progress, [0.25, 1.0]);
-        expect(result.storagePath, 'reports/alice/bao-test.pdf');
-        expect(
-          result.downloadUrl,
-          'https://example.invalid/previous-object.pdf',
-        );
-      },
-    );
-    test(
-      'cancellation never returns a previous object URL as upload success',
-      () async {
-        final canceled = snapshot(TaskState.canceled, 25);
-        when(() => task.snapshotEvents)
-            .thenAnswer((_) => Stream.value(canceled));
-        await expectLater(
-          ExportService(storage)
-              .upload(uid: 'alice', report: report, onProgress: (_) {}),
-          throwsA(isA<ExportException>()),
-        );
-        verifyNever(() => reference.getDownloadURL());
-      },
-    );
-    test(
-      'permission and network errors propagate and never request a URL',
-      () async {
-        for (final code in ['unauthorized', 'retry-limit-exceeded']) {
-          when(() => task.snapshotEvents).thenAnswer(
-            (_) => Stream.error(
-              FirebaseException(plugin: 'firebase_storage', code: code),
-            ),
-          );
-          await expectLater(
-            ExportService(storage)
-                .upload(uid: 'alice', report: report, onProgress: (_) {}),
-            throwsA(
-              isA<FirebaseException>().having((e) => e.code, 'code', code),
-            ),
-          );
-        }
-        verifyNever(() => reference.getDownloadURL());
-      },
-    );
-    test(
-      'an empty completion stream cannot claim a successful upload',
-      () async {
-        when(() => task.snapshotEvents).thenAnswer((_) => const Stream.empty());
-        await expectLater(
-          ExportService(storage)
-              .upload(uid: 'alice', report: report, onProgress: (_) {}),
-          throwsA(isA<ExportException>()),
-        );
-        verifyNever(() => reference.getDownloadURL());
-      },
-    );
   });
 }

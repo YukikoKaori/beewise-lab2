@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-11-02T15:46:25.683768+00:00",
+  "status": "IMPLEMENTED — LIVE VERIFICATION PENDING",
+  "projectId": "beewise-lab-3",
+  "androidPackage": "com.beewise.beewise",
+  "branch": "feat/lab3-firestore-pdf-reports",
+  "baseMainSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+  "mentorApproval": "Owner-reported approval in task request; no written mentor artifact supplied",
+  "historicalRubric": "v5 pp8–10 originally Cloud Storage; approved Firestore alternative replaces current implementation requirement",
+  "baselinePrStates": {
+    "3": "MERGED",
+    "4": "MERGED",
+    "5": "MERGED",
+    "openPrsAtAudit": []
+  },
+  "baselinePr5Ci": "41444625946: flutter-android FAILURE (two leaked SemanticsHandle tests); firebase-rules/e2e-harness SUCCESS",
+  "developmentChecks": {
+    "scope": "Precommit working-tree checks only; final clean-HEAD reruns and CI are recorded in PR description, not attributed to base main SHA",
+    "flutterTests": {
+      "passed": 91,
+      "failed": 0,
+      "newReportServiceAndControllerTests": 20
+    },
+    "firestoreEmulatorRules": {
+      "projectId": "demo-beewise",
+      "passed": 57,
+      "failed": 0,
+      "storageEmulatorUsed": false
+    },
+    "format": "PASS, zero changes",
+    "analyze": "PASS, zero issues",
+    "pubGet": "PASS, removed three firebase_storage packages only",
+    "debugApk": "PASS, default lib/main.dart",
+    "e2eHarness": "PASS, 26 cases structurally checked; Android scenarios NOT RUN"
+  },
+  "precommitDefaultApk": {
+    "sha256": "426dbe51d7a1a743f5467add138de7b0e1ac02c1737cd5c0772c6098906abdd5",
+    "sizeBytes": 227599593,
+    "nativeReportUiRun": "NOT RUN"
+  },
+  "sourceFileSha256": {
+    "lib/services/export_service.dart": "bf1681f6ccb93aab00646bdce828ed883fa8c827e5817da6c2e652d082d91b2d",
+    "lib/services/report_data.dart": "ef4c01d99792bb16a327f5934d1dfefe718081b54f58feaebcf28968b2a5ab88",
+    "lib/viewmodels/controllers.dart": "802126b6d0b48eb08e6b8deb0ed6c05babd843516ed40a7c8b94add9c632c0b1",
+    "lib/viewmodels/app_providers.dart": "f42f46ba02d9842c1f8cb457993aae8c3ebcaf1e05d630599726438bf973348a",
+    "lib/screens/beewise_screens.dart": "7a99961ddfe8bf6baa30ea2a62bae735ad2568e3e474f77e93a3eef4c8e2d9eb",
+    "firebase/firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
+    "firebase/firestore.indexes.json": "ddfa75d2c5eedbd9dc1ec01257a223712d98cd0444b1877c3b70a1eb1f9c3c26",
+    "firebase/rules.test.cjs": "623b1bd88531739ef69e93583a7414eb3f33618f865e2823af55ba8df70ae7f2",
+    "firebase.json": "d3c4507a6edb25b165baf86c884789456b52fc35cf2fedf231f07dd401f7fa5b",
+    "firebase/package.json": "9bb1f44c432ed6e751018415e25508782ccd45053857fe0a52bb9cc83deeeaf7",
+    "pubspec.yaml": "a196a1d97e87ee85515b50e50df5a957692ea9dd1f13d928470437c1520b6750",
+    "pubspec.lock": "db4f01a24ff66bcdd2042bff846cf761e38161b7b396d48b4fae6bb014d8b3cc",
+    "test/report_service_test.dart": "a96f4f93a8dcfb2c218e5fd6ab8a296a152ada3971e40adc01347d232174a17e",
+    "test/report_controller_test.dart": "c974cc812a8ff9362e32f9678d4d33c889a99a83e92636494bb753e045e4ff9a",
+    "test/cloud_services_test.dart": "b00abe016232a1abf81e11bcdea782f7fe6368a2876e72294fef79f8a094151e",
+    "test/workflow_empty_state_test.dart": "683d068742a72564a2bb089ee51140842d66c71dfbc27735ff8752397e421ee4",
+    "e2e_test/test_account_and_firebase.py": "3b0e67bd64d7b52fad98f858f9d1209051e81818614a5c642a50ed90b34bc95e"
+  },
+  "security": {
+    "ownerPositiveControls": "Emulator Alice and Bob each create/read/list own reports",
+    "crossUid": "Emulator both directions deny read/create/update/delete",
+    "anonymousGuestApplicant": "Denied in emulator, including mixed applicant/report batch",
+    "duplicateIds": "Emulator concurrent create admits one; owner update/delete denied",
+    "bounds": "512000 original bytes accepted and exact roundtrip; oversize/malformed metadata denied",
+    "clientIntegrity": "Generated PDF and Base64/download byte equality tested",
+    "rulesLimits": "Bounds/alphabet/PDF prefix, not full PDF semantic decoding",
+    "identity": "Service/controller generation cancellation and raw Auth stream; action-time owner recheck before save/download/share"
+  },
+  "liveVerification": {
+    "upload": "NOT RUN",
+    "serverDownloadHashEquality": "NOT RUN",
+    "consoleScreenshot": "NOT RUN",
+    "abIsolation": "NOT RUN",
+    "offlinePermissionDenied": "NOT RUN",
+    "newUploadReportDebugView": "NOT RUN",
+    "reasons": [
+      "No new live rules/index deployment authorized; no deployment performed",
+      "Eligible authorized active/verified/non-synthetic tutor required; existing fixtures must not be promoted just for testing",
+      "No online ADB device at audit"
+    ]
+  },
+  "preserved": [
+    "Historical PR3 evidence immutable",
+    "Original emulator userdata and working Firebase client config",
+    "Auth/FCM identity generation, journals, fail-closed roles",
+    "Analytics identity and seven previously verified event types",
+    "Crashlytics/Remote Config, AI Logic, App Check dependency",
+    "Consultant/payment/catalog trust boundaries"
+  ],
+  "noLiveCloudWrites": true,
+  "noBillingBucketStorageDeployment": true,
+  "noSecretsOrPrivatePdfCommitted": true,
+  "toolingAudit": {
+    "npmDevelopmentDependencies": "13 moderate advisories observed; no high/critical; package-lock and dependency versions unchanged by migration",
+    "firebaseClientBucketMetadata": "Inert generated options retained; no Storage SDK/plugin dependency"
+  }
+}

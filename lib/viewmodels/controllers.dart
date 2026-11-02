@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../models/tutor.dart';
 import '../services/auth_service.dart';
@@ -18,6 +19,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
   AsyncValue<void> build() => const AsyncData(null);
 
   Future<void> googleSignIn() async {
+    ref.read(reportControllerProvider.notifier).reset();
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
@@ -38,6 +40,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
   }
 
   Future<void> emailSignIn(String email, String password) async {
+    ref.read(reportControllerProvider.notifier).reset();
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
@@ -95,6 +98,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
   }
 
   Future<void> signOut() async {
+    ref.read(reportControllerProvider.notifier).reset();
     state = const AsyncLoading();
     try {
       await ref.read(analyticsServiceProvider).event('logout');
@@ -352,68 +356,239 @@ class WorkflowController extends Notifier<AsyncValue<void>> {
   }
 }
 
+enum ReportStage {
+  idle,
+  generating,
+  generated,
+  encoding,
+  saving,
+  saved,
+  downloading,
+  downloaded,
+  error,
+}
+
 class FileUploadState {
   const FileUploadState({
-    this.progress = 0,
+    this.stage = ReportStage.idle,
     this.result,
     this.localPath,
     this.error,
   });
-  final double progress;
-  final UploadResult? result;
+  final ReportStage stage;
+  final SavedReport? result;
   final String? localPath;
   final String? error;
-  bool get isBusy => progress > 0 && progress < 1;
+  bool get isBusy => const {
+    ReportStage.generating,
+    ReportStage.encoding,
+    ReportStage.saving,
+    ReportStage.downloading,
+  }.contains(stage);
 }
 
 final reportControllerProvider =
     NotifierProvider<ReportController, FileUploadState>(ReportController.new);
 
 class ReportController extends Notifier<FileUploadState> {
-  @override
-  FileUploadState build() => const FileUploadState();
+  ReportOperation? _operation;
+  ExportedReport? _report;
+  String? _tutorId;
+  String? _ownerUid;
+  bool _disposed = false;
 
-  Future<void> exportAndUpload(Tutor tutor) async {
-    state = const FileUploadState(progress: 0.01);
+  @override
+  FileUploadState build() {
+    final service = ref.read(exportServiceProvider);
+    var previousOwner = service.currentOwnerUid;
+    // Observe the raw Auth stream: clearing private UI must not wait for the
+    // telemetry work in authStateProvider's asyncMap.
+    final subscription = service.ownerChanges.listen((owner) {
+      if (owner != previousOwner) {
+        reset();
+        previousOwner = owner;
+      }
+    }, onError: (Object error, StackTrace stack) => reset());
+    ref.onDispose(() {
+      _disposed = true;
+      _operation?.cancel();
+      subscription.cancel();
+    });
+    return const FileUploadState();
+  }
+
+  bool _current(ReportOperation operation, String? uid) =>
+      !_disposed &&
+      identical(_operation, operation) &&
+      !operation.cancelled &&
+      _ownerUid == uid &&
+      ref.read(exportServiceProvider).currentOwnerUid == uid;
+
+  Future<void> generate(Tutor tutor) async {
+    if (state.isBusy) return;
+    reset();
+    final operation = _operation = ReportOperation();
+    final service = ref.read(exportServiceProvider);
+    final uid = service.currentOwnerUid;
+    _ownerUid = uid;
+    state = const FileUploadState(stage: ReportStage.generating);
     try {
-      final service = ref.read(exportServiceProvider);
+      // The route's Tutor comes from TutorRepository. Cloud save independently
+      // rechecks the actual catalog document and rules recheck eligibility.
       final report = await service.buildTutorSummary(tutor);
+      if (!_current(operation, uid)) return;
+      _report = report;
+      _tutorId = tutor.id;
       await ref.read(analyticsServiceProvider).event('export_report', {
         'subject_count': tutor.subjects.length,
         'file_size_kb': report.sizeBytes ~/ 1024,
       });
-      state = FileUploadState(progress: 0.05, localPath: report.file.path);
-      final user = await ref.read(authStateProvider.future);
-      if (user == null || user.isAnonymous) {
-        throw const ExportException(
-          'Đăng nhập để tải tệp lên vùng lưu trữ riêng.',
-        );
-      }
-      final result = await service.upload(
-        uid: user.uid,
-        report: report,
-        onProgress: (progress) => state = FileUploadState(
-          progress: progress,
-          localPath: report.file.path,
-        ),
-      );
-      await ref.read(analyticsServiceProvider).event('upload_report', {
-        'file_size_kb': report.sizeBytes ~/ 1024,
-      });
+      if (!_current(operation, uid)) return;
       state = FileUploadState(
-        progress: 1,
+        stage: ReportStage.generated,
+        localPath: report.file.path,
+      );
+    } catch (error, stack) {
+      await _failed(operation, uid, error, stack);
+    }
+  }
+
+  Future<void> save() async {
+    if (state.isBusy ||
+        state.result != null ||
+        _report == null ||
+        _tutorId == null) {
+      return;
+    }
+    final service = ref.read(exportServiceProvider);
+    final uid = service.currentOwnerUid;
+    if (_ownerUid != uid) {
+      reset();
+      return;
+    }
+    final operation = _operation = ReportOperation();
+    final report = _report!;
+    state = FileUploadState(
+      stage: ReportStage.encoding,
+      localPath: report.file.path,
+    );
+    try {
+      final result = await service.saveReport(
+        tutorId: _tutorId!,
+        report: report,
+        operation: operation,
+        onSaving: () {
+          if (_current(operation, uid)) {
+            state = FileUploadState(
+              stage: ReportStage.saving,
+              localPath: report.file.path,
+            );
+          }
+        },
+      );
+      if (!_current(operation, uid)) return;
+      await ref.read(analyticsServiceProvider).event('upload_report', {
+        'storage_backend': 'firestore',
+        'file_size_kb': result.sizeBytes ~/ 1024,
+        'result': 'success',
+      });
+      if (!_current(operation, uid)) return;
+      state = FileUploadState(
+        stage: ReportStage.saved,
         result: result,
         localPath: report.file.path,
       );
     } catch (error, stack) {
-      await ref
-          .read(crashReportingServiceProvider)
-          .recordHandled(error, stack, 'Report export/upload failed');
-      state = FileUploadState(error: error.toString());
+      await _failed(operation, uid, error, stack);
     }
   }
 
-  void reset() => state = const FileUploadState();
+  Future<void> download() async {
+    final result = state.result;
+    if (state.isBusy || result == null) return;
+    final service = ref.read(exportServiceProvider);
+    final uid = service.currentOwnerUid;
+    if (_ownerUid != uid || uid == null) {
+      reset();
+      return;
+    }
+    final operation = _operation = ReportOperation();
+    state = FileUploadState(stage: ReportStage.downloading, result: result);
+    try {
+      final file = await service.downloadReport(
+        result.reportId,
+        operation: operation,
+      );
+      if (!_current(operation, uid)) return;
+      state = FileUploadState(
+        stage: ReportStage.downloaded,
+        result: result,
+        localPath: file.path,
+      );
+    } catch (error, stack) {
+      await _failed(operation, uid, error, stack);
+    }
+  }
+
+  Future<void> share() async {
+    if (state.isBusy || state.localPath == null) return;
+    final operation = _operation;
+    final uid = ref.read(exportServiceProvider).currentOwnerUid;
+    if (_ownerUid != uid) {
+      reset();
+      return;
+    }
+    if (_disposed || operation == null) return;
+    try {
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [XFile(state.localPath!, mimeType: 'application/pdf')],
+          title: 'BeeWise PDF',
+        ),
+      );
+    } catch (error, stack) {
+      await _failed(operation, uid, error, stack);
+    }
+  }
+
+  Future<void> _failed(
+    ReportOperation operation,
+    String? uid,
+    Object error,
+    StackTrace stack,
+  ) async {
+    // A timeout cancels the operation itself; still show its error unless a
+    // reset/logout/new operation invalidated its identity.
+    if (_disposed ||
+        !identical(_operation, operation) ||
+        ref.read(exportServiceProvider).currentOwnerUid != uid) {
+      return;
+    }
+    final previous = state;
+    state = FileUploadState(
+      stage: ReportStage.error,
+      result: previous.result,
+      localPath: previous.localPath,
+      error: friendlyError(error),
+    );
+    // SDK errors can include document paths. Never send PDF content or raw UID.
+    await ref
+        .read(crashReportingServiceProvider)
+        .recordHandled(
+          const ExportException('Report operation failed'),
+          stack,
+          'Report generation/save/download failed',
+        );
+  }
+
+  void reset() {
+    _operation?.cancel();
+    _operation = null;
+    _report = null;
+    _tutorId = null;
+    _ownerUid = null;
+    if (!_disposed) state = const FileUploadState();
+  }
 }
 
 final profileTutorProvider = FutureProvider<Tutor?>((ref) async {

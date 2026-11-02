@@ -1,3 +1,9 @@
+## Firestore PDF alternative — 2026-11-02 (current)
+
+Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval (**owner-reported; no written artifact**). B-03.2 is **IMPLEMENTED — LIVE VERIFICATION PENDING**; historical Storage-DEFERRED statements below describe their original runs. No historical evidence was changed. See [migration, UI contract and validation](bao-firestore-reports.md).
+
+Minimal Nguyen integration: tutor-detail button now generates locally; a shared inline PDF action block on tutor detail and existing Profile offers explicit private save, server download and share/open. No theme/router redesign. Progress is indeterminate by stage, with no public URL. TC-11 is updated to this contract; no ARTEMIS runtime PASS is inferred. One existing workflow widget test releases its semantics handle before Flutter end-of-test verification; its assertions and UI behavior are unchanged.
+
 # Bao → Nguyen runtime handoff — 2026-10-31
 
 ## Authenticated Profile failure — approved exception corrected

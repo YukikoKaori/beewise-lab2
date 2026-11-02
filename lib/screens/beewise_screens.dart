@@ -639,12 +639,12 @@ class _TutorProfileContent extends ConsumerWidget {
               ],
               const SizedBox(height: 24),
               OutlinedButton.icon(
-                onPressed: () => ref
-                    .read(reportControllerProvider.notifier)
-                    .exportAndUpload(tutor),
+                onPressed: () =>
+                    ref.read(reportControllerProvider.notifier).generate(tutor),
                 icon: const Icon(Icons.picture_as_pdf_outlined),
-                label: const Text('Xuất hồ sơ PDF và tải lên Firebase'),
+                label: const Text('Xuất hồ sơ PDF'),
               ),
+              const _ReportActions(),
             ],
           ),
         ),
@@ -1982,7 +1982,6 @@ class ProfileScreen extends ConsumerWidget {
     final auth = ref.watch(authStateProvider);
     final authAction = ref.watch(authControllerProvider);
     final notifications = ref.watch(notificationsProvider);
-    final report = ref.watch(reportControllerProvider);
     final remoteConfig = ref.watch(remoteConfigProvider);
     final notificationError = ref
         .watch(notificationServiceProvider)
@@ -2083,17 +2082,8 @@ class ProfileScreen extends ConsumerWidget {
               'Ghép AI: ${remoteConfig.matchingEnabled ? 'đang bật' : 'đang tắt'} · tối đa ${remoteConfig.aiResultLimit} kết quả',
             ),
           ),
-          const SectionTitle('Tải tệp lên Firebase'),
-          const Text(
-            'Mở hồ sơ gia sư để xuất PDF. Tệp được tải lên vùng riêng reports/{uid}.',
-          ),
-          if (report.progress > 0 && report.progress < 1)
-            LinearProgressIndicator(value: report.progress),
-          if (report.error != null) ErrorStateView(message: report.error!),
-          if (report.result != null)
-            SelectableText(
-              'Đã tải lên ${report.result!.storagePath}\n${report.result!.downloadUrl}',
-            ),
+          const SectionTitle('Báo cáo PDF riêng'),
+          const _ReportActions(),
           const SectionTitle('Chẩn đoán lỗi'),
           OutlinedButton.icon(
             onPressed: () async {
@@ -2145,4 +2135,61 @@ class RouteErrorScreen extends StatelessWidget {
       ),
     ),
   );
+}
+
+// Minimum PDF integration shared by the tutor detail and existing Profile area.
+// Layout/theme/router ownership remains with Nguyen.
+class _ReportActions extends ConsumerWidget {
+  const _ReportActions();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final report = ref.watch(reportControllerProvider);
+    final controller = ref.read(reportControllerProvider.notifier);
+    final label = switch (report.stage) {
+      ReportStage.idle => 'Xuất PDF từ hồ sơ gia sư. Lưu riêng trong Firestore sau khi đăng nhập.',
+      ReportStage.generating => 'Đang tạo PDF…',
+      ReportStage.generated => 'PDF đã tạo trên máy. Chưa lưu cloud.',
+      ReportStage.encoding => 'Đang kiểm tra và mã hóa PDF…',
+      ReportStage.saving => 'Đang chờ Firestore server xác nhận…',
+      ReportStage.saved => 'Đã lưu PDF và đọc lại từ server.',
+      ReportStage.downloading => 'Đang tải PDF từ server…',
+      ReportStage.downloaded => 'Đã tải PDF từ server về máy.',
+      ReportStage.error => 'Thao tác chưa hoàn tất. Có thể thử lại.',
+    };
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label),
+        if (report.isBusy) ...[
+          const LinearProgressIndicator(),
+          TextButton(
+            onPressed: controller.reset,
+            child: const Text('Hủy thao tác'),
+          ),
+        ],
+        if (report.error != null) ErrorStateView(message: report.error!),
+        if (report.result != null)
+          SelectableText('Firestore: ${report.result!.documentPath}'),
+        if (!report.isBusy && report.localPath != null && report.result == null)
+          TextButton.icon(
+            onPressed: controller.save,
+            icon: const Icon(Icons.cloud_upload_outlined),
+            label: const Text('Lưu cloud riêng'),
+          ),
+        if (!report.isBusy && report.result != null)
+          TextButton.icon(
+            onPressed: controller.download,
+            icon: const Icon(Icons.download_outlined),
+            label: const Text('Tải lại từ server'),
+          ),
+        if (!report.isBusy && report.localPath != null)
+          TextButton.icon(
+            onPressed: controller.share,
+            icon: const Icon(Icons.share_outlined),
+            label: const Text('Mở / chia sẻ PDF'),
+          ),
+      ],
+    );
+  }
 }
