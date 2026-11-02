@@ -85,6 +85,11 @@ class ExportService {
           pw.SizedBox(height: 16),
           pw.Text(tutor.name, style: pw.TextStyle(font: bold, fontSize: 18)),
           pw.SizedBox(height: 8),
+          if (tutor.isDemoProfile) ...[
+            pw.Text(Tutor.demoDisclosure, style: pw.TextStyle(font: bold)),
+            pw.Text(Tutor.demoDisclaimer, style: pw.TextStyle(font: font)),
+            pw.SizedBox(height: 8),
+          ],
           _row('Chuyên môn', tutor.subjects.join(', '), font, bold),
           _row('Lớp', tutor.grades.join(', '), font, bold),
           _row('Học phí', '${tutor.hourlyFee}đ/giờ', font, bold),
@@ -94,7 +99,11 @@ class ExportService {
           _row('Kinh nghiệm', '${tutor.experienceYears} năm', font, bold),
           _row(
             'Xác minh',
-            tutor.verified ? 'Đã xác minh' : 'Chưa xác minh',
+            tutor.isDemoProfile
+                ? Tutor.demoDisclosure
+                : tutor.verified
+                ? 'Đã xác minh'
+                : 'Chưa xác minh',
             font,
             bold,
           ),
@@ -237,9 +246,7 @@ class ExportService {
         final raw = tutor.data();
         if (raw == null) throw const ExportException('Không tìm thấy gia sư.');
         final profile = Tutor.fromMap(tutorId, raw);
-        if (!profile.active ||
-            !profile.verified ||
-            profile.isSyntheticTestFixture) {
+        if (!profile.reportEligible) {
           throw const ExportException(
             'Chỉ lưu cloud từ hồ sơ gia sư đã xác minh, không phải dữ liệu thử.',
           );
