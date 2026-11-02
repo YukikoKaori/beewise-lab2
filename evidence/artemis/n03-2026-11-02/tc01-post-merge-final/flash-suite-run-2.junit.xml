@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="43.354" timestamp="2026-11-02T20:24:25.687137+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_discovery" name="test_tc01_guest_home_reports_real_visible_state" time="43.072"><failure message="AssertionError: ARTEMIS output was not the required JSON observation: 'The BeeWise app is open on the Home screen.\n- App-bar title: &quot;BeeWise&quot;\n- Visible top-level destinations: Trang chủ, Tìm gia sư, Ghép AI, Tin nhắn, Tài khoản\n- Firebase setup/error notice: None (shows &quot;Chưa có gia sư phù hợp&quot; - No matching tutor)\n- Number of tutor cards: 0\n- Firestore results / fabricated profile claims: 0 visible tutor cards, hence no fabricated profile claims.'">output = 'The BeeWise app is open on the Home screen.\n- App-bar title: "BeeWise"\n- Visible top-level destinations: Trang chủ,... cards: 0\n- Firestore results / fabricated profile claims: 0 visible tutor cards, hence no fabricated profile claims.'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+&gt;               value = json.loads(candidate)
+                        ^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\conftest.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;json.decoder.JSONDecoder object at 0x00000203FF95FC80&gt;
+s = 'The BeeWise app is open on the Home screen.\n- App-bar title: "BeeWise"\n- Visible top-level destinations: Trang chủ,... cards: 0\n- Firestore results / fabricated profile claims: 0 visible tutor cards, hence no fabricated profile claims.'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+&gt;           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:356: JSONDecodeError
+
+The above exception was the direct cause of the following exception:
+
+run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000020381863B00&gt;
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+&gt;       observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the exact app-bar title at the top of the Home "
+                "screen (do not confuse it with the marketing banner/tagline), "
+                "visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang chủ","Tìm gia sư","Ghép AI",'
+                '"Tin nhắn","Tài khoản"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_discovery.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:91: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:115: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'The BeeWise app is open on the Home screen.\n- App-bar title: "BeeWise"\n- Visible top-level destinations: Trang chủ,... cards: 0\n- Firestore results / fabricated profile claims: 0 visible tutor cards, hence no fabricated profile claims.'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+                start, end = text.find("{"), text.rfind("}")
+                embedded = text[start : end + 1].replace("\\n", "\n") if start &gt;= 0 and end &gt; start else ""
+                try:
+                    value = json.loads(embedded) if embedded else _decode_tc01_prose(text)
+                except json.JSONDecodeError:
+                    value = _decode_tc01_prose(text)
+                if value is None:
+&gt;                   raise AssertionError(
+                        f"ARTEMIS output was not the required JSON observation: {text!r}"
+                    ) from error
+E                   AssertionError: ARTEMIS output was not the required JSON observation: 'The BeeWise app is open on the Home screen.\n- App-bar title: "BeeWise"\n- Visible top-level destinations: Trang chủ, Tìm gia sư, Ghép AI, Tin nhắn, Tài khoản\n- Firebase setup/error notice: None (shows "Chưa có gia sư phù hợp" - No matching tutor)\n- Number of tutor cards: 0\n- Firestore results / fabricated profile claims: 0 visible tutor cards, hence no fabricated profile claims.'
+
+e2e_test\conftest.py:136: AssertionError</failure></testcase></testsuite></testsuites>

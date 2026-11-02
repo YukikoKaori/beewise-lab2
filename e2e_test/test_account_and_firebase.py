@@ -36,11 +36,13 @@ async def test_tc08_registration_validation_does_not_create_account(run_flow):
     """TC-08; registration validation; signed out, do not submit real personal data."""
     observed = await run_flow(
         case_id="TC-08",
-        start="BeeWise is signed out on Register with all fields blank.",
+        start="BeeWise is signed out on Home.",
         steps=(
-            "Tap the create-account action while leaving all fields blank and "
-            "required consent unchecked. Verify required-field or consent errors "
-            "are visible and registration does not succeed. Do not enter or submit data."
+            "Open Tài khoản from the bottom navigation. If Login appears, open "
+            "the create-account/Register screen. Leave every field blank and "
+            "required consent unchecked, then tap the create-account action. "
+            "Verify required-field or consent errors are visible and registration "
+            "does not succeed. Do not enter or submit personal data."
         ),
         expected=(
             '{"register_screen_visible":true,"validation_errors_visible":true,'
@@ -52,6 +54,28 @@ async def test_tc08_registration_validation_does_not_create_account(run_flow):
     assert require(observed, "registration_succeeded", bool) is False
 
 
+async def test_tc27_login_validation_is_local_and_does_not_authenticate(run_flow):
+    """TC-27; supplemental independent check of blank login validation."""
+    observed = await run_flow(
+        case_id="TC-27",
+        start="BeeWise is installed, signed out, and showing Home.",
+        steps=(
+            "Open Tài khoản from bottom navigation, then open Login. Leave the "
+            "email and password fields empty and tap Đăng nhập once. Verify the "
+            "local field validation messages appear and no authentication request "
+            "succeeds. Do not enter credentials."
+        ),
+        expected=(
+            '{"login_screen_visible":true,"email_validation_visible":true,'
+            '"password_validation_visible":true,"signed_in":false}'
+        ),
+    )
+    assert require(observed, "login_screen_visible", bool)
+    assert require(observed, "email_validation_visible", bool)
+    assert require(observed, "password_validation_visible", bool)
+    assert require(observed, "signed_in", bool) is False
+
+
 async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
     """TC-09; primary navigation; signed-out app on Home."""
     observed = await run_flow(
@@ -59,18 +83,29 @@ async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
         start="BeeWise is signed out on Home with the bottom navigation visible.",
         steps=(
             "Open each bottom destination in order: Trang chủ, Tìm gia sư, Ghép "
-            "AI, Tin nhắn, Tài khoản. Report each destination only after its "
-            "screen title is visible; also report whether any overflow or crash appeared."
+            "AI, Tin nhắn, Tài khoản. For each destination return one object "
+            "with its exact name, title_visible based on the rendered screen, "
+            "and separate overflow_seen and crash_dialog_seen booleans. Include "
+            "all five observations in order."
         ),
         expected=(
-            '{"visible_destinations":[string],"overflow_seen":false,'
-            '"crash_dialog_seen":false}'
+            '{"destinations":[{"name":string,"title_visible":true,'
+            '"overflow_seen":false,"crash_dialog_seen":false}]}'
         ),
     )
-    destinations = require(observed, "visible_destinations", list)
-    assert set(destinations) >= {"Trang chủ", "Tìm gia sư", "Ghép AI", "Tin nhắn", "Tài khoản"}
-    assert require(observed, "overflow_seen", bool) is False
-    assert require(observed, "crash_dialog_seen", bool) is False
+    destinations = require(observed, "destinations", list)
+    assert len(destinations) == 5
+    assert all(
+        isinstance(row, dict)
+        and row.get("title_visible") is True
+        and type(row.get("overflow_seen")) is bool
+        and type(row.get("crash_dialog_seen")) is bool
+        for row in destinations
+    )
+    destinations = [row["name"] for row in destinations]
+    assert destinations == ["Trang chủ", "Tìm gia sư", "Ghép AI", "Tin nhắn", "Tài khoản"]
+    assert all(row["overflow_seen"] is False for row in observed["destinations"])
+    assert all(row["crash_dialog_seen"] is False for row in observed["destinations"])
 
 
 @pytest.mark.manual_setup
@@ -179,13 +214,13 @@ async def test_tc11_pdf_export_upload_progress_and_private_path(run_flow):
 
 
 async def test_tc12_remote_config_and_crashlytics_demo_area(run_flow):
-    """TC-12; profile Firebase demo area; Firebase features are enabled."""
+    """TC-12; inspect the guest-visible Firebase demo area without mutation."""
     observed = await run_flow(
         case_id="TC-12",
-        start="BeeWise is signed in on Tài khoản with Remote Config and Crashlytics enabled.",
+        start="BeeWise is installed, signed out, and showing Home.",
         steps=(
-            "Read the two visible Remote Config values that affect app behavior "
-            "and locate the Crashlytics non-fatal and deliberate fatal-test "
+            "Open Tài khoản from bottom navigation. Read the two visible Remote "
+            "Config values that affect app behavior and locate the Crashlytics non-fatal and deliberate fatal-test "
             "actions. Do not trigger either action in this inspection case. "
             "Report labels and current values."
         ),
@@ -196,7 +231,7 @@ async def test_tc12_remote_config_and_crashlytics_demo_area(run_flow):
         ),
     )
     values = require(observed, "visible_remote_config_values", dict)
-    assert isinstance(values.get("ai_result_limit"), int)
+    assert type(values.get("ai_result_limit")) is int
     assert isinstance(values.get("ai_matching_enabled"), bool)
     assert require(observed, "crashlytics_nonfatal_action_visible", bool)
     assert require(observed, "fatal_test_action_visible", bool)
@@ -227,9 +262,10 @@ async def test_tc16_cancel_google_picker_shows_recoverable_error(run_flow):
     """TC-16; auth error path/native interaction; signed out with Google configured."""
     observed = await run_flow(
         case_id="TC-16",
-        start="BeeWise is signed out on Login with Google Sign-In enabled.",
+        start="BeeWise is signed out on Home with Google Sign-In configured.",
         steps=(
-            "Tap Continue with Google, then cancel the native account picker. "
+            "Open Tài khoản from bottom navigation and select Login. Tap "
+            "Continue with Google, then cancel the native account picker. "
             "Verify a clear cancellation message appears, the app remains usable, "
             "and no account is signed in."
         ),
@@ -245,12 +281,12 @@ async def test_tc16_cancel_google_picker_shows_recoverable_error(run_flow):
 
 
 async def test_tc17_deliberate_crash_is_reported_and_app_recovers(run_flow):
-    """TC-17; Crashlytics fatal test; each run must explicitly relaunch the app."""
+    """TC-17; guest-visible Crashlytics test; each run must relaunch the app."""
     observed = await run_flow(
         case_id="TC-17",
-        start="BeeWise is signed in on Tài khoản and Crashlytics is configured.",
+        start="BeeWise is installed, signed out, and showing Home; Crashlytics test controls are guest-visible.",
         steps=(
-            "Tap the clearly labeled Crashlytics test-crash action once. Confirm "
+            "Open Tài khoản from bottom navigation. Tap the clearly labeled Crashlytics test-crash action once. Confirm "
             "BeeWise terminates, then relaunch it. Verify the app opens again "
             "without a crash loop and report the resulting screen."
         ),

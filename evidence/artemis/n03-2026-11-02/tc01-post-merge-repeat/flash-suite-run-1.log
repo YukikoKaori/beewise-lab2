@@ -1,0 +1,163 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "ca0ffa5b-3d67-4b4f-b4e2-1b5fc620d511", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+F
+================================== FAILURES ===================================
+_______________ test_tc01_guest_home_reports_real_visible_state _______________
+
+self = <artemis_client.transport.JsonTransport object at 0x000002573B4E57C0>
+method = 'POST', path = '/api/run'
+json_body = {'goal': 'Test case TC-01. Starting point: BeeWise is installed and signed out on Home..\nSteps: Open BeeWise. Read th... JSON object.', 'profile': 'flash', 'session_id': 'e4d8b29e-6df2-4843-a78b-6e91d37a4394', 'ingress': 'python_sdk', ...}
+
+    def request(
+        self,
+        method: str,
+        path: str,
+        *,
+        json_body: Mapping[str, Any] | None = None,
+    ) -> Any:
+        if not path.startswith("/"):
+            path = f"/{path}"
+        url = f"{self.base_url}{path}"
+        body = None
+        headers = dict(self.headers)
+        if json_body is not None:
+            body = json.dumps(json_body, separators=(",", ":")).encode("utf-8")
+            headers["Content-Type"] = "application/json"
+    
+        request = urllib.request.Request(
+            url,
+            data=body,
+            headers=headers,
+            method=method.upper(),
+        )
+        try:
+>           with urllib.request.urlopen(
+                request,
+                timeout=self.timeout,
+                context=self.ssl_context,
+            ) as response:
+
+e2e_test\.venv\Lib\site-packages\artemis_client\transport.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\urllib\request.py:215: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\urllib\request.py:521: in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\urllib\request.py:630: in http_response
+    response = self.parent.error(
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\urllib\request.py:559: in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\urllib\request.py:492: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <urllib.request.HTTPDefaultErrorHandler object at 0x000002573B4F8680>
+req = <urllib.request.Request object at 0x000002573D4444A0>
+fp = <http.client.HTTPResponse object at 0x000002573D445630>, code = 409
+msg = 'Conflict', hdrs = <http.client.HTTPMessage object at 0x000002573D4458B0>
+
+    def http_error_default(self, req, fp, code, msg, hdrs):
+>       raise HTTPError(req.full_url, code, msg, hdrs, fp)
+E       urllib.error.HTTPError: HTTP Error 409: Conflict
+
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\urllib\request.py:639: HTTPError
+
+The above exception was the direct cause of the following exception:
+
+run_flow = <function run_flow.<locals>.run at 0x000002573D430720>
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+>       observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the Home title, visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang ch\u1ee7","T\xecm gia s\u01b0","Gh\xe9p AI",'
+                '"Tin nh\u1eafn","T\xe0i kho\u1ea3n"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_discovery.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:68: in run
+    result: TaskResult = await artemis.run(
+e2e_test\.venv\Lib\site-packages\artemis_client\client.py:314: in run
+    handle = await self.submit(
+e2e_test\.venv\Lib\site-packages\artemis_client\client.py:237: in submit
+    await self._request("POST", "/api/run", json_body=payload),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\.venv\Lib\site-packages\artemis_client\client.py:367: in _request
+    return await asyncio.to_thread(
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\asyncio\threads.py:25: in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\concurrent\futures\thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <artemis_client.transport.JsonTransport object at 0x000002573B4E57C0>
+method = 'POST', path = '/api/run'
+json_body = {'goal': 'Test case TC-01. Starting point: BeeWise is installed and signed out on Home..\nSteps: Open BeeWise. Read th... JSON object.', 'profile': 'flash', 'session_id': 'e4d8b29e-6df2-4843-a78b-6e91d37a4394', 'ingress': 'python_sdk', ...}
+
+    def request(
+        self,
+        method: str,
+        path: str,
+        *,
+        json_body: Mapping[str, Any] | None = None,
+    ) -> Any:
+        if not path.startswith("/"):
+            path = f"/{path}"
+        url = f"{self.base_url}{path}"
+        body = None
+        headers = dict(self.headers)
+        if json_body is not None:
+            body = json.dumps(json_body, separators=(",", ":")).encode("utf-8")
+            headers["Content-Type"] = "application/json"
+    
+        request = urllib.request.Request(
+            url,
+            data=body,
+            headers=headers,
+            method=method.upper(),
+        )
+        try:
+            with urllib.request.urlopen(
+                request,
+                timeout=self.timeout,
+                context=self.ssl_context,
+            ) as response:
+                data = response.read()
+                if not data:
+                    return None
+                try:
+                    return json.loads(data.decode("utf-8"))
+                except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                    raise ProtocolError(f"Artemis host returned invalid JSON from {path}") from exc
+        except urllib.error.HTTPError as exc:
+            payload = self._decode_error_payload(exc)
+            detail = self._error_detail(payload, exc.reason)
+            error_type = {
+                401: AuthenticationError,
+                403: AuthenticationError,
+                404: NotFoundError,
+                409: ConflictError,
+            }.get(exc.code, ApiError)
+>           raise error_type(exc.code, detail, payload=payload) from exc
+E           artemis_client.errors.ConflictError: Artemis API returned HTTP 409: Android device emulator-5554 lock state could not be verified. Keep it unlocked on the home screen and try again.
+
+e2e_test\.venv\Lib\site-packages\artemis_client\transport.py:108: ConflictError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_discovery.py::test_tc01_guest_home_reports_real_visible_state
+1 failed, 25 deselected in 2.08s
