@@ -1,6 +1,20 @@
 # Firestore Base64 PDF reports — 2026-11-02
 
-## Live preflight after merged PR #6 — current
+## Owner-approved deployment — current
+
+**B-03.2 PARTIALLY VERIFIED; native PDF acceptance still BLOCKED by eligible tutor data.**
+Owner approved the exact frozen bundle with “qb duyệt”. Fresh hash/baseline checks
+passed; scoped Firestore rules/index deployment exited 0 at 16:52:26Z on 02/11.
+Active ruleset `34ff742c-626d-4cd5-abde-59c21cce3522` matches the approved source.
+Non-report rules are unchanged, the same chat index remains READY and the Base64
+single-field exemption is live. Actual client SDK public-query positive plus nine
+guest private-read negatives pass, without IAM bypass or writes. This is not live
+A/B report ownership or a native PDF roundtrip PASS. No eligible tutor, report
+write, catalog change, Storage/billing/App Check change or rollback was introduced.
+See [deployment receipt](../../evidence/cloud/firestore-reports/deployment-20261102.json)
+and [updated plan](../../evidence/cloud/firestore-reports/deployment-plan-20261102.md).
+
+## Live preflight after merged PR #6 — historical, before approval
 
 **B-03.2 BLOCKED; implementation remains IMPLEMENTED — LIVE VERIFICATION PENDING.**
 Fetched main `f4fe42d5246d36c033cec27dc76a32bb5bf97d4f`; PR #6 is MERGED and

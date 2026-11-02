@@ -1,4 +1,15 @@
-## Firestore PDF alternative — 2026-11-02 (current)
+## Firestore PDF approved deployment — 2026-11-02 (current)
+
+**B-03.2 PARTIALLY VERIFIED; live PDF acceptance BLOCKED by eligible tutor data.**
+Owner “qb duyệt” resolved the exact-bundle deployment gate. Scoped rules/index
+deploy exited 0; active ruleset `34ff742c-626d-4cd5-abde-59c21cce3522` matches the
+approved source, existing chat index remains READY, Base64 index exemption is live.
+Ten actual guest-client read controls pass (one public positive, nine private
+denials); no live A/B saved-report or PDF roundtrip claim. No catalog/report write,
+billing/Storage/App Check change or rollback. See
+[approved deployment receipt](../../evidence/cloud/firestore-reports/deployment-20261102.json).
+
+## Firestore PDF alternative — 2026-11-02 (pre-deployment history)
 
 **Live preflight: B-03.2 BLOCKED, not COMPLETE.** Merged PR #6 main
 `f4fe42d5246d36c033cec27dc76a32bb5bf97d4f` has 3/3 successful Actions jobs.
