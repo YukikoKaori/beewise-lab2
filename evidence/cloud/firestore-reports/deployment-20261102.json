@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-11-02T16:54:45.065378+00:00",
+  "status": "PARTIALLY VERIFIED",
+  "pdfAcceptance": "BLOCKED: no authorized eligible tutor; native save/download/hash/A-B report positives remain NOT RUN",
+  "authorization": {
+    "ownerReply": "qb duyệt",
+    "scope": "Exact frozen firestore-pdf-20261102 rules/index/config bundle requested in preceding final; no tutor/catalog write or rollback authorization inferred"
+  },
+  "sourceShaAtDeployment": "ad5eea30597db7bf0ef95b647b3f7cbfb4f8fabc",
+  "deployment": {
+    "startedAtUtc": "2026-11-02T16:52:14.561198+00:00",
+    "completedAtUtc": "2026-11-02T16:52:26.864772+00:00",
+    "projectId": "beewise-lab-3",
+    "authorization": "Owner reply qb duyệt to the exact bundle deployment request; does not authorize catalog writes or rollback",
+    "command": [
+      "node",
+      "D:\\CodexTemp\\beewise-pdf-live-validation\\firebase\\node_modules\\firebase-tools\\lib\\bin\\firebase.js",
+      "deploy",
+      "--project",
+      "beewise-lab-3",
+      "--config",
+      "firebase.deploy.json",
+      "--only",
+      "firestore:rules,firestore:indexes",
+      "--non-interactive"
+    ],
+    "cwd": "D:\\CodexTemp\\beewise-lab3-tools\\pdf-live-private\\firestore-pdf-20261102",
+    "fileSha256": {
+      "firebase.deploy.json": "858e30724765b212940de948a67e05865947e9568a52a4de1d77e22f3a1b4bfe",
+      "firebase.validation.json": "869fec781919b64aaee7575882f2fb8e18bb71a90e6f466526ccd6ad5befb14c",
+      "firestore.indexes.json": "f7774cfccd6108b2f2f92da3841e98701d8630d05160c425fa938fd2b49e29b5",
+      "firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
+      "previous-deployed-firestore.rules": "c1dad4250814abcf0c80adb940dc612dbee133db0e80574fd0d055c5dcf86bb8",
+      "rules.test.cjs": "70c3474f325dfcd2f579b2b9bf8092835de1a810d2de7eaeadf9b2eaf97fea6d"
+    },
+    "baselineRulesetName": "projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+    "baselineRulesNormalizedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "baselineIndexes": {
+      "indexes": [
+        {
+          "collectionGroup": "chats",
+          "queryScope": "COLLECTION",
+          "fields": [
+            {
+              "fieldPath": "parentId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "order": "DESCENDING"
+            },
+            {
+              "fieldPath": "__name__",
+              "order": "DESCENDING"
+            }
+          ],
+          "density": "SPARSE_ALL"
+        }
+      ],
+      "fieldOverrides": []
+    },
+    "exitCode": 0,
+    "logSha256": "d02f0a6bd74989029c3f24082c2f272408134d70423fac6fe057eb9ed6b4e4e8",
+    "scope": "firestore:rules,firestore:indexes only",
+    "rollbackPerformed": false,
+    "catalogWritesPerformed": false
+  },
+  "before": {
+    "timestampUtc": "2026-11-02T16:51:49.180Z",
+    "projectId": "beewise-lab-3",
+    "phase": "before",
+    "readOnly": true,
+    "rulesetName": "projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+    "rulesNormalizedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "indexes": {
+      "indexes": [
+        {
+          "collectionGroup": "chats",
+          "queryScope": "COLLECTION",
+          "fields": [
+            {
+              "fieldPath": "parentId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "order": "DESCENDING"
+            },
+            {
+              "fieldPath": "__name__",
+              "order": "DESCENDING"
+            }
+          ],
+          "density": "SPARSE_ALL"
+        }
+      ],
+      "fieldOverrides": []
+    },
+    "indexStates": [
+      {
+        "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/chats/indexes/CICAgOjXh4EK",
+        "state": "READY",
+        "fields": [
+          {
+            "fieldPath": "parentId",
+            "order": "ASCENDING"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "order": "DESCENDING"
+          },
+          {
+            "fieldPath": "__name__",
+            "order": "DESCENDING"
+          }
+        ],
+        "queryScope": "COLLECTION"
+      }
+    ],
+    "fieldState": null
+  },
+  "after": {
+    "timestampUtc": "2026-11-02T16:53:11.217Z",
+    "projectId": "beewise-lab-3",
+    "phase": "after",
+    "readOnly": true,
+    "rulesetName": "projects/beewise-lab-3/rulesets/34ff742c-626d-4cd5-abde-59c21cce3522",
+    "rulesNormalizedSha256": "1d06fd3c1d4ad3462cefc5c13d9669dbc32222231abc65ffb3a2267d54c526d7",
+    "indexes": {
+      "indexes": [
+        {
+          "collectionGroup": "chats",
+          "queryScope": "COLLECTION",
+          "fields": [
+            {
+              "fieldPath": "parentId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "order": "DESCENDING"
+            },
+            {
+              "fieldPath": "__name__",
+              "order": "DESCENDING"
+            }
+          ],
+          "density": "SPARSE_ALL"
+        }
+      ],
+      "fieldOverrides": [
+        {
+          "collectionGroup": "files",
+          "fieldPath": "base64Data",
+          "ttl": false,
+          "indexes": []
+        }
+      ]
+    },
+    "indexStates": [
+      {
+        "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/chats/indexes/CICAgOjXh4EK",
+        "state": "READY",
+        "fields": [
+          {
+            "fieldPath": "parentId",
+            "order": "ASCENDING"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "order": "DESCENDING"
+          },
+          {
+            "fieldPath": "__name__",
+            "order": "DESCENDING"
+          }
+        ],
+        "queryScope": "COLLECTION"
+      }
+    ],
+    "fieldState": {
+      "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/files/fields/base64Data",
+      "indexConfig": {
+        "ancestorField": "projects/beewise-lab-3/databases/(default)/collectionGroups/__default__/fields/*"
+      }
+    }
+  },
+  "verification": {
+    "activeRulesMatchApprovedBundle": true,
+    "nonReportRulesMatchPriorStrictBaseline": true,
+    "chatIndexSameIdAndReady": true,
+    "base64SingleFieldIndexExemptionPresent": true,
+    "ttlEnabled": false,
+    "frozenFileHashesUnchangedAfterDeployment": true,
+    "note": "Firestore REST omits empty repeated indexes and false usesAncestorConfig values; CLI export explicitly returns indexes:[] and ttl:false."
+  },
+  "clientSdkChecks": {
+    "timestampUtc": "2026-11-02T16:53:43.110Z",
+    "projectId": "beewise-lab-3",
+    "client": "Firebase JS client SDK; no Firebase Auth instance, no CLI IAM session, forced server reads",
+    "writesPerformed": false,
+    "records": [
+      {
+        "test": "Public active tutor server query still permitted",
+        "status": "PASS",
+        "count": 6,
+        "fromCache": false
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "reports",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "parents",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "parents",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "tutorApplications",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "chats",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "connectionRequests",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "invoices",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "paymentVerificationRequests",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      },
+      {
+        "test": "Unauthenticated server read denied",
+        "collection": "classes",
+        "outcome": "permission-denied",
+        "status": "PASS"
+      }
+    ],
+    "scope": "Public query positive and guest denial controls only; authenticated own/foreign report positives NOT RUN; no existing report or eligible tutor"
+  },
+  "preserved": {
+    "appSourceAndClientConfigUnchanged": true,
+    "historicalPr3Pr6AndPreflightReceiptsUnchanged": true,
+    "tutorCatalogUnchanged": true,
+    "reportWritesPerformed": false,
+    "billingStorageAppCheckChanges": false,
+    "rollbackPerformed": false
+  },
+  "remainingLiveTests": {
+    "TC-PDF-01": "BLOCKED: no eligible tutor",
+    "TC-PDF-02": "BLOCKED: no eligible tutor; deployment prerequisite now satisfied",
+    "TC-PDF-03": "BLOCKED: no permitted live report",
+    "TC-PDF-04": "BLOCKED: no positive saved-report controls; guest negatives do not establish A/B isolation",
+    "TC-PDF-05": "NOT RUN native; prior unit/emulator coverage remains separate",
+    "upload_report_storage_backend_firestore": "NOT RUN: no live cloud save"
+  },
+  "privateReceiptDirectory": "D:\\CodexTemp\\beewise-lab3-tools\\pdf-live-private\\approved-deployment-20261102"
+}
