@@ -1,5 +1,30 @@
 # Firestore Base64 PDF reports — 2026-11-02
 
+## Live preflight after merged PR #6 — current
+
+**B-03.2 BLOCKED; implementation remains IMPLEMENTED — LIVE VERIFICATION PENDING.**
+Fetched main `f4fe42d5246d36c033cec27dc76a32bb5bf97d4f`; PR #6 is MERGED and
+main CI is 3/3 SUCCESS. Actual project inspection found no deployed `/reports`
+rules and **0 eligible tutors (6/6 synthetic)**. The current task explicitly does
+not authorize deployment. No rules/index/catalog/report administrative write was
+performed; no implementation defect was established and app source is unchanged.
+
+The exact frozen bundle preserves all non-report live rules and the enabled chat
+index, adds only report rules and the Base64 index exemption, and passes 57/57
+Firestore Emulator tests. Clean baseline Flutter tests 91/91, format/analyze,
+default APK build and structural harness pass. Actual same-signer default APK
+install preserves existing API37 userdata; slow launches eventually render Home
+and the empty catalog. This is not a native PDF save/download or fast-start PASS.
+DebugView access works now; a new Firestore upload event remains unverified.
+
+See [deployment proposal, approval gate, native results and per-case statuses](../../evidence/cloud/firestore-reports/deployment-plan-20261102.md)
+and [fresh receipt](../../evidence/cloud/firestore-reports/preflight-20261102.json).
+Historical PR #3/#6 receipts, including `manifest.json`, remain unchanged.
+Owner approval of the exact bundle plus authorized eligible catalog data is needed
+before live A/B generation/save/download/Console/DebugView acceptance can finish.
+
+## PR #6 implementation record — historical baseline
+
 **IMPLEMENTED — LIVE VERIFICATION PENDING.** Firebase Cloud Storage is replaced
 by Cloud Firestore Base64 PDF persistence with mentor approval. This is
 **owner-reported mentor approval** in the implementation request; no written

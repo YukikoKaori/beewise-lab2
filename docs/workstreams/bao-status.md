@@ -1,5 +1,15 @@
 ## Firestore PDF alternative — 2026-11-02 (current)
 
+**Live preflight: B-03.2 BLOCKED, not COMPLETE.** Merged PR #6 main
+`f4fe42d5246d36c033cec27dc76a32bb5bf97d4f` has 3/3 successful Actions jobs.
+Read-only live inspection: report rules not deployed, enabled chat index retained,
+six synthetic tutors and zero eligible tutors. Exact frozen report bundle passes
+57/57 emulator tests; Flutter 91/91 and other local gates pass. Default same-signer
+API37 APK reaches Home/empty catalog after slow draws; native PDF acceptance is
+blocked. DebugView access works; new upload event is not verified. No deploy or
+catalog mutation authorized/performed, no app source changed. See the
+[approval-ready proposal and individual live statuses](../../evidence/cloud/firestore-reports/deployment-plan-20261102.md).
+
 Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval (**owner-reported; no written artifact**). B-03.2 is **IMPLEMENTED — LIVE VERIFICATION PENDING**; historical Storage-DEFERRED statements below describe their original runs. No historical evidence was changed. See [migration, UI contract and validation](bao-firestore-reports.md).
 
 Minimal Nguyen integration: tutor-detail button now generates locally; a shared inline PDF action block on tutor detail and existing Profile offers explicit private save, server download and share/open. No theme/router redesign. Progress is indeterminate by stage, with no public URL. TC-11 is updated to this contract; no ARTEMIS runtime PASS is inferred. One existing workflow widget test releases its semantics handle before Flutter end-of-test verification; its assertions and UI behavior are unchanged.
