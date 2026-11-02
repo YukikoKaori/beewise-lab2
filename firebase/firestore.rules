@@ -13,6 +13,42 @@ service cloud.firestore {
         && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId));
     }
 
+    // Immutable parent-owned PDFs. No public URLs, updates or deletes.
+    match /reports/{userId}/files/{reportId} {
+      function permittedTutor(tutorId) {
+        let tutor = get(/databases/$(database)/documents/tutors/$(tutorId)).data;
+        return tutor.active == true && tutor.verified == true
+          && !tutorId.matches('bao-lab3-.*')
+          && (!('syntheticTestFixture' in tutor) || tutor.syntheticTestFixture == false)
+          && (!('fixtureNamespace' in tutor) || tutor.fixtureNamespace == '');
+      }
+      allow read: if isParent(userId);
+      allow create: if canWriteAsParent(userId)
+        && reportId.matches('[A-Za-z0-9]{20}')
+        && request.resource.data.keys().hasAll(['ownerUid', 'reportId', 'tutorId', 'fileName', 'contentType', 'encoding', 'sizeBytes', 'base64Data', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['ownerUid', 'reportId', 'tutorId', 'fileName', 'contentType', 'encoding', 'sizeBytes', 'base64Data', 'createdAt'])
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.reportId == reportId
+        && request.resource.data.tutorId is string
+        && request.resource.data.tutorId.matches('[A-Za-z0-9_-]{1,128}')
+        && request.resource.data.fileName is string
+        && request.resource.data.fileName == 'beewise-tutor-' + request.resource.data.tutorId + '.pdf'
+        && request.resource.data.contentType == 'application/pdf'
+        && request.resource.data.encoding == 'base64'
+        && request.resource.data.sizeBytes is int
+        && request.resource.data.sizeBytes >= 5
+        && request.resource.data.sizeBytes <= 512000
+        && request.resource.data.base64Data is string
+        && request.resource.data.base64Data.size() <= 682668
+        && request.resource.data.base64Data.size() % 4 == 0
+        && request.resource.data.base64Data.size() >= request.resource.data.sizeBytes * 4 / 3
+        && request.resource.data.base64Data.size() < request.resource.data.sizeBytes * 4 / 3 + 4
+        && request.resource.data.base64Data.matches('JVBERi0[A-Za-z0-9+/]*={0,2}')
+        && request.resource.data.createdAt == request.time
+        && permittedTutor(request.resource.data.tutorId);
+      allow update, delete: if false;
+    }
+
     // Tutor profiles are managed by trusted staff/backend; clients can only read active profiles.
     match /tutors/{tutorId} {
       allow read: if resource.data.active == true;
