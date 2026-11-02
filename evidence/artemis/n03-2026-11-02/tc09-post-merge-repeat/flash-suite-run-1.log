@@ -1,0 +1,108 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "14be407a-0f9f-49ec-99c0-febfc65c8bbd", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+ARTEMIS_RESULT case=TC-09 trace_id=7458860d-c434-4d50-994e-bec5762a8af1 status=completed device=emulator-5554
+F
+================================== FAILURES ===================================
+_____________ test_tc09_all_top_level_destinations_are_reachable ______________
+
+output = 'Successfully visited all five bottom destinations in order (Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n), verified the screen title for each, and confirmed no overflow or crash occurred.'
+
+    def _decode_observation(output: Any) -> dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+>               value = json.loads(candidate)
+                        ^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\conftest.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x00000231671CFC80>
+s = 'Successfully visited all five bottom destinations in order (Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n), verified the screen title for each, and confirmed no overflow or crash occurred.'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:356: JSONDecodeError
+
+The above exception was the direct cause of the following exception:
+
+run_flow = <function run_flow.<locals>.run at 0x0000023168F93D80>
+
+    async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
+        """TC-09; primary navigation; signed-out app on Home."""
+>       observed = await run_flow(
+            case_id="TC-09",
+            start="BeeWise is signed out on Home with the bottom navigation visible.",
+            steps=(
+                "Open each bottom destination in order: Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p "
+                "AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n. Report each destination only after its "
+                "screen title is visible; also report whether any overflow or crash appeared."
+            ),
+            expected=(
+                '{"visible_destinations":[string],"overflow_seen":false,'
+                '"crash_dialog_seen":false}'
+            ),
+        )
+
+e2e_test\test_account_and_firebase.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:91: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:115: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'Successfully visited all five bottom destinations in order (Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n), verified the screen title for each, and confirmed no overflow or crash occurred.'
+
+    def _decode_observation(output: Any) -> dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+                start, end = text.find("{"), text.rfind("}")
+                embedded = text[start : end + 1].replace("\\n", "\n") if start >= 0 and end > start else ""
+                try:
+                    value = json.loads(embedded) if embedded else _decode_tc01_prose(text)
+                except json.JSONDecodeError:
+                    value = _decode_tc01_prose(text)
+                if value is None:
+>                   raise AssertionError(
+                        f"ARTEMIS output was not the required JSON observation: {text!r}"
+                    ) from error
+E                   AssertionError: ARTEMIS output was not the required JSON observation: 'Successfully visited all five bottom destinations in order (Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n), verified the screen title for each, and confirmed no overflow or crash occurred.'
+
+e2e_test\conftest.py:136: AssertionError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_account_and_firebase.py::test_tc09_all_top_level_destinations_are_reachable
+1 failed, 25 deselected in 45.25s

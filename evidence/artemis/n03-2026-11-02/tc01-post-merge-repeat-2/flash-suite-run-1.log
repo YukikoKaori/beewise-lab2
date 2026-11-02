@@ -1,0 +1,35 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "d1d2c4dd-d347-48cb-967f-d3c6a149be99", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+ARTEMIS_RESULT case=TC-01 trace_id=c5962dd8-478d-40a3-b5ca-4fda1785556b status=completed device=emulator-5554
+F
+================================== FAILURES ===================================
+_______________ test_tc01_guest_home_reports_real_visible_state _______________
+
+run_flow = <function run_flow.<locals>.run at 0x0000027E3B870720>
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+        observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the Home title, visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang ch\u1ee7","T\xecm gia s\u01b0","Gh\xe9p AI",'
+                '"Tin nh\u1eafn","T\xe0i kho\u1ea3n"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+>       assert require(observed, "screen", str).lower() == "home"
+E       AssertionError: assert 'c\xf9ng con t\xecm... h\xe0nh h\u1ecdc t\u1eadp' == 'home'
+E         
+E         - home
+E         + c\xf9ng con t\xecm ng\u01b0\u1eddi \u0111\u1ed3ng h\xe0nh h\u1ecdc t\u1eadp
+
+e2e_test\test_discovery.py:27: AssertionError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_discovery.py::test_tc01_guest_home_reports_real_visible_state
+1 failed, 25 deselected in 41.51s

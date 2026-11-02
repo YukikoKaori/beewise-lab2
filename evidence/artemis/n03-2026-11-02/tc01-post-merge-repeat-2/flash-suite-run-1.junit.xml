@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="41.383" timestamp="2026-11-02T20:21:16.584692+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_discovery" name="test_tc01_guest_home_reports_real_visible_state" time="41.054"><failure message="AssertionError: assert 'cùng con tìm... hành học tập' == 'home'&#10;  &#10;  - home&#10;  + cùng con tìm người đồng hành học tập">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000027E3B870720&gt;
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+        observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the Home title, visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang chủ","Tìm gia sư","Ghép AI",'
+                '"Tin nhắn","Tài khoản"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+&gt;       assert require(observed, "screen", str).lower() == "home"
+E       AssertionError: assert 'cùng con tìm... hành học tập' == 'home'
+E         
+E         - home
+E         + cùng con tìm người đồng hành học tập
+
+e2e_test\test_discovery.py:27: AssertionError</failure></testcase></testsuite></testsuites>

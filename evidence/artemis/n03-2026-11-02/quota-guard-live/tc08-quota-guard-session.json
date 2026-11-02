@@ -1,0 +1,10 @@
+{
+  "session_id": "befbacc5-6b26-467a-998f-5af278b1e49a",
+  "initial_goal": "Test case TC-08. Starting point: BeeWise is signed out on Home..\nSteps: Open Tài khoản from the bottom navigation. If Login appears, open the create-account/Register screen. Leave every field blank and required consent unchecked, then tap the create-account action. Verify required-field or consent errors are visible and registration does not succeed. Do not enter or submit personal data.\nUse only visible app/device state. Do not invent records or results. At the end report the requested values as one JSON object.",
+  "start_time": 1793634563.5838354,
+  "end_time": 1793634570.6425164,
+  "status": "cancelled",
+  "device_info": "{\"host_platform\": \"WINDOWS\", \"mobile_platform\": \"android\", \"device_id\": \"emulator-5554\", \"device_width\": 1080, \"device_height\": 2400, \"profile\": \"flash\", \"hierarchy_backend\": \"helper\", \"hierarchy_backend_note\": \"UI hierarchy source: the Artemis accessibility helper v1.2.0.\"}",
+  "video_filepath": null,
+  "pid": 40420
+}

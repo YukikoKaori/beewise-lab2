@@ -27,6 +27,10 @@
       "goal": "Open registration. Verify name, phone, email, password validation and required consent are visible. Do not submit personal data or create an account unless the operator has provided designated test values."
     },
     {
+      "id": "login_blank_validation",
+      "goal": "From the signed-out Account screen, open Login and submit blank email/password fields once. Verify local validation messages appear and the app remains signed out. Do not enter credentials."
+    },
+    {
       "id": "tutor_application_pending",
       "goal": "Use a dedicated disposable test identity to submit a tutor application. Verify the app shows pending review, clearly says the profile is not visible to parents before approval, and does not expose parent navigation or controls to set verified/active. Sign out after collecting the observations."
     },

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="99.774" timestamp="2026-11-03T01:14:14.535757+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_discovery" name="test_tc01_guest_home_reports_real_visible_state" time="99.141"><failure message="Failed: TC-01 blocked: ARTEMIS trace 093516ef-8ae1-4b9a-b8e2-87e71ee4be17 reports a provider quota/rate-limit error; the task was stopped before further retries.">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000029E2A1702C0&gt;
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+&gt;       observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the exact app-bar title at the top of the Home "
+                "screen (do not confuse it with the marketing banner/tagline), "
+                "visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang chủ","Tìm gia sư","Ghép AI",'
+                '"Tin nhắn","Tài khoản"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_discovery.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+case_id = 'TC-01', start = 'BeeWise is installed and signed out on Home.'
+steps = 'Open BeeWise. Read the exact app-bar title at the top of the Home screen (do not confuse it with the marketing banner...nfirm whether every visible tutor card came from a visible real Firestore result; report no fabricated profile claims.'
+expected = '{"screen":"Home","tabs":["Trang chủ","Tìm gia sư","Ghép AI","Tin nhắn","Tài khoản"],"tutor_card_count":integer,"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+profile = 'flash', timeout = 600
+
+    async def run(
+        *,
+        case_id: str,
+        start: str,
+        steps: str,
+        expected: str,
+        profile: str = "flash",
+        timeout: int = 600,
+    ) -&gt; dict[str, Any]:
+        goal = (
+            f"Test case {case_id}. Starting point: {start}.\n"
+            f"Steps: {steps}\n"
+            "Use only visible app/device state. Do not invent records or results. "
+            "At the end report the requested values as one JSON object."
+        )
+        session_id = str(uuid.uuid4())
+        remote_run = asyncio.create_task(
+            artemis.run(
+                goal,
+                profile=profile,  # type: ignore[arg-type]
+                device_serial=artemis.device_serial,
+                locked_app_package=APP_PACKAGE,
+                expected_output=(
+                    "Return a JSON object only, matching this observable contract: "
+                    + expected
+                ),
+                enable_outputter=True,
+                task_id=session_id,
+                timeout=timeout,
+            )
+        )
+        quota_detected = False
+        while not remote_run.done():
+            await asyncio.sleep(2)
+            try:
+                trace = await artemis._request(
+                    "GET", f"/api/sessions/{session_id}/steps"
+                )
+            except Exception:
+                # The session may not be persisted until scheduler admission.
+                continue
+            if _trace_has_rate_limit(trace):
+                quota_detected = True
+                try:
+                    await artemis.stop(session_id)
+                finally:
+                    try:
+                        await asyncio.wait_for(remote_run, timeout=20)
+                    except Exception:
+                        remote_run.cancel()
+                break
+    
+        if quota_detected:
+&gt;           pytest.fail(
+                f"{case_id} blocked: ARTEMIS trace {session_id} reports a provider "
+                "quota/rate-limit error; the task was stopped before further retries."
+            )
+E           Failed: TC-01 blocked: ARTEMIS trace 093516ef-8ae1-4b9a-b8e2-87e71ee4be17 reports a provider quota/rate-limit error; the task was stopped before further retries.
+
+e2e_test\conftest.py:155: Failed</failure></testcase></testsuite></testsuites>
