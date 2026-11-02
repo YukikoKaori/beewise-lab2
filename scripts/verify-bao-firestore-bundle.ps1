@@ -24,7 +24,7 @@ New-Item -ItemType Directory -Force -Path $out | Out-Null
 $started = [DateTime]::UtcNow.ToString('o')
 Set-Location -LiteralPath $Bundle
 $ErrorActionPreference = 'Continue'
-& node "$repoRoot/firebase/node_modules/firebase-tools/lib/bin/firebase.js" emulators:exec --config "$Bundle/firebase.validation.json" --project demo-beewise --only firestore,storage 'node --test rules.test.cjs' 2>&1 | Tee-Object "$out/rules-test.log"
+& node "$repoRoot/firebase/node_modules/firebase-tools/lib/bin/firebase.js" emulators:exec --config "$Bundle/firebase.validation.json" --project demo-beewise --only firestore 'node --test rules.test.cjs' 2>&1 | Tee-Object "$out/rules-test.log"
 $nativeExit = $LASTEXITCODE
 @{startedAtUtc=$started; completedAtUtc=[DateTime]::UtcNow.ToString('o'); sourceSha=$manifest.sourceSha; projectId='demo-beewise'; bundleDirectory=$Bundle; fileSha256=$manifest.fileSha256; nativeExitCode=$nativeExit; sharedDeploymentPerformed=$false} | ConvertTo-Json -Depth 6 | Set-Content -Encoding UTF8 "$out/rules-test.json"
 exit $nativeExit

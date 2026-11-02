@@ -16,7 +16,6 @@ dependencies:
   firebase_crashlytics: 6.0.1
   firebase_messaging: 17.0.1
   firebase_remote_config: 7.0.1
-  firebase_storage: 14.0.1
   flutter:
     sdk: flutter
   flutter_riverpod: 3.4.3
