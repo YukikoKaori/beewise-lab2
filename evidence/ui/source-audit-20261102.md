@@ -1,0 +1,71 @@
+# BeeWise UI and responsive source audit
+
+Date: 2026-11-02
+Scope: source-level comparison of the 12 Lab 2 screens, GoRouter destinations, supplied Figma screen captures, and responsive/accessibility requirements.
+Build/runtime visual comparison: **PARTIALLY RUN** on Android 36 emulator. A debug APK built; Home, Search and AI matching were captured at 360dp and 412dp; Login/Register at both widths; Tutor Profile and Connection Request at 412dp; Messages/Profile at 412dp; and Login/Register keyboard states at 360dp. Home/Search/AI also have 360dp font-scale 1.3 captures. Signed-in Messages empty state is captured at both widths. A user-provided test account was used for sign-in; no credential or signed-in profile screenshot was retained. Notification permission was denied. UI hierarchies accompany screenshots; device/build details and hashes are in the [runtime evidence manifest](runtime-manifest-20261102.md). Five canonical screens have no runtime capture, with additional width/state/accessibility checks outstanding.
+
+## Acceptance criteria used
+
+- Preserve the canonical screen purpose, key content and navigation in `handoff/flutter-handoff.md` and `docs/design-traceability.md`.
+- Fit a 360dp-wide Android viewport and 412dp viewport without horizontal overflow; allow long content to scroll.
+- Keep form actions visible when the keyboard opens; respect system safe areas for pinned actions and chat composer.
+- Support Vietnamese wrapping and user text scaling. Body text remains at least 14sp; interactive controls remain comfortably tappable and labeled.
+- Loading, data, empty, error and recovery states must reflect the actual service result. Test data/design mock content is not a live-success receipt.
+- A client must not claim a trial/class/payment/schedule state that has not been supplied by the trusted workflow service.
+
+## Screen-by-screen audit
+
+| ID | Screen / route | Source observation | Acceptance and remaining review |
+|---|---|---|---|
+| 01 | Home — `/home` | `HomeScreen`; responsive `Wrap` for subject chips; tutor provider has loading, empty, setup/error, and retry paths; list scrolls. | **PARTIAL PASS:** smoke captured at 360/412dp and 360dp font scale 1.3; chips wrap and list scrolls without visible horizontal overflow. Home Figma image is 804x2400 vs inspector frame 402x874, so parity remains unresolved. |
+| 02 | AI matching — `/matching` | `MatchingScreen`; multiline 500-character input, loading, no-result and error/recovery states; manual search route. | **PARTIAL PASS:** captured at 360/412dp and 360dp font scale 1.3. Empty submit shows validation/recovery. Keyboard with input and loading/error state comparison remain untested. |
+| 03 | Manual search — `/search` | `SearchScreen`; result list/loading/empty/error, filters and query controls. | **PARTIAL PASS:** captured at 360/412dp and 360dp font scale 1.3; filters/chips wrap. Visible `[TEST]` catalog is synthetic; keyboard and filter-sheet expansion remain untested. |
+| 04 | Tutor profile — `/tutors/:id` | `TutorProfileScreen`; provider loading/error/data; scrollable profile and safe-area-aware connection footer; PDF action. | **PARTIAL:** one `[TEST]` profile captured at approximately 412dp; 360dp, alternate credentials/review states and PDF upload not tested. Connect action while signed out routes to Login; no request submitted. |
+| 05 | Login — `/login` | `LoginScreen`; validation, pending/error, email/Google actions and optional tutor context. | **PARTIAL:** captured at both widths; 360dp keyboard and post-scroll form state captured with blank fields. Google picker, long errors, signed-in context and larger text remain untested. |
+| 06 | Register — `/register` | `RegisterScreen`; validation, consent and progress/error. | **PARTIAL:** captured at both widths; 360dp and approximately 412dp keyboard/scroll states confirm submit is reachable without entering data. Consent/validation/error submission behavior and 200% text remain untested. |
+| 07 | Connection request — `/connection/:tutorId` | `ConnectionScreen`; tutor loading/error, validated form and submission recovery. | **PARTIAL:** blank form captured at 412dp after the user-provided test account signed in; synthetic `[TEST]` tutor displayed. No request was submitted. 360dp, keyboard action reachability and validation/error states remain untested. |
+| 08 | Group chat — `/chats/:chatId` | `ChatScreen`; message stream has loading/empty/error/retry; composer is in bottom `SafeArea` and expands up to four lines. Role chips, system onboarding banner and rounded composer now follow the supplied Figma palette/layout. | **SOURCE UPDATED, RUNTIME NOT CAPTURED:** no trusted chat fixture. Still needs keyboard resize, long Vietnamese messages and composer runtime review at both widths. Sender identities remain sourced from message records. |
+| 09 | Trial detail — `/trial/:chatId/:proposalId` | `TrialScreen`; backend proposal stream with loading/empty/error and parent response. Added 4-step progress, status banner, detail card and follow-up guidance; fields remain payload-backed. | **SOURCE UPDATED, RUNTIME NOT CAPTURED:** requires trusted consultant-authored proposal; no client-created proposal is used as evidence. |
+| 10 | Class confirmation — `/class/:chatId/:revisionId` | `ClassRevisionScreen`; revision stream and adjustment/confirmation states. Added 4-step progress, completion banner, class/fee summary cards and adjustment action; fields remain payload-backed. | **SOURCE UPDATED, RUNTIME NOT CAPTURED:** requires trusted class revision; real fee/schedule wrapping and payment-gate behavior need that fixture. |
+| 11 | Payment — `/payment/:invoiceId` | `PaymentScreen`; invoice stream; empty/error/loading and verification-request status. Added 4-step progress, pending/verified banner and invoice amount card; displays trusted invoice fields only. | **SOURCE UPDATED, RUNTIME NOT CAPTURED:** requires a trusted invoice/provider instruction. No illustrative bank/QR data is copied into product UI. |
+| 12 | Official schedule — `/schedule/:classId` | `ScheduleScreen`; only renders stream result and recovery states. Added 4-step progress with payment marked complete only after trusted `paymentStatus == verified`. | **SOURCE UPDATED, RUNTIME NOT CAPTURED:** requires trusted verified-payment/schedule state; no active schedule is fabricated. |
+
+Routes for the 12 canonical screens are present in `lib/app/bee_wise_app.dart`. `/messages` and `/profile` are Lab 3 support destinations and are not counted among the 12.
+
+## Responsive and accessibility findings from source
+
+1. **Positive source evidence:** most screens use `ListView` or the shared `PageBody` scrolling pattern; text fields are generally multiline/validated; home subject chips use `Wrap`; the tutor-profile primary action and chat composer use `SafeArea`; shared buttons have a 48px minimum target; body typography tokens use 14sp.
+2. **Corrected:** shared bottom navigation previously set a fixed 80dp height against the handoff's 72dp; it now uses 72dp. Verify labels remain legible at larger system text scales.
+3. **Corrected:** the three loading tutor placeholders previously forced 178dp height despite using a progress bar rather than card content; they now have a 112dp minimum and can grow if the loading content changes.
+4. **Responsive adjustment:** chat message bubble width now tracks the viewport minus the message list's 16dp side padding. Verify long Vietnamese messages at 360dp/412dp and enlarged text.
+5. **Metadata:** chat timestamps use 11sp; the handoff allows 12sp for metadata, so this is within the specified caption range. Check TalkBack still announces timestamp and message together.
+6. **Design source issue:** Home Figma image dimensions do not correspond to the listed inspector frame dimensions; do not use the raster image as pixel-perfect evidence until design source is reconciled.
+
+The source findings were checked against the Lab 2 handoff. Three deterministic layout constraints were corrected: navigation height now matches the specified 72dp; loading placeholders use a minimum height instead of a fixed 178dp; message bubbles derive their maximum width from the screen. A widget test covers the 72dp navigation and a long-text TutorCard at 360/412dp with a 1.8 text scale. Runtime Home screenshots at 360dp and 412dp show the subject chips wrapping as intended, tutor cards scrolling beneath the bottom navigation, and no visible horizontal overflow. The 360dp navigation wraps the Search label onto two lines; the 412dp version fits on one line. Search and AI matching are captured at both widths. Tutor Profile, Login and Register are captured at both widths; Connection Request is captured at 412dp after the user-provided test account signed in. Messages/Profile support routes are captured at 412dp. Login/Register keyboard focus and scroll states at 360dp show their primary action can be brought fully into view without entering or submitting data. Home/Search/AI were checked at 360dp with Android font scale 1.3; long content wraps and scrolls, and no horizontal overflow was visible in those captures. Home/Search/Connection display data labeled `[TEST]`; no connection request was submitted. The app session navigation became unstable later, so no more account actions were attempted. These receipts do not establish full Figma parity or cover the remaining five canonical screens.
+
+## Checks executed
+
+- `scripts/check_e2e_harness.py`: **PASS** — 26 unique scenario functions, Python syntax, JSON and status guards. It does not execute mobile tests.
+- `scripts/check_artemis_runner.py --work-directory .\tmp\artemis-runner-checks`: **PASS** — two executions with synthetic process doubles preserve exit 7/0, expected `FAIL`/`PENDING_VERIFICATION` status and log hashes. They do not contact ARTEMIS or an Android device.
+- `flutter analyze --no-pub`: **PASS**, no issues found.
+- `flutter test --no-pub --reporter expanded`: **PASS**, all 69 tests including the new responsive widget tests.
+- Dart formatter check: **PASS**, four changed Dart files required no further formatting.
+- Android 36 AVD (`emulator-5554`): **PASS for scoped route/viewport smoke only**. Gradle `assembleDebug` built the APK with JDK 21, `-Djdk.net.unixdomain.tmpdir=<workspace>`, online dependency resolution, and `-Pkotlin.incremental=false`. The temporary property avoids the default TEMP path with spaces; disabling incremental Kotlin avoids a cross-drive cache failure between the C: Pub cache and D: project. APK installed and app launched. Captures and UI hierarchies listed in the runtime manifest were made at density 480 (360dp) and density 420 (~411dp project 412dp); default font scale was 1.0. Home/Search/AI were also inspected at 360dp with font scale 1.3. Login/Register keyboard tests used no credentials and confirmed scrolling exposes the submit action. Test-account sign-in showed signed-in account UI; no identity screenshot/log was retained. Connection Request was opened and captured blank at 412dp; no form was submitted. A later navigation attempt switched foreground focus to Android SIM Toolkit, so further account actions stopped. Android 13+ notification permission was explicitly denied on the test AVD; app remained open. No Home Figma pixel comparison, five canonical screen captures, broader large-text matrix, or TalkBack inspection were completed.
+- ARTEMIS runtime / Pro exploration: **NOT RUN** — no ARTEMIS host/key or approved real catalog/test fixtures were configured in this environment. No credentials were requested or recorded.
+
+## Follow-up updates
+
+- Authenticated Messages empty state is now captured at both 360dp and 412dp; the 360dp hierarchy reports zero chat tiles.
+- Supplied Figma PNG references for all 12 screens were reviewed. Their listed Figma frames are already in the repository; waiting on new design art is not a blocker for implementing the existing references. Home remains the only reference with a known raster/frame-size discrepancy.
+- Added a semantic four-step `OnboardingStepper` and applied it to Trial/Class/Payment/verified Schedule states. Updated workflow content cards, truthful invoice amount/description state, message role chips/time semantics and chat composer styling. Payment bank/QR content is omitted until the trusted backend/provider contract supplies it.
+- Added `test/workflow_empty_state_test.dart` for four-step semantics and Chat/Trial/Class/Payment/Schedule at 360dp/412dp and 1.8 text scale, using test-only chat/document providers and no Firebase writes. Dart formatting passes; a prior analyzer pass found no issues in an earlier iteration. Current post-edit analyzer/widget invocations stall without exit, so these tests remain unverified.
+- Tightened `e2e_test/run-artemis.ps1` preflight to verify the configured ADB serial is actually online before any suite actions. A real preflight check with a configured URL/serial wrote `BLOCKED`, listed the offline serial and exited 2. The Android 36 emulator is now back online; no ARTEMIS case was run because the local host/model credential and approved test fixtures are still unavailable.
+
+## Remaining evidence needed to close N-01/N-02
+
+- Capture the five canonical screens without runtime captures at both widths; add 360dp captures for Tutor Profile/Connection. Record device/OS, density, font scale and timestamp. Resolve the Home Figma reference frame before asserting visual parity.
+- Capture focused-field keyboard states for login, registration, AI matching and connection request; verify final action is reachable and no field is obscured.
+- Inspect bottom navigation, tutor cards, message bubbles/timestamps, consent text, payment details and class schedule at default and enlarged text.
+- Capture loading, success/data, empty and recoverable error states using approved data and a safe controlled failure. Do not turn illustrative Figma data into live catalog records.
+- Resolve Home frame/image discrepancy with the design owner and store the approved 412dp Figma reference frame dimensions before asserting Figma parity.
+- Record TalkBack traversal and labels on an Android device. Static source review alone cannot close accessibility validation.
