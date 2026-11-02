@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-11-02T16:26:08.775164+00:00",
+  "status": "BLOCKED",
+  "implementationStatus": "IMPLEMENTED — LIVE VERIFICATION PENDING",
+  "baselineSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+  "branch": "test/lab3-firestore-pdf-live-validation",
+  "pr6": {
+    "state": "MERGED",
+    "headSha": "2c36b750e3570758d8ccbf0877bc37a78243d619",
+    "mergeSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+    "changedFiles": 29
+  },
+  "liveInspection": {
+    "timestampUtc": "2026-11-02T16:18:49.027Z",
+    "projectId": "beewise-lab-3",
+    "readOnly": true,
+    "rulesetName": "projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+    "baselineRulesNormalizedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "repositoryRulesNormalizedSha256": "1d06fd3c1d4ad3462cefc5c13d9669dbc32222231abc65ffb3a2267d54c526d7",
+    "matchesRepository": false,
+    "liveReportMatch": false,
+    "indexes": {
+      "indexes": [
+        {
+          "collectionGroup": "chats",
+          "queryScope": "COLLECTION",
+          "fields": [
+            {
+              "fieldPath": "parentId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "order": "DESCENDING"
+            },
+            {
+              "fieldPath": "__name__",
+              "order": "DESCENDING"
+            }
+          ],
+          "density": "SPARSE_ALL"
+        }
+      ],
+      "fieldOverrides": []
+    },
+    "tutors": {
+      "total": 6,
+      "eligible": 0,
+      "synthetic": 6,
+      "eligibleIdSha256": [],
+      "complete": true
+    },
+    "privateBaselineDirectory": "D:/CodexTemp/beewise-lab3-tools/pdf-live-private"
+  },
+  "deploymentBundle": {
+    "preparedAtUtc": "2026-11-02T16:21:00.994317+00:00",
+    "projectId": "beewise-lab-3",
+    "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+    "bundleDirectory": "D:\\CodexTemp\\beewise-lab3-tools\\pdf-live-private\\firestore-pdf-20261102",
+    "fileSha256": {
+      "firebase.deploy.json": "858e30724765b212940de948a67e05865947e9568a52a4de1d77e22f3a1b4bfe",
+      "firebase.validation.json": "869fec781919b64aaee7575882f2fb8e18bb71a90e6f466526ccd6ad5befb14c",
+      "firestore.indexes.json": "f7774cfccd6108b2f2f92da3841e98701d8630d05160c425fa938fd2b49e29b5",
+      "firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
+      "previous-deployed-firestore.rules": "c1dad4250814abcf0c80adb940dc612dbee133db0e80574fd0d055c5dcf86bb8",
+      "rules.test.cjs": "70c3474f325dfcd2f579b2b9bf8092835de1a810d2de7eaeadf9b2eaf97fea6d"
+    },
+    "baselineRulesetName": "projects/beewise-lab-3/rulesets/2aff57c1-3693-4bfa-9cd2-d77471ef08d6",
+    "baselineRulesNormalizedSha256": "759a35e408204bff48dac1f380009b76a661b39c4f649d809322643c616f6578",
+    "baselineIndexConfiguration": {
+      "indexes": [
+        {
+          "collectionGroup": "chats",
+          "queryScope": "COLLECTION",
+          "fields": [
+            {
+              "fieldPath": "parentId",
+              "order": "ASCENDING"
+            },
+            {
+              "fieldPath": "updatedAt",
+              "order": "DESCENDING"
+            },
+            {
+              "fieldPath": "__name__",
+              "order": "DESCENDING"
+            }
+          ],
+          "density": "SPARSE_ALL"
+        }
+      ],
+      "fieldOverrides": []
+    },
+    "deploymentAuthorization": "REQUIRED; this task explicitly does not authorize deployment",
+    "liveWritesPerformed": false,
+    "nonReportRulesByteEquivalentAfterLfNormalization": true,
+    "indexChange": "Retain exact live chats index including implicit __name__ and SPARSE_ALL density; add only files.base64Data single-field exemption",
+    "rollback": "After separate approval, rules-only return to captured current strict baseline, retain exemption to avoid unnecessary PDF reindexing; keep report documents, no deletes. Do not restore older pre-security baseline."
+  },
+  "quality": {
+    "pub": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "pub",
+        "get"
+      ],
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T16:16:32.711033+00:00",
+      "durationSeconds": 1.77,
+      "exitCode": 0
+    },
+    "format": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/dart.bat",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "."
+      ],
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T16:18:49.803086+00:00",
+      "durationSeconds": 1.79,
+      "exitCode": 0
+    },
+    "analyze": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "analyze"
+      ],
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T16:17:01.842697+00:00",
+      "durationSeconds": 10.73,
+      "exitCode": 0
+    },
+    "test": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T16:17:29.668876+00:00",
+      "durationSeconds": 29.21,
+      "exitCode": 0
+    },
+    "rules": {
+      "command": [
+        "npm.cmd",
+        "--prefix",
+        "firebase",
+        "test"
+      ],
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T16:18:01.619572+00:00",
+      "durationSeconds": 17.92,
+      "exitCode": 0
+    },
+    "build": {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "build",
+        "apk",
+        "--debug"
+      ],
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-02T16:18:20.987017+00:00",
+      "durationSeconds": 107.26,
+      "exitCode": 0
+    },
+    "frozen-bundle": {
+      "timestampUtc": "2026-11-02T16:22:42.898456+00:00",
+      "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+      "command": [
+        "node",
+        "D:\\CodexTemp\\beewise-pdf-live-validation\\firebase\\node_modules\\firebase-tools\\lib\\bin\\firebase.js",
+        "emulators:exec",
+        "--config",
+        "D:\\CodexTemp\\beewise-lab3-tools\\pdf-live-private\\firestore-pdf-20261102\\firebase.validation.json",
+        "--project",
+        "demo-beewise",
+        "--only",
+        "firestore",
+        "node --test rules.test.cjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 41.73,
+      "fileSha256": {
+        "firebase.deploy.json": "858e30724765b212940de948a67e05865947e9568a52a4de1d77e22f3a1b4bfe",
+        "firebase.validation.json": "869fec781919b64aaee7575882f2fb8e18bb71a90e6f466526ccd6ad5befb14c",
+        "firestore.indexes.json": "f7774cfccd6108b2f2f92da3841e98701d8630d05160c425fa938fd2b49e29b5",
+        "firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
+        "previous-deployed-firestore.rules": "c1dad4250814abcf0c80adb940dc612dbee133db0e80574fd0d055c5dcf86bb8",
+        "rules.test.cjs": "70c3474f325dfcd2f579b2b9bf8092835de1a810d2de7eaeadf9b2eaf97fea6d"
+      },
+      "projectId": "demo-beewise",
+      "liveDeploymentPerformed": false,
+      "note": "Equivalent direct CLI invocation after Windows PowerShell script execution policy rejected .ps1; system policy unchanged"
+    }
+  },
+  "testCounts": {
+    "flutter": 91,
+    "firestoreEmulator": 57,
+    "frozenBundleFirestoreEmulator": 57,
+    "e2eHarnessStructural": 26
+  },
+  "e2eHarness": "PASS python scripts/check_e2e_harness.py; Android scenarios NOT RUN",
+  "baselineCi": {
+    "runId": 41478805430,
+    "sha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+    "conclusion": "success",
+    "jobs": {
+      "flutter-android": "success",
+      "firebase-rules": "success",
+      "e2e-harness": "success"
+    }
+  },
+  "native": {
+    "timestampUtc": "2026-11-02T16:21:53.799750+00:00",
+    "sourceSha": "f4fe42d5246d36c033cec27dc76a32bb5bf97d4f",
+    "entrypoint": "lib/main.dart (default debug APK)",
+    "apkSha256": "da4ea48f308475eed228da76e9062dfa3aa8917deeeb15cb8dda3bacdd2378d6",
+    "apkSizeBytes": 187175047,
+    "signerSha256": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+    "sameSigner": true,
+    "installExitCode": 0,
+    "installResult": "Performing Streamed Install\r\nSuccess",
+    "userdataCleared": false,
+    "serial": "emulator-5560",
+    "androidVersion": "17",
+    "api": "37",
+    "display": "Physical size: 720x1600\r\nOverride size: 824x1832",
+    "density": "Physical density: 320",
+    "flutterVersion": "3.47.8",
+    "dartVersion": "3.13.7",
+    "avd": "BeeWise_Bao_Startup_API37",
+    "ramMiB": 2048,
+    "cores": 2,
+    "gpu": "software",
+    "effectiveWidthDp": 412,
+    "attempts": [
+      {
+        "label": "pdf-live-default",
+        "timestampUtc": "2026-11-02T16:22:21.260333+00:00",
+        "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: timeout\r\nLaunchState: UNKNOWN (-1)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 18766\r\nComplete",
+        "amStartWallMs": 18906,
+        "pidBefore": "",
+        "pidAfter": "4190",
+        "uiDumpSucceeded": false,
+        "homeUiPresent": null,
+        "drawLogLines": [
+          "11-02 23:23:00.809   650   676 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +32s733ms",
+          "11-02 23:23:00.809   650   676 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +32s733ms"
+        ],
+        "lastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+        "mainThreadWaitChannel": "futex_wait_queue",
+        "mainStackAccess": "cat: /proc/4190/task/4190/stack: Permission denied"
+      },
+      {
+        "label": "pdf-live-settled",
+        "timestampUtc": "2026-11-02T16:24:27.323501+00:00",
+        "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: timeout\r\nLaunchState: UNKNOWN (-1)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 12210\r\nComplete",
+        "amStartWallMs": 12390,
+        "pidBefore": "4190",
+        "pidAfter": "5455",
+        "uiDumpSucceeded": false,
+        "homeUiPresent": null,
+        "drawLogLines": [
+          "11-02 23:24:46.366   650   676 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +13s922ms",
+          "11-02 23:24:46.366   650   676 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +13s922ms"
+        ],
+        "lastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+        "mainThreadWaitChannel": "do_epoll_wait",
+        "mainStackAccess": "cat: /proc/5455/task/5455/stack: Permission denied"
+      }
+    ],
+    "laterHomeObservedUtc": "2026-11-02T16:23:57.569374+00:00",
+    "laterHome": "PASS: real Home and empty active tutor catalog; no PDF controls reachable from an eligible tutor",
+    "hostLimitation": "Early splash and slow draw retained. Guest loadavg sample 28.29/15.42/6.07 on two vCPUs. No exclusive root cause established; no startup code change or delay introduced. Main /proc stack inaccessible; futex wait is not proof of application blocking.",
+    "privateEvidenceDirectory": "D:\\CodexTemp\\beewise-lab3-tools\\pdf-live-private\\native"
+  },
+  "liveTests": [
+    {
+      "id": "TC-PDF-01",
+      "status": "BLOCKED",
+      "reason": "No authorized eligible catalog tutor; production Home confirms empty public catalog. No diagnostic route or fixture substitution."
+    },
+    {
+      "id": "TC-PDF-02",
+      "status": "BLOCKED",
+      "reason": "Reviewed report rules/index bundle not authorized/deployed; no eligible tutor. No report write attempted."
+    },
+    {
+      "id": "TC-PDF-03",
+      "status": "BLOCKED",
+      "reason": "No permitted live saved report; server download/hash/open NOT RUN."
+    },
+    {
+      "id": "TC-PDF-04",
+      "status": "BLOCKED",
+      "reason": "No live A/B report positives available; emulator isolation PASS is separate, not live proof."
+    },
+    {
+      "id": "TC-PDF-05/no-network",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    },
+    {
+      "id": "TC-PDF-05/permission-denied",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    },
+    {
+      "id": "TC-PDF-05/authentication-missing",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    },
+    {
+      "id": "TC-PDF-05/account-switch-during-operation",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    },
+    {
+      "id": "TC-PDF-05/corrupt-local-PDF",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    },
+    {
+      "id": "TC-PDF-05/oversized-PDF",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    },
+    {
+      "id": "TC-PDF-05/timeout-and-retry",
+      "status": "NOT RUN",
+      "reason": "Native PDF operation unavailable before eligible tutor and authorized deployment; SDK-boundary/emulator coverage only."
+    }
+  ],
+  "console": {
+    "observedDate": "2026-11-02",
+    "projectId": "beewise-lab-3",
+    "debugViewAccess": "PASS: actual Console DebugView rendered; no missing-permission page",
+    "debugViewObservation": "0 debug devices/events in last 30 minutes at initial inspection",
+    "liveChatIndex": "PASS: Console Manual index chats(parentId ASC, updatedAt DESC, __name__ DESC), Enabled, 1 of 1",
+    "billingBadge": "Spark (read-only observation)",
+    "reportDocument": "NOT RUN: no report created",
+    "upload_report/storage_backend=firestore": "BLOCKED: no confirmed live save; no event fabricated",
+    "export_report": "NOT RUN in this run; previous evidence preserved",
+    "capturePolicy": "Console observations documented; no unredacted account/document UI exported. Native published screenshots visually inspected and contain no identity."
+  },
+  "sourceFileSha256": {
+    "firebase/firestore.rules": "efe69df620ef13f5eadc5af18c62f7ffdc7f0a861ed03f311a9dd16dd93741b5",
+    "firebase/firestore.indexes.json": "ddfa75d2c5eedbd9dc1ec01257a223712d98cd0444b1877c3b70a1eb1f9c3c26",
+    "firebase.json": "d3c4507a6edb25b165baf86c884789456b52fc35cf2fedf231f07dd401f7fa5b",
+    "scripts/prepare-bao-firestore-deployment.py": "3a19c42abfa78c913f8f208f3d57ec0cb738f9993a9c144854d23f822d074e02",
+    "scripts/verify-bao-firestore-bundle.ps1": "73e94888dc77f153db5da44e6dc65a901a07f98bca74caaa4390b1052a7d96c2",
+    "lib/services/export_service.dart": "bf1681f6ccb93aab00646bdce828ed883fa8c827e5817da6c2e652d082d91b2d",
+    "lib/services/report_data.dart": "905ab656ef5e9d2de709cb7d99692b402aba9bd0b9c1c2efb0bc368e8b7165de",
+    "lib/viewmodels/controllers.dart": "802126b6d0b48eb08e6b8deb0ed6c05babd843516ed40a7c8b94add9c632c0b1",
+    "lib/viewmodels/app_providers.dart": "f42f46ba02d9842c1f8cb457993aae8c3ebcaf1e05d630599726438bf973348a",
+    "lib/screens/beewise_screens.dart": "7a99961ddfe8bf6baa30ea2a62bae735ad2568e3e474f77e93a3eef4c8e2d9eb",
+    "test/report_service_test.dart": "d0c16408bde94602a78bd0c8cc0ba7f680577e6c443b9cba2ce453fa3fc5c85a",
+    "test/report_controller_test.dart": "685e500410794460947a85ad207b78ab8c419c44f907e334d0dd89ef1e465653",
+    "firebase/rules.test.cjs": "70c3474f325dfcd2f579b2b9bf8092835de1a810d2de7eaeadf9b2eaf97fea6d"
+  },
+  "publishedArtifactSha256": {
+    "native-early-splash-20261102.png": "73a5a53e86036e08d57fc287d50e69add4197b488e40ce9c8b7d4746ed3b0775",
+    "native-empty-catalog-20261102.png": "cfc57ba5db6dc3c615363885d258476f43252fbb4a2ff092eb41b08b3e3aa3d3"
+  },
+  "privateNativeFileSha256": {
+    "pdf-live-default-am-start.txt": "103fd45e1ee20055da02e050c43143302ad93388125ac0b627500f031701ee79",
+    "pdf-live-default-complete-logcat.txt": "506d6ef69b71ad04474852d3e852ef6e5471a4203b271398284dfe73beff2fc1",
+    "pdf-live-default-cpu-after.txt": "4218ce00d41be19d21cabe8b74327ad2effa5860dbb84a704f4a564be2a5187f",
+    "pdf-live-default-cpu-before.txt": "fc9530634e77a5f53de0f6bae5990368fa9ebd6833692dade484b7a013dc9c52",
+    "pdf-live-default-exit-info.txt": "2d31d81817a7fac17c0f746b7c8e7cd766bffe8d953612547bbbcb04dcb1e32c",
+    "pdf-live-default-framestats.txt": "76563983b2e755fd74b429777101460cd7de44aa05fa629f25255291762a5274",
+    "pdf-live-default-lastanr.txt": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7",
+    "pdf-live-default-lifecycle-after.txt": "03ef0f1fdec3f2c6591d308a1d28eff0f63b124abd144c7768068b102a332307",
+    "pdf-live-default-lifecycle-before.txt": "1ac88324f327b3e8e27ad69a4ea9086267035d5fa666c19a025aa643d652c800",
+    "pdf-live-default-live-logcat.txt": "ae49c79604f7135c843002de3dc43b327b834f5c8e6a06be02ac8ef89bd3756e",
+    "pdf-live-default-main-stack.txt": "c4fbf442badd2693dc551aadcb22890123891ecd5f369845172bd01bbf5249f6",
+    "pdf-live-default-main-stat.txt": "f8e6b6bf3c1d85150e33a21dc942d31b53ecd46f226a384a65d8c9181c220888",
+    "pdf-live-default-main-wchan.txt": "5e06dd2f71c0d4e591cf3c5aa810608740b121a77dc50822cbf554a99f8b027f",
+    "pdf-live-default-memory-after.txt": "99911f001783dec1b1db43eed04c0f4815b4649aade30c11642322e830870ab0",
+    "pdf-live-default-memory-before.txt": "177bd96b027fee88d327b80062ef1c3273f4a63b7a81c87d114ebd028a5c5103",
+    "pdf-live-default-ui-status.txt": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228",
+    "pdf-live-default-window.txt": "74e8384668e54a693d163af1398e1b58daa66e581c0f84d93d7dd0a124b58e4b",
+    "pdf-live-default.json": "ec6994a2ca5790a853f2efd744a7cf0d91d32852b154ba1cda5e5f9eb964df73",
+    "pdf-live-default.png": "73a5a53e86036e08d57fc287d50e69add4197b488e40ce9c8b7d4746ed3b0775",
+    "pdf-live-settled-am-start.txt": "f09cc65cbe4b7075be00a4a63787ec29f4c53ca04d86670802b3ed28a9e5e345",
+    "pdf-live-settled-complete-logcat.txt": "fffb047ba0630376ee3885f369446231eebce4686b5990f6087a13a16ae3a61c",
+    "pdf-live-settled-cpu-after.txt": "ae93a797c1d85dcce93963c42a90cc03a202ec2810447a7b2dd11578ff301e3d",
+    "pdf-live-settled-cpu-before.txt": "2e39f9fbebe09344cc0b7ada3e1112a94cfe87fd75256ad0ce1c01a96c0c38e5",
+    "pdf-live-settled-exit-info.txt": "c55cd49b2cae5fb96bab708d349e34efa78fa1861e3650d962c3b47059555ce6",
+    "pdf-live-settled-framestats.txt": "b228f68ad96c8418de0473de4b8069019f28ec149f4ace7ce0aa386d12500390",
+    "pdf-live-settled-lastanr.txt": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7",
+    "pdf-live-settled-lifecycle-after.txt": "adf64a26563e105f28adaf4b505c0f59a0b491c754756eeaf66b24684e31d5cd",
+    "pdf-live-settled-lifecycle-before.txt": "43c3a06949be4c87ac5b4e6c6f4edb7b1e40de16c0261e2af785d2eca4ab17f1",
+    "pdf-live-settled-live-logcat.txt": "95482a86d1d0b473a72054e7570208504ed9dea717a097fe21df9fb27c83ab2f",
+    "pdf-live-settled-main-stack.txt": "a58c78754a3d7352c99b2ab0d99c26019e2ea516dfea43a4a2c09ae6798efe49",
+    "pdf-live-settled-main-stat.txt": "26340f76daa67e43df73392fd952786340c458162018991e0b4f8747ee0a6eb4",
+    "pdf-live-settled-main-wchan.txt": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e",
+    "pdf-live-settled-memory-after.txt": "f4b6f27965110f75bea4e5291ece5fa5430eee637e5a930e67d75d7b487cb1f1",
+    "pdf-live-settled-memory-before.txt": "7087fb44c8d564399ea5d801d27e362469d510709cdbcacd1d323bc38d9bb32e",
+    "pdf-live-settled-ui-status.txt": "03df3acbb061e8724961b6980f150d801858d9c4d9a3fa1f832afe3a6ff5c228",
+    "pdf-live-settled-window.txt": "7d33367c62c78354ce15cd3774c9d9088d3a6a1008cdf3915259d149c7f0115e",
+    "pdf-live-settled.json": "c43c664f5e7be924245e5a12ceedb139e7d89ab623ee22bd75001cb6d0e00494",
+    "pdf-live-settled.png": "ff65cfb66a0b4aea7b01a944e1a48fee23ce970772e18a7025522f76cc93eb2a"
+  },
+  "cloudWritesPerformedByPreflight": false,
+  "runtimeCaveat": "Normal default app initialization may perform its existing FCM/telemetry operations; no rules/index/catalog/report administrative writes were performed.",
+  "historicalManifestUnchanged": true,
+  "appSourceChanged": false,
+  "configurationChanged": false,
+  "storageBillingAppCheckChanges": false
+}
