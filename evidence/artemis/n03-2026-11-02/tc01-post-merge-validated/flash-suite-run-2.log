@@ -1,0 +1,50 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "eeaec895-689c-49c2-add2-6e0820c54a32", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+ARTEMIS_RESULT case=TC-01 trace_id=4cede256-c801-4892-b6e6-db817e158941 status=completed device=emulator-5554
+F
+================================== FAILURES ===================================
+_______________ test_tc01_guest_home_reports_real_visible_state _______________
+
+run_flow = <function run_flow.<locals>.run at 0x00000200D3843BA0>
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+        observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the exact app-bar title at the top of the Home "
+                "screen (do not confuse it with the marketing banner/tagline), "
+                "visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang ch\u1ee7","T\xecm gia s\u01b0","Gh\xe9p AI",'
+                '"Tin nh\u1eafn","T\xe0i kho\u1ea3n"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+>       assert require(observed, "screen", str).lower() == "home"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\test_discovery.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+observed = {'app_bar_ title': 'BeeWise', 'top_level_destinations': ['Trang ch\u1ee7', 'T\xecm gia s\u01b0', 'Gh\xe9p AI', 'Tin nh\u1eafn', 'T\xe0i kho\u1ea3n'], 'firebase_setup_or_error_notice': None, 'number_of_tutor_cards': 0, ...}
+key = 'screen', expected_type = <class 'str'>
+
+    def require(observed: dict[str, Any], key: str, expected_type: type) -> Any:
+        value = observed.get(key)
+>       assert isinstance(value, expected_type), (
+            f"Expected {key!r} to be {expected_type.__name__}; got {value!r}. "
+            f"Trace: {observed.get('_trace_id')}"
+        )
+E       AssertionError: Expected 'screen' to be str; got None. Trace: 4cede256-c801-4892-b6e6-db817e158941
+E       assert False
+E        +  where False = isinstance(None, <class 'str'>)
+
+e2e_test\conftest.py:327: AssertionError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_discovery.py::test_tc01_guest_home_reports_real_visible_state
+1 failed, 25 deselected in 21.47s

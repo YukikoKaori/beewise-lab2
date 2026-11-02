@@ -1,0 +1,17 @@
+﻿[
+    {
+        "suiteRun":  1,
+        "profile":  "flash",
+        "selectedCases":  [
+                              "TC-01"
+                          ],
+        "deviceSerial":  "emulator-5554",
+        "exitCode":  1,
+        "status":  "BLOCKED_QUOTA",
+        "sourceSha":  "5df96fd3df995ea12747dcd218c418327d05db4c",
+        "logSha256":  "EA44ECF3EC6427701D89561E89B561A5401E8DAD3758178B10C078C6CC120450",
+        "log":  "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-03\\tc01-priority-rerun\\flash-suite-run-1.log",
+        "junit":  "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-03\\tc01-priority-rerun\\flash-suite-run-1.junit.xml",
+        "recordedAtUtc":  "2026-11-02T18:15:54.9355878Z"
+    }
+]
