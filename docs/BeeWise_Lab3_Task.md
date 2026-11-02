@@ -16,6 +16,16 @@ BeeWise chuyển thiết kế Lab 2 thành Flutter dùng dữ liệu thật, có
 
 ## 2. Baseline repository/PR đã xác minh
 
+**Live PDF preflight mới (02/11):** fetch main `f4fe42d5246d36c033cec27dc76a32bb5bf97d4f`,
+đúng merge PR #6; Actions main 3/3 SUCCESS. B-03.2 **BLOCKED** cho live acceptance,
+implementation vẫn **IMPLEMENTED — LIVE VERIFICATION PENDING**: rules live chưa có
+`/reports`, 6 tutor đều synthetic, 0 eligible. Chưa được owner duyệt deploy bundle
+cụ thể nên không deploy hay sửa catalog. Flutter 91/91, rules và frozen bundle mỗi
+lượt 57/57; APK default cài cùng signer giữ userdata, lên Home/empty catalog sau
+startup chậm. DebugView vào được, chưa có event upload Firestore mới. Xem
+[bundle/hash, approval gate, evidence và từng TC-PDF](../evidence/cloud/firestore-reports/deployment-plan-20261102.md).
+Không đánh dấu PDF hay toàn bộ Lab 3 COMPLETE; các baseline migration bên dưới là lịch sử.
+
 Baseline migration đã fetch ngày 02/11/2026: `origin/main` **`5df96fd3df995ea12747dcd218c418327d05db4c`**. PR #3 MERGED (`55b11165...`), PR #4 MERGED (`907ced1481a9c62fd4e0c856982857fd65203f38`), PR #5 MERGED (UI/ARTEMIS; merge `5df96fd...`); không có PR mở tại audit. PR #5 flutter-android CI đã FAILURE, không dùng PR #3 CI làm PASS cho main mới. Các số liệu PR #3 bên dưới giữ nguyên lịch sử theo SHA. Xem [migration và verification](workstreams/bao-firestore-reports.md).
 
 | Mốc | Kết quả đã kiểm chứng |
