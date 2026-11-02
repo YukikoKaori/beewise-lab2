@@ -63,7 +63,7 @@ Giới hạn: headless emulator, chưa test release-mode/máy thật/API35-36; b
 | Docs/evidence | `docs/analytics-plan.md`, `docs/backend-contract.md`, `docs/workstreams/bao-*.md`; `evidence/firebase/**`, `evidence/android/**`, `evidence/cloud/**` | `docs/design-traceability.md`, `docs/test-plan.md`, `docs/code-review.md`, `docs/workstreams/nguyen-*.md`; `evidence/ui/**`, `evidence/artemis/**`, `evidence/ai-review/**` |
 | Final integration | Bàn giao/duyệt đúng các claim cloud | Chốt `README.md`, `docs/architecture.md`, `docs/lab3-report.md`, `report/**`, `slides/**`, `output/**`, video sau handoff |
 
-Mỗi người fetch latest main, branch/working copy riêng; không tiếp tục PR #2/#3 đã merge. Không sửa file owner khác nếu chưa thống nhất; interface chéo ghi handoff trước. Docs chung không edit song song. Phối hợp cửa sổ rules/RC, namespace/account/device test riêng; giữ privacy, strict rules, generation/journal/cross-UID/fail-closed protections. Lượt này **chỉ sửa tracker**, không triển khai tính năng hay thay cloud/config.
+Mỗi người fetch latest main, branch/working copy riêng; không tiếp tục PR #2/#3 đã merge. Không sửa file owner khác nếu chưa thống nhất; interface chéo ghi handoff trước. Docs chung không edit song song. Phối hợp cửa sổ rules/RC, namespace/account/device test riêng; giữ privacy, strict rules, generation/journal/cross-UID/fail-closed protections. Lượt này thực hiện các sửa responsive nhỏ trong UI owner scope, bổ sung widget regression coverage và lưu runtime smoke evidence; không thay đổi cloud/config.
 
 ## 5. Bảng task Bảo (B-01 đến B-05)
 
@@ -83,12 +83,18 @@ Mỗi người fetch latest main, branch/working copy riêng; không tiếp tụ
 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
-| N-01 | Nguyên | 12 màn Lab 2, Figma/widgets/theme/router | PARTIALLY COMPLETE | Source/routes, [traceability](design-traceability.md), smoke [E2] | Audit đủ 12 màn với Figma; ghi sai khác/acceptance; smoke Home/Search không chứng nhận toàn UI | Design/handoff + data contract |
-| N-02 | Nguyên | Responsive 360dp/412dp; loading/empty/error/recovery | PARTIALLY COMPLETE | Native widths/guest/offline/role recovery [E2] [E3]; chưa matrix toàn màn | Retest theo màn/flow, font scale/keyboard/safe area/accessibility; sửa UI đúng ownership | APK baseline + Bảo handoff repro |
-| N-03 | Nguyên | ARTEMIS ≥10 ca ×3 + Pro 15-30 phút | NEEDS VERIFICATION (runtime NOT VERIFIED) | 26 ca authored/collected, runner/preflight có; chưa traces/JUnit runtime [E8] | Xác nhận host/key/device riêng; chạy repetitions và TC-25 riêng; review observable state, xuất pass rates | Host/key được phép, data/fixtures, ba flow |
-| N-04 | Nguyên | External AI review ≥5 findings/≥2 nhóm, ≥3 fixes | NEEDS VERIFICATION (external NOT VERIFIED) | Internal findings/fix commits [E9]; chưa external transcript trong repo/PR APIs | Review PR, lưu raw output/dispositions/file-line/fix commits; không đổi nhãn self-review thành external | Tool/account/PR target; human handoff khi cần |
+| N-01 | Nguyên | 12 màn Lab 2, Figma/widgets/theme/router | PARTIALLY COMPLETE | All 12 supplied Figma PNGs exist in repo and were reviewed; updated Group Chat/Trial/Class/Payment/Schedule source to reflect layout/colors/progress while keeping trusted fields data-backed [N1]; Home/Search/AI and Login/Register captured at 360/412dp, Tutor Profile/Connection at 412dp, Messages/Profile support routes and authenticated Messages empty state at both widths [N1]; Home raster/frame parity unresolved | Build/install latest source and capture/compare 5 workflow screens at 360/412dp; capture Tutor Profile/Connection 360dp; reconcile Home raster dimensions | Current emulator ADB unavailable; populated workflow screens need trusted fixtures; Home source-frame reconciliation |
+| N-02 | Nguyên | Responsive 360dp/412dp; loading/empty/error/recovery | PARTIALLY COMPLETE | Existing 69 earlier Flutter tests; new test covers stepper semantics and empty Chat/Trial/Class/Payment/Schedule layouts at 360/412dp with 1.8 text scale [N1]; Messages empty captured signed-in at both widths; source routes expose loading/empty/error guards | Run new widget suite and inspect keyboard/safe-area/TalkBack on Android, include data/error states | Current Flutter analyzer/test invocation stalls; Android ADB unavailable; data/error states require controlled fixtures |
+| N-03 | Nguyên | ARTEMIS ≥10 ca ×3 + Pro 15-30 phút | BLOCKED (runtime PARTIAL; matrix NOT VERIFIED) | 26 cases authored/collected. Android 36 AVD `emulator-5554` online; ARTEMIS host healthy with isolated `gemini-3.5-flash-lite` config. TC-09 passed one live run, verifying all five destinations and no reported overflow/crash (`evidence/artemis/n03-2026-11-02/tc09-run-1-*`). TC-01 initially exposed two synthetic `[TEST]` tutor cards. Source now filters those fixtures from Home/Search; repository unit test and analyzer pass; debug APK build succeeded and was installed. Post-install screenshots show Home's genuine empty state with zero tutor cards. A later live TC-01 trace also observed zero cards, all five tabs, and no Firebase notice, but its harness assertion failed because ARTEMIS used alternate JSON field names and a longer fabrication statement. The parser now normalizes this report shape and the saved observation passes an offline parser check; a subsequent live run stalled before producing a log, so TC-01 is not yet runner-verified. `gemini-2.5-flash` previously returned 429 with a 74032-second retry delay; switching to Lite allowed one TC-01 trace, but quota/runner availability is still uncertain. Approved catalog and trusted workflow fixtures remain unavailable | Re-run TC-01 against the installed APK and preserve successful trace/JUnit/log; execute ≥10 suitable cases ×3 and verify traces, then run TC-25 Pro separately. Obtain approved real catalog and trusted staging records for data-dependent cases | ARTEMIS/Gemini run availability + approved catalog/staging records |
+| N-04 | Nguyên | External AI review ≥5 findings/≥2 nhóm, ≥3 fixes | NEEDS VERIFICATION (external NOT VERIFIED) | Historical internal findings/fix commits [E9]; no current target PR or external transcript in repo | Trên PR implementation được mở, request external review; record raw findings/dispositions and fix commits. Static in-repo audit cannot satisfy external-review requirement | Implementation PR target/tool access; do not fabricate external approval |
 | N-05 | Nguyên | Final report PDF 8-12 trang, slides PDF 12-15 trang | PARTIALLY COMPLETE | Draft PDF/PPTX/report source [E10]; chưa verified final | Nhận handoff, sửa claim cũ, xuất hai PDF đúng số trang, kiểm tra links | Ba flow, Storage, QA/review thật |
 | N-06 | Nguyên | Demo video 5-10 phút và final links | NEEDS VERIFICATION | [Demo script](demo-script.md); chưa thấy video final/link trong repo | Xác nhận artifact ngoài repo nếu có; quay thật, kiểm tra quyền xem, ghi SHA/giới hạn | App/services sẵn sàng, evidence freeze |
+
+### N-01/N-02 source audit (2026-11-02)
+
+Source-to-Figma audit: [N1](../evidence/ui/source-audit-20261102.md). It maps all 12 canonical screens and routes, records acceptance checks and source-level observations, and separates checks that need an Android capture from issues that can be confirmed from source. The 12 primary supplied frames plus AI results state are indexed in [Figma evidence](../assets/figma-screens/README.md); 11 primary raster captures are 2x their listed 360px frames, while Home is 804x2400 against a 402x874 inspector frame, so Home pixel parity remains unresolved. No runtime visual parity is claimed.
+
+Responsive/accessibility source review found scrollable form/detail layouts, safe-area handling for chat and tutor-profile footers, wrapped home subject chips, and 14sp body text. Three layout constraints were corrected: navigation height now matches the 72dp handoff, loading placeholders no longer force 178dp height, and chat bubbles derive maximum width from screen width. `responsive_layout_test.dart` covers 72dp navigation and TutorCard at 360/412dp with 1.8 text scale. `OnboardingStepper` follows the supplied four-step consultant flow, uses BeeWise state colors and exposes one progress label to accessibility. `workflow_empty_state_test.dart` adds 360/412dp large-text coverage for stepper and Chat/Trial/Class/Payment/Schedule empty states; analyzer found no issues in an earlier iteration, but the latest full test/analyze run has not completed because the current SDK invocation stalls. Earlier 69 Flutter tests and the debug APK build passed before this turn; those results do not include the latest UI/widget-test edits. Runtime captures/hierarchies cover Home/Search/AI at both widths; Login/Register at both widths; Tutor Profile/Connection at 412dp; Messages/Profile at 412dp; Login/Register keyboard/scroll; and Home/Search/AI at font scale 1.3. Signed-in Messages empty state is captured at both widths. Five canonical screens remain without runtime capture; full Figma, state, keyboard and accessibility validation is outstanding. Offline harness checks pass (26 unique cases and synthetic exit/status/hash handling only); ARTEMIS host/device/key and trusted workflow data are not operationally available.
 
 ## 7. Ma trận kiểm chứng sáu Firebase services
 
@@ -123,7 +129,7 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 
 1. **Storage bắt buộc / owner defer:** quyết định và ủy quyền billing/Blaze/bucket, rồi cloud evidence. Chưa quyết định thì DEFERRED/BLOCKED, không optional; lượt này không nâng plan, tạo bucket/deploy Storage.
 2. **Catalog/ba flow:** chưa có catalog thật được phép; synthetic records không đủ. Chốt scope Lab 2/trusted staging khi cần; không nới rules demo payment/schedule.
-3. **QA:** Nguyên xác nhận evidence ngoài repo nếu có; repo chưa đủ ARTEMIS traces/JUnit/pass rates, Pro session, external review transcript. Chưa kiểm tra host/key trên máy Nguyên; không kết luận là không có.
+3. **QA:** ARTEMIS host, Gemini credential and Android 36 emulator đã hoạt động cho smoke runs; xem kết quả và giới hạn mới nhất ở N-03/test plan. Ma trận ≥10 ca ×3, phiên Pro và external review vẫn chưa đủ evidence. Các ca cần catalog/staging phải có fixtures riêng được duyệt. N-04 cần reviewer ngoài trên implementation PR sau khi mở PR; không suy diễn private evidence ngoài repo.
 4. **Gói nộp:** Users Console, FCM Console-send/denied permission, RC parameter before/after; chuyển private receipts thành bản chia sẻ đã che PII. DRAFT/PPTX không thay final PDFs/video.
 5. **Android:** immediate-boot API37 và physical/release/API35-36 chưa kiểm tra toàn diện. Giới hạn sau scoped startup PASS, không giữ PR #3 đã merge chờ sửa vô hạn.
 
@@ -138,7 +144,25 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 | P1-2 | Nguyên; Bảo review cloud | UI/responsive, final PDFs/video/links | PARTIALLY COMPLETE | N-01/N-02/N-05/N-06, [E10] | Audit UI, integration freeze và đóng gói bản nộp thật | P0-2/P0-3, Storage |
 | P2-1 | Bảo + Nguyên | Mở rộng validation/product nếu scope cần | NEEDS VERIFICATION | B-01/B-04, [E2] [E12] | Physical/release/API35-36 khi có; pagination >100, quota/inbox/backend projection khi cần; không để full payment/backend lấn mandatory Firebase/ARTEMIS/demo | Device hoặc product contract được duyệt |
 
-## 11. Checklist tích hợp và nộp cuối
+## 11. Git handoff (2026-11-02)
+
+Current implementation and evidence changes are ready for owner review and commit on branch `main`, remote `origin` (`https://github.com/YukikoKaori/beewise-lab2.git`). `git diff --check` passes. The working tree includes N-01/N-02 UI, evidence and widget-test changes as well as N-03 source-filter, ARTEMIS harness and runtime-evidence changes; review `git status` before staging. N-03 remains PARTIALLY COMPLETE/BLOCKED until its required matrix and Pro exploration are verified; commit/push does not close it.
+
+Suggested commands from the repository root:
+
+```powershell
+git status --short
+git diff --check
+git add docs evidence e2e_test lib test scripts
+git diff --cached --check
+git diff --cached --stat
+git commit -m "Complete responsive UI and ARTEMIS fixes"
+git push origin main
+```
+
+Review the staged diff before committing, especially captured evidence files. Do not stage local secrets, `.env`, generated build output, or temporary ARTEMIS configuration. If the team requires a feature branch/PR instead of direct `main`, create that branch before staging and push it with `git push -u origin <branch>`.
+
+## 12. Checklist tích hợp và nộp cuối
 
 - [x] PR #2/#3 đã merge; baseline main/source/SHA/CI ghi đúng.
 - [ ] Workstreams cập nhật newest main; checks trên integration HEAD, không dùng PR #3 CI thay kiểm tra code mới.
@@ -167,6 +191,7 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 | [E10] | [Report source](lab3-report.md), [draft PDF](../output/pdf/BeeWise-Lab3-Implementation-Report-DRAFT.pdf), [draft PPTX](../output/presentations/BeeWise-Lab3-Review-DRAFT.pptx), [demo plan](demo-script.md) | History/DRAFT, không phải final submission hay current service baseline. |
 | [E11] | [Rules deploy](../evidence/cloud/authorized-deploy-rules.json), [index deploy](../evidence/cloud/authorized-deploy-indexes.json), [release state](../evidence/cloud/firestore-release-state.json) | Authorized strict bundle, index READY trước rules release; khác local rules tests. |
 | [E12] | [Trusted contract](backend-contract.md), [workflow status](workstreams/bao-workflow-status.md), [UI handoff](workstreams/bao-ui-handoff.md) | Boundaries/history; account/rules blocker cũ superseded E3/E11; trusted live processor chưa proof. |
+| [N1] | [UI source audit](../evidence/ui/source-audit-20261102.md), [runtime manifest](../evidence/ui/runtime-manifest-20261102.md) | 12-screen route/Figma/source review plus partial Android 36 runtime screenshots/UI hierarchies; not a complete visual/accessibility matrix. |
 
 [E1]: ../evidence/cloud/pr3-controlled-validation.json
 [E2]: ../evidence/android/pr3-controlled/manifest.json
@@ -180,6 +205,7 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 [E10]: lab3-report.md
 [E11]: ../evidence/cloud/firestore-release-state.json
 [E12]: backend-contract.md
+[N1]: ../evidence/ui/source-audit-20261102.md
 
 **COMPLETE:** hàng có evidence đủ trong scope nêu. **PARTIALLY COMPLETE:** có code/kết quả, thiếu bước/receipt bắt buộc. **NOT STARTED:** đã xác nhận chưa bắt đầu. **BLOCKED:** thiếu dependency cụ thể. **DEFERRED:** owner hoãn, không miễn yêu cầu. **NEEDS VERIFICATION / NOT VERIFIED:** thiếu evidence kết luận, không đồng nghĩa owner chưa làm.
 

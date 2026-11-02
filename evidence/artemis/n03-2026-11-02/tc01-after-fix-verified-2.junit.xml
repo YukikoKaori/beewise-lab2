@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="43.802" timestamp="2026-11-02T18:45:44.968811+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_discovery" name="test_tc01_guest_home_reports_real_visible_state" time="43.466"><failure message="AssertionError: ARTEMIS output was not the required JSON observation: 'Tested case TC-01 successfully.\n{\n  &quot;home_title&quot;: &quot;BeeWise&quot;,\n  &quot;top_level_destinations&quot;: [\n    &quot;Trang chủ&quot;,\n    &quot;Tìm gia sư&quot;,\n    &quot;Ghép AI&quot;,\n    &quot;Tin nhắn&quot;,\n    &quot;Tài khoản&quot;\n  ],\n  &quot;firebase_notice&quot;: null,\n  &quot;tutor_cards_count&quot;: 0,\n  &quot;fabricated_profiles_confirmed&quot;: false\n}'">output = 'Tested case TC-01 successfully.\n{\n  "home_title": "BeeWise",\n  "top_level_destinations": [\n    "Trang chủ",\n    ... "Tài khoản"\n  ],\n  "firebase_notice": null,\n  "tutor_cards_count": 0,\n  "fabricated_profiles_confirmed": false\n}'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+&gt;               value = json.loads(candidate)
+                        ^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\conftest.py:127:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;json.decoder.JSONDecoder object at 0x00000164CE283AD0&gt;
+s = 'Tested case TC-01 successfully.\n{\n  "home_title": "BeeWise",\n  "top_level_destinations": [\n    "Trang chủ",\n    ... "Tài khoản"\n  ],\n  "firebase_notice": null,\n  "tutor_cards_count": 0,\n  "fabricated_profiles_confirmed": false\n}'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+&gt;           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\json\decoder.py:356: JSONDecodeError
+
+The above exception was the direct cause of the following exception:
+
+run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x00000164D00F2DE0&gt;
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+&gt;       observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the Home title, visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang chủ","Tìm gia sư","Ghép AI",'
+                '"Tin nhắn","Tài khoản"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_discovery.py:12:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:91: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:115: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'Tested case TC-01 successfully.\n{\n  "home_title": "BeeWise",\n  "top_level_destinations": [\n    "Trang chủ",\n    ... "Tài khoản"\n  ],\n  "firebase_notice": null,\n  "tutor_cards_count": 0,\n  "fabricated_profiles_confirmed": false\n}'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+                value = _decode_tc01_prose(text)
+                if value is None:
+&gt;                   raise AssertionError(
+                        f"ARTEMIS output was not the required JSON observation: {text!r}"
+                    ) from error
+E                   AssertionError: ARTEMIS output was not the required JSON observation: 'Tested case TC-01 successfully.\n{\n  "home_title": "BeeWise",\n  "top_level_destinations": [\n    "Trang chủ",\n    "Tìm gia sư",\n    "Ghép AI",\n    "Tin nhắn",\n    "Tài khoản"\n  ],\n  "firebase_notice": null,\n  "tutor_cards_count": 0,\n  "fabricated_profiles_confirmed": false\n}'
+
+e2e_test\conftest.py:131: AssertionError</failure></testcase></testsuite></testsuites>
