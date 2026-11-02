@@ -22,10 +22,17 @@ env = os.environ.copy()
 env['PATH'] = str(double) + os.pathsep + env['PATH']
 env['ARTEMIS_BASE_URL'] = 'http://127.0.0.1:1'
 env['ARTEMIS_DEVICE_SERIAL'] = 'HARNESS-DOUBLE-NO-DEVICE'
+(double / 'adb.cmd').write_text(
+    '@echo off\n'
+    'if "%1"=="devices" echo List of devices attached\n'
+    'if "%1"=="devices" echo HARNESS-DOUBLE-NO-DEVICE device\n'
+    'exit /b 0\n', encoding='ascii')
 checks = []
+safe_cases = ['TC-01', 'TC-02']
+env['ARTEMIS_CASE_IDS'] = '|'.join(safe_cases)
 for code in (7, 0):
     (double / 'uv.cmd').write_text(
-        '@echo off\necho SYNTHETIC PROCESS DOUBLE: no mobile execution\n'
+        '@echo off\necho SYNTHETIC PROCESS DOUBLE: no mobile execution %*\n'
         f'exit /b {code}\n', encoding='ascii')
     output = work / f'exit-{code}'
     result = subprocess.run([
@@ -39,9 +46,20 @@ for code in (7, 0):
     assert len(records) == 3
     for record in records:
         assert record['exitCode'] == code and record['status'] == expected
+        assert record['selectedCases'] == safe_cases
         assert record['logSha256'].lower() == hashlib.sha256(Path(record['log']).read_bytes()).hexdigest()
+        run_log_bytes = Path(record['log']).read_bytes()
+        run_log = run_log_bytes.decode('utf-16') if run_log_bytes.startswith(b'\xff\xfe') else run_log_bytes.decode('utf-8-sig')
+        assert 'test_tc01_ or test_tc02_' in run_log
     checks.append({'expectedExit': code, 'actualExit': result.returncode,
                    'status': expected, 'suiteRuns': len(records), 'hashesVerified': True})
+rejected = subprocess.run([
+    'powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File',
+    str(root / 'e2e_test/run-artemis.ps1'),
+], cwd=root, env={**env, 'ARTEMIS_CASE_IDS': 'TC-18'}, capture_output=True, text=True, timeout=60)
+assert rejected.returncode != 0
+assert 'outside the non-business-mutation subset' in rejected.stderr
+checks.append({'unapprovedBusinessMutationCase': 'TC-18', 'rejected': True})
 report = {'scope': 'Synthetic process doubles only; Android/host/AI NOT RUN',
           'status': 'PASS', 'checks': checks, 'retainedOutput': str(work)}
 (work / 'check-report.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')

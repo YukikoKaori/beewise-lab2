@@ -5,6 +5,16 @@ param(
 
 $ErrorActionPreference = 'Stop'
 if ($RunsPerTest -lt 3) { throw 'Lab 3 requires at least three Flash runs per test.' }
+$CaseIds = @($env:ARTEMIS_CASE_IDS -split '[,|]' | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+$allowedCaseIds = @('TC-01', 'TC-02', 'TC-03', 'TC-04', 'TC-05', 'TC-06', 'TC-08', 'TC-09', 'TC-12', 'TC-16')
+foreach ($caseId in $CaseIds) {
+  if ($caseId -notin $allowedCaseIds) {
+    throw "Case '$caseId' is outside the non-business-mutation subset. Use a dedicated staging project and review its side effects before running other cases."
+  }
+}
+if ($CaseIds.Count -gt 0 -and @($CaseIds | Select-Object -Unique).Count -ne $CaseIds.Count) {
+  throw 'CaseIds must not contain duplicates.'
+}
 
 $repoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $resolvedOutput = if ([System.IO.Path]::IsPathRooted($OutputDirectory)) {
@@ -17,8 +27,19 @@ $manifest = [System.Collections.Generic.List[object]]::new()
 $manifestPath = Join-Path $resolvedOutput 'run-manifest.json'
 if (Test-Path -LiteralPath $manifestPath) { throw 'Use a fresh output directory; preserve previous evidence.' }
 $sourceSha = & git -C $repoRoot rev-parse HEAD
-if (-not $env:ARTEMIS_BASE_URL -or -not $env:ARTEMIS_DEVICE_SERIAL -or -not (Get-Command uv -ErrorAction SilentlyContinue)) {
-  [pscustomobject]@{ status = 'BLOCKED'; sourceSha = $sourceSha; reason = 'Need uv, ARTEMIS host and online Android device'; recordedAtUtc = [DateTime]::UtcNow.ToString('o') } | ConvertTo-Json | Set-Content -LiteralPath $manifestPath -Encoding utf8
+$missing = [System.Collections.Generic.List[string]]::new()
+if (-not (Get-Command uv -ErrorAction SilentlyContinue)) { $missing.Add('uv') }
+if (-not $env:ARTEMIS_BASE_URL) { $missing.Add('ARTEMIS_BASE_URL') }
+if (-not $env:ARTEMIS_DEVICE_SERIAL) { $missing.Add('ARTEMIS_DEVICE_SERIAL') }
+if ($env:ARTEMIS_DEVICE_SERIAL -and (Get-Command adb -ErrorAction SilentlyContinue)) {
+  $adbOutput = @()
+  try { $adbOutput = @(& adb devices 2>$null) } catch { $adbOutput = @() }
+  $connected = $adbOutput | Select-String -Pattern ('^' + [regex]::Escape($env:ARTEMIS_DEVICE_SERIAL) + '\s+device$')
+  if (-not $connected) { $missing.Add('online ARTEMIS_DEVICE_SERIAL') }
+}
+if ($missing.Count -gt 0) {
+  [pscustomobject]@{ status = 'BLOCKED'; sourceSha = $sourceSha; missing = @($missing); recordedAtUtc = [DateTime]::UtcNow.ToString('o') } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $manifestPath -Encoding utf8
+  Write-Host "ARTEMIS preflight blocked: $($missing -join ', ')"
   exit 2
 }
 $exitCode = 0
@@ -29,11 +50,20 @@ try {
     $testName = "flash-suite-run-$run"
     $logPath = Join-Path $resolvedOutput "$testName.log"
     $junitPath = Join-Path $resolvedOutput "$testName.junit.xml"
-    Write-Host "Running all independent Flash tests, pass $run/$RunsPerTest"
+    $selectedCases = if ($CaseIds.Count -gt 0) { @($CaseIds) } else { @('all non-manual Flash cases') }
+    Write-Host "Running Flash tests [$($selectedCases -join ', ')], pass $run/$RunsPerTest"
     $ErrorActionPreference = 'Continue'
-    & uv run --project .\e2e_test pytest -c .\e2e_test\pyproject.toml .\e2e_test `
-      -m 'not exploratory and not manual_setup' -q -s `
-      --junitxml $junitPath 2>&1 | Tee-Object -FilePath $logPath
+    $pytestArgs = @(
+      'run', '--project', '.\e2e_test', 'pytest',
+      '-c', '.\e2e_test\pyproject.toml', '.\e2e_test',
+      '-m', 'not exploratory and not manual_setup', '-q', '-s',
+      '--junitxml', $junitPath
+    )
+    if ($CaseIds.Count -gt 0) {
+      $filter = ($CaseIds | ForEach-Object { "test_tc$($_.Substring(3))_" }) -join ' or '
+      $pytestArgs += @('-k', $filter)
+    }
+    & uv @pytestArgs 2>&1 | Tee-Object -FilePath $logPath
     $runExitCode = $LASTEXITCODE
     $ErrorActionPreference = 'Stop'
     if ($runExitCode -ne 0 -and $exitCode -eq 0) { $exitCode = $runExitCode }
@@ -44,6 +74,7 @@ try {
     $manifest.Add([pscustomobject]@{
         suiteRun = $run
         profile = 'flash'
+        selectedCases = @($selectedCases)
         deviceSerial = $env:ARTEMIS_DEVICE_SERIAL
         exitCode = $runExitCode
         status = $(if ($runExitCode -eq 0) { 'PENDING_VERIFICATION' } else { 'FAIL' })
