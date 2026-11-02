@@ -2,7 +2,6 @@ const {before, after, beforeEach, test} = require('node:test');
 const {readFileSync} = require('node:fs');
 const {initializeTestEnvironment, assertSucceeds, assertFails} = require('@firebase/rules-unit-testing');
 const {doc, getDoc, setDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp} = require('firebase/firestore');
-const {ref, uploadBytes, getBytes, deleteObject} = require('firebase/storage');
 
 let env;
 const db = (uid = 'alice') => env.authenticatedContext(uid, {
@@ -18,10 +17,9 @@ async function seed(records) {
 before(async () => {
   env = await initializeTestEnvironment({projectId: 'demo-beewise',
     firestore: {rules: readFileSync('firestore.rules', 'utf8')},
-    storage: {rules: readFileSync('storage.rules', 'utf8')},
   });
 });
-beforeEach(async () => { await env.clearFirestore(); await env.clearStorage(); });
+beforeEach(async () => { await env.clearFirestore(); });
 after(async () => { await env?.cleanup(); });
 
 test('parent bootstrap can read its missing application without exposing another UID', async () => {
@@ -213,18 +211,103 @@ test('invoice verification and official schedule are trusted backend only', asyn
   await assertFails(getDoc(doc(db('bob'), 'classes/verified')));
   await assertFails(updateDoc(doc(db(), 'classes/unverified'), {paymentStatus: 'verified'}));
 });
-test('Storage PDF reports enforce owner, extension, content type and strict size limit', async () => {
-  const own = env.authenticatedContext('alice').storage();
-  const report = ref(own, 'reports/alice/report.pdf');
-  await assertSucceeds(uploadBytes(report, Buffer.from('%PDF-1.4\n'), {contentType: 'application/pdf'}));
-  await assertSucceeds(getBytes(report));
-  const other = ref(env.authenticatedContext('bob').storage(), 'reports/alice/report.pdf');
-  await assertFails(getBytes(other));
-  await assertFails(uploadBytes(other, Buffer.from('x'), {contentType: 'application/pdf'}));
-  await assertFails(deleteObject(other));
-  await assertFails(getBytes(ref(env.unauthenticatedContext().storage(), 'reports/alice/report.pdf')));
-  await assertFails(uploadBytes(ref(own, 'reports/alice/wrong.txt'), Buffer.from('x'), {contentType: 'application/pdf'}));
-  await assertFails(uploadBytes(ref(own, 'reports/alice/wrong.pdf'), Buffer.from('x'), {contentType: 'text/plain'}));
-  await assertFails(uploadBytes(ref(own, 'reports/alice/large.pdf'), Buffer.alloc(10 * 1024 * 1024), {contentType: 'application/pdf'}));
-  await assertSucceeds(deleteObject(report));
+
+// The obsolete Storage terminal/ownership cases are replaced by the actual
+// Firestore persistence contract; all existing Firestore regressions remain.
+const reportId = 'abcdefghijklmnopqrst';
+const reportPath = (uid = 'alice', id = reportId) => `reports/${uid}/files/${id}`;
+const report = (uid = 'alice', patch = {}) => ({
+  ownerUid: uid, reportId, tutorId: 'tutor', fileName: 'beewise-tutor-tutor.pdf',
+  contentType: 'application/pdf', encoding: 'base64', sizeBytes: 9,
+  base64Data: Buffer.from('%PDF-1.4\n').toString('base64'), createdAt: serverTimestamp(), ...patch,
+});
+async function permittedTutor() { await seed({'tutors/tutor': {active: true, verified: true}}); }
+for (const uid of ['alice', 'bob']) {
+  test(`parent ${uid} creates, server-reads and lists own immutable report`, async () => {
+    await permittedTutor();
+    const store=db(uid), target=doc(store, reportPath(uid));
+    await assertSucceeds(setDoc(target, report(uid)));
+    const saved=await assertSucceeds(getDoc(target));
+    require('node:assert/strict').deepEqual(Buffer.from(saved.data().base64Data,'base64'), Buffer.from('%PDF-1.4\n'));
+    const {getDocs, collection}=require('firebase/firestore');
+    await assertSucceeds(getDocs(collection(store,`reports/${uid}/files`)));
+    await assertFails(updateDoc(target,{fileName:'other.pdf'}));
+    await assertFails(setDoc(target,report(uid)));
+    await assertFails(deleteDoc(target));
+  });
+}
+test('guest, anonymous and cross-UID reports are denied in both directions', async () => {
+  await permittedTutor();
+  await assertSucceeds(setDoc(doc(db(),reportPath()),report()));
+  await assertSucceeds(setDoc(doc(db('bob'),reportPath('bob')),report('bob')));
+  const anonymous=env.authenticatedContext('alice',{firebase:{sign_in_provider:'anonymous'}}).firestore();
+  for (const store of [env.unauthenticatedContext().firestore(),anonymous,db('bob')]) {
+    await assertFails(getDoc(doc(store,reportPath())));
+    await assertFails(setDoc(doc(store,reportPath('alice','12345678901234567890')),report('alice',{reportId:'12345678901234567890'})));
+    await assertFails(updateDoc(doc(store,reportPath()),{sizeBytes:1}));
+    await assertFails(deleteDoc(doc(store,reportPath())));
+  }
+  await assertFails(getDoc(doc(db(),reportPath('bob'))));
+  await assertFails(setDoc(doc(db(),reportPath('bob','12345678901234567890')),report('bob',{reportId:'12345678901234567890'})));
+  await assertFails(updateDoc(doc(db(),reportPath('bob')),{sizeBytes:1}));
+  await assertFails(deleteDoc(doc(db(),reportPath('bob'))));
+});
+test('applicants cannot access parent reports or piggyback creation in a batch', async () => {
+  await permittedTutor();
+  await seed({'tutorApplications/alice': {status:'pending'}});
+  await assertFails(setDoc(doc(db(),reportPath()),report()));
+  await assertFails(getDoc(doc(db(),reportPath())));
+  const store=db('bob'), batch=writeBatch(store);
+  batch.set(doc(store,'tutorApplications/bob'),application('bob'));
+  batch.set(doc(store,reportPath('bob')),report('bob'));
+  await assertFails(batch.commit());
+});
+const invalidReports = {
+  'oversized bytes': {sizeBytes:512001},
+  'oversized Base64': {base64Data:'JVBERi0'+'A'.repeat(682669)},
+  'zero bytes':{sizeBytes:0}, 'negative bytes':{sizeBytes:-1}, 'fractional bytes':{sizeBytes:9.5},
+  'wrong MIME':{contentType:'text/plain'}, 'wrong encoding':{encoding:'raw'},
+  'wrong owner':{ownerUid:'bob'}, 'wrong report ID':{reportId:'other'},
+  'unexpected field':{email:'not-allowed@example.test'}, 'stale timestamp':{createdAt:Timestamp.fromMillis(1)},
+  'missing timestamp':{createdAt:null}, 'empty Base64':{base64Data:''},
+  'bad PDF header':{base64Data:Buffer.from('not a pdf').toString('base64')},
+  'invalid Base64 alphabet':{base64Data:'JVBERi0!!!!!'},
+  'inconsistent byte length':{sizeBytes:500},
+  'filename traversal':{fileName:'../../x.pdf'}, 'filename mismatch':{fileName:'other.pdf'},
+  'invalid filename type':{fileName:42}, 'invalid tutor type':{tutorId:[]},
+  'invalid tutor length':{tutorId:'a'.repeat(129)}, 'invalid tutor path':{tutorId:'../tutor'},
+};
+for(const [label,patch] of Object.entries(invalidReports)) {
+  test(`report rejects ${label}`,async()=>{
+    await permittedTutor();
+    await assertFails(setDoc(doc(db(),reportPath()),report('alice',patch)));
+  });
+}
+test('report requires every field and a valid document ID',async()=>{
+  await permittedTutor();
+  for(const field of Object.keys(report())) {
+    const data=report(); delete data[field];
+    await assertFails(setDoc(doc(db(),reportPath()),data));
+  }
+  await assertFails(setDoc(doc(db(),reportPath('alice','bad')),report('alice',{reportId:'bad'})));
+});
+test('500 KiB PDF bound succeeds and content is byte-exact',async()=>{
+  await permittedTutor();
+  const bytes=Buffer.alloc(512000,32); bytes.write('%PDF-1.4\n');
+  await assertSucceeds(setDoc(doc(db(),reportPath()),report('alice',{sizeBytes:bytes.length,base64Data:bytes.toString('base64')})));
+  const saved=await assertSucceeds(getDoc(doc(db(),reportPath())));
+  require('node:assert/strict').deepEqual(Buffer.from(saved.data().base64Data,'base64'),bytes);
+});
+test('unverified, inactive and synthetic tutor reports are denied',async()=>{
+  for(const tutor of [{active:true,verified:false},{active:false,verified:true},{active:true,verified:true,syntheticTestFixture:true},{active:true,verified:true,fixtureNamespace:'test'}]) {
+    await seed({'tutors/tutor':tutor});
+    await assertFails(setDoc(doc(db(),reportPath()),report()));
+  }
+  await seed({'tutors/bao-lab3-test':{active:true,verified:true}});
+  await assertFails(setDoc(doc(db(),reportPath()),report('alice',{tutorId:'bao-lab3-test',fileName:'beewise-tutor-bao-lab3-test.pdf'})));
+});
+test('concurrent duplicate IDs admit one creation only',async()=>{
+  await permittedTutor();
+  const results=await Promise.allSettled([setDoc(doc(db(),reportPath()),report()),setDoc(doc(db(),reportPath()),report())]);
+  require('node:assert/strict').equal(results.filter(r=>r.status==='fulfilled').length,1);
 });

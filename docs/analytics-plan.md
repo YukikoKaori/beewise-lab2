@@ -22,10 +22,14 @@ Events use Firebase recommended names where they fit. Parameters are bounded, ty
 | `class_adjustment_requested` | Parent requests a revision | none | Where do proposed class details need correction? | Consultant onboarding recovery |
 | `payment_verification_requested` | Pending verification request is stored | none | How many confirmed classes reach payment verification? | Payment |
 | `export_report` | Tutor PDF is generated | `subject_count` (int), `file_size_kb` (int) | Which profile views lead to a report export? | Tutor detail / file export |
-| `upload_report` | Storage upload completes | `file_size_kb` (int) | How many generated reports reach cloud storage? | File export and upload |
+| `upload_report` | Firestore transaction acknowledged AND forced server read validates exact encoded PDF; current Auth generation remains active | `storage_backend` (string: firestore), `file_size_kb` (int), `result` (string: success) | How many generated reports reach confirmed private cloud persistence? | File export and save |
 
 ## Implementation and privacy
 
 `AnalyticsService` owns all Firebase Analytics calls. The auth-state provider and auth controllers set the Firebase Analytics user ID to the authenticated UID after sign-in and restore it for an existing signed-in session; sign-out clears it. Telemetry failures are isolated so a completed user action stays completed. No UID is copied into event parameters. Search logs length/count/category outcome only; profile/detail views log enum values and subject count, not names or document IDs.
 
 The implementation is code-reviewed locally. Live event receipt, parameter values and user-ID association remain unverified until the student Firebase project is configured and a DebugView capture is added under `evidence/analytics/`.
+
+## Firestore PDF migration — 2026-11-02
+
+`export_report` still means local generation, including permitted local-only fixture inspection. `upload_report` never fires for a pending/cache write, failed server read, cancellation or stale account callback. No UID, document path/ID, filename, tutor name, PDF bytes/Base64 or auth token enters these parameters. Seven prior verified business-event types and identity behavior remain accepted; the old unverified snapshot above does not reopen them. New Firestore-backed `upload_report` is unit-tested; actual native/DebugView delivery for this new trigger is **NOT RUN**.
