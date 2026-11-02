@@ -6,7 +6,7 @@ Branch: `codex/beewise-lab3-n03-n04-clean`
 
 Base/HEAD before remediation: `5df96fd3df995ea12747dcd218c418327d05db4c`
 
-Commit: **not committed**
+Implementation commit: `a212e5f94c7998b8ce749be859d41409558e327e` (merged to main by PR #9; main merge commit `0e9cc08`).
 
 ARTEMIS/Android E2E: one later real TC-01 attempt; **BLOCKED_QUOTA**, see follow-up
 
@@ -52,6 +52,9 @@ prove Firestore provenance from an AI response alone. Evidence packages lack
 some historical raw receipts, so historical TC-01/TC-09 totals remain
 **REPORTED**, not independently verified. No previous pass totals were added.
 
+## N-04 rubric traceability
+
+The review contains nine accepted findings (F-01..F-06 and N-01..N-03), with fixes and regression checks recorded above. The findings span three groups: runner execution safety and preflight (F-01, N-03); parser, provenance, type, and quota validation (F-02, F-05, F-06, N-01); and UI observation/navigation assertions (F-03, F-04, N-02). Multiple fixes are implemented and covered by the parser/runner regression checks listed in Validation performed. The project owner confirmed human reviewer approval on 2026-11-03. The implementation commit and PR #9 merge are recorded in N-04 disposition. This confirms the review/remediation task; it does not change N-03's BLOCKED_QUOTA execution status.
 ## Files changed
 
 - `e2e_test/conftest.py` — strict TC-01 provenance, TC-09 parsing, integer types, structured quota detection.
@@ -74,7 +77,7 @@ No app/business behavior was changed. Existing ARTEMIS assertions were tightened
 - Python `compileall` for E2E/checker modules — **PASS**.
 - `git diff --check` — no whitespace errors; Git emitted only its existing LF-to-CRLF working-copy warning for an unrelated UI manifest.
 
-No complete live ARTEMIS suite or successful Android E2E run was completed for this remediation. One later TC-01 ARTEMIS attempt was blocked by provider quota as recorded below. There is no remediation commit SHA because changes have not been committed. Nothing was pushed, merged, or opened as a PR.
+No complete live ARTEMIS suite or successful Android E2E run was completed for this remediation. One later TC-01 ARTEMIS attempt was blocked by provider quota as recorded below. The code remediation was committed as `a212e5f94c7998b8ce749be859d41409558e327e` and merged to main by PR #9 (merge commit `0e9cc08`). This report records the post-merge traceability update; no claim is made that the blocked ARTEMIS run passed.
 
 Second-review checks (same working tree):
 
@@ -88,15 +91,17 @@ Second-review checks (same working tree):
 
 ## N-04 disposition
 
-The project owner confirmed in chat on 2026-11-03 that the human reviewer has
-approved the review. N-04 is therefore **HUMAN REVIEW CONFIRMED BY OWNER;
-COMMIT/TRACEABILITY PENDING**. No reviewer name or standalone review artifact
-was supplied in this message, and no remediation commit SHA exists yet. Record
-the accepted-finding fix commit(s) in the task tracker. If the rubric requires
-a durable review artifact, preserve the reviewer response or link the review
-comments before marking N-04 fully complete. F-02 provenance caveat remains
-documented as a discussion item.
-
+The project owner confirmed in chat on 2026-11-03 that the human reviewer
+approved the review. Findings F-01..F-06 and N-01..N-03, their dispositions,
+accepted fixes, and regression evidence are recorded above and in the review
+artifacts in this folder. The implementation commit
+`a212e5f94c7998b8ce749be859d41409558e327e` was merged to `main` by PR #9
+(merge commit `0e9cc08`). N-04 is **COMPLETE** based on the owner-confirmed
+human approval and merged remediation. No GitHub review submission or named,
+standalone reviewer response is present in this repository; attach one only if
+the instructor requires a durable reviewer artifact. F-02 provenance caveat
+remains documented as a discussion item and does not change the recorded review
+approval.
 ## N-03 real execution follow-up (2026-11-03)
 
 - Started the configured `BeeWise_API_36` AVD and ADB outside the restricted
