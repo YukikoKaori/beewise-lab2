@@ -17,6 +17,7 @@ class Tutor {
     this.experienceYears = 0,
     this.avatarUrl,
     this.isSyntheticTestFixture = false,
+    this.isDemoProfile = false,
   });
 
   final String id;
@@ -36,6 +37,14 @@ class Tutor {
   final int experienceYears;
   final String? avatarUrl;
   final bool isSyntheticTestFixture;
+  final bool isDemoProfile;
+
+  static const demoTutorId = 'tutor_acd3824aa8734c63ac8827df';
+  static const demoDisclosure = 'Hồ sơ demo — đã duyệt cho kiểm thử';
+  static const demoDisclaimer =
+      'Thông tin do chủ hồ sơ cung cấp; chưa xác minh chuyên môn hoặc kinh nghiệm.';
+  bool get reportEligible =>
+      active && !isSyntheticTestFixture && (verified || isDemoProfile);
 
   factory Tutor.fromMap(String id, Map<String, dynamic> map) {
     final namespace = map['fixtureNamespace'];
@@ -44,6 +53,11 @@ class Tutor {
         (namespace is String && namespace.trim().isNotEmpty) ||
         id.startsWith('bao-lab3-');
     final name = map['name'] as String? ?? '';
+    final demo =
+        !synthetic &&
+        id == demoTutorId &&
+        map['demoOnly'] == true &&
+        map['verified'] == false;
     return Tutor(
       id: id,
       name: synthetic && !name.startsWith('[TEST]') ? '[TEST] $name' : name,
@@ -55,13 +69,17 @@ class Tutor {
       areas: _stringList(map['areas']),
       teachingModes: _stringList(map['teachingModes']),
       availability: map['availability'] as String? ?? '',
-      verified: !synthetic && (map['verified'] as bool? ?? false),
+      verified:
+          !synthetic &&
+          (!map.containsKey('demoOnly') || map['demoOnly'] == false) &&
+          (map['verified'] as bool? ?? false),
       active: map['active'] as bool? ?? false,
       rating: (map['rating'] as num?)?.toDouble(),
       reviewCount: (map['reviewCount'] as num?)?.round() ?? 0,
       experienceYears: (map['experienceYears'] as num?)?.round() ?? 0,
       avatarUrl: map['avatarUrl'] as String?,
       isSyntheticTestFixture: synthetic,
+      isDemoProfile: demo,
     );
   }
 

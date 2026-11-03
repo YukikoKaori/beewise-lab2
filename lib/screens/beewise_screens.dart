@@ -567,6 +567,10 @@ class _TutorProfileContent extends ConsumerWidget {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Text(tutor.credential),
+                        if (tutor.isDemoProfile) ...[
+                          const Text(Tutor.demoDisclosure),
+                          const Text(Tutor.demoDisclaimer),
+                        ],
                         if (tutor.verified)
                           const Chip(
                             avatar: Icon(

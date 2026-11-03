@@ -1,0 +1,18 @@
+{
+  "entrypoint": "lib/main.dart, default debug APK",
+  "original": {
+    "header": "%PDF-1.5",
+    "sizeBytes": 19315,
+    "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe"
+  },
+  "nativeDownload": {
+    "sizeBytes": 19315,
+    "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe"
+  },
+  "clientServerDownload": {
+    "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe"
+  },
+  "allBytesEqual": true,
+  "pdfInspection": "Actual native-produced PDF rendered with pdftoppm; owner fields and prominent demo disclosure visually inspected. Downloaded file opened in Android share sheet and Print preview; no print job or external sharing submitted.",
+  "rawPdfOrBase64Published": false
+}
