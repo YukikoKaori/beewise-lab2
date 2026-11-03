@@ -10,6 +10,11 @@
   },
   "artifacts": [
     {
+      "path": ".gitattributes",
+      "bytes": 154,
+      "sha256": "e8448764ad98a0454bca32ff00a844cbe7f7c8b1a9cdf83f90e6b091d66a1061"
+    },
+    {
       "path": "a-profile-confirmed.json",
       "bytes": 1493,
       "sha256": "64f70a431d5391dc855fb58479417eaaa99322060c0738c43e85ff9f2c210b35"
@@ -36,8 +41,8 @@
     },
     {
       "path": "audit.json",
-      "bytes": 1026,
-      "sha256": "5e1bc86e17786f68c795e0578d48201ab53a8c4c487a8fdefc9793cbb42e6995"
+      "bytes": 1301,
+      "sha256": "098367d51f8e945f9346e07bd99141c8f62307980517b62f81ff40ec9248f868"
     },
     {
       "path": "auth-users.json",
@@ -213,6 +218,11 @@
       "path": "historical-console/google-crashlytics-user-data.png",
       "bytes": 320620,
       "sha256": "c638dff9fe5d66d8e9e1e4ade992a07a11881524ee3a10b97e9d2c35c0f1af11"
+    },
+    {
+      "path": "historical-console/manifest.json",
+      "bytes": 10181,
+      "sha256": "27c209b08bb41f6831315cf74ea3cc759887786ef0effa9a290d6bb844d39df9"
     },
     {
       "path": "historical-console/reliability-export-file-size.png",
@@ -429,5 +439,7 @@
       "bytes": 3177,
       "sha256": "882865b3a970049afefb15355161eb62cf6d84067d7397bdedb336242b10dbd8"
     }
-  ]
+  ],
+  "frozenAtUtc": "2026-11-03T10:29:22.641027+00:00",
+  "bytePolicy": "Exact frozen bytes via scoped .gitattributes; root manifest excludes only itself"
 }
