@@ -101,7 +101,10 @@ Private original PDFs/screenshots/full logs are retained locally outside Git.
 `analytics-native.json` explicitly records interleaving from two log collectors;
 its event facts are whitelisted, not a fabricated clean log bundle.
 
-`files.json` hashes the published artifacts (excluding itself). No large generated
+`files.json` hashes the published artifacts (excluding itself). Evidence-local
+`.gitattributes` preserves exact captured/frozen bytes, including line endings;
+hashes are checked against committed Git blobs, not just working files.
+No large generated
 logs, duplicate APK, original PDF/Base64 or credentials are committed. Existing
 historical evidence and Nguyen-owned files are preserved.
 

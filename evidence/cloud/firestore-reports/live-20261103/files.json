@@ -1,6 +1,11 @@
 {
   "files": [
     {
+      "file": ".gitattributes",
+      "bytes": 152,
+      "sha256": "b7524eb77710cb09279b57184686e5f5bb13a9eddc53328d8bfc5c60364502e8"
+    },
+    {
       "file": "analytics-native.json",
       "bytes": 1741,
       "sha256": "8648ba8e3d2fa0a9cd94c482ea52fb24971d8607117d4e3dae9f8147c23af327"
@@ -227,8 +232,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 8080,
-      "sha256": "3331ebbc84b3703286ff3897bec4d1d45beed43546fa66b60039d052109b3c07"
+      "bytes": 8247,
+      "sha256": "761720ae2510546af0e28d75f4f4c512c00f6fefd5126f6d37580953bf2063f9"
     },
     {
       "file": "resume-environment.json",
@@ -246,6 +251,6 @@
       "sha256": "96e33f1082ccdce71d4b6b617d8784651a36ba6916f0c39a28ad76cbef3800b5"
     }
   ],
-  "totalBytes": 3080993,
+  "totalBytes": 3081312,
   "redaction": "Solid masks only, originals private; no AI synthesis."
 }
