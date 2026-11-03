@@ -1,0 +1,35 @@
+{
+  "capturedAtUtc": "2026-11-03T09:27:45.280049+00:00",
+  "device": "emulator-5562",
+  "api": 35,
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "applicationSourceTree": "Same lib/android/firebase tree as b45bdce4d3a68006a28ca8e587fdece0187a8660 built APK; only documentation changed in main",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "originalPrivateSha256": "0b901d177c0eebf489bf225e8f013b31af1990a146fd678226865a6d2494c8e1",
+  "publishedSha256": "bea625859d22f387b8277398f349aade540440ca2b5362a15d4637e0a36b7e88",
+  "redactedRectangles": [
+    [
+      32,
+      1088,
+      688,
+      1392
+    ]
+  ],
+  "visibleLabels": [
+    "Quay lại",
+    "Hồ sơ gia sư",
+    "Sinh viên Công nghệ thông tin, nhận hỗ trợ học sinh lớp 6–12 học Toán và Tin học. Hình thức dạy trực tiếp tại TP.HCM. Nội dung và lịch học được trao đổi trước khi bắt đầu.",
+    "Chuyên môn",
+    "Toán",
+    "Tin học",
+    "Lớp nhận dạy\n6, 7, 8, 9, 10, 11, 12",
+    "Lịch có thể dạy\nChưa cập nhật",
+    "Khu vực\nTP.HCM",
+    "Học phí tham khảo\n150.000đ/giờ",
+    "Xuất hồ sơ PDF",
+    "Firestore: reports/[UID omitted]/files/nHcQrurV50KPa1mggzzH",
+    "Gửi yêu cầu kết nối"
+  ],
+  "capture": "Actual ADB screenshot; only PII rectangles redacted",
+  "publishedAtUtc": "2026-11-03T09:27:45.280049+00:00"
+}

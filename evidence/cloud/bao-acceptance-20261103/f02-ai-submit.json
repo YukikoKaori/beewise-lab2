@@ -1,0 +1,30 @@
+{
+  "capturedAtUtc": "2026-11-03T09:37:19.797649+00:00",
+  "device": "emulator-5562",
+  "api": 35,
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "applicationSourceTree": "Same lib/android/firebase tree as b45bdce4d3a68006a28ca8e587fdece0187a8660 built APK; only documentation changed in main",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "originalPrivateSha256": "94053df5e7a411228e6b10c4a051b4d943e40fd2be51e9fbf12e029962b9ddb5",
+  "publishedSha256": "e9f11f77abf441c9cc90b2c2bd8694722fa05249241ed6c7774d7471a97088a1",
+  "redactedRectangles": [],
+  "visibleLabels": [
+    "Quay lại",
+    "Ghép gia sư bằng AI",
+    "Điều con đang cần",
+    "Chia sẻ môn học, lớp, mục tiêu, lịch học và hình thức mong muốn. Không nhập thông tin nhận diện cá nhân.",
+    "Math grade 7, in person in TP.HCM, budget 150000 VND per hour",
+    "439 characters remaining",
+    "Tìm gia sư phù hợp",
+    "Hoặc tự tìm theo bộ lọc",
+    "Dịch vụ đang gặp sự cố. Hãy thử lại sau ít phút.",
+    "Thử lại",
+    "Trang chủ\nTab 1 of 5",
+    "Tìm gia sư\nTab 2 of 5",
+    "Ghép AI\nTab 3 of 5",
+    "Tin nhắn\nTab 4 of 5",
+    "Tài khoản\nTab 5 of 5"
+  ],
+  "capture": "Actual ADB screenshot; only PII rectangles redacted",
+  "publishedAtUtc": "2026-11-03T09:37:19.797649+00:00"
+}

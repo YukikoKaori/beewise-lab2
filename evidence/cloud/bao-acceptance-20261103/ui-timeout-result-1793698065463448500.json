@@ -1,0 +1,120 @@
+{
+  "atUtc": "2026-11-03T09:27:12.248541+00:00",
+  "trigger": "actual UI Tải lại từ server tap; unchanged production ReportController; network impairment only app Linux UID TCP443",
+  "deadlineSeconds": 30,
+  "beforeStage": "downloaded",
+  "samples": [
+    {
+      "elapsedMs": 3515,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 4593,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 5671,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 6734,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 7812,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 8859,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 9921,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 10968,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 12015,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 13078,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 14125,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 15203,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 16265,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 17343,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 18421,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 19484,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 20546,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 21609,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 22703,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 23765,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 24859,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 25937,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 27031,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 28078,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 29140,
+      "stage": "downloading"
+    },
+    {
+      "elapsedMs": 30203,
+      "stage": "error"
+    }
+  ],
+  "originalSha256": "b95c76eeb1c3371ea77542b5c040a11f73d3e0d43d0c3db160f02f2fd853b23d",
+  "endStage": "error",
+  "error": "Chưa xác nhận được từ server. Hãy kiểm tra mạng và thử lại.",
+  "busy": "false",
+  "hasLocalPath": "false",
+  "droppedPacketCounters": "Chain OUTPUT (policy ACCEPT 37570 packets, 16398144 bytes)\n    pkts      bytes target     prot opt in     out     source               destination         \n      18     3901 DROP       6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443 owner UID match 10209 /* bao-ui-timeout-20261103 */\n   37570 16398144 oem_out    all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n   37570 16398144 fw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n   37570 16398144 st_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n   37570 16398144 bw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+  "restoreExitCode": 0,
+  "ownedRuleAbsentAfter": true
+}

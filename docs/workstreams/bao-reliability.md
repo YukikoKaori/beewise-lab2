@@ -1,3 +1,30 @@
+## Stable API35 default-app verification — 2026-11-03 (current)
+
+Fresh separate API35 Google APIs r9,2cores/2048MiB/software GPU/no snapshot,
+old API37 userdata untouched. New default lib/main.dart APK1ccb8ea3… has three
+controlled cold Home/no-ANR launches (new PIDs10296/10483/10686, am wall
+7469/7391/8266ms); sampled Android main thread sleeps in do_epoll_wait. Last ANR
+readback remains none since boot. Real360/412dp and native input/navigation PASS.
+Warm samePID10686 wall328ms; diagnostic ADB loss prevents that dump's UI result,
+with independent real Home/navigation follow-up. Do not call missing dumps PASS.
+
+Explicit first-frame VM markers were observed on the same application tree's
+earlier default APK: process→built9415.675ms/raster9862.530ms, under concurrent
+host quality work, not a final-APK settled performance baseline. Large subsequent
+trace transfers truncated/ADB went offline. Startup capture now makes tracing
+opt-in, distinguishes engine/process clocks and generic later frames, and handles
+truncation without aborting UI/ANR capture; four tests are in CI. No app bootstrap,
+role/identity/FCM change, delay, ANR suppression, dialog hiding or data clear.
+
+[Measurements, artifact hashes, actual widths and limits](../../evidence/cloud/bao-acceptance-20261103/README.md#android-startup-and-implementation).
+Prior matched API37 minimal Flutter control and main-thread/ANR evidence below
+remain relevant. Scoped conclusion: no reproducible BeeWise-only defect; controlled
+runtime is acceptable, system/host-sensitive immediate API37 boot is not a universal
+startup guarantee. Reopen with settled-device BeeWise-specific blocking/ANR trace;
+release/physical parity is NOT RUN, rather than an indefinite emulator-only block.
+App Check API DISABLED is separately verified and explains an AI prerequisite
+failure, not a startup main-thread root cause. No service configuration changed.
+
 # Bao reliability corrective pass
 
 ## Controlled startup comparison and PR assessment — 2026-11-01
