@@ -1,0 +1,20 @@
+{
+  "recordedAtUtc": "2026-11-03T06:58:40.286967+00:00",
+  "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "event": "export_report",
+  "nativeEventLocalTime": "2026-11-03 13:50:29.902 +07:00",
+  "nativeParameters": {
+    "subject_count": 2,
+    "file_size_kb": 18
+  },
+  "nativeStatus": "PASS FA-SVC Logging event, actual production generation path",
+  "debugMode": "Package enabled before process launch; debug properties restored with matching readback at cleanup",
+  "consoleStatus": "NOT VERIFIED",
+  "observation": "Initial Firebase DebugView loaded with 0 devices and stale timeline. After new event, refreshed embedded Analytics frame stayed blank; one direct navigation to its observed source URL also became blank. No permission-denied message observed. Neither permissions regression nor receipt/delivery is established.",
+  "privateActualBlankScreenshotSha256": "c3aca4d06d227d74ed5533ca40043a5fe9496c83fcb1cd1c74054d14c16c5b15",
+  "durableExportParameterScreenshot": false,
+  "historicalUploadScreenshot": "../live-20261103/debugview-upload-firestore.png",
+  "noSyntheticEventOrImage": true,
+  "noNewCloudReport": true,
+  "followUp": "Working Console + stable native UI: generate local PDF only, capture actual export_report parameter pane/time/project, redact identity, restore debug setting."
+}

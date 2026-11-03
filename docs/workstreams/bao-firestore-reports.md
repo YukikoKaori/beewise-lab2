@@ -1,5 +1,35 @@
 # Firestore Base64 PDF reports — 2026-11-02
 
+## Finalization — 2026-11-03 (latest evidence)
+
+**B-03.2 PARTIALLY VERIFIED.** PR #11 merge/current fetched main is
+`b45bdce4d3a68006a28ca8e587fdece0187a8660`. Historical native save/forced server
+read/download/hash/preview and tested Client SDK security remain valid. They
+were not repeated or relabeled as new runs. No report/cloud configuration write
+was needed for finalization; all existing records and prior failed controls stay.
+
+Fresh default APK SHA `9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3`
+built/installed `-r`, same signer. Its launch timed out with Pixel Launcher ANR;
+no repeatable clean-start claim or speculative app fix. Actual production
+controller/debugger generated a **new local-only** 19,315-byte PDF (new hash in
+receipt), native export_report `subject_count=2`, `file_size_kb=18` logged. No UI
+walkthrough or Console event delivery inferred from this instrumentation.
+
+Native distinct 30s timeout/retry remains **NOT VERIFIED**: unstable launcher and
+no existing-report history picker prevented a reliable baseline, so further
+network stress stopped. Historical SDK unavailable is not that branch. Export
+DebugView parameter capture remains **NOT VERIFIED**: current embedded/direct
+Analytics view became blank, without a visible permissions error. Missing-auth
+save UI and exhaustive late native callbacks retain prior limits. Implementation,
+rules, Auth/FCM/Analytics/Crashlytics/RC behavior are unchanged.
+
+Fresh pub/format/analyze/default APK, Flutter **95/95**, Emulator rules **58/58**,
+harness **27** structural checks PASS; ARTEMIS runtime NOT RUN. See
+[TC-PDF matrix and provenance](../../evidence/cloud/firestore-reports/finalization-20261103/README.md)
+and [Nguyen guide](bao-to-nguyen-final-handoff.md). Final PR has exact-HEAD CI;
+baseline CI is not substituted. Older sections below describe their original
+snapshots, including earlier unresolved prerequisites now resolved in PR #11.
+
 ## Live acceptance — 2026-11-03 (current)
 
 **B-03.2 PARTIALLY VERIFIED.** One create-only owner-consented demo tutor is live

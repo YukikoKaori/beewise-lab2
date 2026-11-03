@@ -1,0 +1,115 @@
+{
+  "recordedAtUtc": "2026-11-03T06:58:40.236625+00:00",
+  "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "scope": "Fresh local gates on current source; dirty worktree only contains new evidence/docs. Final exact-HEAD CI is recorded in delivery PR. No ARTEMIS runtime claim.",
+  "gates": {
+    "pub": {
+      "command": [
+        "flutter.bat",
+        "pub",
+        "get"
+      ],
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "worktreeDirty": false,
+      "startedUtc": "2026-11-03T06:28:14.916750+00:00",
+      "durationSeconds": 10.28,
+      "exitCode": 0,
+      "status": "PASS",
+      "summary": "Dependencies resolved",
+      "privateLogSha256": "d096889f4d57ad3b5331dbdd63dfecef3c61227c0d732c6d507ab68cff195ad5"
+    },
+    "format": {
+      "command": [
+        "dart.bat",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "."
+      ],
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T06:35:14.296614+00:00",
+      "durationSeconds": 3.17,
+      "exitCode": 0,
+      "status": "PASS",
+      "summary": "42 files; 0 changed",
+      "privateLogSha256": "45b25182c09018ba80387617237d41c1947cca18e74ca0e92a8803ab4f741cc6"
+    },
+    "analyze": {
+      "command": [
+        "flutter.bat",
+        "analyze"
+      ],
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T06:35:18.057340+00:00",
+      "durationSeconds": 212.46,
+      "exitCode": 0,
+      "status": "PASS",
+      "summary": "No issues found",
+      "privateLogSha256": "7049580716f1178b4257f410ca597baf515e92651bf2b6d8617db27195c45315"
+    },
+    "test": {
+      "command": [
+        "flutter.bat",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T06:35:56.707631+00:00",
+      "durationSeconds": 108.67,
+      "exitCode": 0,
+      "status": "PASS",
+      "summary": "95/95 Flutter tests passed",
+      "privateLogSha256": "78954cb1a06589ebbc6f8b1cda5a3139b7906cea16f5154412cb39a39bdaf532"
+    },
+    "rules": {
+      "command": [
+        "npm.cmd",
+        "--prefix",
+        "firebase",
+        "test"
+      ],
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T06:35:46.199291+00:00",
+      "durationSeconds": 107.26,
+      "exitCode": 0,
+      "status": "PASS",
+      "summary": "58/58 Firebase Emulator rules tests passed",
+      "privateLogSha256": "f204df1dd51fe8888f2148a79573feb51fcecc87f2a73b7af8053e2d292e6fba"
+    },
+    "build": {
+      "command": [
+        "flutter.bat",
+        "build",
+        "apk",
+        "--debug"
+      ],
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T06:29:55.449632+00:00",
+      "durationSeconds": 286.43,
+      "exitCode": 0,
+      "status": "PASS",
+      "summary": "Default lib/main.dart debug APK built",
+      "privateLogSha256": "c7374f29f5ed68b094504f8bd5a2a983a5eb13d24062bd7d22af82b59fb13a42"
+    }
+  },
+  "harness": {
+    "status": "PASS",
+    "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+    "command": "python scripts/check_e2e_harness.py",
+    "result": "27 unique scenario functions, Python syntax, scenario JSON and evidence status guards; Android scenarios NOT RUN",
+    "checkedAgainUtc": "2026-11-03T06:58:40.274519+00:00"
+  },
+  "versions": {
+    "flutter": "3.47.8",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "dart": "3.13.7",
+    "java": "21",
+    "localNpmNote": "npm ci --ignore-scripts passed; existing Node 25 engine warning and 13 moderate dependency advisories, no dependency changes"
+  }
+}
