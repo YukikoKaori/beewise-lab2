@@ -1,0 +1,94 @@
+{
+  "capturedAtUtc": "2026-11-02T17:47:26.777225+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "a5a8f1eda8b85945bca1f0874222ed4bfc4f8f7ae38c2007f206325fb0c64775",
+  "publishedSha256": "cc7d3d5f425150ff700d8768689074376cb0296c046fb1d8f2f0ab774ab9ee14",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "BeeWise",
+      "bounds": "[32,86][203,138]"
+    },
+    {
+      "text": "Thông báo",
+      "bounds": "[728,64][824,160]"
+    },
+    {
+      "text": "Tìm gia sư phù hợp với nhu cầu của con\nMô tả mục tiêu học tập để AI gợi ý từ hồ sơ gia sư thật.",
+      "bounds": "[32,286][792,696]"
+    },
+    {
+      "text": "Bắt đầu ghép AI",
+      "bounds": "[68,564][423,660]"
+    },
+    {
+      "text": "Khám phá theo môn học",
+      "bounds": "[32,736][792,788]"
+    },
+    {
+      "text": "Toán",
+      "bounds": "[32,804][170,900]"
+    },
+    {
+      "text": "Tiếng Anh",
+      "bounds": "[186,804][396,900]"
+    },
+    {
+      "text": "Ngữ văn",
+      "bounds": "[412,804][594,900]"
+    },
+    {
+      "text": "Vật lý",
+      "bounds": "[610,804][759,900]"
+    },
+    {
+      "text": "Gia sư đang hoạt động",
+      "bounds": "[32,940][792,1036]"
+    },
+    {
+      "text": "Xem tất cả",
+      "bounds": "[589,940][792,1036]"
+    },
+    {
+      "text": "HB\nHoàng Quốc Bảo\nHồ sơ demo — đã duyệt cho kiểm thử\nHọc phí\n150.000đ/giờ\nXem hồ sơ: Hoàng Quốc Bảo",
+      "bounds": "[32,1056][792,1584]"
+    },
+    {
+      "text": "Toán · Tin học",
+      "bounds": "[64,1248][363,1328]"
+    },
+    {
+      "text": "TP.HCM",
+      "bounds": "[379,1248][598,1328]"
+    },
+    {
+      "text": "in_person",
+      "bounds": "[64,1344][311,1424]"
+    },
+    {
+      "text": "Xem hồ sơ",
+      "bounds": "[537,1456][760,1552]"
+    },
+    {
+      "text": "Trang chủ\nTab 1 of 5",
+      "bounds": "[0,1640][165,1784]"
+    },
+    {
+      "text": "Tìm gia sư\nTab 2 of 5",
+      "bounds": "[165,1640][330,1784]"
+    },
+    {
+      "text": "Ghép AI\nTab 3 of 5",
+      "bounds": "[330,1640][494,1784]"
+    },
+    {
+      "text": "Tin nhắn\nTab 4 of 5",
+      "bounds": "[494,1640][659,1784]"
+    },
+    {
+      "text": "Tài khoản\nTab 5 of 5",
+      "bounds": "[659,1640][824,1784]"
+    }
+  ]
+}

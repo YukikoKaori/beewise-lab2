@@ -1,4 +1,35 @@
-## Firestore PDF approved deployment — 2026-11-02 (current)
+## Firestore PDF live acceptance — 2026-11-03 (current)
+
+**B-03.2 PARTIALLY VERIFIED.** The consented tutor is now created once in
+`beewise-lab-3`, with `verified=false`, exact-ID demo eligibility and visible
+“Hồ sơ demo — đã duyệt cho kiểm thử” disclosure. The original six synthetic
+tutors are unchanged. Separately approved exact rules diff was deployed, read
+back and verified; indexes/non-report rules are unchanged.
+
+Default production-entrypoint API37 APK: real PDF generation, native server save,
+forced download, identical original/download SHA256, Android share/preview PASS.
+Live authenticated Client SDK ownership/immutability/malformed-data denials PASS;
+final read-only inventory A=2/B=2 with four cross-owner denials. Native A logout/B
+login clears report UI; immediate pending-operation cancellation/reset is observed.
+Real DebugView shows `upload_report(storage_backend=firestore)` after server save.
+
+Limits: native application timeout/retry is NOT VERIFIED (SDK unavailable is a
+different error); separate durable export_report DebugView parameter screenshot
+is missing. Failed JS offline simulation and preliminary pre-input race sample
+are retained. Resumed AVD showed System UI ANR; no clean-start/physical claim.
+No Auth/FCM/Analytics identity/Crashlytics/RC/Storage/billing/App Check/backend
+behavior change. No auto merge.
+
+Main refreshed to `47fb375eceb6f741a3a4dba27242ad17c6aaee69`; merged without
+altering Nguyen's ARTEMIS work. Integration local gates: format/analyze/pub/debug
+APK PASS, Flutter **95/95**, rules **58/58**, structural harness **27** scenarios.
+Final exact-HEAD CI is recorded in the delivery PR.
+See [live evidence, failed controls and remaining actions](../../evidence/cloud/firestore-reports/live-20261103/README.md)
+and [manifest](../../evidence/cloud/firestore-reports/live-20261103/manifest.json).
+This entry supersedes the eligible-tutor blocker below; older receipts remain
+historical and do not describe the current live catalog.
+
+## Firestore PDF approved deployment — 2026-11-02 (historical)
 
 **B-03.2 PARTIALLY VERIFIED; live PDF acceptance BLOCKED by eligible tutor data.**
 Owner “qb duyệt” resolved the exact-bundle deployment gate. Scoped rules/index
