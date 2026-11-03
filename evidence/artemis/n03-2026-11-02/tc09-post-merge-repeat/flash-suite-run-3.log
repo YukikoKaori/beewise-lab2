@@ -1,0 +1,46 @@
+ARTEMIS_HOST_HEALTH={"status": "idle", "session_id": "9fd7d73a-00de-47c1-bbcf-b2e7d3166ee3", "background_tasks": [], "queue": [], "active_tasks": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "ipc_port": 55620}
+ARTEMIS_RESULT case=TC-09 trace_id=5469bafa-0eb2-482f-a325-fd60544770fd status=completed device=emulator-5554
+F
+================================== FAILURES ===================================
+_____________ test_tc09_all_top_level_destinations_are_reachable ______________
+
+run_flow = <function run_flow.<locals>.run at 0x0000024FC2383D80>
+
+    async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
+        """TC-09; primary navigation; signed-out app on Home."""
+        observed = await run_flow(
+            case_id="TC-09",
+            start="BeeWise is signed out on Home with the bottom navigation visible.",
+            steps=(
+                "Open each bottom destination in order: Trang ch\u1ee7, T\xecm gia s\u01b0, Gh\xe9p "
+                "AI, Tin nh\u1eafn, T\xe0i kho\u1ea3n. Report each destination only after its "
+                "screen title is visible; also report whether any overflow or crash appeared."
+            ),
+            expected=(
+                '{"visible_destinations":[string],"overflow_seen":false,'
+                '"crash_dialog_seen":false}'
+            ),
+        )
+>       destinations = require(observed, "visible_destinations", list)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\test_account_and_firebase.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+observed = {'test_case': 'TC-09', 'destinations': [{'name': 'Trang ch\u1ee7', 'title_visible': True, 'overflow_or_crash': False}, {'na...ible': True, 'overflow_or_crash': False}], '_trace_id': '5469bafa-0eb2-482f-a325-fd60544770fd', '_status': 'completed'}
+key = 'visible_destinations', expected_type = <class 'list'>
+
+    def require(observed: dict[str, Any], key: str, expected_type: type) -> Any:
+        value = observed.get(key)
+>       assert isinstance(value, expected_type), (
+            f"Expected {key!r} to be {expected_type.__name__}; got {value!r}. "
+            f"Trace: {observed.get('_trace_id')}"
+        )
+E       AssertionError: Expected 'visible_destinations' to be list; got None. Trace: 5469bafa-0eb2-482f-a325-fd60544770fd
+E       assert False
+E        +  where False = isinstance(None, <class 'list'>)
+
+e2e_test\conftest.py:314: AssertionError
+=========================== short test summary info ===========================
+FAILED e2e_test\test_account_and_firebase.py::test_tc09_all_top_level_destinations_are_reachable
+1 failed, 25 deselected in 51.34s

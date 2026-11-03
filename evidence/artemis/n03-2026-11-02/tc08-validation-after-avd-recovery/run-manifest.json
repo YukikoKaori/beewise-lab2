@@ -1,0 +1,47 @@
+[
+  {
+    "suiteRun": 1,
+    "profile": "flash",
+    "selectedCases": [
+      "TC-08"
+    ],
+    "deviceSerial": "emulator-5554",
+    "exitCode": 1,
+    "status": "FAIL",
+    "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+    "logSha256": "9235C766118DF7179F561B5A154BA4A17339202F1FF5750333305FFE6CEDD10E",
+    "log": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc08-validation-after-avd-recovery\\flash-suite-run-1.log",
+    "junit": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc08-validation-after-avd-recovery\\flash-suite-run-1.junit.xml",
+    "recordedAtUtc": "2026-11-02T15:22:37.9327116Z"
+  },
+  {
+    "suiteRun": 2,
+    "profile": "flash",
+    "selectedCases": [
+      "TC-08"
+    ],
+    "deviceSerial": "emulator-5554",
+    "exitCode": 1,
+    "status": "FAIL",
+    "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+    "logSha256": "FEB8C655B68401BA693372E9F0BC616340975D651D60E3099E714546E05E230E",
+    "log": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc08-validation-after-avd-recovery\\flash-suite-run-2.log",
+    "junit": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc08-validation-after-avd-recovery\\flash-suite-run-2.junit.xml",
+    "recordedAtUtc": "2026-11-02T15:22:58.2870403Z"
+  },
+  {
+    "suiteRun": 3,
+    "profile": "flash",
+    "selectedCases": [
+      "TC-08"
+    ],
+    "deviceSerial": "emulator-5554",
+    "exitCode": 1,
+    "status": "FAIL",
+    "sourceSha": "5df96fd3df995ea12747dcd218c418327d05db4c",
+    "logSha256": "69DCC555B0D342E0BC01E57A0734155DA3C9CA37B6969794279F229AD7D1D4D6",
+    "log": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc08-validation-after-avd-recovery\\flash-suite-run-3.log",
+    "junit": "D:\\semester 8\\PRM\\beewise-lab2\\evidence\\artemis\\n03-2026-11-02\\tc08-validation-after-avd-recovery\\flash-suite-run-3.junit.xml",
+    "recordedAtUtc": "2026-11-02T15:24:55.2888855Z"
+  }
+]

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="92.184" timestamp="2026-11-02T20:41:40.185975+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_account_and_firebase" name="test_tc09_all_top_level_destinations_are_reachable" time="91.961"><failure message="AssertionError: Expected 'visible_destinations' to be list; got None. Trace: 65af71bf-dcc1-4252-90bb-2edbebfe6edc&#10;assert False&#10; +  where False = isinstance(None, &lt;class 'list'&gt;)">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x000001B840446660&gt;
+
+    async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
+        """TC-09; primary navigation; signed-out app on Home."""
+        observed = await run_flow(
+            case_id="TC-09",
+            start="BeeWise is signed out on Home with the bottom navigation visible.",
+            steps=(
+                "Open each bottom destination in order: Trang chủ, Tìm gia sư, Ghép "
+                "AI, Tin nhắn, Tài khoản. Report each destination only after its "
+                "screen title is visible; also report whether any overflow or crash appeared."
+            ),
+            expected=(
+                '{"visible_destinations":[string],"overflow_seen":false,'
+                '"crash_dialog_seen":false}'
+            ),
+        )
+&gt;       destinations = require(observed, "visible_destinations", list)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\test_account_and_firebase.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+observed = {'destinations': ['Trang chủ', 'Tìm gia sư', 'Ghép AI', 'Tin nhắn', 'Tài khoản'], 'overflow': False, 'crash': False, '_trace_id': '65af71bf-dcc1-4252-90bb-2edbebfe6edc', ...}
+key = 'visible_destinations', expected_type = &lt;class 'list'&gt;
+
+    def require(observed: dict[str, Any], key: str, expected_type: type) -&gt; Any:
+        value = observed.get(key)
+&gt;       assert isinstance(value, expected_type), (
+            f"Expected {key!r} to be {expected_type.__name__}; got {value!r}. "
+            f"Trace: {observed.get('_trace_id')}"
+        )
+E       AssertionError: Expected 'visible_destinations' to be list; got None. Trace: 65af71bf-dcc1-4252-90bb-2edbebfe6edc
+E       assert False
+E        +  where False = isinstance(None, &lt;class 'list'&gt;)
+
+e2e_test\conftest.py:356: AssertionError</failure></testcase></testsuite></testsuites>
