@@ -1,0 +1,65 @@
+{
+  "archiveSha256": "08f5d2c499a9547adde9751ee02d418821ab295f323b2d2ace6b940bd72d1080",
+  "files": [
+    {
+      "path": ".github/workflows/validate.yml",
+      "sha256": "d139e743c29d56215bfaec4008461e789da7886f91f5aafcd08c6fa72b0a8b5c",
+      "unchanged": true
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "ae25e8a2ba7b1f0b29deecd4ac1e1cc9f61c40a3340946a2e29691bf2da96004",
+      "unchanged": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "sha256": "765415649ef342d4883bea56040d5cd7980422aee23d656fe958fc82451bd988",
+      "unchanged": true
+    },
+    {
+      "path": "backend/README.md",
+      "sha256": "8bd1351d4befc860657cedf7c86a8554670a5e913c9dba27f7e3f663b841dc2a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/operator.cjs",
+      "sha256": "3d7f66a22737f6b02be22e1795ae2c177694ee3dca359ff375a59f71496d93c6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/package-lock.json",
+      "sha256": "699b611362913ce33299990b557059e100d42b0d4a5065dafd927e9a17ac9d34",
+      "unchanged": true
+    },
+    {
+      "path": "backend/package.json",
+      "sha256": "8ac0f1e3edf7b39b5d31db559f5375f4b5fb1a17779924cda564271d5c37e4f8",
+      "unchanged": true
+    },
+    {
+      "path": "backend/test/payment-fixture.cjs",
+      "sha256": "32d8b477a8466512fdbd84b19249045756e8e651c8314a6398dd5c3fc9150202",
+      "unchanged": true
+    },
+    {
+      "path": "backend/test/security.test.cjs",
+      "sha256": "c231afe7a981118a8ddcfba7a9f7c5a348517c34fd2991969942e05c54e59be4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/test/workflow.test.cjs",
+      "sha256": "51d86a0c1ce910e5fec7cbf8fc72ef881e1254247040b8e16222367b0572931d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/workflow.cjs",
+      "sha256": "f312dd323e401d6b6c67e39d62566dd6f8db21e29c43ccd4637496726138b0e7",
+      "unchanged": true
+    },
+    {
+      "path": "firebase.backend-test.json",
+      "sha256": "c9f94a22a564aa7a22ffd7b580a146862ceb72fb0f46f92a47dd6450af0086ce",
+      "unchanged": true
+    }
+  ]
+}
