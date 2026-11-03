@@ -1,3 +1,30 @@
+## Bao acceptance closeout — 2026-11-03 (current)
+
+**B-03.2 COMPLETE — FIRESTORE ALTERNATIVE VERIFIED.** B-01 controlled Android,
+B-02 approved Auth/Firestore scope, B-03.1/3/4/5/6 tested scope and B-05 evidence
+package are COMPLETE. **B-04 PARTIALLY VERIFIED**: successful AI provider response
+and trusted onboarding remain blocked by concrete dependencies, not PDF/runtime.
+
+Base/main/merged PR #12: `8c494f0780aab7c41796244ab78b5c4ffb1daff4`, refetched.
+Fresh isolated API35 default APK passes three cold Home/no-ANR attempts; real
+360/412dp and responsive navigation captured. Actual 30s application/UI timeout,
+retry same hash/no extra report, missing-auth save error, late callback after B,
+and fresh DebugView export_report(subject_count=2,file_size_kb=18) now PASS.
+Auth Users, FCM Console background-send/denied permission and RC Console
+before/applied/restored receipts are accessible. RC empty baseline restored v4;
+debug properties/network rules/display/adbd root restored; existing reports kept.
+
+Only startup measurement tooling/tests/CI change; no speculative app fix or
+Firebase security change. Full local gates PASS: Flutter95/95, rules58/58,
+format/analyze/pub/default APK, harness27 structure, timing tests4/4.
+[All-B matrix, actual captures, hashes and exact limits](../../evidence/cloud/bao-acceptance-20261103/README.md) are the current
+authority. Exact final HEAD CI is recorded in the single delivery PR. Historical
+entries below remain dated snapshots and do not reopen verified behavior.
+
+Owner confirms no trusted staging/backend. Read-only App Check API state is
+DISABLED; native AI error is Too many attempts. No backend, App Check, billing,
+Storage, Nguyen UI/ARTEMIS/report/slides change or automatic merge.
+
 ## Final Bao handoff — 2026-11-03 (latest)
 
 **Bao scope: PARTIALLY VERIFIED. B-03.2: PARTIALLY VERIFIED.** PR #11 is MERGED

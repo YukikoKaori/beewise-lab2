@@ -1,3 +1,42 @@
+## Current Bao handoff — 2026-11-03 acceptance closeout
+
+**PDF B-03.2 COMPLETE; full Bao mission not complete because B-04 has exact
+external dependencies.** Use [one consolidated evidence index](../../evidence/cloud/bao-acceptance-20261103/README.md),
+[all-B audit matrix](../../evidence/cloud/bao-acceptance-20261103/audit-matrix.md)
+and its hash manifest before older snapshots below. Actual sanitized artifacts
+are in Git; Nguyen does not need private D: originals to review them.
+
+Demo environment: API35 isolated AVD BeeWise_Bao_Acceptance_API35 / emulator-5562,
+default lib/main.dart debug APK SHA256
+`1ccb8ea3fbc1bc916c00dbf8e6ace783a9ff049e00e85a01acf96dd9dddc414c`.
+Keep existing userdata/Firebase files. Boot fully and wait for settled CPU/RAM,
+then Home → Search → disclosed demo → tutor detail → local PDF. Authenticate
+only the consented accounts privately; use the existing A report for server
+download/retry. Do not create another cloud report or impair shared networking
+without scoped authorization. Real 360/412dp, three final cold PIDs/Home/no ANR,
+30s UI error/recovery/hash equality, guest error and A→B late settlement are in
+the packet. Release/physical/immediate API37 parity is not claimed.
+
+Console packet: Auth Users masked; denied notification UI + actual Console test
+background delivery; fresh export_report subject2/size18 parameter panes; prior
+upload_report and seven-event identity evidence; actual historical Crashlytics
+stacks/keys; RC before/v3/empty-v4 and same-APK app restore. RC baseline and all
+temporary debug/network/display/root settings restored. Five private reports
+remain; no raw UID/email/token/PDF/Base64/credentials in new evidence.
+
+Business flow: one real parent request/chat/text has forced server readback.
+AI actual error/manual recovery is verified; provider success needs owner-approved
+App Check/provider setup (API read-only state DISABLED). Owner confirms no trusted
+staging/backend: consultant proposals/revisions, immutable parent responses,
+trusted invoice/payment verification and official schedule still need an authorized
+producer/legitimate fixture per backend-contract.md. Do not fabricate paid data
+or claim rules/unit tests as that live E2E.
+
+Local full suite PASS: Flutter95/95, rules58/58, format/analyze/pub/default APK,
+harness27 structure and timing tests4/4. Exact final source SHA/Actions are in
+the delivery PR. No automatic merge; Nguyen ARTEMIS/review/report/slides remain
+under their existing owners/statuses. Earlier sections are historical guides.
+
 # Bao → Nguyen final handoff — 2026-11-03
 
 Bao scope and B-03.2 remain **PARTIALLY VERIFIED**. Implementation, approved
