@@ -1,4 +1,25 @@
-## Current Bao handoff — 2026-11-03 acceptance closeout
+## Final ownership correction — 2026-11-04 (effective)
+
+**B-04 is shared: F-01 existing verified cloud integration; F-02 owned by Bao;
+F-03 owned by Nguyen.** Bao retains AI Matching/Firebase AI Logic/App Check,
+genuine provider/native validation and acceptance evidence. F-02 remains IN
+PROGRESS until verified. Nguyen owns consultant/trial/revision/invoice/payOS/
+webhook/payment/schedule implementation and tests, status HANDOFF / PENDING
+IMPLEMENTATION. Bao provides approved Firebase/security support for F-03.
+
+[Precise F-03 handoff and preserved WIP](bao-to-nguyen-b04-handoff.md) supersede
+the earlier broad transfer. B-01/B-02/B-03.1–6/B-05 remain COMPLETE scoped;
+expanded Bao scope includes F-02. No entire B-04 or Lab 3 completion is claimed.
+Earlier dated configuration/blocker statements below are historical, not current
+AI state. No F-03 code or cloud deployment is part of Bao's F-02 delivery.
+
+[Current F-02 native evidence](../../evidence/cloud/f02-native-20261104/README.md):
+App Check acquisition/config verified in debug scope; actual3.8 HTTP500/high-demand
+then three30s provider-await timeouts, no usable JSON/result/success Analytics.
+F-02 remains Bao's IN PROGRESS acceptance blocker; local105 Flutter/58 Rules
+tests and native manual fallback/detail do not substitute for provider success.
+
+## Historical Bao handoff — 2026-11-03 acceptance closeout
 
 **PDF B-03.2 COMPLETE; full Bao mission not complete because B-04 has exact
 external dependencies.** Use [one consolidated evidence index](../../evidence/cloud/bao-acceptance-20261103/README.md),

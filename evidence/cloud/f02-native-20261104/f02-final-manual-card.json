@@ -1,0 +1,10 @@
+{
+  "capturedAtUtc": "2026-11-03T20:00:20.395917+00:00",
+  "device": "emulator-5562",
+  "api": "35",
+  "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+  "screenshotSha256": "b7300715e2148c18e95b49047a0d6c105090a3722bc0562e066dc370d23abdb0",
+  "xmlSha256": "40246b160b056dc2df07f29fca653737ade714b5fb0db945ac4e84df7aa3baf8",
+  "package": "com.beewise.beewise",
+  "project": "beewise-lab-3"
+}
