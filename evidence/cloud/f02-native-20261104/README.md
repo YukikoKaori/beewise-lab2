@@ -14,6 +14,9 @@ BAO RETAINS F-02 AI MATCHING / APP CHECK.** B-04 and Lab 3 are not complete.
 - Firebase `beewise-lab-3`, Android package `com.beewise.beewise`.
 - Real `FirebaseAI.googleAI()` / Gemini Developer API / `gemini-3.8-flash`.
   No diagnostic entrypoint, injected recommendation or mock provider on device.
+- [Read-only running-service configuration](runtime-config.json) confirms
+  model3.8, matching enabled, result limit3 and timeout30s in the actual process,
+  rather than inferring those values only from source defaults.
 - Exact timestamps/build metadata: [session receipt](native-session.json).
   Later documentation commits do not change the tested application source.
 
