@@ -1,8 +1,22 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
+> **B-03.2 live acceptance — 03/11/2026: PARTIALLY VERIFIED.** Current evidence
+> supersedes the historical eligible-tutor blocker below. One consented demo
+> tutor is live, professionally `verified=false`, with exact-ID eligibility and
+> explicit demo disclosure. Real default-APK generation → Firestore server save
+> → native download → matching SHA256 → Android preview PASS; live A/B ownership
+> denials and DebugView `upload_report(storage_backend=firestore)` PASS.
+> Native distinct timeout/retry and a durable export_report DebugView parameter
+> screenshot remain incomplete. Invalid JS offline control and System UI ANR on
+> resumed emulator are preserved, not relabeled PASS. Local Flutter 95/95, rules
+> 58/58, format/analyze/pub/APK and 27-scenario structural harness PASS after
+> merging main `47fb375eceb6f741a3a4dba27242ad17c6aaee69`.
+> [Individual results and evidence](../evidence/cloud/firestore-reports/live-20261103/README.md).
+> No Storage, billing, App Check or backend change; no automatic merge.
+
 > Cập nhật **02/11/2026**. Mentor nhắc: **“Lab3 tập trung vào công nghệ các bạn nhé.”**
 > PR #2 và #3 **đã MERGED**. Phần Bảo đã tích hợp không đồng nghĩa toàn bộ Lab 3 hoàn thành.
-> **Owner-reported mentor approval (02/11/2026): Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval. B-03.2: IMPLEMENTED — LIVE VERIFICATION PENDING. Không có written approval artifact; Storage không còn là dependency/yêu cầu triển khai hiện hành của BeeWise.**
+> **Owner-reported mentor approval (02/11/2026): Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval. B-03.2: PARTIALLY VERIFIED (live results above). Không có written approval artifact; Storage không còn là dependency/yêu cầu triển khai hiện hành của BeeWise.**
 
 ## 1. Tổng quan và nguồn chuẩn
 
@@ -48,7 +62,7 @@ Baseline migration đã fetch ngày 02/11/2026: `origin/main` **`5df96fd3df995ea
 | [Actions final PR #3 HEAD](https://github.com/YukikoKaori/beewise-lab2/actions/runs/41321277718) | **3/3 SUCCESS**, API xác nhận `headSha=b338346...`; `e2e-harness` collect/check cấu trúc, không phải ARTEMIS runtime. CI docs PR là lần kiểm tra riêng. |
 | [Actions main sau merge](https://github.com/YukikoKaori/beewise-lab2/actions/runs/41384595579) | **3/3 SUCCESS** tại đúng `55b11165...`: flutter-android, firebase-rules, e2e-harness. |
 | Default APK | App source `be2b44515af637db1c7ded6b94797d1cf4adc746`; default `lib/main.dart`, SHA-256 `2d3ed39e8eb5a5604571e15ef20322a00058853f9f773dd92d6397af814edd65`; build/install hash khớp, không dùng probe kết luận startup [E2]. |
-| Submission | **PARTIALLY COMPLETE**: Firestore PDF alternative chưa live verified; ba flow, QA và bộ nộp chưa đủ bằng chứng. Không giữ merge blocker cũ của PR #3 đã giải quyết. |
+| Submission | **PARTIALLY COMPLETE**: Firestore PDF core roundtrip đã live verified, còn native deadline/Console receipt nêu ở đầu tài liệu; ba flow, QA và bộ nộp chưa đủ bằng chứng. Không giữ merge blocker cũ của PR #3 đã giải quyết. |
 
 Ba cold **process** start API37 đã settle lên Home, process-to-draw **7,070 / 5,127 / 4,563 ms**, không BeeWise ANR, native Flutter first frame được xác nhận. Lần 3 Android báo `WARM` do giữ task nhưng PID mới. Có ảnh thật 360dp/412dp và navigation; warm 412dp 235 ms host wall [E2].
 
@@ -124,7 +138,7 @@ Mỗi hàng là subtask B-03 riêng. Status xét **đủ receipt v5**, không ph
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
 | B-03.1 Auth | Bảo | Google/Email, restore/cancel/logout, protected/error states, Users Console | PARTIALLY COMPLETE (runtime COMPLETE trong scope) | Native A/B/Google + role/account-check recovery [E3] | Đính kèm/kiểm tra Users Console đã che PII cho gói nộp; không ghi thiếu Google Sign-In | Console access, private handoff |
-| B-03.2 Firestore PDF alternative | Bảo | Một PDF/document `reports/{uid}/files/{reportId}`, Base64 ≤500 KiB, owner-only parent rules, server ack/read, authenticated download; không public URL | **IMPLEMENTED — LIVE VERIFICATION PENDING** | [Migration / local test manifest](workstreams/bao-firestore-reports.md); giữ PDF/Storage evidence cũ [E1] [E5] như history | Owner duyệt rules/index release đã review; live A/B server upload/download/hash, denied writes/offline, app + Console evidence | Owner-reported mentor approval; chưa có written artifact. Không Blaze/bucket. Emulator/mock không thay live proof |
+| B-03.2 Firestore PDF alternative | Bảo | Một PDF/document `reports/{uid}/files/{reportId}`, Base64 ≤500 KiB, owner-only parent rules, server ack/read, authenticated download; không public URL | **PARTIALLY VERIFIED** | [Native/live evidence, hashes, Console and failed controls](../evidence/cloud/firestore-reports/live-20261103/README.md); giữ [E1] [E5] như history | Chốt native application timeout/retry, durable export_report DebugView parameter screenshot và giới hạn pending-callback/missing-auth UI đã ghi rõ; core roundtrip/A-B isolation đã PASS | Đã duyệt đúng rules diff, tạo một consented demo professionally unverified; không Blaze/bucket. Emulator/mock không thay live proof |
 | B-03.3 FCM | Bảo | Android 13+ permission/inbox, foreground/background/terminated, tap/ownership | PARTIALLY COMPLETE (delivery/lifecycle scoped COMPLETE) | First-login race fixed; native A/B/Google ownership, 3 states và terminated tap Search [E3] [E4] | Chốt riêng Console-send và permission-denied receipts theo tr.13; giữ generation/journal/quarantine | Account/device, phối hợp sender/Console |
 | B-03.4 Analytics | Bảo | ≥7 business events, DebugView, typed non-PII params/identity | COMPLETE cho minimum bảy loại đã test | Bảy events mục 3; Google method; A→logout→guest→B→logout→guest, guest không `_id`, Console correlation [E5] | Handoff per-event receipts; đối chiếu plan/flow, không gọi mọi planned event verified | Nguyên ghép demo; events PDF/workflow theo task tương ứng |
 | B-03.5 Crashlytics | Bảo | Real non-fatal, deliberate fatal, identity/keys, app recovery | COMPLETE cho scoped Console checks | Matching failure, fatal/custom keys, Google fatal User ID match [E6] | Bản che UID; ghi persisted keys không xác định fatal trigger; không suy rộng non-fatal identity/logout clear | Private originals + handoff |
@@ -132,7 +146,7 @@ Mỗi hàng là subtask B-03 riêng. Status xét **đủ receipt v5**, không ph
 
 Analytics null clearing đã đủ native FA-SVC removal + complete guest bundles không `_id`, hai guest search tới DebugView. Console có thể giữ property lịch sử; **không tái mở blocker thiếu quyền/UID clearing cũ**, không đổi identity theo stale display. Không có event-level backend export; không suy rộng ngoài scope [E5].
 
-**Firestore riêng:** các collection trước migration có strict rules/index deployed/verified [E11], native read negatives 9/9 [E3], unit/rules write negatives PASS; live malicious writes chưa chạy. Rules `reports/.../files/...` và index exemption mới chưa deploy; xem B-03.2. Client không tự tạo verified tutor, paid invoice hay official schedule. Catalog thật và trusted workflow data còn mở ở B-02/B-04.
+**Firestore riêng:** các collection trước migration giữ strict rules/index [E11]. Report rules và Base64 index exemption đã live; exact-ID demo amendment được duyệt riêng và deploy, không sửa index/non-report rules. Report live Client SDK ownership/immutable/malformed denials PASS; không suy rộng sang mọi collection. Client không tự tạo verified tutor, paid invoice hay official schedule. Catalog/trusted workflow rộng hơn vẫn mở ở B-02/B-04.
 
 ## 8. Ba flow và evidence công nghệ
 
@@ -148,7 +162,7 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 
 ## 9. Blockers và quyết định còn mở
 
-1. **Firestore PDF alternative:** owner báo mentor duyệt thay Cloud Storage; implementation/local gates có, live upload/download/A/B/Console chưa chạy. Cần owner duyệt rules deployment và tutor active/verified/non-synthetic được phép. Không yêu cầu Blaze/bucket hay deploy Storage.
+1. **Firestore PDF alternative:** core native roundtrip/live A-B/Console/upload DebugView đã có bằng chứng; còn deadline/retry native và durable export DebugView receipt. Owner đã duyệt exact rules diff và một demo tutor, không còn blocker thiếu tutor/approval. Không yêu cầu Blaze/bucket hay deploy Storage.
 2. **Catalog/ba flow:** chưa có catalog thật được phép; synthetic records không đủ. Chốt scope Lab 2/trusted staging khi cần; không nới rules demo payment/schedule.
 3. **QA:** ARTEMIS host, Gemini credential and Android 36 emulator đã hoạt động cho smoke runs; xem kết quả và giới hạn mới nhất ở N-03/test plan. Ma trận ≥10 ca ×3 và exploration 15-30 phút vẫn chưa đủ evidence. Các ca cần catalog/staging phải có fixtures riêng được duyệt. N-04 đã được owner xác nhận reviewer duyệt và remediation đã merge qua PR #9; không suy diễn trạng thái N-03 từ kết quả review.
 4. **Gói nộp:** Users Console, FCM Console-send/denied permission, RC parameter before/after; chuyển private receipts thành bản chia sẻ đã che PII. DRAFT/PPTX không thay final PDFs/video.
@@ -158,7 +172,7 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
-| P0-1 | Chủ project + Bảo | Firestore PDF live verification | IMPLEMENTED — LIVE VERIFICATION PENDING | B-03.2, [migration](workstreams/bao-firestore-reports.md) | Duyệt frozen rules/index diff, cho phép tutor test phù hợp và live A/B test; không cần Blaze | Owner rules-release authorization; catalog, device |
+| P0-1 | Bảo | Firestore PDF live verification | PARTIALLY VERIFIED | B-03.2, [live package](../evidence/cloud/firestore-reports/live-20261103/README.md) | Settled device: distinct native timeout/retry + durable export_report DebugView receipt; core roundtrip/A-B/server proof done | Device/Console evidence; approval/catalog resolved |
 | P0-2 | Bảo + Nguyên | Catalog/ba flow và evidence handoff | PARTIALLY COMPLETE | B-02/B-04/B-05, [E3] [E12] | Chốt data thật, ba flow và ma trận receipts còn thiếu; bàn giao kết quả đã chốt | Chủ dữ liệu, mentor nếu đổi scope |
 | P0-3 | Nguyên | ARTEMIS/Pro execution | BLOCKED / PARTIALLY COMPLETE | N-03, [E8] | Xác nhận host/key/device; chạy ≥10 ca ×3 và exploration 15-30 phút, lưu receipts và phân loại kết quả trung thực | Host/credential quota, device, catalog/staging fixtures được duyệt |
 | P1-1 | Bảo | Firestore PDF live và Console packet | PARTIALLY COMPLETE | B-03.1-6 | Sau authorization: server save/download/hash/ownership/offline; chốt Auth/FCM/RC receipts | P0-1/P0-2, cửa sổ Console |

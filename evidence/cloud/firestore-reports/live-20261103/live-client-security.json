@@ -1,0 +1,122 @@
+{
+  "timestampUtc": "2026-11-02T17:49:59.027Z",
+  "projectId": "beewise-lab-3",
+  "client": "Authenticated Firebase JS Client SDK, in-memory Auth, live endpoints; no Admin SDK",
+  "accounts": {
+    "A": "4a7de057a03aa476",
+    "B": "564b131109a53e16"
+  },
+  "records": [
+    {
+      "test": "B server-reads its separately owned report created in first run",
+      "expected": "allowed",
+      "actual": "allowed",
+      "status": "PASS"
+    },
+    {
+      "test": "A forced server read of its native report",
+      "expected": "allowed",
+      "actual": "allowed",
+      "status": "PASS"
+    },
+    {
+      "test": "B forced server read of its own report",
+      "expected": "allowed",
+      "actual": "allowed",
+      "status": "PASS"
+    },
+    {
+      "test": "B cannot server-read A report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "A cannot server-read B report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "B cannot update A report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "B cannot delete A report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "A cannot update own immutable report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "A cannot delete own immutable report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "Unauthenticated report read denied",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "Oversized report rejected live",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "Corrupt Base64/header rejected live",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "Network recovery forced server read succeeds",
+      "expected": "allowed",
+      "actual": "allowed",
+      "status": "PASS"
+    }
+  ],
+  "reportCountChanges": {
+    "A": 2,
+    "B": 1
+  },
+  "jsOfflineControl": {
+    "status": "FAIL - invalid offline simulation",
+    "expected": "unavailable",
+    "actual": "allowed: transaction direct RPC committed despite JS disableNetwork()",
+    "extraAReportPreserved": true,
+    "nativePhysicalOfflineTestIsSeparate": true
+  },
+  "AReport": {
+    "reportIdSha256": "089a293b3658d671f7aab50bf97cd62e907c44fdfcbc8bed5fe32d2d5dddb6e5",
+    "ownerUidMatches": true,
+    "fileName": "beewise-tutor-tutor_acd3824aa8734c63ac8827df.pdf",
+    "contentType": "application/pdf",
+    "encoding": "base64",
+    "sizeBytes": 19315,
+    "createdAt": "2026-11-02T17:48:50.322Z",
+    "serverRead": true,
+    "fromCache": false,
+    "pendingWrites": false,
+    "originalSha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+    "downloadSha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+    "hashesMatch": true
+  },
+  "BReport": {
+    "reportIdSha256": "24b40f87fa8eda944c38ee5362a9d4bdeee902d2fececc58c8221b2fe46e8af2",
+    "ownerUidMatches": true,
+    "serverRead": true,
+    "fromCache": false
+  },
+  "rawUidOrBase64Exported": false
+}

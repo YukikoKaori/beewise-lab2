@@ -1,0 +1,86 @@
+{
+  "timestampUtc": "2026-11-03T05:37:12.667Z",
+  "projectId": "beewise-lab-3",
+  "mode": "Read-only live authenticated Client SDK; no writes",
+  "accounts": {
+    "A": {
+      "uidSha256": "4a7de057a03aa476",
+      "count": 2,
+      "reports": [
+        {
+          "reportIdSha256": "089a293b3658d671f7aab50bf97cd62e907c44fdfcbc8bed5fe32d2d5dddb6e5",
+          "ownerMatches": true,
+          "fromCache": false,
+          "pendingWrites": false,
+          "sizeBytes": 19315,
+          "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+          "createdAt": "2026-11-02T17:48:50.322Z",
+          "tutorId": "tutor_acd3824aa8734c63ac8827df"
+        },
+        {
+          "reportIdSha256": "6a13379f1cfd2c96c69e56dda537d8a644fb6ff3f537bb224c8e560a41ac4757",
+          "ownerMatches": true,
+          "fromCache": false,
+          "pendingWrites": false,
+          "sizeBytes": 19315,
+          "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+          "createdAt": "2026-11-02T17:49:09.625Z",
+          "tutorId": "tutor_acd3824aa8734c63ac8827df"
+        }
+      ]
+    },
+    "B": {
+      "uidSha256": "564b131109a53e16",
+      "count": 2,
+      "reports": [
+        {
+          "reportIdSha256": "b388697a85a35893f097a17787dec478d4a2e9b0d794884ed7e4d396f9f98718",
+          "ownerMatches": true,
+          "fromCache": false,
+          "pendingWrites": false,
+          "sizeBytes": 19315,
+          "sha256": "b1cf5359931b1ad640d91b65ccdf58cea9a67cea4ab785c47e9c1c5b62f92085",
+          "createdAt": "2026-11-02T17:59:43.911Z",
+          "tutorId": "tutor_acd3824aa8734c63ac8827df"
+        },
+        {
+          "reportIdSha256": "24b40f87fa8eda944c38ee5362a9d4bdeee902d2fececc58c8221b2fe46e8af2",
+          "ownerMatches": true,
+          "fromCache": false,
+          "pendingWrites": false,
+          "sizeBytes": 19315,
+          "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+          "createdAt": "2026-11-02T17:49:08.093Z",
+          "tutorId": "tutor_acd3824aa8734c63ac8827df"
+        }
+      ]
+    }
+  },
+  "records": [
+    {
+      "test": "B cannot read A persisted report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "B cannot read A persisted report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "A cannot read B persisted report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    },
+    {
+      "test": "A cannot read B persisted report",
+      "expected": "permission-denied",
+      "actual": "permission-denied",
+      "status": "PASS"
+    }
+  ],
+  "allChecksPassed": true
+}

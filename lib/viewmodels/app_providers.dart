@@ -98,11 +98,12 @@ final tutorRepositoryProvider = Provider<TutorRepository>((ref) {
 });
 
 final activeTutorsProvider = FutureProvider<List<Tutor>>(
-  (ref) async => excludeSyntheticTutorFixtures(
-    await ref
-        .watch(tutorRepositoryProvider)
-        .activeTutors(limit: ref.watch(remoteConfigProvider).homeTutorLimit),
-  ),
+  (ref) async =>
+      excludeSyntheticTutorFixtures(
+            await ref.watch(tutorRepositoryProvider).activeTutors(limit: 100),
+          )
+          .take(ref.watch(remoteConfigProvider).homeTutorLimit)
+          .toList(growable: false),
 );
 
 final tutorProvider = FutureProvider.family<Tutor, String>(

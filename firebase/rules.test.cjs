@@ -311,3 +311,25 @@ test('concurrent duplicate IDs admit one creation only',async()=>{
   const results=await Promise.allSettled([setDoc(doc(db(),reportPath()),report()),setDoc(doc(db(),reportPath()),report())]);
   require('node:assert/strict').equal(results.filter(r=>r.status==='fulfilled').length,1);
 });
+
+test('exact consented demo remains unverified and owner-private; no general demo bypass', async()=>{
+  const id='tutor_acd3824aa8734c63ac8827df';
+  const allowed={active:true,verified:false,demoOnly:true};
+  const data=report('alice',{tutorId:id,fileName:`beewise-tutor-${id}.pdf`});
+  // Reject every variant before creating one report at the existing target.
+  for(const patch of [{active:false},{verified:true},{demoOnly:false},{demoOnly:'true'},{syntheticTestFixture:true},{fixtureNamespace:'fixture'},{fixtureNamespace:' '}]) {
+    await seed({[`tutors/${id}`]:{...allowed,...patch}});
+    await assertFails(setDoc(doc(db(),reportPath()),data));
+  }
+  await seed({'tutors/other-demo':allowed});
+  await assertFails(setDoc(doc(db(),reportPath()),report('alice',{tutorId:'other-demo',fileName:'beewise-tutor-other-demo.pdf'})));
+  await seed({[`tutors/${id}`]:allowed});
+  await assertFails(updateDoc(doc(db(),`tutors/${id}`),{demoOnly:true,verified:true}));
+  await assertFails(setDoc(doc(db('bob'),reportPath()),data));
+  await assertFails(setDoc(doc(env.unauthenticatedContext().firestore(),reportPath()),data));
+  await assertSucceeds(setDoc(doc(db(),reportPath()),data));
+  await assertSucceeds(getDocFromServer(doc(db(),reportPath())));
+  await assertFails(getDocFromServer(doc(db('bob'),reportPath())));
+  await assertFails(updateDoc(doc(db(),reportPath()),{sizeBytes:10}));
+  await assertFails(deleteDoc(doc(db(),reportPath())));
+});

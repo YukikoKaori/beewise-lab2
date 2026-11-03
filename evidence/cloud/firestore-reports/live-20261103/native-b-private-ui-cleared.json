@@ -1,0 +1,85 @@
+{
+  "capturedAtUtc": "2026-11-02T17:59:14.403691+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "94ed000e299dcf9f160ccf433cccc28c9bfec5026407d206cccd67420e69d6ab",
+  "publishedSha256": "af467a8dc3c748227240ca0f8b20336457ab22deb8151f665e35f18dab7b9656",
+  "redactedRectangles": [
+    [
+      32,
+      210,
+      792,
+      354
+    ]
+  ],
+  "labels": [
+    {
+      "text": "Tài khoản",
+      "bounds": "[32,86][217,138]"
+    },
+    {
+      "text": "T\nPhụ huynh\n[email omitted]",
+      "bounds": "[32,210][792,354]"
+    },
+    {
+      "text": "Đăng xuất",
+      "bounds": "[648,234][744,330]"
+    },
+    {
+      "text": "Thông báo",
+      "bounds": "[32,354][792,406]"
+    },
+    {
+      "text": "Chưa có thông báo mới.",
+      "bounds": "[32,406][792,448]"
+    },
+    {
+      "text": "Dịch vụ ứng dụng",
+      "bounds": "[32,448][792,500]"
+    },
+    {
+      "text": "Remote Config\nGhép AI: đang bật · tối đa 3 kết quả",
+      "bounds": "[32,500][792,644]"
+    },
+    {
+      "text": "Báo cáo PDF riêng",
+      "bounds": "[32,644][792,696]"
+    },
+    {
+      "text": "Xuất PDF từ hồ sơ gia sư. Lưu riêng trong Firestore sau khi đăng nhập.",
+      "bounds": "[32,696][792,780]"
+    },
+    {
+      "text": "Chẩn đoán lỗi",
+      "bounds": "[32,780][792,832]"
+    },
+    {
+      "text": "Gửi lỗi mẫu không nghiêm trọng",
+      "bounds": "[32,832][792,928]"
+    },
+    {
+      "text": "Kiểm tra Crashlytics (ứng dụng sẽ đóng)",
+      "bounds": "[32,928][792,1024]"
+    },
+    {
+      "text": "Trang chủ\nTab 1 of 5",
+      "bounds": "[0,1640][165,1784]"
+    },
+    {
+      "text": "Tìm gia sư\nTab 2 of 5",
+      "bounds": "[165,1640][330,1784]"
+    },
+    {
+      "text": "Ghép AI\nTab 3 of 5",
+      "bounds": "[330,1640][494,1784]"
+    },
+    {
+      "text": "Tin nhắn\nTab 4 of 5",
+      "bounds": "[494,1640][659,1784]"
+    },
+    {
+      "text": "Tài khoản\nTab 5 of 5",
+      "bounds": "[659,1640][824,1784]"
+    }
+  ]
+}

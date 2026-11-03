@@ -1,0 +1,10 @@
+{
+  "timestampUtc": "2026-11-02T17:55:52.182Z",
+  "defaultProductionEntrypoint": true,
+  "instrumentation": "Dart VM invoke of existing ReportController.download then actual observed Profile logout button via ADB; no probe APK/source hooks; no rules/Admin bypass",
+  "downloadFutureStateBeforeLogout": "0",
+  "pendingBeforeLogout": true,
+  "originalOperationCancelled": false,
+  "privateControllerFieldsClearedImmediately": false,
+  "status": "FAIL"
+}
