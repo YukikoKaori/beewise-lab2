@@ -1,0 +1,22 @@
+{
+  "capturedAtUtc": "2026-11-03T06:28:55.681639+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "1cf2bb19f02f271b3d0e7dbb272dfd683bdfd7229fe23140d595fac849cf544a",
+  "publishedSha256": "9b6e681dd791d5ed536e8c02a061ca7e0eb4c097d8bebf694506834984e3dff6",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "System UI isn't responding",
+      "bounds": "[101,788][723,842]"
+    },
+    {
+      "text": "Close app",
+      "bounds": "[53,872][771,968]"
+    },
+    {
+      "text": "Wait",
+      "bounds": "[53,968][771,1064]"
+    }
+  ]
+}

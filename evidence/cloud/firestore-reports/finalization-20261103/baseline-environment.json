@@ -1,0 +1,22 @@
+{
+  "recordedAtUtc": "2026-11-03T06:28:58.481591+00:00",
+  "mainSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "projectId": "beewise-lab-3",
+  "device": "emulator-5560",
+  "api": "37",
+  "bootCompleted": "1",
+  "guestLoad": "0.29 0.27 0.58 1/2098 5287",
+  "guestMemory": [
+    "MemTotal:        4009368 kB",
+    "MemFree:          761204 kB",
+    "MemAvailable:    2494072 kB"
+  ],
+  "hostMemoryKiB": {
+    "TotalVisibleMemorySize": 16610308,
+    "FreePhysicalMemory": 8198732
+  },
+  "beeWisePidPresent": true,
+  "initialUi": "System UI isn't responding; captured before any recovery input",
+  "privateLogSha256": "eac17f074044077ec77d927d365f0a59da0e393f2859b3e19a9b18dad6cd4ce3",
+  "interpretation": "Observed System UI failure, not a confirmed BeeWise-specific defect. No suppression or data clearing. One ordinary Wait action will be attempted after preserving this failure."
+}

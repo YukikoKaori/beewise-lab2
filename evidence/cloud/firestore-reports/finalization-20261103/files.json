@@ -1,0 +1,92 @@
+{
+  "algorithm": "SHA256",
+  "excludes": [
+    "files.json"
+  ],
+  "files": {
+    ".gitattributes": {
+      "bytes": 73,
+      "sha256": "2cacd8c5b88d28a6324a5b106d17970ce30df8e32f9b76c87d00d4ca430747a8"
+    },
+    "acceptance-matrix.json": {
+      "bytes": 6949,
+      "sha256": "c6bc4ba9d38bbb031be4e929e4358c2a85d2771a89be79b4bbc2dcf50d9f5426"
+    },
+    "analytics-console.json": {
+      "bytes": 1340,
+      "sha256": "7fa3ca30846238bab1fccad52dbabb47b6c21b11069a0d5ea68e57703471de6d"
+    },
+    "android-startup.json": {
+      "bytes": 2451,
+      "sha256": "81900a6bf39f1c37f220c0563b65314c00448b81bb9918abde666af54fa9617a"
+    },
+    "audit.json": {
+      "bytes": 1074,
+      "sha256": "8832a2bf59c2c2198b343e0310733fd30e030bc543845c086b70515c312d441c"
+    },
+    "baseline-environment.json": {
+      "bytes": 909,
+      "sha256": "60dbeb3a31dd6a7d2438456594769b12adc59b0fa64e0338a9834fe60c262055"
+    },
+    "baseline.json": {
+      "bytes": 780,
+      "sha256": "2c0c97478b456bfde04813d80f5d4c9dcb9a4523d0576065bfbda5753e9794d3"
+    },
+    "cleanup-and-environment.json": {
+      "bytes": 2373,
+      "sha256": "e33eaf734c3c7f1e2d6c58e82e3e1f390617760c8048e729a419b8e5b7d277d2"
+    },
+    "final-pixel-launcher-anr.json": {
+      "bytes": 617,
+      "sha256": "e4e6887dff918bca32b3d0508cf8916f6069cf0ec9995b7a05eb3071f5987ed4"
+    },
+    "final-pixel-launcher-anr.png": {
+      "bytes": 146347,
+      "sha256": "211dd10f7e5387027d1e32036083fbb1392396c873f2bd68af194b7e69f42696"
+    },
+    "fresh-apk-pixel-launcher-anr.json": {
+      "bytes": 617,
+      "sha256": "5540cf471a71ed934702d6a4ec2c3cf70c65e3e587c9fa9a31993bee791f0db9"
+    },
+    "fresh-apk-pixel-launcher-anr.png": {
+      "bytes": 146402,
+      "sha256": "51e09049aeae567209bfcd45924d896034d9a1c67d1560fdea2f7a749d7bf6c6"
+    },
+    "initial-system-ui-anr.json": {
+      "bytes": 612,
+      "sha256": "9081adeec44740cba683fb5300e913402078a633aff66e621469f5090e8307f3"
+    },
+    "initial-system-ui-anr.png": {
+      "bytes": 85219,
+      "sha256": "9b6e681dd791d5ed536e8c02a061ca7e0eb4c097d8bebf694506834984e3dff6"
+    },
+    "local-pdf-generation.json": {
+      "bytes": 825,
+      "sha256": "383d6496f6f60ba08073d3c942d7b18048d03ef53e43287e663928b645ec4826"
+    },
+    "native-install.json": {
+      "bytes": 694,
+      "sha256": "00356ca35062064cf4339fce2eb4281aec5f2224165a80284e5b22e34868f6ff"
+    },
+    "native-observations.json": {
+      "bytes": 802,
+      "sha256": "5e9c1e259c2a098fe6e01a05e059a39b82e9aa7997a05b056f2805cd83ddd51c"
+    },
+    "quality.json": {
+      "bytes": 3995,
+      "sha256": "19256efca1b0801d4e2e2843a370bf527ded7a6079fede29c13d42036f8c28ac"
+    },
+    "README.md": {
+      "bytes": 6534,
+      "sha256": "e3ea865bcf9a91fff5ad58148a6a79aa9c2c43f9c0ba2317380dd75880bee9bd"
+    },
+    "recovered-home.json": {
+      "bytes": 2579,
+      "sha256": "8fccec3c263b63f2b3716248e2e26996adf36dfbb0cc4edcbc5e1e1dec91bb68"
+    },
+    "recovered-home.png": {
+      "bytes": 146415,
+      "sha256": "b2cf9cc7c34c061ebf37bf7ded19cfb7e49680fefecfb70314d213686e1a61ed"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "atUtc": "2026-11-03T06:51:39.883474+00:00",
+  "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "nativeExportLogLines": [
+    "11-03 13:50:29.902  1252  6517 V FA-SVC  : Logging event: origin=app,name=export_report,params=Bundle[{file_size_kb=18, ga_event_origin(_o)=app, ga_screen_class(_sc)=MainActivity, subject_count=2}]"
+  ],
+  "anrPackageLines": [],
+  "privateFullLogSha256": "8e3fe53b9a6edc0c38936feb90f8f0a9349c91264ed08f82fd9fc5cad8ad0991",
+  "caveat": "Native event logging is not DebugView delivery. Full raw log remains private. This is a point-in-time hash while collector is running.",
+  "anrPackageLinesNote": "Collector regex omitted the actual NexusLauncher package; use dumpsys activity lastanr and screenshots, not empty matches, to classify the failure."
+}
