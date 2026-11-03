@@ -1,0 +1,87 @@
+{
+  "pub": {
+    "command": [
+      "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+      "pub",
+      "get"
+    ],
+    "sourceSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+    "worktreeDirty": true,
+    "startedUtc": "2026-11-03T05:36:51.472401+00:00",
+    "durationSeconds": 3.07,
+    "exitCode": 0
+  },
+  "format": {
+    "command": [
+      "D:/CodexTemp/beewise-lab3-tools/flutter/bin/dart.bat",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "."
+    ],
+    "sourceSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+    "worktreeDirty": true,
+    "startedUtc": "2026-11-03T05:38:25.523036+00:00",
+    "durationSeconds": 4.67,
+    "exitCode": 0
+  },
+  "analyze": {
+    "command": [
+      "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+      "analyze"
+    ],
+    "sourceSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+    "worktreeDirty": true,
+    "startedUtc": "2026-11-03T05:37:45.433644+00:00",
+    "durationSeconds": 92.15,
+    "exitCode": 0
+  },
+  "test": {
+    "command": [
+      "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+      "test",
+      "--reporter",
+      "expanded"
+    ],
+    "sourceSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+    "worktreeDirty": true,
+    "startedUtc": "2026-11-03T05:37:14.995234+00:00",
+    "durationSeconds": 31.37,
+    "exitCode": 0
+  },
+  "rules": {
+    "command": [
+      "npm.cmd",
+      "--prefix",
+      "firebase",
+      "test"
+    ],
+    "sourceSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+    "worktreeDirty": true,
+    "startedUtc": "2026-11-03T05:37:25.313871+00:00",
+    "durationSeconds": 56.8,
+    "exitCode": 0
+  },
+  "build": {
+    "command": [
+      "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+      "build",
+      "apk",
+      "--debug"
+    ],
+    "sourceSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+    "worktreeDirty": true,
+    "startedUtc": "2026-11-03T05:38:31.104230+00:00",
+    "durationSeconds": 128.78,
+    "exitCode": 0
+  },
+  "flutterTests": 95,
+  "firestoreEmulatorTests": 58,
+  "harness": {
+    "command": "python scripts/check_e2e_harness.py",
+    "status": "PASS",
+    "uniqueScenarios": 27,
+    "androidExecution": "NOT RUN"
+  },
+  "note": "These gates were rerun after merging main 47fb375; only untracked evidence existed. No app source changed afterwards. CI on the final delivery HEAD is a separate requirement."
+}

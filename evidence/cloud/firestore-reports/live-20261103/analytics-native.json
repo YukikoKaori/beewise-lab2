@@ -1,0 +1,49 @@
+{
+  "source": "Real API37 FA-SVC native logcat, device local UTC+7, 2026-11-03",
+  "events": [
+    {
+      "sourceLine": 8317,
+      "deviceLocalTimestamp": "11-03 00:47:49.542",
+      "event": "export_report",
+      "file_size_kb": 18,
+      "subject_count": 2
+    },
+    {
+      "sourceLine": 8568,
+      "deviceLocalTimestamp": "11-03 00:47:50.088",
+      "event": "export_report"
+    },
+    {
+      "sourceLine": 10728,
+      "deviceLocalTimestamp": "11-03 00:48:50.473",
+      "event": "upload_report",
+      "file_size_kb": 18,
+      "result": "success"
+    },
+    {
+      "sourceLine": 10837,
+      "deviceLocalTimestamp": "11-03 00:48:51.032",
+      "event": "upload_report"
+    },
+    {
+      "sourceLine": 19279,
+      "deviceLocalTimestamp": "11-03 00:59:33.881",
+      "event": "export_report",
+      "file_size_kb": 18,
+      "subject_count": 2
+    },
+    {
+      "sourceLine": 19391,
+      "deviceLocalTimestamp": "11-03 00:59:34.457",
+      "event": "export_report"
+    },
+    {
+      "sourceLine": 20051,
+      "deviceLocalTimestamp": "11-03 00:59:44.235",
+      "event": "upload_report"
+    }
+  ],
+  "rawLogSha256": "902178cf0119c97e17f7e5f5336c157b8d0acf03bca387be9253465d7f1c1fb0",
+  "limitation": "Two collectors appended to the private original; some lines interleave. Only whitelisted complete event names/fields are extracted. Console screenshot independently shows firestore; do not reconstruct a clean raw bundle. Raw identities/Base64 are not exported.",
+  "console": "debugview-upload-firestore.png shows upload_report at 00:48:51 and storage_backend=firestore; export_report native event is preserved here, no separate export parameter screenshot was captured."
+}

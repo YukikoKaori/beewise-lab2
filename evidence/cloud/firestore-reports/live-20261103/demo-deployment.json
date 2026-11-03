@@ -1,0 +1,14 @@
+{
+  "timestampUtc": "2026-11-02T17:41:13.768Z",
+  "projectId": "beewise-lab-3",
+  "scope": "firestore:rules only",
+  "ownerApproval": "Duyệt đúng diff và hash này",
+  "approvedRawSha256": "94ef6ed2594ba4c6880c2b95fbaf75cb43fdb5bdbdeb5bf743d63389aa3d4428",
+  "normalizedSha256": "a2bc4d7c98b9b6ed128100d7465caa789675a7970419a3b6757bad7727838f80",
+  "previousRuleset": "projects/beewise-lab-3/rulesets/34ff742c-626d-4cd5-abde-59c21cce3522",
+  "activeRuleset": "projects/beewise-lab-3/rulesets/67a6d7ce-798f-44b4-8350-fe8bea890edc",
+  "exactReadback": true,
+  "nonReportRulesUnchanged": true,
+  "indexesDeployed": false,
+  "otherServicesDeployed": false
+}

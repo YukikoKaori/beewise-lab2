@@ -1,0 +1,17 @@
+{
+  "recordedAtUtc": "2026-11-03T05:42:31.736845+00:00",
+  "sameExistingAvd": true,
+  "userdataCleared": false,
+  "requestedMemoryMiB": 2048,
+  "reportedGuestMemory": [
+    "MemTotal:        4009368 kB",
+    "MemFree:           96972 kB",
+    "MemAvailable:    2226700 kB"
+  ],
+  "guestLoadAverage": "27.06 17.43 7.20 25/2428 4311",
+  "observedDialog": "System UI isn't responding",
+  "activityManagerLastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+  "startupResult": "am start -W timeout, UNKNOWN, WaitTime 19540 ms",
+  "interpretation": "Observed System UI ANR dialog and high guest load during resumed boot/build. lastanr did not retain an ANR. This is not proof of a BeeWise-specific main-thread defect, nor clean startup acceptance. Dialog/detection untouched.",
+  "timeoutFollowup": "Could not complete additional native deadline instrumentation: VM attach/connection did not become usable. Do not label network-unavailable response as ExportService timeout."
+}
