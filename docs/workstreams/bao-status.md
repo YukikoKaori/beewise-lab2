@@ -1,29 +1,28 @@
 ## Final responsibility split — 2026-11-04 (current)
 
-**B-04 SHARED OWNERSHIP:** F-01 existing verified Firebase discovery/connection/
-chat/messaging remains preserved; **F-02 belongs to BAO**, including Firebase AI
-Logic/Gemini, App Check, real provider response, native Android/security/evidence.
-F-02 is **IN PROGRESS** until acceptance is verified. **F-03 belongs to NGUYEN**:
-consultant onboarding/trial/revision/invoice/payOS/webhook/payment/schedule and
-business integration tests; status **HANDOFF / PENDING IMPLEMENTATION**.
+**B-04 SHARED OWNERSHIP:** F-01 remains the existing verified Firebase
+discovery/connection/chat/messaging integration. **F-02 belongs to BAO — COMPLETE
+/ LIVE VERIFIED** in API35 guest/debug scope: actual Firebase AI Logic/Gemini3.5
+Flash-Lite response, App Check, validated Firestore demo tutor, native result,
+detail/manual fallback and FA-SVC ai_match_success(result_count1).
+**F-03 belongs to NGUYEN — HANDOFF / PENDING IMPLEMENTATION:** consultant,
+trial/revision/invoice/payOS/webhook/payment/schedule/backend and business tests.
 
-The earlier broad full-transfer steer was not committed and is corrected in the
-worktree. Bao resumes only F-02. F-03 WIP remains archived and untouched, excluded
-from Bao's focused PR; no F-03 deployment/push/merge is authorized. See the
-[precise F-03 handoff](bao-to-nguyen-b04-handoff.md).
+[Current F-02 packet](../../evidence/cloud/f02-lite-native-20261104/README.md)
+records source/APK/config/timestamps/actual events and105 Flutter/58 Rules PASS.
+Earlier3.8 failures remain preserved, not relabelled as successes. Parent-specific
+AI, release/physical attestation and general provider availability are not claimed.
+**Execution deviation:** automation caused2 Flash-Lite calls against approved1;
+disclosed immediately, further calls stopped, receipt truthful. PR stays DRAFT
+for owner review; no automatic merge. Final-HEAD CI is reported in the PR.
 
-B-01, B-02, B-03.1–6 and B-05 remain COMPLETE in their existing verified scopes.
-Bao's assigned scope also includes unfinished F-02; no expanded-scope COMPLETE
-claim yet. **Lab 3 overall: NOT YET COMPLETE**, with Nguyen F-03/ARTEMIS/UI/final
-deliverables separate. Bao retains approved Firebase infrastructure/security and
-regression/evidence support; production access/deployment authority is not transferred.
-
-Current F-02 [native investigation packet](../../evidence/cloud/f02-native-20261104/README.md):
-source `c497169`, default API35 APK, App Check token acquired and AI enforcement
-retained. Actual3.8 returned500/high-demand then three30s provider-await timeouts.
-Manual fallback/detail and105 Flutter/58 Rules tests PASS; real Gemini JSON,
-AI result and success Analytics remain BLOCKED. All approved live calls consumed.
-F-02 stays IN PROGRESS; delivery is DRAFT/CORRECTIVE, not merge-ready acceptance.
+The earlier broad-transfer steer was uncommitted and corrected directly. F-03
+WIP remains archived/unchanged and excluded from Bao's PR; no F-03 deployment.
+[Precise F-03-only handoff](bao-to-nguyen-b04-handoff.md).
+B-01/B-02/B-03.1–6/B-05 remain COMPLETE scoped. Bao's expanded implementation
+scope now includes live-verified F-02; **Lab3 overall is NOT YET COMPLETE**.
+Bao retains approved Firebase infrastructure/security/regression/evidence support;
+production access/deployment authority is not transferred.
 
 Historical snapshots below retain dated evidence and old assignments/configuration.
 They do not override this final split or reopen previously verified tasks.

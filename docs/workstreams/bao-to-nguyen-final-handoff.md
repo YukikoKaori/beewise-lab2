@@ -2,8 +2,8 @@
 
 **B-04 is shared: F-01 existing verified cloud integration; F-02 owned by Bao;
 F-03 owned by Nguyen.** Bao retains AI Matching/Firebase AI Logic/App Check,
-genuine provider/native validation and acceptance evidence. F-02 remains IN
-PROGRESS until verified. Nguyen owns consultant/trial/revision/invoice/payOS/
+genuine provider/native validation and acceptance evidence. F-02 is COMPLETE /
+LIVE VERIFIED in API35 guest/debug scope. Nguyen owns consultant/trial/revision/invoice/payOS/
 webhook/payment/schedule implementation and tests, status HANDOFF / PENDING
 IMPLEMENTATION. Bao provides approved Firebase/security support for F-03.
 
@@ -13,11 +13,11 @@ expanded Bao scope includes F-02. No entire B-04 or Lab 3 completion is claimed.
 Earlier dated configuration/blocker statements below are historical, not current
 AI state. No F-03 code or cloud deployment is part of Bao's F-02 delivery.
 
-[Current F-02 native evidence](../../evidence/cloud/f02-native-20261104/README.md):
-App Check acquisition/config verified in debug scope; actual3.8 HTTP500/high-demand
-then three30s provider-await timeouts, no usable JSON/result/success Analytics.
-F-02 remains Bao's IN PROGRESS acceptance blocker; local105 Flutter/58 Rules
-tests and native manual fallback/detail do not substitute for provider success.
+[Latest F-02 live evidence](../../evidence/cloud/f02-lite-native-20261104/README.md):
+actual3.5 Flash-Lite result, validated demo ID, native detail/fallback and FA-SVC
+success event count1. Local105 Flutter/58 Rules PASS; final CI in delivery PR.
+The earlier3.8 failure packet remains historical. PR stays DRAFT for owner review
+of the disclosed accidental2 calls against approved1; no further calls or merge.
 
 ## Historical Bao handoff — 2026-11-03 acceptance closeout
 

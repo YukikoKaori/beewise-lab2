@@ -1,0 +1,20 @@
+{
+  "project": "beewise-lab-3",
+  "package": "com.beewise.beewise",
+  "provider": "Firebase AI Logic / Gemini Developer API",
+  "modelBefore": "gemini-3.8-flash",
+  "modelProposed": "gemini-3.5-flash-lite",
+  "changes": [
+    "Change only in-app RemoteConfigService model default and empty fallback plus corresponding tests",
+    "Rebuild default lib/main.dart debug APK and rerun focused/full quality gates",
+    "At most one real normal-UI Gemini request using approved demo catalogue on existing API35 emulator"
+  ],
+  "reason": "Real 3.8 high-demand error and repeated provider-await timeouts; lighter currently supported model is a bounded alternative, not a proven timeout root-cause fix",
+  "officialCompatibility": "https://firebase.google.com/docs/ai-logic/models?api=dev",
+  "readOnlyProjectQuotaAtUtc": "2026-11-03T19:41:16.486Z",
+  "configuredFreeTierRequestLimits": {"perMinute": 15, "perDay": 500},
+  "security": "Retain App Check AI ENFORCED, debug/release provider separation, catalogue validation and privacy",
+  "billing": "Spark, billing disabled; no paid billing or quota increase",
+  "excluded": ["Remote Config publication", "API enablement", "debug-token registration/deletion", "App Check changes", "backend/payOS/F03", "provider substitution"],
+  "status": "PROPOSED ONLY; not executed"
+}

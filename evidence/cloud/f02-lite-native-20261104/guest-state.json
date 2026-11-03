@@ -1,0 +1,6 @@
+{
+  "capturedAtUtc": "2026-11-03T20:21:37.312948+00:00",
+  "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f",
+  "guest": true,
+  "method": "Read-only Firebase Auth SDK currentUser==null boolean; no UID read/export"
+}

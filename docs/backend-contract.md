@@ -8,6 +8,9 @@ deployment, staff, credential or payment authority. See the
 [precise F-03 handoff](workstreams/bao-to-nguyen-b04-handoff.md). The optional
 local undeployed F-03 WIP is preserved outside Bao's focused F-02 delivery;
 its emulator tests do not constitute a production backend or payment receipt.
+Bao F-02 is now live-verified in the API35 guest/debug scope;
+[actual acceptance packet](../evidence/cloud/f02-lite-native-20261104/README.md).
+This does not complete F-03, B-04 overall or Lab3.
 
 For current client ownership handling, see the [PR #2 follow-up](pr2-lifecycle-review.md).
 Foreign pending registrations quarantine delivery until their owner authorizes

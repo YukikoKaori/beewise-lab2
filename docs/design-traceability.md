@@ -6,7 +6,8 @@
 integration is preserved; **Bao owns F-02** Firebase AI Logic/Gemini/App Check,
 real provider response, Android acceptance/security/evidence; **Nguyen owns F-03**
 consultant/trial/revision/invoice/payOS/webhook/payment/schedule and business E2E.
-F-02 remains IN PROGRESS until genuine native acceptance. F-03 is HANDOFF /
+F-02 is COMPLETE / LIVE VERIFIED in API35 guest/debug scope;
+[actual packet](../evidence/cloud/f02-lite-native-20261104/README.md). F-03 is HANDOFF /
 PENDING IMPLEMENTATION. [Precise handoff](workstreams/bao-to-nguyen-b04-handoff.md).
 The previous broad transfer is superseded. Historical service/configuration
 descriptions below do not override the current acceptance packet or reopen
