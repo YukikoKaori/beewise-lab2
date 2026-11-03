@@ -1,5 +1,23 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
+> **Final Bao handoff — 03/11/2026 (latest): Bao scope / B-03.2 PARTIALLY VERIFIED.**
+> Independently verified PR #11 MERGED; current fetched main
+> `b45bdce4d3a68006a28ca8e587fdece0187a8660`. Implementation/deployment/native
+> PDF roundtrip/live security remain verified at their historical scope.
+> Fresh local format/analyze/build, Flutter 95/95, rules 58/58 and 27-function
+> harness structure PASS; ARTEMIS runtime NOT RUN. Default APK installed preserving
+> data but launcher ANR/launch timeout prevents fresh stability PASS. New real
+> local PDF/controller generation + native export event are instrumented evidence,
+> not Console receipt/UI walkthrough. Native distinct 30s timeout/retry and durable
+> export DebugView parameter screenshot remain NOT VERIFIED; no new app defect or
+> speculative fix, cloud save/deployment, account/catalog mutation or auto merge.
+> [Final evidence/matrix](../evidence/cloud/firestore-reports/finalization-20261103/README.md)
+> · [Executable Nguyen handoff](workstreams/bao-to-nguyen-final-handoff.md).
+> N-03 still needs ≥10 official cases ×3 + exploration on a stable authorized
+> ARTEMIS/device/fixtures; N-04 owner-confirmed approval stays COMPLETE;
+> UI/accessibility, slides PDF, video/links retain their own open work.
+> Earlier dated entries below remain historical, not new test results.
+
 > **B-03.2 live acceptance — 03/11/2026: PARTIALLY VERIFIED.** Current evidence
 > supersedes the historical eligible-tutor blocker below. One consented demo
 > tutor is live, professionally `verified=false`, with exact-ID eligibility and

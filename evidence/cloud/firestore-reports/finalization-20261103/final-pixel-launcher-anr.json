@@ -1,0 +1,22 @@
+{
+  "capturedAtUtc": "2026-11-03T06:53:53.346139+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "7f37f7043546225eb8c647bb76680882049da20ee3c8aa17fa84d4779659783e",
+  "publishedSha256": "211dd10f7e5387027d1e32036083fbb1392396c873f2bd68af194b7e69f42696",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "Pixel Launcher isn't responding",
+      "bounds": "[101,790][723,839]"
+    },
+    {
+      "text": "Close app",
+      "bounds": "[53,869][771,965]"
+    },
+    {
+      "text": "Wait",
+      "bounds": "[53,965][771,1061]"
+    }
+  ]
+}
