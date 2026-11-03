@@ -12,7 +12,7 @@ class RemoteConfigService {
       'home_tutor_limit': 6,
       'ai_result_limit': 3,
       'ai_matching_enabled': true,
-      'gemini_model': 'gemini-3.8-flash',
+      'gemini_model': 'gemini-3.5-flash-lite',
     });
     await config.setConfigSettings(
       RemoteConfigSettings(
@@ -33,7 +33,7 @@ class RemoteConfigService {
   bool get matchingEnabled => _config?.getBool('ai_matching_enabled') ?? true;
   String get modelName {
     final model = _config?.getString('gemini_model').trim();
-    return model == null || model.isEmpty ? 'gemini-3.8-flash' : model;
+    return model == null || model.isEmpty ? 'gemini-3.5-flash-lite' : model;
   }
 
   int _limit(String key, int fallback, int maximum) {

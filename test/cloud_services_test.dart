@@ -48,6 +48,7 @@ void main() {
     expect(service.homeTutorLimit, 6);
     expect(service.aiResultLimit, 3);
     expect(service.matchingEnabled, isTrue);
+    expect(service.modelName, 'gemini-3.5-flash-lite');
   });
   test(
     'invalid Remote Config values cannot break catalog or Iterable.take',
@@ -59,7 +60,7 @@ void main() {
       final service = RemoteConfigService(config);
       expect(service.homeTutorLimit, 6);
       expect(service.aiResultLimit, 3);
-      expect(service.modelName, 'gemini-3.8-flash');
+      expect(service.modelName, 'gemini-3.5-flash-lite');
       when(() => config.getInt('home_tutor_limit')).thenReturn(10000);
       when(() => config.getInt('ai_result_limit')).thenReturn(10000);
       expect(service.homeTutorLimit, 100);
@@ -73,10 +74,13 @@ void main() {
       when(() => config.getInt('home_tutor_limit')).thenReturn(2);
       when(() => config.getInt('ai_result_limit')).thenReturn(1);
       when(() => config.getBool('ai_matching_enabled')).thenReturn(false);
+      when(() => config.getString('gemini_model'))
+          .thenReturn(' gemini-3.8-flash ');
       final service = RemoteConfigService(config);
       expect(service.homeTutorLimit, 2);
       expect(service.aiResultLimit, 1);
       expect(service.matchingEnabled, isFalse);
+      expect(service.modelName, 'gemini-3.8-flash');
     },
   );
   test(
