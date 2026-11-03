@@ -1,0 +1,135 @@
+[
+  {
+    "step_id": "264606e3-ccfb-450e-a8a2-9221493fcb4d",
+    "session_id": "14be407a-0f9f-49ec-99c0-febfc65c8bbd",
+    "step_number": 1,
+    "timestamp": 1793626611.6686413,
+    "pre_image_name": "736c52fbff9998e88ff8ad1ba30b39af389ac2cc57dff78ba81482f9ef94ec8d",
+    "post_image_name": "ee51581081c180ebda2fea095e1c81b0069f38b0ef4da12eff7fa65cc893c707",
+    "summary": "In Step 1, I swiped down on the BeeWise home screen from coordinates [600, 300] to [600, 700]; the screen content remained static, continuing to display the app-bar title 'BeeWise', the greeting 'Chào bạn 👋', the search bar, the blue AI matching card, the subject chips for 'Toán', 'Tiếng Anh', 'Ngữ văn', and 'Vật lý', and the 'Gia sư đang hoạt động' section showing the placeholder message 'Chưa có gia sư phù hợp' above the bottom navigation bar.",
+    "action_taken": {
+      "action": "swipe",
+      "coordinates": [
+        600,
+        300,
+        600,
+        700
+      ],
+      "coordinate_space": "normalized",
+      "args": {
+        "direction": "down"
+      },
+      "normalized_coordinates": [
+        600,
+        300,
+        600,
+        700
+      ],
+      "normalized_start_coordinates": [
+        600,
+        300
+      ],
+      "normalized_end_coordinates": [
+        600,
+        700
+      ]
+    },
+    "operator_raw_thinking": "",
+    "operator_native_thinking": "**Analyzing the Application**\n\nI'm currently focused on testing TC-01. I've noted that BeeWise is already open and signed out on the Home screen. My next step is to accurately identify and read the app-bar title at the top of the Home screen, distinguishing it from the marketing banner. I'm carefully examining the screenshot provided to ensure precision.\n\n\n",
+    "last_execution_result": {
+      "status": "dispatched",
+      "result": "Swiped down."
+    },
+    "extra_metadata": {
+      "token_usage": {
+        "prompt_tokens": 7979,
+        "completion_tokens": 448,
+        "total_tokens": 8427
+      },
+      "pre_image_dhash": "839082bab242f030",
+      "post_image_dhash": "838882bab242f030",
+      "summary_status": "ready",
+      "summary_version": 1,
+      "summary_source": "visual_transition",
+      "summary_model": "gemini-3.5-flash-lite"
+    },
+    "pre_screenshot_bytes": null,
+    "post_screenshot_bytes": null,
+    "generic_tools": [
+      {
+        "trace_id": "aad32370-d3bd-4757-988d-e31d10fed226",
+        "parent_trace_id": "640ba6d5-2c0e-4e6b-930d-179778b3f15e",
+        "step_id": "264606e3-ccfb-450e-a8a2-9221493fcb4d",
+        "type": "action",
+        "name": "swipe",
+        "timestamp": 1793626610.2542603,
+        "duration": 1.3947985172271729,
+        "status": "success",
+        "payload": {
+          "args": {
+            "direction": "down",
+            "coordinates": [
+              600,
+              300,
+              600,
+              700
+            ],
+            "normalized_coordinates": [
+              600,
+              300,
+              600,
+              700
+            ]
+          },
+          "post_image_name": "ee51581081c180ebda2fea095e1c81b0069f38b0ef4da12eff7fa65cc893c707"
+        },
+        "agent_name": "FlashRunner"
+      }
+    ],
+    "token_usage": {
+      "prompt_tokens": 7979,
+      "completion_tokens": 448,
+      "total_tokens": 8427
+    },
+    "total_tokens": 8427
+  },
+  {
+    "step_id": "c281212c-7c8c-4ea4-bf6e-da53c1f5b707",
+    "session_id": "14be407a-0f9f-49ec-99c0-febfc65c8bbd",
+    "step_number": 2,
+    "timestamp": 1793626619.7875953,
+    "pre_image_name": "ee51581081c180ebda2fea095e1c81b0069f38b0ef4da12eff7fa65cc893c707",
+    "post_image_name": null,
+    "summary": null,
+    "action_taken": {
+      "action": "report_task_status",
+      "args": {
+        "explanation": "{\n  \"app_bar_title\": \"BeeWise\",\n  \"top_level_destinations\": [\"Trang chủ\", \"Tìm gia sư\", \"Ghép AI\", \"Tin nhắn\", \"Tài khoản\"],\n  \"firebase_notice\": null,\n  \"tutor_card_count\": 0,\n  \"firestore_confirmation\": \"No tutor cards are visible, so no fabricated profile claims exist.\"\n}",
+        "status": "completed"
+      }
+    },
+    "operator_raw_thinking": "",
+    "operator_native_thinking": null,
+    "last_execution_result": {
+      "result": "Task completed with final report."
+    },
+    "extra_metadata": {
+      "token_usage": {
+        "prompt_tokens": 9672,
+        "completion_tokens": 241,
+        "total_tokens": 9913
+      },
+      "pre_image_dhash": "838882bab242f030",
+      "post_image_dhash": "838882bab242f030"
+    },
+    "pre_screenshot_bytes": null,
+    "post_screenshot_bytes": null,
+    "generic_tools": [],
+    "token_usage": {
+      "prompt_tokens": 9672,
+      "completion_tokens": 241,
+      "total_tokens": 9913
+    },
+    "total_tokens": 9913
+  }
+]

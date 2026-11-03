@@ -1,0 +1,304 @@
+{
+  "step_id": "pre-planning",
+  "step_type": "planning",
+  "session_id": "40a1eb1f-30dc-403e-9cfa-32c01e3e68f5",
+  "step_number": 0,
+  "timestamp": 1793633642.517911,
+  "operator_native_thinking": "",
+  "operator_raw_thinking": "",
+  "action_taken": null,
+  "last_execution_result": null,
+  "extra_metadata": null,
+  "generic_tools": [
+    {
+      "trace_id": "2171fc4e-fe27-47a1-ac81-e44a3f283aa0",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633642.517911,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m50.184546514s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 1.63,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633642.5179088
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "e81608c4-f274-42fd-80f2-3f41c04bbf43",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633644.5848534,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m48.112804202s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 2.93,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633644.584851
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "795bb6f7-2c7b-4389-b457-44fb0256bb6e",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633647.9920814,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m44.784926455s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 4.26,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633647.992079
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "20255cb1-2bf6-4f04-9ebe-a47c0dec2f8b",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633652.601742,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m40.096418217s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 8.88,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633652.6017394
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "14d0b954-bd0c-4a48-a7ae-5c102bba1cc9",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633661.8815672,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m30.818180488s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 16.4,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633661.8815646
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "699013e1-a8de-4a27-b60f-1a5f95b33d39",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633678.8962505,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m13.81142229s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        \"@type\": \"typ... [Truncated by LLM Retry Telemetry]",
+        "delay": 10.322774623564483,
+        "attempt": 1,
+        "max_retries": 4,
+        "provider": "google",
+        "source": "artemis",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633678.8962476
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "8c1a0a54-102e-474e-a6bd-f9d22b085e70",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633689.6915689,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m3.085818779s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        ... [Truncated by LLM Retry Telemetry]",
+        "delay": 1.15,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633689.6915658
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "bd263b34-6bd8-4601-a2bb-f2e900272c8c",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633691.2045631,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h25m1.49200706s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        \"... [Truncated by LLM Retry Telemetry]",
+        "delay": 2.43,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633691.20456
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "ddd1417c-2b4b-479d-abb0-211d4b98ccb3",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633694.0065832,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h24m58.6917273s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        \"... [Truncated by LLM Retry Telemetry]",
+        "delay": 4.33,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633694.0055804
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "6a48ce73-97d8-4f2f-83eb-76422242a6a7",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633698.677536,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h24m54.022938602s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 8.07,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633698.6775327
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "222b6d26-9078-4f5f-8db1-f76e9b7f48a4",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633707.111124,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h24m45.669431069s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n       ... [Truncated by LLM Retry Telemetry]",
+        "delay": 17.0,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633707.1111205
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "ebe0ab93-cf2c-4496-835a-ded6058aad69",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633724.6743512,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h24m28.021879912s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        \"@type\": \"ty... [Truncated by LLM Retry Telemetry]",
+        "delay": 20.459454932555794,
+        "attempt": 2,
+        "max_retries": 4,
+        "provider": "google",
+        "source": "artemis",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633724.6743476
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "babdf2ab-0d32-4545-a2ae-1d45a21c53ef",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633745.7355506,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h24m6.962249954s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        ... [Truncated by LLM Retry Telemetry]",
+        "delay": 1.25,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633745.7355468
+      },
+      "agent_name": "FlashRunner"
+    },
+    {
+      "trace_id": "6fed56a5-1fed-499d-a68b-535aa1a6daeb",
+      "parent_trace_id": "f5e423e2-c77d-4742-9eb9-d80918aced53",
+      "step_id": "a671dc87-105d-4da5-870b-12841b5ced48",
+      "type": "llm_call",
+      "name": "llm_retry",
+      "timestamp": 1793633747.282123,
+      "duration": null,
+      "status": "retrying",
+      "payload": {
+        "error": "ClientError: 429 Too Many Requests. {'message': '{\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 500, model: gemini-3.5-flash-lite, description: Generate content requests per day limit exceeded on Free Tier. See https://ai.google.dev/gemini-api/docs/rate-limits.\\\\nPlease retry in 16h24m5.412282175s.\",\\n    \"status\": \"RESOURCE_EXHAUSTED\",\\n    \"details\": [\\n      {\\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\\n        \"links\": [\\n          {\\n            \"description\": \"Learn more about Gemini API quotas\",\\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\\n          }\\n        ]\\n      },\\n      {\\n        ... [Truncated by LLM Retry Telemetry]",
+        "delay": 2.35,
+        "provider": "google",
+        "source": "provider_sdk",
+        "recoverable": true,
+        "request_id": "29fa6358-d512-419d-a2aa-ee95a548b9b4",
+        "scheduled_at": 1793633747.2821193
+      },
+      "agent_name": "FlashRunner"
+    }
+  ],
+  "token_usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "total_tokens": 0
+}
