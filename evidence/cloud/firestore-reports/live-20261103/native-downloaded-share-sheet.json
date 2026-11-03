@@ -1,0 +1,46 @@
+{
+  "capturedAtUtc": "2026-11-02T17:50:37.589455+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "c350a6e879e12ecfd2de37f0433edefade60f7c3f9d469bd9abbc575c2d166d5",
+  "publishedSha256": "20c290d179a2888995c92f86cc61648c6fd3a634133c17167dd721b6363aed93",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "Sharing 1 file",
+      "bounds": "[32,1117][240,1166]"
+    },
+    {
+      "text": "report.pdf",
+      "bounds": "[144,1237][256,1270]"
+    },
+    {
+      "text": "No recommended people to share with",
+      "bounds": "[0,1450][824,1488]"
+    },
+    {
+      "text": "Quick Share",
+      "bounds": "[8,1716][156,1749]"
+    },
+    {
+      "text": "Print",
+      "bounds": "[172,1716][320,1749]"
+    },
+    {
+      "text": "Gemini",
+      "bounds": "[336,1716][484,1749]"
+    },
+    {
+      "text": "Add to Chat",
+      "bounds": "[336,1749][484,1782]"
+    },
+    {
+      "text": "Drive",
+      "bounds": "[500,1716][648,1749]"
+    },
+    {
+      "text": "Messages",
+      "bounds": "[664,1716][812,1749]"
+    }
+  ]
+}

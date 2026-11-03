@@ -1,0 +1,93 @@
+{
+  "capturedAtUtc": "2026-11-02T17:50:20.980979+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "a072fd1ddc74d0e9df654471d9a87d46c9101d8870a87be48a99bf9114bdf8bb",
+  "publishedSha256": "2d96ceb560266f9b0fce925b74d666235f0712cc3574471c3ef8310f9a4025b2",
+  "redactedRectangles": [
+    [
+      32,
+      1320,
+      792,
+      1395
+    ]
+  ],
+  "labels": [
+    {
+      "text": "Quay lại",
+      "bounds": "[8,64][104,160]"
+    },
+    {
+      "text": "Hồ sơ gia sư",
+      "bounds": "[144,86][376,138]"
+    },
+    {
+      "text": "3 năm kinh nghiệm",
+      "bounds": "[32,178][361,190]"
+    },
+    {
+      "text": "2 môn học",
+      "bounds": "[377,178][590,190]"
+    },
+    {
+      "text": "in_person",
+      "bounds": "[32,206][243,302]"
+    },
+    {
+      "text": "Giới thiệu",
+      "bounds": "[32,302][792,354]"
+    },
+    {
+      "text": "Sinh viên Công nghệ thông tin, nhận hỗ trợ học sinh lớp 6–12 học Toán và Tin học. Hình thức dạy trực tiếp tại TP.HCM. Nội dung và lịch học được trao đổi trước khi bắt đầu.",
+      "bounds": "[32,354][792,522]"
+    },
+    {
+      "text": "Chuyên môn",
+      "bounds": "[32,522][792,574]"
+    },
+    {
+      "text": "Toán",
+      "bounds": "[32,574][170,670]"
+    },
+    {
+      "text": "Tin học",
+      "bounds": "[186,574][358,670]"
+    },
+    {
+      "text": "Lớp nhận dạy\n6, 7, 8, 9, 10, 11, 12",
+      "bounds": "[32,670][792,764]"
+    },
+    {
+      "text": "Lịch có thể dạy\nChưa cập nhật",
+      "bounds": "[32,792][792,886]"
+    },
+    {
+      "text": "Khu vực\nTP.HCM",
+      "bounds": "[32,914][792,1008]"
+    },
+    {
+      "text": "Học phí tham khảo\n150.000đ/giờ",
+      "bounds": "[32,1036][792,1130]"
+    },
+    {
+      "text": "Xuất hồ sơ PDF",
+      "bounds": "[32,1178][792,1274]"
+    },
+    {
+      "text": "Firestore: reports/[owner omitted]/files/gLMgmEOubpSIkIuD115l",
+      "bounds": "[32,1274][792,1592]"
+    },
+    {
+      "text": "Tải lại từ server",
+      "bounds": "[32,1400][356,1496]"
+    },
+    {
+      "text": "Mở / chia sẻ PDF",
+      "bounds": "[32,1496][376,1592]"
+    },
+    {
+      "text": "Gửi yêu cầu kết nối",
+      "bounds": "[32,1656][792,1752]"
+    }
+  ]
+}

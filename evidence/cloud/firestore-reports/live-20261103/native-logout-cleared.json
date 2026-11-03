@@ -1,0 +1,78 @@
+{
+  "capturedAtUtc": "2026-11-02T17:56:14.453489+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "15c21509020443c27e00d25eaae83a0cfa902a582f2bdb12936e958c459d2cca",
+  "publishedSha256": "44ff9426a4ae878040fcaefc7ad08b2f22d24b3a4dba3036e04202a9c1b8d012",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "Tài khoản",
+      "bounds": "[32,86][217,138]"
+    },
+    {
+      "text": "Chưa đăng nhập\nĐăng nhập để quản lý tài khoản và dữ liệu của bạn.",
+      "bounds": "[32,210][792,416]"
+    },
+    {
+      "text": "Đăng nhập",
+      "bounds": "[542,265][744,361]"
+    },
+    {
+      "text": "Thông báo",
+      "bounds": "[32,416][792,468]"
+    },
+    {
+      "text": "Chưa có thông báo mới.",
+      "bounds": "[32,468][792,510]"
+    },
+    {
+      "text": "Dịch vụ ứng dụng",
+      "bounds": "[32,510][792,562]"
+    },
+    {
+      "text": "Remote Config\nGhép AI: đang bật · tối đa 3 kết quả",
+      "bounds": "[32,562][792,706]"
+    },
+    {
+      "text": "Báo cáo PDF riêng",
+      "bounds": "[32,706][792,758]"
+    },
+    {
+      "text": "Xuất PDF từ hồ sơ gia sư. Lưu riêng trong Firestore sau khi đăng nhập.",
+      "bounds": "[32,758][792,842]"
+    },
+    {
+      "text": "Chẩn đoán lỗi",
+      "bounds": "[32,842][792,894]"
+    },
+    {
+      "text": "Gửi lỗi mẫu không nghiêm trọng",
+      "bounds": "[32,894][792,990]"
+    },
+    {
+      "text": "Kiểm tra Crashlytics (ứng dụng sẽ đóng)",
+      "bounds": "[32,990][792,1086]"
+    },
+    {
+      "text": "Trang chủ\nTab 1 of 5",
+      "bounds": "[0,1640][165,1784]"
+    },
+    {
+      "text": "Tìm gia sư\nTab 2 of 5",
+      "bounds": "[165,1640][330,1784]"
+    },
+    {
+      "text": "Ghép AI\nTab 3 of 5",
+      "bounds": "[330,1640][494,1784]"
+    },
+    {
+      "text": "Tin nhắn\nTab 4 of 5",
+      "bounds": "[494,1640][659,1784]"
+    },
+    {
+      "text": "Tài khoản\nTab 5 of 5",
+      "bounds": "[659,1640][824,1784]"
+    }
+  ]
+}

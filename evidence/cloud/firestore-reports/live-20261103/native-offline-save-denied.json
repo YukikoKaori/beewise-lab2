@@ -1,0 +1,82 @@
+{
+  "capturedAtUtc": "2026-11-02T17:48:38.065026+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "102e80ee55ae2f48a235b25dc5947fd6d3ef59677dedc3073ceef61d340f4a83",
+  "publishedSha256": "b8a961311f8f4af5c084c424b145b20dd45d0404202f69f941f37b1f0f9d7d40",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "Quay lại",
+      "bounds": "[8,64][104,160]"
+    },
+    {
+      "text": "Hồ sơ gia sư",
+      "bounds": "[144,86][376,138]"
+    },
+    {
+      "text": "HB\nHoàng Quốc Bảo\nHồ sơ demo — đã duyệt cho kiểm thử\nThông tin do chủ hồ sơ cung cấp; chưa xác minh chuyên môn hoặc kinh nghiệm.",
+      "bounds": "[32,178][792,226]"
+    },
+    {
+      "text": "3 năm kinh nghiệm",
+      "bounds": "[32,266][361,362]"
+    },
+    {
+      "text": "2 môn học",
+      "bounds": "[377,266][590,362]"
+    },
+    {
+      "text": "in_person",
+      "bounds": "[32,378][243,474]"
+    },
+    {
+      "text": "Giới thiệu",
+      "bounds": "[32,474][792,526]"
+    },
+    {
+      "text": "Sinh viên Công nghệ thông tin, nhận hỗ trợ học sinh lớp 6–12 học Toán và Tin học. Hình thức dạy trực tiếp tại TP.HCM. Nội dung và lịch học được trao đổi trước khi bắt đầu.",
+      "bounds": "[32,526][792,694]"
+    },
+    {
+      "text": "Chuyên môn",
+      "bounds": "[32,694][792,746]"
+    },
+    {
+      "text": "Toán",
+      "bounds": "[32,746][170,842]"
+    },
+    {
+      "text": "Tin học",
+      "bounds": "[186,746][358,842]"
+    },
+    {
+      "text": "Lớp nhận dạy\n6, 7, 8, 9, 10, 11, 12",
+      "bounds": "[32,842][792,936]"
+    },
+    {
+      "text": "Lịch có thể dạy\nChưa cập nhật",
+      "bounds": "[32,964][792,1058]"
+    },
+    {
+      "text": "Khu vực\nTP.HCM",
+      "bounds": "[32,1086][792,1180]"
+    },
+    {
+      "text": "Học phí tham khảo\n150.000đ/giờ",
+      "bounds": "[32,1208][792,1302]"
+    },
+    {
+      "text": "Xuất hồ sơ PDF",
+      "bounds": "[32,1350][792,1446]"
+    },
+    {
+      "text": "Thao tác chưa hoàn tất. Có thể thử lại.\nKhông kết nối được dịch vụ. Hãy kiểm tra mạng rồi thử lại.",
+      "bounds": "[32,1446][792,1624]"
+    },
+    {
+      "text": "Gửi yêu cầu kết nối",
+      "bounds": "[32,1656][792,1752]"
+    }
+  ]
+}
