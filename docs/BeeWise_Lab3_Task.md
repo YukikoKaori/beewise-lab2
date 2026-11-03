@@ -1,5 +1,20 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
+> **Bao acceptance closeout — 03/11/2026 (current). B-03.2 COMPLETE — FIRESTORE ALTERNATIVE VERIFIED.**
+> API35 default APK: three controlled cold Home/no-ANR runs, real360/412dp,
+> native30s timeout/UI retry/same hash/no extra report, guest error, A→B eventual
+> callback isolation and fresh export_report DebugView(subject2,size18) PASS.
+> Users Console, FCM Console-send/permission-denied and RC before/after/restore
+> receipts now accessible. RC baseline/debug/network/display/root restored.
+> **B-04 remains PARTIALLY VERIFIED:** App Check API DISABLED/provider success
+> unverified; owner confirms no trusted staging/backend for onboarding/payment.
+> [All-B status, actual evidence and exact dependencies](../evidence/cloud/bao-acceptance-20261103/README.md)
+> · [Complete audit matrix](../evidence/cloud/bao-acceptance-20261103/audit-matrix.md).
+> Base/merged PR #12 `8c494f0780aab7c41796244ab78b5c4ffb1daff4`, refetched.
+> Local full gates PASS; exact final HEAD Actions in delivery PR. No app/security
+> behavior change or auto merge. Nguyen-owned statuses are unchanged.
+> All older dated entries below are historical snapshots, not current blockers.
+
 > **Final Bao handoff — 03/11/2026 (latest): Bao scope / B-03.2 PARTIALLY VERIFIED.**
 > Independently verified PR #11 MERGED; current fetched main
 > `b45bdce4d3a68006a28ca8e587fdece0187a8660`. Implementation/deployment/native
@@ -93,7 +108,7 @@ Giới hạn: headless emulator, chưa test release-mode/máy thật/API35-36; b
 - [ ] **App/ba flow** (v5 tr.1, 4): màn và **3 luồng Lab 2**, dữ liệu thật, loading/data/empty/error/recovery. Source có 12 màn; chưa chứng minh đủ ba flow live. Mốc ≥8 màn thuộc yêu cầu đầu vào/lịch sử, **không được v5 xác nhận lại**.
 - [x] **Kiến trúc** (tr.1, 4): Riverpod/MVVM, View → ViewModel → Service → Firebase SDK; source có provider/controller/service boundary. Nguyên còn audit UI/Figma; kiến trúc không thay E2E.
 - [ ] **Auth** (tr.5-7): Google, auth-state restore, cancel/logout, protected screens, lỗi mạng, ảnh app/Authentication Users Console. Runtime Email/Password + Google đã live verified [E3]; chốt ảnh Console trong gói nộp.
-- [ ] **Storage** (tr.8-10): ít nhất một file (BeeWise dùng PDF), upload `reports/{uid}/...`, progress/download URL/success/error, owner-only rules, unauthorized/offline tests và tệp trong Console. **Rubric gốc (historical); owner báo mentor đã duyệt Firestore Base64 thay thế. Không cần Blaze/bucket/Storage deployment; B-03.2 chưa live verified.**
+- [ ] **Storage** (tr.8-10): ít nhất một file (BeeWise dùng PDF), upload `reports/{uid}/...`, progress/download URL/success/error, owner-only rules, unauthorized/offline tests và tệp trong Console. **Rubric gốc (historical); owner báo mentor đã duyệt Firestore Base64 thay thế. Không cần Blaze/bucket/Storage deployment; B-03.2 Firestore alternative COMPLETE; Storage remains DEFERRED.**
 - [ ] **FCM** (tr.11-13): Android 13+ permission, foreground/background/terminated, inbox/tap; v5 yêu cầu gửi thử từ Console và kiểm tra từ chối quyền. Native delivery/tap/ownership đã verified [E4]; chốt Console-send và denial receipt.
 - [x] **Analytics ≥7 business event types** (tr.14-16): DebugView thật cho `login`, `logout`, `search`, `view_tutor`, `ai_match_no_results`, `sign_up`, `export_report` [E5]. Không đếm SDK auto-events cho đủ bảy.
 - [ ] **Analytics plan/evidence** (tr.15-16): trigger, kiểu tham số, câu hỏi sản phẩm, bước flow, ảnh từng event trong kế hoạch. Plan nhiều hơn bảy event; `upload_report`/workflow events chưa chạy không được gọi verified. Bảo/Nguyên chốt plan theo scope ba flow.
@@ -122,13 +137,13 @@ Mỗi người fetch latest main, branch/working copy riêng; không tiếp tụ
 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
-| B-01 | Bảo | Default Android APK; startup/runtime 360dp/412dp | PARTIALLY COMPLETE | Build + ba settled cold-process starts + native UI/navigation [E1] [E2] | Handoff receipts; kiểm tra máy thật/release/API35-36 khi có; giữ immediate-boot limitation | Device/toolchain; không clear userdata/suppress ANR |
-| B-02 | Bảo | Auth + Firestore/role/data thật | PARTIALLY COMPLETE | Email/Password/Google/cancel/restore/logout, role recovery; strict rules/index deployed; **9/9 foreign authenticated reads denied** [E3] [E11] | Chốt Users Console receipt; catalog thật có quyền sử dụng; không gọi fixtures là real product data | Chủ dữ liệu/consent; Nguyên cùng chạy flow |
-| B-03 | Bảo | Sáu Firebase services, nhánh lỗi | PARTIALLY COMPLETE | Năm dịch vụ có scoped runtime/Console proof; PDF Firestore alternative IMPLEMENTED — LIVE VERIFICATION PENDING | Chốt rules release được owner duyệt, catalog được phép và live receipts; không lặp test đã verified khi chưa có lý do | Rules deployment authorization; dữ liệu hợp lệ; cửa sổ Console |
-| B-04 | Bảo | Trusted business workflows | PARTIALLY COMPLETE; trusted live E2E BLOCKED | Client/rules/unit boundaries có, contract [E12]; trusted producer/payment/schedule chưa live | Chốt ba flow; chỉ trusted staging tối thiểu nếu cần và được phép; không ưu tiên full processor trước Firebase/QA | Mentor/team chốt flow; staff/provider khi cần |
-| B-05 | Bảo | Evidence/integration handoff | PARTIALLY COMPLETE | [E1]-[E7], [E11], hashes/audit; scope probe/default rõ | Bàn giao service → thao tác → SHA/APK/device/time → app/log/Console; bản che PII truy cập được, freeze trước demo | Nguyên nhận; private originals không tự là public link |
+| B-01 | Bảo | Default Android APK; startup/runtime360dp/412dp | COMPLETE controlled environment | Three final API35 cold PIDs/Home/no ANR; warm timing/actual follow-up, real widths [E13] | Release/physical/immediate API37 parity not claimed; diagnostic ADB instability documented | Preserve userdata/detection; reopen on reproducible settled BeeWise-only ANR |
+| B-02 | Bảo | Auth + Firestore/role/approved data | COMPLETE approved scope | Users Console + real A/B native owner/foreign server checks, disclosed consented demo, current rules/index match [E13] | Demo professionally unverified; no general production catalog claim | Approved data only; no Admin bypass |
+| B-03 | Bảo | Six Firebase services and tested error branches | COMPLETE tested scope | B-03.1–6 below; actual native/Console receipts [E13] | Future workflow events outside verified minimum remain mapped, not claimed | Storage DEFERRED; Firestore PDF alternative verified |
+| B-04 | Bảo | Discover/connect, Guest AI, trusted onboarding | PARTIALLY VERIFIED; provider/trusted E2E BLOCKED | Actual parent request/chat/text server roundtrip, AI safe error/manual recovery and strict boundaries [E13] | App Check API DISABLED; owner confirms no trusted staging/backend for consultant proposals/invoices/verified payment/schedule | Owner-approved provider setup and legitimate trusted producer/fixtures per backend contract |
+| B-05 | Bảo | Bao evidence/integration handoff | COMPLETE Bao evidence package | All-B audit matrix, source/APK/time/hash receipts, actual redacted Console/native images and Nguyen guide [E13] | B-04 and Nguyen-owned deliverables explicitly remain open; exact final CI in delivery PR | Historical evidence immutable; privacy/link/hash audit |
 
-**B-02 đã đạt trong scope:** own Parent positive controls; A→B, B→A, Google→A đều bị deny foreign Parent/application/devices qua native SDK. Đây là **read negatives trên debug-only probe**, không Admin bypass hay live malicious-write test. Sáu catalog records là `[TEST]`/synthetic/unverified: đọc từ server nhưng **chưa đủ catalog thật**, AI loại chúng khỏi recommendations.
+**Historical B-02 scope before consented demo/Console closeout [E13]:** own Parent positive controls; A→B, B→A, Google→A đều bị deny foreign Parent/application/devices qua native SDK. Đây là **read negatives trên debug-only probe**, không Admin bypass hay live malicious-write test. Sáu catalog records là `[TEST]`/synthetic/unverified: đọc từ server nhưng **chưa đủ catalog thật**, AI loại chúng khỏi recommendations.
 
 ## 6. Bảng task Nguyên
 
@@ -155,12 +170,12 @@ Mỗi hàng là subtask B-03 riêng. Status xét **đủ receipt v5**, không ph
 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
-| B-03.1 Auth | Bảo | Google/Email, restore/cancel/logout, protected/error states, Users Console | PARTIALLY COMPLETE (runtime COMPLETE trong scope) | Native A/B/Google + role/account-check recovery [E3] | Đính kèm/kiểm tra Users Console đã che PII cho gói nộp; không ghi thiếu Google Sign-In | Console access, private handoff |
-| B-03.2 Firestore PDF alternative | Bảo | Một PDF/document `reports/{uid}/files/{reportId}`, Base64 ≤500 KiB, owner-only parent rules, server ack/read, authenticated download; không public URL | **PARTIALLY VERIFIED** | [Native/live evidence, hashes, Console and failed controls](../evidence/cloud/firestore-reports/live-20261103/README.md); giữ [E1] [E5] như history | Chốt native application timeout/retry, durable export_report DebugView parameter screenshot và giới hạn pending-callback/missing-auth UI đã ghi rõ; core roundtrip/A-B isolation đã PASS | Đã duyệt đúng rules diff, tạo một consented demo professionally unverified; không Blaze/bucket. Emulator/mock không thay live proof |
-| B-03.3 FCM | Bảo | Android 13+ permission/inbox, foreground/background/terminated, tap/ownership | PARTIALLY COMPLETE (delivery/lifecycle scoped COMPLETE) | First-login race fixed; native A/B/Google ownership, 3 states và terminated tap Search [E3] [E4] | Chốt riêng Console-send và permission-denied receipts theo tr.13; giữ generation/journal/quarantine | Account/device, phối hợp sender/Console |
-| B-03.4 Analytics | Bảo | ≥7 business events, DebugView, typed non-PII params/identity | COMPLETE cho minimum bảy loại đã test | Bảy events mục 3; Google method; A→logout→guest→B→logout→guest, guest không `_id`, Console correlation [E5] | Handoff per-event receipts; đối chiếu plan/flow, không gọi mọi planned event verified | Nguyên ghép demo; events PDF/workflow theo task tương ứng |
-| B-03.5 Crashlytics | Bảo | Real non-fatal, deliberate fatal, identity/keys, app recovery | COMPLETE cho scoped Console checks | Matching failure, fatal/custom keys, Google fatal User ID match [E6] | Bản che UID; ghi persisted keys không xác định fatal trigger; không suy rộng non-fatal identity/logout clear | Private originals + handoff |
-| B-03.6 Remote Config | Bảo | ≥2 params đổi UI không rebuild; defaults/offline/cache; Console trước/sau | PARTIALLY COMPLETE (same-APK behavior COMPLETE) | Apply/restore `ai_matching_enabled`, `ai_result_limit`, `home_tutor_limit`; visible gate/limits + tests [E7] | Chốt ảnh Console giá trị trước/sau cùng ảnh app, giải thích fetch/cache; restore sau experiment | Owner authorization, coordinated RC window |
+| B-03.1 Auth | Bảo | Google/Email, restore/cancel/logout, protected/error states, Users Console | COMPLETE tested scope | Actual masked Users Console plus prior valid native Google/email/cancel/restore and fresh managed A/B flows [E13] | No new account creation; historical scope retained | Consented accounts only |
+| B-03.2 Firestore PDF alternative | Bảo | Private Firestore PDF, server ack/read, download/hash/preview, errors/isolation, Console | **COMPLETE — FIRESTORE ALTERNATIVE VERIFIED** | TC-PDF01–05: actual native30s/error/retry, missing-auth UI, B-before-old-settle isolation; actual export DebugView subject2/size18; prior upload/immutable proof [E13] | Instrumented raw Auth SDK race scope distinguished from managed logout; no private PDF in Git | Exactly one separately approved extra A report; four old preserved; no new deploy/Storage |
+| B-03.3 FCM | Bảo | Permission/inbox, foreground/background/terminated, tap/ownership, Console-send | COMPLETE tested scope | Actual denied permission + Console test background receipt/tap Home; prior guarded three-state Search tap/lifecycle proof [E13] | Console notification is not recipient-scoped deep-link proof; prior proof retained | Generation/journal/quarantine/fail-closed unchanged |
+| B-03.4 Analytics | Bảo | ≥7 business events, DebugView, typed non-PII params/identity | COMPLETE verified minimum | Seven historical types/identity preserved, actual artifacts now in Git; fresh export parameters [E13] | Planned/provider/trusted workflow events individually mapped, not all verified | No identity reset/workaround based on stale presentation |
+| B-03.5 Crashlytics | Bảo | Real fatal/nonfatal, keys/stack/recovery | COMPLETE scoped Console checks | Hash-matched historical actual screenshots with UID/browser PII masked [E13] | Persisted keys do not establish fatal trigger; no new nonfatal identity/logout claim | No new deliberate crash |
+| B-03.6 Remote Config | Bảo | ≥2 parameter effects without rebuild; defaults/cache; Console before/after | COMPLETE tested scope | Prior same-APK binding Home cap + gate; fresh exact-approved Console v3 false/1/2 and empty-v4 restore, app disabled1→enabled3 [E13] | Fresh single eligible record cannot independently bind Home cap; prior valid evidence reused | ETag guarded apply/restore; normal5min cache; no pending restore |
 
 Analytics null clearing đã đủ native FA-SVC removal + complete guest bundles không `_id`, hai guest search tới DebugView. Console có thể giữ property lịch sử; **không tái mở blocker thiếu quyền/UID clearing cũ**, không đổi identity theo stale display. Không có event-level backend export; không suy rộng ngoài scope [E5].
 
@@ -183,17 +198,17 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 1. **Firestore PDF alternative:** core native roundtrip/live A-B/Console/upload DebugView đã có bằng chứng; còn deadline/retry native và durable export DebugView receipt. Owner đã duyệt exact rules diff và một demo tutor, không còn blocker thiếu tutor/approval. Không yêu cầu Blaze/bucket hay deploy Storage.
 2. **Catalog/ba flow:** chưa có catalog thật được phép; synthetic records không đủ. Chốt scope Lab 2/trusted staging khi cần; không nới rules demo payment/schedule.
 3. **QA:** ARTEMIS host, Gemini credential and Android 36 emulator đã hoạt động cho smoke runs; xem kết quả và giới hạn mới nhất ở N-03/test plan. Ma trận ≥10 ca ×3 và exploration 15-30 phút vẫn chưa đủ evidence. Các ca cần catalog/staging phải có fixtures riêng được duyệt. N-04 đã được owner xác nhận reviewer duyệt và remediation đã merge qua PR #9; không suy diễn trạng thái N-03 từ kết quả review.
-4. **Gói nộp:** Users Console, FCM Console-send/denied permission, RC parameter before/after; chuyển private receipts thành bản chia sẻ đã che PII. DRAFT/PPTX không thay final PDFs/video.
+4. **Gói Bao đã có [E13]:** Users Console, FCM Console-send/denied permission, RC parameter before/after/restore và bản chia sẻ đã che PII. DRAFT/PPTX không thay final PDFs/video.
 5. **Android:** immediate-boot API37 và physical/release/API35-36 chưa kiểm tra toàn diện. Giới hạn sau scoped startup PASS, không giữ PR #3 đã merge chờ sửa vô hạn.
 
 ## 10. Thứ tự tiếp theo P0/P1/P2
 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
-| P0-1 | Bảo | Firestore PDF live verification | PARTIALLY VERIFIED | B-03.2, [live package](../evidence/cloud/firestore-reports/live-20261103/README.md) | Settled device: distinct native timeout/retry + durable export_report DebugView receipt; core roundtrip/A-B/server proof done | Device/Console evidence; approval/catalog resolved |
-| P0-2 | Bảo + Nguyên | Catalog/ba flow và evidence handoff | PARTIALLY COMPLETE | B-02/B-04/B-05, [E3] [E12] | Chốt data thật, ba flow và ma trận receipts còn thiếu; bàn giao kết quả đã chốt | Chủ dữ liệu, mentor nếu đổi scope |
+| P0-1 | Bảo | Firestore PDF live verification | COMPLETE | B-03.2 [E13] | Native timeout/retry/guest/switch and fresh export Console closed | Keep actual receipts/approved data |
+| P0-2 | Bảo + Nguyên | Three flows and evidence handoff | PARTIALLY VERIFIED | B-04/B-05 [E13] | Provider App Check setup and trusted staging/producer; parent flow and packet done | Owner confirms no trusted backend |
 | P0-3 | Nguyên | ARTEMIS/Pro execution | BLOCKED / PARTIALLY COMPLETE | N-03, [E8] | Xác nhận host/key/device; chạy ≥10 ca ×3 và exploration 15-30 phút, lưu receipts và phân loại kết quả trung thực | Host/credential quota, device, catalog/staging fixtures được duyệt |
-| P1-1 | Bảo | Firestore PDF live và Console packet | PARTIALLY COMPLETE | B-03.1-6 | Sau authorization: server save/download/hash/ownership/offline; chốt Auth/FCM/RC receipts | P0-1/P0-2, cửa sổ Console |
+| P1-1 | Bảo | Firebase Console packet | COMPLETE tested scope | B-03.1–6 [E13] | Actual Users/FCM/RC/PDF panes available, prior Crashlytics/identity retained | No new deployment needed |
 | P1-2 | Nguyên; Bảo review cloud | UI/responsive, final PDFs/video/links | PARTIALLY COMPLETE | N-01/N-02/N-05/N-06, [E10] | Audit UI, integration freeze và đóng gói bản nộp thật | P0-2/P0-3, Firestore PDF live |
 | P2-1 | Bảo + Nguyên | Mở rộng validation/product nếu scope cần | NEEDS VERIFICATION | B-01/B-04, [E2] [E12] | Physical/release/API35-36 khi có; pagination >100, quota/inbox/backend projection khi cần; không để full payment/backend lấn mandatory Firebase/ARTEMIS/demo | Device hoặc product contract được duyệt |
 
@@ -242,7 +257,7 @@ Giữ nguyên các sửa responsive/ARTEMIS đã merge ở PR #5, evidence cũ v
 | [E4] | [Terminated tap](../evidence/android/pr3-completion/terminated-tap-sequence.json), [follow-up](../evidence/cloud/pr3-followup-validation.json) | Background; terminated PID absent trước send, receiver PID, actual Search 12.84s/18.47s; Home-only cũ không là route proof. |
 | [E5] | [Seven events](../evidence/cloud/reliability-validation.json), [native identity](../evidence/cloud/pr3-identity-native-final.json), [DebugView](../evidence/cloud/pr3-debugview-correlation.json) | Bảy loại là union receipts cũ/mới; null clearing + guest events verified, stale properties không là blocker mới. |
 | [E6] | [Console fatal/non-fatal](../evidence/cloud/console-runtime-validation.json), [fatal identity](../evidence/cloud/google-runtime-validation.json) | Matching failure + deliberate fatal/keys/Google UID; private originals có hashes; không suy rộng non-fatal/logout identity. |
-| [E7] | [RC roundtrip](../evidence/cloud/remote-config-roundtrip.json), [native before/after](../evidence/firebase/remote-config/README.md) | Same-APK gate/limits, defaults và restore; thiếu Console values receipt, không thiếu thay đổi hành vi thật. |
+| [E7] | [RC roundtrip](../evidence/cloud/remote-config-roundtrip.json), [native behavior](../evidence/firebase/remote-config/README.md), [new Console/app packet](../evidence/cloud/bao-acceptance-20261103/README.md) | Historical same-APK binding cap plus current exact-approved Console apply/restore; cache/defaults preserved. |
 | [E8] | [Test plan](test-plan.md), [harness](../e2e_test/), [blocked preflight](../evidence/corrective/artemis-latest-blocked.json) | Authored/collect/preflight; chưa committed execution traces/JUnit. Hỏi Nguyên về evidence ngoài repo. |
 | [E9] | [Review record](code-review.md), [PR #2 lifecycle review](pr2-lifecycle-review.md) | Internal Codex findings/fix commits có; external transcript/approval NOT VERIFIED. |
 | [E10] | [Report source](lab3-report.md), [FINAL report PDF](../output/pdf/BeeWise-Lab3-Implementation-Report-FINAL.pdf), [FINAL 13-slide PPTX](../output/presentations/BeeWise-Lab3-Review-FINAL.pptx), [historical draft PDF](../output/pdf/BeeWise-Lab3-Implementation-Report-DRAFT.pdf), [historical draft PPTX](../output/presentations/BeeWise-Lab3-Review-DRAFT.pptx), [demo plan](demo-script.md) | Report PDF final has 9 rendered pages. PPTX passes structural/layout checks; mandatory slide PDF export remains unavailable in current Artifact Tool runtime. Neither final artifact closes N-05 until the slide PDF is produced/reviewed and Bảo signs off claims/links. |
@@ -267,3 +282,5 @@ Giữ nguyên các sửa responsive/ARTEMIS đã merge ở PR #5, evidence cũ v
 **COMPLETE:** hàng có evidence đủ trong scope nêu. **PARTIALLY COMPLETE:** có code/kết quả, thiếu bước/receipt bắt buộc. **NOT STARTED:** đã xác nhận chưa bắt đầu. **BLOCKED:** thiếu dependency cụ thể. **DEFERRED:** owner hoãn, không miễn yêu cầu. **NEEDS VERIFICATION / NOT VERIFIED:** thiếu evidence kết luận, không đồng nghĩa owner chưa làm.
 
 **PASS/FAIL/NOT RUN** mô tả từng phép kiểm tra, không thay status cả task. Phân biệt source, mock/unit, Firebase Emulator rules, CI APK, native emulator, physical device, live Console/service. Giữ evidence gốc/lịch sử tại link; tracker chỉ giữ trạng thái hiện hành, không chép nối snapshots mâu thuẫn.
+
+[E13]: ../evidence/cloud/bao-acceptance-20261103/README.md "Current Bao native and Console acceptance packet"
