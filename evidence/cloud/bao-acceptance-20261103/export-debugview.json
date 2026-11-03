@@ -1,0 +1,83 @@
+{
+  "capturedAtUtc": "2026-11-03T10:17:34.938584+00:00",
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "apkSha256": "1ccb8ea3fbc1bc916c00dbf8e6ace783a9ff049e00e85a01acf96dd9dddc414c",
+  "generatedPdf": {
+    "bytes": 19315,
+    "sha256": "b84ea70e443838007dee8bf683e0656b5d0b616b7ff086f50b1ae49a7a8a6af0",
+    "validHeader": true,
+    "file_size_kb": 18,
+    "calculation": "actual byte length integer division by 1024, unchanged ReportController"
+  },
+  "browserRecovery": "Existing Chrome Analytics iframe blank. Fresh IAB session authenticated by owner loads real DebugView. No explicit permission denial was observed; no permission/config changes. IAB cross-frame actions required native window input.",
+  "artifacts": [
+    {
+      "label": "export-debugview-size-readable",
+      "observedAtUtc": "2026-11-03T10:16:39.223112+00:00",
+      "event": "export_report",
+      "eventLocalTime": "2026-11-03 17:11:50 UTC+7",
+      "projectId": "beewise-lab-3",
+      "analyticsProperty": "560584336",
+      "parametersObserved": {
+        "file_size_kb": 18
+      },
+      "originalPrivateSha256": "f2f3858f9ffd8fd3590ee9d5a6713d4d5cd9475588c6ef441a42c0ae99824825",
+      "publishedSha256": "26a7e2cefa30f40b5af07d5a18e9826eec31dab2be48e2337dd9e2421b183f41",
+      "cropOriginalPixels": [
+        0,
+        0,
+        1396,
+        866
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1338,
+          0,
+          1395,
+          65
+        ],
+        [
+          973,
+          489,
+          1330,
+          646
+        ]
+      ],
+      "scope": "Actual Firebase DebugView parameter pane; genuine UI PDF generation, no direct Analytics event injection; no new cloud report"
+    },
+    {
+      "label": "export-debugview-subjects",
+      "observedAtUtc": "2026-11-03T10:16:46.315145+00:00",
+      "event": "export_report",
+      "eventLocalTime": "2026-11-03 17:11:50 UTC+7",
+      "projectId": "beewise-lab-3",
+      "analyticsProperty": "560584336",
+      "parametersObserved": {
+        "subject_count": 2
+      },
+      "originalPrivateSha256": "829225b91c4d42df357d2d4cf06b239c3ec54839b7d2250d947b60c7ef5c7b50",
+      "publishedSha256": "a4b8ba0163b3b60e5db53451c1f78ceb48c0961136e33d726b1a8f90826271de",
+      "cropOriginalPixels": [
+        0,
+        0,
+        1396,
+        866
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1338,
+          0,
+          1395,
+          65
+        ],
+        [
+          973,
+          489,
+          1330,
+          646
+        ]
+      ],
+      "scope": "Actual Firebase DebugView parameter pane; genuine UI PDF generation, no direct Analytics event injection; no new cloud report"
+    }
+  ]
+}

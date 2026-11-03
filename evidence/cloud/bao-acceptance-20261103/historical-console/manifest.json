@@ -1,0 +1,341 @@
+{
+  "privacy": "Browser tabs/address/bookmarks cropped; account avatar and raw UID masked; values untouched",
+  "artifacts": [
+    {
+      "label": "analytics-login-method-password",
+      "observedAtUtc": "2026-10-31T04:30:12.161Z",
+      "originalSha256": "6250b66e50baa7e4f668004791021fbbf99d3df81aefa1d3a46439fb284345eb",
+      "publishedSha256": "21ec38e5152f404a9ba3eae612085b53cc58e540840de786ea699240b61b0849",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "analytics-logout-receipt",
+      "observedAtUtc": "2026-10-31T04:30:20.338Z",
+      "originalSha256": "b2750a983952d77b550e581cd0c32bb890b4f9767532a6048841e3f1b70e0e05",
+      "publishedSha256": "acaf9057e4821c614621ae39be48b947a5e518d13cdc51b7e2d7ba7969f6e2cd",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "analytics-search-view-tutor-stream",
+      "observedAtUtc": "2026-10-31T04:27:38.840Z",
+      "originalSha256": "64f018432888d2470bd580b01f5d75b5f5c647ed197cc75420d01fcdbcbd905e",
+      "publishedSha256": "366fe843dd64e9ae1eb16795d2634ab67f5f80f375b7f03138062260a5da2b60",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "analytics-view-tutor-entry-source",
+      "observedAtUtc": "2026-10-31T04:28:22.799Z",
+      "originalSha256": "65c6af04305d058a424fdd2aa3240d46ac011511fd87036b3e7e790786217ffb",
+      "publishedSha256": "559ae411e2f27ca6b0199eb1937aa4afd1287a9b7698e3dd05ccb339c4a20c14",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "analytics-ai-match-no-results",
+      "observedAtUtc": "2026-10-31T04:32:58.193Z",
+      "originalSha256": "7204f3181bf03006521d124fd183dcd8933a5b4335709302ba773236313531f9",
+      "publishedSha256": "f5f8323fa8d1d916336ecc519167915697bc69309bdd9b8502eec7474d2feb95",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "reliability-signup-account-type",
+      "observedAtUtc": "2026-10-31T09:22:17.223Z",
+      "originalSha256": "863fb3c1a0f3875f17f197a6e3548a9b74498cb7310578d9824a02c43d5cfaee",
+      "publishedSha256": "8f5ad1360ce939d4590fee77ee7eac8a3acff33b8da55eb876a4031f3b1aaa61",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "reliability-signup-method",
+      "observedAtUtc": "2026-10-31T09:21:31.772Z",
+      "originalSha256": "692bdf761fca800ce37b225b63216ede8a0674d8268c1bcb80ab3d76c00a91e1",
+      "publishedSha256": "9e9746b2d35b01a5630a2d731024d56d318c3d942af7d201eb6c9a3b181c1c97",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "reliability-export-file-size",
+      "observedAtUtc": "2026-10-31T09:25:25.721Z",
+      "originalSha256": "df3d32534681e5533b2e3e2e771bb1c0c1d87c72596c60be22a495a08b1db1c1",
+      "publishedSha256": "35c5260d475299b0092e5f2179b55bf1276318f255b9db8edcaf0498163dc529",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "reliability-export-subject-count",
+      "observedAtUtc": "2026-10-31T09:25:57.452Z",
+      "originalSha256": "e921f4ea21b591b12bbe74025e03b2640526ebaf170ba486450bb358b0f905c5",
+      "publishedSha256": "46a54d4f5431de01ba1fc08ed4c143b7d135c1666d4691f619de1fc0240e989a",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "crashlytics-real-nonfatal-keys",
+      "observedAtUtc": "2026-10-31T04:23:14.841Z",
+      "originalSha256": "dd9746d8cc05fc4b54d88ffff77bd0108301ffa06534e234696400383fa2fc1b",
+      "publishedSha256": "244b20c6143d15b5843662decacab5c5a11defe46f06fceb28f11a67b97a4664",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "crashlytics-real-nonfatal-stack",
+      "observedAtUtc": "2026-10-31T04:22:44.913Z",
+      "originalSha256": "cb5d66ea3af7ff1c1ea4f982538fcdb915412a3a010b81adad4b7777ab308694",
+      "publishedSha256": "7cd363e9bfbc4ef6063284d4551fe36bdb71d53039b9a3cc9f35a45b6e74c565",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "crashlytics-fatal-keys",
+      "observedAtUtc": "2026-10-31T04:22:04.343Z",
+      "originalSha256": "32300bccae3e4ad79430703e910f71c19c3a603d6d80ba1b75637330cfc79f03",
+      "publishedSha256": "4b9f76cabc102bd893d6f4a15cda89e3ae9d43676c225cbcedd989837b0592cb",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "crashlytics-fatal-stack",
+      "observedAtUtc": "2026-10-31T04:21:56.934Z",
+      "originalSha256": "3b350e48f967810990e0e2f516abe8546c1ddbef654ff172b7c03700136de75f",
+      "publishedSha256": "a6f38ad6b46d3e98f4e2304ce9523347048fe176430fea30dd3827169108fc7d",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "google-crashlytics-user-data",
+      "observedAtUtc": "2026-10-31T08:30:46.934Z",
+      "originalSha256": "ce85634e7da52965127679cb3c8546145b187b16f2dc3b048c6e38e5ad05b8ff",
+      "publishedSha256": "c638dff9fe5d66d8e9e1e4ade992a07a11881524ee3a10b97e9d2c35c0f1af11",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ],
+        [
+          1148,
+          370,
+          1440,
+          398
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    },
+    {
+      "label": "google-crashlytics-fatal-stack",
+      "observedAtUtc": "2026-10-31T08:26:20.971Z",
+      "originalSha256": "46f2ce8ebab468c58ad6c312045ee2332be187345eeaf686e096e2b98f9feb2c",
+      "publishedSha256": "c09cdd321b8fbe8e7741172237dc277b5df170ba33273bd4b5d58779ea229bdd",
+      "cropOriginalPixels": [
+        0,
+        122,
+        1536,
+        816
+      ],
+      "redactedRectanglesAfterCrop": [
+        [
+          1480,
+          0,
+          1535,
+          65
+        ]
+      ],
+      "scope": "Historical actual Console capture; old APK/date, not a fresh API35 event",
+      "sourceReceiptHashMatched": true
+    }
+  ]
+}
