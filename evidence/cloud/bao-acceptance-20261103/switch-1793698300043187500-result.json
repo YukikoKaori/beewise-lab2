@@ -1,0 +1,46 @@
+{
+  "atUtc": "2026-11-03T09:31:40.043187+00:00",
+  "scope": "real production ReportController.download; attached-debugger Auth SDK signOut/signIn exercises raw auth-state cancellation, not managed AuthController logout; FCM journal remains fail-closed",
+  "firestoreIp": "172.217.194.95",
+  "samples": [
+    {
+      "elapsedMs": 3578,
+      "guest": "true",
+      "stage": "idle"
+    },
+    {
+      "elapsedMs": 6265,
+      "isB": "false",
+      "stage": "idle",
+      "hasResult": "false",
+      "hasPath": "false"
+    },
+    {
+      "elapsedMs": 6906,
+      "isB": "false",
+      "stage": "idle",
+      "hasResult": "false",
+      "hasPath": "false"
+    },
+    {
+      "elapsedMs": 7547,
+      "isB": "true",
+      "stage": "idle",
+      "hasResult": "false",
+      "hasPath": "false"
+    }
+  ],
+  "label": "switch-1793698300043187500",
+  "pendingStage": "downloading",
+  "bAuthenticatedBeforeRestore": true,
+  "restoreExitCode": 0,
+  "ownedRuleAbsentAfter": true,
+  "nativeLifecycle": [
+    "11-03 16:31:43.497  5679  5679 I flutter : BaoAcceptance switch-1793698300043187500 A signed out",
+    "11-03 16:31:47.369  5679  5679 I flutter : BaoAcceptance switch-1793698300043187500 B authenticated",
+    "11-03 16:31:53.278  5679  5679 I flutter : BaoAcceptance switch-1793698300043187500 settled ms=13275 ownerChanged=true stage=idle hasResult=false hasPath=false"
+  ],
+  "finalStage": "idle",
+  "finalHasResult": "false",
+  "finalHasPath": "false"
+}

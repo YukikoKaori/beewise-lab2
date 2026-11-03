@@ -1,0 +1,26 @@
+[
+  {
+    "label": "final-360-home",
+    "capturedAtUtc": "2026-11-03T10:05:28.180253+00:00",
+    "sha256": "706f5073a1b90291513a2828490ffbd46c835449c5d092b7fa753d73894697a5",
+    "apkSha256": "1ccb8ea3fbc1bc916c00dbf8e6ace783a9ff049e00e85a01acf96dd9dddc414c",
+    "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+    "capture": "Actual ADB, no image transformation"
+  },
+  {
+    "label": "final-412-home",
+    "capturedAtUtc": "2026-11-03T10:05:18.184691+00:00",
+    "sha256": "cf9e269f9b57a3a34dc9c90dfa75d0210d72b2e57b9d5bd5501fa0e754ed49d9",
+    "apkSha256": "1ccb8ea3fbc1bc916c00dbf8e6ace783a9ff049e00e85a01acf96dd9dddc414c",
+    "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+    "capture": "Actual ADB, no image transformation"
+  },
+  {
+    "label": "final-warm-followup",
+    "capturedAtUtc": "2026-11-03T10:07:41.819452+00:00",
+    "sha256": "bf746584024fbe674895783eef9e37ee87148f1b7ebdcb26223ebc7a0d3125c4",
+    "apkSha256": "1ccb8ea3fbc1bc916c00dbf8e6ace783a9ff049e00e85a01acf96dd9dddc414c",
+    "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+    "capture": "Actual ADB, no image transformation"
+  }
+]

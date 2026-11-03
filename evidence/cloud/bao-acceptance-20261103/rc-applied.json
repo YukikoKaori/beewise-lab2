@@ -1,0 +1,16 @@
+{
+  "capturedAtUtc": "2026-11-03T09:49:32.438152+00:00",
+  "projectId": "beewise-lab-3",
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "capture": "Actual Chrome Console screenshot via computer-use; only rectangular identity redactions, no reconstruction",
+  "originalPrivateSha256": "6edcd517996d36379bd8e2a0a4ab92cdc7d5c5956e46afdbb78157db7d15ecfe",
+  "publishedSha256": "fa146f13533c1e885e20b1d47f6cec9f22b178bfc37294c5bf734ebcbc2d3948",
+  "rectangles": [
+    {
+      "h": 40,
+      "w": 40,
+      "x": 1488,
+      "y": 4
+    }
+  ]
+}

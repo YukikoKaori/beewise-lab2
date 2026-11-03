@@ -1,0 +1,18 @@
+{
+  "capturedAtUtc": "2026-11-03T08:58:32.942676+00:00",
+  "device": "emulator-5562",
+  "api": 35,
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "applicationSourceTree": "Same lib/android/firebase tree as b45bdce4d3a68006a28ca8e587fdece0187a8660 built APK; only documentation changed in main",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "originalPrivateSha256": "b549a26a64cc1ff514038a36a93be7ec92b46eacf2bbcaddd0d5f4287c159904",
+  "publishedSha256": "2c31a1d8ab083fc07125099793b7a60bbf57c92bd41a6222b341b06faa34caf5",
+  "redactedRectangles": [],
+  "visibleLabels": [
+    "Allow BeeWise to send you notifications?",
+    "Allow",
+    "Don’t allow"
+  ],
+  "capture": "Actual ADB screenshot; only PII rectangles redacted",
+  "publishedAtUtc": "2026-11-03T08:58:32.942676+00:00"
+}
