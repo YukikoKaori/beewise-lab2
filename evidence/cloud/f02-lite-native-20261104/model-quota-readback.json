@@ -1,0 +1,25 @@
+{
+  "atUtc": "2026-11-03T19:41:16.486Z",
+  "project": "beewise-lab-3",
+  "readOnly": true,
+  "model": "gemini-3.5-flash-lite",
+  "requestLimits": [
+    {
+      "unit": "1/min/{project}/{model}",
+      "effectiveLimit": "15",
+      "defaultLimit": "15",
+      "dimensions": {
+        "model": "gemini-3.5-flash-lite"
+      }
+    },
+    {
+      "unit": "1/d/{project}/{model}",
+      "effectiveLimit": "500",
+      "defaultLimit": "500",
+      "dimensions": {
+        "model": "gemini-3.5-flash-lite"
+      }
+    }
+  ],
+  "actualUsage": "NOT measured; configured limits only; no quota changes"
+}

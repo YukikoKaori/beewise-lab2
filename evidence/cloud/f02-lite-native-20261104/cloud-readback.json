@@ -1,0 +1,67 @@
+{
+  "timestampUtc": "2026-11-03T20:19:11.395Z",
+  "project": "beewise-lab-3",
+  "app": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+  "readOnly": true,
+  "records": [
+    {
+      "name": "firebaseappcheck.googleapis.com",
+      "http": 200,
+      "state": "ENABLED"
+    },
+    {
+      "name": "firebasevertexai.googleapis.com",
+      "http": 200,
+      "state": "ENABLED"
+    },
+    {
+      "name": "generativelanguage.googleapis.com",
+      "http": 200,
+      "state": "ENABLED"
+    },
+    {
+      "name": "aiplatform.googleapis.com",
+      "http": 200,
+      "state": "DISABLED"
+    },
+    {
+      "name": "cloudfunctions.googleapis.com",
+      "http": 200,
+      "state": "DISABLED"
+    },
+    {
+      "name": "billing",
+      "http": 200,
+      "billingEnabled": false
+    },
+    {
+      "name": "android",
+      "http": 200,
+      "appId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+      "packageName": "com.beewise.beewise",
+      "state": "ACTIVE"
+    },
+    {
+      "name": "enforcement",
+      "http": 200,
+      "services": [
+        {
+          "name": "projects/840483888286/services/firebaseml.googleapis.com",
+          "enforcementMode": "ENFORCED"
+        }
+      ]
+    },
+    {
+      "name": "playIntegrity",
+      "http": 200,
+      "configured": true,
+      "tokenTtl": "3600s"
+    },
+    {
+      "name": "debugTokens",
+      "http": 200,
+      "count": 2,
+      "complete": true
+    }
+  ]
+}

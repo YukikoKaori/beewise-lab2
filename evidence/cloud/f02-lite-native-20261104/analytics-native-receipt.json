@@ -1,0 +1,28 @@
+{
+  "capturedAtUtc": "2026-11-03T20:18:54.899936+00:00",
+  "matches": [
+    {
+      "eventName": "ai_match_success",
+      "eventTimestampMs": 1793736877994,
+      "resultCount": 1,
+      "source": "FA-SVC native upload bundle",
+      "bundleLoggedAtDeviceLocal": "11-04 03:16:26.723",
+      "eventAtUtc": "2026-11-03T20:14:37.994000+00:00"
+    },
+    {
+      "eventName": "ai_match_success",
+      "eventTimestampMs": 1793737059043,
+      "resultCount": 1,
+      "source": "FA-SVC native upload bundle",
+      "bundleLoggedAtDeviceLocal": "11-04 03:17:39.868",
+      "eventAtUtc": "2026-11-03T20:17:39.043000+00:00"
+    }
+  ],
+  "privacy": "Only event timestamp/count exported; raw bundle and identity properties private",
+  "debugEnabledAfterProviderCall": true,
+  "eventRelogged": false,
+  "inspectionTriggeredProviderRequest": false,
+  "actualSessionProviderResponses": 2,
+  "authorizedMaximum": 1,
+  "excessCallDisclosed": true
+}
