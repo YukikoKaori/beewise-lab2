@@ -71,7 +71,7 @@
     {
       "path": "quality-receipts.json",
       "bytes": 3347,
-      "sha256": "5272edd3b2bf6857517749c3a46db9f94e5d9b4b9f6112e98de1dad3b5dfb8e0"
+      "sha256": "a9bc7a9f692724c7da340e1b8a7e73583c21b33d0138a3f8664e2600ce5b62e9"
     },
     {
       "path": "quota-readback.json",
@@ -80,8 +80,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 8478,
-      "sha256": "0a58b3a1935c046c6606d98ce4303fa8f4a8ab7d1f47f2e3e6e835b134e98e59"
+      "bytes": 8698,
+      "sha256": "6b6fd85dd9446dddc40e5137146f1ef6536424aab3245fd3dfb64f9f5b9c4ee8"
+    },
+    {
+      "path": "runtime-config.json",
+      "bytes": 317,
+      "sha256": "080a758c21d9b72dedd2ca065b9b978bbc673d9beb05ffefc6ff777627de7736"
     }
   ]
 }
