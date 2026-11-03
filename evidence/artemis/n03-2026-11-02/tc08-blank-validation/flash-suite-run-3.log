@@ -1,0 +1,72 @@
+ARTEMIS_HOST_HEALTH={"status": "running", "paused_error": null, "goal": "Test case TC-08. Starting point: BeeWise is signed out on Register with all fields blank..\nSteps: Tap the create-account action while leaving all fields blank and required consent unchecked. Verify required-field or consent errors are visible and registration does not succeed. Do not enter or submit data.\nUse only visible app/device state. Do not invent records or results. At the end report the requested values as one JSON object.", "pid": 50972, "session_id": "d1bc4675-b103-4856-b011-59166098fd89", "background_tasks": [], "queue": [], "model_info": {"name": "Flash", "id": "gemini-3.5-flash-lite", "provider": "google", "architecture": "ARTEMIS Flash"}, "active_tasks": [{"device_id": "emulator-5554", "session_id": "d1bc4675-b103-4856-b011-59166098fd89", "goal": "Test case TC-08. Starting point: BeeWise is signed out on Register with all fields blank..\nSteps: Tap the create-account", "pid": 50972, "ingress": "python_sdk", "acquired_at": "2026-11-02T14:11:37.944402+00:00"}]}
+E
+=================================== ERRORS ====================================
+_ ERROR at setup of test_tc08_registration_validation_does_not_create_account _
+
+self = <Coroutine test_tc08_registration_validation_does_not_create_account>
+
+    def setup(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        if runner_fixture_id not in self.fixturenames:
+            self.fixturenames.append(runner_fixture_id)
+        # When loop factories are configured, resolve the loop factory
+        # fixture early so that a factory variant change cascades cache
+        # invalidation before any async fixture checks its cache.
+        hook_caller = self.config.hook.pytest_asyncio_loop_factories
+        if hook_caller.get_hookimpls():
+            _ = self._request.getfixturevalue(_asyncio_loop_factory.__name__)
+>       return super().setup()
+               ^^^^^^^^^^^^^^^
+
+e2e_test\.venv\Lib\site-packages\pytest_asyncio\plugin.py:558: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\.venv\Lib\site-packages\pytest_asyncio\plugin.py:944: in pytest_fixture_setup
+    hook_result = yield
+                  ^^^^^
+e2e_test\.venv\Lib\site-packages\pytest_asyncio\plugin.py:407: in _asyncgen_fixture_wrapper
+    result = runner.run(setup(), context=context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\BAO NGUYEN\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\asyncio\base_events.py:691: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+e2e_test\.venv\Lib\site-packages\pytest_asyncio\plugin.py:403: in setup
+    res = await gen_obj.__anext__()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    @pytest_asyncio.fixture(scope="session")
+    async def artemis() -> AsyncIterator[ArtemisClient]:
+        base_url = os.environ.get("ARTEMIS_BASE_URL")
+        device_serial = os.environ.get("ARTEMIS_DEVICE_SERIAL")
+        if not base_url or not device_serial:
+            pytest.fail(
+                "Set ARTEMIS_BASE_URL and ARTEMIS_DEVICE_SERIAL after starting the "
+                "pinned ARTEMIS host and connecting the Android device."
+            )
+    
+        client = ArtemisClient(
+            base_url,
+            token=os.environ.get("ARTEMIS_TOKEN"),
+            device_serial=device_serial,
+            default_profile="flash",
+            request_timeout=60,
+            poll_interval=2,
+        )
+        health = await client.health()
+        print(f"ARTEMIS_HOST_HEALTH={json.dumps(health, ensure_ascii=False)}")
+        devices = await client.list_devices()
+        matches = [device for device in devices if device.serial == device_serial]
+        if not matches:
+>           pytest.fail(
+                f"Device {device_serial!r} is not listed by ARTEMIS; "
+                f"available serials: {[device.serial for device in devices]}"
+            )
+E           Failed: Device 'emulator-5554' is not listed by ARTEMIS; available serials: []
+
+e2e_test\conftest.py:41: Failed
+=========================== short test summary info ===========================
+ERROR e2e_test\test_account_and_firebase.py::test_tc08_registration_validation_does_not_create_account
+25 deselected, 1 error in 0.67s

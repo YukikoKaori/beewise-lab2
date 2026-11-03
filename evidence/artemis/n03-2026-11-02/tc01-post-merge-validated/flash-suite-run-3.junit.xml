@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="19.387" timestamp="2026-11-02T20:29:03.962265+07:00" hostname="LAPTOP-334SSQNP"><testcase classname="test_discovery" name="test_tc01_guest_home_reports_real_visible_state" time="19.187"><failure message="AssertionError: ARTEMIS did not confirm that TC-01 showed no fabricated tutor profiles.">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000020529BF3BA0&gt;
+
+    async def test_tc01_guest_home_reports_real_visible_state(run_flow):
+        """TC-01; Home; clean install, signed out, Firebase project configured."""
+&gt;       observed = await run_flow(
+            case_id="TC-01",
+            start="BeeWise is installed and signed out on Home.",
+            steps=(
+                "Open BeeWise. Read the exact app-bar title at the top of the Home "
+                "screen (do not confuse it with the marketing banner/tagline), "
+                "visible top-level destinations, "
+                "any Firebase setup/error notice, and the number of tutor cards. "
+                "Confirm whether every visible tutor card came from a visible real "
+                "Firestore result; report no fabricated profile claims."
+            ),
+            expected=(
+                '{"screen":"Home","tabs":["Trang chủ","Tìm gia sư","Ghép AI",'
+                '"Tin nhắn","Tài khoản"],"tutor_card_count":integer,'
+                '"firebase_notice_visible":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_discovery.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:91: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:115: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'The BeeWise app is open on the Home screen.\n- App-bar title: "BeeWise"\n- Visible top-level destinations: ["Trang ch... "firebase_setup_or_error_notice": null,\n  "number_of_tutor_cards": 0,\n  "real_firestore_results_confirmed": true\n}'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+                start, end = text.find("{"), text.rfind("}")
+                embedded = text[start : end + 1].replace("\\n", "\n") if start &gt;= 0 and end &gt; start else ""
+                try:
+                    value = json.loads(embedded) if embedded else _decode_tc01_prose(text)
+                except json.JSONDecodeError:
+                    value = _decode_tc01_prose(text)
+                if value is None:
+                    raise AssertionError(
+                        f"ARTEMIS output was not the required JSON observation: {text!r}"
+                    ) from error
+        else:
+            raise AssertionError(
+                f"ARTEMIS did not return a structured observation: {output!r}"
+            )
+        if not isinstance(value, dict):
+            raise AssertionError(f"Expected a JSON object, received {value!r}")
+        home_title_key = next(
+            (key for key in ("Home title", "home_title", "app_bar_title") if key in value), None
+        )
+        count_key = next(
+            (
+                key
+                for key in (
+                    "Number of tutor cards",
+                    "number_of_tutor_cards",
+                    "tutor_cards_count",
+                    "tutor_card_count",
+                )
+                if key in value
+            ),
+            None,
+        )
+        if home_title_key is not None and count_key is not None:
+            # Normalize ARTEMIS final reports to TC-01's machine-readable schema.
+            # A zero count plus explicit provenance confirmation is required.
+            count = value[count_key]
+            if not isinstance(count, int):
+                raise AssertionError(f"ARTEMIS reported an invalid tutor count: {count!r}")
+            provenance = str(
+                value.get(
+                    "Tutor cards from real Firestore results",
+                    value.get(
+                    "firestore_confirmation",
+                        value.get(
+                            "verified_firestore_result_confirmation",
+                            value.get("tutor_cards_real_firestore_confirmation", ""),
+                        ),
+                    ),
+                )
+            ).lower()
+            fabricated_confirmed = value.get("fabricated_profiles_confirmed")
+            if fabricated_confirmed is None:
+                fabricated_confirmed = value.get("fabricated_profile_claims")
+            explicit_no_fabrication = (
+                fabricated_confirmed is False
+                or "no fabricated profile claims" in provenance
+                or "no fabricated profiles" in provenance
+                or "zero fabricated profile claims" in provenance
+            )
+            if count != 0 or not explicit_no_fabrication:
+&gt;               raise AssertionError(
+                    "ARTEMIS did not confirm that TC-01 showed no fabricated "
+                    "tutor profiles."
+                )
+E               AssertionError: ARTEMIS did not confirm that TC-01 showed no fabricated tutor profiles.
+
+e2e_test\conftest.py:189: AssertionError</failure></testcase></testsuite></testsuites>
