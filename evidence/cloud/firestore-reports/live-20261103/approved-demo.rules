@@ -1,0 +1,274 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isParent(parentId) {
+      return signedIn()
+        && request.auth.uid == parentId
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && !exists(/databases/$(database)/documents/tutorApplications/$(parentId));
+    }
+    function canWriteAsParent(parentId) {
+      return isParent(parentId)
+        && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId));
+    }
+
+    // Immutable parent-owned PDFs. No public URLs, updates or deletes.
+    match /reports/{userId}/files/{reportId} {
+      function permittedTutor(tutorId) {
+        let tutor = get(/databases/$(database)/documents/tutors/$(tutorId)).data;
+        // Only this owner-consented technical demo may remain professionally unverified.
+        // Catalog writes remain trusted-only; identity and fixture guards still apply.
+        return tutor.active == true
+          && ((tutor.verified == true
+              && (!('demoOnly' in tutor) || tutor.demoOnly == false))
+            || (tutorId == 'tutor_acd3824aa8734c63ac8827df'
+              && tutor.verified == false && tutor.demoOnly == true))
+          && !tutorId.matches('bao-lab3-.*')
+          && (!('syntheticTestFixture' in tutor) || tutor.syntheticTestFixture == false)
+          && (!('fixtureNamespace' in tutor) || tutor.fixtureNamespace == '');
+      }
+      allow read: if isParent(userId);
+      allow create: if canWriteAsParent(userId)
+        && reportId.matches('[A-Za-z0-9]{20}')
+        && request.resource.data.keys().hasAll(['ownerUid', 'reportId', 'tutorId', 'fileName', 'contentType', 'encoding', 'sizeBytes', 'base64Data', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['ownerUid', 'reportId', 'tutorId', 'fileName', 'contentType', 'encoding', 'sizeBytes', 'base64Data', 'createdAt'])
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.reportId == reportId
+        && request.resource.data.tutorId is string
+        && request.resource.data.tutorId.matches('[A-Za-z0-9_-]{1,128}')
+        && request.resource.data.fileName is string
+        && request.resource.data.fileName == 'beewise-tutor-' + request.resource.data.tutorId + '.pdf'
+        && request.resource.data.contentType == 'application/pdf'
+        && request.resource.data.encoding == 'base64'
+        && request.resource.data.sizeBytes is int
+        && request.resource.data.sizeBytes >= 5
+        && request.resource.data.sizeBytes <= 512000
+        && request.resource.data.base64Data is string
+        && request.resource.data.base64Data.size() <= 682668
+        && request.resource.data.base64Data.size() % 4 == 0
+        && request.resource.data.base64Data.size() >= request.resource.data.sizeBytes * 4 / 3
+        && request.resource.data.base64Data.size() < request.resource.data.sizeBytes * 4 / 3 + 4
+        && request.resource.data.base64Data.matches('JVBERi0[A-Za-z0-9+/]*={0,2}')
+        && request.resource.data.createdAt == request.time
+        && permittedTutor(request.resource.data.tutorId);
+      allow update, delete: if false;
+    }
+
+    // Tutor profiles are managed by trusted staff/backend; clients can only read active profiles.
+    match /tutors/{tutorId} {
+      allow read: if resource.data.active == true;
+      allow write: if false;
+    }
+
+    match /parents/{parentId} {
+      allow read: if isParent(parentId);
+      allow create, update: if canWriteAsParent(parentId)
+        && request.resource.data.keys().hasOnly(['displayName', 'phone', 'email', 'createdAt', 'updatedAt'])
+        && request.resource.data.displayName is string
+        && (!('phone' in request.resource.data) || request.resource.data.phone is string)
+        && request.resource.data.email == request.auth.token.email;
+      allow delete: if false;
+
+      match /devices/{deviceId} {
+        allow read: if isParent(parentId);
+        allow create, update: if canWriteAsParent(parentId)
+          && request.resource.data.keys().hasOnly(['installationId', 'platform', 'updatedAt'])
+          && request.resource.data.installationId == deviceId
+          && request.resource.data.platform == 'android';
+        // A newly submitted applicant may need to detach an earlier installation.
+        allow delete: if signedIn() && request.auth.uid == parentId;
+      }
+    }
+
+    // Applicants can submit and read only their own pending application.
+    // Approval, verification and public tutor profiles are staff/backend-only.
+    match /tutorApplications/{userId} {
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && !existsAfter(/databases/$(database)/documents/parents/$(userId))
+        && request.resource.data.keys().hasOnly([
+          'name', 'email', 'phone', 'qualification', 'introduction',
+          'subjects', 'grades', 'hourlyFee', 'areas', 'teachingModes',
+          'availability', 'status', 'verified', 'active', 'consentAccepted',
+          'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'name', 'email', 'phone', 'qualification', 'introduction',
+          'subjects', 'grades', 'hourlyFee', 'areas', 'teachingModes',
+          'availability', 'status', 'verified', 'active', 'consentAccepted',
+          'createdAt'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 9
+        && request.resource.data.phone.size() <= 20
+        && request.resource.data.qualification is string
+        && request.resource.data.qualification.size() >= 2
+        && request.resource.data.qualification.size() <= 300
+        && request.resource.data.introduction is string
+        && request.resource.data.introduction.size() >= 20
+        && request.resource.data.introduction.size() <= 1000
+        && request.resource.data.subjects is list
+        && request.resource.data.subjects.size() > 0
+        && request.resource.data.subjects.size() <= 10
+        && request.resource.data.grades is list
+        && request.resource.data.grades.size() > 0
+        && request.resource.data.grades.size() <= 12
+        && request.resource.data.hourlyFee is int
+        && request.resource.data.hourlyFee > 0
+        && request.resource.data.areas is list
+        && request.resource.data.areas.size() > 0
+        && request.resource.data.areas.size() <= 10
+        && request.resource.data.teachingModes is list
+        && request.resource.data.teachingModes.size() > 0
+        && request.resource.data.teachingModes.size() <= 2
+        && request.resource.data.teachingModes.hasOnly(['online', 'in_person'])
+        && request.resource.data.availability is string
+        && request.resource.data.availability.size() >= 2
+        && request.resource.data.availability.size() <= 500
+        && request.resource.data.status == 'pending'
+        && request.resource.data.verified == false
+        && request.resource.data.active == false
+        && request.resource.data.consentAccepted == true
+        && request.resource.data.createdAt == request.time;
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow update, delete: if false;
+    }
+
+    match /connectionRequests/{requestId} {
+      allow create: if canWriteAsParent(request.resource.data.parentId)
+        && request.resource.data.status == 'submitted'
+        && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'chatId', 'learningGoal', 'area', 'schedule', 'note', 'status', 'createdAt'])
+        && request.resource.data.tutorId is string
+        && get(/databases/$(database)/documents/tutors/$(request.resource.data.tutorId)).data.active == true
+        && request.resource.data.chatId is string
+        && request.resource.data.createdAt == request.time
+        && getAfter(/databases/$(database)/documents/chats/$(request.resource.data.chatId)).data.connectionRequestId == requestId
+        && getAfter(/databases/$(database)/documents/chats/$(request.resource.data.chatId)).data.parentId == request.auth.uid
+        && getAfter(/databases/$(database)/documents/chats/$(request.resource.data.chatId)).data.tutorId == request.resource.data.tutorId
+        && request.resource.data.learningGoal is string
+        && request.resource.data.area is string
+        && request.resource.data.schedule is string
+        && request.resource.data.learningGoal.size() > 0
+        && request.resource.data.area.size() > 0
+        && request.resource.data.schedule.size() > 0
+        && request.resource.data.learningGoal.size() <= 500
+        && request.resource.data.area.size() <= 120
+        && request.resource.data.schedule.size() <= 300
+        && (!('note' in request.resource.data) || (request.resource.data.note is string && request.resource.data.note.size() <= 500));
+      allow read: if isParent(resource.data.parentId);
+      allow update, delete: if false;
+    }
+
+    match /chats/{chatId} {
+      allow read: if isParent(resource.data.parentId);
+      allow create: if canWriteAsParent(request.resource.data.parentId)
+        && request.resource.data.consultantQueue == true
+        && request.resource.data.onboardingStatus == 'connection_pending_consultant'
+        && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'consultantQueue', 'participantRoles', 'connectionRequestId', 'onboardingStatus', 'createdAt', 'updatedAt'])
+        && request.resource.data.connectionRequestId is string
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.participantRoles == ['parent', 'tutor', 'consultant']
+        && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.parentId == request.auth.uid
+        && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.chatId == chatId
+        && getAfter(/databases/$(database)/documents/connectionRequests/$(request.resource.data.connectionRequestId)).data.tutorId == request.resource.data.tutorId;
+      allow update, delete: if false;
+
+      match /messages/{messageId} {
+        allow read: if isParent(
+          get(/databases/$(database)/documents/chats/$(chatId)).data.parentId
+        );
+        allow create: if signedIn()
+          && canWriteAsParent(
+            getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId
+          )
+          && request.resource.data.createdAt == request.time
+          && (
+            (request.resource.data.senderId == request.auth.uid
+              && request.resource.data.role == 'parent'
+              && request.resource.data.kind == 'text'
+              && request.resource.data.keys().hasOnly(['senderId', 'senderName', 'role', 'kind', 'body', 'createdAt', 'delivery'])
+              && request.resource.data.body is string
+              && request.resource.data.body.size() > 0
+              && request.resource.data.body.size() <= 4000)
+            || (messageId == 'request_created'
+              && request.resource.data.keys().hasOnly(['senderId', 'senderName', 'role', 'kind', 'body', 'createdAt'])
+              && request.resource.data.senderId == 'system'
+              && request.resource.data.role == 'system'
+              && request.resource.data.kind == 'system'
+              && request.resource.data.body == 'Yêu cầu kết nối đã được gửi. Tư vấn viên BeeWise sẽ tham gia nhóm sau khi xác nhận.')
+          );
+        allow update, delete: if false;
+      }
+
+      match /responses/{responseId} {
+        function eligibleProposal() {
+          let proposal = get(/databases/$(database)/documents/chats/$(chatId)/messages/$(request.resource.data.proposalId)).data;
+          let chat = get(/databases/$(database)/documents/chats/$(chatId)).data;
+          return proposal.role == 'consultant'
+            && proposal.payload.status == 'pending'
+            && proposal.payload.expiresAt > request.time
+            && ((request.resource.data.type in ['trial_accepted', 'trial_alternate_time']
+                && proposal.kind == 'trial_proposal'
+                && chat.onboardingStatus == 'trial_proposed'
+                && chat.currentProposalId == request.resource.data.proposalId)
+              || (request.resource.data.type in ['class_adjustment_requested', 'class_revision_confirmed']
+                && proposal.kind == 'class_revision'
+                && chat.onboardingStatus == 'class_revision_pending'
+                && chat.currentRevisionId == request.resource.data.proposalId));
+        }
+        allow read: if isParent(
+          get(/databases/$(database)/documents/chats/$(chatId)).data.parentId
+        );
+        allow create: if signedIn()
+          && canWriteAsParent(
+            getAfter(/databases/$(database)/documents/chats/$(chatId)).data.parentId
+          )
+          && canWriteAsParent(request.resource.data.parentId)
+          && request.resource.data.proposalId is string
+          && responseId == request.resource.data.proposalId
+          && request.resource.data.createdAt == request.time
+          && eligibleProposal()
+          && (request.resource.data.type != 'trial_alternate_time'
+            || (request.resource.data.alternateTime is string
+              && request.resource.data.alternateTime.size() > 0
+              && request.resource.data.alternateTime.size() <= 500))
+          && (request.resource.data.type != 'class_adjustment_requested'
+            || (request.resource.data.reason is string
+              && request.resource.data.reason.size() > 0
+              && request.resource.data.reason.size() <= 500))
+          && request.resource.data.type in ['trial_accepted', 'trial_alternate_time', 'class_adjustment_requested', 'class_revision_confirmed']
+          && request.resource.data.keys().hasOnly(['parentId', 'proposalId', 'type', 'alternateTime', 'reason', 'createdAt']);
+        allow update, delete: if false;
+      }
+    }
+
+    match /invoices/{invoiceId} {
+      allow read: if isParent(resource.data.parentId);
+      allow write: if false; // Trusted payment backend creates and verifies invoices.
+    }
+
+    match /paymentVerificationRequests/{requestId} {
+      allow create: if canWriteAsParent(request.resource.data.parentId)
+        && exists(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId))
+        && get(/databases/$(database)/documents/invoices/$(request.resource.data.invoiceId)).data.parentId == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.requestedAt == request.time
+        && request.resource.data.keys().hasOnly(['invoiceId', 'parentId', 'requestedAt', 'status']);
+      allow read: if isParent(resource.data.parentId);
+      allow update, delete: if false;
+    }
+
+    match /classes/{classId} {
+      allow read: if isParent(resource.data.parentId)
+        && resource.data.paymentStatus == 'verified';
+      allow write: if false;
+    }
+  }
+}

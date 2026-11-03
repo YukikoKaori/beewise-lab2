@@ -1,0 +1,16 @@
+{
+  "projectId": "beewise-lab-3",
+  "timestampUtc": "2026-11-02T17:46:43.286Z",
+  "client": "Authenticated Firebase JS Client SDK, in-memory Auth, live endpoints; no Admin SDK",
+  "A": {
+    "uidSha256": "4a7de057a03aa476",
+    "count": 0,
+    "reportIds": []
+  },
+  "B": {
+    "uidSha256": "564b131109a53e16",
+    "count": 0,
+    "reportIds": []
+  },
+  "catalogServerRead": true
+}

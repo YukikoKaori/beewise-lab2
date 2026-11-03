@@ -1,0 +1,54 @@
+{
+  "capturedAtUtc": "2026-11-02T17:50:48.884123+00:00",
+  "device": "emulator-5560",
+  "nativeAdbScreenshot": true,
+  "originalPrivateSha256": "0642a353faee3fa56106fbb12d410943e05ea764d8a46d010cbb1cd819690bac",
+  "publishedSha256": "db5948d0777b30c41175edd02b9c3c46dd764734ff2845179a7e1efa4d3ac70a",
+  "redactedRectangles": [],
+  "labels": [
+    {
+      "text": "Expand handle",
+      "bounds": "[0,221][824,277]"
+    },
+    {
+      "text": "Select a printer",
+      "bounds": "[16,56][313,152]"
+    },
+    {
+      "text": "Summary, copies 1, paper size Letter",
+      "bounds": "[0,152][824,221]"
+    },
+    {
+      "text": "Copies:",
+      "bounds": "[56,161][149,199]"
+    },
+    {
+      "text": "1",
+      "bounds": "[181,156][201,205]"
+    },
+    {
+      "text": "Paper size:",
+      "bounds": "[265,161][402,199]"
+    },
+    {
+      "text": "Letter",
+      "bounds": "[434,156][527,205]"
+    },
+    {
+      "text": "Page 1 of 1",
+      "bounds": "[64,484][760,1449]"
+    },
+    {
+      "text": "1/1",
+      "bounds": "[390,1398][434,1436]"
+    },
+    {
+      "text": "Cancel",
+      "bounds": "[303,1672][484,1768]"
+    },
+    {
+      "text": "Select a printer",
+      "bounds": "[508,1672][792,1768]"
+    }
+  ]
+}

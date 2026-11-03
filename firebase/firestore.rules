@@ -17,7 +17,13 @@ service cloud.firestore {
     match /reports/{userId}/files/{reportId} {
       function permittedTutor(tutorId) {
         let tutor = get(/databases/$(database)/documents/tutors/$(tutorId)).data;
-        return tutor.active == true && tutor.verified == true
+        // Only this owner-consented technical demo may remain professionally unverified.
+        // Catalog writes remain trusted-only; identity and fixture guards still apply.
+        return tutor.active == true
+          && ((tutor.verified == true
+              && (!('demoOnly' in tutor) || tutor.demoOnly == false))
+            || (tutorId == 'tutor_acd3824aa8734c63ac8827df'
+              && tutor.verified == false && tutor.demoOnly == true))
           && !tutorId.matches('bao-lab3-.*')
           && (!('syntheticTestFixture' in tutor) || tutor.syntheticTestFixture == false)
           && (!('fixtureNamespace' in tutor) || tutor.fixtureNamespace == '');

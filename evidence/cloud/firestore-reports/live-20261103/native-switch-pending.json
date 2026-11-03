@@ -1,0 +1,11 @@
+{
+  "timestampUtc": "2026-11-02T18:02:16.087Z",
+  "defaultProductionEntrypoint": true,
+  "instrumentation": "Dart VM invoke of existing ReportController.download and AuthController.signOut; no probe APK/source hooks; no rules/Admin bypass; real native SDK pending request under controlled cellular network",
+  "downloadFutureStateBeforeLogout": "0",
+  "downloadFutureStateAfterLogout": "0",
+  "pendingBeforeLogout": true,
+  "originalOperationCancelled": true,
+  "privateControllerFieldsClearedImmediately": true,
+  "status": "PASS"
+}

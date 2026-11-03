@@ -1,6 +1,51 @@
 # Firestore Base64 PDF reports — 2026-11-02
 
-## Owner-approved deployment — current
+## Live acceptance — 2026-11-03 (current)
+
+**B-03.2 PARTIALLY VERIFIED.** One create-only owner-consented demo tutor is live
+in `beewise-lab-3`, `verified=false`, `demoOnly=true`, with disclosure in card,
+detail and the actual PDF. Consent is not accreditation. Only the approved exact
+ID gains demo report eligibility; malformed flags, synthetic fixtures and every
+other unverified tutor remain ineligible. All owner/role/immutable report rules
+remain enforced. Separately approved rules SHA256
+`94ef6ed2594ba4c6880c2b95fbaf75cb43fdb5bdbdeb5bf743d63389aa3d4428`
+is deployed and verified; no index or unrelated service deployment occurred.
+
+Two actual runtime issues were corrected: professional verification could not
+truthfully represent this consented demo, and Home limited the query before
+filtering six synthetic fixtures, hiding the seventh real tutor. A bounded
+100-record fetch filters fixtures before applying the Remote Config display
+count. Existing ordinary verified tutor behavior remains covered by regression
+tests; this is not pagination for a catalog beyond that bound.
+
+Default `lib/main.dart` API37 APK SHA256
+`9bec31e6135a7607c5336973f11a52ab13f34a1caa22e81ba14e8b3c1bba2bc4`
+was installed with the same signer and preserved data. Actual 19,315-byte PDF
+generation, native Firestore save/server read, download, identical byte hash and
+Android share/preview PASS. Original/native download/server decode SHA256:
+`8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe`.
+Console metadata and DebugView upload backend are genuine screenshots.
+Live normal Client SDK A/B/guest and immutable/malformed controls PASS, separate
+from 58/58 Emulator tests. Final inventory A=2/B=2; no unrelated records changed.
+
+Actual radio-off save fails, restored-network retry succeeds. JS disableNetwork
+was an invalid offline simulation and created an extra valid A-private report;
+the failed control and all four reports are retained. Native pending-operation
+cancellation clears private state immediately, but impaired-network signOut
+completion and every eventual SDK callback are not claimed. Native distinct
+application timeout/retry remains NOT VERIFIED; the slow SDK returned unavailable.
+Export native FA-SVC logging is verified; a separate durable export DebugView
+parameter screenshot remains missing. The resumed emulator showed System UI ANR;
+no ANR suppression, data clearing or fresh clean-start claim.
+
+Refreshed main `47fb375eceb6f741a3a4dba27242ad17c6aaee69` is merged. Local
+format/analyze/pub/APK, Flutter **95/95**, rules **58/58**, harness structure **27**
+PASS; final HEAD Actions are tracked in the delivery PR. No ARTEMIS runtime,
+physical device, Storage/billing/App Check/backend expansion or auto merge.
+Full individual statuses, frozen approval, publication/server receipts and
+privacy/hash inventory: [live acceptance package](../../evidence/cloud/firestore-reports/live-20261103/README.md).
+
+## Owner-approved deployment — historical
 
 **B-03.2 PARTIALLY VERIFIED; native PDF acceptance still BLOCKED by eligible tutor data.**
 Owner approved the exact frozen bundle with “qb duyệt”. Fresh hash/baseline checks

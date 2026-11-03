@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-11-03T05:42:31.737849+00:00",
+  "verdict": "B-03.2 PARTIALLY VERIFIED",
+  "projectId": "beewise-lab-3",
+  "package": "com.beewise.beewise",
+  "originalMainSha": "20a5ef1b9c1bf8208ad16f3c433bab94c556bc86",
+  "refreshedMainSha": "47fb375eceb6f741a3a4dba27242ad17c6aaee69",
+  "implementationSha": "836807fc030461d4cec35c30e83e7eb1f9ebbafe",
+  "validatedIntegrationSha": "80aa9fde20cd8a4dfc8f9f1d4ba1ab8836645d5d",
+  "apkSha256": "9bec31e6135a7607c5336973f11a52ab13f34a1caa22e81ba14e8b3c1bba2bc4",
+  "finalRebuildSha256": "9bec31e6135a7607c5336973f11a52ab13f34a1caa22e81ba14e8b3c1bba2bc4",
+  "rebuildMatchesInstalledApk": true,
+  "cases": {
+    "TC-PDF-01": {
+      "status": "PASS",
+      "evidence": [
+        "native-generated.png",
+        "native-original-pdf.png",
+        "pdf-roundtrip.json"
+      ]
+    },
+    "TC-PDF-02": {
+      "status": "PASS",
+      "evidence": [
+        "native-server-saved.png",
+        "live-client-security.json",
+        "console-native-report-metadata.png"
+      ]
+    },
+    "TC-PDF-03": {
+      "status": "PASS",
+      "evidence": [
+        "pdf-roundtrip.json",
+        "native-server-downloaded.png",
+        "native-downloaded-pdf-preview.png"
+      ]
+    },
+    "TC-PDF-04": {
+      "status": "PASS for tested owner/isolation/reset scope",
+      "evidence": [
+        "live-client-security.json",
+        "final-server-inventory.json",
+        "native-logout-cleared.png",
+        "native-b-private-ui-cleared.png",
+        "native-switch-pending.json"
+      ],
+      "limitation": "Pending operation is real native SDK and cancellation/reset is observed immediately. Impaired-network signOut future completion was not awaited/proven; ordinary A logout and B login were independently verified via native UI. No claim that every later SDK callback was inspected."
+    },
+    "TC-PDF-05": {
+      "status": "PARTIALLY VERIFIED",
+      "offlineSave": "PASS native WiFi/mobile data disabled: error; restored network + retry server-save succeeds",
+      "permissionDenied": "PASS authenticated live Client SDK cross-owner read/update/delete denials",
+      "missingAuthentication": "PASS guest live Client SDK report read denial; service/controller unit guards PASS. Native guest-save UX not separately captured.",
+      "oversizedCorrupt": "PASS rejected by real live rules, no invalid report persisted",
+      "accountSwitchPending": "PASS immediate cancel/private-field reset in real native pending operation; see TC04 limitation",
+      "timeoutRetry": "Native slow request returned SDK unavailable, not the distinct application timeout. Deterministic unit timeout/retry PASS; native application deadline remains NOT VERIFIED.",
+      "failedControl": "JS disableNetwork did not prevent direct transaction RPC: expected offline denial FAILED. Extra owner-private A report preserved and disclosed; actual radio-off test supplies valid offline evidence."
+    }
+  },
+  "analytics": {
+    "uploadDebugView": "PASS actual upload_report storage_backend=firestore screenshot",
+    "exportNative": "PASS FA-SVC export_report file_size_kb=18 subject_count=2",
+    "exportDebugView": "Observed in prior UI inspection at 00:47:50, separate durable parameter screenshot NOT CAPTURED; do not substitute native logs for a Console screenshot.",
+    "ordering": "A server createdAt 17:48:50.322Z; native upload success 17:48:50.473Z; code emits only after saveReport returns server acknowledgement plus forced read. No identity behavior changed."
+  },
+  "cloudMutations": {
+    "demoTutorsCreated": 1,
+    "existingSixSyntheticTutorsModified": 0,
+    "reportsCreated": {
+      "A": 2,
+      "B": 2
+    },
+    "reportExplanation": "A native PDF + extra valid A transaction during failed JS offline simulation; B Client SDK isolation report + native B retry/slow-network exercise. All four preserved, immutable and owner-private. Final read-only inventory confirms 2/2.",
+    "rules": "Exact separately approved diff deployed once; active ruleset 67a6d7ce-798f-44b4-8350-fe8bea890edc",
+    "indexesChanged": false,
+    "otherServiceDeployments": false
+  },
+  "remaining": [
+    "Distinct native application timeout/retry branch lacks real SDK evidence",
+    "No separate durable export_report DebugView parameter screenshot",
+    "Native missing-auth save UI and eventual pending callback settlement not separately captured",
+    "Emulator resumed boot hit System UI ANR; no physical/release performance claim"
+  ],
+  "mergeAssessment": "Implementation/rules are reviewable with passing scoped local gates. Do not mark the entire B-03.2 acceptance COMPLETE until remaining native/Console evidence is obtained. No auto merge.",
+  "cleanup": {
+    "debugAnalyticsProperties": "Restored to original empty values; readback matches all 3",
+    "wifiMobileData": "Both enabled as before; readback 1/1",
+    "networkDelay": "Restored to none before prior session ended; no latency control applied on resumed session",
+    "anrDialogs": "Detection and visible System UI failure dialog untouched"
+  },
+  "qualityDiffCheck": "PASS git diff --check"
+}
