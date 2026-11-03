@@ -1,0 +1,39 @@
+{
+  "capturedAtUtc": "2026-11-03T09:48:18.506542+00:00",
+  "device": "emulator-5562",
+  "api": 35,
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "applicationSourceTree": "Same lib/android/firebase tree as b45bdce4d3a68006a28ca8e587fdece0187a8660 built APK; only documentation changed in main",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "originalPrivateSha256": "43d347b65f1629b4312784d693c43dd02b6c6859d97404470bca113a72206154",
+  "publishedSha256": "67f74147f95dcce4c1446a34824afec9cb829ac96b73a0b8746125bed4394839",
+  "redactedRectangles": [
+    [
+      32,
+      210,
+      688,
+      354
+    ]
+  ],
+  "visibleLabels": [
+    "Tài khoản",
+    "T\n[email omitted]",
+    "Đăng xuất",
+    "Thông báo",
+    "Chưa có thông báo mới.",
+    "Dịch vụ ứng dụng",
+    "Remote Config\nGhép AI: đang tắt · tối đa 1 kết quả",
+    "Báo cáo PDF riêng",
+    "Xuất PDF từ hồ sơ gia sư. Lưu riêng trong Firestore sau khi đăng nhập.",
+    "Chẩn đoán lỗi",
+    "Gửi lỗi mẫu không nghiêm trọng",
+    "Kiểm tra Crashlytics (ứng dụng sẽ đóng)",
+    "Trang chủ\nTab 1 of 5",
+    "Tìm gia sư\nTab 2 of 5",
+    "Ghép AI\nTab 3 of 5",
+    "Tin nhắn\nTab 4 of 5",
+    "Tài khoản\nTab 5 of 5"
+  ],
+  "capture": "Actual ADB screenshot; only PII rectangles redacted",
+  "publishedAtUtc": "2026-11-03T09:48:18.506542+00:00"
+}

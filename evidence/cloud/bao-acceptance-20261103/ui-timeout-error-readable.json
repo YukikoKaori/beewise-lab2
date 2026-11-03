@@ -1,0 +1,14 @@
+{
+  "capturedAtUtc": "2026-11-03T09:27:45.280049+00:00",
+  "originalPrivateSha256": "0b901d177c0eebf489bf225e8f013b31af1990a146fd678226865a6d2494c8e1",
+  "publishedSha256": "782562fbfa46948f4c58f0e7f0b55b5ea84fe5f790e25429682a69e1c5703947",
+  "redactedRectangles": [
+    [
+      24,
+      1283,
+      700,
+      1405
+    ]
+  ],
+  "redaction": "Manually inspected original. Only Firestore private owner/report path masked; actual timeout message preserved. Actual ADB screenshot, no reconstructed UI."
+}

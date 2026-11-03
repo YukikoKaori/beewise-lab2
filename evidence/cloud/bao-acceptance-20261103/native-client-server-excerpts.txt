@@ -1,0 +1,10 @@
+11-03 16:25:44.298  5679  5679 I flutter : BaoAcceptance inventory before-one-report count=2 server=true
+11-03 16:26:13.949  5679  5679 I flutter : BaoAcceptance inventory after-one-report count=3 server=true
+11-03 16:29:02.516  5679  5679 I flutter : BaoAcceptance inventory after-ui-timeout-retry count=3 server=true
+11-03 16:32:48.160  5679  5679 I flutter : BaoAcceptance b-own-parent exists=true server=true
+11-03 16:32:48.455  5679  5679 I flutter : BaoAcceptance b-foreign-report code=permission-denied
+11-03 16:32:48.467  5679  5679 I flutter : BaoAcceptance b-foreign-parent code=permission-denied
+11-03 16:32:48.493  5679  5679 I flutter : BaoAcceptance b-own-reports count=2 server=true
+11-03 16:32:48.517  5679  5679 I flutter : BaoAcceptance demo-profile active=true verified=false demoOnly=true server=true
+11-03 16:41:24.640  5679  5679 I flutter : BaoAcceptance f01server chat=[record omitted] request=[record omitted] server=true goalMatch=true reciprocal=true status=null consultantQueue=true messageCount=2 expectedParentTextCount=0
+11-03 16:41:38.005  5679  5679 I flutter : BaoAcceptance f01server chat=[record omitted] request=[record omitted] server=true goalMatch=true reciprocal=true status=connection_pending_consultant consultantQueue=true messageCount=2 expectedParentTextCount=1

@@ -1,0 +1,593 @@
+{
+  "environment": {
+    "atUtc": "2026-11-03T09:57:50.957559+00:00",
+    "apkSha256": "1ccb8ea3fbc1bc916c00dbf8e6ace783a9ff049e00e85a01acf96dd9dddc414c",
+    "bytes": 187179439,
+    "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+    "entrypoint": "lib/main.dart",
+    "installation": "adb install -r: Success; existing userdata preserved",
+    "samples": [
+      {
+        "utc": "2026-11-03T09:57:52.458976+00:00",
+        "load": "11.13 3.16 1.35 2/1924 9445",
+        "availableKiB": 1235264
+      },
+      {
+        "utc": "2026-11-03T09:58:02.588892+00:00",
+        "load": "9.42 3.05 1.34 1/1920 9451",
+        "availableKiB": 1306064
+      },
+      {
+        "utc": "2026-11-03T09:58:12.770304+00:00",
+        "load": "7.97 2.95 1.32 2/1919 9455",
+        "availableKiB": 1340232
+      },
+      {
+        "utc": "2026-11-03T09:58:22.880469+00:00",
+        "load": "6.74 2.85 1.31 2/1917 9459",
+        "availableKiB": 1339784
+      },
+      {
+        "utc": "2026-11-03T09:58:32.988845+00:00",
+        "load": "5.71 2.76 1.30 1/1917 9463",
+        "availableKiB": 1339800
+      },
+      {
+        "utc": "2026-11-03T09:58:43.112460+00:00",
+        "load": "4.83 2.67 1.28 1/1913 9468",
+        "availableKiB": 1351636
+      },
+      {
+        "utc": "2026-11-03T09:58:53.225976+00:00",
+        "load": "4.09 2.58 1.27 1/1891 9472",
+        "availableKiB": 1350028
+      },
+      {
+        "utc": "2026-11-03T09:59:03.334987+00:00",
+        "load": "3.46 2.49 1.25 1/1891 9476",
+        "availableKiB": 1349504
+      },
+      {
+        "utc": "2026-11-03T09:59:13.526629+00:00",
+        "load": "2.93 2.41 1.24 1/1891 9480",
+        "availableKiB": 1349024
+      },
+      {
+        "utc": "2026-11-03T09:59:23.649122+00:00",
+        "load": "2.47 2.33 1.22 2/1891 9484",
+        "availableKiB": 1349024
+      },
+      {
+        "utc": "2026-11-03T09:59:33.766908+00:00",
+        "load": "2.09 2.25 1.21 1/1891 9488",
+        "availableKiB": 1348808
+      }
+    ]
+  },
+  "host": {
+    "atUtc": "2026-11-03T10:06:05.833067+00:00",
+    "hostMemoryKiB": {
+      "TotalVisibleMemorySize": 16610308,
+      "FreePhysicalMemory": 8086788,
+      "LastBootUpTime": "/Date(1793532665500)/"
+    },
+    "cpu": {
+      "NumberOfLogicalProcessors": 8,
+      "LoadPercentage": 32
+    },
+    "relatedProcesses": [
+      {
+        "pid": 8416,
+        "name": "adb.exe",
+        "scripts": []
+      },
+      {
+        "pid": 23772,
+        "name": "qemu-system-x86_64-headless.exe",
+        "scripts": []
+      },
+      {
+        "pid": 21024,
+        "name": "python3.12.exe",
+        "scripts": [
+          "bao-host-snapshot.py"
+        ]
+      }
+    ]
+  },
+  "device": {
+    "api": 35,
+    "avd": "BeeWise_Bao_Acceptance_API35",
+    "ramMiB": 2048,
+    "cores": 2,
+    "gpu": "software",
+    "normalPixels": [
+      720,
+      1600
+    ],
+    "density": 320,
+    "widthsDp": [
+      360,
+      412
+    ],
+    "width412Pixels": [
+      824,
+      1832
+    ],
+    "widthRestored": true,
+    "oldApi37UserdataUntouched": true,
+    "physicalDevice": "NOT AVAILABLE",
+    "serialConsolePerformanceWarning": true
+  },
+  "attempts": [
+    {
+      "timestampUtc": "2026-11-03T10:03:12.934868+00:00",
+      "requestedMode": "cold",
+      "pidBefore": "10111",
+      "pidAfter": "10296",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: ok\r\nLaunchState: WARM\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 7266\r\nWaitTime: 7273\r\nComplete",
+      "amStartWallMs": 7469,
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "flutterFrames": {
+        "status": "NOT_MEASURED",
+        "reason": "Timeline collection requires opt-in cold --trace-startup"
+      },
+      "uiDumpSucceeded": true,
+      "lastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+      "mainThreadWait": "do_epoll_wait",
+      "cpuLoadLine": [
+        "Load: 1.83 / 3.26 / 2.01"
+      ],
+      "privateArtifacts": [
+        {
+          "file": "final-untraced-api35-1-am-start.txt",
+          "bytes": 179,
+          "sha256": "9bcd5f774f62c77e04afaf17813d73d194f1aa6890ab27abb061d018b93669ae"
+        },
+        {
+          "file": "final-untraced-api35-1-complete-logcat.txt",
+          "bytes": 18472021,
+          "sha256": "faa3828e5f0c87082bd165324fc9730fb9a5856e733edf0b7e4209de54bfa328"
+        },
+        {
+          "file": "final-untraced-api35-1-cpu-after.txt",
+          "bytes": 3271,
+          "sha256": "2f395a4ae2e0635342b117948a7c2a344e60c82cccd36ab519a6d27de21ad5af"
+        },
+        {
+          "file": "final-untraced-api35-1-cpu-before.txt",
+          "bytes": 2936,
+          "sha256": "7ffdbded9eb24cfcf32ed00310d46b1ad39f4edb0046689519b48c15373deccd"
+        },
+        {
+          "file": "final-untraced-api35-1-exit-info.txt",
+          "bytes": 5398,
+          "sha256": "d13912134343cb941e1ae1d4ba2a44bcc40bcabeac76875c68d2ffb5bb18cafe"
+        },
+        {
+          "file": "final-untraced-api35-1-framestats.txt",
+          "bytes": 7515,
+          "sha256": "32a02c68b8a022ce97d6ea4b5aef9a0d6aaad3c7152d257b24b59e2b53d2cbcb"
+        },
+        {
+          "file": "final-untraced-api35-1-lastanr.txt",
+          "bytes": 90,
+          "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+        },
+        {
+          "file": "final-untraced-api35-1-lifecycle-after.txt",
+          "bytes": 31628,
+          "sha256": "1cdb2fe4bcaceba0c7452831685c1330db1077199f342c973854518dbb091e5d"
+        },
+        {
+          "file": "final-untraced-api35-1-lifecycle-before.txt",
+          "bytes": 31636,
+          "sha256": "eaa73990bb3e6e85d6fa75efa1b009b310287287d20199a81eebfb9523ecd182"
+        },
+        {
+          "file": "final-untraced-api35-1-live-logcat.txt",
+          "bytes": 19058654,
+          "sha256": "f5d9347fea56be4d21e4a546f2a01cb7de6e798dc07efcfbd33510f8eadfb0eb"
+        },
+        {
+          "file": "final-untraced-api35-1-main-stack.txt",
+          "bytes": 54,
+          "sha256": "b8177a847d70e2367e452e44dd71f8a356e96ae5a6972986af3fdf9ea1362ae2"
+        },
+        {
+          "file": "final-untraced-api35-1-main-stat.txt",
+          "bytes": 341,
+          "sha256": "81a0a206c74a730199972a0504f787f9ef92cf2f9e36fed779891f0ad04a06a3"
+        },
+        {
+          "file": "final-untraced-api35-1-main-wchan.txt",
+          "bytes": 13,
+          "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+        },
+        {
+          "file": "final-untraced-api35-1-memory-after.txt",
+          "bytes": 25667,
+          "sha256": "46754105461a9cade4e504f9b4f7d4d5707f7f5e5db31ae04977234548f96c04"
+        },
+        {
+          "file": "final-untraced-api35-1-memory-before.txt",
+          "bytes": 25715,
+          "sha256": "490220cd2480bf8e3002ba9f36e8bda98cd0b9946f4b9e378350b99ca7825d33"
+        },
+        {
+          "file": "final-untraced-api35-1-ui-status.txt",
+          "bytes": 52,
+          "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+        },
+        {
+          "file": "final-untraced-api35-1-ui.xml",
+          "bytes": 13452,
+          "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+        },
+        {
+          "file": "final-untraced-api35-1-window.txt",
+          "bytes": 19364,
+          "sha256": "22856f76791aff866236d84007c6d51f7dc57a1049a13435332868346cbd7227"
+        }
+      ],
+      "result": "PASS controlled cold UI/no ANR"
+    },
+    {
+      "timestampUtc": "2026-11-03T10:03:52.294047+00:00",
+      "requestedMode": "cold",
+      "pidBefore": "10296",
+      "pidAfter": "10483",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: ok\r\nLaunchState: WARM\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 7263\r\nWaitTime: 7281\r\nComplete",
+      "amStartWallMs": 7391,
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "flutterFrames": {
+        "status": "NOT_MEASURED",
+        "reason": "Timeline collection requires opt-in cold --trace-startup"
+      },
+      "uiDumpSucceeded": true,
+      "lastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+      "mainThreadWait": "do_epoll_wait",
+      "cpuLoadLine": [
+        "Load: 2.1 / 3.2 / 2.04"
+      ],
+      "privateArtifacts": [
+        {
+          "file": "final-untraced-api35-2-am-start.txt",
+          "bytes": 179,
+          "sha256": "ab6935a9b4d875eaa3fc661a02ed463e91124c84b86f1434626d9d2c0030e613"
+        },
+        {
+          "file": "final-untraced-api35-2-complete-logcat.txt",
+          "bytes": 8069242,
+          "sha256": "46dbf31cf5705ce8f2c6dd29d78091289c7673b6269d22a386c13fc153cc01b5"
+        },
+        {
+          "file": "final-untraced-api35-2-cpu-after.txt",
+          "bytes": 1739,
+          "sha256": "75b09e21de9d4339fe97cd5ccc2df3f49bcdebedee820eb9c595fc7a8b2a524a"
+        },
+        {
+          "file": "final-untraced-api35-2-cpu-before.txt",
+          "bytes": 1531,
+          "sha256": "3fb02c8fe166a90ee2f377856f3e879e68a22c2c1f9f3c96ae1e33e68e9c842a"
+        },
+        {
+          "file": "final-untraced-api35-2-exit-info.txt",
+          "bytes": 5770,
+          "sha256": "e6b4e0231a4a6b4dd9ecfd81c136f2448b905d705425a3ddc6c85b8fc4854b0d"
+        },
+        {
+          "file": "final-untraced-api35-2-framestats.txt",
+          "bytes": 7525,
+          "sha256": "aa2c7e9ce704edd619279a56dbc952916663b04855d62098a39fec480ecaa243"
+        },
+        {
+          "file": "final-untraced-api35-2-lastanr.txt",
+          "bytes": 90,
+          "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+        },
+        {
+          "file": "final-untraced-api35-2-lifecycle-after.txt",
+          "bytes": 31621,
+          "sha256": "db9e1f355935936016de48cfe108572a77c2f850b8caf32be09e3ad47376d19d"
+        },
+        {
+          "file": "final-untraced-api35-2-lifecycle-before.txt",
+          "bytes": 31628,
+          "sha256": "ca7ac0b8879263071977d553a1b30e72d97044a233db3ac4a9fa5b744194abd1"
+        },
+        {
+          "file": "final-untraced-api35-2-live-logcat.txt",
+          "bytes": 18750807,
+          "sha256": "760be7907a51858d48f410f2ff253767a3d670aee8681dd76cb5fc185b5b7e73"
+        },
+        {
+          "file": "final-untraced-api35-2-main-stack.txt",
+          "bytes": 54,
+          "sha256": "fc52d1e2e98132b01b2116d85e47937a14da4fd61342a489aeab8a9550bdb59f"
+        },
+        {
+          "file": "final-untraced-api35-2-main-stat.txt",
+          "bytes": 340,
+          "sha256": "65cca17c14d8574b4ce10016e789801452c6a8560ece99d34fa6d150418eb995"
+        },
+        {
+          "file": "final-untraced-api35-2-main-wchan.txt",
+          "bytes": 13,
+          "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+        },
+        {
+          "file": "final-untraced-api35-2-memory-after.txt",
+          "bytes": 25719,
+          "sha256": "31fda77561dacd061722cec9873abdd2963bfb6ac906f654f9bb869692f12356"
+        },
+        {
+          "file": "final-untraced-api35-2-memory-before.txt",
+          "bytes": 25715,
+          "sha256": "f71b01af1b890c25b58d8c47821a6ef0fc4328bf727a3270d6cbf29e29d99a08"
+        },
+        {
+          "file": "final-untraced-api35-2-ui-status.txt",
+          "bytes": 52,
+          "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+        },
+        {
+          "file": "final-untraced-api35-2-ui.xml",
+          "bytes": 13452,
+          "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+        },
+        {
+          "file": "final-untraced-api35-2-window.txt",
+          "bytes": 19353,
+          "sha256": "dbabaa14afe0d8dcbc22067a3bdcd6be3190c34d240c489ef565e7b0e9ca6a5a"
+        }
+      ],
+      "result": "PASS controlled cold UI/no ANR"
+    },
+    {
+      "timestampUtc": "2026-11-03T10:04:19.228975+00:00",
+      "requestedMode": "cold",
+      "pidBefore": "10483",
+      "pidAfter": "10686",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 8010\r\nWaitTime: 8012\r\nComplete",
+      "amStartWallMs": 8266,
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "flutterFrames": {
+        "status": "NOT_MEASURED",
+        "reason": "Timeline collection requires opt-in cold --trace-startup"
+      },
+      "uiDumpSucceeded": true,
+      "lastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+      "mainThreadWait": "do_epoll_wait",
+      "cpuLoadLine": [
+        "Load: 3.66 / 3.54 / 2.19"
+      ],
+      "privateArtifacts": [
+        {
+          "file": "final-untraced-api35-3-am-start.txt",
+          "bytes": 179,
+          "sha256": "edbc63fabcbb0eec68031c47561b0b1195a7bb07ed6c05fe0ca278ecda79b47d"
+        },
+        {
+          "file": "final-untraced-api35-3-complete-logcat.txt",
+          "bytes": 19027866,
+          "sha256": "bbce51509d55a2317649e32d39ccd6840d3a6f26d423efea5a597e73c38bfac8"
+        },
+        {
+          "file": "final-untraced-api35-3-cpu-after.txt",
+          "bytes": 1911,
+          "sha256": "9704f56cfad318ce905af25484acd554b85f5469b490f6582086d93866718c36"
+        },
+        {
+          "file": "final-untraced-api35-3-cpu-before.txt",
+          "bytes": 3196,
+          "sha256": "274cd3c2e068d8b3b1bc253d8ef2785e516e94f78022ff160e0455ea31a75d7d"
+        },
+        {
+          "file": "final-untraced-api35-3-exit-info.txt",
+          "bytes": 6142,
+          "sha256": "46a039d159e5550878a3c0ec0a69a00eb53ce8ef9a037b4b7f9dfad6e7bbf791"
+        },
+        {
+          "file": "final-untraced-api35-3-framestats.txt",
+          "bytes": 7514,
+          "sha256": "18c1603505861b1c5a5b9aa7ef496933898f6ecb880afd8a8b1e83aa8c92b1c0"
+        },
+        {
+          "file": "final-untraced-api35-3-lastanr.txt",
+          "bytes": 90,
+          "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+        },
+        {
+          "file": "final-untraced-api35-3-lifecycle-after.txt",
+          "bytes": 31636,
+          "sha256": "6149b3b362f4790522c9394c06ded5f031fbf7c3630c4465c37f7cc18c3fb740"
+        },
+        {
+          "file": "final-untraced-api35-3-lifecycle-before.txt",
+          "bytes": 31621,
+          "sha256": "e93f5407362482ba1644a47d908b794a9a4708ee6d2c2cf4e590e83b9f631456"
+        },
+        {
+          "file": "final-untraced-api35-3-live-logcat.txt",
+          "bytes": 19030454,
+          "sha256": "6cb9ec0dd3b389f450751ae7bf56cbb54749e82f18a97ccb99242e9842eef0d8"
+        },
+        {
+          "file": "final-untraced-api35-3-main-stack.txt",
+          "bytes": 54,
+          "sha256": "1b152e2f3f5ab3eb4740d38f5cb62fe3c0baa026dac96349f854af7c6dee4e1d"
+        },
+        {
+          "file": "final-untraced-api35-3-main-stat.txt",
+          "bytes": 340,
+          "sha256": "95c817bf9325d7328698fd9521647550cdfef5aa1a799e83325e9efe00c50911"
+        },
+        {
+          "file": "final-untraced-api35-3-main-wchan.txt",
+          "bytes": 13,
+          "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+        },
+        {
+          "file": "final-untraced-api35-3-memory-after.txt",
+          "bytes": 25719,
+          "sha256": "43b35603dd4587b9c62750d9122ddd244cd78dbdaf804d7a182259f677684ed6"
+        },
+        {
+          "file": "final-untraced-api35-3-memory-before.txt",
+          "bytes": 25715,
+          "sha256": "606a0b19ca79d3756ebf1aab4bcdba1ae5c2f22dc31c0e375fb733eabc2f966b"
+        },
+        {
+          "file": "final-untraced-api35-3-ui-status.txt",
+          "bytes": 52,
+          "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+        },
+        {
+          "file": "final-untraced-api35-3-ui.xml",
+          "bytes": 13452,
+          "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+        },
+        {
+          "file": "final-untraced-api35-3-window.txt",
+          "bytes": 19367,
+          "sha256": "04cd6313ae0e9c5e2b09b6dc95d121b2a9d0bca0692e4d242634e02dc579c0f5"
+        }
+      ],
+      "result": "PASS controlled cold UI/no ANR"
+    },
+    {
+      "timestampUtc": "2026-11-03T10:05:34.955518+00:00",
+      "requestedMode": "warm",
+      "pidBefore": "10686",
+      "pidAfter": "10686",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity }\r\nWarning: Activity not started, its current task has been brought to the front\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 156\r\nComplete",
+      "amStartWallMs": 328,
+      "homeUiPresent": null,
+      "anrDialogInUi": null,
+      "flutterFrames": {
+        "status": "NOT_MEASURED",
+        "reason": "Timeline collection requires opt-in cold --trace-startup"
+      },
+      "uiDumpSucceeded": false,
+      "lastAnr": "adb.exe: device 'emulator-5562' not found",
+      "mainThreadWait": "adb.exe: device 'emulator-5562' not found",
+      "cpuLoadLine": [
+        "adb.exe: device offline"
+      ],
+      "privateArtifacts": [
+        {
+          "file": "final-warm-confirmed-am-start.txt",
+          "bytes": 247,
+          "sha256": "c95db43ffa192d8a1413ab77fcffd00b7b09559fbcdccb1da546f96616eed26c"
+        },
+        {
+          "file": "final-warm-confirmed-complete-logcat.txt",
+          "bytes": 19414083,
+          "sha256": "e36efa49023ee6c1e9621100f844e778b819802becce9018ae8c5363c4ac630a"
+        },
+        {
+          "file": "final-warm-confirmed-cpu-after.txt",
+          "bytes": 25,
+          "sha256": "a788f5abadbd52445df2e6927ca7a32a1bde55d2873bf644420d808c767aa97e"
+        },
+        {
+          "file": "final-warm-confirmed-cpu-before.txt",
+          "bytes": 1668,
+          "sha256": "a7e57606ca483226af49850d41ccdf06afdf2390418729d8245930b78bbb9651"
+        },
+        {
+          "file": "final-warm-confirmed-exit-info.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        },
+        {
+          "file": "final-warm-confirmed-framestats.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        },
+        {
+          "file": "final-warm-confirmed-lastanr.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        },
+        {
+          "file": "final-warm-confirmed-lifecycle-after.txt",
+          "bytes": 25,
+          "sha256": "a788f5abadbd52445df2e6927ca7a32a1bde55d2873bf644420d808c767aa97e"
+        },
+        {
+          "file": "final-warm-confirmed-lifecycle-before.txt",
+          "bytes": 31167,
+          "sha256": "2a86c59def775ab4b32d374008d1745058d04b9c201d8203babbb129426cd222"
+        },
+        {
+          "file": "final-warm-confirmed-live-logcat.txt",
+          "bytes": 6535886,
+          "sha256": "d67673df574f73613c360cc1d070d8d7efffdc6e8cbf0fda2ef9d3a91ff8f478"
+        },
+        {
+          "file": "final-warm-confirmed-main-stack.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        },
+        {
+          "file": "final-warm-confirmed-main-stat.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        },
+        {
+          "file": "final-warm-confirmed-main-wchan.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        },
+        {
+          "file": "final-warm-confirmed-memory-after.txt",
+          "bytes": 25,
+          "sha256": "a788f5abadbd52445df2e6927ca7a32a1bde55d2873bf644420d808c767aa97e"
+        },
+        {
+          "file": "final-warm-confirmed-memory-before.txt",
+          "bytes": 25967,
+          "sha256": "7543675ad9894d4fd4d8ca9150d70e295f2507f9af0e0a20ae0201189f316a12"
+        },
+        {
+          "file": "final-warm-confirmed-ui-status.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "file": "final-warm-confirmed-window.txt",
+          "bytes": 43,
+          "sha256": "c9ca6792c70649c992bf62b4126e2383427eefb109f506d5369d97592844dd9f"
+        }
+      ],
+      "result": "Timing observed; ADB lost during dumps, follow-up Home screenshot independently confirms responsiveness"
+    }
+  ],
+  "firstFrameSupplement": {
+    "scope": "Earlier same production application tree, APK 9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3; overlapped host gates, not final-APK performance baseline",
+    "timestampUtc": "2026-11-03T09:47:45.459195+00:00",
+    "metrics": {
+      "status": "OBSERVED",
+      "clock": "Android process start ticks and VM monotonic timeline microseconds",
+      "scope": "Explicit Flutter first useful frame markers; not Android Displayed timing",
+      "processStartTicks": 333890,
+      "clockTicksPerSecond": 100,
+      "processToFirstFrameBuiltMs": 9415.675,
+      "engineToFirstFrameBuiltMs": 6396.804,
+      "processToFirstFrameRasterizedMs": 9862.53,
+      "engineToFirstFrameRasterizedMs": 6843.659
+    }
+  },
+  "confoundedFinalAttempts": [
+    "final-api35-1: truncated VM response aborted capture",
+    "final-api35-2: partial timeline/ADB offline",
+    "final-clean-api35-2: ADB offline during diagnostic dumps",
+    "final-untraced-api35-warm: missing ADB during dump; timing only"
+  ],
+  "diagnosis": "No reproducible BeeWise-specific blocking defect. API35 controlled default launches render Home; Android main thread sampled asleep in epoll. Historical API37 system/launcher ANRs and minimal control are retained in prior package; API37 immediate-boot/release/physical parity not claimed. Diagnostic ADB instability remains separate from input ANR."
+}

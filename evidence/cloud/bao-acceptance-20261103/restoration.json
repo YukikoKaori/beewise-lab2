@@ -1,0 +1,18 @@
+{
+  "atUtc": "2026-11-03T10:18:39.628655+00:00",
+  "temporaryNetworkRulesAbsent": true,
+  "debugPropertiesRestoredExactly": {
+    "debug.firebase.analytics.app": "",
+    "log.tag.FA": "",
+    "log.tag.FA-SVC": ""
+  },
+  "displayOverrideReset": "Physical size: 720x1600",
+  "lastAnr": "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)\n  <no ANR has occurred since boot>",
+  "unrootOutput": "restarting adbd as non root",
+  "unrootExitCode": 0,
+  "userdataCleared": false,
+  "privateReportsDeleted": false,
+  "remoteConfigRestored": "Empty template version 4; readback receipt rc-restore-receipt.json",
+  "liveRulesRedeployed": false,
+  "appCheckOrBillingChanged": false
+}

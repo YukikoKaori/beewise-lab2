@@ -1,0 +1,24 @@
+{
+  "atUtc": "2026-11-03T10:26:34.434016+00:00",
+  "baseSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "fileCount": 94,
+  "bytes": 9685279,
+  "privacyPatternFindings": [],
+  "filesOver1MB": [],
+  "exactByteDuplicateGroups": [
+    [
+      "evidence/cloud/bao-acceptance-20261103/startup/final-360-home.xml",
+      "evidence/cloud/bao-acceptance-20261103/startup/final-warm-followup.xml"
+    ]
+  ],
+  "nguyenTaskRowsPreserved": true,
+  "applicationAndroidFirebaseArtemisReportAssetTreesUnchanged": true,
+  "priorEvidenceModified": false,
+  "duplicatePolicy": "No required unique evidence deleted. Historical crops are original-hash-verified usable receipts, not fabricated new runs. Timeout broad-mask and readable-mask variants retained; readable image is authoritative for error text.",
+  "review": "Text patterns plus manual actual-image review; no raw email/UID/token/credentials/PDF/Base64 intended in added evidence. Not a repository-history purge. Existing large historical PR3 audit retained.",
+  "excludedGeneratedIndices": [
+    "evidence/cloud/bao-acceptance-20261103/audit.json",
+    "evidence/cloud/bao-acceptance-20261103/manifest.json"
+  ],
+  "bytePolicy": "Scoped .gitattributes freezes exact evidence bytes; manifest includes nested historical manifest and excludes only itself"
+}
