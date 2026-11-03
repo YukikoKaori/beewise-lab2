@@ -1,0 +1,68 @@
+{
+  "timestampUtc": "2026-11-03T09:24:25.204Z",
+  "projectId": "beewise-lab-3",
+  "phase": "after",
+  "readOnly": true,
+  "rulesetName": "projects/beewise-lab-3/rulesets/67a6d7ce-798f-44b4-8350-fe8bea890edc",
+  "rulesNormalizedSha256": "a2bc4d7c98b9b6ed128100d7465caa789675a7970419a3b6757bad7727838f80",
+  "indexes": {
+    "indexes": [
+      {
+        "collectionGroup": "chats",
+        "queryScope": "COLLECTION",
+        "fields": [
+          {
+            "fieldPath": "parentId",
+            "order": "ASCENDING"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "order": "DESCENDING"
+          },
+          {
+            "fieldPath": "__name__",
+            "order": "DESCENDING"
+          }
+        ],
+        "density": "SPARSE_ALL"
+      }
+    ],
+    "fieldOverrides": [
+      {
+        "collectionGroup": "files",
+        "fieldPath": "base64Data",
+        "ttl": false,
+        "indexes": []
+      }
+    ]
+  },
+  "indexStates": [
+    {
+      "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/chats/indexes/CICAgOjXh4EK",
+      "state": "READY",
+      "fields": [
+        {
+          "fieldPath": "parentId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ],
+      "queryScope": "COLLECTION"
+    }
+  ],
+  "fieldState": {
+    "name": "projects/beewise-lab-3/databases/(default)/collectionGroups/files/fields/base64Data",
+    "indexConfig": {
+      "ancestorField": "projects/beewise-lab-3/databases/(default)/collectionGroups/__default__/fields/*"
+    }
+  },
+  "matchesRepositoryRulesNormalized": true,
+  "deployedThisRun": false
+}

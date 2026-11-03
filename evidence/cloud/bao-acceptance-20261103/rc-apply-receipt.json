@@ -1,0 +1,15 @@
+{
+  "atUtc": "2026-11-03T09:47:14.186Z",
+  "action": "apply",
+  "projectId": "beewise-lab-3",
+  "approvedProposalSha256": "ea9611c111e0db6786900041db4d29394f651ed7ee9a8cf19d0385d1a9c93b4f",
+  "authorization": "Owner explicitly approved exact proposal/hash and restoration in this chat",
+  "conditionalWrite": true,
+  "version": "3",
+  "parameters": {
+    "home_tutor_limit": "2",
+    "ai_result_limit": "1",
+    "ai_matching_enabled": "false"
+  },
+  "readbackMatches": true
+}

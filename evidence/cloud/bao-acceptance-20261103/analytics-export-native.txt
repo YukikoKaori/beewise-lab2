@@ -1,0 +1,4 @@
+11-03 16:10:05.062  1700  6018 V FA-SVC  : Logging event: origin=app,name=export_report,params=Bundle[{file_size_kb=18, ga_event_origin(_o)=app, ga_screen_class(_sc)=MainActivity, ga_screen_id(_si)=-154764801810505901, subject_count=2}]
+11-03 16:25:45.788  1700  7237 V FA-SVC  : Logging event: origin=app,name=export_report,params=Bundle[{file_size_kb=18, ga_event_origin(_o)=app, ga_screen_class(_sc)=MainActivity, ga_screen_id(_si)=-154764801810505901, subject_count=2}]
+11-03 16:25:47.047  1700  7237 V FA-SVC  : Successful upload. Got network response. code, size: 204, 0
+11-03 16:25:53.639  1700  7237 V FA-SVC  : Successful upload. Got network response. code, size: 204, 0

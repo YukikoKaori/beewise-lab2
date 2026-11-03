@@ -1,0 +1,131 @@
+{
+  "localGates": [
+    {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "pub",
+        "get"
+      ],
+      "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T10:09:09.949639+00:00",
+      "durationSeconds": 6.61,
+      "exitCode": 0,
+      "privateLogSha256": "d096889f4d57ad3b5331dbdd63dfecef3c61227c0d732c6d507ab68cff195ad5",
+      "scope": "Local working-tree run; source SHA is invocation HEAD, application tree unchanged in final branch"
+    },
+    {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/dart.bat",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "."
+      ],
+      "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T09:45:00.767839+00:00",
+      "durationSeconds": 1.99,
+      "exitCode": 0,
+      "privateLogSha256": "331aad93d8d55fb6dcfd54d0961258b10a8eaf02b26ab592b537f63160269c69",
+      "scope": "Local working-tree run; source SHA is invocation HEAD, application tree unchanged in final branch"
+    },
+    {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "analyze"
+      ],
+      "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T09:45:03.563342+00:00",
+      "durationSeconds": 77.84,
+      "exitCode": 0,
+      "privateLogSha256": "949fbeb993dd7a9a91003cbc13cbe8dff2e70b3693514b4c5ebf8d0c00343c76",
+      "scope": "Local working-tree run; source SHA is invocation HEAD, application tree unchanged in final branch"
+    },
+    {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "test",
+        "--reporter",
+        "expanded"
+      ],
+      "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T09:46:01.846494+00:00",
+      "durationSeconds": 53.67,
+      "exitCode": 0,
+      "privateLogSha256": "d35ed8d63f434c3473b10335c6b38ded72fe6f73919d4f2a5650e7f9a9187540",
+      "scope": "Local working-tree run; source SHA is invocation HEAD, application tree unchanged in final branch"
+    },
+    {
+      "command": [
+        "npm.cmd",
+        "--prefix",
+        "firebase",
+        "test"
+      ],
+      "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T09:50:06.923554+00:00",
+      "durationSeconds": 20.52,
+      "exitCode": 0,
+      "privateLogSha256": "dbea5bb59df21bf9abdfeed1705d9f72a6781022afe8a1a5cec7d48534b6529e",
+      "scope": "Local working-tree run; source SHA is invocation HEAD, application tree unchanged in final branch"
+    },
+    {
+      "command": [
+        "D:/CodexTemp/beewise-lab3-tools/flutter/bin/flutter.bat",
+        "build",
+        "apk",
+        "--debug"
+      ],
+      "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+      "worktreeDirty": true,
+      "startedUtc": "2026-11-03T09:51:19.425595+00:00",
+      "durationSeconds": 281.91,
+      "exitCode": 0,
+      "privateLogSha256": "30806573969dca44250bcbd2e99fc351253d5308ccc4ffaffbb8f1f83ca9f7d6",
+      "scope": "Local working-tree run; source SHA is invocation HEAD, application tree unchanged in final branch"
+    },
+    {
+      "label": "startup-metrics-4-tests",
+      "command": [
+        "python",
+        "scripts/test_measure_bao_startup.py"
+      ],
+      "atUtc": "2026-11-03T10:26:33.743576+00:00",
+      "exitCode": 0,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "label": "harness-structure-27-not-runtime",
+      "command": [
+        "python",
+        "scripts/check_e2e_harness.py"
+      ],
+      "atUtc": "2026-11-03T10:26:33.867898+00:00",
+      "exitCode": 0,
+      "output": "PASS: 27 unique scenario functions, Python syntax, scenario JSON and evidence status guards. Android scenarios NOT RUN.\n"
+    },
+    {
+      "label": "diff-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "atUtc": "2026-11-03T10:26:33.956193+00:00",
+      "exitCode": 0,
+      "output": ""
+    }
+  ],
+  "counts": {
+    "flutterTests": 95,
+    "firebaseEmulatorRulesTests": 58,
+    "startupMetricsTests": 4,
+    "harnessScenarioFunctions": 27
+  },
+  "artemisNativeScenarios": "NOT RUN in this task; owner results untouched",
+  "exactFinalHeadCI": "See single delivery PR; older CI is not final proof"
+}

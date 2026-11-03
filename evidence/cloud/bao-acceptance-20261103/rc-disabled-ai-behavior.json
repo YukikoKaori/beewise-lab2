@@ -1,0 +1,30 @@
+{
+  "capturedAtUtc": "2026-11-03T09:49:50.118414+00:00",
+  "device": "emulator-5562",
+  "api": 35,
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "applicationSourceTree": "Same lib/android/firebase tree as b45bdce4d3a68006a28ca8e587fdece0187a8660 built APK; only documentation changed in main",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "originalPrivateSha256": "2a67ea282a8a8dd348b53006207604954f4a3aff9b1cd89c744c71c4d3318bef",
+  "publishedSha256": "5b633908bb089fe976ed8b2f720408f33dcb84a5f1037bd84bc85236a2d6659d",
+  "redactedRectangles": [],
+  "visibleLabels": [
+    "Quay lại",
+    "Ghép gia sư bằng AI",
+    "Điều con đang cần",
+    "Chia sẻ môn học, lớp, mục tiêu, lịch học và hình thức mong muốn. Không nhập thông tin nhận diện cá nhân.",
+    "Math grade 7 in TP.HCM",
+    "478 characters remaining",
+    "Tìm gia sư phù hợp",
+    "Hoặc tự tìm theo bộ lọc",
+    "Tính năng ghép gia sư đang tạm dừng. Bạn có thể tự tìm theo bộ lọc.",
+    "Thử lại",
+    "Trang chủ\nTab 1 of 5",
+    "Tìm gia sư\nTab 2 of 5",
+    "Ghép AI\nTab 3 of 5",
+    "Tin nhắn\nTab 4 of 5",
+    "Tài khoản\nTab 5 of 5"
+  ],
+  "capture": "Actual ADB screenshot; only PII rectangles redacted",
+  "publishedAtUtc": "2026-11-03T09:49:50.118414+00:00"
+}
