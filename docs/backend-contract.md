@@ -1,5 +1,14 @@
 # Trusted workflow and notification contract
 
+Effective ownership,2026-11-04: **B-04 shared — F-01 existing verified Firebase
+integration; F-02 AI Matching/Firebase AI Logic/App Check owned by Bao; F-03
+consultant/backend/payOS/webhook/payment/schedule owned by Nguyen.** Bao retains
+approved Firebase infrastructure/security support. This contract grants no
+deployment, staff, credential or payment authority. See the
+[precise F-03 handoff](workstreams/bao-to-nguyen-b04-handoff.md). The optional
+local undeployed F-03 WIP is preserved outside Bao's focused F-02 delivery;
+its emulator tests do not constitute a production backend or payment receipt.
+
 For current client ownership handling, see the [PR #2 follow-up](pr2-lifecycle-review.md).
 Foreign pending registrations quarantine delivery until their owner authorizes
 cleanup. Historical unjournaled mappings need trusted migration; client code

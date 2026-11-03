@@ -1,4 +1,34 @@
-## Bao acceptance closeout — 2026-11-03 (current)
+## Final responsibility split — 2026-11-04 (current)
+
+**B-04 SHARED OWNERSHIP:** F-01 existing verified Firebase discovery/connection/
+chat/messaging remains preserved; **F-02 belongs to BAO**, including Firebase AI
+Logic/Gemini, App Check, real provider response, native Android/security/evidence.
+F-02 is **IN PROGRESS** until acceptance is verified. **F-03 belongs to NGUYEN**:
+consultant onboarding/trial/revision/invoice/payOS/webhook/payment/schedule and
+business integration tests; status **HANDOFF / PENDING IMPLEMENTATION**.
+
+The earlier broad full-transfer steer was not committed and is corrected in the
+worktree. Bao resumes only F-02. F-03 WIP remains archived and untouched, excluded
+from Bao's focused PR; no F-03 deployment/push/merge is authorized. See the
+[precise F-03 handoff](bao-to-nguyen-b04-handoff.md).
+
+B-01, B-02, B-03.1–6 and B-05 remain COMPLETE in their existing verified scopes.
+Bao's assigned scope also includes unfinished F-02; no expanded-scope COMPLETE
+claim yet. **Lab 3 overall: NOT YET COMPLETE**, with Nguyen F-03/ARTEMIS/UI/final
+deliverables separate. Bao retains approved Firebase infrastructure/security and
+regression/evidence support; production access/deployment authority is not transferred.
+
+Current F-02 [native investigation packet](../../evidence/cloud/f02-native-20261104/README.md):
+source `c497169`, default API35 APK, App Check token acquired and AI enforcement
+retained. Actual3.8 returned500/high-demand then three30s provider-await timeouts.
+Manual fallback/detail and105 Flutter/58 Rules tests PASS; real Gemini JSON,
+AI result and success Analytics remain BLOCKED. All approved live calls consumed.
+F-02 stays IN PROGRESS; delivery is DRAFT/CORRECTIVE, not merge-ready acceptance.
+
+Historical snapshots below retain dated evidence and old assignments/configuration.
+They do not override this final split or reopen previously verified tasks.
+
+## Bao acceptance closeout — 2026-11-03 (historical evidence)
 
 **B-03.2 COMPLETE — FIRESTORE ALTERNATIVE VERIFIED.** B-01 controlled Android,
 B-02 approved Auth/Firestore scope, B-03.1/3/4/5/6 tested scope and B-05 evidence
