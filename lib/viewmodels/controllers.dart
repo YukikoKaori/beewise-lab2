@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -601,6 +604,15 @@ final consultantMessagesProvider = StreamProvider.family(
 );
 
 String friendlyError(Object error) {
+  if (error is FirebaseAIException) {
+    if (error is QuotaExceeded) {
+      return 'AI đang đạt giới hạn sử dụng. Bạn có thể thử lại sau hoặc tự tìm gia sư.';
+    }
+    return 'AI tạm thời chưa phản hồi được. Bạn có thể thử lại sau hoặc tự tìm gia sư.';
+  }
+  if (error is TimeoutException) {
+    return 'Dịch vụ phản hồi quá lâu. Nội dung vẫn được giữ để bạn thử lại.';
+  }
   if (error is AuthFlowException ||
       error is ChatServiceException ||
       error is MatchingException ||
