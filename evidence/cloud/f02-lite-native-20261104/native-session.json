@@ -1,0 +1,63 @@
+{
+  "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f",
+  "entrypoint": "lib/main.dart",
+  "firstRequest": {
+    "submittedAtUtc": "2026-11-03T20:14:33.008516+00:00",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f",
+    "apkSha256": "3542276a8108123056c93eaa9524490c5dfa58186115daa2381031fba1ae568f",
+    "device": "emulator-5562",
+    "api": 35,
+    "project": "beewise-lab-3",
+    "package": "com.beewise.beewise",
+    "model": "gemini-3.5-flash-lite",
+    "provider": "FirebaseAI.googleAI / Gemini Developer API",
+    "entrypoint": "lib/main.dart",
+    "action": "normal UI submit tap",
+    "approvedMaximum": 1,
+    "proposalSha256": "54d1644b6169665bc0d0fbbeae2912024eefc53dbb5aaef4bea15212551262ef"
+  },
+  "providerResponses": [
+    {
+      "deviceLocal": "11-04 03:14:37.986",
+      "model": "gemini-3.5-flash-lite",
+      "finish": "stop",
+      "totalTokens": 387
+    },
+    {
+      "deviceLocal": "11-04 03:17:39.039",
+      "model": "gemini-3.5-flash-lite",
+      "finish": "stop",
+      "totalTokens": 387
+    }
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "provider": "FirebaseAI.googleAI / Gemini Developer API",
+  "firstResponseApproxSeconds": 5,
+  "latencyNote": "Approximate host submit timestamp to device response clock; not a calibrated network latency benchmark",
+  "api": 35,
+  "avd": "BeeWise_Bao_Acceptance_API35",
+  "viewportDp": {
+    "width": 360,
+    "height": 800
+  },
+  "userdataPreserved": true,
+  "releaseOrPhysicalDeviceTested": false,
+  "parentSpecificAiTested": false,
+  "approvedMaximum": 1,
+  "actualProviderResponses": 2,
+  "budgetDeviation": {
+    "kind": "accidental second request beyond approved maximum",
+    "observedResponseDeviceLocal": "2026-11-04 03:17:39.039 UTC+07",
+    "cause": "Stale coordinate after returning from AI detail; keyboard/layout reflow placed AI submit at former manual-fallback coordinate",
+    "secondSubmitTimestamp": "not separately recorded; do not infer exact submit time",
+    "disclosedToOwner": true,
+    "furtherCallsStopped": true,
+    "billingEnabled": false
+  },
+  "analyticsEvent": "ai_match_success",
+  "resultCount": 1,
+  "approvedTutorId": "tutor_acd3824aa8734c63ac8827df",
+  "acceptance": "F02 LIVE VERIFIED in API35 guest scope; owner review required for execution-budget deviation; no automatic merge",
+  "diagnosticProperties": "FA, FA-SVC and analytics debug package properties restored to original empty values; debugger detached without hot reload",
+  "consoleDebugView": "Fresh Console UI receipt NOT RUN: browser bridge unavailable. Native FA-SVC upload bundle contains real success events; historical identity findings unchanged."
+}

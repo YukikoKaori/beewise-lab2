@@ -6,12 +6,12 @@ transfer. **NGUYEN OWNS F-03 ONLY. BAO RETAINS F-02 AI MATCHING / APP CHECK.**
 | Flow | Owner / status | Scope |
 |---|---|---|
 | F-01 | Bao existing Firebase integration — EXISTING VERIFIED CLOUD FLOW | Discovery, Auth, reciprocal connection/chat creation and parent messaging; preserve evidence |
-| F-02 | **Bao — IN PROGRESS until live acceptance verified** | Firebase AI Logic/Gemini, App Check implementation, real provider response, Android validation, security and acceptance evidence |
+| F-02 | **Bao — COMPLETE / LIVE VERIFIED in API35 guest/debug scope** | Firebase AI Logic/Gemini, App Check implementation, real provider response, Android validation, security and acceptance evidence |
 | F-03 | **Nguyen — HANDOFF / PENDING IMPLEMENTATION** | Consultant/trial/class revision/invoice/payOS/webhook/payment/official schedule and end-to-end business tests |
 
 B-04 overall has **SHARED OWNERSHIP**, not COMPLETE. B-01/B-02/B-03.1–6/B-05
 remain COMPLETE in their existing verified scopes; expanded Bao scope includes
-F-02. Lab 3 overall remains dependent on F-03, UI/ARTEMIS and final deliverables.
+live-verified F-02. Lab 3 overall remains dependent on F-03, UI/ARTEMIS and final deliverables.
 Bao supports approved Firebase infrastructure/configuration, security/regression
 review and evidence verification. Production IAM/deployment rights are not
 silently transferred to Nguyen.
@@ -182,8 +182,9 @@ debug AndroidDebugProvider versus release PlayIntegrity. Earlier disabled APIs
 and `Too many attempts` are historical. Previously exact-approved API enablement,
 Gemini setup and AI-only enforcement have occurred; current read-only inspection
 must precede further diagnosis. No new API/token/enforcement/terms/billing/quota
-mutation is automatic. Previously approved model3.8 remains with the same Firebase
-AI Logic/Gemini Developer provider; genuine native result still needs acceptance.
+mutation is automatic. After the historical3.8 failures, the owner separately
+approved3.5 Flash-Lite. The same Firebase AI Logic/Gemini Developer provider
+returned a genuine validated native result; no cloud RC publication occurred.
 
 Bao's focused F-02 packet/PR will carry exact source/APK/model/configuration,
 native provider result, validated recommendations, Analytics and recovery proof.
@@ -191,8 +192,9 @@ Nguyen then integrates that stable F-02 boundary with F-03 without changing
 identity/security protections. Completion of F-02 does not mark F-03, B-04 overall
 or Lab3 complete. Historical records remain dated evidence, not current ownership.
 
-Current [F-02 native packet](../../evidence/cloud/f02-native-20261104/README.md)
-records App Check token acquisition, actual3.8 HTTP500/high-demand and three30s
-provider-await timeouts. No Gemini JSON/result/success event was obtained; Bao
-retains this incomplete acceptance. Manual fallback/detail and105 Flutter/58
-Rules tests PASS. Nguyen's F-03 handoff is ready independently of that blocker.
+Current [F-02 live packet](../../evidence/cloud/f02-lite-native-20261104/README.md)
+records actual3.5 provider output, valid demo tutor, native AI/detail/fallback,
+FA-SVC ai_match_success count1 and105 Flutter/58 Rules PASS. Earlier3.8 failures
+remain historical evidence. An automation error caused2 calls against approved1;
+disclosed and stopped, PR DRAFT for owner review. Bao F-02 is functionally live
+verified in the tested scope; Nguyen F-03 remains HANDOFF / PENDING IMPLEMENTATION.
