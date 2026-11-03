@@ -1,0 +1,70 @@
+{
+  "atUtc": "2026-11-03T06:53:59.420526+00:00",
+  "metrics": {
+    "lastanr": {
+      "exitCode": 0,
+      "text": [
+        "ACTIVITY MANAGER LAST ANR (dumpsys activity lastanr)",
+        "  ANR time: Nov 3, 2026 1:36:42 PM",
+        "  Reason: Input dispatching timed out (f41d5d com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity is not responding. Waited 5035ms for FocusEvent(hasFocus=true))."
+      ]
+    },
+    "cpu": {
+      "exitCode": 0,
+      "text": [
+        "Load: 0.1 / 0.86 / 2.32",
+        "CPU usage from 358463ms to 58446ms ago (2026-11-03 13:47:55.278 to 2026-11-03 13:52:55.294):",
+        "  4.9% 453/android.hardware.sensors-service.multihal: 0.2% user + 4.7% kernel / faults: 1 minor"
+      ]
+    },
+    "load": {
+      "exitCode": 0,
+      "text": "0.32 0.79 2.21 2/2123 6578\n"
+    },
+    "memory": {
+      "exitCode": 0,
+      "text": [
+        "MemTotal:        4009368 kB",
+        "MemFree:          145464 kB",
+        "MemAvailable:    2372216 kB"
+      ]
+    },
+    "main": {
+      "exitCode": 0,
+      "text": [
+        "6074 (beewise.beewise) S 426 426 0 0 -1 4194624 214665 0 155 0 868 977 0 0 10 -10 65 0 368182 25915133952 150352 18446744073709551615 1 1 0 0 0 0 2101764 4097 1073775864 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      ]
+    },
+    "wchan": {
+      "exitCode": 0,
+      "text": "0"
+    }
+  },
+  "originalDebugPropertiesRestored": {
+    "debug.firebase.analytics.app": true,
+    "log.tag.FA": true,
+    "log.tag.FA-SVC": true
+  },
+  "wifiMobileData": {
+    "wifi": "1",
+    "mobile": "1"
+  },
+  "networkControlAppliedThisRun": false,
+  "ownedCollectorStopped": true,
+  "fullPrivateLogSha256": "67a0c8e766d94bc720502a031c52ae8582606a6e51cf482874cc80762d1da789",
+  "fullPrivateLogBytes": 718100,
+  "anrDialog": "Pixel Launcher still visible at final capture; not suppressed",
+  "userdataCleared": false,
+  "artemisReadOnlyProbe": {
+    "status": {
+      "result": "UNREACHABLE",
+      "errorType": "URLError"
+    },
+    "devices": {
+      "result": "UNREACHABLE",
+      "errorType": "URLError"
+    }
+  },
+  "nativeTimeout": "NOT VERIFIED: unreliable launcher/navigation; no further stress and no packet-drop attempt; emulator su unavailable",
+  "physicalDevice": "NOT AVAILABLE: only emulator-5560 online"
+}

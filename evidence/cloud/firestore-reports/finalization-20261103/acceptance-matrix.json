@@ -1,0 +1,85 @@
+{
+  "recordedAtUtc": "2026-11-03T06:58:40.286967+00:00",
+  "baoScope": "PARTIALLY VERIFIED",
+  "B-03.2": "PARTIALLY VERIFIED",
+  "cases": {
+    "TC-PDF-01": {
+      "expected": "Generate truthful PDF from eligible tutor",
+      "status": "PASS",
+      "actual": "Historical native UI generation + new debugger-invoked production controller generated 19,315-byte %PDF-1.5 file. New SHA differs, not a new cloud roundtrip.",
+      "environment": "Historical PR11 Android API37/live Firebase plus explicitly scoped fresh API37 debugger generation; see per-artifact provenance",
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "historicalSource": "PR11 manifest implementationSha/validatedIntegrationSha, not relabeled as new execution",
+      "evidence": [
+        "local-pdf-generation.json",
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/pdf-roundtrip.json"
+      ],
+      "remainingLimitation": "Fresh UI accessibility/navigation blocked by Launcher ANR"
+    },
+    "TC-PDF-02": {
+      "expected": "Owner-private immutable Firestore save, server acknowledgement and forced read",
+      "status": "PASS",
+      "actual": "Historical PR11 real native save + Console metadata and live Client SDK controls. Intentionally no new save this task.",
+      "environment": "Historical PR11 Android API37/live Firebase plus explicitly scoped fresh API37 debugger generation; see per-artifact provenance",
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "historicalSource": "PR11 manifest implementationSha/validatedIntegrationSha, not relabeled as new execution",
+      "evidence": [
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/native-server-saved.png",
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/console-native-report-metadata.png",
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/live-client-security.json"
+      ],
+      "remainingLimitation": "Historical run only; no fresh cloud-write claim"
+    },
+    "TC-PDF-03": {
+      "expected": "Owner server download, decode, equality, actual preview",
+      "status": "PASS",
+      "actual": "Historical original/native download/server decode equality: 19,315 bytes, SHA 8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe.",
+      "environment": "Historical PR11 Android API37/live Firebase plus explicitly scoped fresh API37 debugger generation; see per-artifact provenance",
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "historicalSource": "PR11 manifest implementationSha/validatedIntegrationSha, not relabeled as new execution",
+      "evidence": [
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/pdf-roundtrip.json",
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/native-downloaded-pdf-preview.png"
+      ],
+      "remainingLimitation": "No fresh existing-report download; no history picker after restart"
+    },
+    "TC-PDF-04": {
+      "expected": "Owner isolation, logout/account switch clear private state",
+      "status": "PASS",
+      "actual": "Historical authenticated A/B cross-owner denial and actual immediate pending cancellation/reset. Fresh ordinary B managed logout observed before reinstall.",
+      "environment": "Historical PR11 Android API37/live Firebase plus explicitly scoped fresh API37 debugger generation; see per-artifact provenance",
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "historicalSource": "PR11 manifest implementationSha/validatedIntegrationSha, not relabeled as new execution",
+      "evidence": [
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/live-client-security.json",
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/native-switch-pending.json",
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/native-b-private-ui-cleared.png"
+      ],
+      "remainingLimitation": "Impaired-network signOut completion and every late native callback remain unverified"
+    },
+    "TC-PDF-05": {
+      "expected": "Real error/cancel/recovery including distinct 30s deadline and retry",
+      "status": "NOT VERIFIED",
+      "actual": "Historical native radio-off error/retry PASS; SDK unavailable is distinct from application TimeoutException. Current unstable launcher prevented reliable baseline selection; no further network stress.",
+      "environment": "Historical PR11 Android API37/live Firebase plus explicitly scoped fresh API37 debugger generation; see per-artifact provenance",
+      "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+      "historicalSource": "PR11 manifest implementationSha/validatedIntegrationSha, not relabeled as new execution",
+      "evidence": [
+        "https://github.com/YukikoKaori/beewise-lab2/blob/b45bdce4d3a68006a28ca8e587fdece0187a8660/evidence/cloud/firestore-reports/live-20261103/manifest.json",
+        "android-startup.json",
+        "cleanup-and-environment.json"
+      ],
+      "remainingLimitation": "Distinct native 30s timeout/retry and guest-save UI remain open; unit/emulator/live-client coverage separate"
+    }
+  },
+  "evidenceLayers": {
+    "flutterUnit": "95/95 fresh PASS; includes deterministic timeout/retry, not native timeout",
+    "firestoreEmulator": "58/58 fresh PASS, not live project proof",
+    "liveClientSdk": "PR11 historical positive/security controls preserved; not rerun without need",
+    "nativeAndroid": "Fresh install PASS, launch FAIL in environment, controller local generation PASS; native timeout NOT VERIFIED",
+    "analyticsConsole": "Historical upload PASS, fresh durable export parameters NOT VERIFIED",
+    "artemis": "NOT RUN; local status/device endpoints unreachable; historical quota block retained"
+  },
+  "cloudMutationScope": "0 new reports; no catalog/Auth account/rules/index/service deployment performed by finalization workflow; historical four reports preserved, historical counts not freshly inventoried",
+  "mergeAssessment": "Reviewable final docs/evidence handoff; PARTIALLY VERIFIED acceptance, not a full Lab3/native-stability approval. No code fix justified, no auto merge."
+}

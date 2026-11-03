@@ -1,3 +1,28 @@
+## Final Bao handoff — 2026-11-03 (latest)
+
+**Bao scope: PARTIALLY VERIFIED. B-03.2: PARTIALLY VERIFIED.** PR #11 is MERGED
+at `b45bdce4d3a68006a28ca8e587fdece0187a8660`, independently refetched as current
+main. Implementation, approved deployment, historical native PDF roundtrip and
+tested live owner security remain verified; no Firebase/app behavior changed.
+
+Fresh local pub/format/analyze/build PASS, Flutter **95/95**, rules **58/58**,
+harness structure **27** PASS (not ARTEMIS runtime). Default APK installed with
+same signer/data preserved; launch timed out and Pixel Launcher ANR recurred.
+Real production controller generated a new local-only PDF via attached debugger,
+and native FA-SVC logged export_report parameters. This is not fresh UI/Console
+proof. Distinct native 30s timeout/retry, missing-auth save UX, exhaustive eventual
+pending callback settlement and durable export DebugView parameters remain
+unverified. Refreshed Console was blank; no permission-denied message observed.
+No repeat stress, new cloud report, deployment, fatal crash, data clear or ANR
+suppression. Debug properties restored; only our collector/debugger stopped.
+
+[Final evidence/matrix](../../evidence/cloud/firestore-reports/finalization-20261103/README.md)
+and [complete Nguyen execution guide](bao-to-nguyen-final-handoff.md) give concrete
+stable-device follow-up and per-service scope. ARTEMIS host probes currently
+unreachable; no new scenarios/exploration. N-04 owner approval remains COMPLETE;
+N-01/N-02/N-03/N-05/N-06 retain their own open work. No full Lab 3 completion or
+automatic merge. Earlier sections below are historical snapshots.
+
 ## Firestore PDF live acceptance — 2026-11-03 (current)
 
 **B-03.2 PARTIALLY VERIFIED.** The consented tutor is now created once in
