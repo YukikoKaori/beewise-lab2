@@ -1,0 +1,21 @@
+{
+  "recordedAtUtc": "2026-11-03T06:58:37.558888+00:00",
+  "mainSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "pr11": {
+    "headRefOid": "ec1a1da6b8a77c7068922eafb618701b1d6478fd",
+    "mergeCommit": {
+      "oid": "b45bdce4d3a68006a28ca8e587fdece0187a8660"
+    },
+    "mergedAt": "2026-11-03T06:01:05Z",
+    "number": 11,
+    "state": "MERGED",
+    "url": "https://github.com/YukikoKaori/beewise-lab2/pull/11"
+  },
+  "openPullRequestsBeforeDelivery": [],
+  "ci": {
+    "conclusion": "success",
+    "headSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+    "url": "https://github.com/YukikoKaori/beewise-lab2/actions/runs/41587263380"
+  },
+  "scope": "docs/evidence finalization; no application/Firebase configuration deployment or business writes"
+}

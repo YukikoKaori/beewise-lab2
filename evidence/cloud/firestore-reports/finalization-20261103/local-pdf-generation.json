@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-03T06:50:34.364023+00:00",
+  "source_sha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "entrypoint": "lib/main.dart",
+  "method": "Dart VM evaluate invokes existing production ReportController.generate with actual loaded Tutor and application ProviderContainer; debugger attached; no cloud save",
+  "result": "generated",
+  "message": null,
+  "result_type": "@Instance",
+  "fileBytes": 19315,
+  "pdfHeader": "%PDF-1.5",
+  "sha256": "65a7012cea92b52d7971558e5e14c8cae07c6e433cc3e20217aef7c7f50f1bdb",
+  "authContext": "guest after ordinary managed logout of B; A UI sign-in attempt rejected due dropped input; no successful A login claimed",
+  "cloudSaveCalled": false,
+  "uiWalkthrough": "NOT VERIFIED for fresh APK: Pixel Launcher ANR blocks reliable navigation",
+  "file_size_kb": 18
+}

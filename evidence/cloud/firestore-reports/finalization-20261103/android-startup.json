@@ -1,0 +1,32 @@
+{
+  "recordedAtUtc": "2026-11-03T06:58:40.286967+00:00",
+  "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "defaultApkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "entrypoint": "lib/main.dart",
+  "launchAttemptsAfterInstall": 1,
+  "amStartW": {
+    "status": "timeout",
+    "launchState": "UNKNOWN",
+    "waitTimeMs": 14293
+  },
+  "lifecycleLogExcerpt": [
+    "11-03 13:38:18.122   631   664 I ActivityManager: Start proc 6074:com.beewise.beewise/u0a235 for next-top-activity {com.beewise.beewise/com.beewise.beewise.MainActivity}",
+    "11-03 13:38:25.667  6074  6129 I flutter : The Dart VM service is listening on [private VM endpoint omitted]",
+    "11-03 13:38:34.434   631   654 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +16s849ms",
+    "11-03 13:38:34.436   631   654 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +16s849ms"
+  ],
+  "flutterFirstFrame": "NOT MEASURED: no authoritative framework first-frame acknowledgement recorded; VM readiness is not first-frame timing",
+  "mainThread": "Final /proc sample sleeping, not an ANR-time stack. See cleanup-and-environment.json; no app deadlock proven",
+  "observedFailures": [
+    "System UI ANR at resumed baseline",
+    "Pixel Launcher ANR after fresh default APK launch and again during Account navigation"
+  ],
+  "latestAnrPackage": "com.google.android.apps.nexuslauncher",
+  "freshCleanLaunchStatus": "FAIL in this environment",
+  "applicationSpecificRootCause": "NOT ESTABLISHED; do not translate system dialog or late sleeping sample into a BeeWise defect/exoneration",
+  "controls": "No further relaunch stress, detection suppression, app delays, data clearing or network impairment applied. Production code unchanged. Existing PR3 controlled comparison retained historically.",
+  "navigation": "Recovered Home/demo before install; after install Home visible after normal Wait, Account navigation hit repeated launcher ANR. Fresh full walkthrough NOT VERIFIED.",
+  "nativePdf": "Actual production controller invoked via attached debugger; local-pdf-generation.json is service/controller evidence, not UI proof",
+  "physicalDevice": "NOT AVAILABLE",
+  "manualNextStep": "Use stable authorized physical/test device, follow handoff sections A/B/E; capture real process/first frame and existing-owner download deadline/retry without new cloud saves."
+}

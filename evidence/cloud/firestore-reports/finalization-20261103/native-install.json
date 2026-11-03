@@ -1,0 +1,17 @@
+{
+  "timestampUtc": "2026-11-03T06:36:07.238739+00:00",
+  "sourceSha": "b45bdce4d3a68006a28ca8e587fdece0187a8660",
+  "entrypoint": "lib/main.dart (default debug APK)",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "apkSizeBytes": 187179583,
+  "signerSha256": "4f4d9efa0c5d23d3285dc7d79eab011af5831d57342196c6d85e13e63c1b4004",
+  "sameSigner": true,
+  "installExitCode": 0,
+  "installResult": "Performing Streamed Install\r\nSuccess",
+  "userdataCleared": false,
+  "serial": "emulator-5560",
+  "androidVersion": "17",
+  "api": "37",
+  "display": "Physical size: 720x1600\r\nOverride size: 824x1832",
+  "density": "Physical density: 320"
+}
