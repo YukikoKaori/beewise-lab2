@@ -1,3 +1,30 @@
+## Live acceptance closeout — 2026-11-03 (current)
+
+**COMPLETE — FIRESTORE ALTERNATIVE VERIFIED.** This supersedes earlier missing
+native timeout/missing-auth/late-settlement/DebugView items below. It does not
+change their historical observations.
+
+Stable API35 production-entrypoint APK: genuine UI pending download errors at
+30.203s, busy=false/path absent, restores network and retries same report with
+19315-byte original/download SHA equality. Native service deadline30003ms is
+distinct from the initial SDK unavailable10036ms. Guest save shows sign-in error.
+Real A pending operation → guest reset → B authenticated → old Future settlement
+leaves idle/no private result/path; B foreign Parent/report reads denied. Raw SDK
+race instrumentation and normal managed logout/FCM-journal recovery are labelled.
+
+Exactly one separately approved A report was created through UI (A2→3, B2);
+four existing reports preserved, retry creates none. Fresh actual UI local-only
+generation delivers export_report to DebugView with subject_count=2 and
+file_size_kb=18, matching19315 actual bytes. Correct property560584336 recovered
+in clean owner-authenticated IAB; no permission-denied error/config workaround.
+Existing live server save/readback, upload_report Console, immutable/malformed
+denials and Android share/preview evidence retained.
+
+[TC-PDF-01–05 matrix, timestamps, APK/source/hashes, Console panes and limits](../../evidence/cloud/bao-acceptance-20261103/README.md#pdf-live-acceptance).
+No new rules deployment, Storage/bucket/billing/App Check change or data reset.
+Prior private PDFs are not committed or deleted. Full local Flutter95/rules58
+gates PASS; final delivery PR supplies exact-HEAD Actions.
+
 # Firestore Base64 PDF reports — 2026-11-02
 
 ## Finalization — 2026-11-03 (latest evidence)

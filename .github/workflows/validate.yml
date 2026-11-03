@@ -55,3 +55,4 @@ jobs:
       - run: uv sync --project e2e_test --frozen
       - run: uv run --project e2e_test pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q
       - run: python scripts/check_e2e_harness.py
+      - run: python scripts/test_measure_bao_startup.py

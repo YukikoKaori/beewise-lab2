@@ -1,0 +1,28 @@
+{
+  "collectedUtc": "2026-11-03T09:19:38.688171+00:00",
+  "scope": "genuine production ExportService server download invoked via attached debugger; no UI loading state claim",
+  "results": [
+    {
+      "label": "baseline",
+      "elapsedMs": 532,
+      "sizeBytes": 19315,
+      "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+      "pdfHeader": "%PDF-"
+    },
+    {
+      "label": "retry",
+      "elapsedMs": 122,
+      "sizeBytes": 19315,
+      "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+      "pdfHeader": "%PDF-"
+    },
+    {
+      "label": "retry-1793697500",
+      "elapsedMs": 155,
+      "sizeBytes": 19315,
+      "sha256": "8e8d5f2f2c565c45c00081afb944f69f0aa1151f754dfa6e1617aa5286ad0bfe",
+      "pdfHeader": "%PDF-"
+    }
+  ],
+  "sameHash": true
+}

@@ -1,0 +1,41 @@
+{
+  "capturedAtUtc": "2026-11-03T09:33:03.176494+00:00",
+  "device": "emulator-5562",
+  "api": 35,
+  "sourceSha": "8c494f0780aab7c41796244ab78b5c4ffb1daff4",
+  "applicationSourceTree": "Same lib/android/firebase tree as b45bdce4d3a68006a28ca8e587fdece0187a8660 built APK; only documentation changed in main",
+  "apkSha256": "9f24102645ef0adada294a8f1a113e21c9ad2a88a822e461c758eb6354ed47f3",
+  "originalPrivateSha256": "545f4f7fc144271be5f89be54fb3b09ffa228a65e19ad7809403f7c414d50781",
+  "publishedSha256": "9a8b09c79b662e324d797dc61de8ef3248b27bdba13d4c0ebfaf08519257babb",
+  "redactedRectangles": [
+    [
+      32,
+      210,
+      688,
+      354
+    ]
+  ],
+  "visibleLabels": [
+    "Tài khoản",
+    "T\nPhụ huynh\n[email omitted]",
+    "Đăng xuất",
+    "Thông báo",
+    "Chưa đồng bộ được thiết bị. Hãy thử lại; nếu đã đổi tài khoản, đăng nhập lại tài khoản trước để hoàn tất gỡ đăng ký thông báo.",
+    "Thử lại đăng ký thông báo",
+    "Chưa có thông báo mới.",
+    "Dịch vụ ứng dụng",
+    "Remote Config\nGhép AI: đang bật · tối đa 3 kết quả",
+    "Báo cáo PDF riêng",
+    "Xuất PDF từ hồ sơ gia sư. Lưu riêng trong Firestore sau khi đăng nhập.",
+    "Chẩn đoán lỗi",
+    "Gửi lỗi mẫu không nghiêm trọng",
+    "Kiểm tra Crashlytics (ứng dụng sẽ đóng)",
+    "Trang chủ\nTab 1 of 5",
+    "Tìm gia sư\nTab 2 of 5",
+    "Ghép AI\nTab 3 of 5",
+    "Tin nhắn\nTab 4 of 5",
+    "Tài khoản\nTab 5 of 5"
+  ],
+  "capture": "Actual ADB screenshot; only PII rectangles redacted",
+  "publishedAtUtc": "2026-11-03T09:33:03.176494+00:00"
+}

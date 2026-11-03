@@ -1,0 +1,17 @@
+{
+  "atUtc": "2026-11-03T09:30:28.143814+00:00",
+  "stage": "downloaded",
+  "artifacts": {
+    "original": {
+      "bytes": 19315,
+      "sha256": "b95c76eeb1c3371ea77542b5c040a11f73d3e0d43d0c3db160f02f2fd853b23d",
+      "validPdfHeader": true
+    },
+    "download": {
+      "bytes": 19315,
+      "sha256": "b95c76eeb1c3371ea77542b5c040a11f73d3e0d43d0c3db160f02f2fd853b23d",
+      "validPdfHeader": true
+    }
+  },
+  "hashEqual": true
+}

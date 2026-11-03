@@ -1,0 +1,2 @@
+# Freeze evidence bytes so manifest hashes survive Git checkout on Windows/Linux.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

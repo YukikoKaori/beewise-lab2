@@ -1,0 +1,12 @@
+{
+  "atUtc": "2026-11-03T09:18:01.048048+00:00",
+  "scope": "only BeeWise Linux app UID outbound TCP 443 on isolated acceptance API35; GMS and ADB unaffected",
+  "uid": 10209,
+  "deadlineSeconds": 30,
+  "beforeRulesSha256": "cea68b418af9a07db509023a7e69d1a55f9d26f0e4e659eab5feb7f73186c93f",
+  "invokeExitCode": 0,
+  "nativeResult": "11-03 16:18:31.838  5679  5679 I flutter : BaoAcceptance impaired-1793697481048048300 ERROR ms=30003 type=ExportException message=Chưa xác nhận được từ server. Hãy kiểm tra mạng và thử lại.",
+  "droppedPacketCounters": "Chain OUTPUT (policy ACCEPT 30602 packets, 6105959 bytes)\n    pkts      bytes target     prot opt in     out     source               destination         \n      18     4064 DROP       6    --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443 owner UID match 10209 /* bao-acceptance-timeout-20261103 */\n   30602  6105959 oem_out    all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n   30602  6105959 fw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n   30602  6105959 st_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n   30602  6105959 bw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+  "restoreExitCode": 0,
+  "ownedRuleAbsentAfter": true
+}
