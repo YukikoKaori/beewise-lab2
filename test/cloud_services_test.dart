@@ -59,7 +59,7 @@ void main() {
       final service = RemoteConfigService(config);
       expect(service.homeTutorLimit, 6);
       expect(service.aiResultLimit, 3);
-      expect(service.modelName, 'gemini-2.5-flash');
+      expect(service.modelName, 'gemini-3.8-flash');
       when(() => config.getInt('home_tutor_limit')).thenReturn(10000);
       when(() => config.getInt('ai_result_limit')).thenReturn(10000);
       expect(service.homeTutorLimit, 100);
