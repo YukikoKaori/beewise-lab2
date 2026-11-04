@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -2111,12 +2112,15 @@ class ProfileScreen extends ConsumerWidget {
             icon: const Icon(Icons.bug_report_outlined),
             label: const Text('Gửi lỗi mẫu không nghiêm trọng'),
           ),
-          OutlinedButton.icon(
-            onPressed: () =>
-                ref.read(crashReportingServiceProvider).triggerTestCrash(),
-            icon: const Icon(Icons.warning_amber),
-            label: const Text('Kiểm tra Crashlytics (ứng dụng sẽ đóng)'),
-          ),
+          // Deliberate fatal crash is a demo-only control: it is compiled out
+          // of release builds so it cannot be triggered during normal use.
+          if (kDebugMode)
+            OutlinedButton.icon(
+              onPressed: () =>
+                  ref.read(crashReportingServiceProvider).triggerTestCrash(),
+              icon: const Icon(Icons.warning_amber),
+              label: const Text('Kiểm tra Crashlytics (ứng dụng sẽ đóng)'),
+            ),
           if (!firebaseReady) const FirebaseSetupNotice(),
         ],
       ),

@@ -8,6 +8,15 @@ Historical PR #1 notes below describe the premerge work. Statements about
 "working tree" or "pending commits" apply to that historical review only;
 they are superseded by the 2026-10-30 corrective audit at the end of this file.
 
+> **Current status (2026-11-04):** BW-01..BW-03 are no longer pending; their
+> fixes landed on `main` with the PR #1 merge. The Lab 3 AI code review
+> requirement (≥5 line-linked findings, ≥2 categories, ≥3 committed fixes) is
+> satisfied by the N-04 review: findings F-01..F-06 in
+> [BeeWise_N03_Code_Review.md](../evidence/external-review/BeeWise_N03_Code_Review.md),
+> dispositions in the
+> [remediation report](../evidence/external-review/BeeWise_N03_Remediation_Report.md),
+> fixes in commit `a212e5f` (merged by PR #9).
+
 ## Review context
 
 - Reviewer: OpenAI Codex (GPT-6), in-repository static review.
