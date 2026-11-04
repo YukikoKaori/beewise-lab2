@@ -212,6 +212,25 @@ test('invoice verification and official schedule are trusted backend only', asyn
   await assertFails(updateDoc(doc(db(), 'classes/unverified'), {paymentStatus: 'verified'}));
 });
 
+test('F-03 backend ledgers (payOS orders, webhooks, references, receipts) are server-only', async () => {
+  const ledgers = {
+    'paymentOrders/1000001': {parentId: 'alice', invoiceId: 'invoice', amount: 2000000, status: 'pending', checkoutUrl: 'https://pay.payos.vn/web/x'},
+    'payosWebhookEvents/evt': {orderCode: 1000001, status: 'processed'},
+    'payosTransactions/ref': {orderCode: 1000001, invoiceId: 'invoice'},
+    'workflowReceipts/chat__proposal': {chatId: 'chat', proposalId: 'proposal', result: {outcome: 'trial_accepted'}},
+  };
+  await seed(ledgers);
+  for (const path of Object.keys(ledgers)) {
+    await assertFails(getDoc(doc(db(), path)));
+    await assertFails(setDoc(doc(db(), path), {parentId: 'alice', status: 'paid'}));
+    await assertFails(setDoc(doc(db(), `${path}-new`), {parentId: 'alice'}));
+    await assertFails(deleteDoc(doc(db(), path)));
+  }
+  // A parent cannot forge a verified invoice or schedule for itself either.
+  await assertFails(setDoc(doc(db(), 'invoices/inv_forged'), {parentId: 'alice', status: 'verified', amount: 1}));
+  await assertFails(setDoc(doc(db(), 'classes/cls_forged'), {parentId: 'alice', paymentStatus: 'verified'}));
+});
+
 // The obsolete Storage terminal/ownership cases are replaced by the actual
 // Firestore persistence contract; all existing Firestore regressions remain.
 const reportId = 'abcdefghijklmnopqrst';

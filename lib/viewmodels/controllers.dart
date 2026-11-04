@@ -10,6 +10,7 @@ import '../services/auth_service.dart';
 import '../services/chat_service.dart';
 import '../services/export_service.dart';
 import '../services/matching_service.dart';
+import '../services/payment_api.dart';
 import '../services/workflow_service.dart';
 import '../services/tutor_repository.dart';
 import 'app_providers.dart';
@@ -345,6 +346,37 @@ class WorkflowController extends Notifier<AsyncValue<void>> {
         .event('payment_verification_requested');
   });
 
+  /// Asks the trusted backend for a payOS checkout link and opens it.
+  /// Opening the page is not payment: the invoice turns verified only when the
+  /// server confirms the payment with payOS and updates Firestore.
+  Future<void> startPayOsCheckout(String invoiceId) => _run(() async {
+    final api = ref.read(paymentApiProvider);
+    if (api == null) throw const FirebaseNotConfiguredException();
+    final session = await api.createCheckout(invoiceId);
+    await ref.read(analyticsServiceProvider).event('begin_checkout', {
+      'payment_provider': 'payos',
+      'reused_link': session.reused ? 1 : 0,
+    });
+    final opened = await ref.read(checkoutLauncherProvider)(
+      session.checkoutUrl,
+    );
+    if (!opened) {
+      throw const PaymentApiException(
+        'Không mở được trang thanh toán payOS trên thiết bị này.',
+      );
+    }
+  });
+
+  /// Asks the server to re-check payOS (for a delayed or missed webhook).
+  Future<void> refreshPaymentStatus(String invoiceId) => _run(() async {
+    final api = ref.read(paymentApiProvider);
+    if (api == null) throw const FirebaseNotConfiguredException();
+    final result = await api.reconcile(invoiceId);
+    await ref.read(analyticsServiceProvider).event('payment_status_checked', {
+      'result': result.verified ? 'verified' : 'pending',
+    });
+  });
+
   Future<void> _run(Future<void> Function() action) async {
     state = const AsyncLoading();
     try {
@@ -617,7 +649,8 @@ String friendlyError(Object error) {
       error is ChatServiceException ||
       error is MatchingException ||
       error is ExportException ||
-      error is WorkflowException) {
+      error is WorkflowException ||
+      error is PaymentApiException) {
     return error.toString();
   }
   if (error is FirebaseException) {

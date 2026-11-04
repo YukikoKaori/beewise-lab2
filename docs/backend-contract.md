@@ -1,5 +1,16 @@
 # Trusted workflow and notification contract
 
+> **F-03 implementation — EMULATOR VERIFIED; LIVE payOS VERIFIED ONCE (2026-11-05, 2,000 VND,
+> [evidence](../evidence/cloud/f03-payos-live-20261105/README.md)); NOT DEPLOYED.**
+> The contract below is now implemented by [`backend/`](../backend/README.md):
+> consultant claim, trial proposals, class revisions, idempotent response
+> consumption, server-issued invoices, payOS checkout (official `@payos/node`
+> 2.0.5), signed webhook handling, provider re-check and atomic official class
+> creation. 45 backend tests run on the Auth + Firestore emulators with a fake
+> payOS behind the real SDK; 59 Rules tests prove the new server ledgers are
+> client-inaccessible. Live payOS requires the owner's verified payOS account and
+> separate approval; see the backend README "Going live" section.
+
 Effective ownership,2026-11-04: **B-04 shared — F-01 existing verified Firebase
 integration; F-02 AI Matching/Firebase AI Logic/App Check owned by Bao; F-03
 consultant/backend/payOS/webhook/payment/schedule owned by Nguyen.** Bao retains

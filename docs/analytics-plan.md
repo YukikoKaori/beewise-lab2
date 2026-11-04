@@ -23,6 +23,8 @@ Events use Firebase recommended names where they fit. Parameters are bounded, ty
 | `payment_verification_requested` | Pending verification request is stored | none | How many confirmed classes reach payment verification? | Payment |
 | `export_report` | Tutor PDF is generated | `subject_count` (int), `file_size_kb` (int) | Which profile views lead to a report export? | Tutor detail / file export |
 | `upload_report` | Firestore transaction acknowledged AND forced server read validates exact encoded PDF; current Auth generation remains active | `storage_backend` (string: firestore), `file_size_kb` (int), `result` (string: success) | How many generated reports reach confirmed private cloud persistence? | File export and save |
+| `begin_checkout` | Backend returned a payOS checkout link and the app tries to open it | `payment_provider` (string: payos), `reused_link` (int 0/1) | How many issued invoices reach checkout, and how often is a live link reused? | Payment |
+| `payment_status_checked` | Parent taps "Tôi đã thanh toán · Kiểm tra lại" and the server re-checks payOS | `result` (string enum: verified/pending) | How often do parents wait on a late or missed payOS webhook? | Payment recovery |
 
 ## Implementation and privacy
 
