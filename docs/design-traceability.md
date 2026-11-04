@@ -1,5 +1,18 @@
 # Lab 3 design traceability — BeeWise
 
+## Effective ownership correction — 2026-11-04
+
+**B-04 shared:** F-01 existing verified Firebase discovery/connection/chat/text
+integration is preserved; **Bao owns F-02** Firebase AI Logic/Gemini/App Check,
+real provider response, Android acceptance/security/evidence; **Nguyen owns F-03**
+consultant/trial/revision/invoice/payOS/webhook/payment/schedule and business E2E.
+F-02 is COMPLETE / LIVE VERIFIED in API35 guest/debug scope;
+[actual packet](../evidence/cloud/f02-lite-native-20261104/README.md). F-03 is HANDOFF /
+PENDING IMPLEMENTATION. [Precise handoff](workstreams/bao-to-nguyen-b04-handoff.md).
+The previous broad transfer is superseded. Historical service/configuration
+descriptions below do not override the current acceptance packet or reopen
+Bao's completed B-01/B-02/B-03.1–6/B-05. No overall B-04/Lab3 COMPLETE claim.
+
 ## Status
 
 The Flutter app and primary client flows now exist. “Implemented” below means code exists and passes static Dart analysis; it does not mean Firebase-backed behavior has been run. Firebase project, Android app, Email/Password Auth and default Firestore database are configured. The production rules currently deployed predate the tutor application collection; the updated local rules need emulator validation and deployment. Real tutor catalogue, Google OAuth/support contact, consultant/payment backend, ARTEMIS API credentials, Figma sync for the new tutor flow, and device evidence remain external requirements. Lab 2 screenshots contain illustrative tutor data and are not used as records.

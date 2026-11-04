@@ -1,0 +1,9 @@
+{
+  "model": "gemini-3.8-flash",
+  "resultLimit": "3",
+  "enabled": "true",
+  "timeoutSeconds": "30",
+  "capturedAtUtc": "2026-11-03T20:05:38.033747+00:00",
+  "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+  "method": "read-only VM evaluation of existing MatchingService getters; no generateContent call"
+}

@@ -1,0 +1,71 @@
+{
+  "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+  "apkSha256": "32fba1b8df142a98772c096c7e0588cc94f1f78dd57b94ae99614bba42e37223",
+  "apkBytes": 227608014,
+  "entrypoint": "lib/main.dart",
+  "device": "emulator-5562",
+  "avd": "BeeWise_Bao_Acceptance_API35",
+  "androidApi": 35,
+  "physicalDevice": false,
+  "viewportDp": {
+    "width": 360,
+    "height": 800
+  },
+  "firebaseProject": "beewise-lab-3",
+  "androidPackage": "com.beewise.beewise",
+  "provider": "FirebaseAI.googleAI / Gemini Developer API",
+  "model": "gemini-3.8-flash",
+  "requests": [
+    {
+      "submittedAtUtc": "2026-11-03T19:43:20.014919+00:00",
+      "device": "emulator-5562",
+      "model": "gemini-3.8-flash",
+      "provider": "FirebaseAI.googleAI",
+      "entrypoint": "lib/main.dart",
+      "action": "normal UI submit tap",
+      "approved38Attempt": 2,
+      "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+      "outcome": "TIMEOUT at MatchingService.match provider await, 30 seconds; no usable provider JSON received"
+    },
+    {
+      "submittedAtUtc": "2026-11-03T19:57:21.885701+00:00",
+      "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+      "apkSha256": "32fba1b8df142a98772c096c7e0588cc94f1f78dd57b94ae99614bba42e37223",
+      "device": "emulator-5562",
+      "api": 35,
+      "project": "beewise-lab-3",
+      "package": "com.beewise.beewise",
+      "model": "gemini-3.8-flash",
+      "provider": "FirebaseAI.googleAI / Gemini Developer API",
+      "entrypoint": "lib/main.dart",
+      "action": "normal UI retry tap",
+      "approvedExtraAttempt": 1,
+      "approvedExtraMaximum": 2,
+      "outcome": "TIMEOUT at MatchingService.match provider await, 30 seconds; no usable provider JSON received"
+    },
+    {
+      "submittedAtUtc": "2026-11-03T19:59:05.162656+00:00",
+      "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+      "apkSha256": "32fba1b8df142a98772c096c7e0588cc94f1f78dd57b94ae99614bba42e37223",
+      "device": "emulator-5562",
+      "api": 35,
+      "project": "beewise-lab-3",
+      "package": "com.beewise.beewise",
+      "model": "gemini-3.8-flash",
+      "provider": "FirebaseAI.googleAI / Gemini Developer API",
+      "entrypoint": "lib/main.dart",
+      "action": "normal UI retry tap",
+      "approvedExtraAttempt": 2,
+      "approvedExtraMaximum": 2,
+      "outcome": "TIMEOUT at MatchingService.match provider await, 30 seconds; no usable provider JSON received"
+    }
+  ],
+  "earlier38Outcome": "HTTP 500 INTERNAL / high demand; earlier APK before friendly error fix; screenshot and full log retained privately",
+  "resultMetadata": null,
+  "recommendationTutorIds": [],
+  "analyticsSuccessEvent": "NOT OBSERVED; no successful result occurred",
+  "acceptance": "NOT COMPLETE",
+  "releasePlayIntegrity": "Configured; release device attestation NOT RUN",
+  "userdata": "Preserved; no clear-data/uninstall",
+  "remainingApprovedRequests": 0
+}

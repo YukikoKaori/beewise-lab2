@@ -1,3 +1,40 @@
+## Final responsibility split — 2026-11-04 (current)
+
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](../../evidence/cloud/f02-lite-native-20261104/owner-finalization.md).
+
+
+**B-04 SHARED OWNERSHIP:** F-01 remains the existing verified Firebase
+discovery/connection/chat/messaging integration. **F-02 belongs to BAO — COMPLETE
+/ LIVE VERIFIED** in API35 guest/debug scope: actual Firebase AI Logic/Gemini3.5
+Flash-Lite response, App Check, validated Firestore demo tutor, native result,
+detail/manual fallback and FA-SVC ai_match_success(result_count1).
+**F-03 belongs to NGUYEN — HANDOFF / PENDING IMPLEMENTATION:** consultant,
+trial/revision/invoice/payOS/webhook/payment/schedule/backend and business tests.
+
+[Current F-02 packet](../../evidence/cloud/f02-lite-native-20261104/README.md)
+records source/APK/config/timestamps/actual events and105 Flutter/58 Rules PASS.
+Earlier3.8 failures remain preserved, not relabelled as successes. Parent-specific
+AI, release/physical attestation and general provider availability are not claimed.
+**Execution deviation:** automation caused2 Flash-Lite calls against approved1;
+disclosed immediately, further calls stopped, receipt truthful. PR stays DRAFT
+for owner review; no automatic merge. Final-HEAD CI is reported in the PR.
+
+The earlier broad-transfer steer was uncommitted and corrected directly. F-03
+WIP remains archived/unchanged and excluded from Bao's PR; no F-03 deployment.
+[Precise F-03-only handoff](bao-to-nguyen-b04-handoff.md).
+B-01/B-02/B-03.1–6/B-05 remain COMPLETE scoped. Bao's expanded implementation
+scope now includes live-verified F-02; **Lab3 overall is NOT YET COMPLETE**.
+Bao retains approved Firebase infrastructure/security/regression/evidence support;
+production access/deployment authority is not transferred.
+
+Historical snapshots below retain dated evidence and old assignments/configuration.
+They do not override this final split or reopen previously verified tasks.
+
 > **2026-10-31 correction:** Application source `9ef5907`, Flutter 50/50 and
 > Firebase Emulator 27/27 PASS. Native guest discovery/RC gate exercised; synthetic
 > records cannot enter AI as real tutors. Authenticated trusted transitions remain
