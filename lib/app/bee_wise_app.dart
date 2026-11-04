@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/beewise_screens.dart';
+import '../services/firebase_bootstrap.dart';
 import '../services/notification_service.dart';
 import '../screens/tutor_application_screens.dart';
 import '../theme/bee_wise_theme.dart';
@@ -157,5 +158,13 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
     debugShowCheckedModeBanner: false,
     theme: BeeWiseTheme.light,
     routerConfig: _router,
+    // Make EMULATOR demo recordings impossible to mistake for live data.
+    builder: (context, child) => usesFirebaseEmulators
+        ? Banner(
+            message: 'EMULATOR',
+            location: BannerLocation.topEnd,
+            child: child ?? const SizedBox.shrink(),
+          )
+        : child ?? const SizedBox.shrink(),
   );
 }
