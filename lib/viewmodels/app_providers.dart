@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/tutor.dart';
 import '../models/chat_message.dart';
@@ -20,6 +21,7 @@ import '../services/notification_service.dart';
 import '../services/remote_config_service.dart';
 import '../services/tutor_application_service.dart';
 import '../services/tutor_repository.dart';
+import '../services/payment_api.dart';
 import '../services/workflow_service.dart';
 
 final firebaseReadyProvider = Provider<bool>((ref) => FirebaseBootstrap.ready);
@@ -137,6 +139,22 @@ final workflowServiceProvider = Provider<WorkflowService?>(
   (ref) => ref.watch(firebaseReadyProvider)
       ? WorkflowService(FirebaseFirestore.instance, FirebaseAuth.instance)
       : null,
+);
+
+final paymentApiProvider = Provider<PaymentApi?>(
+  (ref) => ref.watch(firebaseReadyProvider)
+      ? PaymentApi(
+          auth: FirebaseAuth.instance,
+          baseUrl: beeWiseApiBaseUrl,
+          allowInsecureCheckout: usesFirebaseEmulators,
+        )
+      : null,
+);
+
+/// Opens the payOS checkout page outside the app (overridable in tests).
+final checkoutLauncherProvider = Provider<Future<bool> Function(Uri)>(
+  (ref) =>
+      (uri) => launchUrl(uri, mode: LaunchMode.externalApplication),
 );
 
 final exportServiceProvider = Provider<ExportService>(

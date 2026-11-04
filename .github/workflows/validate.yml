@@ -44,6 +44,22 @@ jobs:
           cache-dependency-path: firebase/package-lock.json
       - run: npm ci --prefix firebase --ignore-scripts
       - run: npm --prefix firebase test
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci --prefix backend --ignore-scripts
+      - run: npm audit --prefix backend --omit=dev
+      - run: npm --prefix backend test
   e2e-harness:
     runs-on: ubuntu-latest
     steps:
