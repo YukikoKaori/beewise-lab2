@@ -1,5 +1,13 @@
 # Bao F-02 — live Gemini acceptance, 2026-11-04
 
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](owner-finalization.md).
+
+
 **BAO F-02 COMPLETE — LIVE VERIFIED in the tested API35 guest/debug scope.**
 **Delivery remains DRAFT for owner review:** an automation coordinate error
 caused **2 actual Flash-Lite calls against an approved maximum of1**. The excess

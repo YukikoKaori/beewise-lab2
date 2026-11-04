@@ -1,5 +1,13 @@
 ## Final ownership correction — 2026-11-04 (effective)
 
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](../../evidence/cloud/f02-lite-native-20261104/owner-finalization.md).
+
+
 **B-04 is shared: F-01 existing verified cloud integration; F-02 owned by Bao;
 F-03 owned by Nguyen.** Bao retains AI Matching/Firebase AI Logic/App Check,
 genuine provider/native validation and acceptance evidence. F-02 is COMPLETE /

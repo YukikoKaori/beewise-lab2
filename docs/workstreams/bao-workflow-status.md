@@ -1,5 +1,13 @@
 ## Final responsibility split — 2026-11-04 (current)
 
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](../../evidence/cloud/f02-lite-native-20261104/owner-finalization.md).
+
+
 **B-04 SHARED OWNERSHIP:** F-01 remains the existing verified Firebase
 discovery/connection/chat/messaging integration. **F-02 belongs to BAO — COMPLETE
 / LIVE VERIFIED** in API35 guest/debug scope: actual Firebase AI Logic/Gemini3.5
