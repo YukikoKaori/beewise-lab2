@@ -1,0 +1,20 @@
+{
+  "capturedAtUtc": "2026-11-03T20:15:50.487412+00:00",
+  "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f",
+  "method": "read-only VM observation of actual parsed recommendation and controller state; no injected result/provider call",
+  "controllerResultCount": 1,
+  "recommendations": [
+    {
+      "tutorId": "tutor_acd3824aa8734c63ac8827df",
+      "active": "true",
+      "verified": "false",
+      "demoOnly": "true",
+      "syntheticFixture": "false",
+      "reasonRunes": "102",
+      "reasonNonempty": "true"
+    }
+  ],
+  "duplicateIds": false,
+  "remoteConfigResultLimit": 3,
+  "fullProviderTextExported": false
+}

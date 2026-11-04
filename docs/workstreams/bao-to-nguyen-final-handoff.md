@@ -1,4 +1,33 @@
-## Current Bao handoff — 2026-11-03 acceptance closeout
+## Final ownership correction — 2026-11-04 (effective)
+
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](../../evidence/cloud/f02-lite-native-20261104/owner-finalization.md).
+
+
+**B-04 is shared: F-01 existing verified cloud integration; F-02 owned by Bao;
+F-03 owned by Nguyen.** Bao retains AI Matching/Firebase AI Logic/App Check,
+genuine provider/native validation and acceptance evidence. F-02 is COMPLETE /
+LIVE VERIFIED in API35 guest/debug scope. Nguyen owns consultant/trial/revision/invoice/payOS/
+webhook/payment/schedule implementation and tests, status HANDOFF / PENDING
+IMPLEMENTATION. Bao provides approved Firebase/security support for F-03.
+
+[Precise F-03 handoff and preserved WIP](bao-to-nguyen-b04-handoff.md) supersede
+the earlier broad transfer. B-01/B-02/B-03.1–6/B-05 remain COMPLETE scoped;
+expanded Bao scope includes F-02. No entire B-04 or Lab 3 completion is claimed.
+Earlier dated configuration/blocker statements below are historical, not current
+AI state. No F-03 code or cloud deployment is part of Bao's F-02 delivery.
+
+[Latest F-02 live evidence](../../evidence/cloud/f02-lite-native-20261104/README.md):
+actual3.5 Flash-Lite result, validated demo ID, native detail/fallback and FA-SVC
+success event count1. Local105 Flutter/58 Rules PASS; final CI in delivery PR.
+The earlier3.8 failure packet remains historical. PR stays DRAFT for owner review
+of the disclosed accidental2 calls against approved1; no further calls or merge.
+
+## Historical Bao handoff — 2026-11-03 acceptance closeout
 
 **PDF B-03.2 COMPLETE; full Bao mission not complete because B-04 has exact
 external dependencies.** Use [one consolidated evidence index](../../evidence/cloud/bao-acceptance-20261103/README.md),

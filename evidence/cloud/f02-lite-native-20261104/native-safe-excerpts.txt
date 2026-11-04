@@ -1,0 +1,4 @@
+11-04 03:14:14.694  6861  6861 I flutter : B04AppCheck SDK tokenPresent=true jwtShape=true
+11-04 03:14:37.986  6861  6861 I flutter : BeeWiseMatching providerResponse model=gemini-3.5-flash-lite finish=stop totalTokens=387
+11-04 03:16:38.965  6861  6861 I flutter : F02Catalog server exists=true active=true verified=false demoOnly=true
+11-04 03:17:39.039  6861  6861 I flutter : BeeWiseMatching providerResponse model=gemini-3.5-flash-lite finish=stop totalTokens=387

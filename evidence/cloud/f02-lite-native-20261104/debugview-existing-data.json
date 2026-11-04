@@ -1,0 +1,16 @@
+{
+  "inspectionRecordedAtUtc": "2026-11-04T03:05:42.050964+00:00",
+  "project": "beewise-lab-3",
+  "package": "com.beewise.beewise",
+  "method": "Existing Firebase Console DebugView via browser UI only",
+  "debugDevices": 0,
+  "topEventsLast30Minutes": 0,
+  "historicalAiMatchEventAvailable": false,
+  "permissionDeniedMessageObserved": false,
+  "providerCallsDuringFinalization": 0,
+  "analyticsEventsReplayed": 0,
+  "screenshot": "debugview-empty-20261104.jpg",
+  "screenshotScope": "Genuine browser capture clipped to DebugView; account/avatar excluded; narrow viewport",
+  "retainedEventEvidence": "analytics-native-receipt.json",
+  "ownerAcknowledgment": "Retrospective acceptance of authorized1 actual2 deviation; no additional authorization"
+}
