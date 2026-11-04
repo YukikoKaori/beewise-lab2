@@ -5,4 +5,5 @@ analyzer:
     - build/**
     - android/**
     - firebase/node_modules/**
+    - backend/node_modules/**
     - tmp/**

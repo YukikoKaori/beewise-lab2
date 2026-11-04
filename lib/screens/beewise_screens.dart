@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -1307,6 +1308,46 @@ class _MessageTile extends StatelessWidget {
         ),
       );
     }
+    final invoiceId = message.payload['invoiceId'];
+    if (message.kind == 'payment_request' && invoiceId is String) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Hóa đơn học phí',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(message.body),
+              FilledButton(
+                onPressed: () => context.push('/payment/$invoiceId'),
+                child: const Text('Xem hóa đơn và thanh toán'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    final classId = message.payload['classId'];
+    if (message.role == 'system' && classId is String) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(message.body),
+              FilledButton(
+                onPressed: () => context.push('/schedule/$classId'),
+                child: const Text('Xem lịch học chính thức'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
     final roleLabel = switch (message.role) {
       'parent' => 'Phụ huynh',
       'tutor' => 'Gia sư',
@@ -1378,6 +1419,70 @@ class _MessageTile extends StatelessWidget {
   }
 }
 
+/// Why a consultant proposal can no longer be answered, or null while it can.
+/// `payload.status` is written only by the trusted backend; [responded] is the
+/// local "my answer was saved" state shown until the backend processes it.
+({String message, NoticeKind kind})? closedProposalNotice(
+  Map<String, dynamic> payload, {
+  bool responded = false,
+  DateTime? now,
+}) {
+  final status = payload['status'];
+  switch (status) {
+    case 'accepted':
+      return (
+        message: 'Bạn đã đồng ý lịch học thử. Tư vấn viên sẽ gửi thông tin lớp chính thức.',
+        kind: NoticeKind.success,
+      );
+    case 'alternate_requested':
+      return (
+        message: 'Bạn đã đề xuất thời gian khác. Tư vấn viên sẽ gửi lịch mới trong cuộc trò chuyện.',
+        kind: NoticeKind.info,
+      );
+    case 'confirmed':
+      return (
+        message: 'Bạn đã xác nhận thông tin lớp. Hóa đơn học phí sẽ xuất hiện trong cuộc trò chuyện.',
+        kind: NoticeKind.success,
+      );
+    case 'adjustment_requested':
+      return (
+        message:
+            'Bạn đã yêu cầu điều chỉnh. Tư vấn viên sẽ gửi thông tin lớp mới.',
+        kind: NoticeKind.info,
+      );
+    case 'superseded':
+      return (
+        message: 'Đề xuất này đã được thay bằng đề xuất mới. Hãy mở đề xuất mới nhất trong cuộc trò chuyện.',
+        kind: NoticeKind.info,
+      );
+  }
+  if (responded) {
+    return (
+      message: 'Bạn đã phản hồi đề xuất này. Hệ thống đang xử lý.',
+      kind: NoticeKind.success,
+    );
+  }
+  if (status != 'pending') {
+    return (
+      message: 'Đề xuất này không còn chờ phản hồi.',
+      kind: NoticeKind.info,
+    );
+  }
+  final expiresAt = payload['expiresAt'];
+  final expiry = expiresAt is Timestamp
+      ? expiresAt.toDate()
+      : expiresAt is DateTime
+      ? expiresAt
+      : null;
+  if (expiry != null && !expiry.isAfter(now ?? DateTime.now())) {
+    return (
+      message: 'Đề xuất đã hết hạn. Tư vấn viên sẽ gửi đề xuất mới nếu cần.',
+      kind: NoticeKind.warning,
+    );
+  }
+  return null;
+}
+
 class TrialScreen extends ConsumerStatefulWidget {
   const TrialScreen({
     super.key,
@@ -1391,6 +1496,21 @@ class TrialScreen extends ConsumerStatefulWidget {
 
 class _TrialScreenState extends ConsumerState<TrialScreen> {
   final _alternate = TextEditingController();
+  bool _responded = false;
+
+  Future<void> _answer({required bool accepted}) async {
+    await ref
+        .read(workflowControllerProvider.notifier)
+        .answerTrial(
+          chatId: widget.chatId,
+          proposalId: widget.proposalId,
+          accepted: accepted,
+          alternateTime: accepted ? null : _alternate.text,
+        );
+    if (mounted && !ref.read(workflowControllerProvider).hasError) {
+      setState(() => _responded = true);
+    }
+  }
 
   @override
   void initState() {
@@ -1436,6 +1556,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
             );
           }
           final p = msg.payload;
+          final closed = closedProposalNotice(p, responded: _responded);
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -1492,40 +1613,31 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
               const StatusBanner(
                 message: 'Sau buổi học thử, tư vấn viên sẽ hỏi ý kiến hai bên. Bạn có thể tiếp tục, trao đổi thêm hoặc dừng lại.',
               ),
-              if (state.hasError)
-                ErrorStateView(message: friendlyError(state.error!)),
-              BeeWiseButton(
-                label: 'Đồng ý lịch học thử',
-                loading: state.isLoading,
-                onPressed: () => ref
-                    .read(workflowControllerProvider.notifier)
-                    .answerTrial(
-                      chatId: widget.chatId,
-                      proposalId: widget.proposalId,
-                      accepted: true,
-                    ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _alternate,
-                onChanged: (_) => setState(() {}),
-                decoration: const InputDecoration(
-                  labelText: 'Thời gian khác bạn mong muốn',
+              if (closed != null)
+                StatusBanner(message: closed.message, kind: closed.kind)
+              else ...[
+                if (state.hasError)
+                  ErrorStateView(message: friendlyError(state.error!)),
+                BeeWiseButton(
+                  label: 'Đồng ý lịch học thử',
+                  loading: state.isLoading,
+                  onPressed: () => _answer(accepted: true),
                 ),
-              ),
-              OutlinedButton(
-                onPressed: state.isLoading || _alternate.text.trim().isEmpty
-                    ? null
-                    : () => ref
-                          .read(workflowControllerProvider.notifier)
-                          .answerTrial(
-                            chatId: widget.chatId,
-                            proposalId: widget.proposalId,
-                            accepted: false,
-                            alternateTime: _alternate.text,
-                          ),
-                child: const Text('Đề xuất thời gian khác'),
-              ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _alternate,
+                  onChanged: (_) => setState(() {}),
+                  decoration: const InputDecoration(
+                    labelText: 'Thời gian khác bạn mong muốn',
+                  ),
+                ),
+                OutlinedButton(
+                  onPressed: state.isLoading || _alternate.text.trim().isEmpty
+                      ? null
+                      : () => _answer(accepted: false),
+                  child: const Text('Đề xuất thời gian khác'),
+                ),
+              ],
             ],
           );
         },
@@ -1548,6 +1660,16 @@ class ClassRevisionScreen extends ConsumerStatefulWidget {
 
 class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
   final _reason = TextEditingController();
+  bool _responded = false;
+
+  Future<void> _respond(
+    Future<void> Function(WorkflowController controller) action,
+  ) async {
+    await action(ref.read(workflowControllerProvider.notifier));
+    if (mounted && !ref.read(workflowControllerProvider).hasError) {
+      setState(() => _responded = true);
+    }
+  }
 
   @override
   void initState() {
@@ -1594,6 +1716,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
             );
           }
           final p = msg.payload;
+          final closed = closedProposalNotice(p, responded: _responded);
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -1658,40 +1781,47 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
               const StatusBanner(
                 message: 'Chỉ xác nhận nội dung hiện tại. Yêu cầu thanh toán chỉ xuất hiện sau khi hệ thống nhận xác nhận này và tạo hóa đơn.',
               ),
-              if (state.hasError)
-                ErrorStateView(message: friendlyError(state.error!)),
-              BeeWiseButton(
-                label: 'Thông tin đã chính xác',
-                loading: state.isLoading,
-                onPressed: () => ref
-                    .read(workflowControllerProvider.notifier)
-                    .confirmClass(
+              if (closed != null)
+                StatusBanner(message: closed.message, kind: closed.kind)
+              else ...[
+                if (state.hasError)
+                  ErrorStateView(message: friendlyError(state.error!)),
+                BeeWiseButton(
+                  label: 'Thông tin đã chính xác',
+                  loading: state.isLoading,
+                  onPressed: () => _respond(
+                    (c) => c.confirmClass(
                       chatId: widget.chatId,
                       revisionId: widget.revisionId,
                     ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                controller: _reason,
-                maxLines: 2,
-                onChanged: (_) => setState(() {}),
-                decoration: const InputDecoration(
-                  labelText: 'Nội dung cần điều chỉnh',
+                  ),
                 ),
-              ),
-              OutlinedButton(
-                onPressed: state.isLoading || _reason.text.trim().isEmpty
-                    ? null
-                    : () => ref
-                          .read(workflowControllerProvider.notifier)
-                          .adjustClass(
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _reason,
+                  maxLines: 2,
+                  onChanged: (_) => setState(() {}),
+                  decoration: const InputDecoration(
+                    labelText: 'Nội dung cần điều chỉnh',
+                  ),
+                ),
+                OutlinedButton(
+                  onPressed: state.isLoading || _reason.text.trim().isEmpty
+                      ? null
+                      : () => _respond(
+                          (c) => c.adjustClass(
                             chatId: widget.chatId,
                             revisionId: widget.revisionId,
                             reason: _reason.text,
                           ),
-                child: const Text('Yêu cầu tư vấn viên điều chỉnh'),
-              ),
-              TextButton(onPressed: null, child: const Text('Không tiếp tục')),
+                        ),
+                  child: const Text('Yêu cầu tư vấn viên điều chỉnh'),
+                ),
+                const TextButton(
+                  onPressed: null,
+                  child: Text('Không tiếp tục'),
+                ),
+              ],
             ],
           );
         },
@@ -1757,7 +1887,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
               StatusBanner(
                 message: status == 'verified'
                     ? 'Thanh toán đã được hệ thống xác minh.'
-                    : 'Chờ thanh toán · Hoàn tất theo hướng dẫn trong hóa đơn để giữ lịch học.',
+                    : 'Chờ thanh toán · Thanh toán qua payOS để giữ lịch học. Trạng thái tự cập nhật sau khi hệ thống xác minh.',
                 kind: status == 'verified'
                     ? NoticeKind.success
                     : NoticeKind.warning,
@@ -1816,14 +1946,25 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   label: 'Xem lịch học chính thức',
                   onPressed: () => context.push('/schedule/${data['classId']}'),
                 ),
-              if (status != 'verified')
+              if (status != 'verified') ...[
                 BeeWiseButton(
-                  label: 'Tôi đã chuyển khoản · Gửi yêu cầu kiểm tra',
+                  label: 'Thanh toán qua payOS',
                   loading: state.isLoading,
                   onPressed: () => ref
                       .read(workflowControllerProvider.notifier)
-                      .requestPaymentVerification(invoiceId),
+                      .startPayOsCheckout(invoiceId),
                 ),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  onPressed: state.isLoading
+                      ? null
+                      : () => ref
+                            .read(workflowControllerProvider.notifier)
+                            .refreshPaymentStatus(invoiceId),
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Tôi đã thanh toán · Kiểm tra lại'),
+                ),
+              ],
             ],
           );
         },
@@ -1973,8 +2114,14 @@ class MessagesScreen extends ConsumerWidget {
   );
   String _chatStatus(String status) => switch (status) {
     'connection_pending_consultant' => 'Đang chờ tư vấn viên tiếp nhận',
+    'consultant_assigned' => 'Tư vấn viên đã tham gia',
     'trial_proposed' => 'Có đề xuất buổi học thử',
+    'trial_accepted' => 'Đã đồng ý học thử · Chờ thông tin lớp',
+    'trial_reschedule_requested' => 'Chờ tư vấn viên đề xuất giờ mới',
     'class_revision_pending' => 'Chờ điều chỉnh thông tin lớp',
+    'class_adjustment_requested' => 'Đang điều chỉnh thông tin lớp',
+    'invoice_issued' => 'Có hóa đơn học phí cần thanh toán',
+    'schedule_confirmed' => 'Đã có lịch học chính thức',
     _ => 'Nhấn để xem cuộc trò chuyện',
   };
 }
