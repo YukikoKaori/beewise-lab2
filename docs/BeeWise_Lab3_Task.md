@@ -1,6 +1,32 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
-> **Bao acceptance closeout — 03/11/2026 (current). B-03.2 COMPLETE — FIRESTORE ALTERNATIVE VERIFIED.**
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](../evidence/cloud/f02-lite-native-20261104/owner-finalization.md).
+
+
+> **Final ownership correction — 04/11/2026 (current): B-04 SHARED OWNERSHIP.**
+> **F-01: EXISTING VERIFIED CLOUD FLOW**, Bao's Firebase integrations/evidence retained.
+> **F-02: BAO — COMPLETE / LIVE VERIFIED** in the tested API35 guest/debug scope.
+> Real Firebase AI Logic/Gemini3.5 Flash-Lite result, App Check, validation,
+> native result/detail/fallback and FA-SVC success event are evidenced.
+> **F-03: NGUYEN — HANDOFF / PENDING IMPLEMENTATION**, including consultant
+> backend, payOS/webhooks, verified payment, official schedule and business tests.
+> The earlier full-transfer steer was too broad and is superseded. B-01/B-02/
+> B-03.1–6/B-05 stay COMPLETE in verified scopes; Bao's expanded assigned scope
+> includes live-verified F-02; assigned implementation scope is complete for
+> tested acceptance. **Lab 3 overall: NOT YET COMPLETE.**
+> [Precise F-03 handoff and preserved WIP](workstreams/bao-to-nguyen-b04-handoff.md).
+> No F-03 deployment or feature delivery by Bao; Nguyen uses his own branch.
+> **Latest F-02 packet:** [live3.5 acceptance](../evidence/cloud/f02-lite-native-20261104/README.md).
+> Local105 Flutter/58 Rules tests PASS. PR remains DRAFT for owner review: an
+> automation error caused2 calls against approved maximum1; explicitly disclosed.
+> Earlier3.8 failure evidence is preserved as historical investigation.
+
+> **Bao acceptance closeout — 03/11/2026 (historical evidence). B-03.2 COMPLETE — FIRESTORE ALTERNATIVE VERIFIED.**
 > API35 default APK: three controlled cold Home/no-ANR runs, real360/412dp,
 > native30s timeout/UI retry/same hash/no extra report, guest error, A→B eventual
 > callback isolation and fresh export_report DebugView(subject2,size18) PASS.
@@ -126,12 +152,12 @@ Giới hạn: headless emulator, chưa test release-mode/máy thật/API35-36; b
 
 | Phạm vi | Bảo | Nguyên |
 |---|---|---|
-| Chính | Cloud/data, Android/runtime, secure contracts, Console receipts | UI/Figma/responsive, ARTEMIS/E2E, AI review, report/slides/video |
-| Source | `firebase/**`, `android/**`, `lib/services/**`, `lib/viewmodels/**`, `lib/models/**`, `lib/main.dart`, `pubspec.*` | `lib/screens/**`, `lib/widgets/**`, `lib/theme/**`, `lib/app/bee_wise_app.dart`, `e2e_test/**` |
+| Chính | Firebase/Android scope; **F-02 AI Matching/App Check/native acceptance**; F-01 existing cloud integrations; approved config/security support | **F-03 consultant/backend/payOS/webhooks/payment/schedule/tests**; existing UI/Figma/ARTEMIS/review/report scope |
+| Source | F-02 matching/AI config/controllers/tests and Firebase infrastructure/security; no F-03 implementation | F-03 services/backend/workflow tests and existing UI/theme/router/E2E, coordinated at shared boundaries |
 | Docs/evidence | `docs/analytics-plan.md`, `docs/backend-contract.md`, `docs/workstreams/bao-*.md`; `evidence/firebase/**`, `evidence/android/**`, `evidence/cloud/**` | `docs/design-traceability.md`, `docs/test-plan.md`, `docs/code-review.md`, `docs/workstreams/nguyen-*.md`; `evidence/ui/**`, `evidence/artemis/**`, `evidence/ai-review/**` |
 | Final integration | Bàn giao/duyệt đúng các claim cloud | Chốt `README.md`, `docs/architecture.md`, `docs/lab3-report.md`, `report/**`, `slides/**`, `output/**`, video sau handoff |
 
-Mỗi người fetch latest main, branch/working copy riêng; không tiếp tục PR #2/#3 đã merge. Không sửa file owner khác nếu chưa thống nhất; interface chéo ghi handoff trước. Docs chung không edit song song. Phối hợp cửa sổ rules/RC, namespace/account/device test riêng; giữ privacy, strict rules, generation/journal/cross-UID/fail-closed protections. Lượt này thực hiện các sửa responsive nhỏ trong UI owner scope, bổ sung widget regression coverage và lưu runtime smoke evidence; không thay đổi cloud/config.
+Mỗi người fetch latest main, branch/working copy riêng; không tiếp tục PR #2/#3 đã merge. Không sửa file owner khác nếu chưa thống nhất; interface chéo ghi handoff trước. Docs chung không edit song song. Phối hợp cửa sổ rules/RC, namespace/account/device test riêng; giữ privacy, strict rules, generation/journal/cross-UID/fail-closed protections. Final split ngày04/11: Bao resumes F-02 only and may deliver one focused F-02 PR after validation. F-03 WIP stays preserved/excluded; Nguyen implements F-03 on his own branch. Firebase production/deployment still requires exact approval.
 
 ## 5. Bảng task Bảo (B-01 đến B-05)
 
@@ -140,7 +166,7 @@ Mỗi người fetch latest main, branch/working copy riêng; không tiếp tụ
 | B-01 | Bảo | Default Android APK; startup/runtime360dp/412dp | COMPLETE controlled environment | Three final API35 cold PIDs/Home/no ANR; warm timing/actual follow-up, real widths [E13] | Release/physical/immediate API37 parity not claimed; diagnostic ADB instability documented | Preserve userdata/detection; reopen on reproducible settled BeeWise-only ANR |
 | B-02 | Bảo | Auth + Firestore/role/approved data | COMPLETE approved scope | Users Console + real A/B native owner/foreign server checks, disclosed consented demo, current rules/index match [E13] | Demo professionally unverified; no general production catalog claim | Approved data only; no Admin bypass |
 | B-03 | Bảo | Six Firebase services and tested error branches | COMPLETE tested scope | B-03.1–6 below; actual native/Console receipts [E13] | Future workflow events outside verified minimum remain mapped, not claimed | Storage DEFERRED; Firestore PDF alternative verified |
-| B-04 | Bảo | Discover/connect, Guest AI, trusted onboarding | PARTIALLY VERIFIED; provider/trusted E2E BLOCKED | Actual parent request/chat/text server roundtrip, AI safe error/manual recovery and strict boundaries [E13] | App Check API DISABLED; owner confirms no trusted staging/backend for consultant proposals/invoices/verified payment/schedule | Owner-approved provider setup and legitimate trusted producer/fixtures per backend contract |
+| B-04 | **SHARED: F-01 Bao existing; F-02 Bao; F-03 Nguyen** | Three business flows | **F-01 EXISTING VERIFIED CLOUD FLOW; F-02 COMPLETE tested native scope; F-03 HANDOFF / PENDING IMPLEMENTATION** | Scoped F-01 [E13]; [current split/handoff](workstreams/bao-to-nguyen-b04-handoff.md); no full B-04 completion | Bao preserves live-verified F-02; Nguyen owns F-03 on own branch | Exact cloud approvals remain gated; no client-controlled verified payment |
 | B-05 | Bảo | Bao evidence/integration handoff | COMPLETE Bao evidence package | All-B audit matrix, source/APK/time/hash receipts, actual redacted Console/native images and Nguyen guide [E13] | B-04 and Nguyen-owned deliverables explicitly remain open; exact final CI in delivery PR | Historical evidence immutable; privacy/link/hash audit |
 
 **Historical B-02 scope before consented demo/Console closeout [E13]:** own Parent positive controls; A→B, B→A, Google→A đều bị deny foreign Parent/application/devices qua native SDK. Đây là **read negatives trên debug-only probe**, không Admin bypass hay live malicious-write test. Sáu catalog records là `[TEST]`/synthetic/unverified: đọc từ server nhưng **chưa đủ catalog thật**, AI loại chúng khỏi recommendations.
@@ -187,9 +213,9 @@ Ba flow dưới đây từ traceability/test plan hiện có; không thay bằng
 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
-| F-01 | Nguyên + Bảo | Home → Search/AI → Tutor detail → auth gate → Request → Chat | PARTIALLY COMPLETE | Discovery/Auth native; request/chat source + rules; [test plan](test-plan.md) | Chạy trọn trên catalog thật, kiểm tra Firestore side effects/error/recovery, giữ tutor context qua login | Catalog + safe test parent |
-| F-02 | Nguyên + Bảo | AI matching → tutor thật hoặc no-match/error → retry/Manual Search | PARTIALLY COMPLETE | Empty/disabled recovery + Analytics verified; [matching source](../lib/services/matching_service.dart) loại synthetic data | Nếu giữ AI success, chốt provider/terms/config được phép và catalog thật; ghi output thật | Owner/provider; không tự bật billing/App Check enforcement |
-| F-03 | Nguyên + Bảo | Chat → trial → class revision → invoice → verified payment → official schedule | BLOCKED cho live E2E | Client/rules giữ trust boundary [E12]; chưa trusted producer/provider | Chốt scope công nghệ với mentor; full flow cần staging tối thiểu được phép/receipt-driven state, không tự dựng full processor | Trusted staff/proposals/issuer/provider hoặc scope được mentor duyệt |
+| F-01 | Bao existing Firebase integration; Nguyen preserves integration in F-03 | Discovery → parent Auth → connection → chat/text | EXISTING VERIFIED CLOUD FLOW | Genuine native request/chat/text + Client SDK server readback [E13] | Preserve evidence and ownership boundaries | Approved catalog/test identities only |
+| F-02 | **BAO** | Guest/Parent → Firebase AI Logic/Gemini → validated result → detail/manual fallback | **COMPLETE — LIVE VERIFIED, API35 guest/debug scope** | [Latest packet](../evidence/cloud/f02-lite-native-20261104/README.md): actual3.5 response, valid demo ID, result/detail/fallback and FA-SVC ai_match_success count1;105 Flutter/58 Rules PASS | Preserve scoped acceptance; owner review of accidental excess call; final delivery-HEAD CI in PR | Parent-specific/release/physical AI outside run; no further live calls authorized; no overall B-04 completion |
+| F-03 | **NGUYEN**; Bao Firebase/security support | Consultant → trial/revision → invoice/payOS → verified payment → official schedule | **HANDOFF / PENDING IMPLEMENTATION** | Strict client/rules [E12]; preserved undeployed WIP19/19 EMULATOR, not payOS/live proof | Implement backend/payOS/webhooks and business E2E on own feature branch | Legitimate staff, server secrets, deployment/payment approval; no assumed payOS sandbox |
 
 Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, thời gian/lệnh, expected/observed, screenshot/video/log/trace, failure/recovery, Console/data link khi cần**. Không ghi PASS từ `SUCCESS`, mock, toast, API acceptance hay JUnit collection đơn lẻ. Không đưa credentials/PII vào model/trace. PDF local và `export_report` **không chứng minh cloud persistence**.
 
@@ -206,7 +232,7 @@ Mỗi flow/service cần **source SHA, APK hash/entrypoint, device/OS/viewport, 
 | ID | Owner | Requirement | Status | Evidence | Next action | Dependency |
 |---|---|---|---|---|---|---|
 | P0-1 | Bảo | Firestore PDF live verification | COMPLETE | B-03.2 [E13] | Native timeout/retry/guest/switch and fresh export Console closed | Keep actual receipts/approved data |
-| P0-2 | Bảo + Nguyên | Three flows and evidence handoff | PARTIALLY VERIFIED | B-04/B-05 [E13] | Provider App Check setup and trusted staging/producer; parent flow and packet done | Owner confirms no trusted backend |
+| P0-2 | Bao F-02; Nguyen F-03 | Shared B-04; Bao evidence scope separate | F-02 LIVE VERIFIED; F-03 HANDOFF / PENDING IMPLEMENTATION | [Split/handoff](workstreams/bao-to-nguyen-b04-handoff.md), existing [E13] | Bao preserves AI/native evidence; Nguyen owns consultant/payOS/backend E2E | Exact cloud/deployment/payment approvals; no full B-04 COMPLETE claim |
 | P0-3 | Nguyên | ARTEMIS/Pro execution | BLOCKED / PARTIALLY COMPLETE | N-03, [E8] | Xác nhận host/key/device; chạy ≥10 ca ×3 và exploration 15-30 phút, lưu receipts và phân loại kết quả trung thực | Host/credential quota, device, catalog/staging fixtures được duyệt |
 | P1-1 | Bảo | Firebase Console packet | COMPLETE tested scope | B-03.1–6 [E13] | Actual Users/FCM/RC/PDF panes available, prior Crashlytics/identity retained | No new deployment needed |
 | P1-2 | Nguyên; Bảo review cloud | UI/responsive, final PDFs/video/links | PARTIALLY COMPLETE | N-01/N-02/N-05/N-06, [E10] | Audit UI, integration freeze và đóng gói bản nộp thật | P0-2/P0-3, Firestore PDF live |

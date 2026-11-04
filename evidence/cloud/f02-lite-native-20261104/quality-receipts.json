@@ -1,0 +1,124 @@
+[
+  {
+    "name": "pub",
+    "atUtc": "2026-11-03T20:10:52.627360+00:00",
+    "elapsedSeconds": 1.936,
+    "exitCode": 0,
+    "command": [
+      "flutter.bat",
+      "pub",
+      "get",
+      "--enforce-lockfile"
+    ],
+    "logSha256": "d096889f4d57ad3b5331dbdd63dfecef3c61227c0d732c6d507ab68cff195ad5",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "format",
+    "atUtc": "2026-11-03T20:10:55.159404+00:00",
+    "elapsedSeconds": 2.24,
+    "exitCode": 0,
+    "command": [
+      "dart.bat",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "."
+    ],
+    "logSha256": "500279884ba81b5c5b99dfb8c919fc59ccc45e7f5bd57c0ce5588aa48b19d14b",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "analyze",
+    "atUtc": "2026-11-03T20:11:14.196561+00:00",
+    "elapsedSeconds": 9.213,
+    "exitCode": 0,
+    "command": [
+      "flutter.bat",
+      "analyze"
+    ],
+    "logSha256": "5d415badc6cc2a65761c9020596ab18af44c0d24c80f67358d36b60295bd778e",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "flutter-test",
+    "atUtc": "2026-11-03T20:11:29.475294+00:00",
+    "elapsedSeconds": 14.524,
+    "exitCode": 0,
+    "command": [
+      "flutter.bat",
+      "test",
+      "--reporter",
+      "expanded"
+    ],
+    "logSha256": "ef9c0e63247eb9e3eca629cbb5f63b5478cfd45ea4b1ef61d9e4d94caa272609",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "rules",
+    "atUtc": "2026-11-03T20:11:14.193532+00:00",
+    "elapsedSeconds": 19.728,
+    "exitCode": 0,
+    "command": [
+      "npm.cmd",
+      "--prefix",
+      "firebase",
+      "test"
+    ],
+    "logSha256": "ced80c9a3f4e86ab8c794cc2e4655fe3e0a27810c5593b1b325326eb615ecb21",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "build",
+    "atUtc": "2026-11-03T20:11:44.572332+00:00",
+    "elapsedSeconds": 57.957,
+    "exitCode": 0,
+    "command": [
+      "flutter.bat",
+      "build",
+      "apk",
+      "--debug",
+      "--no-android-gradle-daemon",
+      "--android-project-arg=kotlin.incremental=false"
+    ],
+    "logSha256": "ca630a1013e177b915ee478e34ffb6a00d45ffee6ce4ad4f6cab50d1f65851e1",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "harness",
+    "atUtc": "2026-11-03T20:11:14.193532+00:00",
+    "elapsedSeconds": 0.15,
+    "exitCode": 0,
+    "command": [
+      "python",
+      "scripts/check_e2e_harness.py"
+    ],
+    "logSha256": "580e721a1f7b41c68bee65b502db95d339aa9e6211775130ee0e3be3a5f0edfe",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "timing",
+    "atUtc": "2026-11-03T20:11:14.195047+00:00",
+    "elapsedSeconds": 0.386,
+    "exitCode": 0,
+    "command": [
+      "python",
+      "scripts/test_measure_bao_startup.py"
+    ],
+    "logSha256": "4a203f958ef9d765ff1f89816631e1bdf553b4acf1d56449f1d10ad92bb46ff3",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  },
+  {
+    "name": "whitespace",
+    "atUtc": "2026-11-03T20:23:50.102231+00:00",
+    "elapsedSeconds": 0.057,
+    "exitCode": 0,
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f"
+  }
+]

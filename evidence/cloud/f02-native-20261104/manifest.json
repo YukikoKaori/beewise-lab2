@@ -1,0 +1,92 @@
+{
+  "sourceSha": "c49716916e432fb6a8271d3f501c10546d65717d",
+  "checksumScope": "Git blob bytes; LF-normalized text",
+  "status": "F02 NOT COMPLETE / F03 HANDOFF READY",
+  "files": [
+    {
+      "path": "ai-settings-public.png",
+      "bytes": 17696,
+      "sha256": "a4fc46e590c10326fe73591eec299de05d0fc6cb86346b67d45c5a0784b8e018"
+    },
+    {
+      "path": "cloud-readback.json",
+      "bytes": 1422,
+      "sha256": "e50dc1cb2296c80845d57a6672b6ae625b3a8108ceca120b05b4f4c92cd08166"
+    },
+    {
+      "path": "f02-extra-2-settled.json",
+      "bytes": 400,
+      "sha256": "2a42b537ac33ada3a3d77dbda766d19e81f8d8dab442fcef7f1d62cc6d3a781a"
+    },
+    {
+      "path": "f02-extra-2-settled.png",
+      "bytes": 131797,
+      "sha256": "a852e0fc86a92c044cea6370c6b3dbf33b589bf6c817f025dc024671cd11bf86"
+    },
+    {
+      "path": "f02-final-loading.json",
+      "bytes": 400,
+      "sha256": "5e189284a9b55aae9b04f5e869a0240ab72714785f280b1d45dac2f4fa6a2875"
+    },
+    {
+      "path": "f02-final-loading.png",
+      "bytes": 115870,
+      "sha256": "9e43acd49fb785269ad89b4156dd80711a7b46fbc28954c0a75599d579aa146b"
+    },
+    {
+      "path": "f02-final-manual-card.json",
+      "bytes": 400,
+      "sha256": "4759c7e7568a52545658313ea2fa07daca6be511455d0199956eed039d41498f"
+    },
+    {
+      "path": "f02-final-manual-card.png",
+      "bytes": 116497,
+      "sha256": "b7300715e2148c18e95b49047a0d6c105090a3722bc0562e066dc370d23abdb0"
+    },
+    {
+      "path": "f02-final-manual-detail.json",
+      "bytes": 400,
+      "sha256": "be73bbafae23fc396e0dbd274590b0e325d4ce88066640c2d6077dc150dc2f38"
+    },
+    {
+      "path": "f02-final-manual-detail.png",
+      "bytes": 151660,
+      "sha256": "d4fd8ad9d950f43dd4079f0e080fdb6124274ebdd0b766301feaea0bce577436"
+    },
+    {
+      "path": "f03-wip-preserved.json",
+      "bytes": 2056,
+      "sha256": "fafcb9f3641796962ac5f99a8881c65abd55a65d5ce963b2dce52493422b5da0"
+    },
+    {
+      "path": "native-safe-excerpts.txt",
+      "bytes": 1420,
+      "sha256": "5a8582d430365c397758c9db2f46d0cd093a27025e00ac62d42b93b98c0e1c12"
+    },
+    {
+      "path": "native-session.json",
+      "bytes": 2904,
+      "sha256": "ac9f930dc847e6e907fb30400beeae0f7c9acb75ccf7664958dfd5910add4903"
+    },
+    {
+      "path": "quality-receipts.json",
+      "bytes": 3347,
+      "sha256": "a9bc7a9f692724c7da340e1b8a7e73583c21b33d0138a3f8664e2600ce5b62e9"
+    },
+    {
+      "path": "quota-readback.json",
+      "bytes": 1535,
+      "sha256": "300affa199ae259ac81ac9e53fabcafb6fcb514fd952563e3a9bb2a54a0243f8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8698,
+      "sha256": "6b6fd85dd9446dddc40e5137146f1ef6536424aab3245fd3dfb64f9f5b9c4ee8"
+    },
+    {
+      "path": "runtime-config.json",
+      "bytes": 317,
+      "sha256": "080a758c21d9b72dedd2ca065b9b978bbc673d9beb05ffefc6ff777627de7736"
+    }
+  ]
+}
