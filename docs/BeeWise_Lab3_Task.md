@@ -1,5 +1,13 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
+> **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
+> authorized1/actual2 request deviation retrospectively. The earlier draft
+> hold below is historical and resolved; ready for review is conditional on
+> final-HEAD gates. No additional provider calls, cloud/billing changes or
+> deployment are authorized. Bao retains F-02; Nguyen owns F-03 only.
+> [Owner acceptance and existing-data DebugView inspection](../evidence/cloud/f02-lite-native-20261104/owner-finalization.md).
+
+
 > **Final ownership correction — 04/11/2026 (current): B-04 SHARED OWNERSHIP.**
 > **F-01: EXISTING VERIFIED CLOUD FLOW**, Bao's Firebase integrations/evidence retained.
 > **F-02: BAO — COMPLETE / LIVE VERIFIED** in the tested API35 guest/debug scope.

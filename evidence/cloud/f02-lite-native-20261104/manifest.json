@@ -1,7 +1,7 @@
 {
   "sourceSha": "3c5961aacdd50e3490beea63578628a8dc88c61f",
   "checksumScope": "Git blob bytes; LF-normalized text",
-  "status": "F02 LIVE VERIFIED API35 guest/debug; authorized1 actual2 calls disclosed; owner review; F03 HANDOFF READY",
+  "status": "F02 LIVE VERIFIED API35 guest/debug; authorized1 actual2 incident preserved and retrospectively accepted; F03 HANDOFF READY",
   "files": [
     {
       "path": "analytics-native-receipt.json",
@@ -17,6 +17,16 @@
       "path": "cloud-readback.json",
       "bytes": 1422,
       "sha256": "0d9f72014df09d9aea04ee5f6981294b7edab566ccc19656da1df17c3fbbc051"
+    },
+    {
+      "path": "debugview-empty-20261104.jpg",
+      "bytes": 9192,
+      "sha256": "ebc7b79438578b659e8b09b9f43087838f187a14a3b1fd8f28d98f4f8a00af23"
+    },
+    {
+      "path": "debugview-existing-data.json",
+      "bytes": 751,
+      "sha256": "7a29dcec26be90b6f62863c1a54767de728fe03fcbfc092350c84b08507608a5"
     },
     {
       "path": "f02-lite-ai-detail.json",
@@ -79,14 +89,19 @@
       "sha256": "c8eab0094a71cd4fef4bddb03ca3c05f024e1f561615d5f1bd51574a85d3fc61"
     },
     {
+      "path": "owner-finalization.md",
+      "bytes": 2948,
+      "sha256": "ad7f7e0980ecec4aef8850ca918ae9ef842cd8493e52278acd0e54be51131c45"
+    },
+    {
       "path": "quality-receipts.json",
       "bytes": 3344,
       "sha256": "ad4e6d106cb5ecdc5c3f796d1cb17d3cc0562f31d4719e532c331d1289e1005a"
     },
     {
       "path": "README.md",
-      "bytes": 9042,
-      "sha256": "715b9cacc1e1627f4d2e52c585e65772c89a9365c6a77707d1ddfe80c2596c4f"
+      "bytes": 9498,
+      "sha256": "9d27728a2a1d94fe06f82efe6c12be79664c71af408f7f92e9e95559bc5ac777"
     },
     {
       "path": "recommendation-validation.json",
