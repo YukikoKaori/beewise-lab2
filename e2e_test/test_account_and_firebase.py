@@ -86,7 +86,9 @@ async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
             "AI, Tin nhắn, Tài khoản. For each destination return one object "
             "with its exact name, title_visible based on the rendered screen, "
             "and separate overflow_seen and crash_dialog_seen booleans. Include "
-            "all five observations in order."
+            "all five observations in order. overflow_seen means a visible layout "
+            "overflow defect (clipped content or an overflow error stripe), never "
+            "an ordinary three-dot overflow-menu icon. Do not submit AI requests."
         ),
         expected=(
             '{"destinations":[{"name":string,"title_visible":true,'

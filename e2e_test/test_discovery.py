@@ -97,8 +97,9 @@ async def test_tc04_tutor_detail_matches_selected_real_tutor(run_flow):
         start="BeeWise is signed out on Tìm gia sư; the named active tutor is in the real catalog.",
         steps=(
             f"Find and open the tutor named {tutor_name!r}. Verify the profile "
-            "name exactly, visible subject and fee details, and the connection "
-            "action. Report only values visible on the screen."
+            "name exactly, visible subject and the connection action. Scroll "
+            "down inside the tutor profile to inspect the hourly fee below the "
+            "first viewport. Report only values you actually saw."
         ),
         expected=(
             '{"screen":"Tutor profile","tutor_name":"configured exact name",'
@@ -146,10 +147,11 @@ async def test_tc06_connection_gate_preserves_tutor_after_auth_navigation(run_fl
         case_id="TC-06",
         start="BeeWise is signed out on the profile of the named real tutor.",
         steps=(
-            "Tap the connection action. Verify the authentication gate opens. "
-            "Open registration and then return to login without submitting any "
-            "personal data. Verify the pending tutor context is still the same "
-            "named tutor and no connection request was created."
+            "Tap Gửi yêu cầu kết nối on the tutor profile. Verify Login is the "
+            "authentication gate. Open Đăng ký and go back to Login without "
+            "entering anything. Then go back once more and read the original "
+            "tutor name on the returned profile to verify the pending context. "
+            "Do not submit any form or create a connection request."
         ),
         expected=(
             '{"authentication_gate_visible":true,"login_screen_visible":true,'

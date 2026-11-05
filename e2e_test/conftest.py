@@ -112,7 +112,13 @@ def run_flow(artemis: ArtemisClient) -> Callable[..., Any]:
             f"Test case {case_id}. Starting point: {start}.\n"
             f"Steps: {steps}\n"
             "Use only visible app/device state. Do not invent records or results. "
-            "At the end report the requested values as one JSON object."
+            "After input_text, verify the text actually appears in the focused field. "
+            "On this Android device KEYCODE_PASTE can leave text only in Gboard's "
+            "clipboard suggestion; if the field is still blank, tap that visible "
+            "clipboard suggestion to insert it, then verify the field before submitting. "
+            "When calling report_task_status, put the requested JSON object in "
+            "the explanation argument itself, with no prose or Markdown. "
+            f"Required explanation contract: {expected}"
         )
         session_id = str(uuid.uuid4())
         remote_run = asyncio.create_task(
@@ -261,6 +267,7 @@ def _decode_observation(output: Any) -> dict[str, Any]:
                 "TC-09 must report exactly the five unique top-level destinations in order."
             )
         value = {
+            **value,
             "visible_destinations": visible_destinations,
             "overflow_seen": overflow_seen,
             "crash_dialog_seen": crash_seen,

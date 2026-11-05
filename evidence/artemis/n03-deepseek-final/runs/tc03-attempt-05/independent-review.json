@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T16:15:20.641185+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Approved amendment admission 1 of 2. Independently inspected actual typed search, Android IME submission, zero results and visible Xoa bo loc recovery in steps 4-6. Original JSON and strict single-case JUnit passed; no ANR dialog observed.",
+  "accepted": true,
+  "junit_pass": true
+}

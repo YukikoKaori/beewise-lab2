@@ -1,0 +1,24 @@
+{
+  "provenance": "102 structured per-call ARTEMIS llm_usage receipts; excludes older compatibility smoke",
+  "actual_dashboard_charge_verified": false,
+  "response_count": 102,
+  "http_200": 102,
+  "sdk_reported_totals": {
+    "prompt_tokens": 971177,
+    "completion_tokens": 13678,
+    "total_tokens": 984855,
+    "cached_tokens": 642176
+  },
+  "miss_prompt_tokens": 329001,
+  "all_off_peak": true,
+  "first_utc": "2026-11-05T14:55:40.966138+00:00",
+  "last_utc": "2026-11-05T16:17:09.840622+00:00",
+  "cache_off_peak_reconstructed_usd": "0.059483478",
+  "pricing_source": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "conservative_peak_accounted_usd": 0.3077667,
+  "raw_remaining_usd": 0.1922333,
+  "earlier_dashboard_scope": "Historical owner observation is not updated or attributed after new requests",
+  "amendment_http_calls": 12,
+  "provider_egress_for_guard_refused_request": 0,
+  "approval_unchanged": true
+}

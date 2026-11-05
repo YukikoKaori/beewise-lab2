@@ -1,0 +1,21 @@
+# N-03 Regression Checkpoint — 2026-11-06 (UTC+7)
+
+- **VERDICT: N03_REGRESSION_30_RUNS_COMPLETE**
+- **30/30 ACCEPTED PASS** across 10 distinct official test cases (3 independent accepted PASS per case):
+  - **TC-01**: 3 ACCEPTED PASS (0 FAIL)
+  - **TC-03**: 3 ACCEPTED PASS (4 retained FAIL)
+  - **TC-04**: 3 ACCEPTED PASS (1 retained FAIL)
+  - **TC-05**: 3 ACCEPTED PASS (1 retained FAIL)
+  - **TC-06**: 3 ACCEPTED PASS (0 FAIL)
+  - **TC-08**: 3 ACCEPTED PASS (0 FAIL)
+  - **TC-09**: 3 ACCEPTED PASS (1 retained FAIL)
+  - **TC-20**: 3 ACCEPTED PASS (1 retained FAIL)
+  - **TC-22**: 3 ACCEPTED PASS (5 retained FAIL)
+  - **TC-27**: 3 ACCEPTED PASS (0 FAIL) — substituted for TC-16 per explicit owner approval
+- **TC-16**: Retained 1 historical failure; safely substituted by TC-27 due to AVD lacking Google account chooser.
+- **Total Admitted Sessions**: 44 sessions (30 ACCEPTED, 14 retained FAIL).
+- **DeepSeek HTTP Attempts**: 272 / 275 approved ceiling.
+- **SDK Tokens**: 2,542,792 prompt + 33,161 completion = 2,575,953 total tokens.
+- **Conservative Accounted Cost**: $0.8026308 USD (within approved budget envelope).
+- **Nexora Reserve**: At least $0.50 reserved at all times.
+- **Exploratory 15–30 Minutes (TC-25 Pro)**: NOT RUN (separate scope, pending separate owner authorization).

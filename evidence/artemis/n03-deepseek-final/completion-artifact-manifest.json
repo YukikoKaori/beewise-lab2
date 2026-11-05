@@ -1,0 +1,133 @@
+{
+  "historical_receipts_verified": 17,
+  "current_runs": [
+    {
+      "case": "TC-03",
+      "state": "ACCEPTED",
+      "trace_id": "2d6ba0da-5038-43d2-be8b-04b81ca635de",
+      "path": "runs/completion-TC03-01/manifest.json",
+      "sha256": "0fbdbe0696a53e48012ebcf38fce23b337bf773d1ef92c898acf691764356880"
+    },
+    {
+      "case": "TC-04",
+      "state": "FAILED",
+      "trace_id": "3ac16090-172a-451b-a06f-fc5dd742b103",
+      "path": "runs/completion-TC04-01/manifest.json",
+      "sha256": "6267368bb0c82d290eba8b88a0584f2764cd74d140e5f2801c3cce06ee00c2ab"
+    },
+    {
+      "case": "TC-04",
+      "state": "ACCEPTED",
+      "trace_id": "e17441ff-f900-4041-b4dc-e3a234e74754",
+      "path": "runs/completion-TC04-02/manifest.json",
+      "sha256": "7436aa00421a17a45ccf9e0a118d7c4893c4bf7fbfae2c58cb7466b2274e63d6"
+    },
+    {
+      "case": "TC-04",
+      "state": "ACCEPTED",
+      "trace_id": "b40b934c-745a-433f-aaae-ef1e4e76d3c0",
+      "path": "runs/completion-TC04-03b/manifest.json",
+      "sha256": "d3bdc6a283205ed32050520f84b7ad0fadbaa9b86dca17774b18ac8038fcd21d"
+    },
+    {
+      "case": "TC-04",
+      "state": "ACCEPTED",
+      "trace_id": "9953bf04-4da4-4340-88fa-6fd7dc5b01ca",
+      "path": "runs/completion-TC04-04/manifest.json",
+      "sha256": "4d6f326bab21f3465df2aaeb60c40c2a67948b07dca64ad82964bc3f2e33fdb0"
+    },
+    {
+      "case": "TC-06",
+      "state": "ACCEPTED",
+      "trace_id": "190f2aed-379b-4afc-a2c7-4bd7d68fc1ff",
+      "path": "runs/completion-TC06-01/manifest.json",
+      "sha256": "330acf1b4d3af9620903f2cfb6e7cf6417b6719de8789a659cb942e313bcf97f"
+    },
+    {
+      "case": "TC-06",
+      "state": "ACCEPTED",
+      "trace_id": "2daef801-bad7-4eac-906d-5283df839c6b",
+      "path": "runs/completion-TC06-02/manifest.json",
+      "sha256": "fc746d38dbb0266ee314dd19aea1ae2cd258ced227d486ff743c6fa0f81267c8"
+    },
+    {
+      "case": "TC-06",
+      "state": "ACCEPTED",
+      "trace_id": "50c2a538-234d-41d9-b06c-45e7649a8d7c",
+      "path": "runs/completion-TC06-03/manifest.json",
+      "sha256": "1091b224a5eddf2828906aef7c92c734bcaafc8f4a6f368ffb468f0435c2c884"
+    },
+    {
+      "case": "TC-08",
+      "state": "ACCEPTED",
+      "trace_id": "dd1c4a8a-2e9c-40c7-be22-739d24cda689",
+      "path": "runs/completion-TC08-01/manifest.json",
+      "sha256": "557533a5c452abf2395204885e6adcde7a1f53e6eea01eea9e037782b18431a2"
+    },
+    {
+      "case": "TC-08",
+      "state": "ACCEPTED",
+      "trace_id": "f20e07dd-9d51-4c27-98fb-609792c718f5",
+      "path": "runs/completion-TC08-02b/manifest.json",
+      "sha256": "0ad8a5f27f9d10d2c937f5a603d71e5dd3a240de9f90db44d409dc79a9f11782"
+    },
+    {
+      "case": "TC-08",
+      "state": "ACCEPTED",
+      "trace_id": "56fa5a47-9ff9-42e2-b945-3b767dc95c38",
+      "path": "runs/completion-TC08-03/manifest.json",
+      "sha256": "79839e9ec99c0d484360c416f8210ee496ee74a6c9eadc80c3c938fd66303956"
+    },
+    {
+      "case": "TC-16",
+      "state": "FAILED",
+      "trace_id": "4065fa09-e7da-4f65-a13b-b4f5bd9053b9",
+      "path": "runs/completion-TC16-01/manifest.json",
+      "sha256": "9995a9b74fefe81e689234c1ec1e5f768cd0aa5e0e92d7c216b574ee3d0426b4"
+    },
+    {
+      "case": "TC-20",
+      "state": "FAILED",
+      "trace_id": "e303446c-0397-4561-971e-b118cc2ba54d",
+      "path": "runs/completion-TC20-01/manifest.json",
+      "sha256": "e8f0876c7c5876764edfc1fe23d2a5bdc06ebd2258cceeadcaa7b7f29197a10f"
+    },
+    {
+      "case": "TC-20",
+      "state": "ACCEPTED",
+      "trace_id": "894e22ed-5842-4889-ae7a-82deae1bc875",
+      "path": "runs/completion-TC20-02/manifest.json",
+      "sha256": "39d73ec974b6f16c9dcdc10abdd16e329eca526b7630ceb2d628665ac9c6619f"
+    },
+    {
+      "case": "TC-20",
+      "state": "ACCEPTED",
+      "trace_id": "ecf5921a-8e58-4303-a9a3-5d826a2aa819",
+      "path": "runs/completion-TC20-03/manifest.json",
+      "sha256": "7a2be871b46e662de732b20c1ba99f3f62b9ea8329c67188fba4587f9097d1ec"
+    },
+    {
+      "case": "TC-20",
+      "state": "ACCEPTED",
+      "trace_id": "794b28f4-53fb-45ee-a68a-da462c1706b3",
+      "path": "runs/completion-TC20-04/manifest.json",
+      "sha256": "c892c7dc46b09865882c8db6f9d246a094d62804f8ca4d256cecd8b3ceb4c5fb"
+    },
+    {
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "c0353e65-8fe9-4fb7-815c-b96d58611667",
+      "path": "runs/completion-TC22-01/manifest.json",
+      "sha256": "8a64c503277e7444127cbff43c57705497352dbdc7544badf86c63366f9e0a8f"
+    },
+    {
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "c699696a-9b35-4583-aeef-95b6f65dc2e7",
+      "path": "runs/completion-TC22-02/manifest.json",
+      "sha256": "39700523fa3b7813d3e74f12b8279bf35a7a1529987fc19ae5c6e05ec061e3cf"
+    }
+  ],
+  "summary_sha256": "e551674d65fb4f5883c5723d5198b678bacd2837fda524bdc7c1dd148a158854",
+  "host_stopped": true
+}

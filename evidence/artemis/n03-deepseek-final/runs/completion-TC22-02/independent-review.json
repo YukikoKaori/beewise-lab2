@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:49:15.267314+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Retained FAIL: native trace shows exact Vietnamese entered via the keyboard clipboard suggestion, then submit. Local Firestore verified one matching adjustment and no invoice/class, but the agent used all turns and omitted final JSON; strict pytest/JUnit failed.",
+  "accepted": false,
+  "junit_pass": false
+}

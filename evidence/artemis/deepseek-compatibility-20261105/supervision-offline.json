@@ -1,0 +1,12 @@
+[
+  {
+    "failure_fixture": false,
+    "status": "PASS",
+    "remote_stop_called": false
+  },
+  {
+    "failure_fixture": true,
+    "status": "PASS",
+    "remote_stop_called": true
+  }
+]

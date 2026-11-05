@@ -1,0 +1,92 @@
+[
+  {
+    "name": "harness",
+    "utc": "2026-11-05T15:40:53.113700+00:00",
+    "command": [
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_e2e_harness.py"
+    ],
+    "exit_code": 0,
+    "output_sha256": "c406137be51fae9bc7e5afe4a5910ab065d1e69f4d81b8bb0c83500986b00fe3"
+  },
+  {
+    "name": "parser",
+    "utc": "2026-11-05T15:40:53.541198+00:00",
+    "command": [
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_artemis_report_parser.py"
+    ],
+    "exit_code": 0,
+    "output_sha256": "0fb79e0d13f27410ae868d68cbcfcf991c4066b92b4d0ac981898e39427f42d5"
+  },
+  {
+    "name": "runner",
+    "utc": "2026-11-05T15:40:57.058970+00:00",
+    "command": [
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_artemis_runner.py"
+    ],
+    "exit_code": 0,
+    "output_sha256": "746a25c325f0ef086c6d3b5648e3063cf30753f141d1aac7f191271064251067"
+  },
+  {
+    "name": "startup-parser",
+    "utc": "2026-11-05T15:40:57.386331+00:00",
+    "command": [
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/test_measure_bao_startup.py"
+    ],
+    "exit_code": 0,
+    "output_sha256": "b0c2be0878d70579a08f5fdd53d36cbf99b4c3a3187e431955334988714f471f"
+  },
+  {
+    "name": "n03-contracts",
+    "utc": "2026-11-05T15:40:59.888338+00:00",
+    "command": [
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_n03_contracts.py"
+    ],
+    "exit_code": 0,
+    "output_sha256": "e1a2d8f96b5f62f081f7e1986a8ca5c46898e07a7e0d9de632879dbabb84aa13"
+  },
+  {
+    "name": "ruff",
+    "utc": "2026-11-05T15:41:00.275711+00:00",
+    "command": [
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "tools/artemis-deepseek",
+      "scripts/check_n03_contracts.py",
+      "--select",
+      "E,F,I",
+      "--ignore",
+      "E501,E402"
+    ],
+    "exit_code": 0,
+    "output_sha256": "e88ba87b28779745dcffee22946729c6cc694e6c9c24af19ef47cda32fc08f84"
+  },
+  {
+    "name": "fixture-syntax",
+    "utc": "2026-11-05T15:41:00.396020+00:00",
+    "command": [
+      "node",
+      "--check",
+      "tools/artemis-deepseek/local_fixture.mjs"
+    ],
+    "exit_code": 0,
+    "output_sha256": "d2993bc68ad9a63f711c8f5473155e2ba00fdcd461220cc3849185f2f9ad93e6"
+  },
+  {
+    "name": "diff-check",
+    "utc": "2026-11-05T15:41:00.683801+00:00",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "output_sha256": "d2993bc68ad9a63f711c8f5473155e2ba00fdcd461220cc3849185f2f9ad93e6"
+  }
+]

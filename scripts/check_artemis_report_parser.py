@@ -8,8 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "e2e_test"))
 
-from conftest import _decode_observation, _trace_has_rate_limit, require  # noqa: E402
-
+from conftest import _decode_observation, _trace_has_rate_limit, require
 
 NAVIGATION = ["Trang chủ", "Tìm gia sư", "Ghép AI", "Tin nhắn", "Tài khoản"]
 TC01_EXPECTED = {
@@ -20,6 +19,9 @@ TC01_EXPECTED = {
     "profiles_fabricated": False,
 }
 TC09_EXPECTED = {
+    "destinations": [{"name": name, "title_visible": True,
+                      "overflow_seen": False, "crash_dialog_seen": False}
+                     for name in NAVIGATION],
     "visible_destinations": NAVIGATION,
     "overflow_seen": False,
     "crash_dialog_seen": False,
@@ -28,10 +30,10 @@ TC09_EXPECTED = {
 
 def check_tc01_report_shapes() -> None:
     reports = [
-        "Home title: BeeWise. Visible top-level destinations: "
+        ("Home title: BeeWise. Visible top-level destinations: "
         "Trang chủ, Tìm gia sư, Ghép AI, Tin nhắn, Tài khoản. "
         "Firebase setup/error notice: none. Number of tutor cards: 0. "
-        "Confirmed no fabricated profile claims (0 tutor cards present).",
+        "Confirmed no fabricated profile claims (0 tutor cards present)."),
         {
             "home_title": "BeeWise",
             "visible_top_level_destinations": NAVIGATION,
@@ -48,14 +50,14 @@ def check_tc01_report_shapes() -> None:
             "number_of_tutor_cards": 0,
             "profiles_fabricated": False,
         },
-        "The BeeWise app is open on the Home screen.\\n"
+        ("The BeeWise app is open on the Home screen.\\n"
         '- App-bar title: "BeeWise"\\n'
         "- Visible top-level destinations: Trang chủ, Tìm gia sư, Ghép AI, "
         "Tin nhắn, Tài khoản\\n"
         '- Firebase setup/error notice: None (shows "Chưa có gia sư phù hợp")\\n'
         "- Number of tutor cards: 0\\n"
         "- Firestore results / fabricated profile claims: 0 visible tutor cards, "
-        "hence no fabricated profile claims.",
+        "hence no fabricated profile claims."),
     ]
     for report in reports:
         assert _decode_observation(report) == TC01_EXPECTED

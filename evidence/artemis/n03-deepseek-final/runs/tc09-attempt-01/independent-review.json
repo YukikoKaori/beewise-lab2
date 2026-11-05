@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T15:03:58.317711+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "FAIL retained. Native final report contains correct destinations JSON, but harness decoder discarded those rows before primary assertion. Classified harness normalization defect, corrected only for future executions; this failed JUnit is never upgraded.",
+  "accepted": false,
+  "junit_pass": false
+}

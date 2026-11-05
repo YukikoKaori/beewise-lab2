@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T16:19:48.776046+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Approved amendment admission 2 of 2. Native preflight PASS; no new am_anr event. Frames show text entry and subsequent cursor clicks/re-entry, without an observed submitted result or final report. Six HTTP 200 responses. Next request refused before reservation/egress by the local input-envelope guard; OpenAI SDK wrapped ValueError as APIConnectionError. Strict JUnit FAIL; no retry permitted.",
+  "accepted": false,
+  "junit_pass": false
+}

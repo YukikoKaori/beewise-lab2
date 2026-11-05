@@ -1,0 +1,52 @@
+{
+  "timestampUtc": "2026-11-05T15:52:09.775695+00:00",
+  "serial": "emulator-5562",
+  "requestedMode": "cold",
+  "userdataCleared": false,
+  "anrDetectionSuppressed": false,
+  "pidBefore": "",
+  "pidAfter": "3209",
+  "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity (has extras) }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 6097\r\nWaitTime: 6099\r\nComplete",
+  "amStartWallMs": 6172,
+  "flutterFrames": {
+    "status": "OBSERVED",
+    "clock": "Android process start ticks and VM monotonic timeline microseconds",
+    "scope": "Explicit Flutter first useful frame markers; not Android Displayed timing",
+    "timelineSha256": "9ccfe84f6863081d3dfa55747da440ce891516338088818852d08af7f9b21872",
+    "startupMarkers": [
+      {
+        "name": "FlutterEngineMainEnter",
+        "ts": 144472412
+      },
+      {
+        "name": "Widgets built first useful frame",
+        "ts": 148365286
+      },
+      {
+        "name": "Rasterized first useful frame",
+        "ts": 148798454
+      }
+    ],
+    "processStartTicks": 14293,
+    "clockTicksPerSecond": 100,
+    "processToFirstFrameBuiltMs": 5435.286,
+    "engineToFirstFrameBuiltMs": 3892.874,
+    "processToFirstFrameRasterizedMs": 5868.454,
+    "engineToFirstFrameRasterizedMs": 4326.042
+  },
+  "homeUiPresent": true,
+  "anrDialogInUi": false,
+  "screenshotSha256": "ad8653b4c5fa4028cd90d714df40ad3b4fa694620d0e3bcc9c781e4dbce910ed",
+  "label": "settled-cold-01",
+  "focused_window": [
+    "mCurrentFocus=Window{20a46e0 u0 com.beewise.beewise/com.beewise.beewise.MainActivity}",
+    "mFocusedApp=ActivityRecord{93793e0 u0 com.beewise.beewise/.MainActivity t41}"
+  ],
+  "post_marker_anr_lines": [],
+  "main_wchan": "do_epoll_wait",
+  "android_draw_log": [
+    "11-05 22:52:17.390   569   605 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +6s97ms",
+    "11-05 22:52:17.390   569   605 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +6s97ms"
+  ],
+  "review": "Root inspected cold Home frames; native measurement only, not ARTEMIS E2E"
+}
