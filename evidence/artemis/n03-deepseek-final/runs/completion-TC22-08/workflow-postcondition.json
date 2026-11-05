@@ -1,0 +1,9 @@
+{
+  "fixture": "n03-tc22-completion-09",
+  "expected_parent_response": "class_adjustment_requested",
+  "matching_responses": 1,
+  "invoice_count": 0,
+  "official_class_count": 0,
+  "visible_reason_verified": true,
+  "local_only": true
+}

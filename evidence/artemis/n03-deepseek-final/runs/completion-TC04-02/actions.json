@@ -1,0 +1,25 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [756, 795] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-03.jpg"
+  }
+]

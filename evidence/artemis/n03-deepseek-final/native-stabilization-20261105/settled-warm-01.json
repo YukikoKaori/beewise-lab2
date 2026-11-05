@@ -1,0 +1,27 @@
+{
+  "timestampUtc": "2026-11-05T16:01:25.532040+00:00",
+  "serial": "emulator-5562",
+  "requestedMode": "warm",
+  "userdataCleared": false,
+  "anrDetectionSuppressed": false,
+  "pidBefore": "3671",
+  "pidAfter": "3671",
+  "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity (has extras) }\r\nWarning: Activity not started, its current task has been brought to the front\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 200\r\nComplete",
+  "amStartWallMs": 453,
+  "flutterFrames": {
+    "status": "NOT_MEASURED",
+    "reason": "Timeline collection requires opt-in cold --trace-startup"
+  },
+  "homeUiPresent": true,
+  "anrDialogInUi": false,
+  "screenshotSha256": "34b5c56eb84d89eca56ab5cf700f69cae587c916e1e4b863eb847a15b364dfbb",
+  "label": "settled-warm-01",
+  "focused_window": [
+    "mCurrentFocus=Window{5873ae9 u0 com.beewise.beewise/com.beewise.beewise.MainActivity}",
+    "mFocusedApp=ActivityRecord{b942925 u0 com.beewise.beewise/.MainActivity t43}"
+  ],
+  "post_marker_anr_lines": [],
+  "main_wchan": "do_epoll_wait",
+  "android_draw_log": [],
+  "review": "Root inspected cold Home frames; native measurement only, not ARTEMIS E2E"
+}

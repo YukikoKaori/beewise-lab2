@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-11-05T13:54:25.381992+00:00",
+  "status": "BLOCKED_DEVICE_PRECONDITION",
+  "models": "PASS authenticated read-only account discovery; Flash image modality confirmed",
+  "api37": {
+    "boot_completed": true,
+    "serial": "emulator-5560",
+    "apk_sha256": "38b5312db84237af2424a144cfe704f1150dea4103e37c75fd84d11add33bdb9",
+    "launch_wait": "timeout",
+    "native_dialog": "System UI is not responding",
+    "instance_closed_after_receipt": true
+  },
+  "api35": {
+    "boot_completed": true,
+    "serial": "emulator-5562",
+    "avd": "BeeWise_Bao_Acceptance_API35",
+    "apk_sha256": "3542276a8108123056c93eaa9524490c5dfa58186115daa2381031fba1ae568f",
+    "apk_source_sha": "3c5961aacdd50e3490beea63578628a8dc88c61f",
+    "launch_wait": "timeout",
+    "native_dialog": "System UI is not responding"
+  },
+  "host_sample": {
+    "logical_cpu_count": 8,
+    "cpu_percent_1s": 66.1,
+    "ram_total_gib": 15.84,
+    "ram_available_gib": 5.75,
+    "ram_percent": 63.7,
+    "note": "Single sample, insufficient to determine ANR root cause"
+  },
+  "userdata_preserved": true,
+  "anr_detection_modified": false,
+  "anr_dialog_dismissed": false,
+  "inference_requests": 0,
+  "artemis_tasks_submitted": 0,
+  "guest_precondition": "NOT VERIFIED",
+  "native_tc09": "NOT RUN",
+  "cause": "System UI failure observed on both AVDs; no app/provider-specific cause established"
+}

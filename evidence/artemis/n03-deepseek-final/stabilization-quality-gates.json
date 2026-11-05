@@ -1,0 +1,23 @@
+{
+  "source_sha": "a72059ca5e07a4c1193960965dc07453efea161d",
+  "scope": "Uncommitted local N-03 harness/evidence follow-up; no app or ARTEMIS SDK source change in this stabilization",
+  "current_checks": {
+    "native_preflight_and_anr_supervisor_offline": "PASS: 8 fault-injection tests",
+    "strict_contracts_and_owner_retry_gate": "PASS",
+    "read_only_actual_ledger_retry_refusal": "PASS: further admission rejected",
+    "offline_sdk_input_envelope_reproduction": "PASS: both caps fail locally before transport",
+    "artemis_report_parser": "PASS",
+    "e2e_harness_structure": "PASS: 27 unique scenario functions; no Android acceptance inferred",
+    "native_startup_parser": "PASS: 4 tests",
+    "ruff": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "retained_prior_checks": {
+    "artemis_patch_offline_tests": 182,
+    "patch_sha256": "51f768bf8703f327301869381d54425fed91994c1ffa26102cda240a5b74e976",
+    "source_app_build_and_firebase_emulator": "See unchanged prior quality-gates.json and final-offline-gates.json"
+  },
+  "native": "Three settled cold and one same-process warm launch; two full amended paid preflights; one new accepted E2E and one new failed E2E, no new ANR during those runs",
+  "provider_inference_calls_during_offline_checks": 0,
+  "github_actions_for_uncommitted_wip": "NOT RUN; no completion PR"
+}

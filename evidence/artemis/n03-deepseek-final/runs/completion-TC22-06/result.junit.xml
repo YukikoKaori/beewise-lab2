@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="40.680" timestamp="2026-11-06T02:24:49.110343+07:00"><testcase classname="test_workflow" name="test_tc22_request_class_revision_adjustment" time="40.638" /></testsuite></testsuites>

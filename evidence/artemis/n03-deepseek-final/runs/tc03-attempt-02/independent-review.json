@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T15:26:05.351644+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "FAIL preserved: Gboard clipboard workaround did not yield the required exact query; duplicated prefix and subsequent empty field prevented genuine search. Agent correctly failed, strict JUnit FAIL. No search result invented.",
+  "accepted": false,
+  "junit_pass": false
+}

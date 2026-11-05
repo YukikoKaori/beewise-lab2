@@ -1,0 +1,34 @@
+{
+  "observations": [
+    {
+      "name": "Trang chủ",
+      "title_visible": true,
+      "overflow_seen": false,
+      "crash_dialog_seen": false
+    },
+    {
+      "name": "Tìm gia sư",
+      "title_visible": true,
+      "overflow_seen": false,
+      "crash_dialog_seen": false
+    },
+    {
+      "name": "Ghép AI",
+      "title_visible": true,
+      "overflow_seen": false,
+      "crash_dialog_seen": false
+    },
+    {
+      "name": "Tin nhắn",
+      "title_visible": true,
+      "overflow_seen": false,
+      "crash_dialog_seen": false
+    },
+    {
+      "name": "Tài khoản",
+      "title_visible": true,
+      "overflow_seen": false,
+      "crash_dialog_seen": false
+    }
+  ]
+}

@@ -1,0 +1,573 @@
+diff --git a/artemis/agents/flash/runner.py b/artemis/agents/flash/runner.py
+index 3ea3f68..956fd9f 100644
+--- a/artemis/agents/flash/runner.py
++++ b/artemis/agents/flash/runner.py
+@@ -41,6 +41,7 @@ import asyncio
+ import base64
+ from dataclasses import dataclass, field
+ import json
++import os
+ from pathlib import Path
+ import re
+ import uuid
+@@ -282,6 +283,8 @@ class FlashRunner:
+         try:
+             return get_llm(self.ctx, name="operator")
+         except Exception as e:
++            if os.environ.get("ARTEMIS_DEEPSEEK_ONLY") == "1":
++                raise
+             logger.warning(f"Failed to get operator LLM from config, using default: {e}")
+ 
+             return RobustChatModelWrapper(get_google_llm(model_name="gemini-2.5-flash"), self.ctx)
+diff --git a/artemis/agents/flash/summarizer.py b/artemis/agents/flash/summarizer.py
+index 5b8a3cf..99da78b 100644
+--- a/artemis/agents/flash/summarizer.py
++++ b/artemis/agents/flash/summarizer.py
+@@ -27,6 +27,7 @@ frame, the ``flash_summarizer.md`` neutral-wording contract, and versioned
+ 
+ import asyncio
+ import base64
++import os
+ from pathlib import Path
+ from typing import Any
+ from uuid import UUID
+@@ -164,12 +165,21 @@ class VisualStepSummarizer(StepMemoryService):
+         # Initialize lightweight VLM: prioritize explicit model_name
+         target_model = model_name or "gemini-2.5-flash-lite"
+         self._model_name = target_model
++        summarizer_cfg = getattr(getattr(ctx, "llm_config", None), "summarizer", None)
++        provider = getattr(summarizer_cfg, "provider", None)
++        non_google = isinstance(provider, str) and provider != "google"
+         try:
+-            if model_name:
++            if non_google:
++                from artemis.services.llm import get_memory_llm
++
++                self._llm = get_memory_llm(ctx, model_name or summarizer_cfg.model)
++            elif model_name:
+                 self._llm = get_google_llm(model_name=target_model, temperature=0.0)
+             else:
+                 self._llm = get_llm(ctx, name="summarizer", is_utils=True)
+         except Exception:
++            if non_google or os.environ.get("ARTEMIS_DEEPSEEK_ONLY") == "1":
++                raise
+             self._llm = get_google_llm(model_name=target_model, temperature=0.0)
+         try:
+             configured = getattr(self._llm, "model", None) or getattr(self._llm, "model_name", None)
+diff --git a/artemis/llm/deepseek.py b/artemis/llm/deepseek.py
+new file mode 100644
+index 0000000..d1b5c9a
+--- /dev/null
++++ b/artemis/llm/deepseek.py
+@@ -0,0 +1,28 @@
++"""Official DeepSeek Chat Completions compatibility, scoped to its endpoint."""
++
++from urllib.parse import urlsplit
++
++from langchain_openai import ChatOpenAI
++
++
++def is_deepseek_url(value: str | None) -> bool:
++    if not value:
++        return False
++    url = urlsplit(value)
++    return (url.scheme == "https" and url.hostname == "api.deepseek.com"
++            and url.port in (None, 443) and not url.username and not url.password
++            and not url.query and not url.fragment and url.path in ("", "/", "/v1", "/v1/"))
++
++
++class DeepSeekChatOpenAI(ChatOpenAI):
++    """Avoid OpenAI-only response_format and forced tools in thinking mode."""
++
++    def with_structured_output(self, schema=None, *, method="function_calling", **kwargs):
++        return super().with_structured_output(schema, method=method, **kwargs)
++
++    def _get_request_payload(self, *args, **kwargs):
++        payload = super()._get_request_payload(*args, **kwargs)
++        # DeepSeek's documented Chat Completions parameter is max_tokens.
++        cap = payload.pop("max_completion_tokens", payload.get("max_tokens", 2048))
++        payload["max_tokens"] = min(cap or 2048, 2048)
++        return payload
+diff --git a/artemis/llm/deepseek_budget.py b/artemis/llm/deepseek_budget.py
+new file mode 100644
+index 0000000..67bc889
+--- /dev/null
++++ b/artemis/llm/deepseek_budget.py
+@@ -0,0 +1,77 @@
++"""Optional single-smoke egress guard; zero requests permitted by default.
++
++Counts HTTP attempts before sending, shared by every model/worker via a private
++counter file. Never records headers, prompts, screenshots or credentials.
++"""
++
++import json
++import os
++from pathlib import Path
++
++import httpx
++
++
++def claim_request(request: httpx.Request) -> None:
++    if (str(request.url) != "https://api.deepseek.com/chat/completions"
++            or request.method != "POST"):
++        raise ValueError("Smoke guard rejected unexpected provider endpoint")
++    payload = json.loads(request.content)
++    if payload.get("model") != "deepseek-flash":
++        raise ValueError("Smoke guard only permits documented vision model deepseek-flash")
++    if not 1 <= payload.get("max_tokens", 0) <= 2048:
++        raise ValueError("Smoke output-token cap missing or exceeded")
++    # Bound non-image bytes and image count. Inline images remain in user turns.
++    images = 0
++    for message in payload.get("messages", []):
++        content = message.get("content")
++        if not isinstance(content, list):
++            continue
++        for block in content:
++            if block.get("type") == "image_url":
++                url = block["image_url"]["url"]
++                if message.get("role") != "user" or not url.startswith("data:image/"):
++                    raise ValueError("Smoke requires inline user screenshot blocks")
++                images += 1
++                block["image_url"]["url"] = "[inline image]"
++    if images > 8 or len(json.dumps(payload).encode()) > 32768:
++        raise ValueError("Smoke input bound exceeded; stop instead of truncating evidence")
++    limit = int(os.environ.get("ARTEMIS_DEEPSEEK_REQUEST_LIMIT", "0"))
++    if not 1 <= limit <= 12:
++        raise ValueError("No authorized live request budget configured")
++    path = Path(os.environ["ARTEMIS_DEEPSEEK_COUNTER_FILE"])
++    # The launcher creates a new counter explicitly. Refuse missing/reused state.
++    with path.open("r+b") as file:
++        if os.name == "nt":
++            import msvcrt
++            msvcrt.locking(file.fileno(), msvcrt.LK_LOCK, 1)
++        else:
++            import fcntl
++            fcntl.flock(file, fcntl.LOCK_EX)
++        try:
++            file.seek(0)
++            count = int(file.read().decode())
++            if count >= limit:
++                raise ValueError("DeepSeek HTTP-attempt budget exhausted; no request sent")
++            file.seek(0)
++            file.write(str(count + 1).encode())
++            file.truncate()
++            file.flush()
++            os.fsync(file.fileno())
++        finally:
++            file.seek(0)
++            if os.name == "nt":
++                msvcrt.locking(file.fileno(), msvcrt.LK_UNLCK, 1)
++            else:
++                fcntl.flock(file, fcntl.LOCK_UN)
++
++
++class GuardedTransport(httpx.HTTPTransport):
++    def handle_request(self, request):
++        claim_request(request)
++        return super().handle_request(request)
++
++
++class GuardedAsyncTransport(httpx.AsyncHTTPTransport):
++    async def handle_async_request(self, request):
++        claim_request(request)
++        return await super().handle_async_request(request)
+diff --git a/artemis/llm/router.py b/artemis/llm/router.py
+index f2e6b42..0b750c1 100644
+--- a/artemis/llm/router.py
++++ b/artemis/llm/router.py
+@@ -209,6 +209,9 @@ class ModelFactory:
+ 
+     @classmethod
+     def create_model(cls, endpoint: ModelEndpoint) -> BaseChatModel:
++        if (os.environ.get("ARTEMIS_DEEPSEEK_ONLY") == "1"
++                and os.environ.get("ARTEMIS_FAKE_LLM") == "1"):
++            raise ValueError("DeepSeek-only host refuses fake provider evidence")
+         if os.environ.get("ARTEMIS_FAKE_LLM") == "1":
+             from artemis.llm.fake_model import FakeChatModel
+ 
+@@ -221,6 +224,15 @@ class ModelFactory:
+ 
+         provider = ModelProvider.from_string(endpoint.provider)
+ 
++        # Opt-in isolation for the separate DeepSeek test host. Never switch a
++        # failed DeepSeek configuration to another provider, even with Google keys.
++        if os.environ.get("ARTEMIS_DEEPSEEK_ONLY") == "1":
++            from artemis.llm.deepseek import is_deepseek_url
++
++            base = endpoint.api_base or settings.OPENAI_BASE_URL
++            if provider != ModelProvider.OPENAI or not is_deepseek_url(base):
++                raise ValueError("DeepSeek-only host rejected a non-DeepSeek endpoint")
++
+         if provider == ModelProvider.GOOGLE:
+             _patch_langchain_google_genai()
+             from langchain_google_genai import (
+@@ -301,6 +313,22 @@ class ModelFactory:
+             }
+             if endpoint.reasoning_effort:
+                 kwargs["reasoning_effort"] = endpoint.reasoning_effort
++            from artemis.llm.deepseek import DeepSeekChatOpenAI, is_deepseek_url
++
++            if is_deepseek_url(base_url):
++                kwargs.pop("reasoning_effort", None)
++                if os.environ.get("ARTEMIS_DEEPSEEK_ONLY") == "1":
++                    import httpx
++
++                    from artemis.llm.deepseek_budget import GuardedAsyncTransport, GuardedTransport
++
++                    kwargs["http_client"] = httpx.Client(transport=GuardedTransport())
++                    kwargs["http_async_client"] = httpx.AsyncClient(transport=GuardedAsyncTransport())
++                return DeepSeekChatOpenAI(
++                    **{k: v for k, v in kwargs.items() if v is not None},
++                    extra_body={"thinking": {"type": "disabled"}},
++                    max_retries=0,
++                )
+             return ChatOpenAI(**{k: v for k, v in kwargs.items() if v is not None})
+ 
+         elif provider == ModelProvider.ANTHROPIC:
+diff --git a/artemis/memory/chunking.py b/artemis/memory/chunking.py
+index c0c91ea..95cc472 100644
+--- a/artemis/memory/chunking.py
++++ b/artemis/memory/chunking.py
+@@ -323,17 +323,25 @@ class StepCapsuleLens(StepLens):
+ 
+     def _get_llm(self):
+         if self._llm is None:
+-            from artemis.services.llm import get_google_llm
++            from artemis.services.llm import get_google_llm, get_memory_llm
+ 
+-            self._llm = get_google_llm(model_name=self._model_name, temperature=0.0)
++            cfg = getattr(getattr(self._ctx, "llm_config", None), "summarizer", None)
++            self._llm = (
++                get_memory_llm(self._ctx, self._model_name)
++                if isinstance(getattr(cfg, "provider", None), str) and cfg.provider != "google"
++                else get_google_llm(model_name=self._model_name, temperature=0.0)
++            )
+         return self._llm
+ 
+     def _get_fallback_llm(self):
+         if self._fallback_llm is None and self._fallback_model_name:
+-            from artemis.services.llm import get_google_llm
++            from artemis.services.llm import get_google_llm, get_memory_llm
+ 
+-            self._fallback_llm = get_google_llm(
+-                model_name=self._fallback_model_name, temperature=0.0
++            cfg = getattr(getattr(self._ctx, "llm_config", None), "summarizer", None)
++            self._fallback_llm = (
++                get_memory_llm(self._ctx, self._fallback_model_name, use_fallback=True)
++                if isinstance(getattr(cfg, "provider", None), str) and cfg.provider != "google"
++                else get_google_llm(model_name=self._fallback_model_name, temperature=0.0)
+             )
+         return self._fallback_llm
+ 
+diff --git a/artemis/sdk/agent.py b/artemis/sdk/agent.py
+index c0c0da0..c3d7da6 100644
+--- a/artemis/sdk/agent.py
++++ b/artemis/sdk/agent.py
+@@ -128,6 +128,9 @@ class Agent(AgentBase):
+ 
+     async def _prewarm_llm_connections(self, api_key: str | None = None):
+         """Pre-warms the HTTP2/gRPC connection pools for both Native GenAI and LangChain clients in the background."""
++        if os.environ.get("ARTEMIS_DEEPSEEK_ONLY") == "1":
++            logger.info("DeepSeek-only host: no provider pre-warming requests.")
++            return
+         if os.environ.get("ARTEMIS_FAKE_LLM") == "1":
+             logger.info("ARTEMIS_FAKE_LLM=1 — skipping real LLM connection pre-warming.")
+             publish_startup_progress(
+diff --git a/artemis/services/llm.py b/artemis/services/llm.py
+index ec91e6f..46ca879 100644
+--- a/artemis/services/llm.py
++++ b/artemis/services/llm.py
+@@ -871,6 +871,13 @@ invoke_llm_with_timeout_message = LLMWaitNotice(
+ 
+ 
+ # Backward compatible factory functions delegating to ModelFactory
++def get_memory_llm(ctx: ArtemisContext, model_name: str, *, use_fallback: bool = False):
++    """Honor the summarizer provider for an explicit memory model name."""
++    endpoint = _resolve_endpoint(ctx, "summarizer", use_fallback=use_fallback)
++    endpoint = endpoint.model_copy(update={"model_name": model_name, "temperature": 0.0})
++    return ModelFactory.get_model(endpoint)
++
++
+ def get_google_llm(
+     model_name: str = "gemini-3.8-flash",
+     temperature: float | None = None,
+diff --git a/scripts/check_deepseek_offline.py b/scripts/check_deepseek_offline.py
+new file mode 100644
+index 0000000..113dd2e
+--- /dev/null
++++ b/scripts/check_deepseek_offline.py
+@@ -0,0 +1,32 @@
++"""Run the focused regressions without external network or real credentials."""
++
++import os
++from pathlib import Path
++import socket
++import sys
++
++os.chdir(Path(__file__).resolve().parents[1])
++sys.path.insert(0, str(Path.cwd()))
++for name in ("GOOGLE_API_KEY", "GEMINI_API_KEY", "GCP_API_KEY", "OPENAI_API_KEY"):
++    os.environ[name] = "offline-fixture-not-a-key"
++os.environ.pop("ARTEMIS_DEEPSEEK_ONLY", None)
++os.environ.pop("ARTEMIS_FAKE_LLM", None)
++original_connect = socket.socket.connect
++
++
++def local_only(sock, address):
++    if isinstance(address, tuple) and address[0] in ("127.0.0.1", "::1"):
++        return original_connect(sock, address)
++    raise AssertionError("Offline checks prohibit external sockets")
++
++
++socket.socket.connect = local_only
++import pytest
++
++raise SystemExit(pytest.main([
++    "tests/unit/test_deepseek_compatibility.py",
++    "tests/unit/test_llm_gateway.py", "tests/unit/test_llm_structured.py",
++    "tests/unit/agents/test_flash_runner.py",
++    "tests/unit/agents/test_flash_step_summarizer.py",
++    "tests/unit/memory/test_history_chunking.py", "-q", *sys.argv[1:],
++]))
+diff --git a/tests/unit/test_deepseek_compatibility.py b/tests/unit/test_deepseek_compatibility.py
+new file mode 100644
+index 0000000..7cda0eb
+--- /dev/null
++++ b/tests/unit/test_deepseek_compatibility.py
+@@ -0,0 +1,236 @@
++"""Hermetic compatibility tests; no real provider/device calls."""
++
++import base64
++import io
++import json
++import socket
++from types import SimpleNamespace
++from unittest.mock import AsyncMock, Mock, patch
++
++import httpx
++import pytest
++from langchain_core.messages import AIMessage
++from PIL import Image
++
++from artemis.agents.flash.runner import FlashRunner
++from artemis.config.llm import LLMConfig, _expand_default_into_nodes
++from artemis.llm.deepseek import DeepSeekChatOpenAI, is_deepseek_url
++from artemis.llm.deepseek_budget import claim_request
++from artemis.llm.router import ModelEndpoint, ModelFactory
++from artemis.memory.chunking import StepCapsuleLens
++from third_party.mobile_use.agents.hopper.hopper import HopperOutput
++
++
++@pytest.fixture(autouse=True)
++def no_network(monkeypatch):
++    original = socket.socket.connect
++    def local_only(sock, address):
++        if isinstance(address, tuple) and address[0] in ("127.0.0.1", "::1"):
++            return original(sock, address)
++        pytest.fail("Unexpected external socket")
++    monkeypatch.setattr(socket.socket, "connect", local_only)
++    monkeypatch.delenv("ARTEMIS_FAKE_LLM", raising=False)
++    monkeypatch.delenv("ARTEMIS_DEEPSEEK_ONLY", raising=False)
++
++
++def endpoint(**updates):
++    return ModelEndpoint(provider="openai", model_name="deepseek-flash",
++                         api_key="offline-fixture-not-a-key", api_base="https://api.deepseek.com",
++                         **updates)
++
++
++def config():
++    raw = _expand_default_into_nodes({"default": {
++        "provider": "openai", "model": "deepseek-flash",
++        "fallback": {"provider": "openai", "model": "deepseek-flash"}}})
++    for name in ("planner_validation", "validator_pixel_safety_net", "history_analyzer", "output_analyzer"):
++        raw[name] = raw["operator"].copy()
++    return LLMConfig.model_validate(raw)
++
++
++def test_actual_config_schema_can_override_all_pro_judges_without_google():
++    cfg = config()
++    for key, value in cfg.model_dump().items():
++        rows = value.values() if key == "utils" else [value]
++        for row in rows:
++            if row:
++                assert row["provider"] == row["fallback"]["provider"] == "openai"
++                assert row["model"] == row["fallback"]["model"] == "deepseek-flash"
++
++
++def test_deepseek_routing_payload_and_structured_hopper():
++    seen = []
++    def respond(request):
++        payload = json.loads(request.content)
++        seen.append(payload)
++        name = payload["tools"][0]["function"]["name"]
++        return httpx.Response(200, json={"id": "offline", "object": "chat.completion",
++            "created": 0, "model": "deepseek-flash", "choices": [{"index": 0,
++            "finish_reason": "tool_calls", "message": {"role": "assistant", "content": "",
++            "tool_calls": [{"id": "offline-tool", "type": "function", "function": {
++                "name": name, "arguments": '{"found":true,"output":"com.beewise.beewise","reason":"offline fixture"}'}}]}}]})
++    model = ModelFactory.create_model(endpoint())
++    assert isinstance(model, DeepSeekChatOpenAI)
++    model.root_client._client = httpx.Client(transport=httpx.MockTransport(respond))
++    output = model.with_structured_output(HopperOutput).invoke("Find BeeWise; return JSON")
++    assert output.found and output.output == "com.beewise.beewise"
++    payload = seen[0]
++    assert "response_format" not in payload
++    assert payload["thinking"] == {"type": "disabled"}
++    assert payload["max_tokens"] == 2048 and "max_completion_tokens" not in payload
++    assert model.max_retries == 0
++
++
++def test_invalid_structured_output_is_rejected():
++    model = ModelFactory.create_model(endpoint())
++    with pytest.raises(Exception):
++        HopperOutput.model_validate({"found": True})
++    assert model.with_structured_output(HopperOutput) is not None
++
++
++def test_openai_default_behavior_unchanged():
++    normal = ModelFactory.create_model(ModelEndpoint(provider="openai", model_name="gpt-4o",
++        api_key="offline-fixture-not-a-key", api_base="https://api.openai.com/v1"))
++    assert not isinstance(normal, DeepSeekChatOpenAI)
++
++
++@pytest.mark.parametrize("url", ["http://api.deepseek.com", "https://api.deepseek.com.evil.test",
++    "https://user@api.deepseek.com", "https://api.deepseek.com:8443", "https://api.deepseek.com/beta"])
++def test_endpoint_allowlist(url):
++    assert not is_deepseek_url(url)
++
++
++def test_only_mode_rejects_google_and_wrong_endpoint(monkeypatch):
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_ONLY", "1")
++    with pytest.raises(ValueError, match="rejected"):
++        ModelFactory.create_model(ModelEndpoint(provider="google", model_name="gemini-3.8-flash"))
++    with pytest.raises(ValueError, match="rejected"):
++        ModelFactory.create_model(ModelEndpoint(provider="openai", api_base="https://api.openai.com/v1"))
++
++
++def test_flash_init_failure_cannot_construct_google(monkeypatch):
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_ONLY", "1")
++    runner = object.__new__(FlashRunner)
++    runner.ctx = SimpleNamespace()
++    with patch("artemis.agents.flash.runner.get_llm", side_effect=ValueError("bad config")), \
++         patch("artemis.agents.flash.runner.get_google_llm") as google:
++        with pytest.raises(ValueError):
++            runner._init_llm()
++        google.assert_not_called()
++
++
++def test_visual_summary_and_memory_honor_non_google_provider():
++    from artemis.agents.flash.summarizer import VisualStepSummarizer
++    ctx = SimpleNamespace(llm_config=config(), data_engine=None)
++    expected = Mock()
++    with patch("artemis.services.llm.get_memory_llm", return_value=expected) as routed, \
++         patch("artemis.agents.flash.summarizer.get_google_llm") as google:
++        summary = VisualStepSummarizer(ctx, model_name="deepseek-flash")
++        assert summary._llm is expected
++        assert routed.call_args.args == (ctx, "deepseek-flash")
++        google.assert_not_called()
++    lens = StepCapsuleLens("deepseek-flash", ctx=ctx, fallback_model_name="same-provider-alternate")
++    with patch("artemis.services.llm.get_memory_llm", return_value=expected) as routed, \
++         patch("artemis.services.llm.get_google_llm") as google:
++        assert lens._get_llm() is expected and lens._get_fallback_llm() is expected
++        assert routed.call_count == 2
++        assert routed.call_args.kwargs == {"use_fallback": True}
++        google.assert_not_called()
++
++
++def test_actual_memory_endpoint_and_generic_explorer_selection(monkeypatch):
++    from artemis.agents.explorer.explorer import Explorer
++    from artemis.services.llm import get_memory_llm
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_ONLY", "1")
++    from artemis.config import settings
++    monkeypatch.setattr(settings, "OPENAI_BASE_URL", "https://api.deepseek.com")
++    ctx = SimpleNamespace(llm_config=config(), data_engine=None)
++    captured = []
++    with patch.object(ModelFactory, "get_model", side_effect=lambda ep: captured.append(ep)):
++        get_memory_llm(ctx, "deepseek-flash")
++    assert captured[0].provider == "openai" and captured[0].model_name == "deepseek-flash"
++    explorer = object.__new__(Explorer)
++    explorer.model_name = "deepseek-flash"
++    explorer.ctx = ctx
++    assert explorer._detect_native_engine() is False
++
++
++@pytest.mark.asyncio
++async def test_gemini_prewarm_never_called_even_if_a_key_is_passed(monkeypatch):
++    from artemis.sdk.agent import Agent
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_ONLY", "1")
++    with patch("artemis.sdk.agent.genai.Client") as google, \
++         patch("artemis.sdk.agent.ChatGoogleGenerativeAI") as gemini:
++        await Agent._prewarm_llm_connections(SimpleNamespace(), "offline-fixture-not-a-key")
++        google.assert_not_called()
++        gemini.assert_not_called()
++
++
++def test_real_flash_screenshot_serialization_and_native_action_decode():
++    runner = object.__new__(FlashRunner)
++    buffer = io.BytesIO()
++    Image.new("RGB", (8, 16), "white").save(buffer, format="JPEG")
++    jpeg = buffer.getvalue()
++    message = runner._build_tail(SimpleNamespace(elapsed_label=lambda: "T+00:00"), 1, jpeg, "[1] Tab")
++    assert message.type == "human"
++    block = next(b for b in message.content if b["type"] == "image_url")
++    assert base64.b64decode(block["image_url"]["url"].split(",")[1]) == jpeg
++    payload = ModelFactory.create_model(endpoint())._get_request_payload([message])
++    assert payload["messages"][0]["role"] == "user"
++    assert payload["messages"][0]["content"][2] == block
++    response = AIMessage(content="", tool_calls=[{"name":"click", "args":{"index":1}, "id":"offline"}])
++    assert runner._resolve_tool_calls(response, "")[0]["args"] == {"index":1}
++
++
++def request(**updates):
++    data = {"model":"deepseek-flash", "max_tokens":2048,
++            "messages":[{"role":"user", "content":"offline"}]}
++    data.update(updates)
++    return httpx.Request("POST", "https://api.deepseek.com/chat/completions", json=data)
++
++
++def test_guard_defaults_to_zero_requests(monkeypatch):
++    monkeypatch.delenv("ARTEMIS_DEEPSEEK_REQUEST_LIMIT", raising=False)
++    with pytest.raises(ValueError, match="No authorized"):
++        claim_request(request())
++
++
++@pytest.mark.asyncio
++async def test_real_sdk_sync_and_async_default_budget_cannot_send(monkeypatch):
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_ONLY", "1")
++    monkeypatch.delenv("ARTEMIS_DEEPSEEK_REQUEST_LIMIT", raising=False)
++    model = ModelFactory.create_model(endpoint())
++    with pytest.raises(Exception) as sync_error:
++        model.invoke("offline")
++    assert isinstance(sync_error.value.__cause__, ValueError)
++    assert "No authorized" in str(sync_error.value.__cause__)
++    with pytest.raises(Exception) as async_error:
++        await model.ainvoke("offline")
++    assert isinstance(async_error.value.__cause__, ValueError)
++    assert "No authorized" in str(async_error.value.__cause__)
++
++
++def test_only_mode_refuses_fake_evidence(monkeypatch):
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_ONLY", "1")
++    monkeypatch.setenv("ARTEMIS_FAKE_LLM", "1")
++    with pytest.raises(ValueError, match="fake provider evidence"):
++        ModelFactory.create_model(endpoint())
++
++
++def test_guard_counts_before_send_and_survives_new_instance(monkeypatch, tmp_path):
++    counter = tmp_path/"attempts.txt"
++    counter.write_text("0")
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_REQUEST_LIMIT", "1")
++    monkeypatch.setenv("ARTEMIS_DEEPSEEK_COUNTER_FILE", str(counter))
++    claim_request(request())
++    with pytest.raises(ValueError, match="exhausted"):
++        claim_request(request())
++    assert counter.read_text() == "1"
++
++
++@pytest.mark.parametrize("data", [{"model":"deepseek-v4-pro"}, {"max_tokens":9999},
++    {"messages":[{"role":"system", "content":[{"type":"image_url", "image_url":{"url":"data:image/png;base64,a"}}]}]},
++    {"messages":[{"role":"user", "content":"x"*32769}]}])
++def test_guard_rejects_wrong_model_payload_or_role(data):
++    with pytest.raises(ValueError):
++        claim_request(request(**data))

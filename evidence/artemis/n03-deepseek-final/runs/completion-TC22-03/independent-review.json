@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T19:00:27.709009+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Retained FAIL: model targeted inner detail element 13 for swipe, causing partial scrolls that took 4 steps to reach adjustment section; entered text and clicked clipboard suggestion, but exhausted 8 turns before clicking adjustment submit. Local Firestore confirmed adjustment workflow postcondition.",
+  "accepted": false,
+  "junit_pass": false
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "path": "actions.json",
+    "bytes": 1262,
+    "sha256": "d4aa47cf5b2261a424e50aa7294a6723b7ada8e88eb2159b75a2e51823f8fabb"
+  },
+  {
+    "path": "final-report.json",
+    "bytes": 200,
+    "sha256": "7cd84e9184b2955edcced865f12bb95c2f36062247e8e3c886f140a8ea13b9c5"
+  },
+  {
+    "path": "independent-review.json",
+    "bytes": 305,
+    "sha256": "0370d44d48825fb5bf257df35ae8a383991cd193cff90d0a6e587da2cb3a463e"
+  },
+  {
+    "path": "result.junit.xml",
+    "bytes": 351,
+    "sha256": "95699cdfe615fcc7086e6b8bd89cfb6789bd08dfedce39fcf53928ec9b0733c3"
+  },
+  {
+    "path": "run-receipt.json",
+    "bytes": 1901,
+    "sha256": "34b9898e1d6d1c0d433d1bb3f646de286b9326a48378afaf105282f7a03e47d5"
+  },
+  {
+    "path": "step-01.jpg",
+    "bytes": 90688,
+    "sha256": "36f1d5087cbdfd6cffa80e37ac348cd1b4bae6c5065b0c981df267dc176ae3b2"
+  },
+  {
+    "path": "step-02.jpg",
+    "bytes": 75967,
+    "sha256": "d3b8c874ba010a1b27734b17ab2d34cf3b0b5a3d8da3fbcecfed3b26c84f4ad0"
+  },
+  {
+    "path": "step-03.jpg",
+    "bytes": 88755,
+    "sha256": "41575a29d14aba8fff7bd107a99b6c800b31f2bf8e611e768447aa95b93cd667"
+  },
+  {
+    "path": "step-04.jpg",
+    "bytes": 75967,
+    "sha256": "d3b8c874ba010a1b27734b17ab2d34cf3b0b5a3d8da3fbcecfed3b26c84f4ad0"
+  },
+  {
+    "path": "step-05.jpg",
+    "bytes": 90688,
+    "sha256": "36f1d5087cbdfd6cffa80e37ac348cd1b4bae6c5065b0c981df267dc176ae3b2"
+  },
+  {
+    "path": "step-06.jpg",
+    "bytes": 98037,
+    "sha256": "8a2db523ecd364d3d8497242cc3af6985255498386732cc730cc62a11fca68e0"
+  }
+]

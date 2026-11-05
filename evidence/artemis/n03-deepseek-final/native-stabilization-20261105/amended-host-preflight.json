@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-11-05T16:13:30.031469+00:00",
+  "base_url": "http://127.0.0.1:8001",
+  "health_http": "PASS",
+  "status_keys": [
+    "active_tasks",
+    "background_tasks",
+    "ipc_port",
+    "model_info",
+    "queue",
+    "session_id",
+    "status"
+  ],
+  "device_list_http": "PASS",
+  "device_count": 1,
+  "tasks_submitted": 0,
+  "provider_calls": 0,
+  "native_actions": "NOT RUN"
+}
