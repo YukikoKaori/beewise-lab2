@@ -1,0 +1,17 @@
+{
+  "case": "TC-16",
+  "scope": "Direct native prerequisite observation only; not ARTEMIS execution",
+  "google_play_services_activity_seen": true,
+  "screen": "Google Sign in to add an account to this device",
+  "account_chooser_seen": false,
+  "native_back_cancel_message": "Bạn đã hủy đăng nhập Google.",
+  "identity_entered": false,
+  "account_added": false,
+  "deepseek_inference_requests": 0,
+  "gemini_requests": 0,
+  "artemis_case_status": "NOT RUN; required account chooser not yet observed",
+  "captures": {
+    "google-settled.png": "60d403d9f180e7e85dca29fccfe8337b38638dee7b7158d23e3f273b49237021",
+    "google-cancel.png": "0271891d659a9821bcfae6d92a32514774618251a6608501dc7ddfa51d15b89b"
+  }
+}

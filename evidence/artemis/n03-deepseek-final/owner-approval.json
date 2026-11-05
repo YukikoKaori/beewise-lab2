@@ -1,0 +1,14 @@
+{
+  "recorded_utc": "2026-11-05T15:06:26.424321+00:00",
+  "decision": "APPROVED_REGRESSION_ONLY",
+  "owner_answer": "Duyet dung proposal/hash, toi da .50",
+  "proposal_sha256": "769b22c4dac2a6736953d2ba4daaa7dd433cbc61b15288680c939b30b115a141",
+  "max_usd": 0.5,
+  "max_inference_http_attempts": 240,
+  "accepted_runs_target": 30,
+  "selected_case_count": 10,
+  "exploration": false,
+  "approval_ref": "call_16bbf8c8c37b49bf8c9dd2a3385caabf",
+  "no_top_up": true,
+  "no_nexora_changes": true
+}

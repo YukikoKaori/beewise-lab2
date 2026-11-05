@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="44.670" timestamp="2026-11-06T00:37:19.008751+07:00"><testcase classname="test_account_and_firebase" name="test_tc16_cancel_google_picker_shows_recoverable_error" time="44.653" /></testsuite></testsuites>

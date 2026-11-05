@@ -1,0 +1,37 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [900, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [822, 198] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [822, 198] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 516] (normalized).\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-05.jpg"
+  }
+]

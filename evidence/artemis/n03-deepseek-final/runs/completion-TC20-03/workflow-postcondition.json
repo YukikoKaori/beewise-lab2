@@ -1,0 +1,9 @@
+{
+  "fixture": "n03-tc20-completion-03",
+  "expected_parent_response": "trial_accepted",
+  "matching_responses": 1,
+  "invoice_count": 0,
+  "official_class_count": 0,
+  "visible_reason_verified": true,
+  "local_only": true
+}

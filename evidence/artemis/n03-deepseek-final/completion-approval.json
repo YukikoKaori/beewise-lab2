@@ -1,0 +1,19 @@
+{
+  "owner_decision_date": "2026-11-06",
+  "timezone": "Asia/Bangkok",
+  "approval": "qb duyệt nha tiếp tục đi",
+  "proposal_sha256": "ff24c69b7dd9c4d93a1f685f00fb8d102bc473861618da9a15340479518e6625",
+  "starting_sessions": 17,
+  "starting_accepted": 11,
+  "starting_failed": 6,
+  "starting_inference_attempts": 102,
+  "starting_conservative_nanodollars": 307766700,
+  "maximum_cumulative_sessions": 50,
+  "maximum_cumulative_inference_attempts": 240,
+  "maximum_cumulative_conservative_nanodollars": 690000000,
+  "minimum_nexora_reserve_nanodollars": 500000000,
+  "expires_utc": "2026-11-06T14:52:19.526760+00:00",
+  "ledger_reset": false,
+  "substitution_approved": false,
+  "exploration_approved": false
+}

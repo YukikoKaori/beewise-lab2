@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:32:24.493216+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Login and Register frames with blank fields; back to Login and exact same tutor; no form submission or request action.",
+  "accepted": true,
+  "junit_pass": true
+}

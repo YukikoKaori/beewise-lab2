@@ -1,0 +1,9 @@
+{
+  "at_utc": "2026-11-05T19:17:19+00:00",
+  "owner_approval": "Duyệt nâng trần lên 265 requests / 44 admissions (vẫn trong trần $0.78) để hoàn tất 30/30 ngay",
+  "proposal_file": "tc22-final-three-amendment.md",
+  "proposal_sha256": "928fdedb4b7681e6aa33c09dd005f58ca302a26d9d8929b98c4849990148833b",
+  "new_request_cap": 265,
+  "new_admission_cap": 44,
+  "cost_ceiling_usd": 0.78
+}

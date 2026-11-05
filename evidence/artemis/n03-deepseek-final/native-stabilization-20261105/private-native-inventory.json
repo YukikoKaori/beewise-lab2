@@ -1,0 +1,485 @@
+{
+  "retained_private_directory": "D:\\CodexTemp\\n03-private\\stabilization-20261105",
+  "files": [
+    {
+      "file": "after-boot.png",
+      "bytes": 767154,
+      "sha256": "8fb99f5e1812f704a281ba5f7c537243877962f6078480441927d01746ab1188"
+    },
+    {
+      "file": "before-anr.log",
+      "bytes": 199628,
+      "sha256": "057422d61f75cde21c3feae750501b4e0304fc1713d3ee8a43d2fc21fe7ba393"
+    },
+    {
+      "file": "before-logcat.log",
+      "bytes": 10281440,
+      "sha256": "9f21bcf0be195ba1aa3a8b4532556c60b16b4712de93d73c63ed2f2507c7407f"
+    },
+    {
+      "file": "before-window.log",
+      "bytes": 71121,
+      "sha256": "82bb7a8f1a3ce5665620e71f56a5bc86cb35c32c7fce72242d6b10ab7ff8dfb2"
+    },
+    {
+      "file": "before.png",
+      "bytes": 117300,
+      "sha256": "cea0ad8143c07c9579015aa613444645a0eb78657ef851dd687b1bc851e296a5"
+    },
+    {
+      "file": "emulator-boot.log",
+      "bytes": 13193,
+      "sha256": "49e0cefd16c14f8261e1fe5d524c2deb18f72add84506b6d840964deb73affcc"
+    },
+    {
+      "file": "launch.json",
+      "bytes": 314,
+      "sha256": "c2e35e74261077a406a6d6b24e83c2f49a191837191de1033eeacb18e5945d5b"
+    },
+    {
+      "file": "native-preflight.json",
+      "bytes": 328,
+      "sha256": "fa0b392e084486221808ea34f8534687398d3b92e9f5252ef2af7eb45330394a"
+    },
+    {
+      "file": "settings-start.txt",
+      "bytes": 191,
+      "sha256": "29d83ad7e1851d799b681b1c0a660677f58071cde8e728b278edb82402ab1ccc"
+    },
+    {
+      "file": "settings.png",
+      "bytes": 106719,
+      "sha256": "4c9f5254b35ef3a82bbab4a7641ce77de77c277f2f9d596c6be8951fc5d37bb6"
+    },
+    {
+      "file": "settled-cold-01-am-start.txt",
+      "bytes": 192,
+      "sha256": "114df9ebc8f922560fd7b629a71a26adb03fe22fc267bdb17428a01836babba9"
+    },
+    {
+      "file": "settled-cold-01-complete-logcat.txt",
+      "bytes": 5442216,
+      "sha256": "14b13add8761138595c46613cc5a460b982ffa2a5ee537c03c1d9cba66224c86"
+    },
+    {
+      "file": "settled-cold-01-cpu-after.txt",
+      "bytes": 7731,
+      "sha256": "c2cc3a3621798ae2a666e5362840c141b006a6b5233e46d5a9ef9f67ad053c60"
+    },
+    {
+      "file": "settled-cold-01-cpu-before.txt",
+      "bytes": 6432,
+      "sha256": "14926a8c58119d243c8f588b47148449689ca109276d82756451b619c2980ab2"
+    },
+    {
+      "file": "settled-cold-01-exit-info.txt",
+      "bytes": 6148,
+      "sha256": "1aa4a1f324dd354bf2680fff460b67a063c5be615fd7f0ac83d347d46ba55281"
+    },
+    {
+      "file": "settled-cold-01-flutter-timeline.json",
+      "bytes": 10838036,
+      "sha256": "9ccfe84f6863081d3dfa55747da440ce891516338088818852d08af7f9b21872"
+    },
+    {
+      "file": "settled-cold-01-framestats.txt",
+      "bytes": 6830,
+      "sha256": "51f6a7aa95d777f3d578f689072c9a3c03388ca771d22f032af86095476b1238"
+    },
+    {
+      "file": "settled-cold-01-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "settled-cold-01-lifecycle-after.txt",
+      "bytes": 36018,
+      "sha256": "90dbfa9f72fd6446cca26a3559d930b3e2d27aa673e990d56b697d52d8bf62f6"
+    },
+    {
+      "file": "settled-cold-01-lifecycle-before.txt",
+      "bytes": 31145,
+      "sha256": "73c8f20ee93dbe2428155bb21a18712e64fec960b79181edf3b7f0064dddbe75"
+    },
+    {
+      "file": "settled-cold-01-live-logcat.txt",
+      "bytes": 5442837,
+      "sha256": "e2e20c270fa1a734babcb10b704c9933b942199b266c23921bdca1530bc1249b"
+    },
+    {
+      "file": "settled-cold-01-main-stack.txt",
+      "bytes": 52,
+      "sha256": "e26dc4f4ddf63c300eff1eb5917acfb7a50e69a794aaaf6404efcbccd7f994a3"
+    },
+    {
+      "file": "settled-cold-01-main-stat.txt",
+      "bytes": 346,
+      "sha256": "46c5208c70ebdf3c827a1eacbb3ed1402423b807d00f22f9e178317bff95b4be"
+    },
+    {
+      "file": "settled-cold-01-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "settled-cold-01-memory-after.txt",
+      "bytes": 30701,
+      "sha256": "2a6a60b6e71e37d6b792964d5930b82ec9f0a70a56403ab41c06cefa32975b15"
+    },
+    {
+      "file": "settled-cold-01-memory-before.txt",
+      "bytes": 30457,
+      "sha256": "930ed48b83f457f02b43684c0ce9e025221f5c9f4696e01d3e04d9b95581d11b"
+    },
+    {
+      "file": "settled-cold-01-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "settled-cold-01-ui.xml",
+      "bytes": 13452,
+      "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+    },
+    {
+      "file": "settled-cold-01-window.txt",
+      "bytes": 18654,
+      "sha256": "0eb3d74fd10754e9aac751b8b873e445b99ca827f43a7ac657c07f8338f57f16"
+    },
+    {
+      "file": "settled-cold-01.json",
+      "bytes": 6104,
+      "sha256": "197a90b261dea1828cff3692a425e82a48e0f23e033eab1b54be323bf6c8bdd5"
+    },
+    {
+      "file": "settled-cold-01.png",
+      "bytes": 139283,
+      "sha256": "ad8653b4c5fa4028cd90d714df40ad3b4fa694620d0e3bcc9c781e4dbce910ed"
+    },
+    {
+      "file": "settled-cold-02-am-start.txt",
+      "bytes": 192,
+      "sha256": "0f4e219d6cdb1989f07394edd21bece77b4bd9ec807be2f2099765cfd54fd27f"
+    },
+    {
+      "file": "settled-cold-02-complete-logcat.txt",
+      "bytes": 5758972,
+      "sha256": "c874531ddf81b15484a5e48f9299bb35c66f83c9961905e26fe58b08e86ef749"
+    },
+    {
+      "file": "settled-cold-02-cpu-after.txt",
+      "bytes": 4140,
+      "sha256": "03a045ee38efd0c6a808a50cd44f459245f93beb12fc533080e628b84f999546"
+    },
+    {
+      "file": "settled-cold-02-cpu-before.txt",
+      "bytes": 4556,
+      "sha256": "9981ab18def9c56bc7c96f9a02d2519c898974bad2f89c97ae6b05e4291d1bb5"
+    },
+    {
+      "file": "settled-cold-02-exit-info.txt",
+      "bytes": 6147,
+      "sha256": "7e5406ce1d821677226823773ef816a960195809568a582562e8bed708a6010b"
+    },
+    {
+      "file": "settled-cold-02-flutter-timeline.json",
+      "bytes": 11196765,
+      "sha256": "62cdbfa20c99b631ff4619aa574c888a23bdaf0ca0e83138c2b2dbf0058c4a98"
+    },
+    {
+      "file": "settled-cold-02-framestats.txt",
+      "bytes": 6832,
+      "sha256": "db4000ecf6372d6d5f6583f313bbde0ab8a26889c98be5fdb565a9679449638d"
+    },
+    {
+      "file": "settled-cold-02-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "settled-cold-02-lifecycle-after.txt",
+      "bytes": 36156,
+      "sha256": "4a58d57c781dcb6ee13c994e855fc236377cdbe0ad57ee3c1e17a46acb854ce8"
+    },
+    {
+      "file": "settled-cold-02-lifecycle-before.txt",
+      "bytes": 36025,
+      "sha256": "9f682929602ca32af27339f5df2a6ede7b55c50c4b48e5d7397bfc2d8c02acd1"
+    },
+    {
+      "file": "settled-cold-02-live-logcat.txt",
+      "bytes": 5758972,
+      "sha256": "c874531ddf81b15484a5e48f9299bb35c66f83c9961905e26fe58b08e86ef749"
+    },
+    {
+      "file": "settled-cold-02-main-stack.txt",
+      "bytes": 52,
+      "sha256": "cb20b6d45fc0f4f298d30b77290553bba72075f422c5352d2fb8b9117e1c3a90"
+    },
+    {
+      "file": "settled-cold-02-main-stat.txt",
+      "bytes": 345,
+      "sha256": "93420681a16138bf3492e269cf6b18a5d71e7813c9eca499ba5c811cbf576e13"
+    },
+    {
+      "file": "settled-cold-02-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "settled-cold-02-memory-after.txt",
+      "bytes": 30701,
+      "sha256": "f31488c8ab3105b33ad8ee75f519f09abab47dbc6ea5762452d4f859a9652ecd"
+    },
+    {
+      "file": "settled-cold-02-memory-before.txt",
+      "bytes": 30701,
+      "sha256": "c391d2aa8239ee7e31e42551af4d6fb101ce62d1c0604e370908c341f0bf1266"
+    },
+    {
+      "file": "settled-cold-02-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "settled-cold-02-ui.xml",
+      "bytes": 13452,
+      "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+    },
+    {
+      "file": "settled-cold-02-window.txt",
+      "bytes": 18786,
+      "sha256": "a1b82e92b806e304a468f11993946bbfa2e0538472ad760a2a362136fca0d694"
+    },
+    {
+      "file": "settled-cold-02.json",
+      "bytes": 6107,
+      "sha256": "b47b32dab5e24831804582b57007712adcb4113a985261f9484e7b65d7a48f11"
+    },
+    {
+      "file": "settled-cold-02.png",
+      "bytes": 138407,
+      "sha256": "9ea6dc9c732300e2e5bfa0aa40d6f366e273a92b5cfecdcb37220cdf7694c727"
+    },
+    {
+      "file": "settled-cold-03-am-start.txt",
+      "bytes": 192,
+      "sha256": "1d791d20464e5a09a2252517f998469762dc7f5c401ac8dd8d36567bef2c1ed6"
+    },
+    {
+      "file": "settled-cold-03-complete-logcat.txt",
+      "bytes": 6083124,
+      "sha256": "04b5ccfe7386a07db24fe474a30d686eaceb17de050202d5bc256de51ef93196"
+    },
+    {
+      "file": "settled-cold-03-cpu-after.txt",
+      "bytes": 2832,
+      "sha256": "d508b497cf19b0c68152d54309848d6eca370585803ec52fad4a8cde80fbc57a"
+    },
+    {
+      "file": "settled-cold-03-cpu-before.txt",
+      "bytes": 4847,
+      "sha256": "e4b9efa129c2d4d6d5252a6f0c377fd940b89faf3f4ae84862c12c0f0dbec886"
+    },
+    {
+      "file": "settled-cold-03-exit-info.txt",
+      "bytes": 6147,
+      "sha256": "d5e2e16996f4e59ee841fa2fb1025ea09882bb9e0123fda50bbf6795010f9592"
+    },
+    {
+      "file": "settled-cold-03-flutter-timeline.json",
+      "bytes": 11125155,
+      "sha256": "64360ac0a5654b72694c59c19a02788d6c24ac6b9cacf9ffe8cd3d6ce51d62db"
+    },
+    {
+      "file": "settled-cold-03-framestats.txt",
+      "bytes": 6834,
+      "sha256": "e0beb84bc70cb05c7a7ba93b711b091098593b1bbed3332f2276459c4ae2b83f"
+    },
+    {
+      "file": "settled-cold-03-host.json",
+      "bytes": 3219,
+      "sha256": "07c95f685f0ff5b1df56300a92ae6d23ee12abf868ac7063c0967cd9e33b3989"
+    },
+    {
+      "file": "settled-cold-03-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "settled-cold-03-lifecycle-after.txt",
+      "bytes": 36285,
+      "sha256": "354f7dfe30448abba5b1d2ea9e157c160f5641b85c05dc04d3b93c27f187614b"
+    },
+    {
+      "file": "settled-cold-03-lifecycle-before.txt",
+      "bytes": 36162,
+      "sha256": "38d1ab1506887e921b8457df0eb7476d191db0805601f5bdf48acaf6d14a32be"
+    },
+    {
+      "file": "settled-cold-03-live-logcat.txt",
+      "bytes": 6083124,
+      "sha256": "04b5ccfe7386a07db24fe474a30d686eaceb17de050202d5bc256de51ef93196"
+    },
+    {
+      "file": "settled-cold-03-main-stack.txt",
+      "bytes": 52,
+      "sha256": "04aea082c9bd1215d07e869cb2b16370dfdeaaac9987a313cd96eaec8c2b6ddf"
+    },
+    {
+      "file": "settled-cold-03-main-stat.txt",
+      "bytes": 343,
+      "sha256": "58c7699922cc40c3ed337bec098cdddf1b01bb9aa65d1c69834aca998339b563"
+    },
+    {
+      "file": "settled-cold-03-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "settled-cold-03-memory-after.txt",
+      "bytes": 30653,
+      "sha256": "2903f6a81c176a9e64dfee6f66f663dd4859c8f5c44157960cb9efe495c55bcd"
+    },
+    {
+      "file": "settled-cold-03-memory-before.txt",
+      "bytes": 30653,
+      "sha256": "2d5596217f7c4e98cadd9d176d6fe763569b128d13cdffe73c0644fbb8800bab"
+    },
+    {
+      "file": "settled-cold-03-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "settled-cold-03-ui.xml",
+      "bytes": 13452,
+      "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+    },
+    {
+      "file": "settled-cold-03-window.txt",
+      "bytes": 18917,
+      "sha256": "9adb1c4259fc86e7b21bf3fa93717c0e81bf314140c39500117959e04573ccf1"
+    },
+    {
+      "file": "settled-cold-03.json",
+      "bytes": 6108,
+      "sha256": "2a7cf0860edf4407459570e4b09034a0ae706222c8755c8311fbcee7d2c8fa13"
+    },
+    {
+      "file": "settled-cold-03.png",
+      "bytes": 139220,
+      "sha256": "f06c2cc9998e05d7c0eb3b4aceb8f0063f963ce9b76c5dbf30d4ffe3304f2f24"
+    },
+    {
+      "file": "settled-warm-01-am-start.txt",
+      "bytes": 260,
+      "sha256": "829ade5ac1bc44391eea516bcee3ed8280245d6a5ede33be9fcaf45acdc87e2f"
+    },
+    {
+      "file": "settled-warm-01-complete-logcat.txt",
+      "bytes": 6666112,
+      "sha256": "546cf1cf7d52bcfc657cf56190c34354e8dcb3f1ff426592ee81b032c73828e8"
+    },
+    {
+      "file": "settled-warm-01-cpu-after.txt",
+      "bytes": 2857,
+      "sha256": "3dc9909eeb23b79d473288ce2a7ce5087659d9959b8fc9505336106238c393e7"
+    },
+    {
+      "file": "settled-warm-01-cpu-before.txt",
+      "bytes": 3848,
+      "sha256": "b3107e0d21811c67cadcd617aaea97ab31f563b313f3af5ffab9e8c1c8ba1f4b"
+    },
+    {
+      "file": "settled-warm-01-exit-info.txt",
+      "bytes": 6147,
+      "sha256": "d5e2e16996f4e59ee841fa2fb1025ea09882bb9e0123fda50bbf6795010f9592"
+    },
+    {
+      "file": "settled-warm-01-framestats.txt",
+      "bytes": 7220,
+      "sha256": "2d3b8330409fc7830109a3d51b4d5500bbe700cf7f3f0335b15a5b60555c9ff5"
+    },
+    {
+      "file": "settled-warm-01-lastanr.txt",
+      "bytes": 90,
+      "sha256": "dde50ef0f960caf7e1e3a1895f455c89e674854c48795123bb1829119b77c1c7"
+    },
+    {
+      "file": "settled-warm-01-lifecycle-after.txt",
+      "bytes": 36423,
+      "sha256": "1c77165744e331792b6cb15c4726ce591251f398fe7fb7b4cbe4b441792ce30a"
+    },
+    {
+      "file": "settled-warm-01-lifecycle-before.txt",
+      "bytes": 36300,
+      "sha256": "95ffe18e7f4ff2a4d6f45e053075ef8f9305b440879552e0e46831f2f2c0c6ad"
+    },
+    {
+      "file": "settled-warm-01-live-logcat.txt",
+      "bytes": 6666993,
+      "sha256": "c938c122b26632bc4dea071b4c3f239319212686f92f6d5bbafac6971b08715d"
+    },
+    {
+      "file": "settled-warm-01-main-stack.txt",
+      "bytes": 52,
+      "sha256": "04aea082c9bd1215d07e869cb2b16370dfdeaaac9987a313cd96eaec8c2b6ddf"
+    },
+    {
+      "file": "settled-warm-01-main-stat.txt",
+      "bytes": 343,
+      "sha256": "65440b5f849f17980321d30f14397ae751bef8d4fc5404d9106f6bd4654dddbf"
+    },
+    {
+      "file": "settled-warm-01-main-wchan.txt",
+      "bytes": 13,
+      "sha256": "665e09bf6ee919ba33fa7271a47956dc33e30cddc5264ac1a84b15650a989b9e"
+    },
+    {
+      "file": "settled-warm-01-memory-after.txt",
+      "bytes": 26305,
+      "sha256": "6d31d1e6dbad07b835f1c40cd8c70d3200146244019c97aa68338e5cf4c63e49"
+    },
+    {
+      "file": "settled-warm-01-memory-before.txt",
+      "bytes": 26353,
+      "sha256": "78b31988603f49ea4d0362e63477f72e0365cb08339042241bd8758fb10c60d3"
+    },
+    {
+      "file": "settled-warm-01-ui-status.txt",
+      "bytes": 52,
+      "sha256": "44731cab17af0d6fe57c0988cfa919131211a4ab5bbc6820283064fc2022d593"
+    },
+    {
+      "file": "settled-warm-01-ui.xml",
+      "bytes": 13452,
+      "sha256": "2109dc48053c931a046a65b39ee3f9a508e2c667368a86e095f821d3cf703d6c"
+    },
+    {
+      "file": "settled-warm-01-window.txt",
+      "bytes": 19046,
+      "sha256": "2ad5febb9929c54797bf75035f07d220109b6e179a2bd3490f3208cce9449c26"
+    },
+    {
+      "file": "settled-warm-01.json",
+      "bytes": 4748,
+      "sha256": "153a6d42f4d6688d0dbf4528ae6dd606f08045d9c3acc2530ac24eb175bcc896"
+    },
+    {
+      "file": "settled-warm-01.png",
+      "bytes": 138195,
+      "sha256": "34b5c56eb84d89eca56ab5cf700f69cae587c916e1e4b863eb847a15b364dfbb"
+    },
+    {
+      "file": "shade.png",
+      "bytes": 206607,
+      "sha256": "f51aa1edadbf38eba62f9af8228b61da85b0b44d9ebe4929940cf9dc316d33ab"
+    },
+    {
+      "file": "shade.xml",
+      "bytes": 49078,
+      "sha256": "67ca7acce9f92c06172e6ae50ab77fc6044baff80e1484999802c2e4a5efbb4b"
+    }
+  ]
+}

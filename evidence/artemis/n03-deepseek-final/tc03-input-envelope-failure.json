@@ -1,0 +1,26 @@
+{
+  "case": "TC-03",
+  "trace_id": "7f3b4a0b-fb0e-402b-9fa5-e25a6f5a98c8",
+  "verdict": "FAIL",
+  "cause_chain": [
+    "ValueError: Smoke input bound exceeded; stop instead of truncating evidence",
+    "openai.APIConnectionError: Connection error."
+  ],
+  "guard_thresholds": {
+    "max_non_image_bytes": 32768,
+    "max_inline_images": 8
+  },
+  "which_threshold_exceeded": "Not logged by this guard version",
+  "http_200_before_local_rejection": 6,
+  "rejected_request_reserved_or_sent": false,
+  "new_android_anr": false,
+  "final_json_report_received": false,
+  "original_host_log_private": {
+    "path": "D:\\CodexTemp\\n03-private\\host-amended-tc03.log",
+    "sha256": "ff57d71079879043434768c0f89769dd851d443e99bc8d0b8e784d66c5c75c73",
+    "bytes": 47890
+  },
+  "offline_reproduction": "scripts/check_n03_input_envelope.py; both oversized text and image cases rejected before network",
+  "ledger_limits_changed": false,
+  "extra_retries_permitted": false
+}

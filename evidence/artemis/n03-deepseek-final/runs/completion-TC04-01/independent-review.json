@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:19:21.517809+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Retained FAIL: the real tutor profile showed name, subject and connect, but ARTEMIS stopped at its first viewport and reported the fee was not visible. Strict pytest and JUnit failed.",
+  "accepted": false,
+  "junit_pass": false
+}

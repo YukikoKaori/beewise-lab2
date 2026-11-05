@@ -1,0 +1,9 @@
+{
+  "fixture": "n03-tc22-completion-03",
+  "source": "direct ARTEMIS ADB actuator, no model or test admission",
+  "targeted_input_focus": true,
+  "exact_text_observed": true,
+  "adjustment_enabled": true,
+  "submitted": false,
+  "inference_calls": 0
+}

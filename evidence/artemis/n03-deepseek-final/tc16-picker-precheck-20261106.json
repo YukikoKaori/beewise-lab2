@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-11-05T17:10:38.440106+00:00",
+  "case": "TC-16",
+  "scope": "manual native prerequisite only; no ARTEMIS session",
+  "device": "emulator-5562 API35",
+  "gms_picker_markers": [
+    "choose an account"
+  ],
+  "beeWise_cancel_message_observed": true,
+  "identities_selected_or_added": false,
+  "provider_inference": 0,
+  "native": {
+    "device_online": true,
+    "boot_complete": true,
+    "focused_rendered_app": "com.beewise.beewise",
+    "readable_accessibility": true,
+    "first_frame_scope": "Actual rendered accessibility content and focused app window",
+    "system_ui_roundtrip_ms": 1828,
+    "system_ui_responsive": true,
+    "anr_dialog_present": false
+  },
+  "local_endpoints": {
+    "auth": true,
+    "firestore": true,
+    "fake_backend_healthy": true
+  }
+}

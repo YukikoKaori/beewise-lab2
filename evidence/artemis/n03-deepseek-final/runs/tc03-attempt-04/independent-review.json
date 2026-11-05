@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T15:32:45.119299+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "FAIL and batch halt: repeated BeeWise is not responding dialogs prevented reliable input; no actual search submission/empty-state verification. Preserve all dialog frames and failed JUnit. TC03 corrective retry allowance already used; no further paid sessions admitted.",
+  "accepted": false,
+  "junit_pass": false
+}

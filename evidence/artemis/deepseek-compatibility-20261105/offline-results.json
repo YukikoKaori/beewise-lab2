@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-11-05T13:36:24.409601+00:00",
+  "scope": "offline tests and local HTTP only",
+  "source_baseline": "351ca8422f7b5b54e80a9c1ce03a222e02415b6b",
+  "beewise_base": "a72059ca5e07a4c1193960965dc07453efea161d",
+  "python": "3.12.10",
+  "packages": {
+    "artemis": "1.0",
+    "artemis-client": "0.1.0",
+    "langchain-openai": "1.5.2",
+    "langchain-core": "1.5.6",
+    "openai": "3.3.0",
+    "langchain-google-genai": "4.3.4",
+    "google-genai": "2.22.0",
+    "langgraph": "1.2.11",
+    "pydantic": "2.13.4",
+    "httpx": "0.28.1",
+    "pytest": "9.1.1",
+    "pytest-asyncio": "1.4.0",
+    "uiautomator2": "3.7.0",
+    "adbutils": "2.12.0",
+    "fastapi": "0.141.1",
+    "uvicorn": "0.52.3"
+  },
+  "focused_tests": {
+    "status": "PASS",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "158",
+    "time": "24.012",
+    "timestamp": "2026-11-05T20:31:10.259511+07:00",
+    "hostname": "redacted-local-host"
+  },
+  "harness": {
+    "check_e2e_harness": "PASS (27 scenarios, no Android execution)",
+    "check_artemis_runner": "PASS (synthetic process doubles)",
+    "check_artemis_report_parser": "PASS",
+    "tc09_collect_only": "PASS (one test)"
+  },
+  "patch_reverse_check": "PASS",
+  "provider_requests": 0,
+  "tasks_submitted": 0,
+  "native_execution": "NOT RUN",
+  "account_model_discovery": "BLOCKED (key not supplied)",
+  "device_precondition": "BLOCKED (zero ADB devices online)",
+  "original_artemis_config_unchanged": true,
+  "prior_regression_attempt": {
+    "passed": 122,
+    "failed": 34,
+    "reason": "Existing Google constructor tests require dummy credentials; corrected in hermetic runner, no real credentials or calls"
+  },
+  "evidence_redaction": "JUnit hostname only replaced with redacted-local-host; original receipt remains private outside Git"
+}

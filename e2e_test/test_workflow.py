@@ -59,9 +59,11 @@ async def test_tc20_accept_consultant_trial_proposal(run_flow):
         case_id="TC-20",
         start="Signed in on a staging group chat with a pending consultant-authored trial proposal.",
         steps=(
-            "Open the pending trial proposal, review its visible date and time, "
-            "and accept it. Verify the response confirmation appears in the chat "
-            "and the app did not create an invoice or mark payment as complete."
+            "In the chat, tap Xem và phản hồi under Đề xuất buổi học thử. "
+            "Read the visible date and time. Tap the blue Đồng ý lịch học thử "
+            "button once; do not tap the alternate-time field or submit again. "
+            "Verify the resulting response confirmation and that the chat has "
+            "no invoice or payment-complete entry. Return the final JSON promptly."
         ),
         expected=(
             '{"trial_proposal_visible":true,"accepted_response_visible":true,'
@@ -101,9 +103,14 @@ async def test_tc22_request_class_revision_adjustment(run_flow):
         case_id="TC-22",
         start="Signed in on a staging group chat with a pending class revision.",
         steps=(
-            "Open the class revision, choose request changes and enter the "
-            "non-personal reason 'Xin đổi khung giờ học'. Submit. Verify the "
-            "parent response is visible and no payment or official schedule is created."
+            "Tap the visible Xem thông tin on the class card without scrolling "
+            "the chat first. In the class confirmation screen, swipe up once "
+            "(direction up without targeting any element) to reveal the adjustment section. "
+            "Use input_text with target 14 (the 'Nội dung cần điều chỉnh' EditText) "
+            "to enter exactly 'Xin đổi khung giờ học'. Tap the visible clipboard suggestion "
+            "element 9 on the keyboard to insert the text into the field. Press key BACK "
+            "to hide the keyboard, then tap element 15 (Yêu cầu tư vấn viên điều chỉnh) once, "
+            "and report the visible response confirmation and payment/schedule state as JSON."
         ),
         expected=(
             '{"class_revision_visible":true,"adjustment_response_visible":true,'

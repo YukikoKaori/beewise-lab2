@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="34.772" timestamp="2026-11-05T22:15:59.919894+07:00"><testcase classname="test_discovery" name="test_tc05_ai_match_uses_active_catalog_and_offers_manual_fallback" time="34.511"><failure message="AssertionError: ARTEMIS output was not the required JSON observation: 'Opened Ghép AI, entered the non-identifying need (grade 8 algebra, online twice a week, budget 250000 VND/hour), and submitted once. The app returned a truthful empty/no-match state: &quot;Chưa có hồ sơ phù hợp — Không có gia sư nào trong dữ liệu hiện tại khớp với mô tả. Bạn có thể đổi yêu cầu hoặc tự tìm.&quot; No tutor names were shown, no match was invented, and no model provider was claimed. Manual-search recovery is visible via the &quot;Hoặc tự tìm theo bộ lọc&quot; link and the &quot;Tìm gia sư&quot; tab.'">output = 'Opened Ghép AI, entered the non-identifying need (grade 8 algebra, online twice a week, budget 250000 VND/hour), and ...ovider was claimed. Manual-search recovery is visible via the "Hoặc tự tìm theo bộ lọc" link and the "Tìm gia sư" tab.'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+&gt;               value = json.loads(candidate)
+                        ^^^^^^^^^^^^^^^^^^^^^
+
+e2e_test\conftest.py:208: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;json.decoder.JSONDecoder object at 0x0000021D2620A240&gt;
+s = 'Opened Ghép AI, entered the non-identifying need (grade 8 algebra, online twice a week, budget 250000 VND/hour), and ...ovider was claimed. Manual-search recovery is visible via the "Hoặc tự tìm theo bộ lọc" link and the "Tìm gia sư" tab.'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+&gt;           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\json\decoder.py:356: JSONDecodeError
+
+The above exception was the direct cause of the following exception:
+
+run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000021D298667A0&gt;
+
+    async def test_tc05_ai_match_uses_active_catalog_and_offers_manual_fallback(run_flow):
+        """TC-05; safe no-candidate branch with an empty active tutor catalog."""
+&gt;       observed = await run_flow(
+            case_id="TC-05",
+            start="BeeWise is signed out on Home and the active tutor catalog is empty.",
+            steps=(
+                "Open Ghép AI. Describe a non-identifying need: grade 8 algebra, "
+                "online twice a week, budget 250000 VND per hour. Submit once. "
+                "With no active tutor candidates, verify the truthful no-match/empty "
+                "state and manual-search recovery. Do not claim a model provider was "
+                "invoked or invent a match."
+            ),
+            expected=(
+                '{"result_count":0,"visible_tutor_names":[],'
+                '"state":"empty|error","manual_search_recovery_visible":true}'
+            ),
+        )
+
+e2e_test\test_discovery.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:172: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:196: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'Opened Ghép AI, entered the non-identifying need (grade 8 algebra, online twice a week, budget 250000 VND/hour), and ...ovider was claimed. Manual-search recovery is visible via the "Hoặc tự tìm theo bộ lọc" link and the "Tìm gia sư" tab.'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+                start, end = text.find("{"), text.rfind("}")
+                embedded = text[start : end + 1].replace("\\n", "\n") if start &gt;= 0 and end &gt; start else ""
+                try:
+                    value = json.loads(embedded) if embedded else _decode_tc01_prose(text)
+                except json.JSONDecodeError:
+                    value = _decode_tc01_prose(text)
+                if value is None:
+                    value = _decode_tc09_prose(text)
+                if value is None:
+&gt;                   raise AssertionError(
+                        f"ARTEMIS output was not the required JSON observation: {text!r}"
+                    ) from error
+E                   AssertionError: ARTEMIS output was not the required JSON observation: 'Opened Ghép AI, entered the non-identifying need (grade 8 algebra, online twice a week, budget 250000 VND/hour), and submitted once. The app returned a truthful empty/no-match state: "Chưa có hồ sơ phù hợp — Không có gia sư nào trong dữ liệu hiện tại khớp với mô tả. Bạn có thể đổi yêu cầu hoặc tự tìm." No tutor names were shown, no match was invented, and no model provider was claimed. Manual-search recovery is visible via the "Hoặc tự tìm theo bộ lọc" link and the "Tìm gia sư" tab.'
+
+e2e_test\conftest.py:219: AssertionError</failure></testcase></testsuite></testsuites>

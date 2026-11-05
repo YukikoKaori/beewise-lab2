@@ -1,0 +1,77 @@
+[
+  {
+    "path": "actions.json",
+    "bytes": 1623,
+    "sha256": "19caf68739cfe08e53c01425a6e8f445344bc9a4c1442683838726c6518f2884"
+  },
+  {
+    "path": "balance-preflight.json",
+    "bytes": 155,
+    "sha256": "9f8117d9188713c40aaf74c7142af2406c9585a3c8b9c74e2e51c794422afb59"
+  },
+  {
+    "path": "final-report.json",
+    "bytes": 159,
+    "sha256": "050dee098f38fa613290e5ce55a13a67f4c836438fafa7604a99691ae2530ea2"
+  },
+  {
+    "path": "independent-review.json",
+    "bytes": 283,
+    "sha256": "13cbe155dbe6645a5cce2e910d510a93305bd5fd464fef097512c35f5e01770e"
+  },
+  {
+    "path": "result.junit.xml",
+    "bytes": 329,
+    "sha256": "74761c099eb8313ce2a805372e96019b7e46c78893917db0eb2ad7dde8fb185e"
+  },
+  {
+    "path": "run-receipt.json",
+    "bytes": 1899,
+    "sha256": "6c04e3321d198f57aebfb2311d8c298ace744d62c25ac9a55a3d3dfc326a77a8"
+  },
+  {
+    "path": "step-01.jpg",
+    "bytes": 94714,
+    "sha256": "3455e437542a6301b8de9cd76a6291b1ec67a34d0f37b92e07cd8b21c3f4fad3"
+  },
+  {
+    "path": "step-02.jpg",
+    "bytes": 107087,
+    "sha256": "8f641e117f6e933e00bbb666d81471d5127abc2f51f2eb35514f854be09d155a"
+  },
+  {
+    "path": "step-03.jpg",
+    "bytes": 111191,
+    "sha256": "aa8a8f987b06d7bc890e4d5beabd7e5725f0b494b00cf6da724b98b34c8aca1d"
+  },
+  {
+    "path": "step-04.jpg",
+    "bytes": 111191,
+    "sha256": "aa8a8f987b06d7bc890e4d5beabd7e5725f0b494b00cf6da724b98b34c8aca1d"
+  },
+  {
+    "path": "step-05.jpg",
+    "bytes": 111191,
+    "sha256": "aa8a8f987b06d7bc890e4d5beabd7e5725f0b494b00cf6da724b98b34c8aca1d"
+  },
+  {
+    "path": "step-06.jpg",
+    "bytes": 111191,
+    "sha256": "aa8a8f987b06d7bc890e4d5beabd7e5725f0b494b00cf6da724b98b34c8aca1d"
+  },
+  {
+    "path": "step-07.jpg",
+    "bytes": 112814,
+    "sha256": "0a48493b1e7fcecb42a34452143673fed128c8de321aac6fb1d9394cfe96010d"
+  },
+  {
+    "path": "step-08.jpg",
+    "bytes": 109252,
+    "sha256": "b2653842f6b24889bdb9621b7126dd4a4ff6969f00f6e8c40809edee1faf6ee7"
+  },
+  {
+    "path": "workflow-postcondition.json",
+    "bytes": 234,
+    "sha256": "34d5a6c04fbf4fc36b8e1472c97503499c2bab87d921d05cc6841110d4df1051"
+  }
+]

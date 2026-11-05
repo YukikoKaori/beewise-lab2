@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:31:35.359346+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Real frames show tutor connection opens blank Login, Register, back to Login, and same tutor. No form submission or request action in trace.",
+  "accepted": true,
+  "junit_pass": true
+}

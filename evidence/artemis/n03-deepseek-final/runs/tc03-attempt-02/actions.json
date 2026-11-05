@@ -1,0 +1,58 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [300, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 161] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed 'zz-no-tutor-match-393-2026' at [500, 161] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [521, 654] (normalized).\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed 'zz-no-tutor-match-393-2026' at [500, 161] (normalized).\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [521, 654] (normalized).\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [895, 172] (normalized).\"}",
+    "image": "step-07.jpg"
+  },
+  {
+    "step": 8,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-08.jpg"
+  }
+]

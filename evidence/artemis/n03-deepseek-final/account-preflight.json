@@ -1,0 +1,30 @@
+{
+  "utc": "2026-11-05T14:29:44.174702+00:00",
+  "inference_requests": 0,
+  "reads": [
+    {
+      "endpoint": "/models",
+      "attempts": 1,
+      "status": "PASS",
+      "http_status": 200,
+      "model": {
+        "id": "deepseek-flash",
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "context_window": 1048576,
+        "max_output_tokens": 393216
+      }
+    },
+    {
+      "endpoint": "/user/balance",
+      "attempts": 1,
+      "status": "PASS",
+      "http_status": 200,
+      "is_available": true,
+      "usd_balance_covers_proposed_5_usd": false
+    }
+  ],
+  "model": "deepseek-flash"
+}
