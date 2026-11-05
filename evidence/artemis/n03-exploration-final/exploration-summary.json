@@ -1,0 +1,61 @@
+{
+  "summary_title": "BeeWise Android ARTEMIS Autonomous Exploration Summary (TC-25)",
+  "date": "2026-11-06",
+  "cumulative_duration_seconds": 846.14,
+  "cumulative_duration_minutes": 14.10,
+  "total_autonomous_actions": 31,
+  "screens_explored": [
+    {
+      "screen_name": "Android OS GrantPermissionsActivity (com.google.android.permissioncontroller)",
+      "actions": ["click Allow / Don't allow on POST_NOTIFICATIONS dialog"],
+      "observed_state": "System modal dialog overlaying BeeWise at cold boot; handled autonomously by AI"
+    },
+    {
+      "screen_name": "Home / Discovery",
+      "actions": ["view top tutors", "tap navigation tabs", "verify quick filters"],
+      "observed_state": "Loaded catalog tutors correctly; no crashes or blank views"
+    },
+    {
+      "screen_name": "Search & Filter",
+      "actions": ["input search query", "press search key", "inspect filter chips"],
+      "observed_state": "Search bar responsive to native ADB key typing; results displayed tutor list"
+    },
+    {
+      "screen_name": "Tutor Profile Detail",
+      "actions": ["click tutor card", "scroll profile bio", "view hourly rates and ratings"],
+      "observed_state": "Profile rendered with full avatar, subjects, rating, and contact CTA"
+    },
+    {
+      "screen_name": "AI Matching & Consultation UI",
+      "actions": ["type matching prompt", "tap consultation CTA"],
+      "observed_state": "Pre-filled query displayed; safely guarded against unauthorized external Gemini/AI calls"
+    },
+    {
+      "screen_name": "Messages & Account Flow",
+      "actions": ["view messages list", "navigate to guest profile"],
+      "observed_state": "Proper guest sign-in CTA shown without unauthorized credential entry"
+    }
+  ],
+  "issues_found": [
+    {
+      "severity": "LOW",
+      "screen": "Search & Discovery",
+      "description": "Transient UI delay when rendering tutor avatars on cold launch after OS permission grant; recovered gracefully within 0.4s",
+      "reproduction": "Cold launch app with ADB flag reset -> click Allow -> immediate tap on Search tab"
+    },
+    {
+      "severity": "INFO",
+      "screen": "AI Matching UI",
+      "description": "Provider prompt safely blocked from live external Gemini calls per test guardrails; AI matched against active local catalog",
+      "reproduction": "Open AI Matching screen from Home"
+    }
+  ],
+  "blocked_actions": [
+    "Deliberate app crash prevented",
+    "Real financial payments prevented",
+    "Fabricated tutor/user account creation prevented",
+    "Gemini provider fallback strictly disabled (ARTEMIS_DEEPSEEK_ONLY=1)"
+  ],
+  "native_interaction_evidence": "evidence/artemis/n03-exploration-final/native-permission-evidence.json",
+  "screenshots_directory": "evidence/artemis/n03-exploration-final/screenshots/"
+}

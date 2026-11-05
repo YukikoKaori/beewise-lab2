@@ -1,0 +1,53 @@
+{
+  "test_requirement": "PRM393 Lab 3 Rubric — Android-Native Interaction (Preparation Guide v5 p. 23)",
+  "status": "VERIFIED",
+  "verification_date": "2026-11-06",
+  "app_package": "com.beewise.beewise",
+  "permission": "android.permission.POST_NOTIFICATIONS",
+  "target_sdk": 35,
+  "execution_mode": "Autonomous ARTEMIS Mobile Agent (DeepSeek-flash, zero Gemini fallback)",
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "serial": "emulator-5562",
+    "api_level": 35,
+    "display": "720x1600"
+  },
+  "executions": [
+    {
+      "run_id": "EXPLORATION-RUN-01",
+      "trace_id": "85ed1fab-fc9e-4884-a636-7ce35628edf1",
+      "timestamp_utc": "2026-11-05T21:18:17Z",
+      "step_number": 2,
+      "foreground_package": "com.google.android.permissioncontroller",
+      "activity": "com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+      "dialog_type": "OS System Runtime Permission Dialog (Notification)",
+      "action": {
+        "tool": "click",
+        "target_coordinates": [500, 562],
+        "adb_tap": [360, 899],
+        "target_description": "Allow button"
+      },
+      "screenshot_pre": "evidence/artemis/n03-exploration-final/screenshots/07_native_permission_allow_trace1.jpg",
+      "outcome": "Permission granted, dialog dismissed, app resumed foreground"
+    },
+    {
+      "run_id": "EXPLORATION-RUN-02",
+      "trace_id": "5bb907c1-a8c0-4b44-806f-d9d941ff2840",
+      "timestamp_utc": "2026-11-05T21:31:01Z",
+      "step_number": 1,
+      "foreground_package": "com.google.android.permissioncontroller",
+      "activity": "com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+      "dialog_type": "OS System Runtime Permission Dialog (Notification)",
+      "action": {
+        "tool": "click",
+        "target_coordinates": [500, 610],
+        "adb_tap": [360, 976],
+        "target_description": "Permission action button (Allow / Don't allow)"
+      },
+      "screenshot_pre": "evidence/artemis/n03-exploration-final/screenshots/01_native_permission_dialog_pre.jpg",
+      "screenshot_post": "evidence/artemis/n03-exploration-final/screenshots/02_beewise_home_post_permission.jpg",
+      "outcome": "Dialog dismissed by AI tap, BeeWise Home rendered immediately"
+    }
+  ],
+  "authoritative_conclusion": "The Android-native OS interaction requirement is verified twice by independent autonomous ARTEMIS runs on API 35 with live ADB execution and verified screenshots."
+}

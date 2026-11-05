@@ -27,6 +27,7 @@ def main():
     if live:
         from policy import require_live_authorization
         require_live_authorization()
+    _policy = {}
     if args.ledger:
         args.ledger = args.ledger.resolve(strict=True)
         # Open existing state only. Never initialize/reset a ledger on host restart.
@@ -35,12 +36,21 @@ def main():
             maximum, ceiling, expires, approval, blocked = db.execute("SELECT * FROM budget").fetchone()
         amendment = require_live_authorization(maximum, ceiling)
         from datetime import UTC, datetime
-        max_allowed_requests = 275 if amendment else 240
-        max_allowed_cost = 820_000_000 if amendment else 500_000_000
-        if (not 1 <= maximum <= max_allowed_requests or not 1 <= ceiling <= max_allowed_cost or
-                (amendment and (expires != amendment["expires_utc"] or amendment["sha256"] not in approval)) or
-                not approval or blocked or datetime.now(UTC) >= datetime.fromisoformat(expires)):
-            parser.error("Cumulative batch ledger is blocked, expired or unauthorized")
+        import json as _json
+        _policy = _json.loads(Path(__file__).with_name("execution-policy.json").read_text(encoding="utf-8"))
+        if _policy.get("decision") == "OWNER_APPROVED_EXPLORATION":
+            max_allowed_requests = 50
+            max_allowed_cost = 120_000_000
+            if (not 1 <= maximum <= max_allowed_requests or not 1 <= ceiling <= max_allowed_cost or
+                    not approval or blocked or datetime.now(UTC) >= datetime.fromisoformat(expires)):
+                parser.error("Exploration ledger is blocked, expired or unauthorized")
+        else:
+            max_allowed_requests = 275 if amendment else 240
+            max_allowed_cost = 820_000_000 if amendment else 500_000_000
+            if (not 1 <= maximum <= max_allowed_requests or not 1 <= ceiling <= max_allowed_cost or
+                    (amendment and (expires != amendment["expires_utc"] or amendment["sha256"] not in approval)) or
+                    not approval or blocked or datetime.now(UTC) >= datetime.fromisoformat(expires)):
+                parser.error("Cumulative batch ledger is blocked, expired or unauthorized")
     key = ""
     if live:
         from dotenv import dotenv_values
@@ -72,6 +82,14 @@ def main():
     })
     if args.ledger:
         os.environ["ARTEMIS_DEEPSEEK_LEDGER_FILE"] = str(args.ledger)
+        if _policy.get("decision") == "OWNER_APPROVED_EXPLORATION":
+            os.environ.update({
+                "ARTEMIS_FLASH_MAX_TURNS": "35",
+                "ARTEMIS_TURN_PACING_SECONDS": "25",
+                "ARTEMIS_MIN_TURNS_BEFORE_REPORT": "25",
+                "ARTEMIS_MIN_EXPLORATION_SECONDS": "960",
+                "ARTEMIS_DEEPSEEK_MAX_NON_IMAGE_BYTES": "131072",
+            })
     os.chdir(root)
     sys.path.insert(0, str(root))
     from artemis.config import load_agent_config
