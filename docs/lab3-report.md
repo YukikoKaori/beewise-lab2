@@ -123,6 +123,20 @@ Storage rules enforce metadata, not cryptographic PDF validation. Admin SDK
 code bypasses rules and must implement the contract itself. Parent/applicant
 role and payment invariants must be enforced in that server code before release.
 
+## Update after PR #16 (2026-11-05)
+
+PR #16 merged F-03 into `main` (`1923a76`): consultant claim and proposals, class revision, server-issued invoice, payOS checkout, signed webhook with provider re-check, verified payment and official class schedule (`backend/`).
+
+| Item | Status (per tracker; tests not re-run for this note) |
+|---|---|
+| Backend emulator tests | 45 |
+| Firestore Rules tests | 59 |
+| Flutter tests | 130 |
+| Live payOS payment | One 2,000 VND transfer, real Firebase project, API36 emulator ([evidence](../evidence/cloud/f03-payos-live-20261105/README.md)) |
+| Deployment | **Not deployed**; see the next section |
+
+Still open for submission: ARTEMIS matrix (at least 10 cases x3), the TC-25 exploratory session, slide PDF, demo video and Bao's review of cloud claims. A full Vietnamese report for slide preparation is in [`output/docx/BeeWise-Lab3-Report-for-slides.docx`](../output/docx/BeeWise-Lab3-Report-for-slides.docx).
+
 ## Backend deployment scope and limits (F-03)
 
 **Decision: the F-03 trusted backend is a controlled demo, not a stable production deployment.** No hosted or always-on environment exists, and none was authorized (no billing change, no Cloud Functions, no hosted server).
