@@ -94,8 +94,8 @@ class HomeScreen extends ConsumerWidget {
                     const SizedBox(height: 8),
                     Text(
                       'Tìm gia sư phù hợp với nhu cầu của con',
-                      style: Theme.of(context).textTheme.titleLarge
-                          ?.copyWith(color: Colors.white, fontSize: 18),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(color: Colors.white),
                     ),
                     const SizedBox(height: 6),
                     Text(
@@ -104,7 +104,11 @@ class HomeScreen extends ConsumerWidget {
                           ?.copyWith(color: Colors.white),
                     ),
                     const SizedBox(height: 12),
-                    FilledButton.tonalIcon(
+                    FilledButton.icon(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: BeeWiseColors.accent,
+                        foregroundColor: BeeWiseColors.ink,
+                      ),
                       onPressed: () => context.push('/matching'),
                       icon: const Icon(Icons.arrow_forward),
                       label: const Text('Bắt đầu ghép AI'),
@@ -113,28 +117,29 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
             const SectionTitle('Khám phá theo môn học'),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 4,
-              children: [
-                for (final subject in [
-                  'Toán',
-                  'Tiếng Anh',
-                  'Ngữ văn',
-                  'Vật lý',
-                ])
-                  ActionChip(
-                    label: Text(subject),
-                    onPressed: () => context.push(
-                      '/search?q=${Uri.encodeQueryComponent(subject)}',
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (final subject in [
+                    'Toán',
+                    'Tiếng Anh',
+                    'Ngữ văn',
+                    'Vật lý',
+                  ])
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ActionChip(
+                        label: Text(subject),
+                        onPressed: () => context.push(
+                          '/search?q=${Uri.encodeQueryComponent(subject)}',
+                        ),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
             SectionTitle(
               'Gia sư đang hoạt động',
               trailing: TextButton(
@@ -142,7 +147,6 @@ class HomeScreen extends ConsumerWidget {
                 child: const Text('Xem tất cả'),
               ),
             ),
-            const SizedBox(height: 10),
             tutors.when(
               loading: () => const LoadingTutorList(),
               error: (error, _) => Column(
@@ -220,7 +224,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       query: _query.text,
       subject: _subject,
       area: _area,
-      teachingMode: _mode,
+      teachingMode: switch (_mode) {
+        'Online' => 'online',
+        'Trực tiếp' => 'in_person',
+        _ => null,
+      },
       maxHourlyFee: _fee,
       sortByPrice: _sort,
     );
@@ -273,70 +281,112 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ),
             ),
           ),
-          const SizedBox(height: 12),
-          const Text('Môn học'),
-          Wrap(
-            spacing: 8,
+          const SizedBox(height: 16),
+          SectionCard(
+            title: 'Bộ lọc',
+            icon: Icons.tune_rounded,
             children: [
-              for (final v in ['Toán', 'Tiếng Anh', 'Ngữ văn', 'Vật lý'])
-                FilterChip(
-                  label: Text(v),
-                  selected: _subject == v,
-                  onSelected: (_) =>
-                      setState(() => _subject = _subject == v ? null : v),
-                ),
+              FilterGroup(
+                label: 'Môn học',
+                columns: 2,
+                chips: [
+                  for (final v in ['Toán', 'Tiếng Anh', 'Ngữ văn', 'Vật lý'])
+                    FilterPill(
+                      label: v,
+                      selected: _subject == v,
+                      onTap: () =>
+                          setState(() => _subject = _subject == v ? null : v),
+                    ),
+                ],
+              ),
+              FilterGroup(
+                label: 'Khu vực',
+                columns: 3,
+                chips: [
+                  for (final v in ['Quận 1', 'Quận 3', 'Thủ Đức'])
+                    FilterPill(
+                      label: v,
+                      selected: _area == v,
+                      onTap: () =>
+                          setState(() => _area = _area == v ? null : v),
+                    ),
+                ],
+              ),
+              FilterGroup(
+                label: 'Hình thức dạy',
+                columns: 2,
+                chips: [
+                  for (final v in ['Online', 'Trực tiếp'])
+                    FilterPill(
+                      label: v,
+                      selected: _mode == v,
+                      onTap: () =>
+                          setState(() => _mode = _mode == v ? null : v),
+                    ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Học phí tối đa',
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      ),
+                      Text(
+                        _fee == null
+                            ? 'Không giới hạn'
+                            : '${NumberFormat.decimalPattern('vi_VN').format(_fee)}đ/giờ',
+                        style: Theme.of(context).textTheme.labelLarge
+                            ?.copyWith(color: BeeWiseColors.primary),
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: (_fee ?? 1000000).toDouble(),
+                    min: 100000,
+                    max: 1000000,
+                    divisions: 9,
+                    label: _fee == null
+                        ? 'Không giới hạn'
+                        : '${NumberFormat.decimalPattern('vi_VN').format(_fee)}đ',
+                    onChanged: (value) => setState(() => _fee = value.round()),
+                  ),
+                  if (_fee != null)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          visualDensity: VisualDensity.compact,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                        ),
+                        onPressed: () => setState(() => _fee = null),
+                        child: const Text('Bỏ giới hạn'),
+                      ),
+                    ),
+                  const Divider(height: BeeWiseSpace.x6),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Xếp theo học phí thấp',
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      ),
+                      Switch(
+                        value: _sort,
+                        onChanged: (value) => setState(() => _sort = value),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
-          const Text('Khu vực'),
-          Wrap(
-            spacing: 8,
-            children: [
-              for (final v in ['Quận 1', 'Quận 3', 'Thủ Đức'])
-                FilterChip(
-                  label: Text(v),
-                  selected: _area == v,
-                  onSelected: (_) =>
-                      setState(() => _area = _area == v ? null : v),
-                ),
-            ],
-          ),
-          const Text('Hình thức dạy'),
-          Wrap(
-            spacing: 8,
-            children: [
-              for (final v in ['Online', 'Tại nhà'])
-                FilterChip(
-                  label: Text(v),
-                  selected: _mode == v,
-                  onSelected: (_) =>
-                      setState(() => _mode = _mode == v ? null : v),
-                ),
-            ],
-          ),
-          Text(
-            'Học phí tối đa: ${_fee == null ? 'Không giới hạn' : '${NumberFormat.decimalPattern('vi_VN').format(_fee)}đ/giờ'}',
-          ),
-          Slider(
-            value: (_fee ?? 1000000).toDouble(),
-            min: 100000,
-            max: 1000000,
-            divisions: 9,
-            label: _fee == null
-                ? 'Không giới hạn'
-                : '${NumberFormat.decimalPattern('vi_VN').format(_fee)}đ',
-            onChanged: (value) => setState(() => _fee = value.round()),
-          ),
-          TextButton(
-            onPressed: () => setState(() => _fee = null),
-            child: const Text('Bỏ giới hạn học phí'),
-          ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: const Text('Xếp theo học phí thấp'),
-            value: _sort,
-            onChanged: (value) => setState(() => _sort = value),
-          ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           results.when(
             loading: () => const LoadingTutorList(),
             error: (error, _) => Column(
@@ -556,85 +606,130 @@ class _TutorProfileContent extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Row(
-                children: [
-                  TutorAvatar(tutor: tutor, radius: 42),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          tutor.name,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                        Text(tutor.credential),
-                        if (tutor.isDemoProfile) ...[
-                          const Text(Tutor.demoDisclosure),
-                          const Text(Tutor.demoDisclaimer),
-                        ],
-                        if (tutor.verified)
-                          const Chip(
-                            avatar: Icon(
-                              Icons.verified,
-                              color: BeeWiseColors.success,
-                              size: 18,
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TutorAvatar(tutor: tutor, radius: 34),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  tutor.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium,
+                                ),
+                                if (tutor.credential.isNotEmpty) ...[
+                                  const SizedBox(height: 4),
+                                  Text(tutor.credential),
+                                ],
+                                if (tutor.isDemoProfile) ...[
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    Tutor.demoDisclosure,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge,
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    Tutor.demoDisclaimer,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall,
+                                  ),
+                                ],
+                                if (tutor.verified) ...[
+                                  const SizedBox(height: 8),
+                                  const Chip(
+                                    avatar: Icon(
+                                      Icons.verified,
+                                      color: BeeWiseColors.success,
+                                      size: 18,
+                                    ),
+                                    label: Text('Đã xác minh'),
+                                  ),
+                                ],
+                              ],
                             ),
-                            label: Text('Đã xác minh'),
                           ),
-                      ],
-                    ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (final item in [
+                            '${tutor.experienceYears} năm kinh nghiệm',
+                            '${tutor.subjects.length} môn học',
+                            ...tutor.teachingModes.map(teachingModeLabel),
+                          ])
+                            Chip(label: Text(item)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              SectionCard(
+                title: 'Giới thiệu',
+                icon: Icons.info_outline_rounded,
+                children: [
+                  Text(
+                    tutor.introduction.isEmpty
+                        ? 'Gia sư chưa cập nhật phần giới thiệu.'
+                        : tutor.introduction,
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
+              const SizedBox(height: 16),
+              SectionCard(
+                title: 'Chuyên môn và lịch dạy',
+                icon: Icons.school_outlined,
                 children: [
-                  for (final item in [
-                    '${tutor.experienceYears} năm kinh nghiệm',
-                    '${tutor.subjects.length} môn học',
-                    ...tutor.teachingModes,
-                  ])
-                    Chip(label: Text(item)),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final value in tutor.subjects)
+                        Chip(label: Text(value)),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  InfoRow(
+                    label: 'Lớp nhận dạy',
+                    value: tutor.grades.join(', ').ifEmpty('Chưa cập nhật'),
+                    icon: Icons.menu_book_outlined,
+                  ),
+                  const SizedBox(height: 14),
+                  InfoRow(
+                    label: 'Lịch có thể dạy',
+                    value: tutor.availability.ifEmpty('Chưa cập nhật'),
+                    icon: Icons.calendar_month_outlined,
+                  ),
+                  const SizedBox(height: 14),
+                  InfoRow(
+                    label: 'Khu vực',
+                    value: tutor.areas.join(', ').ifEmpty('Chưa cập nhật'),
+                    icon: Icons.location_on_outlined,
+                  ),
+                  const SizedBox(height: 14),
+                  InfoRow(
+                    label: 'Học phí tham khảo',
+                    value: '$feeđ/giờ',
+                    icon: Icons.payments_outlined,
+                  ),
                 ],
-              ),
-              const SectionTitle('Giới thiệu'),
-              Text(
-                tutor.introduction.isEmpty
-                    ? 'Gia sư chưa cập nhật phần giới thiệu.'
-                    : tutor.introduction,
-              ),
-              const SectionTitle('Chuyên môn'),
-              Wrap(
-                spacing: 8,
-                children: [
-                  for (final value in tutor.subjects) Chip(label: Text(value)),
-                ],
-              ),
-              InfoRow(
-                label: 'Lớp nhận dạy',
-                value: tutor.grades.join(', ').ifEmpty('Chưa cập nhật'),
-                icon: Icons.menu_book_outlined,
-              ),
-              const SizedBox(height: 14),
-              InfoRow(
-                label: 'Lịch có thể dạy',
-                value: tutor.availability.ifEmpty('Chưa cập nhật'),
-                icon: Icons.calendar_month_outlined,
-              ),
-              const SizedBox(height: 14),
-              InfoRow(
-                label: 'Khu vực',
-                value: tutor.areas.join(', ').ifEmpty('Chưa cập nhật'),
-                icon: Icons.location_on_outlined,
-              ),
-              const SizedBox(height: 14),
-              InfoRow(
-                label: 'Học phí tham khảo',
-                value: '$feeđ/giờ',
-                icon: Icons.payments_outlined,
               ),
               if (tutor.rating != null && tutor.reviewCount > 0) ...[
                 const SizedBox(height: 20),
@@ -791,7 +886,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   : () => ref
                         .read(authControllerProvider.notifier)
                         .googleSignIn(),
-              icon: const Icon(Icons.g_mobiledata_rounded),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: BeeWiseColors.ink,
+                side: const BorderSide(color: BeeWiseColors.borderStrong),
+              ),
+              icon: const GoogleLogo(),
               label: const Text('Tiếp tục với Google'),
             ),
             TextButton(
@@ -861,53 +961,68 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               'Bắt đầu cùng BeeWise',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
+            const SizedBox(height: 4),
             const Text(
               'Tạo tài khoản phụ huynh để gửi yêu cầu kết nối và nhận cập nhật.',
             ),
-            const SizedBox(height: 20),
-            TextFormField(
-              controller: _name,
-              textCapitalization: TextCapitalization.words,
-              decoration: const InputDecoration(labelText: 'Họ và tên'),
-              validator: _required,
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
-              controller: _phone,
-              keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(labelText: 'Số điện thoại'),
-              validator: (v) => v == null || v.trim().length < 9
-                  ? 'Nhập số điện thoại hợp lệ.'
-                  : null,
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
-              controller: _email,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(labelText: 'Email'),
-              validator: (v) =>
-                  v == null || !v.contains('@') ? 'Nhập email hợp lệ.' : null,
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
-              controller: _password,
-              obscureText: !_showPassword,
-              decoration: InputDecoration(
-                labelText: 'Mật khẩu',
-                helperText: 'Ít nhất 8 ký tự và có một chữ số.',
-                suffixIcon: IconButton(
-                  onPressed: () =>
-                      setState(() => _showPassword = !_showPassword),
-                  icon: Icon(
-                    _showPassword ? Icons.visibility_off : Icons.visibility,
-                  ),
+            const SizedBox(height: 4),
+            SectionCard(
+              title: 'Thông tin phụ huynh',
+              icon: Icons.person_outline_rounded,
+              children: [
+                TextFormField(
+                  controller: _name,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: const InputDecoration(labelText: 'Họ và tên'),
+                  validator: _required,
                 ),
-              ),
-              validator: (v) =>
-                  v == null || v.length < 8 || !RegExp(r'\d').hasMatch(v)
-                  ? 'Mật khẩu cần ít nhất 8 ký tự và một chữ số.'
-                  : null,
+                const SizedBox(height: 12),
+                TextFormField(
+                  controller: _phone,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(labelText: 'Số điện thoại'),
+                  validator: (v) => v == null || v.trim().length < 9
+                      ? 'Nhập số điện thoại hợp lệ.'
+                      : null,
+                ),
+              ],
             ),
+            const SizedBox(height: 16),
+            SectionCard(
+              title: 'Tài khoản đăng nhập',
+              icon: Icons.lock_outline_rounded,
+              children: [
+                TextFormField(
+                  controller: _email,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                  validator: (v) => v == null || !v.contains('@')
+                      ? 'Nhập email hợp lệ.'
+                      : null,
+                ),
+                const SizedBox(height: 12),
+                TextFormField(
+                  controller: _password,
+                  obscureText: !_showPassword,
+                  decoration: InputDecoration(
+                    labelText: 'Mật khẩu',
+                    helperText: 'Ít nhất 8 ký tự và có một chữ số.',
+                    suffixIcon: IconButton(
+                      onPressed: () =>
+                          setState(() => _showPassword = !_showPassword),
+                      icon: Icon(
+                        _showPassword ? Icons.visibility_off : Icons.visibility,
+                      ),
+                    ),
+                  ),
+                  validator: (v) =>
+                      v == null || v.length < 8 || !RegExp(r'\d').hasMatch(v)
+                      ? 'Mật khẩu cần ít nhất 8 ký tự và một chữ số.'
+                      : null,
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
             CheckboxListTile(
               value: _consent,
               onChanged: (v) => setState(() => _consent = v ?? false),
@@ -917,8 +1032,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               ),
               controlAffinity: ListTileControlAffinity.leading,
             ),
-            if (state.hasError)
+            const SizedBox(height: 12),
+            if (state.hasError) ...[
               ErrorStateView(message: friendlyError(state.error!)),
+              const SizedBox(height: 12),
+            ],
             BeeWiseButton(
               label: 'Tạo tài khoản',
               loading: state.isLoading,
@@ -1001,14 +1119,17 @@ class _ConnectionScreenState extends ConsumerState<ConnectionScreen> {
       showBack: true,
       body: user == null
           ? Center(
-              child: EmptyStateView(
-                title: 'Đăng nhập để gửi yêu cầu',
-                message: 'Sau khi đăng nhập, BeeWise sẽ giữ lại hồ sơ gia sư bạn đã chọn.',
-                icon: Icons.lock_outline,
-                action: FilledButton(
-                  onPressed: () =>
-                      context.push('/login?tutorId=${widget.tutorId}'),
-                  child: const Text('Đăng nhập hoặc đăng ký'),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: EmptyStateView(
+                  title: 'Đăng nhập để gửi yêu cầu',
+                  message: 'Sau khi đăng nhập, BeeWise sẽ giữ lại hồ sơ gia sư bạn đã chọn.',
+                  icon: Icons.lock_outline,
+                  action: FilledButton(
+                    onPressed: () =>
+                        context.push('/login?tutorId=${widget.tutorId}'),
+                    child: const Text('Đăng nhập hoặc đăng ký'),
+                  ),
                 ),
               ),
             )
@@ -1022,43 +1143,49 @@ class _ConnectionScreenState extends ConsumerState<ConnectionScreen> {
                 key: _form,
                 child: ListView(
                   padding: const EdgeInsets.all(16),
-                  children: [
+                  children: withGaps([
                     TutorCard(
                       tutor: item,
                       onOpen: () => context.push('/tutors/${item.id}'),
                     ),
-                    const SectionTitle('Thông tin học tập'),
-                    TextFormField(
-                      controller: _goal,
-                      maxLines: 2,
-                      decoration: const InputDecoration(
-                        labelText: 'Mục tiêu học tập',
-                      ),
-                      validator: _required,
+                    SectionCard(
+                      title: 'Thông tin học tập',
+                      icon: Icons.menu_book_outlined,
+                      children: [
+                        TextFormField(
+                          controller: _goal,
+                          maxLines: 2,
+                          decoration: const InputDecoration(
+                            labelText: 'Mục tiêu học tập',
+                          ),
+                          validator: _required,
+                        ),
+                        const SizedBox(height: 12),
+                        TextFormField(
+                          controller: _area,
+                          decoration: const InputDecoration(
+                            labelText: 'Khu vực',
+                          ),
+                          validator: _required,
+                        ),
+                        const SizedBox(height: 12),
+                        TextFormField(
+                          controller: _schedule,
+                          decoration: const InputDecoration(
+                            labelText: 'Lịch mong muốn',
+                          ),
+                          validator: _required,
+                        ),
+                        const SizedBox(height: 12),
+                        TextFormField(
+                          controller: _note,
+                          maxLines: 3,
+                          decoration: const InputDecoration(
+                            labelText: 'Ghi chú thêm (không bắt buộc)',
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _area,
-                      decoration: const InputDecoration(labelText: 'Khu vực'),
-                      validator: _required,
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _schedule,
-                      decoration: const InputDecoration(
-                        labelText: 'Lịch mong muốn',
-                      ),
-                      validator: _required,
-                    ),
-                    const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _note,
-                      maxLines: 3,
-                      decoration: const InputDecoration(
-                        labelText: 'Ghi chú thêm (không bắt buộc)',
-                      ),
-                    ),
-                    const SizedBox(height: 12),
                     const StatusBanner(
                       message: 'Nhân viên tư vấn sẽ tham gia nhóm sau khi tiếp nhận yêu cầu. Gửi yêu cầu chưa có nghĩa là lịch học đã được xác nhận.',
                     ),
@@ -1084,7 +1211,7 @@ class _ConnectionScreenState extends ConsumerState<ConnectionScreen> {
                               }
                             },
                     ),
-                  ],
+                  ]),
                 ),
               ),
             ),
@@ -1149,10 +1276,13 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
               ),
               data: (items) => items.isEmpty
                   ? const Center(
-                      child: EmptyStateView(
-                        title: 'Chưa có tin nhắn',
-                        message: 'Tin nhắn từ phụ huynh, gia sư và tư vấn viên sẽ xuất hiện ở đây.',
-                        icon: Icons.chat_bubble_outline,
+                      child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: EmptyStateView(
+                          title: 'Chưa có tin nhắn',
+                          message: 'Tin nhắn từ phụ huynh, gia sư và tư vấn viên sẽ xuất hiện ở đây.',
+                          icon: Icons.chat_bubble_outline,
+                        ),
                       ),
                     )
                   : ListView(
@@ -1397,7 +1527,8 @@ class _MessageTile extends StatelessWidget {
               ),
             Text(
               message.body,
-              style: TextStyle(color: own ? Colors.white : BeeWiseColors.ink),
+              style: Theme.of(context).textTheme.bodyMedium
+                  ?.copyWith(color: own ? Colors.white : BeeWiseColors.ink),
             ),
             Semantics(
               label:
@@ -1405,8 +1536,8 @@ class _MessageTile extends StatelessWidget {
               child: ExcludeSemantics(
                 child: Text(
                   DateFormat('HH:mm').format(message.createdAt),
-                  style: TextStyle(
-                    fontSize: 11,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.w500,
                     color: own ? Colors.white70 : BeeWiseColors.muted,
                   ),
                 ),
@@ -1549,9 +1680,13 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
               .firstOrNull;
           if (msg == null) {
             return const Center(
-              child: EmptyStateView(
-                title: 'Chưa có đề xuất',
-                message: 'Chỉ tư vấn viên mới có thể gửi đề xuất buổi học thử.',
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: EmptyStateView(
+                  title: 'Chưa có đề xuất',
+                  message:
+                      'Chỉ tư vấn viên mới có thể gửi đề xuất buổi học thử.',
+                ),
               ),
             );
           }
@@ -1559,7 +1694,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
           final closed = closedProposalNotice(p, responded: _responded);
           return ListView(
             padding: const EdgeInsets.all(16),
-            children: [
+            children: withGaps([
               const OnboardingStepper(currentStep: 0),
               const SizedBox(height: 16),
               const StatusBanner(message: 'Tư vấn viên đề xuất buổi học thử.'),
@@ -1569,7 +1704,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    children: [
+                    children: withGaps([
                       if (p['tutorName'] != null || p['subject'] != null)
                         InfoRow(
                           label: 'Gia sư · Môn học',
@@ -1605,7 +1740,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
                         value: _formatWorkflowAmount(p['fee']),
                         icon: Icons.payments_outlined,
                       ),
-                    ],
+                    ]),
                   ),
                 ),
               ),
@@ -1638,7 +1773,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
                   child: const Text('Đề xuất thời gian khác'),
                 ),
               ],
-            ],
+            ]),
           );
         },
       ),
@@ -1708,10 +1843,12 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
               .firstOrNull;
           if (msg == null) {
             return const Center(
-              child: EmptyStateView(
-                title: 'Chưa có thông tin lớp',
-                message:
-                    'Thông tin cần được tư vấn viên gửi trong cuộc trò chuyện.',
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: EmptyStateView(
+                  title: 'Chưa có thông tin lớp',
+                  message: 'Thông tin cần được tư vấn viên gửi trong cuộc trò chuyện.',
+                ),
               ),
             );
           }
@@ -1719,7 +1856,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
           final closed = closedProposalNotice(p, responded: _responded);
           return ListView(
             padding: const EdgeInsets.all(16),
-            children: [
+            children: withGaps([
               const OnboardingStepper(currentStep: 1, completedThrough: 0),
               const SizedBox(height: 16),
               const StatusBanner(
@@ -1735,7 +1872,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    children: [
+                    children: withGaps([
                       Text(
                         '${p['subject'] ?? 'Lớp học'}${p['goal'] == null ? '' : ' – ${p['goal']}'}',
                         style: Theme.of(context).textTheme.headlineMedium,
@@ -1752,7 +1889,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                           label: item.key,
                           value: '${item.value ?? 'Chưa cập nhật'}',
                         ),
-                    ],
+                    ]),
                   ),
                 ),
               ),
@@ -1761,7 +1898,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    children: [
+                    children: withGaps([
                       InfoRow(
                         label: 'Học phí',
                         value: _formatWorkflowAmount(p['fee']),
@@ -1774,7 +1911,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                         label: 'Tổng phí',
                         value: _formatWorkflowAmount(p['totalFee']),
                       ),
-                    ],
+                    ]),
                   ),
                 ),
               ),
@@ -1822,7 +1959,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                   child: Text('Không tiếp tục'),
                 ),
               ],
-            ],
+            ]),
           );
         },
       ),
@@ -1873,9 +2010,12 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           final doc = snapshot;
           if (!doc.exists || doc.data() == null) {
             return const Center(
-              child: EmptyStateView(
-                title: 'Chưa có hóa đơn',
-                message: 'Hóa đơn sẽ chỉ xuất hiện sau khi hệ thống xác nhận các bước trước đó.',
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: EmptyStateView(
+                  title: 'Chưa có hóa đơn',
+                  message: 'Hóa đơn sẽ chỉ xuất hiện sau khi hệ thống xác nhận các bước trước đó.',
+                ),
               ),
             );
           }
@@ -1883,7 +2023,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           final status = data['status']?.toString() ?? 'pending';
           return ListView(
             padding: const EdgeInsets.all(16),
-            children: [
+            children: withGaps([
               StatusBanner(
                 message: status == 'verified'
                     ? 'Thanh toán đã được hệ thống xác minh.'
@@ -1899,7 +2039,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    children: [
+                    children: withGaps([
                       Text(
                         'Số tiền cần thanh toán',
                         style: Theme.of(context).textTheme.titleLarge
@@ -1919,7 +2059,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                           textAlign: TextAlign.center,
                         ),
                       ],
-                    ],
+                    ]),
                   ),
                 ),
               ),
@@ -1965,7 +2105,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   label: const Text('Tôi đã thanh toán · Kiểm tra lại'),
                 ),
               ],
-            ],
+            ]),
           );
         },
       ),
@@ -2008,17 +2148,20 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
             final d = doc.data();
             if (!doc.exists || d == null || d['paymentStatus'] != 'verified') {
               return const Center(
-                child: EmptyStateView(
-                  title: 'Lịch chưa được xác nhận',
-                  message: 'Lịch chính thức chỉ hiển thị sau khi hệ thống xác minh thanh toán.',
-                  icon: Icons.lock_outline,
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: EmptyStateView(
+                    title: 'Lịch chưa được xác nhận',
+                    message: 'Lịch chính thức chỉ hiển thị sau khi hệ thống xác minh thanh toán.',
+                    icon: Icons.lock_outline,
+                  ),
                 ),
               );
             }
             final date = d['date']?.toString() ?? 'Chưa cập nhật';
             return ListView(
               padding: const EdgeInsets.all(16),
-              children: [
+              children: withGaps([
                 const OnboardingStepper(currentStep: 3, completedThrough: 2),
                 const SizedBox(height: 16),
                 const StatusBanner(
@@ -2041,7 +2184,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                   label: 'Địa điểm',
                   value: '${d['location'] ?? 'Chưa cập nhật'}',
                 ),
-              ],
+              ]),
             );
           },
         ),
@@ -2063,13 +2206,16 @@ class MessagesScreen extends ConsumerWidget {
           data: (user) {
             if (user == null) {
               return Center(
-                child: EmptyStateView(
-                  title: 'Đăng nhập để xem tin nhắn',
-                  message: 'Các cuộc trò chuyện với tư vấn viên và gia sư được lưu trong tài khoản của bạn.',
-                  icon: Icons.lock_outline,
-                  action: FilledButton(
-                    onPressed: () => context.push('/login'),
-                    child: const Text('Đăng nhập'),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: EmptyStateView(
+                    title: 'Đăng nhập để xem tin nhắn',
+                    message: 'Các cuộc trò chuyện với tư vấn viên và gia sư được lưu trong tài khoản của bạn.',
+                    icon: Icons.lock_outline,
+                    action: FilledButton(
+                      onPressed: () => context.push('/login'),
+                      child: const Text('Đăng nhập'),
+                    ),
                   ),
                 ),
               );
@@ -2086,10 +2232,13 @@ class MessagesScreen extends ConsumerWidget {
                   data: (chats) {
                     if (chats.isEmpty) {
                       return const Center(
-                        child: EmptyStateView(
-                          title: 'Chưa có cuộc trò chuyện',
-                          message: 'Sau khi gửi yêu cầu kết nối, nhóm trao đổi sẽ xuất hiện tại đây.',
-                          icon: Icons.chat_bubble_outline,
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: EmptyStateView(
+                            title: 'Chưa có cuộc trò chuyện',
+                            message: 'Sau khi gửi yêu cầu kết nối, nhóm trao đổi sẽ xuất hiện tại đây.',
+                            icon: Icons.chat_bubble_outline,
+                          ),
                         ),
                       );
                     }
@@ -2145,7 +2294,7 @@ class ProfileScreen extends ConsumerWidget {
       bottomNavigationIndex: 4,
       body: ListView(
         padding: const EdgeInsets.all(16),
-        children: [
+        children: withGaps([
           if (authAction.hasError)
             ErrorStateView(message: friendlyError(authAction.error!)),
           auth.when(
@@ -2154,20 +2303,16 @@ class ProfileScreen extends ConsumerWidget {
                 ErrorStateView(message: friendlyError(error)),
             data: (user) {
               if (user == null) {
-                return Card(
-                  child: ListTile(
-                    leading: const CircleAvatar(
-                      child: Icon(Icons.person_outline),
-                    ),
-                    title: const Text('Chưa đăng nhập'),
-                    subtitle: const Text(
-                      'Đăng nhập để quản lý tài khoản và dữ liệu của bạn.',
-                    ),
-                    trailing: TextButton(
+                return SectionCard(
+                  title: 'Chưa đăng nhập',
+                  icon: Icons.person_outline_rounded,
+                  subtitle: 'Đăng nhập để quản lý tài khoản.',
+                  children: [
+                    BeeWiseButton(
+                      label: 'Đăng nhập',
                       onPressed: () => context.push('/login'),
-                      child: const Text('Đăng nhập'),
                     ),
-                  ),
+                  ],
                 );
               }
               final display = user.displayName?.trim().isNotEmpty == true
@@ -2175,101 +2320,164 @@ class ProfileScreen extends ConsumerWidget {
                   : user.email?.trim().isNotEmpty == true
                   ? user.email!.trim()
                   : 'BeeWise';
-              return Card(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    child: Text(display.characters.first.toUpperCase()),
-                  ),
-                  title: Text(user.displayName ?? 'Phụ huynh'),
-                  subtitle: Text(user.email ?? ''),
-                  trailing: IconButton(
-                    tooltip: 'Đăng xuất',
-                    onPressed: () =>
-                        ref.read(authControllerProvider.notifier).signOut(),
-                    icon: const Icon(Icons.logout),
+              return SectionCard(
+                title: user.displayName?.trim().isNotEmpty == true
+                    ? user.displayName!.trim()
+                    : 'Phụ huynh',
+                leading: CircleAvatar(
+                  radius: 18,
+                  backgroundColor: const Color(0xFFEEF2FF),
+                  foregroundColor: BeeWiseColors.primary,
+                  child: Text(
+                    display.characters.first.toUpperCase(),
+                    style: Theme.of(context).textTheme.titleLarge
+                        ?.copyWith(color: BeeWiseColors.primary),
                   ),
                 ),
+                trailing: IconButton(
+                  tooltip: 'Đăng xuất',
+                  onPressed: () =>
+                      ref.read(authControllerProvider.notifier).signOut(),
+                  icon: const Icon(Icons.logout_rounded),
+                ),
+                children: [
+                  if ((user.email ?? '').isNotEmpty)
+                    Text(
+                      user.email!,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                ],
               );
             },
           ),
-          const SectionTitle('Thông báo'),
-          if (notificationError != null) ...[
-            ErrorStateView(message: notificationError),
-            TextButton(
-              onPressed: () =>
-                  ref.read(notificationServiceProvider).retryRegistration(),
-              child: const Text('Thử lại đăng ký thông báo'),
-            ),
-          ],
-          notifications.when(
-            loading: () => const LoadingStateView(),
-            error: (error, stack) =>
-                ErrorStateView(message: friendlyError(error)),
-            data: (items) => items.isEmpty
-                ? const Text('Chưa có thông báo mới.')
-                : Column(
-                    children: [
-                      for (final item in items.take(8))
-                        ListTile(
-                          leading: const Icon(Icons.notifications_none),
-                          title: Text(item.title),
-                          subtitle: Text(item.body),
-                          onTap: () async {
-                            final route = await ref
-                                .read(notificationServiceProvider)
-                                .routeForNotification(item);
-                            if (context.mounted && route != null) {
-                              context.go(route);
-                            }
-                          },
-                        ),
-                    ],
+          SectionCard(
+            title: 'Thông báo',
+            icon: Icons.notifications_none_rounded,
+            children: [
+              if (notificationError != null) ...[
+                ErrorStateView(message: notificationError),
+                TextButton(
+                  onPressed: () =>
+                      ref.read(notificationServiceProvider).retryRegistration(),
+                  child: const Text('Thử lại đăng ký thông báo'),
+                ),
+              ],
+              notifications.when(
+                loading: () => const LoadingStateView(),
+                error: (error, stack) =>
+                    ErrorStateView(message: friendlyError(error)),
+                data: (items) => items.isEmpty
+                    ? const Text('Chưa có thông báo mới.')
+                    : Column(
+                        children: [
+                          for (final item in items.take(8))
+                            ListTile(
+                              leading: const Icon(Icons.notifications_none),
+                              title: Text(item.title),
+                              subtitle: Text(item.body),
+                              onTap: () async {
+                                final route = await ref
+                                    .read(notificationServiceProvider)
+                                    .routeForNotification(item);
+                                if (context.mounted && route != null) {
+                                  context.go(route);
+                                }
+                              },
+                            ),
+                        ],
+                      ),
+              ),
+            ],
+          ),
+          SectionCard(
+            title: 'Dịch vụ ứng dụng',
+            icon: Icons.tune_rounded,
+            children: [
+              InfoRow(
+                label: 'Remote Config',
+                value:
+                    'Ghép AI: ${remoteConfig.matchingEnabled ? 'đang bật' : 'đang tắt'} · tối đa ${remoteConfig.aiResultLimit} kết quả',
+                icon: Icons.cloud_done_outlined,
+              ),
+            ],
+          ),
+          SectionCard(
+            title: 'Báo cáo PDF riêng',
+            icon: Icons.picture_as_pdf_outlined,
+            children: [const _ReportActions()],
+          ),
+          SectionCard(
+            title: 'Chẩn đoán lỗi',
+            icon: Icons.bug_report_outlined,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      await ref
+                          .read(crashReportingServiceProvider)
+                          .recordHandled(
+                            StateError('BeeWise non-fatal diagnostic sample'),
+                            StackTrace.current,
+                            'Profile diagnostic button',
+                          );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Đã gửi lỗi mẫu không nghiêm trọng tới Crashlytics.',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.bug_report_outlined),
+                    label: const Text('Gửi lỗi mẫu'),
                   ),
-          ),
-          const SectionTitle('Dịch vụ ứng dụng'),
-          ListTile(
-            leading: const Icon(Icons.tune),
-            title: const Text('Remote Config'),
-            subtitle: Text(
-              'Ghép AI: ${remoteConfig.matchingEnabled ? 'đang bật' : 'đang tắt'} · tối đa ${remoteConfig.aiResultLimit} kết quả',
-            ),
-          ),
-          const SectionTitle('Báo cáo PDF riêng'),
-          const _ReportActions(),
-          const SectionTitle('Chẩn đoán lỗi'),
-          OutlinedButton.icon(
-            onPressed: () async {
-              await ref
-                  .read(crashReportingServiceProvider)
-                  .recordHandled(
-                    StateError('BeeWise non-fatal diagnostic sample'),
-                    StackTrace.current,
-                    'Profile diagnostic button',
-                  );
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Đã gửi lỗi mẫu không nghiêm trọng tới Crashlytics.',
+                  const SizedBox(height: 6),
+                  Text(
+                    'Ghi nhận một lỗi không nghiêm trọng',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: BeeWiseColors.muted,
+                      fontWeight: FontWeight.w500,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                );
-              }
-            },
-            icon: const Icon(Icons.bug_report_outlined),
-            label: const Text('Gửi lỗi mẫu không nghiêm trọng'),
+                ],
+              ),
+              // Deliberate fatal crash is a demo-only control: it is compiled out
+              // of release builds so it cannot be triggered during normal use.
+              if (kDebugMode)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    OutlinedButton.icon(
+                      onPressed: () => ref
+                          .read(crashReportingServiceProvider)
+                          .triggerTestCrash(),
+                      icon: const Icon(Icons.warning_amber),
+                      label: const Text('Kiểm tra Crashlytics'),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Sẽ đóng ứng dụng (chỉ có ở bản debug)',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: BeeWiseColors.muted,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+            ],
           ),
-          // Deliberate fatal crash is a demo-only control: it is compiled out
-          // of release builds so it cannot be triggered during normal use.
-          if (kDebugMode)
-            OutlinedButton.icon(
-              onPressed: () =>
-                  ref.read(crashReportingServiceProvider).triggerTestCrash(),
-              icon: const Icon(Icons.warning_amber),
-              label: const Text('Kiểm tra Crashlytics (ứng dụng sẽ đóng)'),
-            ),
           if (!firebaseReady) const FirebaseSetupNotice(),
-        ],
+        ], gap: BeeWiseSpace.x3),
       ),
     );
   }

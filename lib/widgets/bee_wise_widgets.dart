@@ -131,13 +131,19 @@ class SectionTitle extends StatelessWidget {
   final Widget? trailing;
 
   @override
-  Widget build(BuildContext context) => Row(
-    children: [
-      Expanded(
-        child: Text(title, style: Theme.of(context).textTheme.headlineMedium),
-      ),
-      ?trailing,
-    ],
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.only(
+      top: BeeWiseSpace.x4,
+      bottom: BeeWiseSpace.x2,
+    ),
+    child: Row(
+      children: [
+        Expanded(
+          child: Text(title, style: Theme.of(context).textTheme.headlineSmall),
+        ),
+        ?trailing,
+      ],
+    ),
   );
 }
 
@@ -401,6 +407,7 @@ class EmptyStateView extends StatelessWidget {
       border: Border.all(color: BeeWiseColors.border),
     ),
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon, size: 36, color: BeeWiseColors.muted),
         const SizedBox(height: 12),
@@ -449,6 +456,13 @@ class FirebaseSetupNotice extends StatelessWidget {
   );
 }
 
+/// Human-readable label for the stored teaching-mode codes.
+String teachingModeLabel(String value) => switch (value) {
+  'in_person' => 'Trực tiếp',
+  'online' => 'Online',
+  _ => value,
+};
+
 class TutorAvatar extends StatelessWidget {
   const TutorAvatar({super.key, required this.tutor, this.radius = 28});
   final Tutor tutor;
@@ -474,10 +488,11 @@ class TutorAvatar extends StatelessWidget {
   }
 
   String _initials(String name) {
-    final parts = name
+    final cleaned = name.replaceAll(RegExp(r'\[[^\]]*\]'), ' ');
+    final parts = cleaned
         .trim()
         .split(RegExp(r'\s+'))
-        .where((part) => part.isNotEmpty)
+        .where((part) => RegExp(r'^\p{L}', unicode: true).hasMatch(part))
         .toList();
     if (parts.isEmpty) return 'G';
     return parts.length == 1
@@ -536,11 +551,12 @@ class TutorCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       if (tutor.isDemoProfile) const Text(Tutor.demoDisclosure),
-                      Text(
-                        subtitle ?? tutor.credential,
-                        style: Theme.of(context).textTheme.bodyMedium
-                            ?.copyWith(color: BeeWiseColors.muted),
-                      ),
+                      if ((subtitle ?? tutor.credential).isNotEmpty)
+                        Text(
+                          subtitle ?? tutor.credential,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: BeeWiseColors.muted),
+                        ),
                       if (tutor.rating != null) ...[
                         const SizedBox(height: 6),
                         _RatingChip(
@@ -571,7 +587,7 @@ class TutorCard extends StatelessWidget {
                 if (tutor.teachingModes.isNotEmpty)
                   _MetaChip(
                     icon: Icons.cast_for_education_outlined,
-                    label: tutor.teachingModes.take(1).join(),
+                    label: teachingModeLabel(tutor.teachingModes.first),
                   ),
               ],
             ),
@@ -687,7 +703,7 @@ class InfoRow extends StatelessWidget {
                   ?.copyWith(color: BeeWiseColors.muted),
             ),
             const SizedBox(height: 2),
-            Text(value, style: Theme.of(context).textTheme.bodyLarge),
+            Text(value, style: Theme.of(context).textTheme.titleSmall),
           ],
         ),
       ),
@@ -713,5 +729,191 @@ class LoadingTutorList extends StatelessWidget {
           ),
         ),
     ],
+  );
+}
+
+/// Label + wrapped chips used by filter groups so rows keep even spacing.
+class FilterGroup extends StatelessWidget {
+  const FilterGroup({
+    super.key,
+    required this.label,
+    required this.chips,
+    this.columns = 3,
+  });
+  final String label;
+  final List<Widget> chips;
+
+  /// Chips share the row equally, so every pill has the same width/height
+  /// and nothing is left alone on a second line.
+  final int columns;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(label, style: Theme.of(context).textTheme.labelLarge),
+      const SizedBox(height: BeeWiseSpace.x2),
+      LayoutBuilder(
+        builder: (context, constraints) {
+          const gap = BeeWiseSpace.x2;
+          final width = (constraints.maxWidth - gap * (columns - 1)) / columns;
+          return Wrap(
+            spacing: gap,
+            runSpacing: gap,
+            children: [
+              for (final chip in chips) SizedBox(width: width, child: chip),
+            ],
+          );
+        },
+      ),
+    ],
+  );
+}
+
+/// Inserts an even vertical gap between widgets that are not already
+/// separated by an explicit [SizedBox].
+List<Widget> withGaps(List<Widget> items, {double gap = BeeWiseSpace.x3}) {
+  final result = <Widget>[];
+  for (final item in items) {
+    if (result.isNotEmpty && item is! SizedBox && result.last is! SizedBox) {
+      result.add(SizedBox(height: gap));
+    }
+    result.add(item);
+  }
+  return result;
+}
+
+/// Google "G" mark used on the sign-in button (assets/brand/google-g.webp).
+class GoogleLogo extends StatelessWidget {
+  const GoogleLogo({super.key, this.size = 20});
+  final double size;
+
+  @override
+  Widget build(BuildContext context) => ExcludeSemantics(
+    child: SizedBox.square(
+      dimension: size,
+      child: Image.asset(
+        'assets/brand/google-g.webp',
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.high,
+      ),
+    ),
+  );
+}
+
+/// White rounded card with an icon + title header. Used to group related
+/// content so sections read as separate blocks instead of loose text.
+class SectionCard extends StatelessWidget {
+  const SectionCard({
+    super.key,
+    required this.title,
+    required this.children,
+    this.icon,
+    this.subtitle,
+    this.trailing,
+    this.leading,
+  });
+  final Widget? trailing;
+  final Widget? leading;
+  final String title;
+  final String? subtitle;
+  final IconData? icon;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Theme(
+      data: theme.copyWith(
+        inputDecorationTheme: theme.inputDecorationTheme.copyWith(
+          fillColor: BeeWiseColors.canvas,
+        ),
+      ),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(BeeWiseSpace.x4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  if (leading != null) ...[
+                    leading!,
+                    const SizedBox(width: BeeWiseSpace.x3),
+                  ] else if (icon != null) ...[
+                    Container(
+                      width: 36,
+                      height: 36,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFEEF2FF),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(icon, size: 20, color: BeeWiseColors.primary),
+                    ),
+                    const SizedBox(width: BeeWiseSpace.x3),
+                  ],
+                  Expanded(
+                    child: Text(title, style: theme.textTheme.headlineSmall),
+                  ),
+                  ?trailing,
+                ],
+              ),
+              if (subtitle != null) ...[
+                const SizedBox(height: BeeWiseSpace.x1),
+                Text(subtitle!, style: theme.textTheme.bodyMedium),
+              ],
+              const SizedBox(height: BeeWiseSpace.x3),
+              ...withGaps(children, gap: BeeWiseSpace.x3),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Full-width selectable pill used inside [FilterGroup]. Fixed height so every
+/// option lines up; the selected state uses the brand yellow.
+class FilterPill extends StatelessWidget {
+  const FilterPill({
+    super.key,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    button: true,
+    selected: selected,
+    label: label,
+    excludeSemantics: true,
+    child: Material(
+      color: selected ? BeeWiseColors.highlight : BeeWiseColors.surface,
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: selected ? BeeWiseColors.accent : BeeWiseColors.borderStrong,
+          width: selected ? 1.5 : 1,
+        ),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox(
+          height: 40,
+          child: Center(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }
