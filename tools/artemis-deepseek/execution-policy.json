@@ -1,12 +1,25 @@
 {
-  "decision": "OWNER_APPROVED_REGRESSION_ONLY",
+  "decision": "OWNER_APPROVED_EXPLORATION",
   "effective_date": "2026-11-06",
-  "approved_inference_requests": 275,
-  "approved_usd": 0.82,
-  "approval_ref": "call_16bbf8c8c37b49bf8c9dd2a3385caabf; 2026-11-06 owner approved d876e1e04e78a993bf1f6474f50f45704e285e6ff71c47c9bf350fe7b0a5c3a6; 2026-11-06 owner approved 928fdedb4b7681e6aa33c09dd005f58ca302a26d9d8929b98c4849990148833b; 2026-11-06 owner approved 05e483dc11dd308e64954740c4380a66b201ee483847975bf4ff93b7ed4630c5",
-  "proposal_sha256": "05e483dc11dd308e64954740c4380a66b201ee483847975bf4ff93b7ed4630c5",
-  "accepted_run_target": 30,
-  "maximum_failed_sessions": 6,
+  "approved_inference_requests": 50,
+  "approved_usd": 0.12,
+  "approval_ref": "(Recommended) Phê duyệt nâng trần thăm dò lên $0.12 USD (tối đa 50 requests) để hoàn tất phiên 20 phút trọn vẹn (vẫn dư $0.78, bảo đảm an toàn trên mức dự phòng $0.50 của Nexora)",
+  "proposal_sha256": "ea6a278076270fbed5ee395cc83f6ab9e59a0eed509a455fb5d0658e1c662800",
+  "accepted_run_target": 1,
+  "maximum_failed_sessions": 1,
+  "exploration_approved": true,
+  "exploration_amendment": {
+    "owner_approval": "(Recommended) Phê duyệt nâng trần thăm dò lên $0.12 USD (tối đa 50 requests) để hoàn tất phiên 20 phút trọn vẹn (vẫn dư $0.78, bảo đảm an toàn trên mức dự phòng $0.50 của Nexora)",
+    "proposal_file": "exploration-budget-proposal.md",
+    "sha256": "ea6a278076270fbed5ee395cc83f6ab9e59a0eed509a455fb5d0658e1c662800",
+    "approved_inference_requests": 50,
+    "approved_usd": 0.12,
+    "max_duration_minutes": 20,
+    "profile": "flash",
+    "gemini_fallback": false,
+    "nexora_reserve_nanodollars": 500000000,
+    "expires_utc": "2026-11-07T03:50:00.000000+00:00"
+  },
   "completion_amendment": {
     "owner_approval": "Duyệt nâng trần lên 272 requests / 45 admissions / $0.80 để hoàn tất 30/30 ngay",
     "proposal_file": "tc22-final-three-amendment.md",
@@ -34,7 +47,6 @@
     "additional_admissions": 2,
     "stop_after_new_failure": true
   },
-  "exploration_approved": false,
   "substitution_approved": true,
   "substitution": {
     "owner_approval": "vậy cách 2 đi",
@@ -42,7 +54,7 @@
     "replacement_case": "TC-27",
     "reason": "Native Google picker unavailable on AVD (0 accounts; launches Add Account instead of chooser). TC-27 provides equivalent Android-native auth error and validation coverage with zero credential dependency."
   },
-  "reason": "Final-six amendment approved. Nexora priority and all other scope exclusions remain.",
+  "reason": "Exploration and native permission authorization approved by owner on 2026-11-06.",
   "automatic_top_up": false,
   "alternative_provider_execution_approved": false
 }

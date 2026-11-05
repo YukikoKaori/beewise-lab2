@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-11-05T21:28:00.000000+00:00",
+  "approval_type": "OWNER_APPROVED_EXPLORATION_V2",
+  "approved_choice": "(Recommended) Phê duyệt nâng trần thăm dò lên $0.12 USD (tối đa 50 requests) để hoàn tất phiên 20 phút trọn vẹn (vẫn dư $0.78, bảo đảm an toàn trên mức dự phòng $0.50 của Nexora)",
+  "proposal_file": "evidence/artemis/n03-exploration-final/exploration-budget-proposal.md",
+  "proposal_sha256": "ea6a278076270fbed5ee395cc83f6ab9e59a0eed509a455fb5d0658e1c662800",
+  "max_requests": 50,
+  "max_cost_usd": 0.12,
+  "max_duration_minutes": 20,
+  "profile": "flash",
+  "gemini_fallback": false,
+  "nexora_reserve_nanodollars": 500000000
+}
