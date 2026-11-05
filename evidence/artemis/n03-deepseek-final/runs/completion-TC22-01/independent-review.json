@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:48:00.270418+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Retained FAIL: native class revision opened, but Unicode input appeared only as a keyboard clipboard suggestion. The Flutter field remained empty, no adjustment confirmation, strict assertion failed.",
+  "accepted": false,
+  "junit_pass": false
+}

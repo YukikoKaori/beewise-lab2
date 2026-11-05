@@ -1,0 +1,47 @@
+[
+  {
+    "private_artifact": "activity.log",
+    "bytes": 6378,
+    "sha256": "8a54bf0a5392a2eb3b6b26bffa9cbeb78136c6a87abb2b690593288a5e8f42c0"
+  },
+  {
+    "private_artifact": "anr-files.log",
+    "bytes": 172,
+    "sha256": "134252660bcd36739c44cbab0c0f7ebea544621a270023bc1df34bc22b87688c"
+  },
+  {
+    "private_artifact": "cpu.log",
+    "bytes": 3013,
+    "sha256": "3e4e8bcd7b3138d80bf313a70522069b9326d2c5f07089d7f5f0012515eb9f3e"
+  },
+  {
+    "private_artifact": "current.png",
+    "bytes": 117412,
+    "sha256": "5482526f237e8dad5ff1cf857050c936763317f7415f57823973a1353341e113"
+  },
+  {
+    "private_artifact": "dropbox.log",
+    "bytes": 199628,
+    "sha256": "057422d61f75cde21c3feae750501b4e0304fc1713d3ee8a43d2fc21fe7ba393"
+  },
+  {
+    "private_artifact": "logcat.log",
+    "bytes": 10011984,
+    "sha256": "9596cb991511c65b73cbdda6073b859d7318dfb3ef3aea550e3257f8bc4b26ee"
+  },
+  {
+    "private_artifact": "memory.log",
+    "bytes": 3816,
+    "sha256": "a0090a4af95d10065d6b9e047777fb01925fab8233c20ec38c9ae10da9ab1d3e"
+  },
+  {
+    "private_artifact": "native-trace.log",
+    "bytes": 63,
+    "sha256": "06bc1be61aecc12a35de50f752f33d63bdc86901ad34713044d036e5f2f2a45e"
+  },
+  {
+    "private_artifact": "process.log",
+    "bytes": 27623,
+    "sha256": "ff623cf9b213857a6ede3e057e48274fe21930602d989d3d6f613b59f1633774"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T15:22:46.039583+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Reviewed initial Home and final scrolled single-demo-tutor frame; five tabs, one actual local Firestore card, demo and unverified labels, no Firebase error. Strict JSON and JUnit PASS.",
+  "accepted": true,
+  "junit_pass": true
+}

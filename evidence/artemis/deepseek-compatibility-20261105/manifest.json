@@ -1,0 +1,162 @@
+{
+  "scope": "One authorized TC-09 failed output contract; genuine native/provider evidence retained; corrective patch offline only",
+  "source_policy": "Local uncommitted isolated work; no push/PR/merge/deployment",
+  "credential_scan": "PASS actual private key exclusion plus targeted secret/email patterns; private dotenv not exported",
+  "artifacts": [
+    {
+      "path": "docs/artemis-deepseek-compatibility.md",
+      "sha256": "f4633e9386f7fbb9bca60fa7daad2c97935a659db8c65b0124ccae9f86e594c6",
+      "bytes": 28019
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/api35-system-ui-anr.png",
+      "sha256": "dd0b4d32bce0c7d204fd24e127cdb16509030be29e3ed19b567254f514074203",
+      "bytes": 40710
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/api37-system-ui-anr.png",
+      "sha256": "1bcd1df9f850754fd49e2bbf48b14bf5c84cea268931c3aebd8e34f0cfd04289",
+      "bytes": 102096
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/artemis-live-tested.patch",
+      "sha256": "2f7eb80593f4940945d6c06ea1381cf2284d07dbd29889c904182d527af63803",
+      "bytes": 25512
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/client-host.json",
+      "sha256": "18f2b4fdd60bbeaaa5fdd04722531df0a3c34f6bc906996d32ed59a520584843",
+      "bytes": 412
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/models-owner-account.json",
+      "sha256": "6426e13fb481f1d84a9a5534fe98e9ff1529909465140a71e4e13e9ea9ced1a3",
+      "bytes": 708
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/offline-post-live.junit.xml",
+      "sha256": "57fae2436620e676af86ecaf29deb6e0c41a0095850eb59ab754aa3ab447e473",
+      "bytes": 22366
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/offline-results.json",
+      "sha256": "393b7d4c7a9283a76ea8e15a1b31e1968d84510cfeb3024f6db7c4511c6debe1",
+      "bytes": 1894
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/offline.junit.xml",
+      "sha256": "110c9e163a20e41d11909486a5b578279ef8c0835891e35a7ac376d23751f387",
+      "bytes": 22086
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/owner-approval.json",
+      "sha256": "77382d3c7cb438784d72f87e17e58a3362fa1a219a5750550133818b776dd807",
+      "bytes": 639
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/preflight-20261105.json",
+      "sha256": "dfd9f57e3f628cb7b6551c63dc5a53c27767df9f8de0d803a2040f5db01abfe7",
+      "bytes": 1426
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/supervision-offline.json",
+      "sha256": "ebe555fd73fdb929770353bb212487c31ea0dc7573b45cc9c9f8d20c54337909",
+      "bytes": 199
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-actions.json",
+      "sha256": "8458391141d9724a836f65e85f20292b096182f9a05fcfb71b6b6bbffb1fe488",
+      "bytes": 5403
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-failed.junit.xml",
+      "sha256": "98a088c342e318446717c51c4ecfadf0189717afde4dfef2c927803cc580c143",
+      "bytes": 2709
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-final-report.json",
+      "sha256": "8a35283a32e1027dea66a2b1ace774c1975d024b6a36d8647f995f65dd389451",
+      "bytes": 1332
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-live-summary.json",
+      "sha256": "3afedfb5b4205379de8989feee8a75cb7d80a3ce106f8a9d126e8fcea7d16971",
+      "bytes": 2298
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-native/account.jpg",
+      "sha256": "5e0c9750bb07c2d9a42cfcc3f62d8221068eb2d9ddafb82e3a6c22ea7814e202",
+      "bytes": 102453
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-native/home.jpg",
+      "sha256": "872717c4d23d6918b6ce9829297dbad9e4d223a95253488993b015aec8f140e9",
+      "bytes": 95085
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-native/matching.jpg",
+      "sha256": "6bd11c64df7e656e98090473f1de799ff09895a66e6f955548e56da7b05bec2f",
+      "bytes": 77293
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-native/messages.jpg",
+      "sha256": "248e8b6a1ed88cff8dde3dd192453f1e8d456a834af09215351687ad2de11d6a",
+      "bytes": 54007
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-native/search.jpg",
+      "sha256": "b6a4d7d1173b2ccf0bc74bf2ef926fa7fd60ed8d8e90664e40324571506ab47a",
+      "bytes": 74505
+    },
+    {
+      "path": "evidence/artemis/deepseek-compatibility-20261105/tc09-observed-output.json",
+      "sha256": "f25060958ec332a3e8f27a3eb8a9c2481150852b05edc221e7553ec47f8ca3be",
+      "bytes": 729
+    },
+    {
+      "path": "tools/artemis-deepseek/.env.example",
+      "sha256": "d8e141fbc98af35ecba6f8a5f29aa142e3a173f8556c64906460bb843a652af0",
+      "bytes": 126
+    },
+    {
+      "path": "tools/artemis-deepseek/.gitignore",
+      "sha256": "87491cbccf8a27d619ddf289fff4d23dcbb90b9cdbbf3ef67b7cc43038198290",
+      "bytes": 20
+    },
+    {
+      "path": "tools/artemis-deepseek/artemis-351ca842-deepseek.patch",
+      "sha256": "c931d74c67b3e0f9b94eb68593018ffef7e0a7eea6c3e0dfa1b26b03978e9e65",
+      "bytes": 27546
+    },
+    {
+      "path": "tools/artemis-deepseek/artemis.deepseek.jsonc",
+      "sha256": "20dcdc97c1f0b5c009f60774a5d85580526318f5009868d1a3f004349cd1c048",
+      "bytes": 5292
+    },
+    {
+      "path": "tools/artemis-deepseek/check_host.py",
+      "sha256": "6e0b6bae13285bf1e23aed597369d77a35e7db972845b59f641ac006dbf1e602",
+      "bytes": 958
+    },
+    {
+      "path": "tools/artemis-deepseek/check_models.py",
+      "sha256": "efff96c4116a52ef09b4257aac8ee42b6d5cab5654c4d6f79dfca6b97b7cc95d",
+      "bytes": 2196
+    },
+    {
+      "path": "tools/artemis-deepseek/host.py",
+      "sha256": "c2bcb3b273667e47b43f0540e3e8a5e6bb33e1c3a4bb5187c82dc9b03e3c649c",
+      "bytes": 2672
+    },
+    {
+      "path": "tools/artemis-deepseek/smoke_guard.py",
+      "sha256": "4027fa1794d00ec38d2012839cde5df6944408009fb7f2099404e132e55fb36c",
+      "bytes": 962
+    },
+    {
+      "path": "tools/artemis-deepseek/smoke_once.py",
+      "sha256": "98a50e5325e9bbc5ea7deb58bfeb97ca08d973e49009a8c9e8570afaf07f79d5",
+      "bytes": 3219
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "scope": "All admitted ARTEMIS sessions; independent native preparation excluded",
+  "generated_utc": "2026-11-05T16:24:48.192547+00:00",
+  "accepted_runs": 11,
+  "target": 30,
+  "runs": [
+    {
+      "run_id": "b01da0ec-1fa3-4942-97ea-ceff8396c8f5",
+      "case": "TC-09",
+      "state": "FAILED",
+      "trace_id": "13a81bcd-6a74-47a7-a252-c870ca880f54",
+      "evidence": "runs/tc09-attempt-01",
+      "receipt_sha256": {
+        "run-receipt.json": "3d9df7712a596795bd7579f614cd722cadc7193b013be6cc52665ff7b6ac7097",
+        "independent-review.json": "b6a732d17a52e022d7cc8811488b59fa136d09a14b695d784fbd70129ce670f2",
+        "result.junit.xml": "065af81cafdf06d53110bb3eba469cba46777cca7d70b6e139fb87570dd0302a",
+        "manifest.json": "1cc6a0102e6ab700b55c01f8befe479128acd75177cfb8468c18ccc8fac95148"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:03:58.317711+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "FAIL retained. Native final report contains correct destinations JSON, but harness decoder discarded those rows before primary assertion. Classified harness normalization defect, corrected only for future executions; this failed JUnit is never upgraded.",
+        "accepted": false,
+        "junit_pass": false
+      }
+    },
+    {
+      "run_id": "c863e5a6-d3ee-4c88-a343-ae0b327ba258",
+      "case": "TC-09",
+      "state": "ACCEPTED",
+      "trace_id": "c06f9d97-2e8a-46cc-9831-927f736a6392",
+      "evidence": "runs/tc09-attempt-02",
+      "receipt_sha256": {
+        "run-receipt.json": "85adccb07e6ecf1caf615d7bd1c205350e43d25e34ea861cf4f33b11535a84a4",
+        "independent-review.json": "88472d52e41c19a2b03058d54746dab4220608217649bf6415f2ce227f49df3f",
+        "result.junit.xml": "bacac05266580e38779de29ff2b0f691ac53b534f162a4f21b898c59ad31dcee",
+        "manifest.json": "c936ffa25f92ef47a86423ac15a14d5f77adf49be0a64e0caf3af8e9a83c1490"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:00:27.746451+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed all five original frames: Home, Search, Matching, guest Messages, guest Account in order. Correct rendered titles; no visual overflow stripe or crash dialog. Four real click actions plus final report; strict destinations JSON and one JUnit PASS. No Matching submission.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "1c3335e6-8e37-44cd-a574-fc0ddd376903",
+      "case": "TC-09",
+      "state": "ACCEPTED",
+      "trace_id": "bb5e6013-99d5-48f5-92e3-a807a0b7e5fe",
+      "evidence": "runs/tc09-attempt-03",
+      "receipt_sha256": {
+        "run-receipt.json": "8b0d2da4293f6913970151463dfaf2dc61b9e1aa4fdf3e969837f07891a404f9",
+        "independent-review.json": "cf5c9e80652df90a2a3c5de1dba6b6223d9858af483acdae64870d9d4315bcd9",
+        "result.junit.xml": "64162cf950d331c40cb465e97881f532c3422aef9fffe304479b13009aa2d3d9",
+        "manifest.json": "20d39a1d7ab4e03455ebb233127697ab58f768d5517a48c786fec307850170a3"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:01:50.192311+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Independently viewed all five original ordered native frames. Home, Search, Matching, guest Messages, guest Account titles rendered; no visual overflow stripe or crash/ANR dialog. Four actual clicks. Strict per-destination schema and JUnit PASS; no AI submission.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "9bce8b86-85d8-4e32-9477-be7112a9a049",
+      "case": "TC-09",
+      "state": "ACCEPTED",
+      "trace_id": "f6d9a7e8-240b-4173-a2bc-2bac7c046f88",
+      "evidence": "runs/tc09-attempt-04",
+      "receipt_sha256": {
+        "run-receipt.json": "0e6c37290b4f3f52048b42b92f650edb4c93c1abe24b975421ef4910cc946725",
+        "independent-review.json": "3c14ee769fbcd9201a7c0ebcdbb60ccfbe26a361ba33e992349fc26eacc0cb09",
+        "result.junit.xml": "16f00dd7b5ff4c83e6fadca595e48b3a3ed27f5af6dc71a1fee79b3ee0be93b7",
+        "manifest.json": "e26a9f75fd6a88d5436caf4868286503cba7e32e28baae7f67b53a0a2c29e9ff"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:03:57.552297+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Viewed all five fresh native frames in order: Home, Search, Matching, guest Messages and guest Account. Correct rendered titles, four genuine clicks, no visual-overflow stripe or crash/ANR dialog. Strict destinations schema plus pytest/JUnit PASS. No Gemini submission.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "53dd8ed0-adc0-49e4-ba4b-451311364d06",
+      "case": "TC-05",
+      "state": "ACCEPTED",
+      "trace_id": "22016c5b-f4d0-4c20-86db-acc9cc0fdb75",
+      "evidence": "runs/tc05-attempt-01",
+      "receipt_sha256": {
+        "run-receipt.json": "3897f0756c5049c943e62392eaf92129f61a46c99090562bc809f3ee41a57807",
+        "independent-review.json": "5a5cf56067587fca770c136457aa860dca8b125c2850152d6a3d71c5ac8a742f",
+        "result.junit.xml": "4463f8ea3aef7c9da84b9f4a2dc694578adf20df9e4a51ab2d31271b5478deae",
+        "manifest.json": "3c177e23a4b407e0ed555173459fd50d208ab6bddad068a92a30be2756633013"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:15:49.391541+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed native input and final empty-result frames: local EMULATOR build, 92-character learning need, zero visible tutor cards, clear no-match state and manual-search recovery control; strict pytest and JUnit pass. Empty local catalogue was confirmed before execution; MatchingService returns before provider invocation for zero candidates.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "ee35dd67-c7c6-4914-8394-8518399d1bdf",
+      "case": "TC-05",
+      "state": "FAILED",
+      "trace_id": "301439ee-3849-486d-b491-cb90866dec2d",
+      "evidence": "runs/tc05-attempt-02",
+      "receipt_sha256": {
+        "run-receipt.json": "f8aff2689b06954bd6e92e4cfc1c289cc47840337a8232b82faa64c4d2e56f4c",
+        "independent-review.json": "46347aa2feb461ad3fc2fdf14cbb93c3d8e666f19d5560718350c14271bafa3d",
+        "result.junit.xml": "fd28b094f24fc839f273537f7f1b4111f4c919c20b8ffe1bcf93a19dd82c4133",
+        "manifest.json": "e6780ca1c95bb60e3d04d51de5372fc75309ee037add03bb93c711e16bc5c6ec"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:17:08.700758+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "FAIL preserved: actual empty-catalog flow completed but final report was prose instead of required JSON; strict parser and JUnit correctly rejected it. No conversion to PASS.",
+        "accepted": false,
+        "junit_pass": false
+      }
+    },
+    {
+      "run_id": "43a3e418-06d7-451c-9b55-79b52081ac9b",
+      "case": "TC-05",
+      "state": "ACCEPTED",
+      "trace_id": "e082d56b-db96-4259-bab8-a6cd47d94539",
+      "evidence": "runs/tc05-attempt-03",
+      "receipt_sha256": {
+        "run-receipt.json": "1fb66266c4c31cda1d3e8e5f6624eb133dd2027d8374f180541290d882147ab8",
+        "independent-review.json": "d7f6468f08ce4325d448e5090aa464b645b745bb27b2ddccf0072b866b0c4884",
+        "result.junit.xml": "f31e780dc240a868587ddc4377929177429c3c88c9bb812580dfe31ef63e04ee",
+        "manifest.json": "ab16ac4169aee4fd88f581360d9f88e16c981609329be92a6dde5c2db3da88e4"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:18:54.922374+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Independently viewed fresh Home, entered need and final no-match frame with manual search link. Correct JSON, strict assertions and JUnit PASS. No candidates in isolated emulator; no Gemini success claimed.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "9377c1ec-1bd2-4de5-8142-b0b5cf36dbe0",
+      "case": "TC-05",
+      "state": "ACCEPTED",
+      "trace_id": "3957aa8f-35d5-4701-bfc0-9ae22de7ea5b",
+      "evidence": "runs/tc05-attempt-04",
+      "receipt_sha256": {
+        "run-receipt.json": "12dbb3c418b5ccd6e8bb329728598d0c544b5736ef072bf3d453810d7cda68df",
+        "independent-review.json": "38fbbc179bf014389a505c45e3d46a5a003217f33fa20e8352e9f7b094bb0505",
+        "result.junit.xml": "a391ed44c6bf5fac3ca10a11e8960693102389861754ebd67b90c55c973e83ad",
+        "manifest.json": "3bebbf9156a145f3e3bc6e8fefb084dcd8e4c67042c988aa2aa4ea9d9c11a7a9"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:20:01.108276+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed fresh Home, submitted learning need and final no-candidate result with visible manual fallback. Strict JSON, pytest/JUnit PASS. Isolated empty catalogue; no provider success claimed.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "7bad05e4-e249-4bc5-96fa-52851f29eef7",
+      "case": "TC-01",
+      "state": "ACCEPTED",
+      "trace_id": "c9eecfd2-341d-403c-9481-3e6239202e99",
+      "evidence": "runs/tc01-attempt-01",
+      "receipt_sha256": {
+        "run-receipt.json": "e8a0ea2d523bdd900efb077873f21179ca61fa4c497bd6e462c6a9c058611355",
+        "independent-review.json": "da12d6bfd7a082e6d9f34471361b575244ce0065c8839e931fbf6bf14fc8bba9",
+        "result.junit.xml": "6839f7341763c9f1ae1c5b05b16c399dea634f214f72206dc7f28ad675dfc28f",
+        "manifest.json": "f53397ccb7aeb7f9217554ad561631cad141d42258ffdf97596f4561986809c3"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:21:01.348408+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed all three frames: guest BeeWise Home, five tabs and explicit no-tutor panel after scroll. Actual rendered cached count is zero despite fixture newly seeded; model accurately reported zero rather than inventing profile. Strict pytest/JUnit PASS.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "1a24d5b2-e79d-452d-a12e-40ce331903c3",
+      "case": "TC-01",
+      "state": "ACCEPTED",
+      "trace_id": "552fa8c2-aefa-48ca-b443-897e90bc2b19",
+      "evidence": "runs/tc01-attempt-02",
+      "receipt_sha256": {
+        "run-receipt.json": "dd27651b73a096d25634aab649f8a1657cede7bc18882c4cf348f247055c423d",
+        "independent-review.json": "8fe488bdeb752a417fea0062d874e0ac02ed386efda1fad58e39a75ac5f4dfb9",
+        "result.junit.xml": "25433b0fd2e8b92024d7d25e7e87555c19f74c009f88bc2ae2eabddc0df1d8f1",
+        "manifest.json": "9fad1634333cef11a1e476cbd0c87ea034c06735f14f119622d1c6723aa48917"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:21:56.275910+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed all frames: Home five tabs, scrolled single actual local Firestore tutor card with explicit demo and unverified disclosure, 150000/hour. Report count one matches native evidence; strict pytest/JUnit PASS.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "1f7c57c1-517f-45b4-977e-4c36f653191d",
+      "case": "TC-01",
+      "state": "ACCEPTED",
+      "trace_id": "ef18cbe1-3734-40ce-8f2b-f6b69a8d5042",
+      "evidence": "runs/tc01-attempt-03",
+      "receipt_sha256": {
+        "run-receipt.json": "5f2b0cbc0c6e4f918dde5b70689895adc72665fa0f81ecaee73410cb3dbc14be",
+        "independent-review.json": "ea2811bc57b5109f1a3b4515c3eda402ea275b1755ca4e8f08bf330b3e7d22fe",
+        "result.junit.xml": "0d069912f0514a6f40acb670403201a5c2fa4c11d6ea9e943471bced2c7fe0ef",
+        "manifest.json": "905e02eafd607711eeb39483e394ddaed15e769e4f16d97992f4da020c5af8f8"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:22:46.039583+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed initial Home and final scrolled single-demo-tutor frame; five tabs, one actual local Firestore card, demo and unverified labels, no Firebase error. Strict JSON and JUnit PASS.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "0feb10d3-9812-4354-80c5-3e1dd6211021",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "f6a5b49a-a710-4dd3-9583-538a1305302b",
+      "evidence": "runs/tc03-attempt-01",
+      "receipt_sha256": {
+        "run-receipt.json": "42b25e0f5aff479ae994619643caf75e578e442ebc69c1c29582f53813e7e14c",
+        "independent-review.json": "fd5b3a376823d04a6c7aaac09b38e8ec336d16064bc3da1e66a1b06f819c25f5",
+        "result.junit.xml": "7b734965efdd2a14680bf16fd600e2f0cd85165f6eb74160cc528f949c5039a8",
+        "manifest.json": "0701e6f690183e884c59883ebe29ebf98cda8a3b28a63b13642effe5d0d948bf"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:23:50.852219+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "FAIL retained: agent input_text did not insert required query, which remained on keyboard clipboard strip; search kept its default one-result state. Agent honestly reported failure; no empty-state PASS.",
+        "accepted": false,
+        "junit_pass": false
+      }
+    },
+    {
+      "run_id": "a787ed61-b3b0-4308-ad6b-fa1e42e50d63",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "abd8d6bf-d33f-40dd-8480-ac73a9dfa4e6",
+      "evidence": "runs/tc03-attempt-02",
+      "receipt_sha256": {
+        "run-receipt.json": "640aa035802f02d216de10841dd8340422ab8400d4ce0488abb76240de14ba70",
+        "independent-review.json": "183cf181fd3a0507a4f935cac15aac1e8412a9bcb59ddf3c8dd839141ba5fa18",
+        "result.junit.xml": "521078531e917883487307d149cd5e7f0d77817b0388b7660b41db32a6180cea",
+        "manifest.json": "1ec85fb60f89db081aef7ded3e8b9ab8477f04518578c1665569769a85d2a525"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:26:05.351644+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "FAIL preserved: Gboard clipboard workaround did not yield the required exact query; duplicated prefix and subsequent empty field prevented genuine search. Agent correctly failed, strict JUnit FAIL. No search result invented.",
+        "accepted": false,
+        "junit_pass": false
+      }
+    },
+    {
+      "run_id": "240cabb2-7dbd-44a2-96a4-fdc8aa96e56b",
+      "case": "TC-03",
+      "state": "ACCEPTED",
+      "trace_id": "c2a1a81d-9b01-4ee9-9e57-d83c5654303a",
+      "evidence": "runs/tc03-attempt-03",
+      "receipt_sha256": {
+        "run-receipt.json": "48f5a98263b5bea1fae3822f0ecb548da84c04f0e53e162bc8451e4343ac4354",
+        "independent-review.json": "5808eda9d102af2b6ac16261af7afd5c40ffbb9b6c9111ad12601a1405f3e17f",
+        "result.junit.xml": "0bb4bc0f384b7917d2225ab059d17fdfcde2020e282cdefb992b87049f22a6e6",
+        "manifest.json": "e49f1933d3949fc816b331c9439230691ba62d738f52234a152be4aa7634189c"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:30:32.143541+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Reviewed blank search, actual inserted query and final zero-result panel with Xoa bo loc recovery. Native ASCII driver fix bypassed ineffective clipboard paste. Strict JSON and JUnit PASS; no rewritten failures.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "401570d6-9c24-4905-9892-2f0acde35223",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "a1dfdebe-5098-4c0d-a9da-022c486f0b38",
+      "evidence": "runs/tc03-attempt-04",
+      "receipt_sha256": {
+        "run-receipt.json": "d34bba9326c978522613a5cf9d46b01c38ff37bdef9b097b9d568667d916f9ff",
+        "independent-review.json": "c4b41b4bfe560d8553656744b80a174baaca650d74378014bf713a6e23daf5dd",
+        "result.junit.xml": "f7e4587c291f949957e3ba78209c73841f32a38286742b12b51d929004c2178f",
+        "manifest.json": "f9b7a7620b4646989d8194178771acdc0641b9a2e914ddcceedabf3a8b80920d"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T15:32:45.119299+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "FAIL and batch halt: repeated BeeWise is not responding dialogs prevented reliable input; no actual search submission/empty-state verification. Preserve all dialog frames and failed JUnit. TC03 corrective retry allowance already used; no further paid sessions admitted.",
+        "accepted": false,
+        "junit_pass": false
+      }
+    },
+    {
+      "run_id": "07da94ec-76f1-4405-bbc1-40075e349435",
+      "case": "TC-03",
+      "state": "ACCEPTED",
+      "trace_id": "33ab524e-3948-447d-aa32-8763390a5cca",
+      "evidence": "runs/tc03-attempt-05",
+      "receipt_sha256": {
+        "run-receipt.json": "bf533ec44a86c6bc48547ce925549604947bae73894d611281120afc9e1c4083",
+        "independent-review.json": "a7e35ad9d4e47557c2fb22ad2efc1f90220fd43f030d1d0f3a23fa516fd403fa",
+        "result.junit.xml": "d367087d3746be22fbb25e1090b63560362d6903640ba3d67a6951a8f3d1435d",
+        "manifest.json": "4f54e45f6b3a3004fe565bd54b453b2ad51c0ee9388e2789ec174263d6e29404"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T16:15:20.641185+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Approved amendment admission 1 of 2. Independently inspected actual typed search, Android IME submission, zero results and visible Xoa bo loc recovery in steps 4-6. Original JSON and strict single-case JUnit passed; no ANR dialog observed.",
+        "accepted": true,
+        "junit_pass": true
+      }
+    },
+    {
+      "run_id": "17a3ed7f-9c43-471e-bc9f-52baf37be2ff",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "7f3b4a0b-fb0e-402b-9fa5-e25a6f5a98c8",
+      "evidence": "runs/tc03-attempt-06",
+      "receipt_sha256": {
+        "run-receipt.json": "0ab80039b36d9b082ee60ae71c128f34291e5d57cf81037e6d74c1b5d1aa86aa",
+        "independent-review.json": "0dacbbb36a9e5e83d613fe3e1aa9bc60821814f244184773695634fba8f47e0b",
+        "result.junit.xml": "cb362a8a02ffa25261659f6fa1f5b4256ea84665372ee63d140acaccbab05c28",
+        "manifest.json": "3870d1e7b067a5467180e99d320956c9046e57bbb70d1f5f889c9d213b641f2c"
+      },
+      "independent_review": {
+        "at_utc": "2026-11-05T16:19:48.776046+00:00",
+        "reviewer": "Codex root native evidence review",
+        "note": "Approved amendment admission 2 of 2. Native preflight PASS; no new am_anr event. Frames show text entry and subsequent cursor clicks/re-entry, without an observed submitted result or final report. Six HTTP 200 responses. Next request refused before reservation/egress by the local input-envelope guard; OpenAI SDK wrapped ValueError as APIConnectionError. Strict JUnit FAIL; no retry permitted.",
+        "accepted": false,
+        "junit_pass": false
+      }
+    }
+  ]
+}

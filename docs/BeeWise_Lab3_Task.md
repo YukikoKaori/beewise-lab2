@@ -1,5 +1,43 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
+> **N-03 completion checkpoint — 06/11/2026: 24/30 accepted, INCOMPLETE.**
+> Eight official cases have 3 accepted Android ARTEMIS runs each. TC-16 was
+> rejected in native review (Google add-account screen, no actionable chooser).
+> TC-22 hit the two-new-failure ceiling; its second local response persisted
+> correctly but had no final ARTEMIS JSON/JUnit PASS. The 11 failed runs are
+> preserved; the host is stopped, and the $0.50 shared-balance reserve was
+> verified after stopping. See [current checkpoint](../evidence/artemis/n03-deepseek-final/STATUS.md)
+> and [cumulative matrix](../evidence/artemis/n03-deepseek-final/completion-summary.json).
+> No production writes, real payOS, exploratory session or completion PR.
+
+> **N-03 runtime update — 05/11/2026: INCOMPLETE.** The approved DeepSeek scope
+> remains exactly 10 official cases ×3, $0.50, 240 attempts, 36 sessions and six
+> failures maximum. **11/30 accepted:** TC-01/05/09 ×3, TC-03 ×2. **6 FAIL** are
+> preserved, 0 blocked/pending admissions. 102 inference requests, 984,855
+> reported tokens, $0.3077667 conservative; $0.1922333 remains under the raw cap.
+> After the exact owner-approved two-session amendment, TC-03 had one PASS and
+> one FAIL; the latter was a local input-envelope rejection, with no new ANR.
+> Both amended admissions and the failure limit are exhausted. Inference host
+> stopped; no exploration, production changes or completion PR.
+> [Current evidence and exact stop/resume gates](../evidence/artemis/n03-deepseek-final/README.md).
+> Subsequent offline input-envelope fix: turn 7 exceeded 32 KiB of non-image
+> JSON (at most seven inline images); exact historic byte count unavailable.
+> Same caps, typed local rejection and safe diagnostic counts. 233 offline
+> tests pass; no additional live sessions. One-admission TC-03 amendment is
+> proposed only; the full remaining matrix still needs a feasible conservative
+> cost forecast and the TC-16 chooser prerequisite.
+> Earlier N-03 reports below remain historical; Bao F-02 / Nguyen F-03 ownership
+> and previously verified Firebase acceptance remain unchanged.
+
+> **Native follow-up, same day:** normal restart of the same API35 AVD preserved
+> userdata. Three settled cold starts and one warm start reached focused Home
+> without new ANR; this is a scoped operational workaround, not a proven root-cause
+> app fix. Boot-time Google Messages ANR remains disclosed. Native preflight was
+> strengthened and both approved TC-03 sessions cleared it. Earlier cache /
+> off-peak reconstruction (~$0.0531 for the first 90 calls) explains the earlier
+> dashboard observation without changing historical ledger estimates. See the
+> evidence README for the updated cost and exact blockers.
+
 > **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
 > authorized1/actual2 request deviation retrospectively. The earlier draft
 > hold below is historical and resolved; ready for review is conditional on

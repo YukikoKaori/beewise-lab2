@@ -1,0 +1,230 @@
+[
+  {
+    "name": "analyze",
+    "utc": "2026-11-05T14:40:52.997264+00:00",
+    "elapsed_seconds": 136.781,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+      "analyze"
+    ],
+    "log_sha256": "8e9bd482d7d13ae11f13c41581ea5826732c616d5da16faa0f922abe098720a8"
+  },
+  {
+    "name": "backend-deps",
+    "utc": "2026-11-05T14:39:50.744389+00:00",
+    "elapsed_seconds": 22.75,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "npm.cmd",
+      "ci",
+      "--prefix",
+      "backend",
+      "--ignore-scripts"
+    ],
+    "log_sha256": "35c71fc0a3f0a5ac75fe4177dd6ff42681d60b752d79460a9e95930eccc641f8"
+  },
+  {
+    "name": "backend",
+    "utc": "2026-11-05T14:42:34.200409+00:00",
+    "elapsed_seconds": 48.109,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "npm.cmd",
+      "--prefix",
+      "backend",
+      "test"
+    ],
+    "log_sha256": "d255b42a0e38b9c6e2cd4cd302234fc27acd72deb1db46cbe9fefe954a0578c5"
+  },
+  {
+    "name": "build-emulator",
+    "utc": "2026-11-05T15:06:43.471707+00:00",
+    "elapsed_seconds": 145.5,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+      "build",
+      "apk",
+      "--debug",
+      "--no-android-gradle-daemon",
+      "--android-project-arg=kotlin.incremental=false",
+      "--dart-define=BEEWISE_API_BASE_URL=http://10.0.2.2:8787",
+      "--dart-define=BEEWISE_FIREBASE_EMULATOR_HOST=10.0.2.2"
+    ],
+    "log_sha256": "7e6fb9b45655e7411464a82127c5becc74fc4639bede1252ff6d4cb571042c93"
+  },
+  {
+    "name": "build",
+    "utc": "2026-11-05T14:46:31.025659+00:00",
+    "elapsed_seconds": 291.875,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+      "build",
+      "apk",
+      "--debug",
+      "--no-android-gradle-daemon",
+      "--android-project-arg=kotlin.incremental=false"
+    ],
+    "log_sha256": "70539519a263e36015533555cfd8025d17cc4d07dddcd675140df4503b903b71"
+  },
+  {
+    "name": "collect",
+    "utc": "2026-11-05T14:39:57.525600+00:00",
+    "elapsed_seconds": 1.562,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "-m",
+      "pytest",
+      "-c",
+      "e2e_test/pyproject.toml",
+      "e2e_test",
+      "--collect-only",
+      "-q"
+    ],
+    "log_sha256": "30e7d48faf5ede2a7f6fdfcdea8ca9b1b8b8e91175b404dc9fdd5996d0d24545"
+  },
+  {
+    "name": "flutter-test",
+    "utc": "2026-11-05T14:41:39.160514+00:00",
+    "elapsed_seconds": 46.156,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+      "test",
+      "--reporter",
+      "expanded"
+    ],
+    "log_sha256": "a564ae8bd3b90d31d48ce5c9ff03678a4e80371b470e9cb9262a6c385a641a27"
+  },
+  {
+    "name": "format",
+    "utc": "2026-11-05T14:38:36.220437+00:00",
+    "elapsed_seconds": 1.703,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\dart.bat",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "."
+    ],
+    "log_sha256": "01d672c92757e437e30620f8b9854d1593e22f71adfd024addd286bb70d42d49"
+  },
+  {
+    "name": "harness",
+    "utc": "2026-11-05T14:57:16.878449+00:00",
+    "elapsed_seconds": 0.234,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_e2e_harness.py"
+    ],
+    "log_sha256": "599a62951bc985b8f37654344120700bc309636abfd440c6b27244ff8f907dae"
+  },
+  {
+    "name": "parser",
+    "utc": "2026-11-05T14:57:16.636898+00:00",
+    "elapsed_seconds": 0.563,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_artemis_report_parser.py"
+    ],
+    "log_sha256": "8d9df090661483c4abcaa81e74aad384be144792052fe20fcf34eea03306f620"
+  },
+  {
+    "name": "pub",
+    "utc": "2026-11-05T14:38:34.517805+00:00",
+    "elapsed_seconds": 6.141,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:\\CodexTemp\\beewise-lab3-tools\\flutter\\bin\\flutter.bat",
+      "pub",
+      "get",
+      "--enforce-lockfile"
+    ],
+    "log_sha256": "16d20b61d8d698e073f5f6083e6d455797ec17b5cb81a23817bcda1361a08249"
+  },
+  {
+    "name": "rules-deps",
+    "utc": "2026-11-05T14:39:27.992470+00:00",
+    "elapsed_seconds": 49.375,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "npm.cmd",
+      "ci",
+      "--prefix",
+      "firebase",
+      "--ignore-scripts"
+    ],
+    "log_sha256": "24497b32b2b3d3129dc2b16ad9d7c30bb9cb47a30123227d173747269f365d6c"
+  },
+  {
+    "name": "rules",
+    "utc": "2026-11-05T14:41:46.090921+00:00",
+    "elapsed_seconds": 31.266,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "npm.cmd",
+      "--prefix",
+      "firebase",
+      "test"
+    ],
+    "log_sha256": "ba92ee9f7df57c509e28f6f257fbe68a602a7776881fc1409d2a65422563f6d6"
+  },
+  {
+    "name": "runner",
+    "utc": "2026-11-05T14:57:20.623176+00:00",
+    "elapsed_seconds": 3.75,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/check_artemis_runner.py"
+    ],
+    "log_sha256": "8fed78ccb9aac19e080424e1e04353286753439697d32890252febbb5f177958"
+  },
+  {
+    "name": "startup-parser",
+    "utc": "2026-11-05T14:39:55.967598+00:00",
+    "elapsed_seconds": 0.375,
+    "exit_code": 0,
+    "command": [
+      "rtk",
+      "proxy",
+      "D:/CodexTemp/artemis-deepseek-audit/.venv/Scripts/python.exe",
+      "scripts/test_measure_bao_startup.py"
+    ],
+    "log_sha256": "b0c2be0878d70579a08f5fdd53d36cbf99b4c3a3187e431955334988714f471f"
+  }
+]

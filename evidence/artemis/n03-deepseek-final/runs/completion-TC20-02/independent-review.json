@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:43:34.255212+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Native chat shows trial date and time then parent accepted confirmation. Local Firestore independently shows exactly one response and no invoice or official class.",
+  "accepted": true,
+  "junit_pass": true
+}

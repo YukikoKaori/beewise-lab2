@@ -1,0 +1,19 @@
+{
+  "owner_decision_date": "2026-11-06",
+  "timezone": "Asia/Bangkok",
+  "approval": "tôi duyệt ngân sách nhé , còn tc-16 thì phải mở máy ảo để tôi twjtheme tài khoản gg",
+  "proposal_sha256": "d876e1e04e78a993bf1f6474f50f45704e285e6ff71c47c9bf350fe7b0a5c3a6",
+  "starting_sessions": 35,
+  "starting_accepted": 24,
+  "starting_failed": 11,
+  "starting_inference_attempts": 211,
+  "starting_conservative_nanodollars": 624296100,
+  "maximum_cumulative_sessions": 42,
+  "maximum_cumulative_inference_attempts": 258,
+  "maximum_cumulative_conservative_nanodollars": 780000000,
+  "minimum_nexora_reserve_nanodollars": 500000000,
+  "expires_utc": "2026-11-06T14:52:19.526760+00:00",
+  "ledger_reset": false,
+  "substitution_approved": false,
+  "exploration_approved": false
+}
