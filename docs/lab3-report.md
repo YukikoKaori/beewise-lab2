@@ -127,11 +127,11 @@ role and payment invariants must be enforced in that server code before release.
 
 PR #16 merged F-03 into `main` (`1923a76`): consultant claim and proposals, class revision, server-issued invoice, payOS checkout, signed webhook with provider re-check, verified payment and official class schedule (`backend/`).
 
-| Item | Status (per tracker; tests not re-run for this note) |
+| Item | Status (Flutter re-run; others per tracker) |
 |---|---|
-| Backend emulator tests | 45 |
-| Firestore Rules tests | 59 |
-| Flutter tests | 130 |
+| Backend emulator tests | 45 (tracker; not re-run: emulator needs JDK 21, only 17 and 25 installed) |
+| Firestore Rules tests | 59 (tracker; not re-run, same JDK reason) |
+| Flutter tests | 130 passed (re-run 2026-11-05, Flutter 3.47.8, includes untracked `test/n02_state_recovery_test.dart`) |
 | Live payOS payment | One 2,000 VND transfer, real Firebase project, API36 emulator ([evidence](../evidence/cloud/f03-payos-live-20261105/README.md)) |
 | Deployment | **Not deployed**; see the next section |
 
