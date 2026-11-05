@@ -52,68 +52,48 @@ abstract final class BeeWiseElevation {
 
 class BeeWiseTheme {
   static ThemeData get light {
+    // Type scale (sp): 28 / 24 / 22 / 20 / 18 headings (Nunito),
+    // 16 titles + body-large, 14 body + labels, 12 captions (Be Vietnam Pro).
+    TextStyle heading(double size, double line, FontWeight weight) => TextStyle(
+      fontFamily: 'Nunito',
+      fontSize: size,
+      height: line / size,
+      fontWeight: weight,
+      color: BeeWiseColors.ink,
+    );
+    TextStyle body(
+      double size,
+      double line, {
+      FontWeight weight = FontWeight.w400,
+      Color color = BeeWiseColors.ink,
+    }) => TextStyle(
+      fontFamily: 'Be Vietnam Pro',
+      fontSize: size,
+      height: line / size,
+      fontWeight: weight,
+      color: color,
+    );
     final textTheme = TextTheme(
-      displayLarge: const TextStyle(
-        fontFamily: 'Nunito',
-        fontSize: 28,
-        height: 36 / 28,
-        fontWeight: FontWeight.w800,
-        color: BeeWiseColors.ink,
-      ),
-      headlineLarge: const TextStyle(
-        fontFamily: 'Nunito',
-        fontSize: 24,
-        height: 30 / 24,
-        fontWeight: FontWeight.w800,
-        color: BeeWiseColors.ink,
-      ),
-      headlineMedium: const TextStyle(
-        fontFamily: 'Nunito',
-        fontSize: 20,
-        height: 26 / 20,
-        fontWeight: FontWeight.w800,
-        color: BeeWiseColors.ink,
-      ),
-      titleLarge: const TextStyle(
-        fontFamily: 'Nunito',
-        fontSize: 16,
-        height: 22 / 16,
-        fontWeight: FontWeight.w700,
-        color: BeeWiseColors.ink,
-      ),
-      bodyLarge: const TextStyle(
-        fontFamily: 'Be Vietnam Pro',
-        fontSize: 16,
-        height: 24 / 16,
-        color: BeeWiseColors.ink,
-      ),
-      bodyMedium: const TextStyle(
-        fontFamily: 'Be Vietnam Pro',
-        fontSize: 14,
-        height: 21 / 14,
-        color: BeeWiseColors.ink,
-      ),
-      bodySmall: const TextStyle(
-        fontFamily: 'Be Vietnam Pro',
-        fontSize: 14,
-        height: 20 / 14,
-        fontWeight: FontWeight.w500,
+      displayLarge: heading(28, 36, FontWeight.w800),
+      displayMedium: heading(24, 30, FontWeight.w800),
+      displaySmall: heading(22, 28, FontWeight.w800),
+      headlineLarge: heading(24, 30, FontWeight.w800),
+      headlineMedium: heading(20, 26, FontWeight.w800),
+      headlineSmall: heading(18, 24, FontWeight.w800),
+      titleLarge: heading(16, 22, FontWeight.w700),
+      titleMedium: body(16, 22, weight: FontWeight.w600),
+      titleSmall: body(14, 20, weight: FontWeight.w600),
+      bodyLarge: body(16, 24),
+      bodyMedium: body(14, 21),
+      bodySmall: body(
+        14,
+        20,
+        weight: FontWeight.w500,
         color: BeeWiseColors.muted,
       ),
-      labelLarge: const TextStyle(
-        fontFamily: 'Be Vietnam Pro',
-        fontSize: 14,
-        height: 20 / 14,
-        fontWeight: FontWeight.w600,
-        color: BeeWiseColors.ink,
-      ),
-      labelMedium: const TextStyle(
-        fontFamily: 'Be Vietnam Pro',
-        fontSize: 14,
-        height: 20 / 14,
-        fontWeight: FontWeight.w500,
-        color: BeeWiseColors.ink,
-      ),
+      labelLarge: body(14, 20, weight: FontWeight.w600),
+      labelMedium: body(14, 20, weight: FontWeight.w500),
+      labelSmall: body(12, 16, weight: FontWeight.w600),
     );
     final colorScheme = ColorScheme.fromSeed(
       seedColor: BeeWiseColors.primary,
@@ -131,6 +111,7 @@ class BeeWiseTheme {
     );
     return ThemeData(
       useMaterial3: true,
+      fontFamily: 'Be Vietnam Pro',
       colorScheme: colorScheme,
       scaffoldBackgroundColor: BeeWiseColors.canvas,
       textTheme: textTheme,
@@ -160,6 +141,11 @@ class BeeWiseTheme {
           vertical: BeeWiseSpace.x3,
         ),
         hintStyle: textTheme.bodyMedium?.copyWith(color: BeeWiseColors.muted),
+        helperStyle: textTheme.labelSmall?.copyWith(
+          color: BeeWiseColors.muted,
+          fontWeight: FontWeight.w500,
+        ),
+        errorStyle: textTheme.labelSmall?.copyWith(color: BeeWiseColors.error),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(BeeWiseRadius.field),
           borderSide: const BorderSide(color: BeeWiseColors.border),
@@ -183,7 +169,7 @@ class BeeWiseTheme {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           backgroundColor: BeeWiseColors.primary,
           foregroundColor: Colors.white,
-          textStyle: textTheme.labelLarge?.copyWith(color: Colors.white),
+          textStyle: textTheme.titleMedium?.copyWith(color: Colors.white),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(BeeWiseRadius.full),
           ),
@@ -194,7 +180,7 @@ class BeeWiseTheme {
           minimumSize: const Size(48, 48),
           foregroundColor: BeeWiseColors.primary,
           side: const BorderSide(color: BeeWiseColors.primary),
-          textStyle: textTheme.labelLarge?.copyWith(
+          textStyle: textTheme.titleMedium?.copyWith(
             color: BeeWiseColors.primary,
           ),
           shape: RoundedRectangleBorder(
@@ -206,16 +192,33 @@ class BeeWiseTheme {
         height: 72,
         backgroundColor: BeeWiseColors.surface,
         indicatorColor: BeeWiseColors.highlight,
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           final selected = states.contains(WidgetState.selected);
           return TextStyle(
             fontFamily: 'Be Vietnam Pro',
-            fontSize: 14,
-            height: 20 / 14,
+            fontSize: 12,
+            height: 16 / 12,
             fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
             color: selected ? BeeWiseColors.ink : BeeWiseColors.muted,
           );
         }),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          textStyle: textTheme.labelLarge,
+          foregroundColor: BeeWiseColors.primary,
+        ),
+      ),
+      chipTheme: ChipThemeData(
+        labelStyle: textTheme.labelLarge,
+        backgroundColor: BeeWiseColors.surface,
+        selectedColor: BeeWiseColors.highlight,
+        side: const BorderSide(color: BeeWiseColors.borderStrong),
+        shape: const StadiumBorder(),
+        showCheckmark: false,
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 6),
       ),
       dividerColor: BeeWiseColors.border,
       visualDensity: VisualDensity.standard,
