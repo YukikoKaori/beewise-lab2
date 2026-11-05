@@ -140,7 +140,7 @@ async def check():
         device_serial = "offline-no-device"
 
         async def run(self, *args, **kwargs):
-            assert kwargs["profile"] == "pro"
+            assert kwargs["profile"] in {"pro", "flash"}
             assert "never submit a Gemini/provider request" in args[0]
             return SimpleNamespace(trace_id="offline-not-evidence", status="completed",
                                    succeeded=True, error=None, output={"elapsed_minutes": 20})

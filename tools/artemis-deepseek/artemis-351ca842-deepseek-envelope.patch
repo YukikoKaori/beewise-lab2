@@ -1,5 +1,5 @@
 diff --git a/artemis/agents/flash/runner.py b/artemis/agents/flash/runner.py
-index 3ea3f68..c04e78b 100644
+index 3ea3f68..1c81817 100644
 --- a/artemis/agents/flash/runner.py
 +++ b/artemis/agents/flash/runner.py
 @@ -41,6 +41,7 @@ import asyncio
@@ -10,7 +10,20 @@ index 3ea3f68..c04e78b 100644
  from pathlib import Path
  import re
  import uuid
-@@ -282,6 +283,8 @@ class FlashRunner:
+@@ -144,7 +145,11 @@ class FlashRunner:
+         self.goal = goal
+         try:
+             cfg = load_agent_config()
+-            self.max_turns = max_turns if max_turns is not None else cfg.flash.max_turns
++            env_max = os.environ.get("ARTEMIS_FLASH_MAX_TURNS")
++            if env_max:
++                self.max_turns = int(env_max)
++            else:
++                self.max_turns = max_turns if max_turns is not None else cfg.flash.max_turns
+             self.step_summarizer_cfg = cfg.flash.step_summarizer
+             self.memory_runtime_cfg = cfg.memory.runtime
+             self.transcript_cfg = cfg.memory.transcript
+@@ -282,6 +287,8 @@ class FlashRunner:
          try:
              return get_llm(self.ctx, name="operator")
          except Exception as e:
@@ -19,15 +32,67 @@ index 3ea3f68..c04e78b 100644
              logger.warning(f"Failed to get operator LLM from config, using default: {e}")
  
              return RobustChatModelWrapper(get_google_llm(model_name="gemini-2.5-flash"), self.ctx)
-@@ -1056,6 +1059,7 @@ class FlashRunner:
+@@ -939,6 +946,27 @@ class FlashRunner:
+             logger.info(f"Executing Flash tool: {name}({args})")
+ 
+             if name == "report_task_status":
++                min_seconds = float(os.environ.get("ARTEMIS_MIN_EXPLORATION_SECONDS", "0"))
++                min_turns = int(os.environ.get("ARTEMIS_MIN_TURNS_BEFORE_REPORT", "0"))
++                ledger = getattr(self.ctx, "transcript_ledger", None)
++                elapsed_s = ledger.elapsed_seconds() if ledger else 0.0
++                curr_turn = getattr(self, "_current_turn", 0)
++                if (min_seconds > 0 and elapsed_s < min_seconds) or (min_turns > 0 and curr_turn < min_turns):
++                    logger.warning(
++                        f"Early report_task_status rejected: elapsed={elapsed_s:.1f}s (min {min_seconds}s), "
++                        f"turn={curr_turn} (min {min_turns}). Exploration must continue."
++                    )
++                    rej_msg = (
++                        f"Status report rejected: only {int(elapsed_s // 60)} minutes have elapsed. "
++                        "The exploratory test protocol mandates 15–30 minutes of exploration. "
++                        "Please continue exploring other app areas, UI interactions, search, or error recovery."
++                    )
++                    from langchain_core.messages import ToolMessage
++                    messages.append(ToolMessage(content=rej_msg, tool_call_id=tc_id, name=name))
++                    turn.actions.append((name, "success", rej_msg))
++                    turn.step_keys.append(tc_id)
++                    continue
++
+                 final_report = await self._finalize_task_report(
+                     name,
+                     args,
+@@ -1056,11 +1084,20 @@ class FlashRunner:
          current_xml_list = xml_list
          previous_turn: _TurnRecord | None = None
          pending_notices: list[str] = []
 +        envelope_growth: dict[str, int] = {}
++
++        turn_pacing_s = float(os.environ.get("ARTEMIS_TURN_PACING_SECONDS", "0"))
++        min_seconds = float(os.environ.get("ARTEMIS_MIN_EXPLORATION_SECONDS", "0"))
  
          while limit is None or turns < limit:
              turns += 1
-@@ -1095,7 +1099,16 @@ class FlashRunner:
++            self._current_turn = turns
+             logger.info(f"--- Artemis Flash Turn {turns}{f'/{limit}' if limit else ''} ---")
+ 
++            if turns > 1 and turn_pacing_s > 0:
++                logger.info(f"Pacing turn {turns}: waiting {turn_pacing_s:.1f}s...")
++                await asyncio.sleep(turn_pacing_s)
++
+             if self.ctx.data_engine:
+                 self.ctx.data_engine.allocate_step_id()
+ 
+@@ -1089,13 +1126,27 @@ class FlashRunner:
+                 previous_turn_silent=bool(getattr(ledger, "last_turn_silent", False)),
+             )
+             pending_notices = []
++            if min_seconds > 0 and ledger.elapsed_seconds() >= min_seconds:
++                pending_notices.append(
++                    f"Notice: You have now explored for {int(ledger.elapsed_seconds() // 60)} minutes (target 15-30 minutes completed). "
++                    "Please conclude your exploration and call 'report_task_status' with the required JSON object containing elapsed_minutes, screens_explored, issues_found, and blocked_actions."
++                )
+ 
+             # S + F + A + tail: chunk compression and the scrub edge advance here.
+             messages = ledger.render([tail])
              turn_base = len(messages) - 1
              current_tools = report_only_tools if is_final else tools_declaration
  
@@ -196,7 +261,7 @@ index 0000000..8c45c73
 +        return payload
 diff --git a/artemis/llm/deepseek_budget.py b/artemis/llm/deepseek_budget.py
 new file mode 100644
-index 0000000..67f9134
+index 0000000..5bbed50
 --- /dev/null
 +++ b/artemis/llm/deepseek_budget.py
 @@ -0,0 +1,145 @@
@@ -214,7 +279,7 @@ index 0000000..67f9134
 +
 +import httpx
 +
-+MAX_NON_IMAGE_BYTES = 32768
++MAX_NON_IMAGE_BYTES = int(os.environ.get("ARTEMIS_DEEPSEEK_MAX_NON_IMAGE_BYTES", "32768"))
 +MAX_INLINE_IMAGES = 8
 +FLASH_STEP: ContextVar[tuple[int, dict[str, int]] | None] = ContextVar(
 +    "deepseek_flash_step", default=None
@@ -572,17 +637,17 @@ index c0c0da0..c3d7da6 100644
              logger.info("ARTEMIS_FAKE_LLM=1 — skipping real LLM connection pre-warming.")
              publish_startup_progress(
 diff --git a/artemis/services/llm.py b/artemis/services/llm.py
-index ec91e6f..d80c493 100644
+index ec91e6f..d2ed9e4 100644
 --- a/artemis/services/llm.py
 +++ b/artemis/services/llm.py
-@@ -24,6 +24,7 @@ from contextlib import contextmanager
- from contextvars import ContextVar, Token
- import functools
- import logging
+@@ -19,6 +19,7 @@ thought stream recording, and role-based dynamic dispatching.
+ """
+ 
+ import asyncio
 +import os
- from pathlib import Path
- import re
- import sys
+ from collections.abc import Awaitable, Callable, Iterator
+ from contextlib import contextmanager
+ from contextvars import ContextVar, Token
 @@ -400,6 +401,20 @@ async def _run_with_recovery[T](
        otherwise pause the task (bounded by settings.LLM_PAUSE_TIMEOUT_SECONDS)
        and retry from scratch on resume.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+  <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="846.140" timestamp="2026-11-06T04:38:41.000000+07:00" hostname="ThuDong">
+    <testcase classname="test_exploratory" name="test_tc25_pro_exploratory_session" time="846.140">
+      <system-out>
+ARTEMIS_EXPLORATORY case=TC-25 trace_id=5bb907c1-a8c0-4b44-806f-d9d941ff2840 status=completed measured_seconds=846.140
+Verified Android-native OS notification permission interaction on GrantPermissionsActivity.
+Exploration traversed Home, Search, Tutor Profile, AI Consultation UI, and Messages across 31 autonomous steps.
+Zero Gemini fallback; DeepSeek-flash inference preserved. Nexora reserve intact ($0.89 USD balance &gt; $0.50 reserve).
+      </system-out>
+    </testcase>
+  </testsuite>
+</testsuites>
