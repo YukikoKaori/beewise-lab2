@@ -1,0 +1,16 @@
+{
+  "status": "OWNER_APPROVED_EXACT_AMENDMENT",
+  "approval_ref": "call_1106857df9214fd28ffdb9600c8f142f",
+  "owner_answer": "Duyệt đúng amendment/hash, giữ nguyên mọi trần",
+  "proposal_sha256": "58c5df664616283a7d8f6147090023963683ca266e4a23fe70c71efe08051b31",
+  "tc03_additional_admissions_max": 2,
+  "stop_after_new_failure_or_anr": true,
+  "historical_tc03_pass": 1,
+  "historical_tc03_fail": 3,
+  "approved_conservative_usd": 0.50,
+  "approved_http_attempts": 240,
+  "approved_session_ceiling": 36,
+  "ledger_expires_utc_unchanged": "2026-11-06T14:52:19.526760+00:00",
+  "matrix_changed": false,
+  "additional_spending_approved": false
+}

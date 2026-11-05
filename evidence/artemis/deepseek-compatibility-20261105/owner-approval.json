@@ -1,0 +1,18 @@
+{
+  "date_local": "2026-11-05",
+  "timezone": "Asia/Bangkok",
+  "owner_answer": "Duyệt đúng 1 TC-09 và ngân sách trên",
+  "test": "TC-09 only; one run",
+  "provider": "official DeepSeek",
+  "model": "deepseek-flash",
+  "maximum_total_http_attempts": 12,
+  "maximum_seconds": 600,
+  "published_price_estimate_usd": 0.18,
+  "published_price_conservative_budget_usd": 3.81,
+  "gemini_fallback": false,
+  "additional_tests_or_exploration": false,
+  "credit_purchase_or_cloud_changes": false,
+  "model_discovery_attempts_consumed": 1,
+  "inference_attempts_consumed": 0,
+  "maximum_inference_attempts_remaining": 11
+}

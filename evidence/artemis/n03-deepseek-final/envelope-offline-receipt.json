@@ -1,0 +1,89 @@
+{
+  "at_utc": "2026-11-05T16:49:09.972137+00:00",
+  "beewise_head": "a72059ca5e07a4c1193960965dc07453efea161d",
+  "artemis_base": "351ca8422f7b5b54e80a9c1ce03a222e02415b6b",
+  "patch": {
+    "path": "tools/artemis-deepseek/artemis-351ca842-deepseek-envelope.patch",
+    "sha256": "2c66224d38027b59ef0d24c0408c9c30acd877b6cb806b2d1c40d129dd5f58a4",
+    "baseline_apply_check": "PASS"
+  },
+  "historic_failed_receipt": {
+    "path": "tc03-input-envelope-failure.json",
+    "sha256": "4baee880bde0a8231ac3d659fd5038d227da434a67cb2c7ef6608a0619616bc1",
+    "trace_id": "7f3b4a0b-fb0e-402b-9fa5-e25a6f5a98c8"
+  },
+  "historical_diagnosis": {
+    "role": "operator",
+    "turn": 7,
+    "completed_action_tools": {
+      "click": 4,
+      "input_text": 2
+    },
+    "no_helper_tool_images": true,
+    "image_count_upper_bound": 7,
+    "image_cap": 8,
+    "non_image_byte_cap": 32768,
+    "failed_non_image_bytes_exact": null,
+    "reason": "non_image_bytes_exceeded inferred by ruling out image overflow from actual path",
+    "previous_attempt_input_reservation_bounds": [
+      31252,
+      33571,
+      36517,
+      38245,
+      40262,
+      41131
+    ]
+  },
+  "offline_replays": [
+    {
+      "turn": 7,
+      "non_image_bytes_before": 33668,
+      "non_image_bytes_after": 32686,
+      "images_before_and_after": 5,
+      "historical_messages": 18
+    },
+    {
+      "turn": 8,
+      "non_image_bytes_before": 33668,
+      "non_image_bytes_after": 32686,
+      "images_before_and_after": 5,
+      "historical_messages": 21
+    }
+  ],
+  "offline_regression": {
+    "pass": 233,
+    "failed": 0,
+    "skipped": 0,
+    "junit": "offline-envelope.junit.xml",
+    "junit_sha256": "4354e515f058970133119a9202485a04c1aa7e7f56bfe3be64d4f6128b593171",
+    "test_files": [
+      "tests/unit/agents/test_flash_runner.py",
+      "tests/unit/agents/test_flash_scrub_edge.py",
+      "tests/unit/agents/test_flash_step_summarizer.py",
+      "tests/unit/memory/test_history_chunking.py",
+      "tests/unit/memory/test_transcript_ledger.py",
+      "tests/unit/test_deepseek_compatibility.py",
+      "tests/unit/test_deepseek_ledger.py",
+      "tests/unit/test_llm_gateway.py",
+      "tests/unit/test_llm_structured.py"
+    ],
+    "launcher": "tools/artemis-deepseek/run_offline_suite.py",
+    "egress": "External sockets and DNS blocked; provider transports stubbed"
+  },
+  "native_evidence_retained": "native-stabilization-20261105/summary.json",
+  "unchanged_ledger": {
+    "calls": 102,
+    "tokens": 984855,
+    "conservative_usd": 0.3077667,
+    "accepted": 11,
+    "failed": 6
+  },
+  "new_live_sessions": 0,
+  "new_provider_calls": 0,
+  "exploration": "NOT RUN",
+  "proposed_amendment": {
+    "path": "safe-completion-amendment.md",
+    "sha256": "5536cc9bee998d1d1b49764cf38e16c3613b85481b4aba856dce8a6829c8e3b6",
+    "approved": false
+  }
+}

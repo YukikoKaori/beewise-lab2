@@ -1,0 +1,42 @@
+{
+  "files_scanned": 247,
+  "actual_private_key_match_files": [],
+  "potential_email_files_for_review": [
+    "evidence/artemis/deepseek-compatibility-20261105/artemis-live-tested.patch",
+    "evidence/artemis/deepseek-compatibility-20261105/offline-post-live.junit.xml",
+    "evidence/artemis/deepseek-compatibility-20261105/offline.junit.xml",
+    "evidence/artemis/n03-deepseek-final/historical-flash-contract-160-tests.patch",
+    "evidence/artemis/n03-deepseek-final/historical-ledger-179-tests.patch",
+    "evidence/artemis/n03-deepseek-final/offline-final.junit.xml",
+    "tools/artemis-deepseek/artemis-351ca842-deepseek.patch",
+    "tools/artemis-deepseek/local_fixture.mjs"
+  ],
+  "largest_files": [
+    {
+      "path": "evidence/artemis/n03-deepseek-final/ascii-input-native.png",
+      "bytes": 124187
+    },
+    {
+      "path": "evidence/artemis/n03-deepseek-final/runs/tc05-attempt-03/step-08.jpg",
+      "bytes": 107838
+    },
+    {
+      "path": "evidence/artemis/n03-deepseek-final/runs/tc05-attempt-02/step-07.jpg",
+      "bytes": 107790
+    },
+    {
+      "path": "evidence/artemis/n03-deepseek-final/runs/tc05-attempt-04/step-08.jpg",
+      "bytes": 107773
+    },
+    {
+      "path": "evidence/artemis/n03-deepseek-final/runs/tc05-attempt-01/step-07.jpg",
+      "bytes": 107770
+    },
+    {
+      "path": "evidence/artemis/n03-deepseek-final/runs/tc05-attempt-01/step-06.jpg",
+      "bytes": 107483
+    }
+  ],
+  "source_app_changed": false,
+  "reviewed_email_findings": "False positives from Python decorators and intentionally invalid DeepSeek URL test cases; two declared disposable beewise.test emulator identities. No real account email exported in new evidence."
+}

@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T15:21:01.348408+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Reviewed all three frames: guest BeeWise Home, five tabs and explicit no-tutor panel after scroll. Actual rendered cached count is zero despite fixture newly seeded; model accurately reported zero rather than inventing profile. Strict pytest/JUnit PASS.",
+  "accepted": true,
+  "junit_pass": true
+}

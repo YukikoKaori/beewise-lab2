@@ -1,0 +1,3 @@
+{
+  "original_explanation": "{\"result_count\":0,\"empty_state_visible\":false,\"recovery_action_visible\":false,\"message\":\"Could not complete TC-03: the search term 'zz-no-tutor-match-393-2026' could not be reliably entered into the Tìm gia sư search field. input_text left the text only in Gboard's clipboard suggestion, and tapping the suggestion appended to existing text producing a duplicated prefix ('zz-nozz-no-tutor-match-393-2026'); after clearing the field it was empty again. The search was never submitted, so no empty-state message or retry/clear-search recovery action was observed or verified.\"}"
+}

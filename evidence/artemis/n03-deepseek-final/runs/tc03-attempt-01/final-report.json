@@ -1,0 +1,3 @@
+{
+  "original_explanation": "{\"result_count\":0,\"empty_state_visible\":false,\"recovery_action_visible\":false,\"message\":\"Could not complete TC-03: the Tìm gia sư search field never accepted the test term 'zz-no-tutor-match-393-2026'. Multiple input_text attempts and an ENTER submit left the field showing only its placeholder hint (the text appeared only in the keyboard clipboard strip), and the list continued to show the default '1 gia sư phù hợp' result. No empty-state message or retry/clear-search recovery action was ever displayed, so the verification could not be performed.\"}"
+}

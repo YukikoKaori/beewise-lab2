@@ -1,0 +1,25 @@
+{
+  "provenance": "90 structured ARTEMIS llm_usage receipts, not dashboard attribution",
+  "response_count": 90,
+  "totals": {
+    "prompt_tokens": 853601,
+    "completion_tokens": 12053,
+    "total_tokens": 865654,
+    "cached_tokens": 559232
+  },
+  "first_utc": "2026-11-05T14:55:40.966138+00:00",
+  "last_utc": "2026-11-05T15:31:19.497081+00:00",
+  "all_calls_off_peak": true,
+  "conservative_peak_no_cache_usd": 0.2705439,
+  "cache_off_peak_reconstruction_usd": 0.053064846,
+  "not_provider_billing_receipt": true,
+  "owner_reported_dashboard": {
+    "approximate_tokens": 910823,
+    "approximate_usd": 0.05,
+    "scope": "Shared account; exact time range/project allocation not independently verified"
+  },
+  "historical_tc09_tokens": 45169,
+  "arithmetic_combined_tokens": 910823,
+  "authorization_unchanged": true,
+  "pricing_source": "https://api-docs.deepseek.com/quick_start/pricing/"
+}

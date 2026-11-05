@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:35:55.272480+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Blank Register and unchecked consent; real submit tap yields visible consent rejection, no registration.",
+  "accepted": true,
+  "junit_pass": true
+}

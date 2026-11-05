@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T17:38:39.776997+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Rejected despite pytest/JUnit pass: frames show Google Checking info then native Sign in to add an account, not the required chooser. Android Back and BeeWise cancellation are genuine; picker assertion is unsupported.",
+  "accepted": false,
+  "junit_pass": true
+}

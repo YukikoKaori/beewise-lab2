@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="28.476" timestamp="2026-11-06T00:32:30.047295+07:00"><testcase classname="test_discovery" name="test_tc06_connection_gate_preserves_tutor_after_auth_navigation" time="28.461" /></testsuite></testsuites>

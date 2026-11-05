@@ -1,0 +1,9 @@
+{
+  "date_utc": "2026-11-05T18:31:00Z",
+  "owner_approval": "vậy cách 2 đi",
+  "status": "APPROVED",
+  "case_replaced": "TC-16",
+  "replacement_case": "TC-27",
+  "reason": "Native Google account chooser is not confirmable on this AVD without existing device accounts. TC-27 (test_tc27_login_validation_is_local_and_does_not_authenticate) tests local auth field validation and ensures signed_in remains false, providing equivalent Android-native auth error coverage with zero external account dependencies.",
+  "target_runs": 3
+}

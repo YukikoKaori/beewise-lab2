@@ -1,5 +1,41 @@
 # BeeWise Lab 3 - Task tracker theo Preparation Guide v5
 
+> **N-03 completion checkpoint — 06/11/2026 (PR #18 Reviewed HEAD `2b3cd31`): 30/30 accepted runs executed, NATIVE INTERACTION NOT VERIFIED, EXPLORATION NOT RUN, N-03 INCOMPLETE.**
+> Ten distinct student-authored scenarios have 3 accepted Android ARTEMIS runs each (30 total accepted PASS; 14 retained FAIL).
+> TC-27 (student-authored blank login validation) was promoted to the matrix by explicit owner approval to cover rubric "nhánh lỗi" (Preparation Guide v5 p. 23 Option A; rubric does not fix scenario IDs).
+> TC-16 was rejected in native review (Google add-account screen, no actionable chooser) and excluded.
+> Android-native interaction requirement is NOT VERIFIED in the 30 passing runs (all exercised Flutter views); pending targeted follow-up once approved.
+> The separate 15–30 min exploratory session (TC-25 Pro) remains NOT RUN. Total usage: 272 HTTP attempts, $0.8026 USD conservative cost, >$0.50 Nexora reserve preserved.
+> See [current checkpoint](../evidence/artemis/n03-deepseek-final/STATUS.md), [rubric analysis](../evidence/artemis/n03-deepseek-final/README.md) and [cumulative matrix](../evidence/artemis/n03-deepseek-final/completion-summary.json).
+
+> **N-03 runtime update — 05/11/2026: INCOMPLETE.** The approved DeepSeek scope
+> remains exactly 10 official cases ×3, $0.50, 240 attempts, 36 sessions and six
+> failures maximum. **11/30 accepted:** TC-01/05/09 ×3, TC-03 ×2. **6 FAIL** are
+> preserved, 0 blocked/pending admissions. 102 inference requests, 984,855
+> reported tokens, $0.3077667 conservative; $0.1922333 remains under the raw cap.
+> After the exact owner-approved two-session amendment, TC-03 had one PASS and
+> one FAIL; the latter was a local input-envelope rejection, with no new ANR.
+> Both amended admissions and the failure limit are exhausted. Inference host
+> stopped; no exploration, production changes or completion PR.
+> [Current evidence and exact stop/resume gates](../evidence/artemis/n03-deepseek-final/README.md).
+> Subsequent offline input-envelope fix: turn 7 exceeded 32 KiB of non-image
+> JSON (at most seven inline images); exact historic byte count unavailable.
+> Same caps, typed local rejection and safe diagnostic counts. 233 offline
+> tests pass; no additional live sessions. One-admission TC-03 amendment is
+> proposed only; the full remaining matrix still needs a feasible conservative
+> cost forecast and the TC-16 chooser prerequisite.
+> Earlier N-03 reports below remain historical; Bao F-02 / Nguyen F-03 ownership
+> and previously verified Firebase acceptance remain unchanged.
+
+> **Native follow-up, same day:** normal restart of the same API35 AVD preserved
+> userdata. Three settled cold starts and one warm start reached focused Home
+> without new ANR; this is a scoped operational workaround, not a proven root-cause
+> app fix. Boot-time Google Messages ANR remains disclosed. Native preflight was
+> strengthened and both approved TC-03 sessions cleared it. Earlier cache /
+> off-peak reconstruction (~$0.0531 for the first 90 calls) explains the earlier
+> dashboard observation without changing historical ledger estimates. See the
+> evidence README for the updated cost and exact blockers.
+
 > **Latest owner decision, 2026-11-04:** the owner accepted the disclosed
 > authorized1/actual2 request deviation retrospectively. The earlier draft
 > hold below is historical and resolved; ready for review is conditional on
@@ -179,7 +215,7 @@ Mỗi người fetch latest main, branch/working copy riêng; không tiếp tụ
 |---|---|---|---|---|---|---|
 | N-01 | Nguyên | 12 màn Lab 2, Figma/widgets/theme/router | PARTIALLY COMPLETE | All 12 supplied Figma PNGs exist and source audit covers all canonical routes. Existing runtime evidence covers Home/Search/AI and Login/Register at 360/412dp, Tutor Profile/Connection at 412dp, Messages/Profile and signed-in Messages empty state at both widths. Fresh post-merge Home at 360dp is recorded in `runtime-home-post-merge-360dp.png/.xml`; it shows all five tabs and a genuine empty state with zero cards. Home raster/frame parity remains unresolved. | Capture/compare Group Chat, Trial, Class, Payment and Schedule at 360/412dp; add Tutor Profile/Connection at 360dp; resolve Home frame dimensions when design reference is supplied | Five workflow screens need approved/trusted workflow data; final Figma comparison awaits design reference; ADB capture capability should be rechecked |
 | N-02 | Nguyên | Responsive 360dp/412dp; loading/empty/error/recovery | PARTIALLY COMPLETE | `flutter test --no-pub` PASS **76/76** including new Chat empty-state coverage at 360/412dp and 1.8 text scale; `flutter analyze --no-pub` reports no issues; Dart format check reports 0 changed. Android 36 runtime Home smoke is captured at 360dp. Existing evidence covers several form keyboard/scroll and empty states. | Capture Android keyboard/safe-area/TalkBack behavior and data/loading/recoverable-error states at both widths using approved fixtures | Trusted workflow fixtures and Android accessibility review remain |
-| N-03 | Nguyên | ARTEMIS ≥10 ca ×3 + exploration 15-30 phút | PARTIALLY COMPLETE (matrix NOT VERIFIED) | Test plan lists 27 functions, which is collection/structure only. Historical TC-01 **3 accepted PASS/17 attempts** and TC-09 **2 accepted PASS** are **REPORTED, not independently verified**: second AI re-review did not receive all original logs/JUnit/traces. In a fresh 2026-11-03 attempt, ADB and AVD were started; `emulator-5554` reached `device`, boot completed, BeeWise package/activity were present, and ARTEMIS health/device listing passed. Real TC-01 run 1/3 was **BLOCKED_QUOTA** by Gemini Free Tier HTTP 429 before UI assertions (trace `093516ef-8ae1-4b9a-b8e2-87e71ee4be17`); runner stopped the batch and preserved log/JUnit/manifest/trace at `evidence/artemis/n03-2026-11-03/tc01-priority-rerun/`. No other new cases or exploration were run. ARTEMIS/Android E2E not run during this remediation. See [remediation report](../evidence/external-review/BeeWise_N03_Remediation_Report.md). | Wait for ARTEMIS provider quota recovery under the authorized plan, recheck host/device/app preflight, verify case fixtures; execute ≥10 official eligible cases ×3 with raw logs/JUnit/trace; separately record 15–30 minute exploration. Keep failures/blocked/not-run distinct. | Available ARTEMIS host/quota; stable online AVD; approved staging catalog/account/workflow fixtures |
+| N-03 | Nguyên | ARTEMIS ≥10 ca ×3 + exploration 15-30 phút | PARTIALLY COMPLETE (30/30 runs accepted, native interaction NOT VERIFIED, exploration NOT RUN) | Test plan lists 27 functions, which is collection/structure only. Historical TC-01 **3 accepted PASS/17 attempts** and TC-09 **2 accepted PASS** are **REPORTED, not independently verified**: second AI re-review did not receive all original logs/JUnit/traces. In a fresh 2026-11-03 attempt, ADB and AVD were started; `emulator-5554` reached `device`, boot completed, BeeWise package/activity were present, and ARTEMIS health/device listing passed. Real TC-01 run 1/3 was **BLOCKED_QUOTA** by Gemini Free Tier HTTP 429 before UI assertions (trace `093516ef-8ae1-4b9a-b8e2-87e71ee4be17`); runner stopped the batch and preserved log/JUnit/manifest/trace at `evidence/artemis/n03-2026-11-03/tc01-priority-rerun/`. No other new cases or exploration were run. ARTEMIS/Android E2E not run during this remediation. See [remediation report](../evidence/external-review/BeeWise_N03_Remediation_Report.md). | Wait for ARTEMIS provider quota recovery under the authorized plan, recheck host/device/app preflight, verify case fixtures; execute ≥10 official eligible cases ×3 with raw logs/JUnit/trace; separately record 15–30 minute exploration. Keep failures/blocked/not-run distinct. | Available ARTEMIS host/quota; stable online AVD; approved staging catalog/account/workflow fixtures |
 | N-04 | Nguyên | External AI review ≥5 findings/≥2 nhóm, ≥3 fixes | **COMPLETE** (human reviewer approval confirmed by owner; remediation merged) | Review records F-01..F-06 and N-01..N-03 with accepted fixes and regression checks in [remediation report](../evidence/external-review/BeeWise_N03_Remediation_Report.md). Owner confirmed human reviewer approval in chat on 2026-11-03. Fixes are in commit `a212e5f94c7998b8ce749be859d41409558e327e`, merged to `main` by PR #9. | No implementation work remains for N-04. Keep the owner-confirmed approval and report available; attach written reviewer response only if the instructor requires a durable artifact. | Human approval confirmed by owner; optional written reviewer artifact if required by rubric |
 | N-05 | Nguyên | Final report PDF 8-12 trang, slides PDF 12-15 trang | PARTIALLY COMPLETE | Report PDF FINAL 9 trang đã render/kiểm tra; deck FINAL PPTX 13 slide đã qua structural validation (0 lỗi/cảnh báo); slide PDF chưa export được do lỗi thiếu alias font `#standard-fonts/Helvetica` trong Artifact Tool; alias hook cô lập cũng không tương thích metric format (`Invalid standard font data`). Nội dung ghi giới hạn N-01..N-06 theo evidence hiện tại. | Sửa/khắc phục export PDF slide trong runtime được hỗ trợ; kiểm tra trực quan toàn bộ 13 trang; Bảo rà soát cloud claims và links trước nộp | Xuất được slide PDF; review nội dung bởi Bảo |
 | N-06 | Nguyên | Demo video 5-10 phút và final links | NOT COMPLETE | [Demo script](demo-script.md); chưa có video final 5-10 phút hoặc link chia sẻ đã kiểm tra trong repo. Không ghi hình thành công dịch vụ/flow đang blocked. | Sau khi chốt fixtures và evidence, quay demo thật 5-10 phút; kiểm tra link bằng hai tài khoản/quyền xem và lưu SHA/giới hạn | App/services/fixtures đủ cho các đoạn demo; evidence freeze |
