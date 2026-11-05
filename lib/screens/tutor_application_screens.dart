@@ -82,7 +82,7 @@ class _TutorApplicationScreenState
         key: _form,
         child: ListView(
           padding: const EdgeInsets.all(BeeWiseSpace.x5),
-          children: [
+          children: withGaps([
             Text(
               'Gửi hồ sơ gia sư',
               style: Theme.of(context).textTheme.headlineLarge,
@@ -94,152 +94,170 @@ class _TutorApplicationScreenState
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: BeeWiseSpace.x5),
-            _textField(
-              controller: _name,
-              label: 'Họ và tên',
-              validator: (value) =>
-                  value == null ||
-                      value.trim().length < 2 ||
-                      value.trim().length > 100
-                  ? 'Tên cần có từ 2 đến 100 ký tự.'
-                  : null,
-              capitalization: TextCapitalization.words,
-            ),
-            _gap,
-            _textField(
-              controller: _phone,
-              label: 'Số điện thoại',
-              keyboardType: TextInputType.phone,
-              validator: (value) =>
-                  value == null ||
-                      value.trim().length < 9 ||
-                      value.trim().length > 20
-                  ? 'Nhập số điện thoại hợp lệ.'
-                  : null,
-            ),
-            _gap,
-            _textField(
-              controller: _email,
-              label: 'Email đăng nhập',
-              keyboardType: TextInputType.emailAddress,
-              validator: (value) => value == null || !value.contains('@')
-                  ? 'Nhập email hợp lệ.'
-                  : null,
-            ),
-            _gap,
-            TextFormField(
-              controller: _password,
-              obscureText: !_showPassword,
-              autofillHints: const [AutofillHints.newPassword],
-              decoration: InputDecoration(
-                labelText: 'Mật khẩu',
-                helperText: 'Ít nhất 8 ký tự và có một chữ số.',
-                suffixIcon: IconButton(
-                  tooltip: _showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu',
-                  onPressed: () =>
-                      setState(() => _showPassword = !_showPassword),
-                  icon: Icon(
-                    _showPassword ? Icons.visibility_off : Icons.visibility,
-                  ),
-                ),
-              ),
-              validator: (value) =>
-                  value == null ||
-                      value.length < 8 ||
-                      !RegExp(r'\d').hasMatch(value)
-                  ? 'Mật khẩu cần ít nhất 8 ký tự và một chữ số.'
-                  : null,
-            ),
-            _gap,
-            _textField(
-              controller: _qualification,
-              label: 'Bằng cấp hoặc kinh nghiệm liên quan',
-              validator: (value) =>
-                  value == null ||
-                      value.trim().length < 2 ||
-                      value.trim().length > 300
-                  ? 'Nhập bằng cấp/kinh nghiệm từ 2 đến 300 ký tự.'
-                  : null,
-            ),
-            _gap,
-            _textField(
-              controller: _subjects,
-              label: 'Môn có thể dạy',
-              hint: 'Ví dụ: Toán, Vật lý, Tiếng Anh',
-              validator: (value) => _listRequired(value, maximum: 10),
-            ),
-            _gap,
-            _textField(
-              controller: _grades,
-              label: 'Khối lớp có thể dạy',
-              hint: 'Ví dụ: Lớp 6, Lớp 7, Lớp 10',
-              validator: (value) => _listRequired(value, maximum: 12),
-            ),
-            _gap,
-            _textField(
-              controller: _introduction,
-              label: 'Giới thiệu kinh nghiệm giảng dạy',
-              minLines: 3,
-              maxLines: 5,
-              validator: (value) =>
-                  value == null ||
-                      value.trim().length < 20 ||
-                      value.trim().length > 1000
-                  ? 'Giới thiệu cần từ 20 đến 1000 ký tự.'
-                  : null,
-            ),
-            _gap,
-            _textField(
-              controller: _hourlyFee,
-              label: 'Học phí dự kiến mỗi giờ (VNĐ)',
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                final fee = int.tryParse(
-                  (value ?? '').replaceAll('.', '').trim(),
-                );
-                return fee == null || fee <= 0
-                    ? 'Nhập học phí lớn hơn 0.'
-                    : null;
-              },
-            ),
-            _gap,
-            _textField(
-              controller: _areas,
-              label: 'Khu vực có thể dạy',
-              hint: 'Ví dụ: Quận 1, Quận 3, dạy trực tuyến',
-              validator: (value) => _listRequired(value, maximum: 10),
-            ),
-            _gap,
-            _textField(
-              controller: _availability,
-              label: 'Thời gian có thể dạy',
-              hint: 'Ví dụ: Các tối trong tuần, cuối tuần',
-              validator: (value) =>
-                  value == null ||
-                      value.trim().length < 2 ||
-                      value.trim().length > 500
-                  ? 'Nhập thời gian từ 2 đến 500 ký tự.'
-                  : null,
-            ),
-            const SizedBox(height: BeeWiseSpace.x3),
-            Text(
-              'Hình thức dạy',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Wrap(
-              spacing: BeeWiseSpace.x2,
+            SectionCard(
+              title: 'Tài khoản gia sư',
+              icon: Icons.badge_outlined,
               children: [
-                _modeChip('Trực tuyến', 'online'),
-                _modeChip('Trực tiếp', 'in_person'),
+                _textField(
+                  controller: _name,
+                  label: 'Họ và tên',
+                  validator: (value) =>
+                      value == null ||
+                          value.trim().length < 2 ||
+                          value.trim().length > 100
+                      ? 'Tên cần có từ 2 đến 100 ký tự.'
+                      : null,
+                  capitalization: TextCapitalization.words,
+                ),
+                _gap,
+                _textField(
+                  controller: _phone,
+                  label: 'Số điện thoại',
+                  keyboardType: TextInputType.phone,
+                  validator: (value) =>
+                      value == null ||
+                          value.trim().length < 9 ||
+                          value.trim().length > 20
+                      ? 'Nhập số điện thoại hợp lệ.'
+                      : null,
+                ),
+                _gap,
+                _textField(
+                  controller: _email,
+                  label: 'Email đăng nhập',
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) => value == null || !value.contains('@')
+                      ? 'Nhập email hợp lệ.'
+                      : null,
+                ),
+                _gap,
+                TextFormField(
+                  controller: _password,
+                  obscureText: !_showPassword,
+                  autofillHints: const [AutofillHints.newPassword],
+                  decoration: InputDecoration(
+                    labelText: 'Mật khẩu',
+                    helperText: 'Ít nhất 8 ký tự và có một chữ số.',
+                    suffixIcon: IconButton(
+                      tooltip: _showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu',
+                      onPressed: () =>
+                          setState(() => _showPassword = !_showPassword),
+                      icon: Icon(
+                        _showPassword ? Icons.visibility_off : Icons.visibility,
+                      ),
+                    ),
+                  ),
+                  validator: (value) =>
+                      value == null ||
+                          value.length < 8 ||
+                          !RegExp(r'\d').hasMatch(value)
+                      ? 'Mật khẩu cần ít nhất 8 ký tự và một chữ số.'
+                      : null,
+                ),
               ],
             ),
-            if (_modes.isEmpty)
-              Text(
-                'Chọn ít nhất một hình thức dạy.',
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: Theme.of(context).colorScheme.error),
-              ),
-            const SizedBox(height: BeeWiseSpace.x2),
+            const SizedBox(height: BeeWiseSpace.x4),
+            SectionCard(
+              title: 'Chuyên môn',
+              icon: Icons.school_outlined,
+              children: [
+                _textField(
+                  controller: _qualification,
+                  label: 'Bằng cấp hoặc kinh nghiệm liên quan',
+                  validator: (value) =>
+                      value == null ||
+                          value.trim().length < 2 ||
+                          value.trim().length > 300
+                      ? 'Nhập bằng cấp/kinh nghiệm từ 2 đến 300 ký tự.'
+                      : null,
+                ),
+                _gap,
+                _textField(
+                  controller: _subjects,
+                  label: 'Môn có thể dạy',
+                  hint: 'Ví dụ: Toán, Vật lý, Tiếng Anh',
+                  validator: (value) => _listRequired(value, maximum: 10),
+                ),
+                _gap,
+                _textField(
+                  controller: _grades,
+                  label: 'Khối lớp có thể dạy',
+                  hint: 'Ví dụ: Lớp 6, Lớp 7, Lớp 10',
+                  validator: (value) => _listRequired(value, maximum: 12),
+                ),
+                _gap,
+                _textField(
+                  controller: _introduction,
+                  label: 'Giới thiệu kinh nghiệm giảng dạy',
+                  minLines: 3,
+                  maxLines: 5,
+                  validator: (value) =>
+                      value == null ||
+                          value.trim().length < 20 ||
+                          value.trim().length > 1000
+                      ? 'Giới thiệu cần từ 20 đến 1000 ký tự.'
+                      : null,
+                ),
+              ],
+            ),
+            const SizedBox(height: BeeWiseSpace.x4),
+            SectionCard(
+              title: 'Học phí và lịch dạy',
+              icon: Icons.payments_outlined,
+              children: [
+                _textField(
+                  controller: _hourlyFee,
+                  label: 'Học phí dự kiến mỗi giờ (VNĐ)',
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    final fee = int.tryParse(
+                      (value ?? '').replaceAll('.', '').trim(),
+                    );
+                    return fee == null || fee <= 0
+                        ? 'Nhập học phí lớn hơn 0.'
+                        : null;
+                  },
+                ),
+                _gap,
+                _textField(
+                  controller: _areas,
+                  label: 'Khu vực có thể dạy',
+                  hint: 'Ví dụ: Quận 1, Quận 3, dạy trực tuyến',
+                  validator: (value) => _listRequired(value, maximum: 10),
+                ),
+                _gap,
+                _textField(
+                  controller: _availability,
+                  label: 'Thời gian có thể dạy',
+                  hint: 'Ví dụ: Các tối trong tuần, cuối tuần',
+                  validator: (value) =>
+                      value == null ||
+                          value.trim().length < 2 ||
+                          value.trim().length > 500
+                      ? 'Nhập thời gian từ 2 đến 500 ký tự.'
+                      : null,
+                ),
+                const SizedBox(height: BeeWiseSpace.x3),
+                Text(
+                  'Hình thức dạy',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Wrap(
+                  spacing: BeeWiseSpace.x2,
+                  children: [
+                    _modeChip('Trực tuyến', 'online'),
+                    _modeChip('Trực tiếp', 'in_person'),
+                  ],
+                ),
+                if (_modes.isEmpty)
+                  Text(
+                    'Chọn ít nhất một hình thức dạy.',
+                    style: Theme.of(context).textTheme.bodySmall
+                        ?.copyWith(color: Theme.of(context).colorScheme.error),
+                  ),
+              ],
+            ),
+            const SizedBox(height: BeeWiseSpace.x4),
             const Text(
               'Trong bản MVP này chưa nhận tệp giấy tờ. Không nhập số CCCD '
               'hoặc thông tin nhạy cảm vào phần giới thiệu.',
@@ -264,7 +282,7 @@ class _TutorApplicationScreenState
               child: const Text('Bạn là phụ huynh? Tạo tài khoản phụ huynh'),
             ),
             if (!ref.watch(firebaseReadyProvider)) const FirebaseSetupNotice(),
-          ],
+          ], gap: BeeWiseSpace.x4),
         ),
       ),
     );
@@ -304,7 +322,7 @@ class _TutorApplicationScreenState
     ),
   );
 
-  static const _gap = SizedBox(height: BeeWiseSpace.x2);
+  static const _gap = SizedBox(height: BeeWiseSpace.x3);
 
   void _submit() {
     if (!_consent) {
