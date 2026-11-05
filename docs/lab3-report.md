@@ -123,6 +123,38 @@ Storage rules enforce metadata, not cryptographic PDF validation. Admin SDK
 code bypasses rules and must implement the contract itself. Parent/applicant
 role and payment invariants must be enforced in that server code before release.
 
+## Update after PR #16 (2026-11-05)
+
+PR #16 merged F-03 into `main` (`1923a76`): consultant claim and proposals, class revision, server-issued invoice, payOS checkout, signed webhook with provider re-check, verified payment and official class schedule (`backend/`).
+
+| Item | Status (Flutter re-run; others per tracker) |
+|---|---|
+| Backend emulator tests | 45 (tracker; not re-run: emulator needs JDK 21, only 17 and 25 installed) |
+| Firestore Rules tests | 59 (tracker; not re-run, same JDK reason) |
+| Flutter tests | 130 passed (re-run 2026-11-05, Flutter 3.47.8, includes untracked `test/n02_state_recovery_test.dart`) |
+| Live payOS payment | One 2,000 VND transfer, real Firebase project, API36 emulator ([evidence](../evidence/cloud/f03-payos-live-20261105/README.md)) |
+| Deployment | **Not deployed**; see the next section |
+
+Still open for submission: ARTEMIS matrix (at least 10 cases x3), the TC-25 exploratory session, slide PDF, demo video and Bao's review of cloud claims. A full Vietnamese report for slide preparation is in [`output/docx/BeeWise-Lab3-Report-for-slides.docx`](../output/docx/BeeWise-Lab3-Report-for-slides.docx).
+
+## Backend deployment scope and limits (F-03)
+
+**Decision: the F-03 trusted backend is a controlled demo, not a stable production deployment.** No hosted or always-on environment exists, and none was authorized (no billing change, no Cloud Functions, no hosted server).
+
+| Item | Actual state |
+|---|---|
+| Runtime | Node 24 server (`backend/src/server.js`) started locally on the demo machine |
+| Public reachability | Cloudflare quick tunnel, used only so payOS could deliver the webhook; URL changes each run, no uptime guarantee (one tunnel drop observed and recovered) |
+| Verified | 45 emulator tests; one live payOS payment of 2,000 VND on `beewise-lab-3` ([evidence](../evidence/cloud/f03-payos-live-20261105/README.md)) |
+| Not verified | Always-on hosting, webhook delivery under load or repeated failures, secret management on a host, monitoring/alerting, refunds (`paid_duplicate` and `mismatch` need manual handling) |
+| Payment scope | Single owner-approved low-value transfer; not a production payment channel |
+
+Implications for reviewers and the demo:
+
+- The consultant and payment flow works only while the backend and tunnel are running. If they are down, the parent app shows recovery states and no payment or schedule is claimed; the client never marks an invoice paid itself.
+- Run the demo in this controlled setup: start the backend and tunnel, re-register the webhook URL in payOS, then run the flow. Do not describe it as deployed.
+- Deploying to a stable host (for example a free Node host) is a possible next step but needs separate owner approval and a new verification run. Until then, this report makes no deployment claim.
+
 ## Evidence still required and exact resume actions
 
 1. Use JDK 21 + Flutter 3.47.8; run `scripts/verify-lab3.ps1 -Flutter <path>

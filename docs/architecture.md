@@ -101,3 +101,7 @@ live AI matching, console evidence or Android layout validation is claimed.
 Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval (owner-reported; no written artifact supplied). Firebase Storage is removed from active dependencies/config/tooling; no backend, public PDF URL, billing, bucket or Storage deployment is required. The PDF layout/fonts stay unchanged. A create-only transaction prevents overwrite and offline queuing; success additionally requires a non-cache server read with no pending writes and exact Base64 equality. Original PDF limit: 500 KiB; encoded limit: 682,668 ASCII characters; conservative document budget: 768 KiB. `files.base64Data` is exempted from indexing. Server rules cannot prove full PDF semantic validity; client validates header, canonical Base64 and decoded length.
 
 Current status: **IMPLEMENTED — LIVE VERIFICATION PENDING**. Prior sections dated 2026-10-30 are historical snapshots. Review [current validation and limits](workstreams/bao-firestore-reports.md) before reusing their counts/status.
+
+## F-03 backend deployment limit
+
+The trusted backend (`backend/`) is **not deployed**. It was verified with the Firebase emulator (45 tests) and one live payOS payment while running locally behind a Cloudflare quick tunnel. It is a controlled demo environment: no uptime, monitoring or hosted secret management is claimed. See [Backend deployment scope and limits](lab3-report.md#backend-deployment-scope-and-limits-f-03).
