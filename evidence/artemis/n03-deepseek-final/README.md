@@ -1,6 +1,80 @@
-# N-03 regression — INCOMPLETE, controlled stop
+# N-03 Regression Status & Rubric Audit Checkpoint
 
-## Offline input-envelope correction — subsequent update
+**Current PR #18 Reviewed HEAD**: `2b3cd31d6d7d0c9a7898232a3540a03e6fc8942d`
+**Checkpoint Timestamp**: 2026-11-06 03:20 UTC+7
+**Authoritative Reference**: `PRM393_Lab3_Preparation_Guide_v5_ToiUu.pdf` (Page 23: "ARTEMIS — Chuẩn bị kiểm thử tự động đầu cuối")
+
+---
+
+## Current Executive Status
+
+| Dimension | Measured Outcome | Defensible Status against Rubric v5 |
+| :--- | :--- | :--- |
+| **Accepted Runs** | **30 accepted PASS** | 10 distinct scenarios × 3 independent accepted executions |
+| **Retained Failures** | **14 retained FAIL** | Fully preserved for audit integrity; never deleted or relabeled |
+| **Admitted Sessions** | **44 total sessions** | Exactly 30 PASS + 14 FAIL across all batches |
+| **TC-27 Eligibility** | **STUDENT-AUTHORED OFFICIAL SCENARIO** | Permitted by Rubric Option A (p. 23 does not mandate fixed IDs; covers error branch; promoted by owner approval) |
+| **Android-Native Interaction** | **NOT VERIFIED in 30 accepted runs** | All 30 PASS runs exercised Flutter app UI; TC-16 was observed native attempt but rejected/FAIL; requires targeted follow-up |
+| **Regression Verdict** | **30/30 EXECUTIONS COMPLETE, NATIVE INTERACTION PENDING** | Core 30 test runs complete; Android-native OS interaction criterion pending targeted single-case execution |
+| **Exploratory Testing** | **NOT RUN** | 15–30 min session (TC-25 Pro) deferred to separate execution per plan |
+| **Overall N-03 Status** | **INCOMPLETE** | Remains incomplete until Android-native interaction is verified and exploratory session is executed |
+
+---
+
+## P1 Review Findings Resolution
+
+### 1. TC-27 Eligibility Analysis
+* **Authoritative Rubric Verification**: Direct review of `PRM393_Lab3_Preparation_Guide_v5_ToiUu.pdf` (Page 23) confirms:
+  > *"Viết ít nhất 10 ca kiểm thử: điều kiện đầu, bước thực hiện và kết quả mong đợi. Bao phủ các luồng Lab 2, một nhánh lỗi và một tương tác Android gốc."*
+* **Option A vs. Option B**: The instructor rubric does **NOT** mandate fixed predesignated scenario IDs (Option A: student-authored scenarios meeting coverage criteria; not Option B: fixed predesignated IDs).
+* **Team-Authored Context**: The team authored 27 candidate scenarios (`TC-01` through `TC-27`). In initial drafts of `docs/test-plan.md`, TC-27 was described as "supplemental" under the provisional assumption that the instructor might require specific predesignated IDs.
+* **Promotion via Owner Approval**: When `TC-16` was blocked due to environment prerequisites (AVD lacking Google accounts), the owner explicitly approved substituting `TC-16` with `TC-27` on 2026-11-06.
+* **Rubric Compliance**: TC-27 (`test_tc27_login_validation_is_local_and_does_not_authenticate`) satisfies the rubric requirement for **"một nhánh lỗi"** (error branch) by proving that submitting empty login credentials triggers local form validators ("Vui lòng nhập email", "Vui lòng nhập mật khẩu") and does not falsely authenticate or issue network requests.
+* **Evidence**: 3 independent accepted runs (`completion-TC27-01`, `completion-TC27-02`, `completion-TC27-03`) with full JUnit PASS, traces (`892120dd`, `0bf400cb`, `a86c3f3c`), and independent reviews.
+* **Scope Boundary**: TC-27 is approved by the project owner as a legitimate student-authored scenario; no claim is made that the instructor individually reviewed or approved TC-27 in advance.
+
+### 2. Android-Native Interaction Audit
+* **Audit of 30 Accepted Runs**: A comprehensive audit of action logs (`actions.json`), step screenshots, and independent reviews across all 30 accepted PASS runs shows that all 30 executions interacted exclusively within the Flutter view hierarchy (including standard virtual keyboard text input and hardware `BACK` key dispatching to dismiss the keyboard). None observed or interacted with an OS-owned native UI (such as a system permission dialog, notification shade, or native account picker).
+* **Evaluation of TC-16 Historical Attempt**: Run `completion-TC16-01` (trace `4065fa09-e7da-4f65-a13b-b4f5bd9053b9`) triggered Google Play Services native `SignInHubActivity`. However, because the AVD had no Google accounts registered, Android displayed Google full-screen "Sign in to add an account" webflow rather than the native Account Chooser dialog. Although ARTEMIS performed a native cancellation via Android `BACK`, the run was rejected during independent review because the expected account chooser dialog was not observed. Per rubric guidelines, this run is preserved as an observed native attempt, but **cannot be counted as a PASS**.
+* **Current Status**: The Android-native interaction requirement remains **NOT VERIFIED**.
+* **Targeted Follow-up Proposal**:
+  To satisfy "một tương tác Android gốc" without rerunning the 30 passing sessions, a single targeted 3-run execution should be performed once authorized:
+  - **Option 1 (TC-16)**: Add a disposable test Google account to the AVD, launch `TC-16` to trigger the genuine native Google Account Chooser dialog, and cancel it.
+  - **Option 2 (Permission prompt)**: Reset notification permission on the AVD (`adb shell pm revoke com.beewise.beewise android.permission.POST_NOTIFICATIONS`) and run a targeted case where ARTEMIS observes and grants/denies the Android OS system permission prompt (`com.google.android.permissioncontroller`).
+  *Zero billable inference calls will be initiated until the owner explicitly approves the provider cost and execution plan for this targeted follow-up.*
+
+---
+
+## 30 Accepted Regression Executions Summary
+
+| Case ID | Feature Scope | Rubric Dimension | Accepted Runs | Trace IDs | Retained Failures |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC-01** | Home & Tutor Discovery | Lab 2 Primary Flow | 3 / 3 | `301439ee`, `e082d56b`, `3957aa8f` | 0 |
+| **TC-03** | Search No-Match / Empty State | Lab 2 Flow & Empty State | 3 / 3 | `2d6ba0da`, `0feb10d3`, `240cabb2` | 4 (`tc03-attempt-01`, `02`, `04`, `06`) |
+| **TC-04** | Tutor Detail & Pricing | Lab 2 Detail View | 3 / 3 | `e17441ff`, `b40b934c`, `9953bf04` | 1 (`completion-TC04-01`) |
+| **TC-05** | AI Matching Zero-Catalog Fallback | Lab 2 AI / Fallback Flow | 3 / 3 | `22016c5b`, `c9eecfd2`, `552fa8c2` | 1 (`tc05-attempt-02`) |
+| **TC-06** | Connection Gate / Auth Nav | Lab 2 Protected Navigation | 3 / 3 | `1a7b0559`, `65bf021d`, `3a17e0b5` | 0 |
+| **TC-08** | Registration Field Validation | Input Validation & Error | 3 / 3 | `fb03cf27`, `8c607ec0`, `f129a009` | 0 |
+| **TC-09** | 5 Bottom Navigation Destinations | Lab 2 Main Navigation | 3 / 3 | `c06f9d97`, `bb5e6013`, `f6d9a7e8` | 1 (`tc09-attempt-01`) |
+| **TC-20** | Parent Trial Proposal Acceptance | Lab 2 Workflow (Trial) | 3 / 3 | `fc2d2aa6`, `989cf8b1`, `03565f1e` | 1 (`completion-TC20-01`) |
+| **TC-22** | Parent Class Revision Adjustment | Lab 2 Workflow (Revision) | 3 / 3 | `42973812`, `ec456ba3`, `6df46bdc` | 5 (`completion-TC22-01..05`) |
+| **TC-27** | Blank Login Validation | Error Branch ("nhánh lỗi") | 3 / 3 | `892120dd`, `0bf400cb`, `a86c3f3c` | 0 |
+| **TC-16** | Google Sign-In Native Chooser | Android-Native / Error | 0 / 3 (Substituted) | `4065fa09` (attempt) | 1 (`completion-TC16-01` retained) |
+
+---
+
+## Cumulative Provider Spend & Resource Reconciliation
+* **DeepSeek HTTP Attempts**: 272 / 275 approved ceiling.
+* **SDK Reported Tokens**: 2,542,792 prompt + 33,161 completion = **2,575,953 total tokens**.
+* **Accounted Conservative Cost**: **$0.8026308 USD** (within the approved $0.82 ceiling).
+* **Nexora Account Reserve**: **>$0.50 preserved** at all times.
+* **Inference Server**: Stopped (port 8001 closed, deny-by-default enforced).
+
+---
+
+## Historical Checkpoints (Preserved for Audit Trail)
+
+### Historical Checkpoint: Offline Input-Envelope Correction
 
 The failed TC-03 request was at Flash operator turn 7 after six `click` /
 `input_text` actions. Flash attaches at most one observation image per turn;
