@@ -1,0 +1,220 @@
+{
+  "at_utc": "2026-11-05T16:04:17.772947+00:00",
+  "source_sha": "a72059ca5e07a4c1193960965dc07453efea161d",
+  "apk_sha256_installed": "e05a72de4ce063f70e7df6cd90c2fccb80e42a0c8befac0547bfdcd05b4405ed",
+  "entrypoint": "lib/main.dart, isolated Firebase Emulator/backend defines; trace-startup Activity extra",
+  "android_api": 35,
+  "avd": "BeeWise_Bao_Acceptance_API35",
+  "width_dp": 360,
+  "actions": "Normal same-AVD shutdown/relaunch; no snapshot, 2048MB/2cores/software GPU; userdata preserved; inference host stopped",
+  "settings_launch": "Starting: Intent { act=android.settings.SETTINGS }\nStatus: ok\nLaunchState: WARM\nActivity: com.android.settings/.homepage.SettingsHomepageActivity\nTotalTime: 976\nWaitTime: 979\nComplete\n",
+  "native_device_gate": {
+    "device_online": true,
+    "boot_complete": true,
+    "focused_rendered_app": "com.beewise.beewise",
+    "readable_accessibility": true,
+    "first_frame_scope": "Actual rendered accessibility content and focused app window",
+    "system_ui_roundtrip_ms": 1578,
+    "system_ui_responsive": true,
+    "anr_dialog_present": false
+  },
+  "full_paid_preflight": "NOT RUN: ARTEMIS host intentionally stopped; no inference",
+  "host": {
+    "scope": "1-second host-wide samples during third measurement, not causality proof",
+    "cpu_percent_min": 20.8,
+    "cpu_percent_max": 82.5,
+    "cpu_percent_mean": 45.77,
+    "available_ram_bytes_min": 8033308672,
+    "disk_read_bytes_delta": 18276864,
+    "disk_write_bytes_delta": 27821056
+  },
+  "runs": [
+    {
+      "timestampUtc": "2026-11-05T15:52:09.775695+00:00",
+      "serial": "emulator-5562",
+      "requestedMode": "cold",
+      "userdataCleared": false,
+      "anrDetectionSuppressed": false,
+      "pidBefore": "",
+      "pidAfter": "3209",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity (has extras) }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 6097\r\nWaitTime: 6099\r\nComplete",
+      "amStartWallMs": 6172,
+      "flutterFrames": {
+        "status": "OBSERVED",
+        "clock": "Android process start ticks and VM monotonic timeline microseconds",
+        "scope": "Explicit Flutter first useful frame markers; not Android Displayed timing",
+        "timelineSha256": "9ccfe84f6863081d3dfa55747da440ce891516338088818852d08af7f9b21872",
+        "startupMarkers": [
+          {
+            "name": "FlutterEngineMainEnter",
+            "ts": 144472412
+          },
+          {
+            "name": "Widgets built first useful frame",
+            "ts": 148365286
+          },
+          {
+            "name": "Rasterized first useful frame",
+            "ts": 148798454
+          }
+        ],
+        "processStartTicks": 14293,
+        "clockTicksPerSecond": 100,
+        "processToFirstFrameBuiltMs": 5435.286,
+        "engineToFirstFrameBuiltMs": 3892.874,
+        "processToFirstFrameRasterizedMs": 5868.454,
+        "engineToFirstFrameRasterizedMs": 4326.042
+      },
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "screenshotSha256": "ad8653b4c5fa4028cd90d714df40ad3b4fa694620d0e3bcc9c781e4dbce910ed",
+      "label": "settled-cold-01",
+      "focused_window": [
+        "mCurrentFocus=Window{20a46e0 u0 com.beewise.beewise/com.beewise.beewise.MainActivity}",
+        "mFocusedApp=ActivityRecord{93793e0 u0 com.beewise.beewise/.MainActivity t41}"
+      ],
+      "post_marker_anr_lines": [],
+      "main_wchan": "do_epoll_wait",
+      "android_draw_log": [
+        "11-05 22:52:17.390   569   605 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +6s97ms",
+        "11-05 22:52:17.390   569   605 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +6s97ms"
+      ],
+      "review": "Root inspected cold Home frames; native measurement only, not ARTEMIS E2E"
+    },
+    {
+      "timestampUtc": "2026-11-05T15:52:55.152288+00:00",
+      "serial": "emulator-5562",
+      "requestedMode": "cold",
+      "userdataCleared": false,
+      "anrDetectionSuppressed": false,
+      "pidBefore": "3209",
+      "pidAfter": "3441",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity (has extras) }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 7995\r\nWaitTime: 8012\r\nComplete",
+      "amStartWallMs": 8172,
+      "flutterFrames": {
+        "status": "OBSERVED",
+        "clock": "Android process start ticks and VM monotonic timeline microseconds",
+        "scope": "Explicit Flutter first useful frame markers; not Android Displayed timing",
+        "timelineSha256": "62cdbfa20c99b631ff4619aa574c888a23bdaf0ca0e83138c2b2dbf0058c4a98",
+        "startupMarkers": [
+          {
+            "name": "FlutterEngineMainEnter",
+            "ts": 192075086
+          },
+          {
+            "name": "Widgets built first useful frame",
+            "ts": 196735033
+          },
+          {
+            "name": "Rasterized first useful frame",
+            "ts": 197255590
+          }
+        ],
+        "processStartTicks": 18993,
+        "clockTicksPerSecond": 100,
+        "processToFirstFrameBuiltMs": 6805.033,
+        "engineToFirstFrameBuiltMs": 4659.947,
+        "processToFirstFrameRasterizedMs": 7325.59,
+        "engineToFirstFrameRasterizedMs": 5180.504
+      },
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "screenshotSha256": "9ea6dc9c732300e2e5bfa0aa40d6f366e273a92b5cfecdcb37220cdf7694c727",
+      "label": "settled-cold-02",
+      "focused_window": [
+        "mCurrentFocus=Window{1b731af u0 com.beewise.beewise/com.beewise.beewise.MainActivity}",
+        "mFocusedApp=ActivityRecord{4eb727a u0 com.beewise.beewise/.MainActivity t42}"
+      ],
+      "post_marker_anr_lines": [],
+      "main_wchan": "do_epoll_wait",
+      "android_draw_log": [
+        "11-05 22:53:05.924   569   605 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +7s995ms",
+        "11-05 22:53:05.924   569   605 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +7s995ms"
+      ],
+      "review": "Root inspected cold Home frames; native measurement only, not ARTEMIS E2E"
+    },
+    {
+      "timestampUtc": "2026-11-05T15:54:13.084719+00:00",
+      "serial": "emulator-5562",
+      "requestedMode": "cold",
+      "userdataCleared": false,
+      "anrDetectionSuppressed": false,
+      "pidBefore": "3441",
+      "pidAfter": "3671",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity (has extras) }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: com.beewise.beewise/.MainActivity\r\nTotalTime: 5615\r\nWaitTime: 5617\r\nComplete",
+      "amStartWallMs": 5766,
+      "flutterFrames": {
+        "status": "OBSERVED",
+        "clock": "Android process start ticks and VM monotonic timeline microseconds",
+        "scope": "Explicit Flutter first useful frame markers; not Android Displayed timing",
+        "timelineSha256": "64360ac0a5654b72694c59c19a02788d6c24ac6b9cacf9ffe8cd3d6ce51d62db",
+        "startupMarkers": [
+          {
+            "name": "FlutterEngineMainEnter",
+            "ts": 267855287
+          },
+          {
+            "name": "Widgets built first useful frame",
+            "ts": 271155346
+          },
+          {
+            "name": "Rasterized first useful frame",
+            "ts": 271639172
+          }
+        ],
+        "processStartTicks": 26631,
+        "clockTicksPerSecond": 100,
+        "processToFirstFrameBuiltMs": 4845.346,
+        "engineToFirstFrameBuiltMs": 3300.059,
+        "processToFirstFrameRasterizedMs": 5329.172,
+        "engineToFirstFrameRasterizedMs": 3783.885
+      },
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "screenshotSha256": "f06c2cc9998e05d7c0eb3b4aceb8f0063f963ce9b76c5dbf30d4ffe3304f2f24",
+      "label": "settled-cold-03",
+      "focused_window": [
+        "mCurrentFocus=Window{5873ae9 u0 com.beewise.beewise/com.beewise.beewise.MainActivity}",
+        "mFocusedApp=ActivityRecord{b942925 u0 com.beewise.beewise/.MainActivity t43}"
+      ],
+      "post_marker_anr_lines": [],
+      "main_wchan": "do_epoll_wait",
+      "android_draw_log": [
+        "11-05 22:54:20.226   569   605 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +5s615ms",
+        "11-05 22:54:20.226   569   605 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +5s615ms"
+      ],
+      "review": "Root inspected cold Home frames; native measurement only, not ARTEMIS E2E"
+    },
+    {
+      "timestampUtc": "2026-11-05T16:01:25.532040+00:00",
+      "serial": "emulator-5562",
+      "requestedMode": "warm",
+      "userdataCleared": false,
+      "anrDetectionSuppressed": false,
+      "pidBefore": "3671",
+      "pidAfter": "3671",
+      "amStart": "Starting: Intent { cmp=com.beewise.beewise/.MainActivity (has extras) }\r\nWarning: Activity not started, its current task has been brought to the front\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.beewise.beewise/.MainActivity\r\nWaitTime: 200\r\nComplete",
+      "amStartWallMs": 453,
+      "flutterFrames": {
+        "status": "NOT_MEASURED",
+        "reason": "Timeline collection requires opt-in cold --trace-startup"
+      },
+      "homeUiPresent": true,
+      "anrDialogInUi": false,
+      "screenshotSha256": "34b5c56eb84d89eca56ab5cf700f69cae587c916e1e4b863eb847a15b364dfbb",
+      "label": "settled-warm-01",
+      "focused_window": [
+        "mCurrentFocus=Window{5873ae9 u0 com.beewise.beewise/com.beewise.beewise.MainActivity}",
+        "mFocusedApp=ActivityRecord{b942925 u0 com.beewise.beewise/.MainActivity t43}"
+      ],
+      "post_marker_anr_lines": [],
+      "main_wchan": "do_epoll_wait",
+      "android_draw_log": [],
+      "review": "Root inspected cold Home frames; native measurement only, not ARTEMIS E2E"
+    }
+  ],
+  "boot_system_anr": "Google Messages ANR at 2026-11-05 22:50:48.325 local, before controlled startup markers. Not erased or counted as BeeWise failure.",
+  "diagnosis": "Package/resource-loading main-thread stall verified historically; root cause unproven. Three settled cold starts and one same-process warm start clean. Restart/settling is a scoped operational workaround, not a source fix.",
+  "limits": "No control app, alternate AVD, physical device or sustained inference-concurrent stress verification in this stabilization. Flutter debug startup remains slow.",
+  "provider_calls_this_stabilization": 0
+}

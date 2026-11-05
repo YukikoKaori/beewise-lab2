@@ -1,0 +1,60 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed 'Con h\\u1ecdc l\\u1edbp 8, c\\u1ea7n c\\u1ee7ng c\\u1ed1 \\u0110\\u1ea1i s\\u1ed1, h\\u1ecdc online 2 bu\\u1ed5i m\\u1ed7i tu\\u1ea7n, ng\\u00e2n s\\u00e1ch 250000 VND m\\u1ed7i gi\\u1edd.' at [500, 378] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [200, 569] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 378] (normalized).\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [354, 654] (normalized).\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 522] (normalized).\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "press_key",
+    "args": {
+      "key": "BACK"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Pressed key 'BACK'.\"}",
+    "image": "step-07.jpg"
+  },
+  {
+    "step": 8,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-08.jpg"
+  }
+]

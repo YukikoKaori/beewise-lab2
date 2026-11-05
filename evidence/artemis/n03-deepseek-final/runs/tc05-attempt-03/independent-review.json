@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-05T15:18:54.922374+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Independently viewed fresh Home, entered need and final no-match frame with manual search link. Correct JSON, strict assertions and JUnit PASS. No candidates in isolated emulator; no Gemini success claimed.",
+  "accepted": true,
+  "junit_pass": true
+}

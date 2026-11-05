@@ -1,0 +1,374 @@
+{
+  "generated_utc": "2026-11-05T19:29:55.439204+00:00",
+  "verdict": "N03_REGRESSION_30_RUNS_COMPLETE",
+  "accepted_runs": 30,
+  "target": 30,
+  "matrix": {
+    "TC-01": {
+      "accepted": 3,
+      "failed_or_blocked": 0
+    },
+    "TC-03": {
+      "accepted": 3,
+      "failed_or_blocked": 4
+    },
+    "TC-04": {
+      "accepted": 3,
+      "failed_or_blocked": 1
+    },
+    "TC-05": {
+      "accepted": 3,
+      "failed_or_blocked": 1
+    },
+    "TC-06": {
+      "accepted": 3,
+      "failed_or_blocked": 0
+    },
+    "TC-08": {
+      "accepted": 3,
+      "failed_or_blocked": 0
+    },
+    "TC-09": {
+      "accepted": 3,
+      "failed_or_blocked": 1
+    },
+    "TC-16": {
+      "accepted": 0,
+      "failed_or_blocked": 1
+    },
+    "TC-20": {
+      "accepted": 3,
+      "failed_or_blocked": 1
+    },
+    "TC-22": {
+      "accepted": 3,
+      "failed_or_blocked": 5
+    },
+    "TC-27": {
+      "accepted": 3,
+      "failed_or_blocked": 0
+    }
+  },
+  "attempts": [
+    {
+      "run_id": "b01da0ec-1fa3-4942-97ea-ceff8396c8f5",
+      "case": "TC-09",
+      "state": "FAILED",
+      "trace_id": "13a81bcd-6a74-47a7-a252-c870ca880f54",
+      "evidence": "runs/tc09-attempt-01"
+    },
+    {
+      "run_id": "c863e5a6-d3ee-4c88-a343-ae0b327ba258",
+      "case": "TC-09",
+      "state": "ACCEPTED",
+      "trace_id": "c06f9d97-2e8a-46cc-9831-927f736a6392",
+      "evidence": "runs/tc09-attempt-02"
+    },
+    {
+      "run_id": "1c3335e6-8e37-44cd-a574-fc0ddd376903",
+      "case": "TC-09",
+      "state": "ACCEPTED",
+      "trace_id": "bb5e6013-99d5-48f5-92e3-a807a0b7e5fe",
+      "evidence": "runs/tc09-attempt-03"
+    },
+    {
+      "run_id": "9bce8b86-85d8-4e32-9477-be7112a9a049",
+      "case": "TC-09",
+      "state": "ACCEPTED",
+      "trace_id": "f6d9a7e8-240b-4173-a2bc-2bac7c046f88",
+      "evidence": "runs/tc09-attempt-04"
+    },
+    {
+      "run_id": "53dd8ed0-adc0-49e4-ba4b-451311364d06",
+      "case": "TC-05",
+      "state": "ACCEPTED",
+      "trace_id": "22016c5b-f4d0-4c20-86db-acc9cc0fdb75",
+      "evidence": "runs/tc05-attempt-01"
+    },
+    {
+      "run_id": "ee35dd67-c7c6-4914-8394-8518399d1bdf",
+      "case": "TC-05",
+      "state": "FAILED",
+      "trace_id": "301439ee-3849-486d-b491-cb90866dec2d",
+      "evidence": "runs/tc05-attempt-02"
+    },
+    {
+      "run_id": "43a3e418-06d7-451c-9b55-79b52081ac9b",
+      "case": "TC-05",
+      "state": "ACCEPTED",
+      "trace_id": "e082d56b-db96-4259-bab8-a6cd47d94539",
+      "evidence": "runs/tc05-attempt-03"
+    },
+    {
+      "run_id": "9377c1ec-1bd2-4de5-8142-b0b5cf36dbe0",
+      "case": "TC-05",
+      "state": "ACCEPTED",
+      "trace_id": "3957aa8f-35d5-4701-bfc0-9ae22de7ea5b",
+      "evidence": "runs/tc05-attempt-04"
+    },
+    {
+      "run_id": "7bad05e4-e249-4bc5-96fa-52851f29eef7",
+      "case": "TC-01",
+      "state": "ACCEPTED",
+      "trace_id": "c9eecfd2-341d-403c-9481-3e6239202e99",
+      "evidence": "runs/tc01-attempt-01"
+    },
+    {
+      "run_id": "1a24d5b2-e79d-452d-a12e-40ce331903c3",
+      "case": "TC-01",
+      "state": "ACCEPTED",
+      "trace_id": "552fa8c2-aefa-48ca-b443-897e90bc2b19",
+      "evidence": "runs/tc01-attempt-02"
+    },
+    {
+      "run_id": "1f7c57c1-517f-45b4-977e-4c36f653191d",
+      "case": "TC-01",
+      "state": "ACCEPTED",
+      "trace_id": "ef18cbe1-3734-40ce-8f2b-f6b69a8d5042",
+      "evidence": "runs/tc01-attempt-03"
+    },
+    {
+      "run_id": "0feb10d3-9812-4354-80c5-3e1dd6211021",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "f6a5b49a-a710-4dd3-9583-538a1305302b",
+      "evidence": "runs/tc03-attempt-01"
+    },
+    {
+      "run_id": "a787ed61-b3b0-4308-ad6b-fa1e42e50d63",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "abd8d6bf-d33f-40dd-8480-ac73a9dfa4e6",
+      "evidence": "runs/tc03-attempt-02"
+    },
+    {
+      "run_id": "240cabb2-7dbd-44a2-96a4-fdc8aa96e56b",
+      "case": "TC-03",
+      "state": "ACCEPTED",
+      "trace_id": "c2a1a81d-9b01-4ee9-9e57-d83c5654303a",
+      "evidence": "runs/tc03-attempt-03"
+    },
+    {
+      "run_id": "401570d6-9c24-4905-9892-2f0acde35223",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "a1dfdebe-5098-4c0d-a9da-022c486f0b38",
+      "evidence": "runs/tc03-attempt-04"
+    },
+    {
+      "run_id": "07da94ec-76f1-4405-bbc1-40075e349435",
+      "case": "TC-03",
+      "state": "ACCEPTED",
+      "trace_id": "33ab524e-3948-447d-aa32-8763390a5cca",
+      "evidence": "runs/tc03-attempt-05"
+    },
+    {
+      "run_id": "17a3ed7f-9c43-471e-bc9f-52baf37be2ff",
+      "case": "TC-03",
+      "state": "FAILED",
+      "trace_id": "7f3b4a0b-fb0e-402b-9fa5-e25a6f5a98c8",
+      "evidence": "runs/tc03-attempt-06"
+    },
+    {
+      "run_id": "b217f408-ca16-4107-91cc-28e4d3fc58fd",
+      "case": "TC-03",
+      "state": "ACCEPTED",
+      "trace_id": "2d6ba0da-5038-43d2-be8b-04b81ca635de",
+      "evidence": "runs/completion-TC03-01"
+    },
+    {
+      "run_id": "b22a3c60-555b-4b39-93eb-98f5a77fb190",
+      "case": "TC-04",
+      "state": "FAILED",
+      "trace_id": "3ac16090-172a-451b-a06f-fc5dd742b103",
+      "evidence": "runs/completion-TC04-01"
+    },
+    {
+      "run_id": "ff452a82-7943-498e-b2fb-42be8191b5dc",
+      "case": "TC-04",
+      "state": "ACCEPTED",
+      "trace_id": "e17441ff-f900-4041-b4dc-e3a234e74754",
+      "evidence": "runs/completion-TC04-02"
+    },
+    {
+      "run_id": "093f8a51-2a89-4e3c-994e-358f47bdd68a",
+      "case": "TC-04",
+      "state": "ACCEPTED",
+      "trace_id": "b40b934c-745a-433f-aaae-ef1e4e76d3c0",
+      "evidence": "runs/completion-TC04-03b"
+    },
+    {
+      "run_id": "79c1ed18-51ef-4dfe-ac40-576a7d8b55ef",
+      "case": "TC-04",
+      "state": "ACCEPTED",
+      "trace_id": "9953bf04-4da4-4340-88fa-6fd7dc5b01ca",
+      "evidence": "runs/completion-TC04-04"
+    },
+    {
+      "run_id": "c6fea660-5927-4859-9c17-2d1cbbbfbd20",
+      "case": "TC-06",
+      "state": "ACCEPTED",
+      "trace_id": "190f2aed-379b-4afc-a2c7-4bd7d68fc1ff",
+      "evidence": "runs/completion-TC06-01"
+    },
+    {
+      "run_id": "2fc88dbf-5398-457f-a855-29ccc3d41bf1",
+      "case": "TC-06",
+      "state": "ACCEPTED",
+      "trace_id": "2daef801-bad7-4eac-906d-5283df839c6b",
+      "evidence": "runs/completion-TC06-02"
+    },
+    {
+      "run_id": "23f75bd8-b019-4f0d-a6bd-d6e66fc99e26",
+      "case": "TC-06",
+      "state": "ACCEPTED",
+      "trace_id": "50c2a538-234d-41d9-b06c-45e7649a8d7c",
+      "evidence": "runs/completion-TC06-03"
+    },
+    {
+      "run_id": "ba5b9ed8-2411-4775-92ca-19a5c85e5645",
+      "case": "TC-08",
+      "state": "ACCEPTED",
+      "trace_id": "dd1c4a8a-2e9c-40c7-be22-739d24cda689",
+      "evidence": "runs/completion-TC08-01"
+    },
+    {
+      "run_id": "3ed08af5-a302-4348-a367-dda7e1770b53",
+      "case": "TC-08",
+      "state": "ACCEPTED",
+      "trace_id": "f20e07dd-9d51-4c27-98fb-609792c718f5",
+      "evidence": "runs/completion-TC08-02b"
+    },
+    {
+      "run_id": "89809162-c2f8-49b4-a48b-337662838d94",
+      "case": "TC-08",
+      "state": "ACCEPTED",
+      "trace_id": "56fa5a47-9ff9-42e2-b945-3b767dc95c38",
+      "evidence": "runs/completion-TC08-03"
+    },
+    {
+      "run_id": "4f422dd4-d62c-464d-911a-b5091d487b86",
+      "case": "TC-16",
+      "state": "FAILED",
+      "trace_id": "4065fa09-e7da-4f65-a13b-b4f5bd9053b9",
+      "evidence": "runs/completion-TC16-01"
+    },
+    {
+      "run_id": "fc7c53a1-6419-401a-8f49-eccb99ac50ab",
+      "case": "TC-20",
+      "state": "FAILED",
+      "trace_id": "e303446c-0397-4561-971e-b118cc2ba54d",
+      "evidence": "runs/completion-TC20-01"
+    },
+    {
+      "run_id": "c82a564e-a32c-42b7-b5c5-1ecbd7ec3ead",
+      "case": "TC-20",
+      "state": "ACCEPTED",
+      "trace_id": "894e22ed-5842-4889-ae7a-82deae1bc875",
+      "evidence": "runs/completion-TC20-02"
+    },
+    {
+      "run_id": "6f022501-434e-427b-92ac-20cc4b210165",
+      "case": "TC-20",
+      "state": "ACCEPTED",
+      "trace_id": "ecf5921a-8e58-4303-a9a3-5d826a2aa819",
+      "evidence": "runs/completion-TC20-03"
+    },
+    {
+      "run_id": "0e69118d-beb8-41f7-9000-a02a4b10c0a2",
+      "case": "TC-20",
+      "state": "ACCEPTED",
+      "trace_id": "794b28f4-53fb-45ee-a68a-da462c1706b3",
+      "evidence": "runs/completion-TC20-04"
+    },
+    {
+      "run_id": "a8b15fd1-63bb-4741-81cb-106856e6201a",
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "c0353e65-8fe9-4fb7-815c-b96d58611667",
+      "evidence": "runs/completion-TC22-01"
+    },
+    {
+      "run_id": "9da88ebd-700d-4c54-a664-90956408ad78",
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "c699696a-9b35-4583-aeef-95b6f65dc2e7",
+      "evidence": "runs/completion-TC22-02"
+    },
+    {
+      "run_id": "d87d6eb2-822e-49d7-84f1-382727c3a9bf",
+      "case": "TC-27",
+      "state": "ACCEPTED",
+      "trace_id": "892120dd-f079-4cd3-9763-18628650dc20",
+      "evidence": "runs/completion-TC27-01"
+    },
+    {
+      "run_id": "69352b98-7719-4477-9c5d-93ec0cf06cf1",
+      "case": "TC-27",
+      "state": "ACCEPTED",
+      "trace_id": "0bf400cb-8d80-48f7-b2a2-ca2b46785ede",
+      "evidence": "runs/completion-TC27-02"
+    },
+    {
+      "run_id": "332e5000-7353-4164-a20f-2ae2f35a1efc",
+      "case": "TC-27",
+      "state": "ACCEPTED",
+      "trace_id": "a86c3f3c-ec10-444f-b880-917f81cf212d",
+      "evidence": "runs/completion-TC27-03"
+    },
+    {
+      "run_id": "c6bb6991-318b-4fa4-986e-1f861be8b9fc",
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "9c861a9d-3566-4b9e-9a5d-dcaeb7b503ab",
+      "evidence": "runs/completion-TC22-03"
+    },
+    {
+      "run_id": "434d32f9-b1a3-4a77-a9ad-dc30088d2e8b",
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "8dcaac5e-4592-47b7-946f-96ee2c583a81",
+      "evidence": "runs/completion-TC22-04"
+    },
+    {
+      "run_id": "0c00f694-9674-4673-acac-bff72c08bd90",
+      "case": "TC-22",
+      "state": "FAILED",
+      "trace_id": "1061da85-e123-4ee6-a32a-32e0bfa9ef49",
+      "evidence": "runs/completion-TC22-05"
+    },
+    {
+      "run_id": "093c331f-86e5-4727-8674-420995a5f150",
+      "case": "TC-22",
+      "state": "ACCEPTED",
+      "trace_id": "42973812-1328-45de-b174-3cfff7927c3d",
+      "evidence": "runs/completion-TC22-06"
+    },
+    {
+      "run_id": "9bd31a2a-93e0-47ce-a5c9-ff6d8a58fe86",
+      "case": "TC-22",
+      "state": "ACCEPTED",
+      "trace_id": "ec456ba3-bb73-4a50-86d0-d95b44f2c1a1",
+      "evidence": "runs/completion-TC22-07"
+    },
+    {
+      "run_id": "0d383818-5bc6-4028-b583-c87269db0b58",
+      "case": "TC-22",
+      "state": "ACCEPTED",
+      "trace_id": "6df46bdc-1b5d-470f-817c-0bf05bdf08ee",
+      "evidence": "runs/completion-TC22-08"
+    }
+  ],
+  "usage": {
+    "http_attempts": 272,
+    "prompt_tokens": 2542792,
+    "completion_tokens": 33161,
+    "accounted_nanodollars": 802630800
+  },
+  "estimated_usd": 0.8026308,
+  "remaining_approved_usd": 0.0173692,
+  "approval_ref": "call_16bbf8c8c37b49bf8c9dd2a3385caabf; 2026-11-06 owner approved ff24c69b7dd9c4d93a1f685f00fb8d102bc473861618da9a15340479518e6625; 2026-11-06 owner approved d876e1e04e78a993bf1f6474f50f45704e285e6ff71c47c9bf350fe7b0a5c3a6; 2026-11-06 owner approved 928fdedb4b7681e6aa33c09dd005f58ca302a26d9d8929b98c4849990148833b; 2026-11-06 owner approved 05e483dc11dd308e64954740c4380a66b201ee483847975bf4ff93b7ed4630c5",
+  "expires_utc": "2026-11-06T14:52:19.526760+00:00",
+  "ledger_blocked": false,
+  "exploration": "NOT RUN; outside approved regression scope"
+}

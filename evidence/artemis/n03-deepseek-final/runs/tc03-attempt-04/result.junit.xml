@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="43.080" timestamp="2026-11-05T22:30:38.778491+07:00"><testcase classname="test_discovery" name="test_tc03_search_no_match_shows_recoverable_empty_state" time="42.636"><failure message="AssertionError: TC-03 failed: failed&#10;assert False&#10; +  where False = TaskResult(task_id='a1dfdebe-5098-4c0d-a9da-022c486f0b38', status='failed', goal='Test case TC-03. Starting point: Bee...ion_visible&quot;:true,&quot;message&quot;:string}', profile=None, device_serial='emulator-5562', output=None, error=None, turns=None).succeeded">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x000001CB250667A0&gt;
+
+    async def test_tc03_search_no_match_shows_recoverable_empty_state(run_flow):
+        """TC-03; Search error path; configured query has no catalog matches."""
+        query = os.environ.get("BEEWISE_NO_RESULT_TERM", "zz-no-tutor-match-393-2026")
+&gt;       observed = await run_flow(
+            case_id="TC-03",
+            start="BeeWise is signed out on Home; Firebase is available and the unique test term has no match.",
+            steps=(
+                "Tap the Tìm gia sư bottom-navigation destination. Focus its search "
+                f"field, enter {query!r}, and submit the search. Wait for completion. "
+                "Verify the empty-state "
+                "message and a retry or clear-search recovery action; report both."
+            ),
+            expected=(
+                '{"result_count":0,"empty_state_visible":true,'
+                '"recovery_action_visible":true,"message":string}'
+            ),
+        )
+
+e2e_test\test_discovery.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+case_id = 'TC-03'
+start = 'BeeWise is signed out on Home; Firebase is available and the unique test term has no match.'
+steps = "Tap the Tìm gia sư bottom-navigation destination. Focus its search field, enter 'zz-no-tutor-match-393-2026', and sub... search. Wait for completion. Verify the empty-state message and a retry or clear-search recovery action; report both."
+expected = '{"result_count":0,"empty_state_visible":true,"recovery_action_visible":true,"message":string}'
+profile = 'flash', timeout = 600
+
+    async def run(
+        *,
+        case_id: str,
+        start: str,
+        steps: str,
+        expected: str,
+        profile: str = "flash",
+        timeout: int = 600,
+    ) -&gt; dict[str, Any]:
+        goal = (
+            f"Test case {case_id}. Starting point: {start}.\n"
+            f"Steps: {steps}\n"
+            "Use only visible app/device state. Do not invent records or results. "
+            "After input_text, verify the text actually appears in the focused field. "
+            "On this Android device KEYCODE_PASTE can leave text only in Gboard's "
+            "clipboard suggestion; if the field is still blank, tap that visible "
+            "clipboard suggestion to insert it, then verify the field before submitting. "
+            "When calling report_task_status, put the requested JSON object in "
+            "the explanation argument itself, with no prose or Markdown. "
+            f"Required explanation contract: {expected}"
+        )
+        session_id = str(uuid.uuid4())
+        remote_run = asyncio.create_task(
+            artemis.run(
+                goal,
+                profile=profile,  # type: ignore[arg-type]
+                device_serial=artemis.device_serial,
+                locked_app_package=APP_PACKAGE,
+                expected_output=(
+                    "Return a JSON object only, matching this observable contract: "
+                    + expected
+                ),
+                enable_outputter=True,
+                task_id=session_id,
+                timeout=timeout,
+            )
+        )
+        quota_detected = False
+        while not remote_run.done():
+            await asyncio.sleep(2)
+            try:
+                trace = await artemis._request(
+                    "GET", f"/api/sessions/{session_id}/steps"
+                )
+            except Exception:
+                # The session may not be persisted until scheduler admission.
+                continue
+            if _trace_has_rate_limit(trace):
+                quota_detected = True
+                try:
+                    await artemis.stop(session_id)
+                finally:
+                    try:
+                        await asyncio.wait_for(remote_run, timeout=20)
+                    except Exception:
+                        remote_run.cancel()
+                break
+    
+        if quota_detected:
+            pytest.fail(
+                f"{case_id} blocked: ARTEMIS trace {session_id} reports a provider "
+                "quota/rate-limit error; the task was stopped before further retries."
+            )
+    
+        result: TaskResult = await remote_run
+        print(
+            f"ARTEMIS_RESULT case={case_id} trace_id={result.trace_id} "
+            f"status={result.status} device={result.device_serial}"
+        )
+        assert result.trace_id, f"{case_id} has no trace provenance"
+&gt;       assert result.succeeded, f"{case_id} failed: {result.error or result.status}"
+E       AssertionError: TC-03 failed: failed
+E       assert False
+E        +  where False = TaskResult(task_id='a1dfdebe-5098-4c0d-a9da-022c486f0b38', status='failed', goal='Test case TC-03. Starting point: Bee...ion_visible":true,"message":string}', profile=None, device_serial='emulator-5562', output=None, error=None, turns=None).succeeded
+
+e2e_test\conftest.py:172: AssertionError</failure></testcase></testsuite></testsuites>

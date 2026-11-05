@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="38.791" timestamp="2026-11-06T00:18:02.026700+07:00"><testcase classname="test_discovery" name="test_tc04_tutor_detail_matches_selected_real_tutor" time="38.626"><failure message="AssertionError: assert False&#10; +  where False = require({'screen': 'Tutor profile', 'tutor_name': 'Gia sư kỹ thuật (EMULATOR)', 'subjects': ['Toán'], 'hourly_fee_visible': False, ...}, 'hourly_fee_visible', bool)">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x000002A6B63667A0&gt;
+
+    async def test_tc04_tutor_detail_matches_selected_real_tutor(run_flow):
+        """TC-04; Tutor detail; the configured active tutor is visible in search."""
+        tutor_name = os.environ.get("BEEWISE_TEST_TUTOR_NAME")
+        assert tutor_name, "Set BEEWISE_TEST_TUTOR_NAME to a real active Firebase tutor."
+        observed = await run_flow(
+            case_id="TC-04",
+            start="BeeWise is signed out on Tìm gia sư; the named active tutor is in the real catalog.",
+            steps=(
+                f"Find and open the tutor named {tutor_name!r}. Verify the profile "
+                "name exactly, visible subject and fee details, and the connection "
+                "action. Report only values visible on the screen."
+            ),
+            expected=(
+                '{"screen":"Tutor profile","tutor_name":"configured exact name",'
+                '"subjects":[string],"hourly_fee_visible":true,'
+                '"connection_action_visible":true}'
+            ),
+        )
+        assert require(observed, "screen", str).lower() in {"tutor profile", "hồ sơ gia sư"}
+        assert require(observed, "tutor_name", str) == tutor_name
+        assert require(observed, "subjects", list)
+&gt;       assert require(observed, "hourly_fee_visible", bool)
+E       AssertionError: assert False
+E        +  where False = require({'screen': 'Tutor profile', 'tutor_name': 'Gia sư kỹ thuật (EMULATOR)', 'subjects': ['Toán'], 'hourly_fee_visible': False, ...}, 'hourly_fee_visible', bool)
+
+e2e_test\test_discovery.py:112: AssertionError</failure></testcase></testsuite></testsuites>

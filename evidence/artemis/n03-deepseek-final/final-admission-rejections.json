@@ -1,0 +1,14 @@
+{
+  "retry_gate_rejected_before_admission": true,
+  "counts_before": [
+    15,
+    90
+  ],
+  "counts_after": [
+    15,
+    90
+  ],
+  "output_directory_created": false,
+  "native_anr_focus_gate_rejected": true,
+  "provider_requests_made": 0
+}

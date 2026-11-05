@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="38.545" timestamp="2026-11-06T00:16:02.270568+07:00"><testcase classname="test_discovery" name="test_tc03_search_no_match_shows_recoverable_empty_state" time="38.530" /></testsuite></testsuites>

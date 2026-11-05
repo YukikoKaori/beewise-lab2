@@ -1,0 +1,41 @@
+{
+  "run_id": "c863e5a6-d3ee-4c88-a343-ae0b327ba258",
+  "case": "TC-09",
+  "started_utc": "2026-11-05T14:58:10.723082+00:00",
+  "usage_before": {
+    "http_attempts": 5,
+    "prompt_tokens": 44720,
+    "completion_tokens": 615,
+    "accounted_nanodollars": 14154000
+  },
+  "command": [
+    "rtk",
+    "proxy",
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-c",
+    "e2e_test/pyproject.toml",
+    "e2e_test/test_account_and_firebase.py::test_tc09_all_top_level_destinations_are_reachable",
+    "-q",
+    "-s",
+    "-p",
+    "smoke_guard",
+    "--junitxml=D:\\CodexTemp\\n03-private\\runs\\tc09-attempt-02\\result.junit.xml"
+  ],
+  "native_review": "PENDING",
+  "source_sha": "a72059ca5e07a4c1193960965dc07453efea161d",
+  "harness_diff_sha256": "38d002cfd5f0c06c08eedb00311b61ef9d4929b51d11b8454c2fd3a661e42cc3",
+  "apk_sha256": "59a8a74ded5ba681f8ad2eed7c4d2d7874f1c0ff545e65556124c09d7f1c2eb7",
+  "artemis_patch_sha256": "db752e9c0682da19613487dba0733ec146d5c26031adb351763aebacad7e59f5",
+  "pytest_exit": 0,
+  "state": "REVIEW_REQUIRED",
+  "finished_utc": "2026-11-05T14:58:37.223592+00:00",
+  "usage_after": {
+    "http_attempts": 10,
+    "prompt_tokens": 89790,
+    "completion_tokens": 1318,
+    "accounted_nanodollars": 28518600
+  },
+  "trace_id": "c06f9d97-2e8a-46cc-9831-927f736a6392"
+}
