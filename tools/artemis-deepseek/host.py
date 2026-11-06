@@ -38,9 +38,9 @@ def main():
         from datetime import UTC, datetime
         import json as _json
         _policy = _json.loads(Path(__file__).with_name("execution-policy.json").read_text(encoding="utf-8"))
-        if _policy.get("decision") == "OWNER_APPROVED_EXPLORATION":
-            max_allowed_requests = 50
-            max_allowed_cost = 120_000_000
+        if _policy.get("decision") in {"OWNER_APPROVED_EXPLORATION", "OWNER_APPROVED_EXPLORATION_V3", "OWNER_APPROVED_EXPLORATION_V4", "OWNER_APPROVED_EXPLORATION_V5", "OWNER_APPROVED_EXPLORATION_V6"}:
+            max_allowed_requests = _policy.get("approved_inference_requests", 66)
+            max_allowed_cost = int(_policy.get("approved_usd", 0.22) * 1_000_000_000)
             if (not 1 <= maximum <= max_allowed_requests or not 1 <= ceiling <= max_allowed_cost or
                     not approval or blocked or datetime.now(UTC) >= datetime.fromisoformat(expires)):
                 parser.error("Exploration ledger is blocked, expired or unauthorized")
@@ -82,13 +82,16 @@ def main():
     })
     if args.ledger:
         os.environ["ARTEMIS_DEEPSEEK_LEDGER_FILE"] = str(args.ledger)
-        if _policy.get("decision") == "OWNER_APPROVED_EXPLORATION":
+        if _policy.get("decision") in {"OWNER_APPROVED_EXPLORATION", "OWNER_APPROVED_EXPLORATION_V3", "OWNER_APPROVED_EXPLORATION_V4", "OWNER_APPROVED_EXPLORATION_V5", "OWNER_APPROVED_EXPLORATION_V6"}:
             os.environ.update({
                 "ARTEMIS_FLASH_MAX_TURNS": "35",
                 "ARTEMIS_TURN_PACING_SECONDS": "25",
                 "ARTEMIS_MIN_TURNS_BEFORE_REPORT": "25",
-                "ARTEMIS_MIN_EXPLORATION_SECONDS": "960",
+                "ARTEMIS_MIN_EXPLORATION_SECONDS": "910",
+                "ARTEMIS_TURN_PACING_SECONDS": "38",
+                "ARTEMIS_MIN_TURNS_BEFORE_REPORT": "21",
                 "ARTEMIS_DEEPSEEK_MAX_NON_IMAGE_BYTES": "131072",
+                "ARTEMIS_DEEPSEEK_RETRY_CONNECTION": "2",
             })
     os.chdir(root)
     sys.path.insert(0, str(root))

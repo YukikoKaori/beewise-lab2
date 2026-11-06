@@ -1,0 +1,16 @@
+{
+  "timestamp_utc": "2026-11-06T08:11:19.000000+00:00",
+  "approval_type": "OWNER_APPROVED_EXPLORATION_V4",
+  "approved_choice": "(Recommended) Phê duyệt Đề xuất V4: Bổ sung trần 28 requests / $0.11 USD (nâng trần lũy kế lên 115 requests / $0.42 USD) để chạy dứt điểm 1 phiên 16 phút độc lập (>900s), bảo đảm số dư sau chạy ~$0.74 USD (vượt mức giữ lại $0.50 của Nexora).",
+  "proposal_file": "evidence/artemis/n03-exploration-final/exploration-amendment-v4.md",
+  "proposal_sha256": "15571e730a8dd3d8699e1ab18318efa38a1727056924dc7f50975f376443500c",
+  "approved_additional_requests": 28,
+  "approved_cumulative_requests": 115,
+  "approved_additional_usd": 0.11,
+  "approved_cumulative_usd": 0.42,
+  "target_duration_seconds": 960,
+  "profile": "flash",
+  "gemini_fallback": false,
+  "nexora_reserve_nanodollars": 500000000,
+  "expires_utc": "2026-11-07T08:30:00.000000+00:00"
+}
