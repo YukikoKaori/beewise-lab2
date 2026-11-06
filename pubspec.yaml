@@ -42,6 +42,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/brand/
+    - assets/stickers/
   fonts:
     - family: Nunito
       fonts:
