@@ -71,13 +71,15 @@ final tutorApplicationServiceProvider = Provider<TutorApplicationService?>(
       : null,
 );
 
-final tutorApplicationStatusProvider = FutureProvider.family<String, String>((
+final tutorApplicationStatusProvider = StreamProvider.family<String, String>((
   ref,
   uid,
-) async {
+) {
   final service = ref.watch(tutorApplicationServiceProvider);
-  if (service == null) throw const FirebaseNotConfiguredException();
-  return service.status(uid);
+  if (service == null) {
+    return Stream.error(const FirebaseNotConfiguredException());
+  }
+  return service.watchStatus(uid);
 });
 
 final authStateProvider = StreamProvider<User?>((ref) {
