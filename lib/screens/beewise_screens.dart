@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../models/chat_message.dart';
+import '../models/chat_preview.dart';
 import '../models/tutor.dart';
 import '../services/tutor_repository.dart';
 import '../theme/bee_wise_theme.dart';
@@ -38,6 +39,19 @@ class HomeScreen extends ConsumerWidget {
     final tutors = ref.watch(activeTutorsProvider);
     return BeeWiseScaffold(
       title: 'BeeWise',
+      titleWidget: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const BeeWiseLogo(height: 28),
+          const SizedBox(height: 2),
+          Text(
+            'Gia sư uy tín cho con',
+            style: Theme.of(context).textTheme.bodySmall
+                ?.copyWith(color: BeeWiseColors.muted),
+          ),
+        ],
+      ),
       bottomNavigationIndex: 0,
       actions: [
         IconButton(
@@ -81,40 +95,45 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: 16),
             Card(
               color: BeeWiseColors.primary,
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.auto_awesome,
-                      color: BeeWiseColors.accent,
-                      size: 28,
+              clipBehavior: Clip.antiAlias,
+              child: Stack(
+                children: [
+                  const Positioned(
+                    top: 8,
+                    right: 8,
+                    child: BeeSticker.wand(size: 88),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(18),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 84),
+                        Text(
+                          'Tìm gia sư phù hợp với nhu cầu của con',
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Mô tả mục tiêu học tập để AI gợi ý từ hồ sơ gia sư thật.',
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: Colors.white),
+                        ),
+                        const SizedBox(height: 12),
+                        FilledButton.icon(
+                          style: FilledButton.styleFrom(
+                            backgroundColor: BeeWiseColors.accent,
+                            foregroundColor: BeeWiseColors.ink,
+                          ),
+                          onPressed: () => context.push('/matching'),
+                          icon: const Icon(Icons.auto_awesome),
+                          label: const Text('Bắt đầu ghép AI'),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Tìm gia sư phù hợp với nhu cầu của con',
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(color: Colors.white),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'Mô tả mục tiêu học tập để AI gợi ý từ hồ sơ gia sư thật.',
-                      style: Theme.of(context).textTheme.bodyMedium
-                          ?.copyWith(color: Colors.white),
-                    ),
-                    const SizedBox(height: 12),
-                    FilledButton.icon(
-                      style: FilledButton.styleFrom(
-                        backgroundColor: BeeWiseColors.accent,
-                        foregroundColor: BeeWiseColors.ink,
-                      ),
-                      onPressed: () => context.push('/matching'),
-                      icon: const Icon(Icons.arrow_forward),
-                      label: const Text('Bắt đầu ghép AI'),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             const SectionTitle('Khám phá theo môn học'),
@@ -170,6 +189,7 @@ class HomeScreen extends ConsumerWidget {
                       title: 'Chưa có gia sư phù hợp',
                       message: 'Hồ sơ gia sư đang hoạt động sẽ xuất hiện ở đây khi được cập nhật từ hệ thống.',
                       icon: Icons.school_outlined,
+                      sticker: BeeSticker.cheer(size: 96),
                     )
                   : Column(
                       children: [
@@ -530,6 +550,7 @@ class _MatchingScreenState extends ConsumerState<MatchingScreen> {
               title: 'Chưa có hồ sơ phù hợp',
               message: 'Không có gia sư nào trong dữ liệu hiện tại khớp với mô tả. Bạn có thể đổi yêu cầu hoặc tự tìm.',
               icon: Icons.auto_awesome_outlined,
+              sticker: BeeSticker.robot(size: 140),
             ),
           if (result.hasValue && result.value!.isNotEmpty) ...[
             const SectionTitle('Gợi ý từ hồ sơ đang hoạt động'),
@@ -820,11 +841,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            const Icon(
-              Icons.hive_rounded,
-              size: 52,
-              color: BeeWiseColors.primary,
-            ),
+            const Center(child: BeeWiseLogo(height: 44)),
+            const SizedBox(height: 16),
             Text(
               'Chào mừng trở lại',
               style: Theme.of(context).textTheme.headlineLarge,
@@ -957,6 +975,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
+            const Center(child: BeeWiseLogo(height: 44)),
+            const SizedBox(height: 16),
             Text(
               'Bắt đầu cùng BeeWise',
               style: Theme.of(context).textTheme.headlineLarge,
@@ -1300,7 +1320,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: _chatGap),
                         for (final message in items)
                           _MessageTile(
                             message: message,
@@ -1311,59 +1331,71 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                     ),
             ),
           ),
-          SafeArea(
-            top: false,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _composer,
-                      minLines: 1,
-                      maxLines: 4,
-                      decoration: const InputDecoration(
-                        hintText: 'Nhập tin nhắn…',
-                        filled: true,
-                        fillColor: BeeWiseColors.canvas,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(999)),
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(999)),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(999)),
-                          borderSide: BorderSide(
-                            color: BeeWiseColors.primary,
-                            width: 2,
+          DecoratedBox(
+            decoration: const BoxDecoration(
+              color: BeeWiseColors.surface,
+              border: Border(top: BorderSide(color: BeeWiseColors.border)),
+            ),
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _composer,
+                        minLines: 1,
+                        maxLines: 4,
+                        decoration: const InputDecoration(
+                          hintText: 'Nhập tin nhắn…',
+                          filled: true,
+                          fillColor: BeeWiseColors.canvas,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(999),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(999),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(999),
+                            ),
+                            borderSide: BorderSide(
+                              color: BeeWiseColors.primary,
+                              width: 2,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton.filled(
-                    tooltip: 'Gửi tin nhắn',
-                    onPressed: sending.isLoading
-                        ? null
-                        : () async {
-                            final text = _composer.text;
-                            if (text.trim().isEmpty) return;
-                            await ref
-                                .read(chatComposerControllerProvider.notifier)
-                                .send(widget.chatId, text);
-                            if (!ref
-                                .read(chatComposerControllerProvider)
-                                .hasError) {
-                              _composer.clear();
-                            }
-                          },
-                    icon: const Icon(Icons.send_rounded),
-                  ),
-                ],
+                    const SizedBox(width: 8),
+                    IconButton.filled(
+                      tooltip: 'Gửi tin nhắn',
+                      onPressed: sending.isLoading
+                          ? null
+                          : () async {
+                              final text = _composer.text;
+                              if (text.trim().isEmpty) return;
+                              await ref
+                                  .read(chatComposerControllerProvider.notifier)
+                                  .send(widget.chatId, text);
+                              if (!ref
+                                  .read(chatComposerControllerProvider)
+                                  .hasError) {
+                                _composer.clear();
+                              }
+                            },
+                      icon: const Icon(Icons.send_rounded),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1384,6 +1416,132 @@ String _onboardingLabel(ChatMessage message) {
   return 'Đang trao đổi cùng tư vấn viên BeeWise';
 }
 
+/// Filled blue pill that labels who initiated a workflow step.
+class _ProposalTag extends StatelessWidget {
+  const _ProposalTag(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    decoration: BoxDecoration(
+      color: BeeWiseColors.primary,
+      borderRadius: BorderRadius.circular(BeeWiseRadius.full),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Icon(Icons.groups_2_outlined, size: 16, color: Colors.white),
+        const SizedBox(width: 6),
+        Text(
+          text,
+          style: Theme.of(context).textTheme.labelMedium
+              ?.copyWith(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
+      ],
+    ),
+  );
+}
+
+/// Avatar (initials) + name + caption, as at the top of the Figma detail cards.
+class _PersonHeader extends StatelessWidget {
+  const _PersonHeader({required this.name, required this.caption});
+  final String name;
+  final String caption;
+
+  @override
+  Widget build(BuildContext context) {
+    final parts = name.trim().split(RegExp(r'\s+'));
+    final initials = parts.length < 2
+        ? name.characters.take(1).toString().toUpperCase()
+        : (parts.first[0] + parts.last[0]).toUpperCase();
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 26,
+          backgroundColor: BeeWiseColors.highlight,
+          child: Text(
+            initials,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              color: BeeWiseColors.ink,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        const SizedBox(width: 14),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: Theme.of(context).textTheme.titleMedium
+                    ?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              Text(
+                caption,
+                style: Theme.of(context).textTheme.bodyMedium
+                    ?.copyWith(color: BeeWiseColors.muted),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Bordered info box with a bold blue title (e.g. "Sau buổi học thử").
+class _NoteBox extends StatelessWidget {
+  const _NoteBox({required this.title, required this.message});
+  final String title;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: const Color(0xFFEEF2FF),
+      borderRadius: BorderRadius.circular(BeeWiseRadius.field),
+      border: Border.all(color: BeeWiseColors.border),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(top: 2),
+          child: Icon(
+            Icons.info_outline,
+            size: 20,
+            color: BeeWiseColors.primary,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: BeeWiseColors.primary,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(message, style: Theme.of(context).textTheme.bodyMedium),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+/// Vertical gap between consecutive items in the conversation.
+const double _chatGap = 16;
+
 class _MessageTile extends StatelessWidget {
   const _MessageTile({
     required this.message,
@@ -1393,156 +1551,315 @@ class _MessageTile extends StatelessWidget {
   final ChatMessage message;
   final String chatId;
   final bool own;
+
   @override
   Widget build(BuildContext context) {
+    final invoiceId = message.payload['invoiceId'];
+    final classId = message.payload['classId'];
     if (message.kind == 'trial_proposal') {
-      return Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Đề xuất buổi học thử',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(message.body),
-              const SizedBox(height: 8),
-              FilledButton(
-                onPressed: () => context.push('/trial/$chatId/${message.id}'),
-                child: const Text('Xem và phản hồi'),
-              ),
-            ],
-          ),
-        ),
+      return _ChatActionCard(
+        icon: Icons.event_available_outlined,
+        title: 'Đề xuất buổi học thử',
+        body: message.body,
+        label: 'Xem và phản hồi',
+        onPressed: () => context.push('/trial/$chatId/${message.id}'),
       );
     }
     if (message.kind == 'class_revision') {
-      return Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Xác nhận thông tin lớp học',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(message.body),
-              FilledButton(
-                onPressed: () => context.push('/class/$chatId/${message.id}'),
-                child: const Text('Xem thông tin'),
-              ),
-            ],
-          ),
-        ),
+      return _ChatActionCard(
+        icon: Icons.description_outlined,
+        title: 'Xác nhận thông tin lớp học',
+        body: message.body,
+        label: 'Xem thông tin',
+        onPressed: () => context.push('/class/$chatId/${message.id}'),
       );
     }
-    final invoiceId = message.payload['invoiceId'];
     if (message.kind == 'payment_request' && invoiceId is String) {
-      return Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Hóa đơn học phí',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(message.body),
-              FilledButton(
-                onPressed: () => context.push('/payment/$invoiceId'),
-                child: const Text('Xem hóa đơn và thanh toán'),
-              ),
-            ],
-          ),
-        ),
+      return _ChatActionCard(
+        icon: Icons.receipt_long_outlined,
+        title: 'Hóa đơn học phí',
+        body: message.body,
+        label: 'Xem hóa đơn và thanh toán',
+        onPressed: () => context.push('/payment/$invoiceId'),
       );
     }
-    final classId = message.payload['classId'];
     if (message.role == 'system' && classId is String) {
-      return Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(message.body),
-              FilledButton(
-                onPressed: () => context.push('/schedule/$classId'),
-                child: const Text('Xem lịch học chính thức'),
-              ),
-            ],
-          ),
-        ),
+      return _ChatActionCard(
+        icon: Icons.calendar_month_outlined,
+        title: 'Lịch học chính thức',
+        body: message.body,
+        label: 'Xem lịch học chính thức',
+        onPressed: () => context.push('/schedule/$classId'),
       );
     }
+    if (message.role == 'system') return _ChatSystemNotice(message.body);
+    return _ChatBubble(message: message, own: own);
+  }
+}
+
+/// Card for a step the parent must act on (proposal, class info, invoice,
+/// schedule). One style for every kind so they read as a consistent family.
+class _ChatActionCard extends StatelessWidget {
+  const _ChatActionCard({
+    required this.icon,
+    required this.title,
+    required this.body,
+    required this.label,
+    required this.onPressed,
+  });
+  final IconData icon;
+  final String title;
+  final String body;
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: _chatGap),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: BeeWiseColors.surface,
+          borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+          border: Border.all(color: BeeWiseColors.primary, width: 1.5),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, size: 22, color: BeeWiseColors.primary),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: BeeWiseColors.primary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            if (body.trim().isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(body, style: theme.textTheme.bodyMedium),
+            ],
+            const SizedBox(height: 14),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: onPressed,
+                icon: const Icon(Icons.arrow_forward, size: 20),
+                label: Text(label),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Automatic system message: a full-width, low-key notice instead of a bubble.
+class _ChatSystemNotice extends StatelessWidget {
+  const _ChatSystemNotice(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.only(bottom: _chatGap),
+    child: Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFFE6EDFF),
+        borderRadius: BorderRadius.circular(BeeWiseRadius.field),
+        border: Border.all(color: BeeWiseColors.border),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 2),
+            child: Icon(
+              Icons.verified_user_outlined,
+              size: 18,
+              color: BeeWiseColors.primary,
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.bodyMedium
+                  ?.copyWith(color: BeeWiseColors.muted),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+class _ChatBubble extends StatelessWidget {
+  const _ChatBubble({required this.message, required this.own});
+  final ChatMessage message;
+  final bool own;
+
+  static String _initials(String name) {
+    final list = name
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((e) => e.isNotEmpty)
+        .toList();
+    if (list.isEmpty) return '?';
+    if (list.length == 1) return list.first[0].toUpperCase();
+    return (list.first[0] + list.last[0]).toUpperCase();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final time = DateFormat('HH:mm').format(message.createdAt);
+    final maxWidth = MediaQuery.sizeOf(context).width * 0.82;
     final roleLabel = switch (message.role) {
       'parent' => 'Phụ huynh',
       'tutor' => 'Gia sư',
       'consultant' => 'Tư vấn viên',
       _ => 'Thông báo hệ thống',
     };
-    final roleColor = switch (message.role) {
-      'tutor' => BeeWiseColors.success,
-      'consultant' => BeeWiseColors.primary,
-      _ => BeeWiseColors.muted,
-    };
-    return Align(
-      alignment: own ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.all(12),
-        constraints: BoxConstraints(
-          maxWidth: MediaQuery.sizeOf(context).width - 32,
+    final bubble = Container(
+      constraints: BoxConstraints(maxWidth: maxWidth),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: own ? BeeWiseColors.primary : BeeWiseColors.surface,
+        borderRadius: BorderRadius.circular(BeeWiseRadius.field),
+        border: own ? null : Border.all(color: BeeWiseColors.border),
+      ),
+      child: Text(
+        message.body,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: own ? Colors.white : BeeWiseColors.ink,
         ),
-        decoration: BoxDecoration(
-          color: own ? BeeWiseColors.primary : Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (message.role != 'parent')
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 6,
-                children: [
-                  Text(
-                    message.senderName.isEmpty ? roleLabel : message.senderName,
-                    style: Theme.of(context).textTheme.labelLarge
-                        ?.copyWith(color: BeeWiseColors.ink),
-                  ),
-                  Chip(
-                    visualDensity: VisualDensity.compact,
-                    padding: EdgeInsets.zero,
-                    label: Text(roleLabel),
-                    labelStyle: Theme.of(context).textTheme.labelSmall
-                        ?.copyWith(color: roleColor),
-                    side: BorderSide.none,
-                    backgroundColor: roleColor.withValues(alpha: 0.1),
-                  ),
-                ],
-              ),
-            Text(
-              message.body,
-              style: Theme.of(context).textTheme.bodyMedium
-                  ?.copyWith(color: own ? Colors.white : BeeWiseColors.ink),
-            ),
-            Semantics(
-              label:
-                  '$roleLabel, ${DateFormat('HH:mm').format(message.createdAt)}',
-              child: ExcludeSemantics(
+      ),
+    );
+
+    if (own) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: _chatGap),
+        child: Semantics(
+          label: 'Bạn, $time',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              ExcludeSemantics(
                 child: Text(
-                  DateFormat('HH:mm').format(message.createdAt),
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: own ? Colors.white70 : BeeWiseColors.muted,
+                  'Bạn  $time',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: BeeWiseColors.muted,
                   ),
                 ),
               ),
+              const SizedBox(height: 6),
+              bubble,
+            ],
+          ),
+        ),
+      );
+    }
+
+    final name = message.senderName.isEmpty ? roleLabel : message.senderName;
+    final (chipFg, chipBg, chipIcon) = switch (message.role) {
+      'tutor' => (
+        BeeWiseColors.success,
+        BeeWiseColors.successSoft,
+        Icons.verified_outlined,
+      ),
+      'consultant' => (
+        Colors.white,
+        BeeWiseColors.primary,
+        Icons.groups_2_outlined,
+      ),
+      _ => (BeeWiseColors.muted, BeeWiseColors.canvas, Icons.person_outline),
+    };
+    return Padding(
+      padding: const EdgeInsets.only(bottom: _chatGap),
+      child: Semantics(
+        label: '$name, $roleLabel, $time',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ExcludeSemantics(
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 16,
+                    backgroundColor: BeeWiseColors.highlight,
+                    child: Text(
+                      _initials(name),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: BeeWiseColors.ink,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 8,
+                      runSpacing: 4,
+                      children: [
+                        Text(
+                          name,
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            color: chipBg,
+                            borderRadius: BorderRadius.circular(
+                              BeeWiseRadius.full,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(chipIcon, size: 14, color: chipFg),
+                              const SizedBox(width: 4),
+                              Text(
+                                roleLabel,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: chipFg,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          time,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: BeeWiseColors.muted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(height: 6),
+            bubble,
           ],
         ),
       ),
@@ -1697,20 +2014,28 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
             children: withGaps([
               const OnboardingStepper(currentStep: 0),
               const SizedBox(height: 16),
-              const StatusBanner(message: 'Tư vấn viên đề xuất buổi học thử.'),
-              Text(msg.body, style: Theme.of(context).textTheme.headlineMedium),
-              const SizedBox(height: 12),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: _ProposalTag('Tư vấn viên đề xuất'),
+              ),
+              Text(
+                'Xác nhận buổi học thử',
+                style: Theme.of(context).textTheme.headlineMedium
+                    ?.copyWith(color: BeeWiseColors.primary),
+              ),
+              const SizedBox(height: 4),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: withGaps([
                       if (p['tutorName'] != null || p['subject'] != null)
-                        InfoRow(
-                          label: 'Gia sư · Môn học',
-                          value:
-                              '${p['tutorName'] ?? 'Chưa cập nhật'} · ${p['subject'] ?? 'Chưa cập nhật'}',
-                          icon: Icons.school_outlined,
+                        _PersonHeader(
+                          name: '${p['tutorName'] ?? 'Gia sư BeeWise'}',
+                          caption: p['subject'] == null
+                              ? 'Gia sư'
+                              : 'Gia sư ${p['subject']}',
                         ),
                       InfoRow(
                         label: 'Thời gian',
@@ -1744,9 +2069,10 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
-              const StatusBanner(
-                message: 'Sau buổi học thử, tư vấn viên sẽ hỏi ý kiến hai bên. Bạn có thể tiếp tục, trao đổi thêm hoặc dừng lại.',
+              const SizedBox(height: 4),
+              const _NoteBox(
+                title: 'Sau buổi học thử',
+                message: 'Tư vấn viên sẽ hỏi ý kiến hai bên. Bạn có thể tiếp tục, trao đổi thêm hoặc dừng lại.',
               ),
               if (closed != null)
                 StatusBanner(message: closed.message, kind: closed.kind)
@@ -1755,6 +2081,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
                   ErrorStateView(message: friendlyError(state.error!)),
                 BeeWiseButton(
                   label: 'Đồng ý lịch học thử',
+                  icon: Icons.check_circle_outline,
                   loading: state.isLoading,
                   onPressed: () => _answer(accepted: true),
                 ),
@@ -2163,26 +2490,78 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
               padding: const EdgeInsets.all(16),
               children: withGaps([
                 const OnboardingStepper(currentStep: 3, completedThrough: 2),
-                const SizedBox(height: 16),
-                const StatusBanner(
-                  message: 'Thanh toán đã được xác minh.',
-                  kind: NoticeKind.success,
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: BeeWiseColors.successSoft,
+                    borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+                  ),
+                  child: Row(
+                    children: [
+                      const BeeSticker.cheer(size: 72),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Lớp học đã sẵn sàng!',
+                              style: Theme.of(context).textTheme.titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.w800),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Thanh toán đã được xác minh.',
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(
+                                    color: BeeWiseColors.success,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  '${d['subject'] ?? 'Lớp học'}',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: withGaps([
+                        Text(
+                          '${d['subject'] ?? 'Lớp học'}',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        _PersonHeader(
+                          name: '${d['tutorName'] ?? 'Chưa cập nhật'}',
+                          caption: 'Gia sư',
+                        ),
+                      ]),
+                    ),
+                  ),
                 ),
-                InfoRow(
-                  label: 'Gia sư',
-                  value: '${d['tutorName'] ?? 'Chưa cập nhật'}',
-                ),
-                InfoRow(
-                  label: 'Thời gian',
-                  value: '$date · ${d['time'] ?? ''}',
-                ),
-                InfoRow(
-                  label: 'Địa điểm',
-                  value: '${d['location'] ?? 'Chưa cập nhật'}',
+                const SectionTitle('Lịch học'),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: withGaps([
+                        InfoRow(
+                          label: 'Thời gian',
+                          value: '$date · ${d['time'] ?? ''}',
+                          icon: Icons.calendar_today_outlined,
+                        ),
+                        InfoRow(
+                          label: 'Địa điểm',
+                          value: '${d['location'] ?? 'Chưa cập nhật'}',
+                          icon: Icons.place_outlined,
+                        ),
+                      ]),
+                    ),
+                  ),
                 ),
               ]),
             );
@@ -2242,25 +2621,33 @@ class MessagesScreen extends ConsumerWidget {
                         ),
                       );
                     }
-                    return ListView(
-                      children: [
-                        for (final chat in chats)
-                          ListTile(
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.groups_2_outlined),
-                            ),
-                            title: Text('Gia sư ${chat.tutorId}'),
-                            subtitle: Text(_chatStatus(chat.onboardingStatus)),
-                            trailing: const Icon(Icons.chevron_right),
-                            onTap: () => context.push('/chats/${chat.id}'),
-                          ),
-                      ],
+                    return ListView.separated(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: chats.length,
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        final chat = chats[index];
+                        return _ChatListCard(
+                          chat: chat,
+                          status: _chatStatus(chat.onboardingStatus),
+                          needsAction: _chatNeedsAction(chat.onboardingStatus),
+                          onTap: () => context.push('/chats/${chat.id}'),
+                        );
+                      },
                     );
                   },
                 );
           },
         ),
   );
+
+  /// Statuses where the parent is the one who has to act next.
+  bool _chatNeedsAction(String status) => const {
+    'trial_proposed',
+    'class_revision_pending',
+    'invoice_issued',
+  }.contains(status);
+
   String _chatStatus(String status) => switch (status) {
     'connection_pending_consultant' => 'Đang chờ tư vấn viên tiếp nhận',
     'consultant_assigned' => 'Tư vấn viên đã tham gia',
@@ -2273,6 +2660,115 @@ class MessagesScreen extends ConsumerWidget {
     'schedule_confirmed' => 'Đã có lịch học chính thức',
     _ => 'Nhấn để xem cuộc trò chuyện',
   };
+}
+
+/// One conversation in the Messages list: tutor avatar + name, plus the
+/// current onboarding step as a status pill.
+class _ChatListCard extends ConsumerWidget {
+  const _ChatListCard({
+    required this.chat,
+    required this.status,
+    required this.needsAction,
+    required this.onTap,
+  });
+  final ChatPreview chat;
+  final String status;
+  final bool needsAction;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final tutor = ref.watch(tutorProvider(chat.tutorId)).asData?.value;
+    final (pillFg, pillBg, pillIcon) = needsAction
+        ? (
+            BeeWiseColors.warning,
+            BeeWiseColors.accentSoft,
+            Icons.schedule_rounded,
+          )
+        : (
+            BeeWiseColors.primary,
+            const Color(0xFFEEF2FF),
+            Icons.info_outline_rounded,
+          );
+    return Material(
+      color: BeeWiseColors.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+        side: const BorderSide(color: BeeWiseColors.border),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              if (tutor != null)
+                TutorAvatar(tutor: tutor, radius: 26)
+              else
+                const CircleAvatar(
+                  radius: 26,
+                  backgroundColor: BeeWiseColors.highlight,
+                  child: Icon(
+                    Icons.groups_2_outlined,
+                    color: BeeWiseColors.ink,
+                  ),
+                ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      tutor?.name ?? 'Nhóm trao đổi cùng BeeWise',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 5,
+                      ),
+                      decoration: BoxDecoration(
+                        color: pillBg,
+                        borderRadius: BorderRadius.circular(BeeWiseRadius.full),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(pillIcon, size: 14, color: pillFg),
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: Text(
+                              status,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: pillFg,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(
+                Icons.chevron_right_rounded,
+                color: BeeWiseColors.muted,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class ProfileScreen extends ConsumerWidget {
