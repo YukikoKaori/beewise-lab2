@@ -69,7 +69,28 @@ export function classRevisionPayload(input = {}) {
     lessonDuration: text(input.lessonDuration, 'lessonDuration', { max: 40 }),
     fee: vnd(input.fee, 'fee'),
     totalFee: vnd(input.totalFee, 'totalFee'),
+    ...billing(input),
   };
+}
+
+/**
+ * Optional billing breakdown (hourly fee x hours per session x sessions). When given,
+ * totalFee MUST equal it, so the invoice amount is exactly the fee the parent sees.
+ */
+function billing(input) {
+  const { hoursPerSession, sessions } = input;
+  if (hoursPerSession == null && sessions == null) return {};
+  if (typeof hoursPerSession !== 'number' || !(hoursPerSession > 0) || hoursPerSession > 12) {
+    throw badRequest('invalid_argument', 'hoursPerSession phải là số giờ lớn hơn 0 và không quá 12.');
+  }
+  if (!Number.isInteger(sessions) || sessions < 1 || sessions > 100) {
+    throw badRequest('invalid_argument', 'sessions phải là số nguyên từ 1 đến 100.');
+  }
+  const expected = Math.round(input.fee * hoursPerSession * sessions);
+  if (input.totalFee !== expected) {
+    throw badRequest('invalid_argument', `totalFee phải bằng fee x hoursPerSession x sessions (${expected}).`);
+  }
+  return { hoursPerSession, sessions };
 }
 
 export function ttlHours(value, fallback = 48) {

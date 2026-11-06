@@ -1,0 +1,14 @@
+{
+  "subject": "Toán lớp 8",
+  "goal": "Lấy lại căn bản",
+  "tutorName": "Hoàng Quốc Bảo",
+  "schedule": "Thứ 3, Thứ 5",
+  "time": "19:00 - 20:00",
+  "mode": "Trực tuyến",
+  "location": "Google Meet",
+  "startDate": "17/11/2026",
+  "lessonDuration": "60 phút",
+  "fee": 2000,
+  "hoursPerSession": 1,
+  "sessions": 1
+}
