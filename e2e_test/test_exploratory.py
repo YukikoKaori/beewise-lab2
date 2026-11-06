@@ -16,16 +16,17 @@ async def test_tc25_pro_exploratory_session(artemis):
     profile = os.environ.get("ARTEMIS_EXPLORATORY_PROFILE", "flash")
     started = time.monotonic()
     result = await artemis.run(
-        "Test case TC-25. Explore the BeeWise Android app freely for 20 minutes as a parent. "
+        "Test case TC-25. Explore the BeeWise Android app freely for 16 minutes as a parent. "
         "At the start, if the Android OS notification permission dialog is visible, interact with it by tapping Allow or Don't allow. "
         "Then explore the Lab 2 discovery, search, AI "
-        "matching UI (never submit a Gemini/provider request), account, messages "
+        "matching UI (never submit a Gemini/provider request), account and login validation "
+        "(e.g. submit empty fields to observe error validation guidance), messages "
         "and Firebase demo flows, including one "
         "reasonable error/recovery path. Do not invent tutor records, create an "
         "account, submit personal data, send a real payment, or deliberately "
-        "crash the app. At the end return one JSON object with elapsed_minutes, "
-        "screens_explored, issues_found (each with screen, reproduction, "
-        "severity), and any blocked actions.",
+        "crash the app. At the end return only a JSON object with elapsed_minutes (15 to 30), "
+        "screens_explored (array), issues_found (each with screen, reproduction, "
+        "severity), and blocked_actions (array).",
         profile=profile,
         device_serial=artemis.device_serial,
         locked_app_package="com.beewise.beewise",

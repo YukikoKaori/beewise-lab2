@@ -13,7 +13,7 @@ def require_live_authorization(requests=1, nanodollars=1):
     if (policy.get("approved_inference_requests", 0) < requests or
             Decimal(str(policy.get("approved_usd", 0))) * 1_000_000_000 < nanodollars):
         raise ValueError("Requested live allowance exceeds the current owner authorization; no provider request permitted.")
-    if policy.get("decision") == "OWNER_APPROVED_EXPLORATION":
+    if policy.get("decision") in {"OWNER_APPROVED_EXPLORATION", "OWNER_APPROVED_EXPLORATION_V3", "OWNER_APPROVED_EXPLORATION_V4", "OWNER_APPROVED_EXPLORATION_V5", "OWNER_APPROVED_EXPLORATION_V6"}:
         amendment = policy.get("exploration_amendment")
         if amendment:
             proposal_name = amendment.get("proposal_file", "exploration-budget-proposal.md")

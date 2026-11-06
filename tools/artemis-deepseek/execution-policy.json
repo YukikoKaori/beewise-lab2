@@ -1,24 +1,24 @@
 {
-  "decision": "OWNER_APPROVED_EXPLORATION",
+  "decision": "OWNER_APPROVED_EXPLORATION_V6",
   "effective_date": "2026-11-06",
-  "approved_inference_requests": 50,
-  "approved_usd": 0.12,
-  "approval_ref": "(Recommended) Phê duyệt nâng trần thăm dò lên $0.12 USD (tối đa 50 requests) để hoàn tất phiên 20 phút trọn vẹn (vẫn dư $0.78, bảo đảm an toàn trên mức dự phòng $0.50 của Nexora)",
-  "proposal_sha256": "ea6a278076270fbed5ee395cc83f6ab9e59a0eed509a455fb5d0658e1c662800",
+  "approved_inference_requests": 168,
+  "approved_usd": 0.58,
+  "approval_ref": "(Recommended) Phê duyệt Đề xuất V6: Nâng trần lên 168 requests / $0.58 USD (pacing 38s/turn, 21-22 turns tự động chốt report ở 910s), chi phí thực tế ~$0.086 USD, số dư sau chạy ~$0.69 USD (> $0.50 reserve).",
+  "proposal_sha256": "4f9293eb09d91c6819d23abd65003c3452ac261ed70f95620aafbc9a053f4b5a",
   "accepted_run_target": 1,
-  "maximum_failed_sessions": 1,
+  "maximum_failed_sessions": 2,
   "exploration_approved": true,
   "exploration_amendment": {
-    "owner_approval": "(Recommended) Phê duyệt nâng trần thăm dò lên $0.12 USD (tối đa 50 requests) để hoàn tất phiên 20 phút trọn vẹn (vẫn dư $0.78, bảo đảm an toàn trên mức dự phòng $0.50 của Nexora)",
-    "proposal_file": "exploration-budget-proposal.md",
-    "sha256": "ea6a278076270fbed5ee395cc83f6ab9e59a0eed509a455fb5d0658e1c662800",
-    "approved_inference_requests": 50,
-    "approved_usd": 0.12,
-    "max_duration_minutes": 20,
+    "owner_approval": "(Recommended) Phê duyệt Đề xuất V6: Nâng trần lên 168 requests / $0.58 USD (pacing 38s/turn, 21-22 turns tự động chốt report ở 910s), chi phí thực tế ~$0.086 USD, số dư sau chạy ~$0.69 USD (> $0.50 reserve).",
+    "proposal_file": "exploration-amendment-v6.md",
+    "sha256": "4f9293eb09d91c6819d23abd65003c3452ac261ed70f95620aafbc9a053f4b5a",
+    "approved_inference_requests": 168,
+    "approved_usd": 0.58,
+    "max_duration_minutes": 25,
     "profile": "flash",
     "gemini_fallback": false,
     "nexora_reserve_nanodollars": 500000000,
-    "expires_utc": "2026-11-07T03:50:00.000000+00:00"
+    "expires_utc": "2026-11-07T11:30:00.000000+00:00"
   },
   "completion_amendment": {
     "owner_approval": "Duyệt nâng trần lên 272 requests / 45 admissions / $0.80 để hoàn tất 30/30 ngay",
@@ -54,7 +54,7 @@
     "replacement_case": "TC-27",
     "reason": "Native Google picker unavailable on AVD (0 accounts; launches Add Account instead of chooser). TC-27 provides equivalent Android-native auth error and validation coverage with zero credential dependency."
   },
-  "reason": "Exploration and native permission authorization approved by owner on 2026-11-06.",
+  "reason": "Single continuous 16-minute exploration authorization V6 approved by owner on 2026-11-06.",
   "automatic_top_up": false,
   "alternative_provider_execution_approved": false
 }
