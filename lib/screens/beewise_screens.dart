@@ -2581,7 +2581,10 @@ class MessagesScreen extends ConsumerWidget {
         .watch(authStateProvider)
         .when(
           loading: () => const LoadingStateView(),
-          error: (_, _) => const FirebaseSetupNotice(),
+          error: (_, _) => ListView(
+            padding: const EdgeInsets.all(16),
+            children: const [FirebaseSetupNotice()],
+          ),
           data: (user) {
             if (user == null) {
               return Center(
@@ -2603,10 +2606,15 @@ class MessagesScreen extends ConsumerWidget {
                 .watch(parentChatsProvider(user.uid))
                 .when(
                   loading: () => const LoadingStateView(),
-                  error: (error, stack) => ErrorStateView(
-                    message: friendlyError(error),
-                    onRetry: () =>
-                        ref.invalidate(parentChatsProvider(user.uid)),
+                  error: (error, stack) => ListView(
+                    padding: const EdgeInsets.all(16),
+                    children: [
+                      ErrorStateView(
+                        message: friendlyError(error),
+                        onRetry: () =>
+                            ref.invalidate(parentChatsProvider(user.uid)),
+                      ),
+                    ],
                   ),
                   data: (chats) {
                     if (chats.isEmpty) {
