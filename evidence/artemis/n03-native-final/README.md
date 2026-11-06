@@ -1,0 +1,14 @@
+# TC-NATIVE-01 — Android notification permission
+
+This is a supplement to the original 30-run regression and independent TC-25 exploration. It does not replace any case or reclassify historical failures.
+
+Use only the disposable API 35 AVD named `BeeWise_N03_Native_API35` and the existing local Firebase emulator debug APK identified in [preflight](preflight.json). Before each admission:
+
+1. Record the installed APK identity, requested permission, and original user-0 grant and flags. Stop BeeWise. On this AVD only, revoke `android.permission.POST_NOTIFICATIONS` and clear its `user-set` and `user-fixed` flags. Keep app data.
+2. Launch the existing `com.beewise.beewise/.MainActivity` entrypoint. Startup calls Firebase Messaging's real runtime permission path. Verify API, AVD, focus on Android Permission Controller's `GrantPermissionsActivity`, and both actual buttons. Capture the UI hierarchy privately and the screenshot. Do not tap using ADB.
+3. After [exact owner approval](owner-approval.json) and a current reserve check, start the pinned DeepSeek-only host using the separate native ledger and matching approval receipt. Run only `e2e_test/test_native_permission.py` via pytest with the existing ARTEMIS URL/device settings, `ADB`, `BEEWISE_NATIVE_EVIDENCE` (new directory per attempt), `BEEWISE_NATIVE_PRE_XML` (fresh preflight hierarchy), and `BEEWISE_NATIVE_DECISION` (deny, allow, deny). Write a separate raw JUnit file outside the new directory until pytest creates it.
+4. Preserve the original trace and its hash. Review the agent's actual observation and tap against the before image, permission grant and flags against the after image, return to BeeWise, strict JSON, and pytest/JUnit. A blocked preflight is not a run. Stop on a failed or unverified admission; never reuse its output or trace ID.
+
+The [approved proposal](budget-proposal.json) is 3 admissions, 12 HTTP attempts, and $0.07 conservative estimated cost, with no admission retries. The V6 ledger is unchanged. Its 160 settled calls averaged $0.003475905 and reached a maximum of $0.0047094. Twelve calls at that observed maximum would be about $0.05651, leaving room for one larger unresolved reservation. This is a planning estimate; the persistent ledger rejects a send that would exceed its cap. The [official DeepSeek pricing](https://api-docs.deepseek.com/quick_start/pricing/) used by the existing ledger is peak uncached $0.30/M input and $1.20/M output. A read-only balance check passed a $0.57 coverage threshold ($0.50 reserve plus the full cap); it does not attribute bills to BeeWise or guarantee future balance on the shared account. No search/fetch, Gemini, top-up, or production changes.
+
+See [current results](STATUS.md) and the [historical correction](../n03-exploration-final/STATUS.md#android-native-interaction).

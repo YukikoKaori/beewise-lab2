@@ -1,0 +1,16 @@
+{
+  "case_id": "TC-NATIVE-01",
+  "decision": "PROPOSED_NOT_APPROVED",
+  "provider": "DeepSeek API",
+  "model": "deepseek-flash",
+  "max_admissions": 3,
+  "max_inference_requests": 12,
+  "max_conservative_nanodollars": 70000000,
+  "minimum_nexora_reserve_nanodollars": 500000000,
+  "retry_admissions": 0,
+  "gemini_fallback": false,
+  "stop": ["first failed or unverified attempt", "three accepted attempts", "request or cost cap", "native preflight failure", "reserve unavailable"],
+  "device": "BeeWise_N03_Native_API35",
+  "android_api": 35,
+  "apk_sha256": "e05a72de4ce063f70e7df6cd90c2fccb80e42a0c8befac0547bfdcd05b4405ed"
+}
