@@ -365,6 +365,7 @@ class TutorApplicationStatusScreen extends ConsumerWidget {
     if (user == null) {
       return BeeWiseScaffold(
         title: 'Trạng thái hồ sơ',
+        showBack: true,
         body: Padding(
           padding: const EdgeInsets.all(BeeWiseSpace.x5),
           child: EmptyStateView(
@@ -381,6 +382,9 @@ class TutorApplicationStatusScreen extends ConsumerWidget {
     final status = ref.watch(tutorApplicationStatusProvider(user.uid));
     return BeeWiseScaffold(
       title: 'Hồ sơ gia sư',
+      // Pending applicants are held on this screen by the router, so a back
+      // arrow would only bounce; show it once the profile is approved.
+      showBack: status.asData?.value == 'approved',
       body: status.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => ListView(
@@ -406,25 +410,33 @@ class TutorApplicationStatusScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(BeeWiseSpace.x5),
           children: [
             Icon(
-              value == 'pending' ? Icons.hourglass_top_rounded : Icons.info,
+              switch (value) {
+                'pending' => Icons.hourglass_top_rounded,
+                'approved' => Icons.verified_rounded,
+                _ => Icons.info,
+              },
               size: 56,
-              color: BeeWiseColors.primary,
+              color: value == 'approved'
+                  ? BeeWiseColors.success
+                  : BeeWiseColors.primary,
             ),
             const SizedBox(height: BeeWiseSpace.x3),
             Text(
-              value == 'pending'
-                  ? 'Hồ sơ đang chờ duyệt'
-                  : 'Hồ sơ đã được cập nhật',
+              switch (value) {
+                'pending' => 'Hồ sơ đang chờ duyệt',
+                'approved' => 'Hồ sơ đã được duyệt',
+                _ => 'Hồ sơ đã được cập nhật',
+              },
               style: Theme.of(context).textTheme.headlineLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: BeeWiseSpace.x2),
-            Text(
-              value == 'pending'
-                  ? 'BeeWise đã nhận hồ sơ. Hồ sơ chưa được xác minh và chưa hiển thị cho phụ huynh. Chỉ nhân viên hoặc backend được phép duyệt và kích hoạt hồ sơ.'
-                  : 'Trạng thái hiện tại: $value. Liên hệ BeeWise để biết bước tiếp theo.',
-              textAlign: TextAlign.center,
-            ),
+            Text(switch (value) {
+              'pending' => 'BeeWise đã nhận hồ sơ. Hồ sơ chưa được xác minh và chưa hiển thị cho phụ huynh. Chỉ nhân viên hoặc backend được phép duyệt và kích hoạt hồ sơ.',
+              'approved' => 'BeeWise đã xác minh hồ sơ của bạn. Các tính năng dành cho gia sư như nhận lớp và xem lịch dạy sẽ sớm có trên ứng dụng.',
+              _ =>
+                'Trạng thái hiện tại: $value. Liên hệ BeeWise để biết bước tiếp theo.',
+            }, textAlign: TextAlign.center),
             const SizedBox(height: BeeWiseSpace.x5),
             BeeWiseButton(
               label: 'Đăng xuất',

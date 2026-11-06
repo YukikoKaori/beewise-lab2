@@ -76,6 +76,16 @@ class TutorApplicationService {
               .timeout(const Duration(seconds: 15)))
           .exists;
 
+  /// Live application status: updates as soon as staff change it in Firestore.
+  Stream<String> watchStatus(String uid) => _firestore
+      .collection('tutorApplications')
+      .doc(uid)
+      .snapshots()
+      .map((snapshot) {
+        if (!snapshot.exists) throw const TutorApplicationException();
+        return snapshot.data()?['status'] as String? ?? 'pending';
+      });
+
   Future<String> status(String uid) async {
     final snapshot = await _firestore
         .collection('tutorApplications')

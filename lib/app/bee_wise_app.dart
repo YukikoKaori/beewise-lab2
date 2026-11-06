@@ -40,7 +40,15 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
         try {
           final isTutorApplicant = await service.hasApplication(user.uid);
           if (isTutorApplicant) {
-            return location == '/tutor/pending' ? null : '/tutor/pending';
+            // Applicants stay on the status screen until staff approve them;
+            // approved tutors may move around the app again.
+            final status = await service.status(user.uid);
+            if (status != 'approved') {
+              return location == '/tutor/pending' ? null : '/tutor/pending';
+            }
+            return location == '/tutor/apply' || location == '/account/check'
+                ? '/home'
+                : null;
           }
           if (location == '/tutor/pending' ||
               location == '/tutor/apply' ||
