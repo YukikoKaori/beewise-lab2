@@ -1,0 +1,16 @@
+{
+  "timestamp_utc": "2026-11-06T05:17:05.000000+00:00",
+  "approval_type": "OWNER_APPROVED_EXPLORATION_V3",
+  "approved_choice": "(Recommended) Phê duyệt đề xuất: Cho phép bổ sung tối đa 32 requests / $0.11 USD để chạy 1 phiên thăm dò ARTEMIS liên tục 16 phút (960s) từ đầu đến cuối; bảo đảm số dư sau chạy là $0.78 USD (vượt mức giữ lại $0.50 của Nexora).",
+  "proposal_file": "evidence/artemis/n03-exploration-final/exploration-amendment-v3.md",
+  "proposal_sha256": "bc37cac2e88e95c05656cca818d320330a8a7012236f56d54fa2492caa925300",
+  "approved_additional_requests": 34,
+  "approved_cumulative_requests": 95,
+  "approved_additional_usd": 0.11,
+  "approved_cumulative_usd": 0.31,
+  "target_duration_seconds": 960,
+  "profile": "flash",
+  "gemini_fallback": false,
+  "nexora_reserve_nanodollars": 500000000,
+  "expires_utc": "2026-11-07T05:30:00.000000+00:00"
+}

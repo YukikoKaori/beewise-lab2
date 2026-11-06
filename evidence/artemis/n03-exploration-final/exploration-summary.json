@@ -1,61 +1,66 @@
 {
   "summary_title": "BeeWise Android ARTEMIS Autonomous Exploration Summary (TC-25)",
   "date": "2026-11-06",
-  "cumulative_duration_seconds": 846.14,
-  "cumulative_duration_minutes": 14.10,
-  "total_autonomous_actions": 31,
+  "qualifying_session_id": "aa025ab2-6a51-4b34-a4c1-3ba346e4e0a4",
+  "qualifying_duration_seconds": 925.734,
+  "qualifying_duration_minutes": 15.43,
+  "rubric_duration_requirement": "15–30 continuous minutes (PASSED: 925.734s satisfies 900 <= t <= 1800)",
+  "total_autonomous_steps_qualifying_session": 23,
   "screens_explored": [
     {
-      "screen_name": "Android OS GrantPermissionsActivity (com.google.android.permissioncontroller)",
-      "actions": ["click Allow / Don't allow on POST_NOTIFICATIONS dialog"],
-      "observed_state": "System modal dialog overlaying BeeWise at cold boot; handled autonomously by AI"
+      "screen_name": "Tìm gia sư (Search & Discovery)",
+      "actions": ["subject chips selection", "area chips selection", "teaching mode (Online/Tại nhà)", "fee slider adjustment", "sort toggle", "empty state validation"],
+      "observed_state": "Loaded catalog; responsive to chip toggles; tested filter combinations"
     },
     {
-      "screen_name": "Home / Discovery",
-      "actions": ["view top tutors", "tap navigation tabs", "verify quick filters"],
-      "observed_state": "Loaded catalog tutors correctly; no crashes or blank views"
+      "screen_name": "Ghép AI (AI Matching & Consultation UI)",
+      "actions": ["text input into consultation prompt", "0/500 character counter validation", "empty-submit validation snackbar", "'Hoặc tự tìm theo bộ lọc' link"],
+      "observed_state": "Input field responsive; validation snackbar properly appeared on empty submission; safely guarded against unauthorized external Gemini API calls"
     },
     {
-      "screen_name": "Search & Filter",
-      "actions": ["input search query", "press search key", "inspect filter chips"],
-      "observed_state": "Search bar responsive to native ADB key typing; results displayed tutor list"
+      "screen_name": "Tài khoản (Account)",
+      "actions": ["logged-out state check", "notification permission warning inspection", "Remote Config info display", "PDF report section review", "diagnostics inspection"],
+      "observed_state": "Account screen rendered logged-out state with full configuration and diagnostic options"
     },
     {
-      "screen_name": "Tutor Profile Detail",
-      "actions": ["click tutor card", "scroll profile bio", "view hourly rates and ratings"],
-      "observed_state": "Profile rendered with full avatar, subjects, rating, and contact CTA"
+      "screen_name": "Đăng nhập (Login)",
+      "actions": ["empty-field validation", "invalid email format validation"],
+      "observed_state": "Form error validation properly triggered without submitting personal credentials"
     },
     {
-      "screen_name": "AI Matching & Consultation UI",
-      "actions": ["type matching prompt", "tap consultation CTA"],
-      "observed_state": "Pre-filled query displayed; safely guarded against unauthorized external Gemini/AI calls"
+      "screen_name": "Tin nhắn (Messages)",
+      "actions": ["login-gated empty state check", "sign-in redirect verification"],
+      "observed_state": "Appropriate login prompt displayed for unauthenticated users"
     },
     {
-      "screen_name": "Messages & Account Flow",
-      "actions": ["view messages list", "navigate to guest profile"],
-      "observed_state": "Proper guest sign-in CTA shown without unauthorized credential entry"
+      "screen_name": "Firebase Demo Flow",
+      "actions": ["tap 'Gửi lỗi mẫu không nghiêm trọng' (send non-fatal sample error to Crashlytics)"],
+      "observed_state": "Non-fatal sample error successfully dispatched to Crashlytics without crashing the app"
     }
   ],
   "issues_found": [
     {
       "severity": "LOW",
-      "screen": "Search & Discovery",
-      "description": "Transient UI delay when rendering tutor avatars on cold launch after OS permission grant; recovered gracefully within 0.4s",
-      "reproduction": "Cold launch app with ADB flag reset -> click Allow -> immediate tap on Search tab"
+      "screen": "Tìm gia sư (search)",
+      "description": "Apply the 'Online' or 'Tại nhà' teaching-mode filter (or select a subject chip like 'Vật lý'); the tutor list shows 'Chưa tìm thấy gia sư' empty state. Tapping 'Xóa bộ lọc' (clear filters) does not reset the teaching-mode filter — the 'Tại nhà'/'Online' selection remains active after tapping clear filters.",
+      "reproduction": "Open Search tab -> Tap 'Tại nhà' -> Tap 'Xóa bộ lọc' -> Verify teaching-mode chip remains highlighted"
     },
     {
-      "severity": "INFO",
-      "screen": "AI Matching UI",
-      "description": "Provider prompt safely blocked from live external Gemini calls per test guardrails; AI matched against active local catalog",
-      "reproduction": "Open AI Matching screen from Home"
+      "severity": "LOW",
+      "screen": "Tìm gia sư (search)",
+      "description": "In the demo environment the tutor result list is empty for all filter combinations tested (Online, Tại nhà, subject chips), so the tutor profile/detail view could not be reached via filtered search.",
+      "reproduction": "Apply any filter in the demo environment -> result list becomes empty"
     }
   ],
   "blocked_actions": [
-    "Deliberate app crash prevented",
-    "Real financial payments prevented",
-    "Fabricated tutor/user account creation prevented",
-    "Gemini provider fallback strictly disabled (ARTEMIS_DEEPSEEK_ONLY=1)"
+    "Did not submit the live AI matching request to avoid triggering external Gemini provider requests (only tested empty-submit validation and typed prompt without submitting)",
+    "Did not create an account or submit personal data (login tested only with empty/invalid fields)",
+    "Did not run the deliberate fatal Crashlytics test ('Kiểm tra Crashlytics (ứng dụng sẽ đóng)') to avoid crashing the app",
+    "Did not send real financial payments",
+    "Did not invent tutor records"
   ],
   "native_interaction_evidence": "evidence/artemis/n03-exploration-final/native-permission-evidence.json",
-  "screenshots_directory": "evidence/artemis/n03-exploration-final/screenshots/"
+  "screenshots_directory": "evidence/artemis/n03-exploration-final/screenshots/",
+  "pytest_result": "1 passed in 925.94s (0:15:25)",
+  "junit_xml": "evidence/artemis/n03-exploration-final/result.junit.xml"
 }
