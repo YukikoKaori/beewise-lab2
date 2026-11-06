@@ -2,6 +2,8 @@
 
 The [status](STATUS.md) separates the 30 accepted regression runs, one qualifying exploration, and the historical Android-native interactions. This corrective was offline; no provider, ARTEMIS, Android or Firebase execution was performed.
 
+The [native regression supplement](../n03-native-final/STATUS.md) passed 3/3 independently verified executions. It is separate from the two historical native receipts and TC-25.
+
 ## Qualifying session
 
 `aa025ab2-6a51-4b34-a4c1-3ba346e4e0a4` ran continuously for **925.734 seconds** (about 15:26). ARTEMIS used DeepSeek `deepseek-flash` with the approved Flash profile, on Android API 35. V6 paced turns at 38 seconds and restricted the final turn to reporting. The private trace contains 22 Android actions followed by a structured final report (23 steps total). The [exploration summary](exploration-summary.json) records agent observations and issues; it does not verify cloud ingestion.

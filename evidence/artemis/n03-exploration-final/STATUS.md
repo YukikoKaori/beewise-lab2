@@ -1,6 +1,6 @@
 # N-03 evidence status — 2026-11-06
 
-**30/30 regression PASS accepted; TC-25 continuous exploration PASS; Android-native interaction observed separately.** Full rubric coverage remains open: Preparation Guide v5 p. 23 places Android-native interaction in the regression coverage list and asks for three executions per case. The 30 accepted runs have no OS-native scenario. The historical native receipts do not close that gap.
+**30/30 original regression PASS, 3/3 Android-native supplement PASS, and one qualifying TC-25 PASS.** The original matrix is unchanged; the new [TC-NATIVE-01 case](../n03-native-final/STATUS.md) supplies the three independently verified Android-native executions. The historical observations below do not count toward those three.
 
 ## Accepted regression matrix
 
@@ -27,7 +27,7 @@ One TC-25 session, `aa025ab2-6a51-4b34-a4c1-3ba346e4e0a4`, passed at **925.734 s
 
 ## Android-native interaction
 
-The [original receipt](native-permission-evidence.json) and screenshots are preserved byte for byte. This review corrects a historical label:
+The [original receipt](native-permission-evidence.json) and screenshots are preserved byte for byte. **Historical errata:** this review corrects a historical label:
 
 - `85ed1fab`, step 2: the original trace labels the tap **Wait**, and [screenshot 07](screenshots/07_native_permission_allow_trace1.jpg) shows Android's ANR dialog over the permission prompt. The next original image shows the permission dialog still visible. This is a genuine OS action; it does not establish that notification permission was granted.
 - `5bb907c1`, step 1: the tap matches the lower **Don't allow** button on the Android `POST_NOTIFICATIONS` dialog ([before](screenshots/01_native_permission_dialog_pre.jpg), [after](screenshots/02_beewise_home_post_permission.jpg)). The trace and screenshots verify dismissal and return to BeeWise Home on API 35. They do not independently establish persistent permission state.

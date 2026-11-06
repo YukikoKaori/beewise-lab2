@@ -1,0 +1,9 @@
+{
+  "accepted": true,
+  "trace_id": "ae4c4a76-8809-403d-ac3a-58cab70aec82",
+  "reviewer": "Codex independent evidence review (separate from ARTEMIS agent)",
+  "decision": "deny",
+  "post_granted": false,
+  "junit_pass": true,
+  "note": "Reviewed original agent before/after images and recorded click against the Android button; post screenshot shows BeeWise Home and native grant is false with USER_SET."
+}
