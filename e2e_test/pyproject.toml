@@ -14,6 +14,7 @@ asyncio_mode = "auto"
 testpaths = ["."]
 addopts = "-ra"
 markers = [
+  "native_supplement: live Android notification-permission supplement; explicit opt-in required",
   "exploratory: long unscripted Pro-profile session; run separately from regression tests",
   "manual_setup: needs an operator-controlled Firebase Console push before each run",
 ]
