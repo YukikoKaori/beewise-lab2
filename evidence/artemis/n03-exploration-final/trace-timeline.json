@@ -1,0 +1,153 @@
+{
+  "session_id": "aa025ab2-6a51-4b34-a4c1-3ba346e4e0a4",
+  "provenance": "B_PRIVATE_ORIGINAL_VERIFIED",
+  "source": {
+    "relative_to": "private N-03 archive root",
+    "path": "exploration-host-state/traces/data_engine.db",
+    "sha256": "0cea8a2bf77ee75db6f43eeaf80ddf9473ef3a7363b37372ce24f633f21e6ef6",
+    "bytes": 4583424,
+    "wal_bytes": 0,
+    "lookup": "sessions, steps and traces filtered by session_id; steps ordered by step_number"
+  },
+  "session": {
+    "status": "completed",
+    "start_utc": "2026-11-06T04:12:38.483129+00:00",
+    "end_utc": "2026-11-06T04:27:59.359290+00:00",
+    "host_wall_seconds": 920.876161
+  },
+  "events": {
+    "count": 236,
+    "first_utc": "2026-11-06T04:12:38.489644+00:00",
+    "last_utc": "2026-11-06T04:27:59.429101+00:00",
+    "android_actions": 22,
+    "flash_turns": 23,
+    "llm_usage_events": 25
+  },
+  "pytest_start": {
+    "source": "result.junit.xml testsuite.timestamp",
+    "original": "2026-11-06T11:12:33.890778+07:00",
+    "utc": "2026-11-06T04:12:33.890778+00:00"
+  },
+  "runner_duration": {
+    "seconds": 925.734,
+    "source": "original exploration manifest and summary; e2e_test/test_exploratory.py measures time.monotonic() around artemis.run and asserts 900–1800 seconds",
+    "raw_client_stdout": "not recovered; host elapsed and raw JUnit independently corroborate the range"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "timestamp_utc": "2026-11-06T04:12:47.990702+00:00",
+      "action": "click"
+    },
+    {
+      "step": 2,
+      "timestamp_utc": "2026-11-06T04:13:31.041788+00:00",
+      "action": "wait_for_delay"
+    },
+    {
+      "step": 3,
+      "timestamp_utc": "2026-11-06T04:14:11.567024+00:00",
+      "action": "click"
+    },
+    {
+      "step": 4,
+      "timestamp_utc": "2026-11-06T04:14:52.507955+00:00",
+      "action": "click"
+    },
+    {
+      "step": 5,
+      "timestamp_utc": "2026-11-06T04:15:33.310604+00:00",
+      "action": "click"
+    },
+    {
+      "step": 6,
+      "timestamp_utc": "2026-11-06T04:16:13.845756+00:00",
+      "action": "click"
+    },
+    {
+      "step": 7,
+      "timestamp_utc": "2026-11-06T04:16:56.732422+00:00",
+      "action": "click"
+    },
+    {
+      "step": 8,
+      "timestamp_utc": "2026-11-06T04:17:37.575720+00:00",
+      "action": "click"
+    },
+    {
+      "step": 9,
+      "timestamp_utc": "2026-11-06T04:18:18.592304+00:00",
+      "action": "click"
+    },
+    {
+      "step": 10,
+      "timestamp_utc": "2026-11-06T04:18:59.248762+00:00",
+      "action": "click"
+    },
+    {
+      "step": 11,
+      "timestamp_utc": "2026-11-06T04:19:43.297523+00:00",
+      "action": "input_text"
+    },
+    {
+      "step": 12,
+      "timestamp_utc": "2026-11-06T04:20:24.164918+00:00",
+      "action": "click"
+    },
+    {
+      "step": 13,
+      "timestamp_utc": "2026-11-06T04:21:05.176918+00:00",
+      "action": "press_key"
+    },
+    {
+      "step": 14,
+      "timestamp_utc": "2026-11-06T04:21:45.918032+00:00",
+      "action": "click"
+    },
+    {
+      "step": 15,
+      "timestamp_utc": "2026-11-06T04:22:27.302830+00:00",
+      "action": "click"
+    },
+    {
+      "step": 16,
+      "timestamp_utc": "2026-11-06T04:23:07.812668+00:00",
+      "action": "click"
+    },
+    {
+      "step": 17,
+      "timestamp_utc": "2026-11-06T04:23:52.727386+00:00",
+      "action": "input_text"
+    },
+    {
+      "step": 18,
+      "timestamp_utc": "2026-11-06T04:24:33.620389+00:00",
+      "action": "click"
+    },
+    {
+      "step": 19,
+      "timestamp_utc": "2026-11-06T04:25:14.770599+00:00",
+      "action": "press_key"
+    },
+    {
+      "step": 20,
+      "timestamp_utc": "2026-11-06T04:25:55.231962+00:00",
+      "action": "click"
+    },
+    {
+      "step": 21,
+      "timestamp_utc": "2026-11-06T04:26:36.273361+00:00",
+      "action": "click"
+    },
+    {
+      "step": 22,
+      "timestamp_utc": "2026-11-06T04:27:17.266807+00:00",
+      "action": "click"
+    },
+    {
+      "step": 23,
+      "timestamp_utc": "2026-11-06T04:27:59.349283+00:00",
+      "action": "report_task_status"
+    }
+  ]
+}
