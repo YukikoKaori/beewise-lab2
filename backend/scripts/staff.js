@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { CONSULTANT_CLAIM, requireConsultant } from '../src/auth.js';
 import { createRuntime } from '../src/runtime.js';
+import { withTutorFee } from '../src/tutor-fee.js';
 
 try {
   process.loadEnvFile('.env');
@@ -44,7 +45,10 @@ const commands = {
   },
   claim: async ([staff, chatId]) => consultants.claimChat(await consultant(staff), chatId),
   trial: async ([staff, chatId, file]) => consultants.proposeTrial(await consultant(staff), chatId, json(file)),
-  revision: async ([staff, chatId, file]) => consultants.proposeClassRevision(await consultant(staff), chatId, json(file)),
+  revision: async ([staff, chatId, file]) => {
+    const staffUid = await consultant(staff);
+    return consultants.proposeClassRevision(staffUid, chatId, await withTutorFee(runtime.db, chatId, json(file)));
+  },
   process: async ([staff, chatId, proposalId]) => consultants.processResponse(await consultant(staff), chatId, proposalId),
   reconcile: async ([orderCode]) => payments.settleOrder(Number(orderCode), { source: 'operator' }),
   'confirm-webhook': async ([url]) => {
