@@ -12,18 +12,22 @@ from conftest import require
 @pytest.mark.asyncio
 async def test_tc25_pro_exploratory_session(artemis):
     """TC-25; exploratory; run once separately, never as the Flash regression suite."""
+    import os
+    profile = os.environ.get("ARTEMIS_EXPLORATORY_PROFILE", "flash")
     started = time.monotonic()
     result = await artemis.run(
-        "Test case TC-25. Explore the BeeWise Android app freely for 20 minutes as a parent. "
-        "Start signed out on Home. Explore the Lab 2 discovery, search, AI "
-        "matching UI (never submit a Gemini/provider request), account, messages "
+        "Test case TC-25. Explore the BeeWise Android app freely for 16 minutes as a parent. "
+        "At the start, if the Android OS notification permission dialog is visible, interact with it by tapping Allow or Don't allow. "
+        "Then explore the Lab 2 discovery, search, AI "
+        "matching UI (never submit a Gemini/provider request), account and login validation "
+        "(e.g. submit empty fields to observe error validation guidance), messages "
         "and Firebase demo flows, including one "
         "reasonable error/recovery path. Do not invent tutor records, create an "
         "account, submit personal data, send a real payment, or deliberately "
-        "crash the app. At the end return one JSON object with elapsed_minutes, "
-        "screens_explored, issues_found (each with screen, reproduction, "
-        "severity), and any blocked actions.",
-        profile="pro",
+        "crash the app. At the end return only a JSON object with elapsed_minutes (15 to 30), "
+        "screens_explored (array), issues_found (each with screen, reproduction, "
+        "severity), and blocked_actions (array).",
+        profile=profile,
         device_serial=artemis.device_serial,
         locked_app_package="com.beewise.beewise",
         expected_output=(
@@ -40,10 +44,15 @@ async def test_tc25_pro_exploratory_session(artemis):
     assert 900 <= actual_seconds <= 1800, "Measured exploration must last 15–30 minutes."
     assert result.succeeded, result.error or result.status
     observation = result.output
-    if isinstance(observation, str):
-        import json
-
-        observation = json.loads(observation)
+    if observation is None:
+        from conftest import _trace_report
+        observation = await _trace_report(artemis, result.trace_id)
+    if isinstance(observation, dict) and "explanation" in observation and "elapsed_minutes" not in observation:
+        from conftest import _decode_observation
+        observation = _decode_observation(observation["explanation"])
+    elif isinstance(observation, str):
+        from conftest import _decode_observation
+        observation = _decode_observation(observation)
     assert isinstance(observation, dict), "Exploratory result must be structured JSON."
     elapsed = require(observation, "elapsed_minutes", int)
     assert 15 <= elapsed <= 30

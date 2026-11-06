@@ -1,0 +1,134 @@
+{
+  "case_id": "TC-NATIVE-01",
+  "run_id": "run-02",
+  "trace_id": "c2edaca9-18db-451b-ba27-a210fc3b994c",
+  "outcome": "ACCEPTED_PASS",
+  "device": {
+    "serial": "emulator-5562",
+    "api": 35,
+    "avd": "BeeWise_N03_Native_API35"
+  },
+  "apk_sha256": "e05a72de4ce063f70e7df6cd90c2fccb80e42a0c8befac0547bfdcd05b4405ed",
+  "artemis_base_sha": "351ca8422f7b5b54e80a9c1ce03a222e02415b6b",
+  "model": "deepseek-flash",
+  "gemini_fallback": false,
+  "admitted_utc": "2026-11-06T06:16:52.661244+00:00",
+  "pytest_exit": 0,
+  "pytest_started_original": "2026-11-06T13:16:54.442206+07:00",
+  "pytest_started_utc": "2026-11-06T06:16:54.442206+00:00",
+  "session_start_utc": "2026-11-06T06:17:02.100718+00:00",
+  "session_end_utc": "2026-11-06T06:17:18.395827+00:00",
+  "trace_events": {
+    "count": 38,
+    "first_utc": "2026-11-06T06:17:02.105717+00:00",
+    "last_utc": "2026-11-06T06:17:18.722889+00:00"
+  },
+  "original_permission": {
+    "utc": "2026-11-06T06:16:38.219725+00:00",
+    "original_permission": {
+      "granted": false,
+      "flags": [
+        "USER_SENSITIVE_WHEN_DENIED",
+        "USER_SENSITIVE_WHEN_GRANTED",
+        "USER_SET"
+      ]
+    }
+  },
+  "before": {
+    "utc": "2026-11-06T06:16:55.311761+00:00",
+    "window": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+    "permission": {
+      "granted": false,
+      "flags": [
+        "USER_SENSITIVE_WHEN_DENIED",
+        "USER_SENSITIVE_WHEN_GRANTED"
+      ]
+    },
+    "buttons": {
+      "allow": [
+        98,
+        804,
+        622,
+        916
+      ],
+      "deny": [
+        98,
+        924,
+        622,
+        1036
+      ]
+    },
+    "screen_size": [
+      720,
+      1600
+    ]
+  },
+  "after": {
+    "utc": "2026-11-06T06:17:20.750766+00:00",
+    "window": "com.beewise.beewise/com.beewise.beewise.MainActivity",
+    "permission": {
+      "granted": true,
+      "flags": [
+        "USER_SENSITIVE_WHEN_DENIED",
+        "USER_SENSITIVE_WHEN_GRANTED",
+        "USER_SET"
+      ]
+    }
+  },
+  "decision": "allow",
+  "actions": [
+    {
+      "step": 1,
+      "utc": "2026-11-06T06:17:16.606242+00:00",
+      "action": "click",
+      "click_pixels": [
+        360,
+        859
+      ],
+      "decision": "allow"
+    },
+    {
+      "step": 2,
+      "utc": "2026-11-06T06:17:18.374246+00:00",
+      "action": "report_task_status"
+    }
+  ],
+  "usage": {
+    "requests": 2,
+    "http_200": 2,
+    "prompt_tokens": 14746,
+    "completion_tokens": 232,
+    "conservative_nanodollars": 4702200
+  },
+  "balance_preflight": {
+    "utc": "2026-11-06T06:16:52.026543+00:00",
+    "required_usd": "0.5653035",
+    "status": "PASS",
+    "inference_requests": 0,
+    "http_status": 200
+  },
+  "private_session_stdout": {
+    "path": "native-supplement/host-state/traces/c2edaca9-18db-451b-ba27-a210fc3b994c/stdout.log",
+    "bytes": 9450,
+    "sha256": "82d29deafd8eb2b936ea1c544459e6f69a461a41213d30b7b77aaaeb8506c3d2"
+  },
+  "private_trace_snapshot": "../trace-provenance.json",
+  "artifacts": {
+    "after.jpg": {
+      "bytes": 94712,
+      "sha256": "c9373d36c1b3d7b604ea1834a4333b6fba4bc26e93be4ec9e95b4f812f704716"
+    },
+    "before.jpg": {
+      "bytes": 64299,
+      "sha256": "66f1c272ccbc789c86c70d8a1ee8e737b8e7e156395ee567c31b362aeb36f069"
+    },
+    "independent-review.json": {
+      "bytes": 389,
+      "sha256": "d304f073f827e5f79e41d0a8ec8dc3fc382c256740e9629c03e26ebe39b57491"
+    },
+    "result.junit.xml": {
+      "bytes": 348,
+      "sha256": "d12def9017c617d9eaf6702fed9965c69c90727047618c42421868df926fdfbc"
+    }
+  }
+}

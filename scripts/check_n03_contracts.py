@@ -2,9 +2,12 @@
 
 import asyncio
 import copy
+import hashlib
 import json
 import sys
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -12,13 +15,48 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "e2e_test"))
 from conftest import _decode_observation, run_flow
 from test_account_and_firebase import test_tc09_all_top_level_destinations_are_reachable
 from test_exploratory import test_tc25_pro_exploratory_session
+from test_native_permission import assert_agent_tap
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools/artemis-deepseek"))
+from host import check_native_authorization
 from native_ready import validate_fixture, validate_idle, validate_ready
 from policy import require_live_authorization, validate_retry_policy
 
 
+def check_native():
+    bounds = {"allow": [98, 804, 622, 916], "deny": [98, 924, 622, 1036]}
+    click = {"action": "click", "normalized_coordinates": [500, 610]}
+    report = {"action": "report_task_status"}
+    assert assert_agent_tap([click, report], bounds, [720, 1600], "deny") == [360, 976]
+    for actions, decision in (([click, report], "allow"), ([report], "deny"),
+                              ([click, click, report], "deny")):
+        try:
+            assert_agent_tap(actions, bounds, [720, 1600], decision)
+        except AssertionError:
+            continue
+        raise AssertionError("Wrong, absent or multiple agent taps must not pass")
+
+    proposal = (Path(__file__).resolve().parents[1] /
+                "evidence/artemis/n03-native-final/budget-proposal.json")
+    digest = hashlib.sha256(proposal.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    future = (datetime.now(UTC) + timedelta(minutes=1)).isoformat()
+    with TemporaryDirectory() as directory:
+        receipt = Path(directory) / "offline-approval.json"
+        approval = {"decision": "OWNER_APPROVED_TC_NATIVE_01",
+                    "proposal_sha256": digest, "owner_approval_ref": "offline-test"}
+        receipt.write_text(json.dumps(approval), encoding="utf-8")
+        exact = (12, 70_000_000, future, f"offline-test:{digest}", 0)
+        check_native_authorization(receipt, exact)
+        for budget in ((13, *exact[1:]), (*exact[:3], "old-exploration", 0), (*exact[:4], 1)):
+            try:
+                check_native_authorization(receipt, budget)
+            except ValueError:
+                continue
+            raise AssertionError("Different or closed ledger must not authorize native runs")
+
+
 async def check():
+    check_native()
     held = {"approved_inference_requests": 240, "approved_usd": 0.5,
             "live_hold_reason": "OWNER_AMENDMENT_REQUIRED_AFTER_SIX_FAILURES"}
     with patch("policy.Path.read_text", return_value=json.dumps(held)):
@@ -140,7 +178,7 @@ async def check():
         device_serial = "offline-no-device"
 
         async def run(self, *args, **kwargs):
-            assert kwargs["profile"] == "pro"
+            assert kwargs["profile"] in {"pro", "flash"}
             assert "never submit a Gemini/provider request" in args[0]
             return SimpleNamespace(trace_id="offline-not-evidence", status="completed",
                                    succeeded=True, error=None, output={"elapsed_minutes": 20})
@@ -160,7 +198,7 @@ async def check():
                 assert "authorization" in str(error)
             else:
                 raise AssertionError("Owner zero budget must block live execution")
-    print("PASS: strict TC-09, measured TC-25 duration and owner $0 gate; Android NOT RUN.")
+    print("PASS: strict TC-09, measured TC-25 duration and owner budget/native tap guards; Android NOT RUN.")
 
 
 if __name__ == "__main__":
