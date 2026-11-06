@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="27.255" timestamp="2026-11-06T13:15:40.696105+07:00" hostname="ThuDong"><testcase classname="test_native_permission" name="test_native_notification_permission" time="27.240" /></testsuite></testsuites>

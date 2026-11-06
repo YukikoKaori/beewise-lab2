@@ -1,0 +1,61 @@
+{
+  "case_id": "TC-NATIVE-01",
+  "outcome": "PASS",
+  "accepted": 3,
+  "admitted": 3,
+  "failed": 0,
+  "original_regression": {
+    "accepted": 30,
+    "retained_failures": 14
+  },
+  "qualifying_exploration": {
+    "trace_id": "aa025ab2-6a51-4b34-a4c1-3ba346e4e0a4",
+    "duration_seconds": 925.734
+  },
+  "runs": [
+    {
+      "run_id": "run-01",
+      "trace_id": "ae4c4a76-8809-403d-ac3a-58cab70aec82",
+      "decision": "deny",
+      "post_granted": false,
+      "outcome": "ACCEPTED_PASS",
+      "manifest": "run-01/manifest.json",
+      "manifest_sha256": "6e1b564623585d6fa55d81a590d553852b910cc175b443b59731f54c89978f4d"
+    },
+    {
+      "run_id": "run-02",
+      "trace_id": "c2edaca9-18db-451b-ba27-a210fc3b994c",
+      "decision": "allow",
+      "post_granted": true,
+      "outcome": "ACCEPTED_PASS",
+      "manifest": "run-02/manifest.json",
+      "manifest_sha256": "60cda6d1f7a2ab9b332fde507193ab35780f256723b258a033c75456228de4ef"
+    },
+    {
+      "run_id": "run-03",
+      "trace_id": "453bb8d0-4d09-4074-8b47-31dae25293bf",
+      "decision": "deny",
+      "post_granted": false,
+      "outcome": "ACCEPTED_PASS",
+      "manifest": "run-03/manifest.json",
+      "manifest_sha256": "64649299f0a07f3d4300bc81921caf76cb9e597b0af55a3f20a93187fd8e31bd"
+    }
+  ],
+  "native_ledger": {
+    "requests": 6,
+    "http_200": 6,
+    "prompt_tokens": 44225,
+    "completion_tokens": 723,
+    "conservative_nanodollars": 14135100,
+    "cap_requests": 12,
+    "cap_conservative_nanodollars": 70000000,
+    "blocked_after_completion": true
+  },
+  "final_reserve_check": {
+    "utc": "2026-11-06T06:19:07.568866+00:00",
+    "required_usd": "0.5",
+    "status": "PASS",
+    "inference_requests": 0,
+    "http_status": 200
+  }
+}

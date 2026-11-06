@@ -1,0 +1,161 @@
+{
+  "test_case_id": "TC-25",
+  "name": "ARTEMIS AI-Driven Autonomous Exploration & Android-Native Permission Verification",
+  "requirement_rubric": "PRM393 Lab 3 Preparation Guide v5 p. 23 (Exploration 15–30 min + Android Native Interaction)",
+  "status": "PASSED",
+  "primary_qualifying_session": {
+    "session_id": "aa025ab2-6a51-4b34-a4c1-3ba346e4e0a4",
+    "status": "COMPLETED",
+    "measured_duration_seconds": 925.734,
+    "measured_duration_minutes": 15.43,
+    "rubric_duration_satisfied": true,
+    "steps_count": 23,
+    "model_provider": "DeepSeek API (api.deepseek.com)",
+    "model": "deepseek-flash",
+    "gemini_fallback": false,
+    "pytest_result": "PASS (1 test; JUnit suite 925.896s)",
+    "junit_xml": "evidence/artemis/n03-exploration-final/result.junit.xml",
+    "screens_explored": [
+      "Tìm gia sư (search/discovery) - subject chips, area chips, teaching mode (Online/Tại nhà), fee slider, sort toggle, empty state",
+      "Ghép AI (AI matching) - text input, 0/500 char counter, empty-submit validation snackbar, 'Hoặc tự tìm theo bộ lọc' link",
+      "Tài khoản (Account) - logged-out state, notification permission warning, Remote Config info, PDF report section, diagnostics",
+      "Đăng nhập (Login) - empty-field validation, invalid email validation",
+      "Tin nhắn (Messages) - login-gated empty state",
+      "Firebase demo flow - agent reported tapping the sample non-fatal action; ingestion not verified"
+    ],
+    "issues_found": [
+      {
+        "screen": "Tìm gia sư (search)",
+        "reproduction": "Apply the 'Online' or 'Tại nhà' teaching-mode filter (or select a subject chip like 'Vật lý'); the tutor list shows 'Chưa tìm thấy gia sư' empty state. Tapping 'Xóa bộ lọc' (clear filters) does not reset the teaching-mode filter — the 'Tại nhà'/'Online' selection remains active after tapping clear filters.",
+        "severity": "low"
+      },
+      {
+        "screen": "Tìm gia sư (search)",
+        "reproduction": "In the demo environment the tutor result list is empty for all filter combinations tested (Online, Tại nhà, subject chips), so the tutor profile/detail view could not be reached.",
+        "severity": "low"
+      }
+    ],
+    "blocked_actions": [
+      "Did not submit the AI matching request to avoid triggering a Gemini/provider request (only tested empty-submit validation and typed text without submitting)",
+      "Did not create an account or submit personal data (login tested only with empty/invalid fields)",
+      "Did not run the 'Kiểm tra Crashlytics (ứng dụng sẽ đóng)' test to avoid deliberately crashing the app",
+      "Did not send any real payment",
+      "Did not invent tutor records"
+    ],
+    "profile": "flash",
+    "trace_timeline": "trace-timeline.json",
+    "android_actions": 22
+  },
+  "historical_preserved_sessions": [
+    {
+      "session_id": "85ed1fab-fc9e-4884-a636-7ce35628edf1",
+      "start_time_utc": "2026-11-05T21:18:17.741718+00:00",
+      "end_time_utc": "2026-11-05T21:24:31.059492+00:00",
+      "measured_duration_seconds": 379.34,
+      "steps_count": 15,
+      "native_permission_interacted": true,
+      "exit_reason": "Local non-image byte envelope limit (resolved for session 2)",
+      "screens_visited": [
+        "OS Permission Dialog",
+        "Home",
+        "Tutor Search",
+        "Filter Sheet",
+        "Tutor Catalog"
+      ],
+      "host_status": "failed",
+      "native_observation": "Step 2 was Android ANR Wait, not Allow; later screenshots show the permission dialog but no grant outcome is asserted."
+    },
+    {
+      "session_id": "5bb907c1-a8c0-4b44-806f-d9d941ff2840",
+      "start_time_utc": "2026-11-05T21:31:01.070358+00:00",
+      "end_time_utc": "2026-11-05T21:38:41.270885+00:00",
+      "measured_duration_seconds": 466.8,
+      "steps_count": 16,
+      "native_permission_interacted": true,
+      "native_permission_choice": "Don't allow",
+      "exit_reason": "Transient external socket disconnect at Turn 16",
+      "screens_visited": [
+        "OS Permission Dialog",
+        "Home",
+        "Search Input",
+        "Tutor List",
+        "Tutor Detail",
+        "AI Consultation / Matching UI",
+        "Messages / Account"
+      ],
+      "host_status": "failed",
+      "native_observation": "Step 1 tap matches the lower permission button in pre-image; post-image shows BeeWise Home."
+    },
+    {
+      "session_id": "8ccdcfb4-527b-4fcf-87d5-8fadf3c37690",
+      "start_time_utc": "2026-11-06T01:13:57.474583+00:00",
+      "end_time_utc": "2026-11-06T01:30:50.272046+00:00",
+      "measured_duration_seconds": 1018.735,
+      "steps_count": 26,
+      "native_permission_interacted": false,
+      "exit_reason": "Pre-final report tool declaration turn cap",
+      "screens_visited": [
+        "Home",
+        "Search",
+        "Tutor Detail",
+        "Account",
+        "Login Validation",
+        "Messages"
+      ],
+      "host_status": "failed"
+    }
+  ],
+  "device": {
+    "serial": "emulator-5562",
+    "api_level": 35,
+    "resolution": "720x1600"
+  },
+  "financial_and_ledger": {
+    "source": "exploration.sqlite (private cumulative V6 ledger; aggregate export only)",
+    "cap_requests": 168,
+    "cap_conservative_nanodollars": 580000000,
+    "cumulative": {
+      "reservations": 161,
+      "http_200": 160,
+      "prompt_tokens": 1745848,
+      "completion_tokens": 26992,
+      "sdk_tokens": 1772840,
+      "conservative_nanodollars": 563985900
+    },
+    "unsettled_reservations": 1,
+    "qualifying_session": {
+      "reservations": 25,
+      "http_200": 25,
+      "prompt_tokens": 273750,
+      "completion_tokens": 5419,
+      "sdk_tokens": 279169,
+      "conservative_nanodollars": 88627800
+    },
+    "billing_scope": "Conservative reservations and settled usage estimate; no project-isolated provider bill or current account balance verified."
+  },
+  "rubric_compliance": {
+    "continuous_duration_rubric": "15–30 minutes (925.734s ~ 15.43 min single continuous session achieved)",
+    "native_interaction_rubric": "API 35 POST_NOTIFICATIONS prompt dismissed by autonomous tap in historical run 02; run 01 independently records an OS ANR Wait action. Neither was a qualifying exploration PASS.",
+    "status": "TC25_PASS; NATIVE_INTERACTION_OBSERVED; NATIVE_REGRESSION_MATRIX_COVERAGE_OPEN"
+  },
+  "other_historical_sessions": [
+    {
+      "session_id": "20188d61-f134-40ac-90d8-6276fc02d86d",
+      "start_time_utc": "2026-11-05T22:20:55.455515+00:00",
+      "end_time_utc": "2026-11-05T22:33:57.116741+00:00",
+      "host_status": "failed"
+    },
+    {
+      "session_id": "053b3ce7-a0a2-4f37-8659-eea5792c58b2",
+      "start_time_utc": "2026-11-05T22:44:41.290391+00:00",
+      "end_time_utc": "2026-11-05T22:57:17.744630+00:00",
+      "host_status": "failed"
+    },
+    {
+      "session_id": "34b87f69-89db-4719-9c00-1f54cf4e2de0",
+      "start_time_utc": "2026-11-06T03:57:17.641688+00:00",
+      "end_time_utc": "2026-11-06T04:09:16.456144+00:00",
+      "host_status": "failed"
+    }
+  ]
+}
