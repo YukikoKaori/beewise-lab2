@@ -1,0 +1,9 @@
+{
+  "accepted": true,
+  "trace_id": "c2edaca9-18db-451b-ba27-a210fc3b994c",
+  "reviewer": "Codex independent evidence review (separate from ARTEMIS agent)",
+  "decision": "allow",
+  "post_granted": true,
+  "junit_pass": true,
+  "note": "Original agent images show the upper Allow button and return to BeeWise Home; trace coordinates match, and Android records grant true with USER_SET."
+}

@@ -1,0 +1,18 @@
+{
+  "status": "B_PRIVATE_ORIGINAL_VERIFIED",
+  "private_root": "relative to private N-03 archive root",
+  "original_database": {
+    "path": "native-supplement/host-state/traces/data_engine.db",
+    "bytes": 249856,
+    "sha256": "f8bbf097b694440823b61f233da163300f893f79312fbefe465c5abb13626781"
+  },
+  "read_only_snapshot": {
+    "path": "native-supplement/trace.snapshot.sqlite",
+    "bytes": 249856,
+    "sha256": "fdeb05ba56e981fedb89d68cf24b95b37439beceee4b6d717d42f351e5211add"
+  },
+  "lookup": "Filter sessions, steps and traces by each manifest trace_id; step images are stored next to the original database in images/.",
+  "source_wal_bytes": 0,
+  "artemis_base_sha": "351ca8422f7b5b54e80a9c1ce03a222e02415b6b",
+  "applied_checkout_git_diff_binary_sha256": "00b04c06670d5f51e8bcc01c21e931bdbe7b3b65787d189afd2584eb5f1a39c8"
+}
