@@ -10,6 +10,7 @@ class BeeWiseScaffold extends StatelessWidget {
     super.key,
     required this.title,
     required this.body,
+    this.titleWidget,
     this.showBack = false,
     this.bottomNavigationIndex,
     this.actions = const [],
@@ -18,6 +19,10 @@ class BeeWiseScaffold extends StatelessWidget {
   });
 
   final String title;
+
+  /// Replaces the plain-text title (e.g. the BeeWise logo lockup on Home).
+  /// [title] is still used as the accessible label.
+  final Widget? titleWidget;
   final Widget body;
   final bool showBack;
   final int? bottomNavigationIndex;
@@ -37,7 +42,10 @@ class BeeWiseScaffold extends StatelessWidget {
                   context.canPop() ? context.pop() : context.go('/home'),
             )
           : null,
-      title: Text(title),
+      title: titleWidget == null
+          ? Text(title)
+          : Semantics(label: title, header: true, child: titleWidget),
+      toolbarHeight: titleWidget == null ? null : 64,
       actions: actions,
       bottom: const PreferredSize(
         preferredSize: Size.fromHeight(1),
@@ -283,9 +291,14 @@ class OnboardingStepper extends StatelessWidget {
   const OnboardingStepper({
     super.key,
     required this.currentStep,
-    this.completedThrough = -1,
+    int? completedThrough,
   }) : assert(currentStep >= 0 && currentStep < 4),
-       assert(completedThrough >= -1 && completedThrough < 4);
+       assert(
+         completedThrough == null ||
+             (completedThrough >= -1 && completedThrough < 4),
+       ),
+       // Unless told otherwise, every step before the current one is done.
+       completedThrough = completedThrough ?? currentStep - 1;
 
   final int currentStep;
   final int completedThrough;
@@ -336,8 +349,10 @@ class OnboardingStepper extends StatelessWidget {
                                   ? BeeWiseColors.success
                                   : index == currentStep
                                   ? BeeWiseColors.primary
-                                  : BeeWiseColors.canvas,
-                              foregroundColor: index <= completedThrough
+                                  : const Color(0xFFE2EAFF),
+                              foregroundColor:
+                                  index <= completedThrough ||
+                                      index == currentStep
                                   ? Colors.white
                                   : BeeWiseColors.muted,
                               child: index <= completedThrough
@@ -392,11 +407,15 @@ class EmptyStateView extends StatelessWidget {
     required this.message,
     this.icon = Icons.search_off_rounded,
     this.action,
+    this.sticker,
   });
   final String title;
   final String message;
   final IconData icon;
   final Widget? action;
+
+  /// When set, replaces [icon] with a BeeWise mascot illustration.
+  final BeeSticker? sticker;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -409,7 +428,7 @@ class EmptyStateView extends StatelessWidget {
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 36, color: BeeWiseColors.muted),
+        sticker ?? Icon(icon, size: 36, color: BeeWiseColors.muted),
         const SizedBox(height: 12),
         Text(
           title,
@@ -690,8 +709,16 @@ class InfoRow extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       if (icon != null) ...[
-        Icon(icon, color: BeeWiseColors.primary, size: 22),
-        const SizedBox(width: 12),
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: const Color(0xFFEEF2FF),
+            borderRadius: BorderRadius.circular(BeeWiseRadius.md),
+          ),
+          child: Icon(icon, color: BeeWiseColors.ink, size: 22),
+        ),
+        const SizedBox(width: 14),
       ],
       Expanded(
         child: Column(
@@ -703,7 +730,11 @@ class InfoRow extends StatelessWidget {
                   ?.copyWith(color: BeeWiseColors.muted),
             ),
             const SizedBox(height: 2),
-            Text(value, style: Theme.of(context).textTheme.titleSmall),
+            Text(
+              value,
+              style: Theme.of(context).textTheme.titleSmall
+                  ?.copyWith(fontWeight: FontWeight.w700),
+            ),
           ],
         ),
       ),
@@ -781,6 +812,53 @@ List<Widget> withGaps(List<Widget> items, {double gap = BeeWiseSpace.x3}) {
     result.add(item);
   }
   return result;
+}
+
+/// BeeWise horizontal logo lockup (mark + wordmark), transparent background.
+class BeeWiseLogo extends StatelessWidget {
+  const BeeWiseLogo({super.key, this.height = 32});
+  final double height;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    label: 'BeeWise',
+    image: true,
+    child: ExcludeSemantics(
+      child: Image.asset(
+        'assets/brand/logo-horizontal.png',
+        height: height,
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.high,
+      ),
+    ),
+  );
+}
+
+/// BeeWise mascot illustrations (assets/stickers/). Decorative only.
+class BeeSticker extends StatelessWidget {
+  const BeeSticker._(this._asset, this.size);
+
+  /// Bee holding a heart wand — AI matching / highlights.
+  const BeeSticker.wand({double size = 96}) : this._('bee-wand', size);
+
+  /// Cheering bee — success and welcome states.
+  const BeeSticker.cheer({double size = 96}) : this._('bee-cheer', size);
+
+  /// Bee and robot bee fist-bumping — AI + tutor collaboration, empty states.
+  const BeeSticker.robot({double size = 120}) : this._('bee-robot', size);
+
+  final String _asset;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) => ExcludeSemantics(
+    child: Image.asset(
+      'assets/stickers/$_asset.png',
+      width: size,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.high,
+    ),
+  );
 }
 
 /// Google "G" mark used on the sign-in button (assets/brand/google-g.webp).
