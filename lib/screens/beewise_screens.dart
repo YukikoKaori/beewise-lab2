@@ -14,6 +14,15 @@ import '../viewmodels/app_providers.dart';
 import '../viewmodels/controllers.dart';
 import '../widgets/bee_wise_widgets.dart';
 
+/// 1.5 -> "1,5 giờ", 2 -> "2 giờ".
+String _formatHours(Object? value) {
+  if (value is! num) return 'Chưa cập nhật';
+  final text = value == value.roundToDouble()
+      ? value.round().toString()
+      : value.toString().replaceAll('.', ',');
+  return '$text giờ';
+}
+
 String _formatWorkflowAmount(Object? value) {
   if (value is num) {
     return '${NumberFormat.decimalPattern('vi_VN').format(value)}đ';
@@ -1416,6 +1425,113 @@ String _onboardingLabel(ChatMessage message) {
   return 'Đang trao đổi cùng tư vấn viên BeeWise';
 }
 
+/// Banner with a bold coloured title above the message (Figma "Chờ thanh toán",
+/// "Buổi học thử đã hoàn tất").
+class _TitledBanner extends StatelessWidget {
+  const _TitledBanner({
+    required this.icon,
+    required this.title,
+    required this.message,
+    required this.color,
+    required this.background,
+  });
+  final IconData icon;
+  final String title;
+  final String message;
+  final Color color;
+  final Color background;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: background,
+      borderRadius: BorderRadius.circular(BeeWiseRadius.field),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Icon(icon, size: 22, color: color),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleMedium
+                    ?.copyWith(color: color, fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 2),
+              Text(message, style: Theme.of(context).textTheme.bodyMedium),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+/// One "label … value" line of a fee summary; [emphasize] makes the value the
+/// large blue total.
+class _FeeLine extends StatelessWidget {
+  const _FeeLine({
+    required this.label,
+    required this.value,
+    this.emphasize = false,
+  });
+  final String label;
+  final String value;
+  final bool emphasize;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        Expanded(
+          child: Text(
+            label,
+            style:
+                (emphasize
+                        ? theme.textTheme.titleMedium
+                        : theme.textTheme.bodyLarge)
+                    ?.copyWith(
+                      color: emphasize
+                          ? BeeWiseColors.ink
+                          : BeeWiseColors.muted,
+                      fontWeight: emphasize ? FontWeight.w700 : FontWeight.w400,
+                    ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Flexible(
+          child: Text(
+            value,
+            textAlign: TextAlign.right,
+            style:
+                (emphasize
+                        ? theme.textTheme.headlineSmall
+                        : theme.textTheme.titleSmall)
+                    ?.copyWith(
+                      color: emphasize
+                          ? BeeWiseColors.primary
+                          : BeeWiseColors.ink,
+                      fontWeight: FontWeight.w700,
+                    ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 /// Filled blue pill that labels who initiated a workflow step.
 class _ProposalTag extends StatelessWidget {
   const _ProposalTag(this.text);
@@ -2185,64 +2301,85 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
             padding: const EdgeInsets.all(16),
             children: withGaps([
               const OnboardingStepper(currentStep: 1, completedThrough: 0),
-              const SizedBox(height: 16),
-              const StatusBanner(
-                message: 'Buổi học thử đã hoàn tất. Vui lòng kiểm tra đề xuất lớp học.',
-                kind: NoticeKind.success,
+              const SizedBox(height: 8),
+              const _TitledBanner(
+                icon: Icons.check_circle_outline,
+                title: 'Buổi học thử đã hoàn tất',
+                message: 'Tư vấn viên đã gửi thông tin lớp chính thức. Kiểm tra trước khi thanh toán.',
+                color: BeeWiseColors.success,
+                background: BeeWiseColors.successSoft,
               ),
-              Text(
-                'Vui lòng kiểm tra thông tin trước khi xác nhận.',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              const SizedBox(height: 12),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: withGaps([
                       Text(
                         '${p['subject'] ?? 'Lớp học'}${p['goal'] == null ? '' : ' – ${p['goal']}'}',
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
-                      const SizedBox(height: 12),
-                      for (final item in {
-                        'Gia sư': p['tutorName'],
-                        'Lịch dự kiến': p['schedule'],
-                        'Hình thức': p['mode'],
-                        'Địa điểm': p['location'],
-                        'Ngày bắt đầu': p['startDate'],
-                      }.entries)
-                        InfoRow(
-                          label: item.key,
-                          value: '${item.value ?? 'Chưa cập nhật'}',
-                        ),
+                      InfoRow(
+                        label: 'Gia sư',
+                        value: '${p['tutorName'] ?? 'Chưa cập nhật'}',
+                        icon: Icons.person_outline,
+                      ),
+                      InfoRow(
+                        label: 'Lịch dự kiến',
+                        value:
+                            '${p['schedule'] ?? 'Chưa cập nhật'}${p['time'] == null ? '' : ' · ${p['time']}'}',
+                        icon: Icons.calendar_today_outlined,
+                      ),
+                      InfoRow(
+                        label: 'Hình thức',
+                        value:
+                            '${p['mode'] ?? 'Chưa cập nhật'}${p['location'] == null ? '' : ' · ${p['location']}'}',
+                        icon: Icons.place_outlined,
+                      ),
+                      InfoRow(
+                        label: 'Bắt đầu',
+                        value: '${p['startDate'] ?? 'Chưa cập nhật'}',
+                        icon: Icons.schedule,
+                      ),
                     ]),
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    children: withGaps([
-                      InfoRow(
+                    children: [
+                      _FeeLine(
                         label: 'Học phí',
-                        value: _formatWorkflowAmount(p['fee']),
+                        value: p['sessions'] == null
+                            ? _formatWorkflowAmount(p['fee'])
+                            : '${_formatWorkflowAmount(p['fee'])}/giờ',
                       ),
-                      InfoRow(
+                      const SizedBox(height: 10),
+                      _FeeLine(
                         label: 'Thời lượng',
-                        value: '${p['lessonDuration'] ?? 'Chưa cập nhật'}',
+                        value: p['sessions'] == null
+                            ? '${p['lessonDuration'] ?? 'Chưa cập nhật'}'
+                            : '${_formatHours(p['hoursPerSession'])} × ${p['sessions']} buổi',
                       ),
-                      InfoRow(
-                        label: 'Tổng phí',
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        child: Divider(height: 1, color: BeeWiseColors.border),
+                      ),
+                      _FeeLine(
+                        label: p['sessions'] == null
+                            ? 'Tổng phí'
+                            : 'Tổng tháng đầu',
                         value: _formatWorkflowAmount(p['totalFee']),
+                        emphasize: true,
                       ),
-                    ]),
+                    ],
                   ),
                 ),
               ),
-              const StatusBanner(
+              const _NoteBox(
+                title: 'Lưu ý',
                 message: 'Chỉ xác nhận nội dung hiện tại. Yêu cầu thanh toán chỉ xuất hiện sau khi hệ thống nhận xác nhận này và tạo hóa đơn.',
               ),
               if (closed != null)
@@ -2252,6 +2389,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                   ErrorStateView(message: friendlyError(state.error!)),
                 BeeWiseButton(
                   label: 'Thông tin đã chính xác',
+                  icon: Icons.check_circle_outline,
                   loading: state.isLoading,
                   onPressed: () => _respond(
                     (c) => c.confirmClass(
@@ -2269,7 +2407,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                     labelText: 'Nội dung cần điều chỉnh',
                   ),
                 ),
-                OutlinedButton(
+                OutlinedButton.icon(
                   onPressed: state.isLoading || _reason.text.trim().isEmpty
                       ? null
                       : () => _respond(
@@ -2279,7 +2417,8 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
                             reason: _reason.text,
                           ),
                         ),
-                  child: const Text('Yêu cầu tư vấn viên điều chỉnh'),
+                  icon: const Icon(Icons.edit_outlined),
+                  label: const Text('Yêu cầu tư vấn viên điều chỉnh'),
                 ),
                 const TextButton(
                   onPressed: null,
@@ -2351,17 +2490,24 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: withGaps([
-              StatusBanner(
-                message: status == 'verified'
-                    ? 'Thanh toán đã được hệ thống xác minh.'
-                    : 'Chờ thanh toán · Thanh toán qua payOS để giữ lịch học. Trạng thái tự cập nhật sau khi hệ thống xác minh.',
-                kind: status == 'verified'
-                    ? NoticeKind.success
-                    : NoticeKind.warning,
-              ),
-              const SizedBox(height: 12),
-              const OnboardingStepper(currentStep: 2),
-              const SizedBox(height: 16),
+              status == 'verified'
+                  ? const _TitledBanner(
+                      icon: Icons.check_circle_outline,
+                      title: 'Đã thanh toán',
+                      message: 'Thanh toán đã được hệ thống xác minh.',
+                      color: BeeWiseColors.success,
+                      background: BeeWiseColors.successSoft,
+                    )
+                  : const _TitledBanner(
+                      icon: Icons.warning_amber_rounded,
+                      title: 'Chờ thanh toán',
+                      message: 'Thanh toán qua payOS để giữ lịch học. Trạng thái tự cập nhật sau khi hệ thống xác minh.',
+                      color: BeeWiseColors.warning,
+                      background: BeeWiseColors.accentSoft,
+                    ),
+              const SizedBox(height: 4),
+              OnboardingStepper(currentStep: status == 'verified' ? 3 : 2),
+              const SizedBox(height: 8),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -2390,23 +2536,62 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               Text(
                 'Thông tin hóa đơn',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              InfoRow(label: 'Mã hóa đơn', value: invoiceId),
-              if (data['dueAt'] != null)
-                InfoRow(label: 'Hạn thanh toán', value: '${data['dueAt']}'),
-              InfoRow(
-                label: 'Trạng thái',
-                value: status == 'verified' ? 'Đã xác nhận' : 'Chờ xác nhận',
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: withGaps([
+                      InfoRow(
+                        label: 'Mã hóa đơn',
+                        value: invoiceId,
+                        icon: Icons.receipt_long_outlined,
+                      ),
+                      if (data['dueAt'] != null)
+                        InfoRow(
+                          label: 'Hạn thanh toán',
+                          value: '${data['dueAt']}',
+                          icon: Icons.event_outlined,
+                        ),
+                      InfoRow(
+                        label: 'Trạng thái',
+                        value: status == 'verified'
+                            ? 'Đã xác nhận'
+                            : 'Chờ xác nhận',
+                        icon: status == 'verified'
+                            ? Icons.check_circle_outline
+                            : Icons.hourglass_top_rounded,
+                      ),
+                    ]),
+                  ),
+                ),
               ),
               if (state.hasError)
                 ErrorStateView(message: friendlyError(state.error!)),
-              const StatusBanner(
-                message: 'Trạng thái chuyển khoản phải được máy chủ hoặc đơn vị thanh toán xác thực. Ứng dụng không tự đánh dấu đã thanh toán.',
-                kind: NoticeKind.warning,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 2),
+                    child: Icon(
+                      Icons.verified_user_outlined,
+                      size: 20,
+                      color: BeeWiseColors.success,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      'Trạng thái chuyển khoản phải được máy chủ hoặc đơn vị thanh toán xác thực. Ứng dụng không tự đánh dấu đã thanh toán.',
+                      style: Theme.of(context).textTheme.bodyMedium
+                          ?.copyWith(color: BeeWiseColors.muted),
+                    ),
+                  ),
+                ],
               ),
               if (status == 'verified' && data['classId'] != null)
                 BeeWiseButton(

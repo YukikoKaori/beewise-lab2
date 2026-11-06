@@ -8,6 +8,6 @@
   "location": "Google Meet",
   "startDate": "17/11/2026",
   "lessonDuration": "90 phút",
-  "fee": 2000,
-  "totalFee": 2000
+  "hoursPerSession": 1.5,
+  "sessions": 8
 }

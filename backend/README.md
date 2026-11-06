@@ -147,6 +147,14 @@ node scripts/staff.js revision consultant@example.com <chatId> examples/class-re
 node scripts/staff.js revoke consultant@example.com
 ```
 
+`revision` takes the amount from the catalog, so the invoice always equals the fee
+the app shows: `fee` defaults to the tutor's `hourlyFee` and
+`totalFee = fee × hoursPerSession × sessions` (set `hoursPerSession` and `sessions`
+in the JSON file; `examples/class-revision.json` is 1,5 h × 8 sessions). The server
+rejects a `totalFee` that disagrees with that breakdown. For a cheap real-payment
+test use `examples/class-revision-test-2000.json` (fee 2.000 đ × 1 h × 1 session
+= 2.000 đ).
+
 ## Going live with payOS (owner approval required)
 
 Not done in this repository. Each step needs explicit owner approval:
@@ -157,7 +165,7 @@ Not done in this repository. Each step needs explicit owner approval:
    `.env` on the server only — never in Flutter, Remote Config, Git or logs.
 3. Expose the server over HTTPS and run
    `node scripts/staff.js confirm-webhook https://<host>/v1/payos/webhook`.
-4. Pay one small invoice (the example revision uses 2.000 đ), then capture:
+4. Pay one small invoice (`examples/class-revision-test-2000.json` issues 2.000 đ), then capture:
    payOS dashboard transaction, `paymentOrders` → `paid`, invoice `verified`,
    the class document, and the Schedule screen in the app.
 
