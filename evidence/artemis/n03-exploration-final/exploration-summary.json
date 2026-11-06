@@ -9,33 +9,59 @@
   "screens_explored": [
     {
       "screen_name": "Tìm gia sư (Search & Discovery)",
-      "actions": ["subject chips selection", "area chips selection", "teaching mode (Online/Tại nhà)", "fee slider adjustment", "sort toggle", "empty state validation"],
+      "actions": [
+        "subject chips selection",
+        "area chips selection",
+        "teaching mode (Online/Tại nhà)",
+        "fee slider adjustment",
+        "sort toggle",
+        "empty state validation"
+      ],
       "observed_state": "Loaded catalog; responsive to chip toggles; tested filter combinations"
     },
     {
       "screen_name": "Ghép AI (AI Matching & Consultation UI)",
-      "actions": ["text input into consultation prompt", "0/500 character counter validation", "empty-submit validation snackbar", "'Hoặc tự tìm theo bộ lọc' link"],
+      "actions": [
+        "text input into consultation prompt",
+        "0/500 character counter validation",
+        "empty-submit validation snackbar",
+        "'Hoặc tự tìm theo bộ lọc' link"
+      ],
       "observed_state": "Input field responsive; validation snackbar properly appeared on empty submission; safely guarded against unauthorized external Gemini API calls"
     },
     {
       "screen_name": "Tài khoản (Account)",
-      "actions": ["logged-out state check", "notification permission warning inspection", "Remote Config info display", "PDF report section review", "diagnostics inspection"],
+      "actions": [
+        "logged-out state check",
+        "notification permission warning inspection",
+        "Remote Config info display",
+        "PDF report section review",
+        "diagnostics inspection"
+      ],
       "observed_state": "Account screen rendered logged-out state with full configuration and diagnostic options"
     },
     {
       "screen_name": "Đăng nhập (Login)",
-      "actions": ["empty-field validation", "invalid email format validation"],
+      "actions": [
+        "empty-field validation",
+        "invalid email format validation"
+      ],
       "observed_state": "Form error validation properly triggered without submitting personal credentials"
     },
     {
       "screen_name": "Tin nhắn (Messages)",
-      "actions": ["login-gated empty state check", "sign-in redirect verification"],
+      "actions": [
+        "login-gated empty state check",
+        "sign-in redirect verification"
+      ],
       "observed_state": "Appropriate login prompt displayed for unauthenticated users"
     },
     {
       "screen_name": "Firebase Demo Flow",
-      "actions": ["tap 'Gửi lỗi mẫu không nghiêm trọng' (send non-fatal sample error to Crashlytics)"],
-      "observed_state": "Non-fatal sample error successfully dispatched to Crashlytics without crashing the app"
+      "actions": [
+        "tap 'Gửi lỗi mẫu không nghiêm trọng' (send non-fatal sample error to Crashlytics)"
+      ],
+      "observed_state": "Agent reported tapping the sample non-fatal action without an app crash; no independent Crashlytics ingestion claim."
     }
   ],
   "issues_found": [
@@ -61,6 +87,8 @@
   ],
   "native_interaction_evidence": "evidence/artemis/n03-exploration-final/native-permission-evidence.json",
   "screenshots_directory": "evidence/artemis/n03-exploration-final/screenshots/",
-  "pytest_result": "1 passed in 925.94s (0:15:25)",
-  "junit_xml": "evidence/artemis/n03-exploration-final/result.junit.xml"
+  "pytest_result": "PASS (1 test; JUnit suite 925.896s)",
+  "junit_xml": "evidence/artemis/n03-exploration-final/result.junit.xml",
+  "trace_timeline": "trace-timeline.json",
+  "native_review": "STATUS.md#android-native-interaction"
 }
