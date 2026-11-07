@@ -291,6 +291,10 @@ class WorkflowController extends Notifier<AsyncValue<void>> {
   @override
   AsyncValue<void> build() => const AsyncData(null);
 
+  /// Clears a previous screen's error/loading state. The controller is shared
+  /// by the trial, class and payment screens, so each one resets it on entry.
+  void reset() => state = const AsyncData(null);
+
   Future<void> answerTrial({
     required String chatId,
     required String proposalId,
