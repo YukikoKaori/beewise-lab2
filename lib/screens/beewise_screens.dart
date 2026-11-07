@@ -382,7 +382,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     label: _fee == null
                         ? 'Không giới hạn'
                         : '${NumberFormat.decimalPattern('vi_VN').format(_fee)}đ',
-                    onChanged: (value) => setState(() => _fee = value.round()),
+                    // The slider's maximum means "no limit" (tutors above it
+                    // must not be silently hidden).
+                    onChanged: (value) => setState(
+                      () => _fee = value >= 1000000 ? null : value.round(),
+                    ),
                   ),
                   if (_fee != null)
                     Align(
@@ -434,16 +438,23 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 ? EmptyStateView(
                     title: 'Chưa tìm thấy gia sư',
                     message:
-                        _query.text.isEmpty && _subject == null && _area == null
+                        _query.text.isEmpty &&
+                            _subject == null &&
+                            _area == null &&
+                            _mode == null &&
+                            _fee == null
                         ? 'Khi có hồ sơ gia sư đang hoạt động, danh sách sẽ hiển thị tại đây.'
                         : 'Thử bỏ bớt bộ lọc hoặc đổi từ khóa để tìm rộng hơn.',
                     action: TextButton(
                       onPressed: () {
                         _query.clear();
-                        _subject = null;
-                        _area = null;
-                        _fee = null;
-                        setState(() {});
+                        setState(() {
+                          _subject = null;
+                          _area = null;
+                          _mode = null;
+                          _fee = null;
+                          _sort = false;
+                        });
                       },
                       child: const Text('Xóa bộ lọc'),
                     ),
@@ -1261,6 +1272,15 @@ class ChatScreen extends ConsumerStatefulWidget {
 
 class _ChatScreenState extends ConsumerState<ChatScreen> {
   final _composer = TextEditingController();
+  final _scroll = ScrollController();
+
+  /// Keeps the newest message in view (the list is oldest-first).
+  void _scrollToLatest() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_scroll.hasClients) return;
+      _scroll.jumpTo(_scroll.position.maxScrollExtent);
+    });
+  }
 
   @override
   void initState() {
@@ -1275,6 +1295,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   void dispose() {
     _composer.dispose();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -1282,6 +1303,18 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   Widget build(BuildContext context) {
     final messages = ref.watch(chatMessagesProvider(widget.chatId));
     final sending = ref.watch(chatComposerControllerProvider);
+    ref.listen(chatMessagesProvider(widget.chatId), (previous, next) {
+      final before = previous?.asData?.value.length;
+      final after = next.asData?.value.length;
+      if (after != null && after != before) _scrollToLatest();
+    });
+    ref.listen(chatComposerControllerProvider, (_, next) {
+      if (next.hasError && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(friendlyError(next.error!))),
+        );
+      }
+    });
     return BeeWiseScaffold(
       title: 'Trao đổi cùng BeeWise',
       showBack: true,
@@ -1315,7 +1348,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                       ),
                     )
                   : ListView(
-                      reverse: false,
+                      controller: _scroll,
                       padding: const EdgeInsets.all(16),
                       children: [
                         StatusBanner(
@@ -1569,8 +1602,9 @@ class _PersonHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final parts = name.trim().split(RegExp(r'\s+'));
     final initials = parts.length < 2
-        ? name.characters.take(1).toString().toUpperCase()
-        : (parts.first[0] + parts.last[0]).toUpperCase();
+        ? name.trim().characters.take(1).toString().toUpperCase()
+        : (parts.first.characters.first + parts.last.characters.first)
+              .toUpperCase();
     return Row(
       children: [
         CircleAvatar(
@@ -1833,8 +1867,9 @@ class _ChatBubble extends StatelessWidget {
         .where((e) => e.isNotEmpty)
         .toList();
     if (list.isEmpty) return '?';
-    if (list.length == 1) return list.first[0].toUpperCase();
-    return (list.first[0] + list.last[0]).toUpperCase();
+    if (list.length == 1) return list.first.characters.first.toUpperCase();
+    return (list.first.characters.first + list.last.characters.first)
+        .toUpperCase();
   }
 
   @override
@@ -2081,6 +2116,7 @@ class _TrialScreenState extends ConsumerState<TrialScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
+        ref.read(workflowControllerProvider.notifier).reset();
         ref.read(analyticsServiceProvider).detailViewed('trial_proposal');
       }
     });
@@ -2254,6 +2290,7 @@ class _ClassRevisionScreenState extends ConsumerState<ClassRevisionScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
+        ref.read(workflowControllerProvider.notifier).reset();
         ref.read(analyticsServiceProvider).detailViewed('class_revision');
       }
     });
@@ -2446,7 +2483,9 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) ref.read(analyticsServiceProvider).detailViewed('invoice');
+      if (!mounted) return;
+      ref.read(workflowControllerProvider.notifier).reset();
+      ref.read(analyticsServiceProvider).detailViewed('invoice');
     });
   }
 
