@@ -331,11 +331,14 @@ class _TutorApplicationScreenState
       );
       return;
     }
+    // Validate first so every invalid field shows its message at once, even
+    // when no teaching mode is selected yet.
+    final formValid = _form.currentState!.validate();
     if (_modes.isEmpty) {
       setState(() {});
       return;
     }
-    if (!_form.currentState!.validate()) return;
+    if (!formValid) return;
     final fee = int.parse(_hourlyFee.text.replaceAll('.', '').trim());
     ref
         .read(tutorApplicationControllerProvider.notifier)
