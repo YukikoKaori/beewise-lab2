@@ -1310,9 +1310,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     });
     ref.listen(chatComposerControllerProvider, (_, next) {
       if (next.hasError && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(friendlyError(next.error!))),
-        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(friendlyError(next.error!))));
       }
     });
     return BeeWiseScaffold(
