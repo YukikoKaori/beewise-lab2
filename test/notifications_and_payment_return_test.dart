@@ -140,6 +140,55 @@ void main() {
     });
   });
 
+  group('inbox recovery', () {
+    test(
+      'a listener that failed once (rules not live yet) recovers on its own',
+      () async {
+        var attempts = 0;
+        final seen = <List<String>>[];
+        final sub = resubscribingStream<List<String>>(
+          () {
+            attempts++;
+            if (attempts == 1) {
+              // What Firestore does before the rules are deployed: one error, then the stream ends.
+              return Stream<List<String>>.error(
+                FirebaseException(
+                  plugin: 'cloud_firestore',
+                  code: 'permission-denied',
+                ),
+              );
+            }
+            return Stream.value(['hồ sơ được duyệt']);
+          },
+          whenFailed: const [],
+          retryAfter: const Duration(milliseconds: 20),
+        ).listen(seen.add);
+        addTearDown(sub.cancel);
+        await Future<void>.delayed(const Duration(milliseconds: 120));
+        expect(seen.first, isEmpty, reason: 'the failure shows an empty inbox');
+        expect(seen, anyElement(equals(['hồ sơ được duyệt'])));
+        expect(attempts, greaterThanOrEqualTo(2));
+      },
+    );
+
+    test('cancelling the subscription stops the retry loop', () async {
+      var attempts = 0;
+      final sub = resubscribingStream<int>(
+        () {
+          attempts++;
+          return Stream<int>.error(StateError('down'));
+        },
+        whenFailed: -1,
+        retryAfter: const Duration(milliseconds: 10),
+      ).listen((_) {});
+      await Future<void>.delayed(const Duration(milliseconds: 45));
+      await sub.cancel();
+      final frozen = attempts;
+      await Future<void>.delayed(const Duration(milliseconds: 60));
+      expect(attempts, frozen);
+    });
+  });
+
   group('bell dot', () {
     test(
       'only notifications newer than the last time they were opened count',

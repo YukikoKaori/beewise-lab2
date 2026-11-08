@@ -17,30 +17,50 @@ class ServerNotificationService {
   final FirebaseAuth _auth;
 
   /// Newest first, at most 50. A failure (offline, rules not deployed yet) is shown as an empty
-  /// inbox rather than an error, so the device's own notifications keep working.
+  /// inbox rather than an error, so the device's own notifications keep working, and the
+  /// listener is opened again a little later: Firestore ends a listener after a permission error
+  /// and would otherwise stay empty even once the cause is fixed.
   Stream<List<BeeWiseNotification>> watch() {
     final user = _auth.currentUser;
     if (user == null || user.isAnonymous) return Stream.value(const []);
     final uid = user.uid;
-    return _firestore
-        .collection('users')
-        .doc(uid)
-        .collection('notifications')
-        .orderBy('createdAt', descending: true)
-        .limit(50)
-        .snapshots()
-        .map(
-          (snapshot) => [
-            for (final doc in snapshot.docs)
-              ?parseServerNotification(uid, doc.id, doc.data()),
-          ],
-        )
-        .transform(
-          StreamTransformer.fromHandlers(
-            handleError: (error, stack, sink) =>
-                sink.add(const <BeeWiseNotification>[]),
+    return resubscribingStream<List<BeeWiseNotification>>(
+      () => _firestore
+          .collection('users')
+          .doc(uid)
+          .collection('notifications')
+          .orderBy('createdAt', descending: true)
+          .limit(50)
+          .snapshots()
+          .map(
+            (snapshot) => [
+              for (final doc in snapshot.docs)
+                ?parseServerNotification(uid, doc.id, doc.data()),
+            ],
           ),
-        );
+      whenFailed: const [],
+    );
+  }
+}
+
+/// Re-opens [open] after it fails or ends. While it is failing the listener sees [whenFailed]
+/// once per attempt; cancelling the subscription stops the loop.
+Stream<T> resubscribingStream<T>(
+  Stream<T> Function() open, {
+  required T whenFailed,
+  Duration retryAfter = const Duration(seconds: 20),
+}) async* {
+  while (true) {
+    try {
+      // `await for` (not `yield*`): a stream error must be thrown here to be caught; `yield*`
+      // would forward it to the listener instead.
+      await for (final value in open()) {
+        yield value;
+      }
+    } catch (_) {
+      yield whenFailed;
+    }
+    await Future<void>.delayed(retryAfter);
   }
 }
 
