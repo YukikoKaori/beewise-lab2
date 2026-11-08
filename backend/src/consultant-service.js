@@ -54,6 +54,7 @@ export class ConsultantService {
       }
       tx.update(chatRef, {
         consultantId: staff.uid,
+        consultantName: staff.displayName,
         consultantQueue: false,
         onboardingStatus: CHAT_STATUS.consultantAssigned,
         updatedAt: FieldValue.serverTimestamp(),
@@ -216,6 +217,8 @@ export class ConsultantService {
         subject: terms.subject, goal: terms.goal, tutorName: terms.tutorName, schedule: terms.schedule,
         time: terms.time, mode: terms.mode, location: terms.location, startDate: terms.startDate,
         lessonDuration: terms.lessonDuration, fee: terms.fee, totalFee: terms.totalFee,
+        ...(terms.hoursPerSession != null ? { hoursPerSession: terms.hoursPerSession } : {}),
+        ...(terms.sessions != null ? { sessions: terms.sessions } : {}),
       },
       status: 'pending',
       dueAt: due.toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),

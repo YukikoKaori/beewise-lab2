@@ -8,6 +8,17 @@ service cloud.firestore {
         && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && !exists(/databases/$(database)/documents/tutorApplications/$(parentId));
     }
+    // Fully approved tutor: staff/backend set status=approved, verified=true, active=true.
+    // Clients can never create or change this state (see tutorApplications rules).
+    function isAuthorizedTutor(tutorUid) {
+      return signedIn()
+        && request.auth.uid == tutorUid
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && exists(/databases/$(database)/documents/tutorApplications/$(tutorUid))
+        && get(/databases/$(database)/documents/tutorApplications/$(tutorUid)).data.status == 'approved'
+        && get(/databases/$(database)/documents/tutorApplications/$(tutorUid)).data.verified == true
+        && get(/databases/$(database)/documents/tutorApplications/$(tutorUid)).data.active == true;
+    }
     function canWriteAsParent(parentId) {
       return isParent(parentId)
         && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId));
@@ -166,7 +177,8 @@ service cloud.firestore {
     }
 
     match /chats/{chatId} {
-      allow read: if isParent(resource.data.parentId);
+      allow read: if isParent(resource.data.parentId)
+        || isAuthorizedTutor(resource.data.tutorId);
       allow create: if canWriteAsParent(request.resource.data.parentId)
         && request.resource.data.consultantQueue == true
         && request.resource.data.onboardingStatus == 'connection_pending_consultant'
@@ -183,6 +195,8 @@ service cloud.firestore {
       match /messages/{messageId} {
         allow read: if isParent(
           get(/databases/$(database)/documents/chats/$(chatId)).data.parentId
+        ) || isAuthorizedTutor(
+          get(/databases/$(database)/documents/chats/$(chatId)).data.tutorId
         );
         allow create: if signedIn()
           && canWriteAsParent(
@@ -266,8 +280,9 @@ service cloud.firestore {
     }
 
     match /classes/{classId} {
-      allow read: if isParent(resource.data.parentId)
-        && resource.data.paymentStatus == 'verified';
+      allow read: if (isParent(resource.data.parentId)
+        && resource.data.paymentStatus == 'verified')
+        || isAuthorizedTutor(resource.data.tutorId);
       allow write: if false;
     }
   }
