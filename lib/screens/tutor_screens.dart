@@ -6,10 +6,90 @@ import 'package:intl/intl.dart';
 import '../models/chat_message.dart';
 import '../models/tutor_workspace_models.dart';
 import '../services/notification_service.dart';
+import '../services/tutor_workspace_service.dart';
 import '../theme/bee_wise_theme.dart';
 import '../viewmodels/app_providers.dart';
 import '../viewmodels/controllers.dart';
 import '../widgets/bee_wise_widgets.dart';
+
+String _tutorFriendlyError(Object error) {
+  final state = classifyTutorDataError(error);
+  if (state == TutorDataSourceState.rulesBlocked) {
+    if (error is TutorBackendRulesDependencyException) {
+      return error.message;
+    }
+    return FirebaseTutorWorkspaceService.tutorRulesBlockedMessage;
+  }
+  if (state == TutorDataSourceState.networkError) {
+    if (error is TutorNetworkException) return error.message;
+    return 'Không kết nối được dịch vụ. Hãy kiểm tra mạng rồi thử lại.';
+  }
+  return friendlyError(error);
+}
+
+Widget _buildTutorRulesBlockedCard({
+  required String title,
+  required String message,
+  VoidCallback? onRetry,
+}) => Container(
+  padding: const EdgeInsets.all(BeeWiseSpace.x4),
+  decoration: BoxDecoration(
+    color: const Color(0xFFFFFBEB),
+    borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+    border: Border.all(color: const Color(0xFFFDE68A)),
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(
+            Icons.lock_clock_outlined,
+            size: 20,
+            color: Color(0xFFD97706),
+          ),
+          const SizedBox(width: BeeWiseSpace.x3),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF92400E),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  message,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Color(0xFF78350F),
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      if (onRetry != null) ...[
+        const SizedBox(height: BeeWiseSpace.x3),
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton.icon(
+            onPressed: onRetry,
+            icon: const Icon(Icons.refresh_rounded, size: 16),
+            label: const Text('Thử lại'),
+          ),
+        ),
+      ],
+    ],
+  ),
+);
 
 /// 4-tab Bottom Navigation for Tutor experience matching Figma T3, T6, T7
 class TutorBottomNavigation extends StatelessWidget {
@@ -119,6 +199,11 @@ class TutorHomeScreen extends ConsumerWidget {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: 'Làm mới dữ liệu',
+            icon: const Icon(Icons.refresh_rounded, size: 22),
+            onPressed: () => ref.invalidate(tutorDashboardProvider),
+          ),
           Stack(
             alignment: Alignment.topRight,
             children: [
@@ -151,6 +236,9 @@ class TutorHomeScreen extends ConsumerWidget {
       ),
       body: SafeArea(
         child: dashboardAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          skipError: false,
           loading: () => const LoadingStateView(),
           error: (error, _) {
             if (error is TutorUnauthorizedException) {
@@ -171,405 +259,363 @@ class TutorHomeScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(BeeWiseSpace.x4),
               children: [
                 ErrorStateView(
-                  message: friendlyError(error),
+                  message: _tutorFriendlyError(error),
                   onRetry: () => ref.invalidate(tutorDashboardProvider),
                 ),
               ],
             );
           },
           data: (dashboard) {
-            final isEmpty = dashboard.isEmpty;
-            return ListView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: BeeWiseSpace.x4,
-                vertical: BeeWiseSpace.x4,
-              ),
-              children: [
-                Text(
-                  'Chào $shortName,',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: BeeWiseColors.muted,
-                    fontWeight: FontWeight.w500,
+            if (dashboard.isFullyRulesBlocked) {
+              return ListView(
+                padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                children: [
+                  ErrorStateView(
+                    message:
+                        dashboard.backendAccessLimitation ??
+                        FirebaseTutorWorkspaceService.tutorRulesBlockedMessage,
+                    onRetry: () => ref.invalidate(tutorDashboardProvider),
                   ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  isEmpty ? 'Chưa có việc cần làm' : 'Việc cần làm hôm nay',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
-                    color: BeeWiseColors.primary,
-                  ),
-                ),
-                const SizedBox(height: BeeWiseSpace.x4),
-
-                if (dashboard.backendAccessLimitation != null) ...[
-                  StatusBanner(message: dashboard.backendAccessLimitation!),
-                  const SizedBox(height: BeeWiseSpace.x3),
                 ],
+              );
+            }
 
-                if (isEmpty) ...[
-                  // EMPTY STATE CARD matching Figma T3
-                  Card(
-                    elevation: 0,
-                    color: BeeWiseColors.surface,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(BeeWiseRadius.card),
-                      side: const BorderSide(color: BeeWiseColors.border),
+            final isVerifiedEmpty = dashboard.isVerifiedEmpty;
+            return RefreshIndicator(
+              onRefresh: () async => ref.invalidate(tutorDashboardProvider),
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: BeeWiseSpace.x4,
+                  vertical: BeeWiseSpace.x4,
+                ),
+                children: [
+                  Text(
+                    'Chào $shortName,',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: BeeWiseColors.muted,
+                      fontWeight: FontWeight.w500,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: BeeWiseSpace.x4,
-                        vertical: BeeWiseSpace.x6,
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 64,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEFF6FF),
-                              borderRadius: BorderRadius.circular(
-                                BeeWiseRadius.card,
-                              ),
-                            ),
-                            child: const Icon(
-                              Icons.chat_bubble_outline_rounded,
-                              size: 32,
-                              color: BeeWiseColors.primary,
-                            ),
-                          ),
-                          const SizedBox(height: BeeWiseSpace.x4),
-                          Text(
-                            'Chưa có nhóm chat nào',
-                            style: Theme.of(context).textTheme.titleLarge
-                                ?.copyWith(fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(height: BeeWiseSpace.x2),
-                          const Text(
-                            'Khi phụ huynh bấm kết nối với bạn, nhóm chat cùng tư vấn viên sẽ mở tại đây.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: BeeWiseColors.muted,
-                              height: 1.4,
-                            ),
-                          ),
-                          const SizedBox(height: BeeWiseSpace.x5),
-                          BeeWiseButton(
-                            label: 'Xem hồ sơ công khai',
-                            onPressed: () => context.go('/tutor/profile'),
-                          ),
-                        ],
-                      ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    isVerifiedEmpty
+                        ? 'Chưa có việc cần làm'
+                        : 'Việc cần làm hôm nay',
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: BeeWiseColors.primary,
                     ),
                   ),
                   const SizedBox(height: BeeWiseSpace.x4),
 
-                  Container(
-                    padding: const EdgeInsets.all(BeeWiseSpace.x4),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFFBEB),
-                      borderRadius: BorderRadius.circular(BeeWiseRadius.card),
-                      border: Border.all(color: const Color(0xFFFDE68A)),
-                    ),
-                    child: const Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.info_outline_rounded,
-                          size: 20,
-                          color: BeeWiseColors.primary,
-                        ),
-                        SizedBox(width: BeeWiseSpace.x3),
-                        Expanded(
-                          child: Text(
-                            'Hồ sơ đầy đủ lịch rảnh và học phí rõ ràng giúp phụ huynh dễ kết nối hơn.',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF78350F),
-                              height: 1.4,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ] else ...[
-                  // Section 1: Nhóm chat mới
-                  if (dashboard.chats.isNotEmpty) ...[
-                    Text(
-                      'Nhóm chat mới',
-                      style: Theme.of(context).textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w800),
-                    ),
-                    const SizedBox(height: BeeWiseSpace.x2),
-                    for (final chat in dashboard.chats) ...[
-                      Card(
-                        elevation: 0,
-                        color: BeeWiseColors.surface,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            BeeWiseRadius.card,
-                          ),
-                          side: const BorderSide(color: BeeWiseColors.border),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(BeeWiseSpace.x4),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 44,
-                                    height: 44,
-                                    decoration: const BoxDecoration(
-                                      color: Color(0xFFFDE047),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      chat.parentInitials,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 16,
-                                        color: Color(0xFF1E293B),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: BeeWiseSpace.x3),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          chat.subjectSummary.isNotEmpty
-                                              ? '${chat.parentName} · ${chat.subjectSummary}'
-                                              : chat.parentName,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w800,
-                                            color: BeeWiseColors.ink,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 2),
-                                        Text(
-                                          chat.areaSummary.isNotEmpty
-                                              ? chat.areaSummary
-                                              : chat.onboardingStatusLabel,
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            color: BeeWiseColors.muted,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  if (chat.isNew)
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 8,
-                                        vertical: 3,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFF1E40AF),
-                                        borderRadius: BorderRadius.circular(
-                                          BeeWiseRadius.full,
-                                        ),
-                                      ),
-                                      child: const Text(
-                                        'Mới',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: BeeWiseSpace.x3),
-                              Text(
-                                (chat.lastMessageText != null &&
-                                        chat.lastMessageText!.isNotEmpty)
-                                    ? chat.lastMessageText!
-                                    : chat.onboardingStatusLabel,
-                                style: const TextStyle(
-                                  fontSize: 13,
-                                  color: Color(0xFF334155),
-                                  height: 1.4,
-                                ),
-                              ),
-                              const SizedBox(height: BeeWiseSpace.x4),
-                              BeeWiseButton(
-                                label: 'Vào nhóm chat',
-                                icon: Icons.chat_bubble_outline_rounded,
-                                onPressed: () =>
-                                    context.push('/tutor/chats/${chat.id}'),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: BeeWiseSpace.x3),
-                    ],
-                    const SizedBox(height: BeeWiseSpace.x2),
+                  if (dashboard.backendAccessLimitation != null) ...[
+                    StatusBanner(message: dashboard.backendAccessLimitation!),
+                    const SizedBox(height: BeeWiseSpace.x3),
                   ],
 
-                  // Section 2: Buổi học sắp tới
-                  if (dashboard.upcomingSessions.isNotEmpty) ...[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Buổi học sắp tới',
-                            style: Theme.of(context).textTheme.titleMedium
-                                ?.copyWith(fontWeight: FontWeight.w800),
-                          ),
+                  if (isVerifiedEmpty) ...[
+                    // EMPTY STATE CARD matching Figma T3
+                    Card(
+                      elevation: 0,
+                      color: BeeWiseColors.surface,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+                        side: const BorderSide(color: BeeWiseColors.border),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: BeeWiseSpace.x4,
+                          vertical: BeeWiseSpace.x6,
                         ),
-                        const SizedBox(width: BeeWiseSpace.x2),
-                        InkWell(
-                          onTap: () => context.go('/tutor/schedule'),
-                          child: const Text(
-                            'Lịch dạy',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: BeeWiseColors.primary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: BeeWiseSpace.x2),
-                    for (final session in dashboard.upcomingSessions) ...[
-                      Card(
-                        elevation: 0,
-                        color: BeeWiseColors.surface,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            BeeWiseRadius.card,
-                          ),
-                          side: const BorderSide(color: BeeWiseColors.border),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(BeeWiseSpace.x4),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: BoxDecoration(
-                                  color: BeeWiseColors.primary,
-                                  borderRadius: BorderRadius.circular(
-                                    BeeWiseRadius.md,
-                                  ),
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  session.weekdayTileLabel,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w800,
-                                  ),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 64,
+                              height: 64,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFEFF6FF),
+                                borderRadius: BorderRadius.circular(
+                                  BeeWiseRadius.card,
                                 ),
                               ),
-                              const SizedBox(width: BeeWiseSpace.x3),
-                              Expanded(
-                                child: Column(
+                              child: const Icon(
+                                Icons.chat_bubble_outline_rounded,
+                                size: 32,
+                                color: BeeWiseColors.primary,
+                              ),
+                            ),
+                            const SizedBox(height: BeeWiseSpace.x4),
+                            Text(
+                              'Chưa có nhóm chat nào',
+                              style: Theme.of(context).textTheme.titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.w800),
+                            ),
+                            const SizedBox(height: BeeWiseSpace.x2),
+                            const Text(
+                              'Khi phụ huynh bấm kết nối với bạn, nhóm chat cùng tư vấn viên sẽ mở tại đây.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: BeeWiseColors.muted,
+                                height: 1.4,
+                              ),
+                            ),
+                            const SizedBox(height: BeeWiseSpace.x5),
+                            BeeWiseButton(
+                              label: 'Xem hồ sơ công khai',
+                              onPressed: () => context.go('/tutor/profile'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: BeeWiseSpace.x4),
+
+                    Container(
+                      padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFFBEB),
+                        borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+                        border: Border.all(color: const Color(0xFFFDE68A)),
+                      ),
+                      child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.info_outline_rounded,
+                            size: 20,
+                            color: BeeWiseColors.primary,
+                          ),
+                          SizedBox(width: BeeWiseSpace.x3),
+                          Expanded(
+                            child: Text(
+                              'Hồ sơ đầy đủ lịch rảnh và học phí rõ ràng giúp phụ huynh dễ kết nối hơn.',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Color(0xFF78350F),
+                                height: 1.4,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ] else ...[
+                    // Section 1: Nhóm chat mới
+                    if (dashboard.isChatsRulesBlocked) ...[
+                      _buildTutorRulesBlockedCard(
+                        title: 'Nhóm chat chưa cấp quyền đồng bộ',
+                        message:
+                            dashboard.chatsBlockMessage ??
+                            FirebaseTutorWorkspaceService
+                                .tutorRulesBlockedMessage,
+                        onRetry: () => ref.invalidate(tutorDashboardProvider),
+                      ),
+                      const SizedBox(height: BeeWiseSpace.x3),
+                    ] else if (dashboard.chats.isNotEmpty) ...[
+                      Text(
+                        'Nhóm chat mới',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w800),
+                      ),
+                      const SizedBox(height: BeeWiseSpace.x2),
+                      for (final chat in dashboard.chats) ...[
+                        Card(
+                          elevation: 0,
+                          color: BeeWiseColors.surface,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              BeeWiseRadius.card,
+                            ),
+                            side: const BorderSide(color: BeeWiseColors.border),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      session.timeAndDateLabel,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w800,
-                                        color: BeeWiseColors.ink,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      session.subtitleLabel,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        color: BeeWiseColors.muted,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 6),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 8,
-                                        vertical: 2,
+                                      width: 44,
+                                      height: 44,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFFDE047),
+                                        shape: BoxShape.circle,
                                       ),
-                                      decoration: BoxDecoration(
-                                        color: session.confirmed
-                                            ? const Color(0xFFDCFCE7)
-                                            : const Color(0xFFF1F5F9),
-                                        borderRadius: BorderRadius.circular(
-                                          BeeWiseRadius.full,
-                                        ),
-                                      ),
+                                      alignment: Alignment.center,
                                       child: Text(
-                                        session.sessionProgressLabel,
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w700,
-                                          color: session.confirmed
-                                              ? const Color(0xFF15803D)
-                                              : const Color(0xFF475569),
+                                        chat.parentInitials,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 16,
+                                          color: Color(0xFF1E293B),
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(width: BeeWiseSpace.x3),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            chat.subjectSummary.isNotEmpty
+                                                ? '${chat.parentName} · ${chat.subjectSummary}'
+                                                : chat.parentName,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w800,
+                                              color: BeeWiseColors.ink,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 2),
+                                          Text(
+                                            chat.areaSummary.isNotEmpty
+                                                ? chat.areaSummary
+                                                : chat.onboardingStatusLabel,
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              color: BeeWiseColors.muted,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (chat.isNew)
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 3,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF1E40AF),
+                                          borderRadius: BorderRadius.circular(
+                                            BeeWiseRadius.full,
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          'Mới',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
-                              ),
-                            ],
+                                const SizedBox(height: BeeWiseSpace.x3),
+                                Text(
+                                  (chat.lastMessageText != null &&
+                                          chat.lastMessageText!.isNotEmpty)
+                                      ? chat.lastMessageText!
+                                      : chat.onboardingStatusLabel,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: Color(0xFF334155),
+                                    height: 1.4,
+                                  ),
+                                ),
+                                const SizedBox(height: BeeWiseSpace.x4),
+                                BeeWiseButton(
+                                  label: 'Vào nhóm chat',
+                                  icon: Icons.chat_bubble_outline_rounded,
+                                  onPressed: () =>
+                                      context.push('/tutor/chats/${chat.id}'),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
+                        const SizedBox(height: BeeWiseSpace.x3),
+                      ],
+                      const SizedBox(height: BeeWiseSpace.x2),
+                    ],
+
+                    if (dashboard.isClassesRulesBlocked) ...[
+                      _buildTutorRulesBlockedCard(
+                        title: 'Lớp học & lịch dạy chưa cấp quyền đồng bộ',
+                        message:
+                            dashboard.classesBlockMessage ??
+                            FirebaseTutorWorkspaceService
+                                .tutorRulesBlockedMessage,
+                        onRetry: () => ref.invalidate(tutorDashboardProvider),
                       ),
                       const SizedBox(height: BeeWiseSpace.x3),
                     ],
-                    const SizedBox(height: BeeWiseSpace.x2),
-                  ],
 
-                  // Section 3: Lớp đang dạy
-                  if (dashboard.activeClasses.isNotEmpty) ...[
-                    Text(
-                      'Lớp đang dạy',
-                      style: Theme.of(context).textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w800),
-                    ),
-                    const SizedBox(height: BeeWiseSpace.x2),
-                    for (final cls in dashboard.activeClasses) ...[
-                      Card(
-                        elevation: 0,
-                        color: BeeWiseColors.surface,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            BeeWiseRadius.card,
+                    // Section 2: Buổi học sắp tới
+                    if (!dashboard.isClassesRulesBlocked &&
+                        dashboard.upcomingSessions.isNotEmpty) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Buổi học sắp tới',
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.w800),
+                            ),
                           ),
-                          side: const BorderSide(color: BeeWiseColors.border),
-                        ),
-                        child: InkWell(
-                          onTap: () => context.push('/tutor/class/${cls.id}'),
-                          borderRadius: BorderRadius.circular(
-                            BeeWiseRadius.card,
+                          const SizedBox(width: BeeWiseSpace.x2),
+                          InkWell(
+                            onTap: () => context.go('/tutor/schedule'),
+                            child: const Text(
+                              'Lịch dạy',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: BeeWiseColors.primary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: BeeWiseSpace.x2),
+                      for (final session in dashboard.upcomingSessions) ...[
+                        Card(
+                          elevation: 0,
+                          color: BeeWiseColors.surface,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              BeeWiseRadius.card,
+                            ),
+                            side: const BorderSide(color: BeeWiseColors.border),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(BeeWiseSpace.x4),
                             child: Row(
                               children: [
+                                Container(
+                                  width: 48,
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    color: BeeWiseColors.primary,
+                                    borderRadius: BorderRadius.circular(
+                                      BeeWiseRadius.md,
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    session.weekdayTileLabel,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: BeeWiseSpace.x3),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        cls.title,
+                                        session.timeAndDateLabel,
                                         style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w800,
@@ -578,7 +624,7 @@ class TutorHomeScreen extends ConsumerWidget {
                                       ),
                                       const SizedBox(height: 2),
                                       Text(
-                                        '${cls.parentName} · ${cls.scheduleSummary}',
+                                        session.subtitleLabel,
                                         style: const TextStyle(
                                           fontSize: 12,
                                           color: BeeWiseColors.muted,
@@ -591,44 +637,131 @@ class TutorHomeScreen extends ConsumerWidget {
                                           vertical: 2,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: cls.isPaymentVerified
+                                          color: session.confirmed
                                               ? const Color(0xFFDCFCE7)
-                                              : const Color(0xFFFEF3C7),
+                                              : const Color(0xFFF1F5F9),
                                           borderRadius: BorderRadius.circular(
                                             BeeWiseRadius.full,
                                           ),
                                         ),
                                         child: Text(
-                                          cls.isPaymentVerified
-                                              ? 'Phụ huynh đã thanh toán'
-                                              : 'Chờ xác nhận thanh toán',
+                                          session.sessionProgressLabel,
                                           style: TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w700,
-                                            color: cls.isPaymentVerified
+                                            color: session.confirmed
                                                 ? const Color(0xFF15803D)
-                                                : const Color(0xFF92400E),
+                                                : const Color(0xFF475569),
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                const Icon(
-                                  Icons.chevron_right_rounded,
-                                  color: BeeWiseColors.muted,
-                                ),
                               ],
                             ),
                           ),
                         ),
+                        const SizedBox(height: BeeWiseSpace.x3),
+                      ],
+                      const SizedBox(height: BeeWiseSpace.x2),
+                    ],
+
+                    // Section 3: Lớp đang dạy
+                    if (!dashboard.isClassesRulesBlocked &&
+                        dashboard.activeClasses.isNotEmpty) ...[
+                      Text(
+                        'Lớp đang dạy',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w800),
                       ),
-                      const SizedBox(height: BeeWiseSpace.x3),
+                      const SizedBox(height: BeeWiseSpace.x2),
+                      for (final cls in dashboard.activeClasses) ...[
+                        Card(
+                          elevation: 0,
+                          color: BeeWiseColors.surface,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              BeeWiseRadius.card,
+                            ),
+                            side: const BorderSide(color: BeeWiseColors.border),
+                          ),
+                          child: InkWell(
+                            onTap: () => context.push('/tutor/class/${cls.id}'),
+                            borderRadius: BorderRadius.circular(
+                              BeeWiseRadius.card,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          cls.title,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w800,
+                                            color: BeeWiseColors.ink,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          '${cls.parentName} · ${cls.scheduleSummary}',
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            color: BeeWiseColors.muted,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 6),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 2,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: cls.isPaymentVerified
+                                                ? const Color(0xFFDCFCE7)
+                                                : const Color(0xFFFEF3C7),
+                                            borderRadius: BorderRadius.circular(
+                                              BeeWiseRadius.full,
+                                            ),
+                                          ),
+                                          child: Text(
+                                            cls.isPaymentVerified
+                                                ? 'Phụ huynh đã thanh toán'
+                                                : 'Chờ xác nhận thanh toán',
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w700,
+                                              color: cls.isPaymentVerified
+                                                  ? const Color(0xFF15803D)
+                                                  : const Color(0xFF92400E),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const Icon(
+                                    Icons.chevron_right_rounded,
+                                    color: BeeWiseColors.muted,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: BeeWiseSpace.x3),
+                      ],
                     ],
                   ],
+                  const SizedBox(height: BeeWiseSpace.x6),
                 ],
-                const SizedBox(height: BeeWiseSpace.x6),
-              ],
+              ),
             );
           },
         ),
@@ -687,6 +820,13 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
           'Tin nhắn nhóm',
           style: TextStyle(fontWeight: FontWeight.w800),
         ),
+        actions: [
+          IconButton(
+            tooltip: 'Làm mới danh sách chat',
+            icon: const Icon(Icons.refresh_rounded),
+            onPressed: () => ref.invalidate(tutorChatsProvider),
+          ),
+        ],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(height: 1, thickness: 1, color: BeeWiseColors.border),
@@ -694,16 +834,35 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
       ),
       body: SafeArea(
         child: chatsAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          skipError: false,
           loading: () => const LoadingStateView(),
-          error: (error, _) => ListView(
-            padding: const EdgeInsets.all(BeeWiseSpace.x4),
-            children: [
-              ErrorStateView(
-                message: friendlyError(error),
-                onRetry: () => ref.invalidate(tutorChatsProvider),
-              ),
-            ],
-          ),
+          error: (error, _) {
+            if (error is TutorUnauthorizedException) {
+              return Padding(
+                padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                child: EmptyStateView(
+                  title: 'Không có quyền truy cập',
+                  message: error.message,
+                  icon: Icons.lock_outline_rounded,
+                  action: BeeWiseButton(
+                    label: 'Kiểm tra trạng thái hồ sơ',
+                    onPressed: () => context.go('/tutor/pending'),
+                  ),
+                ),
+              );
+            }
+            return ListView(
+              padding: const EdgeInsets.all(BeeWiseSpace.x4),
+              children: [
+                ErrorStateView(
+                  message: _tutorFriendlyError(error),
+                  onRetry: () => ref.invalidate(tutorChatsProvider),
+                ),
+              ],
+            );
+          },
           data: (chats) {
             if (chats.isEmpty) {
               return Padding(
@@ -720,50 +879,54 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
                 ),
               );
             }
-            return ListView.separated(
-              padding: const EdgeInsets.all(BeeWiseSpace.x4),
-              itemCount: chats.length,
-              separatorBuilder: (_, _) =>
-                  const SizedBox(height: BeeWiseSpace.x3),
-              itemBuilder: (context, index) {
-                final chat = chats[index];
-                return Card(
-                  elevation: 0,
-                  color: BeeWiseColors.surface,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(BeeWiseRadius.card),
-                    side: const BorderSide(color: BeeWiseColors.border),
-                  ),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(BeeWiseSpace.x3),
-                    leading: CircleAvatar(
-                      backgroundColor: const Color(0xFFFDE047),
-                      child: Text(
-                        chat.parentInitials,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF1E293B),
+            return RefreshIndicator(
+              onRefresh: () async => ref.invalidate(tutorChatsProvider),
+              child: ListView.separated(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                itemCount: chats.length,
+                separatorBuilder: (_, _) =>
+                    const SizedBox(height: BeeWiseSpace.x3),
+                itemBuilder: (context, index) {
+                  final chat = chats[index];
+                  return Card(
+                    elevation: 0,
+                    color: BeeWiseColors.surface,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+                      side: const BorderSide(color: BeeWiseColors.border),
+                    ),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(BeeWiseSpace.x3),
+                      leading: CircleAvatar(
+                        backgroundColor: const Color(0xFFFDE047),
+                        child: Text(
+                          chat.parentInitials,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF1E293B),
+                          ),
                         ),
                       ),
+                      title: Text(
+                        chat.subjectSummary.isNotEmpty
+                            ? '${chat.parentName} · ${chat.subjectSummary}'
+                            : chat.parentName,
+                        style: const TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                      subtitle: Text(
+                        chat.lastMessageText?.isNotEmpty == true
+                            ? chat.lastMessageText!
+                            : chat.onboardingStatusLabel,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: () => context.push('/tutor/chats/${chat.id}'),
                     ),
-                    title: Text(
-                      chat.subjectSummary.isNotEmpty
-                          ? '${chat.parentName} · ${chat.subjectSummary}'
-                          : chat.parentName,
-                      style: const TextStyle(fontWeight: FontWeight.w800),
-                    ),
-                    subtitle: Text(
-                      chat.lastMessageText?.isNotEmpty == true
-                          ? chat.lastMessageText!
-                          : chat.onboardingStatusLabel,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () => context.push('/tutor/chats/${chat.id}'),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           },
         ),
@@ -777,6 +940,9 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
     final sendState = ref.watch(tutorChatComposerControllerProvider);
 
     return sessionAsync.when(
+      skipLoadingOnReload: false,
+      skipLoadingOnRefresh: false,
+      skipError: false,
       loading: () => Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -822,7 +988,7 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
               )
             else
               ErrorStateView(
-                message: friendlyError(error),
+                message: _tutorFriendlyError(error),
                 onRetry: () => ref.invalidate(tutorChatSessionProvider(chatId)),
               ),
           ],
@@ -1436,6 +1602,9 @@ class TutorClassDetailScreen extends ConsumerWidget {
     final classAsync = ref.watch(tutorClassDetailProvider(classId));
 
     return classAsync.when(
+      skipLoadingOnReload: false,
+      skipLoadingOnRefresh: false,
+      skipError: false,
       loading: () => Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -1481,7 +1650,7 @@ class TutorClassDetailScreen extends ConsumerWidget {
               )
             else
               ErrorStateView(
-                message: friendlyError(error),
+                message: _tutorFriendlyError(error),
                 onRetry: () =>
                     ref.invalidate(tutorClassDetailProvider(classId)),
               ),
@@ -1937,6 +2106,11 @@ class _TutorScheduleScreenState extends ConsumerState<TutorScheduleScreen> {
         ),
         actions: [
           IconButton(
+            tooltip: 'Làm mới lịch dạy',
+            icon: const Icon(Icons.refresh_rounded),
+            onPressed: () => ref.invalidate(tutorScheduleProvider),
+          ),
+          IconButton(
             tooltip: 'Tuần trước',
             icon: const Icon(Icons.chevron_left_rounded),
             onPressed: () => setState(
@@ -1960,16 +2134,35 @@ class _TutorScheduleScreenState extends ConsumerState<TutorScheduleScreen> {
       ),
       body: SafeArea(
         child: scheduleAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          skipError: false,
           loading: () => const LoadingStateView(),
-          error: (error, _) => ListView(
-            padding: const EdgeInsets.all(BeeWiseSpace.x4),
-            children: [
-              ErrorStateView(
-                message: friendlyError(error),
-                onRetry: () => ref.invalidate(tutorScheduleProvider),
-              ),
-            ],
-          ),
+          error: (error, _) {
+            if (error is TutorUnauthorizedException) {
+              return Padding(
+                padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                child: EmptyStateView(
+                  title: 'Không có quyền truy cập',
+                  message: error.message,
+                  icon: Icons.lock_outline_rounded,
+                  action: BeeWiseButton(
+                    label: 'Kiểm tra trạng thái hồ sơ',
+                    onPressed: () => context.go('/tutor/pending'),
+                  ),
+                ),
+              );
+            }
+            return ListView(
+              padding: const EdgeInsets.all(BeeWiseSpace.x4),
+              children: [
+                ErrorStateView(
+                  message: _tutorFriendlyError(error),
+                  onRetry: () => ref.invalidate(tutorScheduleProvider),
+                ),
+              ],
+            );
+          },
           data: (allSessions) {
             final weekEndExclusive = weekEnd.add(const Duration(days: 1));
             final weekSessions = allSessions
@@ -1986,143 +2179,147 @@ class _TutorScheduleScreenState extends ConsumerState<TutorScheduleScreen> {
                 ? selectedDaySessions
                 : weekSessions;
 
-            return ListView(
-              padding: const EdgeInsets.all(BeeWiseSpace.x4),
-              children: [
-                Text(
-                  weekHeader,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
-                    color: BeeWiseColors.ink,
+            return RefreshIndicator(
+              onRefresh: () async => ref.invalidate(tutorScheduleProvider),
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(BeeWiseSpace.x4),
+                children: [
+                  Text(
+                    weekHeader,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: BeeWiseColors.ink,
+                    ),
                   ),
-                ),
-                const SizedBox(height: BeeWiseSpace.x3),
+                  const SizedBox(height: BeeWiseSpace.x3),
 
-                // 7-Day Pill Bar matching Figma T6
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: weekDays
-                      .map((day) {
-                        final isSelected = _isSameDay(day, _selectedDate);
-                        final hasDot = weekSessions.any(
-                          (s) => _isSameDay(s.startTime, day),
-                        );
-                        return InkWell(
-                          onTap: () => setState(() => _selectedDate = day),
-                          borderRadius: BorderRadius.circular(
-                            BeeWiseRadius.full,
-                          ),
-                          child: Container(
-                            width: 44,
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            decoration: BoxDecoration(
-                              color: isSelected
-                                  ? BeeWiseColors.primary
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                BeeWiseRadius.full,
-                              ),
-                              border: Border.all(
+                  // 7-Day Pill Bar matching Figma T6
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: weekDays
+                        .map((day) {
+                          final isSelected = _isSameDay(day, _selectedDate);
+                          final hasDot = weekSessions.any(
+                            (s) => _isSameDay(s.startTime, day),
+                          );
+                          return InkWell(
+                            onTap: () => setState(() => _selectedDate = day),
+                            borderRadius: BorderRadius.circular(
+                              BeeWiseRadius.full,
+                            ),
+                            child: Container(
+                              width: 44,
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              decoration: BoxDecoration(
                                 color: isSelected
                                     ? BeeWiseColors.primary
-                                    : const Color(0xFFE2E8F0),
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                  BeeWiseRadius.full,
+                                ),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? BeeWiseColors.primary
+                                      : const Color(0xFFE2E8F0),
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    _weekdayShort(day.weekday),
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : BeeWiseColors.muted,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    '${day.day}',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800,
+                                      color: isSelected
+                                          ? Colors.white
+                                          : BeeWiseColors.ink,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Container(
+                                    width: 4,
+                                    height: 4,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: hasDot
+                                          ? (isSelected
+                                                ? Colors.white
+                                                : BeeWiseColors.primary)
+                                          : Colors.transparent,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  _weekdayShort(day.weekday),
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : BeeWiseColors.muted,
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  '${day.day}',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w800,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : BeeWiseColors.ink,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Container(
-                                  width: 4,
-                                  height: 4,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: hasDot
-                                        ? (isSelected
-                                              ? Colors.white
-                                              : BeeWiseColors.primary)
-                                        : Colors.transparent,
-                                  ),
-                                ),
-                              ],
+                          );
+                        })
+                        .toList(growable: false),
+                  ),
+                  const SizedBox(height: BeeWiseSpace.x5),
+
+                  if (visibleSessions.isEmpty) ...[
+                    const EmptyStateView(
+                      title: 'Chưa có lịch dạy trong tuần này',
+                      message: 'Các buổi học chính thức sau khi phụ huynh hoàn tất thanh toán sẽ hiển thị tại đây.',
+                      icon: Icons.event_busy_outlined,
+                    ),
+                  ] else ...[
+                    for (final session in visibleSessions) ...[
+                      _buildLessonCard(
+                        tileText: session.weekdayTileLabel,
+                        timeText: session.timeAndDateLabel,
+                        classText: session.subtitleLabel,
+                        pillText: session.sessionProgressLabel,
+                        isPillGreen: session.confirmed,
+                      ),
+                      const SizedBox(height: BeeWiseSpace.x3),
+                    ],
+                  ],
+                  const SizedBox(height: BeeWiseSpace.x4),
+
+                  // Bottom Disclaimer Notice
+                  Container(
+                    padding: const EdgeInsets.all(BeeWiseSpace.x3),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF0F4FF),
+                      borderRadius: BorderRadius.circular(BeeWiseRadius.card),
+                    ),
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline_rounded,
+                          size: 20,
+                          color: BeeWiseColors.primary,
+                        ),
+                        SizedBox(width: BeeWiseSpace.x2),
+                        Expanded(
+                          child: Text(
+                            'Lịch hiển thị các buổi học chính thức khi phụ huynh thanh toán qua BeeWise.',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: BeeWiseColors.muted,
+                              height: 1.4,
                             ),
                           ),
-                        );
-                      })
-                      .toList(growable: false),
-                ),
-                const SizedBox(height: BeeWiseSpace.x5),
-
-                if (visibleSessions.isEmpty) ...[
-                  const EmptyStateView(
-                    title: 'Chưa có lịch dạy trong tuần này',
-                    message: 'Các buổi học chính thức sau khi phụ huynh hoàn tất thanh toán sẽ hiển thị tại đây.',
-                    icon: Icons.event_busy_outlined,
-                  ),
-                ] else ...[
-                  for (final session in visibleSessions) ...[
-                    _buildLessonCard(
-                      tileText: session.weekdayTileLabel,
-                      timeText: session.timeAndDateLabel,
-                      classText: session.subtitleLabel,
-                      pillText: session.sessionProgressLabel,
-                      isPillGreen: session.confirmed,
-                    ),
-                    const SizedBox(height: BeeWiseSpace.x3),
-                  ],
-                ],
-                const SizedBox(height: BeeWiseSpace.x4),
-
-                // Bottom Disclaimer Notice
-                Container(
-                  padding: const EdgeInsets.all(BeeWiseSpace.x3),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF0F4FF),
-                    borderRadius: BorderRadius.circular(BeeWiseRadius.card),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline_rounded,
-                        size: 20,
-                        color: BeeWiseColors.primary,
-                      ),
-                      SizedBox(width: BeeWiseSpace.x2),
-                      Expanded(
-                        child: Text(
-                          'Lịch hiển thị các buổi học chính thức khi phụ huynh thanh toán qua BeeWise.',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: BeeWiseColors.muted,
-                            height: 1.4,
-                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: BeeWiseSpace.x6),
-              ],
+                  const SizedBox(height: BeeWiseSpace.x6),
+                ],
+              ),
             );
           },
         ),
@@ -2234,6 +2431,13 @@ class TutorSelfProfileScreen extends ConsumerWidget {
           'Hồ sơ của tôi',
           style: TextStyle(fontWeight: FontWeight.w800),
         ),
+        actions: [
+          IconButton(
+            tooltip: 'Làm mới hồ sơ',
+            icon: const Icon(Icons.refresh_rounded),
+            onPressed: () => ref.invalidate(tutorProfileViewProvider),
+          ),
+        ],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(height: 1, thickness: 1, color: BeeWiseColors.border),
@@ -2241,12 +2445,15 @@ class TutorSelfProfileScreen extends ConsumerWidget {
       ),
       body: SafeArea(
         child: profileAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          skipError: false,
           loading: () => const LoadingStateView(),
           error: (error, _) => ListView(
             padding: const EdgeInsets.all(BeeWiseSpace.x4),
             children: [
               ErrorStateView(
-                message: friendlyError(error),
+                message: _tutorFriendlyError(error),
                 onRetry: () => ref.invalidate(tutorProfileViewProvider),
               ),
               const SizedBox(height: BeeWiseSpace.x3),
@@ -2714,25 +2921,32 @@ class TutorNotificationScreen extends ConsumerWidget {
     String uid,
     BeeWiseNotification item,
   ) async {
-    final targetRoute = await ref
-        .read(tutorWorkspaceServiceProvider)
-        .validateTutorNotificationRoute(
-          uid,
-          item.route,
-          recipientUid: item.recipientUid,
-        );
-    if (!context.mounted) return;
-    if (targetRoute == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Không thể mở liên kết này do dữ liệu không tồn tại hoặc không thuộc quyền truy cập.',
+    try {
+      final targetRoute = await ref
+          .read(tutorWorkspaceServiceProvider)
+          .validateTutorNotificationRoute(
+            uid,
+            item.route,
+            recipientUid: item.recipientUid,
+          );
+      if (!context.mounted) return;
+      if (ref.read(currentAuthenticatedUidProvider) != uid) return;
+      if (targetRoute == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Không thể mở liên kết này do dữ liệu không tồn tại hoặc không thuộc quyền truy cập.',
+            ),
           ),
-        ),
-      );
-      return;
+        );
+        return;
+      }
+      context.push(targetRoute);
+    } catch (error) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(_tutorFriendlyError(error))));
     }
-    context.push(targetRoute);
   }
 
   @override
@@ -2751,6 +2965,13 @@ class TutorNotificationScreen extends ConsumerWidget {
           'Thông báo',
           style: TextStyle(fontWeight: FontWeight.w800),
         ),
+        actions: [
+          IconButton(
+            tooltip: 'Làm mới thông báo',
+            icon: const Icon(Icons.refresh_rounded),
+            onPressed: () => ref.invalidate(notificationsProvider),
+          ),
+        ],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(height: 1, thickness: 1, color: BeeWiseColors.border),
@@ -2758,12 +2979,15 @@ class TutorNotificationScreen extends ConsumerWidget {
       ),
       body: SafeArea(
         child: notificationsAsync.when(
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          skipError: false,
           loading: () => const LoadingStateView(),
           error: (error, _) => ListView(
             padding: const EdgeInsets.all(BeeWiseSpace.x4),
             children: [
               ErrorStateView(
-                message: friendlyError(error),
+                message: _tutorFriendlyError(error),
                 onRetry: () => ref.invalidate(notificationsProvider),
               ),
             ],

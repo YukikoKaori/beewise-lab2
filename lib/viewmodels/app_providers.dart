@@ -123,59 +123,111 @@ final tutorWorkspaceServiceProvider = Provider<TutorWorkspaceService>((ref) {
   );
 });
 
-final tutorDashboardProvider = StreamProvider<TutorDashboardData>((ref) {
+final tutorDashboardProvider = StreamProvider.autoDispose<TutorDashboardData>((
+  ref,
+) {
   final uid = ref.watch(currentAuthenticatedUidProvider);
   if (uid == null) {
     return Stream.error(const TutorUnauthorizedException());
   }
-  return ref.watch(tutorWorkspaceServiceProvider).watchDashboard(uid);
+  return ref.watch(tutorWorkspaceServiceProvider).watchDashboard(uid).map((
+    data,
+  ) {
+    if (data.tutorUid != null && data.tutorUid != uid) {
+      throw const TutorUnauthorizedException(
+        'Dữ liệu bảng điều khiển không khớp với tài khoản hiện tại.',
+      );
+    }
+    return data;
+  });
 });
 
-final tutorChatsProvider = StreamProvider<List<TutorChatSummary>>((ref) {
+final tutorChatsProvider = StreamProvider.autoDispose<List<TutorChatSummary>>((
+  ref,
+) {
   final uid = ref.watch(currentAuthenticatedUidProvider);
   if (uid == null) {
     return Stream.error(const TutorUnauthorizedException());
   }
-  return ref.watch(tutorWorkspaceServiceProvider).watchTutorChats(uid);
+  return ref
+      .watch(tutorWorkspaceServiceProvider)
+      .watchTutorChats(uid)
+      .map(
+        (chats) => chats.where((c) => c.tutorId == uid).toList(growable: false),
+      );
 });
 
-final tutorChatSessionProvider =
-    StreamProvider.family<TutorChatSession, String>((ref, chatId) {
+final tutorChatSessionProvider = StreamProvider.autoDispose
+    .family<TutorChatSession, String>((ref, chatId) {
       final uid = ref.watch(currentAuthenticatedUidProvider);
       if (uid == null) {
         return Stream.error(const TutorUnauthorizedException());
       }
       return ref
           .watch(tutorWorkspaceServiceProvider)
-          .watchTutorChatSession(uid, chatId);
+          .watchTutorChatSession(uid, chatId)
+          .map((session) {
+            if (session.summary.tutorId != uid) {
+              throw const TutorUnauthorizedException(
+                'Bạn không có quyền truy cập nhóm chat của gia sư khác.',
+              );
+            }
+            return session;
+          });
     });
 
-final tutorClassDetailProvider =
-    StreamProvider.family<TutorClassRecord, String>((ref, classId) {
+final tutorClassDetailProvider = StreamProvider.autoDispose
+    .family<TutorClassRecord, String>((ref, classId) {
       final uid = ref.watch(currentAuthenticatedUidProvider);
       if (uid == null) {
         return Stream.error(const TutorUnauthorizedException());
       }
       return ref
           .watch(tutorWorkspaceServiceProvider)
-          .watchTutorClass(uid, classId);
+          .watchTutorClass(uid, classId)
+          .map((record) {
+            if (record.tutorId != uid) {
+              throw const TutorUnauthorizedException(
+                'Bạn không có quyền truy cập lớp học của gia sư khác.',
+              );
+            }
+            return record;
+          });
     });
 
-final tutorScheduleProvider = StreamProvider<List<TutorLessonSession>>((ref) {
-  final uid = ref.watch(currentAuthenticatedUidProvider);
-  if (uid == null) {
-    return Stream.error(const TutorUnauthorizedException());
-  }
-  return ref.watch(tutorWorkspaceServiceProvider).watchTutorSchedule(uid);
-});
+final tutorScheduleProvider =
+    StreamProvider.autoDispose<List<TutorLessonSession>>((ref) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorSchedule(uid)
+          .map(
+            (sessions) =>
+                sessions.where((s) => s.tutorId == uid).toList(growable: false),
+          );
+    });
 
-final tutorProfileViewProvider = StreamProvider<TutorProfileViewData>((ref) {
-  final uid = ref.watch(currentAuthenticatedUidProvider);
-  if (uid == null) {
-    return Stream.error(const TutorUnauthorizedException());
-  }
-  return ref.watch(tutorWorkspaceServiceProvider).watchTutorProfile(uid);
-});
+final tutorProfileViewProvider =
+    StreamProvider.autoDispose<TutorProfileViewData>((ref) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorProfile(uid)
+          .map((profile) {
+            if (profile.application.uid != uid) {
+              throw const TutorUnauthorizedException(
+                'Hồ sơ gia sư không khớp với tài khoản hiện tại.',
+              );
+            }
+            return profile;
+          });
+    });
 
 final tutorRepositoryProvider = Provider<TutorRepository>((ref) {
   if (!ref.watch(firebaseReadyProvider)) {

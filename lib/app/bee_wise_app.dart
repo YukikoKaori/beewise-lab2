@@ -37,7 +37,9 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
         (previous, next) {
           final prevData = previous?.asData?.value;
           final nextData = next.asData?.value;
-          if (prevData?.status != nextData?.status ||
+          if (previous?.hasError != next.hasError ||
+              (prevData == null) != (nextData == null) ||
+              prevData?.status != nextData?.status ||
               prevData?.verified != nextData?.verified ||
               prevData?.active != nextData?.active) {
             _router.refresh();
