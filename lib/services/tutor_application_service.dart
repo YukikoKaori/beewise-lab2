@@ -2,20 +2,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/tutor_workspace_models.dart';
+import 'tutor_application_api.dart';
 
 class TutorApplicationService {
   TutorApplicationService(
     this._auth,
     this._firestore, {
-    this.isResubmissionBackendAvailable = false,
-  });
+    bool isResubmissionBackendAvailable = false,
+    this._api,
+  }) : _directResubmission = isResubmissionBackendAvailable;
 
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
+  final bool _directResubmission;
+  final TutorApplicationApi? _api;
 
-  /// Under current `firebase/firestore.rules` (`tutorApplications.update = false`)
-  /// and backend surface, direct client resubmission writes are blocked.
-  final bool isResubmissionBackendAvailable;
+  /// `firebase/firestore.rules` forbids client updates of `tutorApplications`,
+  /// so a `needs_info` resubmission is only possible through the trusted
+  /// backend (`BEEWISE_API_BASE_URL`). Without it the UI keeps the submit
+  /// button disabled instead of attempting a write that is certain to fail.
+  bool get isResubmissionBackendAvailable =>
+      _directResubmission || (_api?.configured ?? false);
 
   static const String resubmissionServerBlockMessage =
       'Chức năng gửi lại hồ sơ cần bổ sung hiện yêu cầu xác thực từ máy chủ '
@@ -122,6 +129,24 @@ class TutorApplicationService {
         throw const TutorApplicationException(
           'Chỉ hồ sơ ở trạng thái cần bổ sung mới có thể cập nhật.',
         );
+      }
+
+      final api = _api;
+      if (api != null && api.configured) {
+        await api.resubmit(
+          name: name,
+          phone: phone,
+          qualification: qualification,
+          introduction: introduction,
+          subjects: subjects,
+          grades: grades,
+          hourlyFee: hourlyFee,
+          areas: areas,
+          teachingModes: teachingModes,
+          availability: availability,
+        );
+        await currentUser.updateDisplayName(name.trim());
+        return uid;
       }
 
       if (!isResubmissionBackendAvailable) {
