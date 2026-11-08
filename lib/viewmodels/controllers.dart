@@ -6,11 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../models/tutor.dart';
+import '../models/tutor_workspace_models.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
 import '../services/export_service.dart';
 import '../services/matching_service.dart';
 import '../services/payment_api.dart';
+import '../services/tutor_application_service.dart';
 import '../services/workflow_service.dart';
 import '../services/tutor_repository.dart';
 import 'app_providers.dart';
@@ -24,6 +26,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
 
   Future<void> googleSignIn() async {
     ref.read(reportControllerProvider.notifier).reset();
+    ref.read(tutorChatComposerControllerProvider.notifier).reset();
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
@@ -45,6 +48,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
 
   Future<void> emailSignIn(String email, String password) async {
     ref.read(reportControllerProvider.notifier).reset();
+    ref.read(tutorChatComposerControllerProvider.notifier).reset();
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
@@ -103,6 +107,8 @@ class AuthController extends Notifier<AsyncValue<void>> {
 
   Future<void> signOut() async {
     ref.read(reportControllerProvider.notifier).reset();
+    ref.read(tutorChatComposerControllerProvider.notifier).reset();
+    ref.read(tutorApplicationControllerProvider.notifier).reset();
     state = const AsyncLoading();
     try {
       await ref.read(analyticsServiceProvider).event('logout');
@@ -129,6 +135,8 @@ final tutorApplicationControllerProvider =
 class TutorApplicationController extends Notifier<AsyncValue<void>> {
   @override
   AsyncValue<void> build() => const AsyncData(null);
+
+  void reset() => state = const AsyncData(null);
 
   Future<void> submit({
     required String name,
@@ -182,6 +190,200 @@ class TutorApplicationController extends Notifier<AsyncValue<void>> {
     } finally {
       await ref.read(notificationServiceProvider).retryRegistration();
     }
+  }
+
+  Future<bool> resubmit({
+    required String uid,
+    required String name,
+    required String phone,
+    required String qualification,
+    required String introduction,
+    required List<String> subjects,
+    required List<String> grades,
+    required int hourlyFee,
+    required List<String> areas,
+    required List<String> teachingModes,
+    required String availability,
+  }) async {
+    state = const AsyncLoading();
+    try {
+      final currentUid = ref.read(currentAuthenticatedUidProvider);
+      if (currentUid == null || currentUid != uid) {
+        throw const TutorApplicationException(
+          'Phiên đăng nhập đã thay đổi. Vui lòng đăng nhập lại.',
+        );
+      }
+      final service = ref.read(tutorApplicationServiceProvider);
+      if (service == null) throw const FirebaseNotConfiguredException();
+      await service.resubmit(
+        uid: uid,
+        name: name,
+        phone: phone,
+        qualification: qualification,
+        introduction: introduction,
+        subjects: subjects,
+        grades: grades,
+        hourlyFee: hourlyFee,
+        areas: areas,
+        teachingModes: teachingModes,
+        availability: availability,
+      );
+      if (ref.read(currentAuthenticatedUidProvider) != uid) {
+        state = const AsyncData(null);
+        return false;
+      }
+      ref.invalidate(tutorApplicationDataProvider(uid));
+      ref.invalidate(tutorApplicationStatusProvider(uid));
+      await ref
+          .read(analyticsServiceProvider)
+          .event('tutor_application_resubmitted');
+      state = const AsyncData(null);
+      return true;
+    } catch (error, stack) {
+      await ref
+          .read(crashReportingServiceProvider)
+          .recordHandled(error, stack, 'Tutor application resubmission failed');
+      state = AsyncError(error, stack);
+      return false;
+    }
+  }
+}
+
+enum TutorChatSendStage { idle, sending, sent, failed }
+
+class TutorChatSendState {
+  const TutorChatSendState({
+    this.stage = TutorChatSendStage.idle,
+    this.ownerUid,
+    this.chatId,
+    this.failedDraft,
+    this.errorMessage,
+  });
+
+  final TutorChatSendStage stage;
+  final String? ownerUid;
+  final String? chatId;
+  final String? failedDraft;
+  final String? errorMessage;
+
+  bool get isSending => stage == TutorChatSendStage.sending;
+  bool get hasFailed => stage == TutorChatSendStage.failed;
+}
+
+final tutorChatComposerControllerProvider =
+    NotifierProvider<TutorChatComposerController, TutorChatSendState>(
+      TutorChatComposerController.new,
+    );
+
+class TutorChatComposerController extends Notifier<TutorChatSendState> {
+  int _operationToken = 0;
+  bool _disposed = false;
+
+  @override
+  TutorChatSendState build() {
+    ref.listen<String?>(currentAuthenticatedUidProvider, (previous, next) {
+      if ((previous != null && next != previous) ||
+          (state.ownerUid != null && next != state.ownerUid)) {
+        reset();
+      }
+    });
+    final auth = ref.read(authServiceProvider);
+    String? previousUid;
+    final sub = auth.authStateChanges().listen((user) {
+      final nextUid = user?.isAnonymous == false ? user!.uid : null;
+      if ((previousUid != null && nextUid != previousUid) ||
+          (state.ownerUid != null && nextUid != state.ownerUid)) {
+        reset();
+      }
+      previousUid = nextUid;
+    }, onError: (_, _) => reset());
+
+    ref.onDispose(() {
+      _disposed = true;
+      _operationToken++;
+      sub.cancel();
+    });
+    return const TutorChatSendState();
+  }
+
+  void reset() {
+    _operationToken++;
+    if (!_disposed) {
+      state = const TutorChatSendState();
+    }
+  }
+
+  Future<bool> send({required String chatId, required String text}) async {
+    if (state.isSending) return false;
+    final trimmed = text.trim();
+    if (trimmed.isEmpty) return false;
+
+    final uid = ref.read(currentAuthenticatedUidProvider);
+    if (uid == null) {
+      state = TutorChatSendState(
+        stage: TutorChatSendStage.failed,
+        chatId: chatId,
+        failedDraft: trimmed,
+        errorMessage: 'Bạn cần đăng nhập tài khoản gia sư hợp lệ để gửi tin.',
+      );
+      return false;
+    }
+
+    final token = ++_operationToken;
+    state = TutorChatSendState(
+      stage: TutorChatSendStage.sending,
+      ownerUid: uid,
+      chatId: chatId,
+    );
+
+    try {
+      await ref
+          .read(tutorWorkspaceServiceProvider)
+          .sendTutorMessage(tutorUid: uid, chatId: chatId, body: trimmed);
+      if (_disposed ||
+          token != _operationToken ||
+          ref.read(currentAuthenticatedUidProvider) != uid) {
+        return false;
+      }
+      await ref.read(analyticsServiceProvider).event('chat_message_sent', {
+        'message_type': 'text',
+        'sender_role': 'tutor',
+      });
+      if (_disposed ||
+          token != _operationToken ||
+          ref.read(currentAuthenticatedUidProvider) != uid) {
+        return false;
+      }
+      state = TutorChatSendState(
+        stage: TutorChatSendStage.sent,
+        ownerUid: uid,
+        chatId: chatId,
+      );
+      return true;
+    } catch (error) {
+      if (_disposed ||
+          token != _operationToken ||
+          ref.read(currentAuthenticatedUidProvider) != uid) {
+        return false;
+      }
+      state = TutorChatSendState(
+        stage: TutorChatSendStage.failed,
+        ownerUid: uid,
+        chatId: chatId,
+        failedDraft: trimmed,
+        errorMessage: friendlyError(error),
+      );
+      return false;
+    }
+  }
+
+  Future<bool> retry() async {
+    final draft = state.failedDraft;
+    final chatId = state.chatId;
+    if (!state.hasFailed || draft == null || chatId == null) {
+      return false;
+    }
+    return send(chatId: chatId, text: draft);
   }
 }
 
@@ -654,7 +856,11 @@ String friendlyError(Object error) {
       error is MatchingException ||
       error is ExportException ||
       error is WorkflowException ||
-      error is PaymentApiException) {
+      error is PaymentApiException ||
+      error is TutorApplicationException ||
+      error is TutorUnauthorizedException ||
+      error is TutorResourceNotFoundException ||
+      error is TutorBackendRulesDependencyException) {
     return error.toString();
   }
   if (error is FirebaseException) {
