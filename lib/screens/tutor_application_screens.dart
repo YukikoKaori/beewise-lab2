@@ -173,6 +173,9 @@ class _TutorApplicationScreenState
         : const AsyncData<TutorApplicationData?>(null);
 
     return existingAppAsync.when(
+      skipLoadingOnReload: false,
+      skipLoadingOnRefresh: false,
+      skipError: false,
       loading: () => const BeeWiseScaffold(
         title: 'Đăng ký gia sư',
         showBack: true,
@@ -224,6 +227,11 @@ class _TutorApplicationScreenState
         if (isEditMode) {
           _prefillFromExisting(existingApp);
         }
+        final canResubmitToBackend =
+            ref
+                .watch(tutorApplicationServiceProvider)
+                ?.isResubmissionBackendAvailable ==
+            true;
 
         final state = ref.watch(tutorApplicationControllerProvider);
         ref.listen(tutorApplicationControllerProvider, (previous, next) {
@@ -311,6 +319,54 @@ class _TutorApplicationScreenState
                                 style: const TextStyle(
                                   fontSize: 13,
                                   color: Color(0xFF881337),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: BeeWiseSpace.x4),
+                ],
+
+                if (isEditMode && !canResubmitToBackend) ...[
+                  Container(
+                    padding: const EdgeInsets.all(BeeWiseSpace.x3),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFFBEB),
+                      borderRadius: BorderRadius.circular(BeeWiseRadius.md),
+                      border: Border.all(color: const Color(0xFFFDE68A)),
+                    ),
+                    child: const Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.lock_clock_outlined,
+                          color: Color(0xFFD97706),
+                          size: 20,
+                        ),
+                        SizedBox(width: BeeWiseSpace.x2),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'CẦN QUYỀN MÁY CHỦ ĐỂ GỬI LẠI HỒ SƠ',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w800,
+                                  color: Color(0xFF92400E),
+                                ),
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                TutorApplicationService
+                                    .resubmissionServerBlockMessage,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF78350F),
+                                  height: 1.4,
                                 ),
                               ),
                             ],
@@ -909,16 +965,41 @@ class _TutorApplicationScreenState
                 ],
 
                 // Submit Button
-                BeeWiseButton(
-                  label: isEditMode ? 'Gửi lại hồ sơ' : 'Gửi hồ sơ',
-                  loading: state.isLoading,
-                  onPressed: state.isLoading
-                      ? null
-                      : () => _submit(
-                          isEditMode: isEditMode,
-                          existingUid: existingApp?.uid,
+                if (isEditMode && !canResubmitToBackend) ...[
+                  BeeWiseButton(
+                    label: 'Gửi lại hồ sơ (Chờ mở quyền máy chủ)',
+                    onPressed: null,
+                  ),
+                  const SizedBox(height: BeeWiseSpace.x2),
+                  BeeWiseButton(
+                    label: 'Kiểm tra hợp lệ thông tin đã sửa',
+                    secondary: true,
+                    onPressed: () {
+                      setState(() => _hasAttemptedSubmit = true);
+                      final valid = _form.currentState!.validate();
+                      final errors = _countErrors(isEditMode: true);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            (!valid || errors > 0)
+                                ? 'Vui lòng hoàn thành các mục hợp lệ trước khi gửi.'
+                                : 'Thông tin chỉnh sửa hợp lệ. Cần xác thực từ máy chủ BeeWise để cập nhật hồ sơ gốc.',
+                          ),
                         ),
-                ),
+                      );
+                    },
+                  ),
+                ] else
+                  BeeWiseButton(
+                    label: isEditMode ? 'Gửi lại hồ sơ' : 'Gửi hồ sơ',
+                    loading: state.isLoading,
+                    onPressed: state.isLoading
+                        ? null
+                        : () => _submit(
+                            isEditMode: isEditMode,
+                            existingUid: existingApp?.uid,
+                          ),
+                  ),
                 const SizedBox(height: BeeWiseSpace.x2),
                 if (!isEditMode)
                   TextButton(
@@ -1145,6 +1226,9 @@ class TutorApplicationStatusScreen extends ConsumerWidget {
       title: 'Hồ sơ gia sư',
       showBack: appDataAsync.asData?.value?.isAuthorizedTutor == true,
       body: appDataAsync.when(
+        skipLoadingOnReload: false,
+        skipLoadingOnRefresh: false,
+        skipError: false,
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => ListView(
           padding: const EdgeInsets.all(BeeWiseSpace.x5),

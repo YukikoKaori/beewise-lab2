@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -5,6 +7,18 @@ import 'package:intl/intl.dart';
 import '../services/tutor_application_service.dart';
 import 'chat_message.dart';
 import 'tutor.dart';
+
+/// Explicit state classification for every tutor workspace data source.
+enum TutorDataSourceState {
+  loading,
+  emptyVerified,
+  populated,
+  rulesBlocked,
+  unauthorized,
+  notFound,
+  networkError,
+  unknownError,
+}
 
 /// Canonical authority classification for routing and repository access.
 enum AccountRoleKind {
@@ -64,13 +78,51 @@ class TutorResourceNotFoundException implements Exception {
 
 class TutorBackendRulesDependencyException implements Exception {
   const TutorBackendRulesDependencyException([
-    this.message = 'Quyền truy cập Firestore cho gia sư trên tài nguyên này chưa được kích hoạt từ máy chủ.',
+    this.message = 'Chức năng này chưa được cấp quyền đồng bộ cho tài khoản gia sư. Vui lòng liên hệ BeeWise.',
   ]);
 
   final String message;
 
   @override
   String toString() => message;
+}
+
+class TutorNetworkException implements Exception {
+  const TutorNetworkException([
+    this.message = 'Không kết nối được dịch vụ. Hãy kiểm tra mạng rồi thử lại.',
+  ]);
+
+  final String message;
+
+  @override
+  String toString() => message;
+}
+
+TutorDataSourceState classifyTutorDataError(Object error) {
+  if (error is TutorBackendRulesDependencyException) {
+    return TutorDataSourceState.rulesBlocked;
+  }
+  if (error is TutorUnauthorizedException) {
+    return TutorDataSourceState.unauthorized;
+  }
+  if (error is TutorResourceNotFoundException) {
+    return TutorDataSourceState.notFound;
+  }
+  if (error is TutorNetworkException || error is TimeoutException) {
+    return TutorDataSourceState.networkError;
+  }
+  if (error is FirebaseException) {
+    return switch (error.code) {
+      'permission-denied' => TutorDataSourceState.rulesBlocked,
+      'unauthenticated' => TutorDataSourceState.unauthorized,
+      'not-found' => TutorDataSourceState.notFound,
+      'unavailable' ||
+      'network-request-failed' ||
+      'deadline-exceeded' => TutorDataSourceState.networkError,
+      _ => TutorDataSourceState.unknownError,
+    };
+  }
+  return TutorDataSourceState.unknownError;
 }
 
 /// Summary of an authorized group chat where the tutor is a participant.
@@ -436,19 +488,66 @@ class TutorClassRecord {
 /// Aggregated dashboard data for T3 (`TutorHomeScreen`).
 class TutorDashboardData {
   const TutorDashboardData({
+    this.tutorUid,
     this.chats = const [],
     this.upcomingSessions = const [],
     this.activeClasses = const [],
+    TutorDataSourceState? chatsState,
+    TutorDataSourceState? classesState,
+    this.chatsBlockMessage,
+    this.classesBlockMessage,
     this.backendAccessLimitation,
-  });
+    // ignore: prefer_initializing_formals
+  }) : _chatsState = chatsState,
+       // ignore: prefer_initializing_formals
+       _classesState = classesState;
 
+  final String? tutorUid;
   final List<TutorChatSummary> chats;
   final List<TutorLessonSession> upcomingSessions;
   final List<TutorClassRecord> activeClasses;
+  final TutorDataSourceState? _chatsState;
+  final TutorDataSourceState? _classesState;
+  final String? chatsBlockMessage;
+  final String? classesBlockMessage;
   final String? backendAccessLimitation;
 
-  bool get isEmpty =>
-      chats.isEmpty && upcomingSessions.isEmpty && activeClasses.isEmpty;
+  TutorDataSourceState get chatsState =>
+      _chatsState ??
+      (chats.isEmpty
+          ? TutorDataSourceState.emptyVerified
+          : TutorDataSourceState.populated);
+
+  TutorDataSourceState get classesState =>
+      _classesState ??
+      (activeClasses.isEmpty && upcomingSessions.isEmpty
+          ? TutorDataSourceState.emptyVerified
+          : TutorDataSourceState.populated);
+
+  bool get isChatsRulesBlocked =>
+      chatsState == TutorDataSourceState.rulesBlocked;
+
+  bool get isClassesRulesBlocked =>
+      classesState == TutorDataSourceState.rulesBlocked;
+
+  bool get hasRulesBlockedSource =>
+      isChatsRulesBlocked ||
+      isClassesRulesBlocked ||
+      backendAccessLimitation != null;
+
+  bool get isFullyRulesBlocked => isChatsRulesBlocked && isClassesRulesBlocked;
+
+  /// True ONLY when both data sources succeeded with zero records and neither
+  /// is blocked by Firestore security rules.
+  bool get isVerifiedEmpty =>
+      !hasRulesBlockedSource &&
+      chatsState == TutorDataSourceState.emptyVerified &&
+      classesState == TutorDataSourceState.emptyVerified &&
+      chats.isEmpty &&
+      upcomingSessions.isEmpty &&
+      activeClasses.isEmpty;
+
+  bool get isEmpty => isVerifiedEmpty;
 }
 
 /// Combined application and public catalog profile for T7 (`TutorSelfProfileScreen`).
@@ -456,10 +555,16 @@ class TutorProfileViewData {
   const TutorProfileViewData({
     required this.application,
     this.publicCatalogProfile,
-  });
+    TutorDataSourceState? publicCatalogState,
+  }) : publicCatalogState =
+           publicCatalogState ??
+           (publicCatalogProfile != null
+               ? TutorDataSourceState.populated
+               : TutorDataSourceState.emptyVerified);
 
   final TutorApplicationData application;
   final Tutor? publicCatalogProfile;
+  final TutorDataSourceState publicCatalogState;
 
   bool get isPublishedInCatalog =>
       publicCatalogProfile != null && publicCatalogProfile!.active;

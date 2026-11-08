@@ -33,6 +33,9 @@ class _MockCollection extends Mock
     implements CollectionReference<Map<String, dynamic>> {}
 
 // ignore: subtype_of_sealed_class
+class _MockQuery extends Mock implements Query<Map<String, dynamic>> {}
+
+// ignore: subtype_of_sealed_class
 class _MockDoc extends Mock
     implements DocumentReference<Map<String, dynamic>> {}
 
@@ -99,12 +102,15 @@ class _FakeTutorApplicationService extends Fake
   _FakeTutorApplicationService({
     Map<String, TutorApplicationData>? applications,
     this.roleHook,
+    this.allowResubmitBackend = false,
   }) : _applications = Map<String, TutorApplicationData>.from(
          applications ?? const {},
        );
 
   final Map<String, TutorApplicationData> _applications;
+  final Map<String, StreamController<TutorApplicationData?>> _controllers = {};
   final Future<AccountRoleResolution> Function(String uid)? roleHook;
+  bool allowResubmitBackend;
   Object? resubmitError;
 
   int submitCallCount = 0;
@@ -112,8 +118,18 @@ class _FakeTutorApplicationService extends Fake
   Map<String, dynamic>? lastSubmittedPayload;
   Map<String, dynamic>? lastResubmittedPayload;
 
-  void putApplication(TutorApplicationData app) {
-    _applications[app.uid] = app;
+  @override
+  bool get isResubmissionBackendAvailable => allowResubmitBackend;
+
+  void putApplication(TutorApplicationData? app, {String? uid}) {
+    final targetUid = uid ?? app?.uid;
+    if (targetUid == null) return;
+    if (app == null) {
+      _applications.remove(targetUid);
+    } else {
+      _applications[targetUid] = app;
+    }
+    _controllers[targetUid]?.add(app);
   }
 
   @override
@@ -148,11 +164,24 @@ class _FakeTutorApplicationService extends Fake
     final app = _applications[uid];
     if (app == null) throw const TutorApplicationException();
     yield app.status;
+    final ctrl = _controllers.putIfAbsent(
+      uid,
+      () => StreamController<TutorApplicationData?>.broadcast(),
+    );
+    await for (final updated in ctrl.stream) {
+      if (updated == null) throw const TutorApplicationException();
+      yield updated.status;
+    }
   }
 
   @override
   Stream<TutorApplicationData?> watchApplicationData(String uid) async* {
     yield _applications[uid];
+    final ctrl = _controllers.putIfAbsent(
+      uid,
+      () => StreamController<TutorApplicationData?>.broadcast(),
+    );
+    yield* ctrl.stream;
   }
 
   @override
@@ -844,7 +873,7 @@ void main() {
     );
 
     testWidgets(
-      'T1 needs_info applicant prefills existing application, hides password, preserves UID on resubmit',
+      'T1 needs_info applicant prefills existing application, disables server submit when backend rules block update, and supports local draft validation',
       (tester) async {
         final existing = _sampleApplication(
           uid: 'tutor_needs_info',
@@ -855,8 +884,10 @@ void main() {
           rejectionReason:
               'Vui lòng bổ sung thành tích học sinh ôn thi vào 10.',
         );
+        // Default production contract: allowResubmitBackend == false
         final appService = _FakeTutorApplicationService(
           applications: {'tutor_needs_info': existing},
+          allowResubmitBackend: false,
         );
 
         await _pumpScreen(
@@ -877,12 +908,58 @@ void main() {
           find.text('Vui lòng bổ sung thành tích học sinh ôn thi vào 10.'),
           findsOneWidget,
         );
+        expect(find.text('CẦN QUYỀN MÁY CHỦ ĐỂ GỬI LẠI HỒ SƠ'), findsOneWidget);
         // Existing values are prefilled
         expect(find.text('Lê Thu Hà'), findsOneWidget);
         // Password field is hidden in edit mode
         expect(find.widgetWithText(TextFormField, 'Mật khẩu'), findsNothing);
 
-        // Update introduction and submit
+        // Final server submit button is disabled because backend rules block direct updates
+        final disabledSubmitFinder = find.ancestor(
+          of: find.text('Gửi lại hồ sơ (Chờ mở quyền máy chủ)'),
+          matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
+        );
+        expect(disabledSubmitFinder, findsOneWidget);
+        final disabledSubmitBtn = tester.widget<ButtonStyleButton>(
+          disabledSubmitFinder,
+        );
+        expect(disabledSubmitBtn.onPressed, isNull);
+
+        // Local edits work and can be validated locally without creating a new account or mutating review status
+        await tester.enterText(
+          find.widgetWithText(TextFormField, 'Bằng cấp / kinh nghiệm'),
+          'Thạc sĩ Sư phạm Toán - 6 năm kinh nghiệm',
+        );
+        await tester.tap(find.text('Kiểm tra hợp lệ thông tin đã sửa'));
+        await tester.pumpAndSettle();
+
+        expect(appService.submitCallCount, equals(0));
+        expect(appService.resubmitCallCount, equals(0));
+        final unchanged = await appService.getApplicationData(
+          'tutor_needs_info',
+        );
+        expect(unchanged?.uid, equals('tutor_needs_info'));
+        expect(unchanged?.status, equals('needs_info'));
+        expect(
+          unchanged?.rejectionReason,
+          equals('Vui lòng bổ sung thành tích học sinh ôn thi vào 10.'),
+        );
+
+        // When backend resubmission capability is enabled, resubmit preserves UID and review history
+        appService.allowResubmitBackend = true;
+        await _pumpScreen(
+          tester,
+          const TutorApplicationScreen(isResubmissionRoute: true),
+          overrides: [
+            authStateProvider.overrideWith(
+              (ref) => Stream.value(_fakeUser('tutor_needs_info')),
+            ),
+            tutorApplicationServiceProvider.overrideWithValue(appService),
+            tutorApplicationDataProvider('tutor_needs_info')
+                .overrideWith((ref) => Stream.value(existing)),
+          ],
+        );
+
         await tester.enterText(
           find.widgetWithText(TextFormField, 'Bằng cấp / kinh nghiệm'),
           'Thạc sĩ Sư phạm Toán - 6 năm kinh nghiệm',
@@ -908,7 +985,7 @@ void main() {
     );
 
     testWidgets(
-      'TutorApplicationService.resubmit surfaces permission-denied rule error honestly without faking success',
+      'TutorApplicationService.resubmit blocks denied Firestore write & displayName mutation by default and surfaces permission-denied honestly',
       (tester) async {
         final mockAuth = _MockAuth();
         final mockStore = _MockFirestore();
@@ -939,16 +1016,49 @@ void main() {
           'verified': false,
           'active': false,
         });
+
+        // 1. Default service (isResubmissionBackendAvailable == false):
+        // Never calls mockDoc.update(...) and never mutates user.updateDisplayName(...)
+        final defaultService = TutorApplicationService(mockAuth, mockStore);
+        await expectLater(
+          defaultService.resubmit(
+            uid: 'tutor_needs_info',
+            name: 'Lê Thu Hà Mới',
+            phone: '0987654321',
+            qualification: 'Thạc sĩ',
+            introduction: 'Kinh nghiệm 5 năm dạy Toán THCS chuyên sâu.',
+            subjects: const ['Toán'],
+            grades: const ['Lớp 9'],
+            hourlyFee: 220000,
+            areas: const ['Cầu Giấy'],
+            teachingModes: const ['online'],
+            availability: 'T3 tối',
+          ),
+          throwsA(
+            isA<TutorApplicationException>().having(
+              (e) => e.isBackendRuleBlocked,
+              'isBackendRuleBlocked',
+              isTrue,
+            ),
+          ),
+        );
+        verifyNever(() => mockDoc.update(any()));
+        verifyNever(() => user.updateDisplayName(any()));
+
+        // 2. Even if isResubmissionBackendAvailable == true, Firestore permission-denied is surfaced honestly
         when(() => mockDoc.update(any())).thenThrow(
           FirebaseException(
             plugin: 'cloud_firestore',
             code: 'permission-denied',
           ),
         );
-
-        final realService = TutorApplicationService(mockAuth, mockStore);
+        final enabledService = TutorApplicationService(
+          mockAuth,
+          mockStore,
+          isResubmissionBackendAvailable: true,
+        );
         await expectLater(
-          realService.resubmit(
+          enabledService.resubmit(
             uid: 'tutor_needs_info',
             name: 'Lê Thu Hà',
             phone: '0987654321',
@@ -1578,4 +1688,403 @@ void main() {
       }
     },
   );
+
+  group('6. P1/P2 Firestore Permission Errors vs Empty States & Live Stream Freshness', () {
+    testWidgets(
+      'Tutor chat list query returning permission-denied renders rules state, NEVER "Chưa có nhóm chat nào"',
+      (tester) async {
+        await _pumpScreen(
+          tester,
+          const TutorChatScreen(),
+          overrides: [
+            authStateProvider.overrideWith(
+              (ref) => Stream.value(_fakeUser('tutor_1')),
+            ),
+            tutorChatsProvider.overrideWith(
+              (ref) => Stream.error(
+                FirebaseException(
+                  plugin: 'cloud_firestore',
+                  code: 'permission-denied',
+                ),
+              ),
+            ),
+          ],
+        );
+
+        expect(
+          find.text(
+            'Chức năng này chưa được cấp quyền đồng bộ cho tài khoản gia sư. Vui lòng liên hệ BeeWise.',
+          ),
+          findsOneWidget,
+        );
+        expect(find.text('Chưa có nhóm chat nào'), findsNothing);
+        expect(find.text('Thử lại'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Tutor schedule query returning permission-denied renders rules state, NEVER "Chưa có lịch dạy trong tuần này"',
+      (tester) async {
+        await _pumpScreen(
+          tester,
+          const TutorScheduleScreen(),
+          overrides: [
+            authStateProvider.overrideWith(
+              (ref) => Stream.value(_fakeUser('tutor_1')),
+            ),
+            tutorScheduleProvider.overrideWith(
+              (ref) => Stream.error(
+                FirebaseException(
+                  plugin: 'cloud_firestore',
+                  code: 'permission-denied',
+                ),
+              ),
+            ),
+          ],
+        );
+
+        expect(
+          find.text(
+            'Chức năng này chưa được cấp quyền đồng bộ cho tài khoản gia sư. Vui lòng liên hệ BeeWise.',
+          ),
+          findsOneWidget,
+        );
+        expect(find.text('Chưa có lịch dạy trong tuần này'), findsNothing);
+        expect(find.text('Thử lại'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'Dashboard partially blocked by Firestore rules renders authorized source AND distinct rules-blocked card, never genuine empty state',
+      (tester) async {
+        final app = _sampleApplication(uid: 'tutor_1', name: 'Đặng Quốc Bảo');
+        final chat = const TutorChatSummary(
+          id: 'chat_ok_1',
+          parentId: 'parent_1',
+          tutorId: 'tutor_1',
+          parentName: 'Chị Hương',
+          onboardingStatus: 'trial_proposed',
+          subjectSummary: 'Toán 9',
+          isNew: true,
+        );
+
+        // Chats succeeded with 1 item; classes query is rulesBlocked
+        final partialDashboard = TutorDashboardData(
+          tutorUid: 'tutor_1',
+          chats: [chat],
+          chatsState: TutorDataSourceState.populated,
+          classesState: TutorDataSourceState.rulesBlocked,
+          classesBlockMessage: 'Chức năng này chưa được cấp quyền đồng bộ cho tài khoản gia sư. Vui lòng liên hệ BeeWise.',
+        );
+
+        await _pumpScreen(
+          tester,
+          const TutorHomeScreen(),
+          overrides: [
+            authStateProvider.overrideWith(
+              (ref) => Stream.value(_fakeUser('tutor_1')),
+            ),
+            tutorApplicationDataProvider('tutor_1')
+                .overrideWith((ref) => Stream.value(app)),
+            tutorDashboardProvider.overrideWith(
+              (ref) => Stream.value(partialDashboard),
+            ),
+            notificationsProvider.overrideWith(
+              (ref) => Stream.value(const <BeeWiseNotification>[]),
+            ),
+          ],
+        );
+
+        // Authorized chat is rendered
+        expect(find.text('Chị Hương · Toán 9'), findsOneWidget);
+        // Distinct rules-blocked warning card is rendered for classes/schedule
+        expect(
+          find.text('Lớp học & lịch dạy chưa cấp quyền đồng bộ'),
+          findsOneWidget,
+        );
+        expect(
+          find.text(
+            'Chức năng này chưa được cấp quyền đồng bộ cho tài khoản gia sư. Vui lòng liên hệ BeeWise.',
+          ),
+          findsOneWidget,
+        );
+        // Never claims empty state
+        expect(find.text('Chưa có việc cần làm'), findsNothing);
+        expect(find.text('Chưa có nhóm chat nào'), findsNothing);
+      },
+    );
+
+    testWidgets(
+      'Tutor chat list and schedule update live when stream emits new snapshots and on manual refresh',
+      (tester) async {
+        final chatsController =
+            StreamController<List<TutorChatSummary>>.broadcast();
+        final scheduleController =
+            StreamController<List<TutorLessonSession>>.broadcast();
+        addTearDown(chatsController.close);
+        addTearDown(scheduleController.close);
+
+        var chatFetchCount = 0;
+        var scheduleFetchCount = 0;
+
+        // 1. Live stream updates on TutorChatScreen
+        await _pumpScreen(
+          tester,
+          const TutorChatScreen(),
+          overrides: [
+            authStateProvider.overrideWith(
+              (ref) => Stream.value(_fakeUser('tutor_1')),
+            ),
+            tutorChatsProvider.overrideWith((ref) async* {
+              chatFetchCount++;
+              yield const <TutorChatSummary>[];
+              yield* chatsController.stream;
+            }),
+          ],
+        );
+
+        expect(find.text('Chưa có nhóm chat nào'), findsOneWidget);
+        expect(chatFetchCount, equals(1));
+
+        // Emit a new chat snapshot on the active stream
+        chatsController.add(const [
+          TutorChatSummary(
+            id: 'chat_live_1',
+            parentId: 'parent_2',
+            tutorId: 'tutor_1',
+            parentName: 'Anh Minh',
+            onboardingStatus: 'trial_proposed',
+            subjectSummary: 'Vật lý 9',
+          ),
+        ]);
+        await tester.pumpAndSettle();
+
+        expect(find.text('Chưa có nhóm chat nào'), findsNothing);
+        expect(find.textContaining('Anh Minh'), findsOneWidget);
+
+        // Tap manual refresh button in AppBar -> re-runs provider
+        await tester.tap(find.byTooltip('Làm mới danh sách chat'));
+        await tester.pumpAndSettle();
+        expect(chatFetchCount, equals(2));
+
+        // 2. Live stream updates on TutorScheduleScreen
+        final refDate = DateTime(2026, 11, 10, 19, 0);
+        await _pumpScreen(
+          tester,
+          TutorScheduleScreen(initialDate: refDate),
+          overrides: [
+            authStateProvider.overrideWith(
+              (ref) => Stream.value(_fakeUser('tutor_1')),
+            ),
+            tutorScheduleProvider.overrideWith((ref) async* {
+              scheduleFetchCount++;
+              yield const <TutorLessonSession>[];
+              yield* scheduleController.stream;
+            }),
+          ],
+        );
+
+        expect(find.text('Chưa có lịch dạy trong tuần này'), findsOneWidget);
+        expect(scheduleFetchCount, equals(1));
+
+        scheduleController.add([
+          TutorLessonSession(
+            id: 'sess_live_1',
+            classId: 'cls_live_1',
+            tutorId: 'tutor_1',
+            subjectTitle: 'Hóa học 9',
+            parentName: 'Chị Thảo',
+            locationSummary: 'Tại nhà · Cầu Giấy',
+            startTime: refDate,
+            endTime: refDate.add(const Duration(hours: 2)),
+            sessionNumber: 2,
+            totalSessions: 10,
+            confirmed: true,
+          ),
+        ]);
+        await tester.pumpAndSettle();
+
+        expect(find.text('Chưa có lịch dạy trong tuần này'), findsNothing);
+        expect(find.textContaining('Chị Thảo'), findsOneWidget);
+
+        await tester.tap(find.byTooltip('Làm mới lịch dạy'));
+        await tester.pumpAndSettle();
+        expect(scheduleFetchCount, equals(2));
+      },
+    );
+
+    test('FirebaseTutorWorkspaceService never converts permission-denied to empty list, invalidates on User A -> User B switch, and cancels inner listeners on permission revocation without duplicates', () async {
+      final mockAuth = _MockAuth();
+      final mockStore = _MockFirestore();
+      final mockChatsCol = _MockCollection();
+      final mockChatsQuery = _MockQuery();
+      final mockClassesCol = _MockCollection();
+      final mockClassesQuery = _MockQuery();
+
+      final authController = StreamController<User?>.broadcast();
+      addTearDown(authController.close);
+
+      var currentUser = _fakeUser('tutor_a');
+      when(() => mockAuth.currentUser).thenAnswer((_) => currentUser);
+      when(() => mockAuth.authStateChanges()).thenAnswer((_) async* {
+        yield currentUser;
+        yield* authController.stream;
+      });
+
+      final appService = _FakeTutorApplicationService(
+        applications: {
+          'tutor_a': _sampleApplication(
+            uid: 'tutor_a',
+            name: 'Gia sư A',
+            status: 'approved',
+            verified: true,
+            active: true,
+          ),
+          'tutor_b': _sampleApplication(
+            uid: 'tutor_b',
+            name: 'Gia sư B',
+            status: 'approved',
+            verified: true,
+            active: true,
+          ),
+        },
+      );
+
+      var activeChatListeners = 0;
+      var totalChatSubCount = 0;
+      final chatsSnapController =
+          StreamController<QuerySnapshot<Map<String, dynamic>>>.broadcast(
+            onListen: () {
+              activeChatListeners++;
+              totalChatSubCount++;
+            },
+            onCancel: () {
+              activeChatListeners--;
+            },
+          );
+      addTearDown(chatsSnapController.close);
+
+      when(() => mockStore.collection('chats')).thenReturn(mockChatsCol);
+      when(
+        () => mockChatsCol.where('tutorId', isEqualTo: any(named: 'isEqualTo')),
+      ).thenReturn(mockChatsQuery);
+      when(() => mockChatsQuery.snapshots())
+          .thenAnswer((_) => chatsSnapController.stream);
+
+      when(() => mockStore.collection('classes')).thenReturn(mockClassesCol);
+      when(
+        () =>
+            mockClassesCol.where('tutorId', isEqualTo: any(named: 'isEqualTo')),
+      ).thenReturn(mockClassesQuery);
+      when(
+        () => mockClassesQuery.where(any(), isEqualTo: any(named: 'isEqualTo')),
+      ).thenReturn(mockClassesQuery);
+      when(() => mockClassesQuery.snapshots()).thenAnswer(
+        (_) => Stream.error(
+          FirebaseException(
+            plugin: 'cloud_firestore',
+            code: 'permission-denied',
+          ),
+        ),
+      );
+
+      final service = FirebaseTutorWorkspaceService(
+        mockStore,
+        mockAuth,
+        appService,
+      );
+
+      // 1. watchTutorSchedule with permission-denied emits TutorBackendRulesDependencyException, NEVER empty list
+      await expectLater(
+        service.watchTutorSchedule('tutor_a').first,
+        throwsA(isA<TutorBackendRulesDependencyException>()),
+      );
+
+      // 2. watchTutorChats subscribes to snapshots() with exactly 1 listener
+      final chatErrors = <Object>[];
+      final sub = service
+          .watchTutorChats('tutor_a')
+          .listen((_) {}, onError: chatErrors.add);
+      addTearDown(sub.cancel);
+
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      expect(activeChatListeners, equals(1));
+      expect(totalChatSubCount, equals(1));
+
+      // Emit permission-denied on chats stream -> surfaces TutorBackendRulesDependencyException
+      chatsSnapController.addError(
+        FirebaseException(plugin: 'cloud_firestore', code: 'permission-denied'),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      expect(
+        chatErrors.whereType<TutorBackendRulesDependencyException>(),
+        isNotEmpty,
+      );
+
+      // 3. Revoking tutor_a active status immediately emits TutorUnauthorizedException and cancels inner Firestore listener
+      appService.putApplication(
+        _sampleApplication(
+          uid: 'tutor_a',
+          status: 'approved',
+          verified: true,
+          active: false, // revoked!
+        ),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      expect(chatErrors.whereType<TutorUnauthorizedException>(), isNotEmpty);
+      expect(activeChatListeners, equals(0));
+
+      // 4. Switching account to tutor_b while watching tutor_a emits TutorUnauthorizedException
+      currentUser = _fakeUser('tutor_b');
+      authController.add(currentUser);
+      await Future<void>.delayed(const Duration(milliseconds: 20));
+      expect(activeChatListeners, equals(0));
+    });
+
+    testWidgets(
+      'Account switch (User A -> User B) invalidates stale workspace data on TutorChatScreen',
+      (tester) async {
+        final auth = _FakeAuthService(_fakeUser('tutor_a'));
+        final workspace = _FakeTutorWorkspaceService()
+          ..chats = const [
+            TutorChatSummary(
+              id: 'chat_a_1',
+              parentId: 'parent_1',
+              tutorId: 'tutor_a',
+              parentName: 'Phụ huynh của Gia sư A',
+              onboardingStatus: 'trial_proposed',
+              subjectSummary: 'Toán 9',
+            ),
+            TutorChatSummary(
+              id: 'chat_b_1',
+              parentId: 'parent_2',
+              tutorId: 'tutor_b',
+              parentName: 'Phụ huynh của Gia sư B',
+              onboardingStatus: 'trial_proposed',
+              subjectSummary: 'Ngữ văn 9',
+            ),
+          ];
+
+        await _pumpScreen(
+          tester,
+          const TutorChatScreen(),
+          overrides: [
+            authServiceProvider.overrideWithValue(auth),
+            tutorWorkspaceServiceProvider.overrideWithValue(workspace),
+          ],
+        );
+
+        expect(find.textContaining('Phụ huynh của Gia sư A'), findsOneWidget);
+        expect(find.textContaining('Phụ huynh của Gia sư B'), findsNothing);
+
+        // Switch active user to tutor_b
+        auth.emitUser(_fakeUser('tutor_b'));
+        await tester.pumpAndSettle();
+
+        // Tutor A's chat is gone; Tutor B's chat is displayed
+        expect(find.textContaining('Phụ huynh của Gia sư A'), findsNothing);
+        expect(find.textContaining('Phụ huynh của Gia sư B'), findsOneWidget);
+      },
+    );
+  });
 }

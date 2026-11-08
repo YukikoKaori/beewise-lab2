@@ -24,9 +24,21 @@ class AuthController extends Notifier<AsyncValue<void>> {
   @override
   AsyncValue<void> build() => const AsyncData(null);
 
+  void _invalidateTutorWorkspaceProviders() {
+    ref.invalidate(tutorDashboardProvider);
+    ref.invalidate(tutorChatsProvider);
+    ref.invalidate(tutorChatSessionProvider);
+    ref.invalidate(tutorClassDetailProvider);
+    ref.invalidate(tutorScheduleProvider);
+    ref.invalidate(tutorProfileViewProvider);
+    ref.invalidate(tutorApplicationDataProvider);
+    ref.invalidate(tutorApplicationStatusProvider);
+  }
+
   Future<void> googleSignIn() async {
     ref.read(reportControllerProvider.notifier).reset();
     ref.read(tutorChatComposerControllerProvider.notifier).reset();
+    _invalidateTutorWorkspaceProviders();
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
@@ -49,6 +61,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
   Future<void> emailSignIn(String email, String password) async {
     ref.read(reportControllerProvider.notifier).reset();
     ref.read(tutorChatComposerControllerProvider.notifier).reset();
+    _invalidateTutorWorkspaceProviders();
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
@@ -117,6 +130,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
       await ref.read(crashReportingServiceProvider).setUser(null);
       await ref.read(authServiceProvider).signOut();
       state = const AsyncData(null);
+      _invalidateTutorWorkspaceProviders();
       ref.invalidate(authStateProvider);
       ref.invalidate(notificationsProvider);
     } catch (error, stack) {
@@ -860,7 +874,8 @@ String friendlyError(Object error) {
       error is TutorApplicationException ||
       error is TutorUnauthorizedException ||
       error is TutorResourceNotFoundException ||
-      error is TutorBackendRulesDependencyException) {
+      error is TutorBackendRulesDependencyException ||
+      error is TutorNetworkException) {
     return error.toString();
   }
   if (error is FirebaseException) {
