@@ -20,6 +20,7 @@ import '../services/firebase_bootstrap.dart';
 import '../services/matching_service.dart';
 import '../services/notification_service.dart';
 import '../services/remote_config_service.dart';
+import '../services/tutor_application_api.dart';
 import '../services/tutor_application_service.dart';
 import '../services/tutor_repository.dart';
 import '../services/tutor_workspace_service.dart';
@@ -69,6 +70,7 @@ final tutorApplicationServiceProvider = Provider<TutorApplicationService?>(
       ? TutorApplicationService(
           FirebaseAuth.instance,
           FirebaseFirestore.instance,
+          api: TutorApplicationApi(auth: FirebaseAuth.instance),
         )
       : null,
 );

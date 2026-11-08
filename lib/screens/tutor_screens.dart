@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -1348,12 +1349,8 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
     if (message.kind == 'trial_proposal' || message.kind == 'class_revision') {
       final isTrial = message.kind == 'trial_proposal';
       final proposal = message.payload;
-      final scheduleLine = [
-        if ((proposal['schedule'] as String?)?.trim().isNotEmpty == true)
-          (proposal['schedule'] as String).trim(),
-        if ((proposal['location'] as String?)?.trim().isNotEmpty == true)
-          (proposal['location'] as String).trim(),
-      ].join(' · ');
+      final scheduleLine = tutorProposalSummaryLine(proposal, isTrial: isTrial);
+      final status = tutorProposalStatus(proposal);
 
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
@@ -1401,16 +1398,15 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF3C7),
+                color: status.background,
                 borderRadius: BorderRadius.circular(BeeWiseRadius.full),
               ),
               child: Text(
-                (proposal['statusLabel'] as String?) ??
-                    'Chờ phụ huynh phản hồi',
-                style: const TextStyle(
+                status.label,
+                style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF92400E),
+                  color: status.foreground,
                 ),
               ),
             ),
@@ -3140,5 +3136,95 @@ class TutorNotificationScreen extends ConsumerWidget {
         ),
       ),
     ),
+  );
+}
+
+/// One-line summary of a consultant proposal, built from the fields the trusted
+/// backend really writes (trial: subject/date/time/location; class revision:
+/// subject/schedule/time/location). Empty when none of them is present.
+String tutorProposalSummaryLine(
+  Map<String, dynamic> proposal, {
+  required bool isTrial,
+}) {
+  String? text(String key) {
+    final value = proposal[key];
+    if (value is! String) return null;
+    final trimmed = value.trim();
+    return trimmed.isEmpty ? null : trimmed;
+  }
+
+  final when = isTrial
+      ? [text('date'), text('time')].whereType<String>().join(' lúc ')
+      : [text('schedule'), text('time')].whereType<String>().join(' · ');
+  return [
+    text('subject'),
+    when.isEmpty ? null : when,
+    text('location'),
+  ].whereType<String>().join(' · ');
+}
+
+/// Parent-response state of a proposal for the tutor's read-only view.
+/// `payload.status` is written only by the backend; an unanswered proposal
+/// whose `expiresAt` has passed is shown as expired.
+({String label, Color background, Color foreground}) tutorProposalStatus(
+  Map<String, dynamic> proposal, {
+  DateTime? now,
+}) {
+  const waiting = (
+    background: Color(0xFFFEF3C7),
+    foreground: Color(0xFF92400E),
+  );
+  const done = (background: Color(0xFFD1FAE5), foreground: Color(0xFF065F46));
+  const neutral = (
+    background: Color(0xFFE5E7EB),
+    foreground: Color(0xFF374151),
+  );
+  switch (proposal['status']) {
+    case 'accepted':
+      return (
+        label: 'Phụ huynh đã đồng ý',
+        background: done.background,
+        foreground: done.foreground,
+      );
+    case 'confirmed':
+      return (
+        label: 'Phụ huynh đã xác nhận',
+        background: done.background,
+        foreground: done.foreground,
+      );
+    case 'alternate_requested':
+      return (
+        label: 'Phụ huynh đề xuất giờ khác',
+        background: waiting.background,
+        foreground: waiting.foreground,
+      );
+    case 'adjustment_requested':
+      return (
+        label: 'Phụ huynh yêu cầu điều chỉnh',
+        background: waiting.background,
+        foreground: waiting.foreground,
+      );
+    case 'superseded':
+      return (
+        label: 'Đã có đề xuất mới',
+        background: neutral.background,
+        foreground: neutral.foreground,
+      );
+  }
+  final expiresAt = proposal['expiresAt'];
+  final expiry = expiresAt is Timestamp
+      ? expiresAt.toDate()
+      : (expiresAt is DateTime ? expiresAt : null);
+  if (expiry != null && expiry.isBefore(now ?? DateTime.now())) {
+    return (
+      label: 'Đề xuất đã hết hạn',
+      background: neutral.background,
+      foreground: neutral.foreground,
+    );
+  }
+  return (
+    label: 'Chờ phụ huynh phản hồi',
+    background: waiting.background,
+    foreground: waiting.foreground,
   );
 }
