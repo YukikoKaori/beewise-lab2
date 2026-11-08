@@ -4,10 +4,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/tutor_workspace_models.dart';
 
 class TutorApplicationService {
-  TutorApplicationService(this._auth, this._firestore);
+  TutorApplicationService(
+    this._auth,
+    this._firestore, {
+    this.isResubmissionBackendAvailable = false,
+  });
 
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
+
+  /// Under current `firebase/firestore.rules` (`tutorApplications.update = false`)
+  /// and backend surface, direct client resubmission writes are blocked.
+  final bool isResubmissionBackendAvailable;
+
+  static const String resubmissionServerBlockMessage =
+      'Chức năng gửi lại hồ sơ cần bổ sung hiện yêu cầu xác thực từ máy chủ '
+      '(firestore.rules: tutorApplications.update = false). Hồ sơ gốc và lịch sử '
+      'duyệt được giữ nguyên; vui lòng liên hệ BeeWise để mở khóa cập nhật.';
 
   Future<String> submit({
     required String name,
@@ -111,7 +124,12 @@ class TutorApplicationService {
         );
       }
 
-      await currentUser.updateDisplayName(name.trim());
+      if (!isResubmissionBackendAvailable) {
+        throw const TutorApplicationException.ruleBlocked(
+          resubmissionServerBlockMessage,
+        );
+      }
+
       await docRef.update({
         'name': name.trim(),
         'phone': phone.trim(),
@@ -132,15 +150,14 @@ class TutorApplicationService {
           'previousRejectionReason': existing.rejectionReason!.trim(),
         'updatedAt': FieldValue.serverTimestamp(),
       });
+      await currentUser.updateDisplayName(name.trim());
       return uid;
     } on TutorApplicationException {
       rethrow;
     } on FirebaseException catch (error) {
       if (error.code == 'permission-denied') {
         throw const TutorApplicationException.ruleBlocked(
-          'Quyền cập nhật hồ sơ trực tiếp chưa được kích hoạt trên máy chủ '
-          '(firestore.rules: tutorApplications.update = false). '
-          'Vui lòng liên hệ BeeWise để được hỗ trợ mở khóa cập nhật.',
+          resubmissionServerBlockMessage,
         );
       }
       throw const TutorApplicationException(
