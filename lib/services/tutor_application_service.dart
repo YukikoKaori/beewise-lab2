@@ -86,6 +86,25 @@ class TutorApplicationService {
         return snapshot.data()?['status'] as String? ?? 'pending';
       });
 
+  /// Live full application data for status, review, and tutor profile screens.
+  Stream<TutorApplicationData?> watchApplicationData(String uid) => _firestore
+      .collection('tutorApplications')
+      .doc(uid)
+      .snapshots()
+      .map((snapshot) {
+        if (!snapshot.exists) return null;
+        return TutorApplicationData.fromMap(uid, snapshot.data() ?? {});
+      });
+
+  Future<TutorApplicationData?> getApplicationData(String uid) async {
+    final snapshot = await _firestore
+        .collection('tutorApplications')
+        .doc(uid)
+        .get();
+    if (!snapshot.exists) return null;
+    return TutorApplicationData.fromMap(uid, snapshot.data() ?? {});
+  }
+
   Future<String> status(String uid) async {
     final snapshot = await _firestore
         .collection('tutorApplications')
@@ -115,4 +134,80 @@ class TutorApplicationException implements Exception {
 
   @override
   String toString() => message;
+}
+
+class TutorApplicationData {
+  const TutorApplicationData({
+    required this.uid,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.qualification,
+    required this.introduction,
+    required this.subjects,
+    required this.grades,
+    required this.hourlyFee,
+    required this.areas,
+    required this.teachingModes,
+    required this.availability,
+    required this.status,
+    required this.verified,
+    required this.active,
+    this.createdAt,
+    this.rejectionReason,
+  });
+
+  final String uid;
+  final String name;
+  final String email;
+  final String phone;
+  final String qualification;
+  final String introduction;
+  final List<String> subjects;
+  final List<String> grades;
+  final int hourlyFee;
+  final List<String> areas;
+  final List<String> teachingModes;
+  final String availability;
+  final String status;
+  final bool verified;
+  final bool active;
+  final DateTime? createdAt;
+  final String? rejectionReason;
+
+  factory TutorApplicationData.fromMap(String uid, Map<String, dynamic> map) {
+    DateTime? parseDate(dynamic val) {
+      if (val is Timestamp) return val.toDate();
+      if (val is String) return DateTime.tryParse(val);
+      return null;
+    }
+
+    List<String> toList(dynamic val) {
+      if (val is Iterable) {
+        return val.map((e) => e.toString()).toList(growable: false);
+      }
+      return const [];
+    }
+
+    return TutorApplicationData(
+      uid: uid,
+      name: map['name'] as String? ?? '',
+      email: map['email'] as String? ?? '',
+      phone: map['phone'] as String? ?? '',
+      qualification: map['qualification'] as String? ?? '',
+      introduction: map['introduction'] as String? ?? '',
+      subjects: toList(map['subjects']),
+      grades: toList(map['grades']),
+      hourlyFee: (map['hourlyFee'] as num?)?.round() ?? 0,
+      areas: toList(map['areas']),
+      teachingModes: toList(map['teachingModes']),
+      availability: map['availability'] as String? ?? '',
+      status: map['status'] as String? ?? 'pending',
+      verified: map['verified'] as bool? ?? false,
+      active: map['active'] as bool? ?? false,
+      createdAt: parseDate(map['createdAt']),
+      rejectionReason:
+          map['rejectionReason'] as String? ?? map['feedback'] as String?,
+    );
+  }
 }
