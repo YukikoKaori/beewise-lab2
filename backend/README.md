@@ -96,6 +96,38 @@ watcher (`WORKFLOW_WATCHER=1`) fills in what the tutor screens list, all idempot
 | `classes/{id}` | `parentName`, `consultantName`, `hourlyFee`, `hoursPerSession`, `totalSessions`, `totalAmount` | The confirmed class revision and invoice |
 | `classes/{id}` | `sessions[]` (dated lessons) | Generated from `startDate`, the `schedule` weekdays, `time` and `sessions` of the revision, in Vietnam time. If the terms cannot be turned into dates reliably (e.g. no `sessions` count) the array is empty: sessions are never invented and a verified payment is never blocked |
 
+## In-app notifications (`users/{uid}/notifications`)
+
+The watcher writes a short notice to the recipient's inbox when something they care about
+happens. The app reads it live (Firestore Rules: owner read-only, clients never write) and
+shows it in "Thông báo" next to the push notifications stored on the device. Idempotent: a
+marker (`lastNotifiedStatus`) on the source document changes in the same transaction, so
+restarts never repeat a notice, while a genuinely new state (e.g. `needs_info` again) notifies
+again.
+
+| Event | Who is told |
+|---|---|
+| Application approved / approved but not active / needs info / rejected | the applicant (route `/tutor/pending` or `/tutor/home`) |
+| Parent sends a connection request | the tutor |
+| Consultant joins the chat | parent and tutor |
+| Trial proposed / accepted / other time requested | parent (proposed) and tutor |
+| Class revision pending / adjustment requested | parent / tutor |
+| Invoice issued | parent |
+| Payment verified (`schedule_confirmed`) | parent and tutor (route to the class) |
+
+## After paying with payOS
+
+payOS redirects the parent's browser to `GET /v1/payos/return` (or `/cancel`). The page never
+proves payment: it only asks payOS about that order (throttled per order) and then sends the
+parent **back into the app** with the Android link `beewise://app/payment/<invoiceId>` (an
+`intent://` link is tried automatically, and a big "Mở lại ứng dụng BeeWise" button is the
+fallback). The app re-checks on its own when it comes back and jumps to the official schedule
+the moment the invoice becomes verified.
+
+`PUBLIC_BASE_URL` **must be a URL the parent's phone can open** (HTTPS, e.g. a Cloudflare tunnel
+or a hosted server); it is what payOS redirects to. A dead URL leaves the parent on a browser
+error page after paying (the payment itself is still verified).
+
 For dated sessions, publish the class revision with the billing breakdown
 (`hoursPerSession`, `sessions`, e.g. see `examples/class-revision.json`).
 
