@@ -7,6 +7,7 @@ import { CONSULTANT_CLAIM } from '../../src/auth.js';
 import { ChatSummaryService } from '../../src/chat-summary-service.js';
 import { ConsultantService } from '../../src/consultant-service.js';
 import { createPayosGateway } from '../../src/payos-gateway.js';
+import { NotificationService } from '../../src/notification-service.js';
 import { PaymentService } from '../../src/payment-service.js';
 import { TutorApplicationService } from '../../src/tutor-application-service.js';
 import { FakePayos, TEST_CHECKSUM_KEY } from './fake-payos.js';
@@ -38,7 +39,8 @@ export function makeServices({ now } = {}) {
   });
   const tutorApplications = new TutorApplicationService({ db });
   const chatSummaries = new ChatSummaryService({ db });
-  return { payos, gateway, consultants, payments, tutorApplications, chatSummaries };
+  const notifications = new NotificationService({ db });
+  return { payos, gateway, consultants, payments, tutorApplications, chatSummaries, notifications };
 }
 
 export async function createUser(email, { consultant = false, displayName } = {}) {

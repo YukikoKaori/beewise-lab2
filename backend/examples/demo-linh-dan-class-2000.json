@@ -1,0 +1,14 @@
+{
+  "subject": "Toán lớp 6",
+  "goal": "Lấy lại căn bản",
+  "tutorName": "Nguyen Linh Dan",
+  "schedule": "Thứ 3, Thứ 5",
+  "time": "19:00 - 20:00",
+  "mode": "Trực tuyến",
+  "location": "Google Meet",
+  "startDate": "12/11/2026",
+  "lessonDuration": "60 phút",
+  "fee": 1000,
+  "hoursPerSession": 1,
+  "sessions": 2
+}

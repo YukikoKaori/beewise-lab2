@@ -153,8 +153,11 @@ class TutorHomeScreen extends ConsumerWidget {
     final dashboardAsync = ref.watch(tutorDashboardProvider);
     final notifications =
         ref.watch(notificationsProvider).asData?.value ?? const [];
+    final seenAt = ref.watch(notificationsSeenAtProvider);
     final hasNotifications = notifications.any(
-      (n) => n.recipientUid == null || n.recipientUid == uid,
+      (n) =>
+          (n.recipientUid == null || n.recipientUid == uid) &&
+          (seenAt == null || n.receivedAt.isAfter(seenAt)),
     );
 
     final tutorName = appData?.name.trim().isNotEmpty == true
@@ -416,7 +419,7 @@ class TutorHomeScreen extends ConsumerWidget {
                       const SizedBox(height: BeeWiseSpace.x3),
                     ] else if (dashboard.chats.isNotEmpty) ...[
                       Text(
-                        'Nhóm chat mới',
+                        'Nhóm chat',
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.w800),
                       ),
@@ -1092,7 +1095,7 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
                           children: [
                             Text(
                               summary.consultantName != null
-                                  ? 'Phụ huynh ${summary.parentName} · Tư vấn viên ${summary.consultantName}'
+                                  ? 'Phụ huynh ${summary.parentName} · ${tutorConsultantLabel(summary.consultantName!)}'
                                   : 'Phụ huynh ${summary.parentName}',
                               style: const TextStyle(
                                 fontSize: 12,
@@ -1270,7 +1273,7 @@ class _TutorChatScreenState extends ConsumerState<TutorChatScreen> {
                           decoration: InputDecoration(
                             hintText: session.canSendMessages
                                 ? 'Nhập tin nhắn...'
-                                : 'Đang chờ mở quyền gửi tin nhắn gia sư...',
+                                : 'Gia sư chưa thể gửi tin nhắn trong nhóm',
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 16,
                               vertical: 10,
@@ -2949,6 +2952,16 @@ class TutorNotificationScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final uid = ref.watch(currentAuthenticatedUidProvider);
     final notificationsAsync = ref.watch(notificationsProvider);
+    // Opening this screen counts as reading what is listed, which clears the bell's dot.
+    final seenAt = ref.watch(notificationsSeenAtProvider);
+    final hasUnseen = (notificationsAsync.asData?.value ?? const []).any(
+      (n) => seenAt == null || n.receivedAt.isAfter(seenAt),
+    );
+    if (hasUnseen) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(notificationsSeenAtProvider.notifier).markSeen();
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -3227,4 +3240,14 @@ String tutorProposalSummaryLine(
     background: waiting.background,
     foreground: waiting.foreground,
   );
+}
+
+/// "Tư vấn viên Lan", without doubling the prefix when the stored name already is one
+/// (the default consultant name is "Tư vấn viên BeeWise").
+String tutorConsultantLabel(String name) {
+  final trimmed = name.trim();
+  if (trimmed.isEmpty) return 'Tư vấn viên BeeWise';
+  return trimmed.toLowerCase().startsWith('tư vấn viên')
+      ? trimmed
+      : 'Tư vấn viên $trimmed';
 }

@@ -597,6 +597,17 @@ class WorkflowController extends Notifier<AsyncValue<void>> {
     });
   });
 
+  /// Re-checks payOS without touching the visible state: used when the app comes back from
+  /// the payment page or opens the invoice from a link. A failure is ignored on purpose; the
+  /// "check again" button remains for a manual retry and the invoice stream still updates.
+  Future<void> silentRefreshPaymentStatus(String invoiceId) async {
+    final api = ref.read(paymentApiProvider);
+    if (api == null || !api.configured) return;
+    try {
+      await api.reconcile(invoiceId);
+    } catch (_) {}
+  }
+
   Future<void> _run(Future<void> Function() action) async {
     state = const AsyncLoading();
     try {
