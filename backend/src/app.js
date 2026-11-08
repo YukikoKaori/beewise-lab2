@@ -4,10 +4,28 @@ import { HttpError } from './errors.js';
 
 const asyncRoute = (handler) => (req, res, next) => handler(req, res).catch(next);
 
-const page = (title, message) => `<!doctype html><html lang="vi"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title></head>
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const INVOICE_ID = /^[A-Za-z0-9_-]{1,128}$/;
+const APP_PACKAGE = 'com.beewise.beewise';
+
+/**
+ * Browser page shown after payOS. Its job is to bring the parent straight back into the app:
+ * an Android intent link is tried automatically and a big button is the reliable fallback
+ * (browsers may block automatic app launches without a tap).
+ */
+const returnPage = ({ title, message, invoiceId }) => {
+  const path = INVOICE_ID.test(invoiceId ?? '') ? `/payment/${invoiceId}` : '/messages';
+  const intent = `intent://app${path}#Intent;scheme=beewise;package=${APP_PACKAGE};end`;
+  const scheme = `beewise://app${path}`;
+  return `<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)}</title></head>
 <body style="font-family:sans-serif;max-width:480px;margin:48px auto;padding:0 16px;text-align:center">
-<h1 style="font-size:22px">${title}</h1><p>${message}</p></body></html>`;
+<h1 style="font-size:22px">${escapeHtml(title)}</h1><p>${escapeHtml(message)}</p>
+<p><a href="${intent}" style="display:inline-block;padding:14px 28px;background:#1e3ad6;color:#fff;border-radius:24px;text-decoration:none;font-weight:bold">Mở lại ứng dụng BeeWise</a></p>
+<p style="font-size:13px;color:#555">Nếu ứng dụng không tự mở, bấm nút trên hoặc <a href="${scheme}">thử liên kết này</a>.</p>
+<script>setTimeout(function(){ window.location.href = ${JSON.stringify(intent)}; }, 600);</script>
+</body></html>`;
+};
 
 /**
  * HTTP surface. Parents and staff authenticate with Firebase ID tokens; the
@@ -66,15 +84,27 @@ export function createApp({ auth, consultants, payments, tutorApplications, logg
     res.status(httpStatus).json(body);
   }));
 
-  // Redirect targets after checkout. Informational only: they never change state.
-  app.get('/v1/payos/return', (_req, res) => res.type('html').send(page(
-    'Đã quay lại từ trang thanh toán',
-    'Hãy mở lại ứng dụng BeeWise. Lịch học chỉ được mở sau khi hệ thống xác minh thanh toán với payOS.',
-  )));
-  app.get('/v1/payos/cancel', (_req, res) => res.type('html').send(page(
-    'Đã hủy thanh toán',
-    'Bạn có thể mở lại ứng dụng BeeWise và tạo lại liên kết thanh toán khi sẵn sàng.',
-  )));
+  // Redirect targets after checkout. They never change payment state themselves: the return page
+  // only asks payOS (see PaymentService.handleReturn) and then sends the parent back into the app.
+  app.get('/v1/payos/return', asyncRoute(async (req, res) => {
+    const info = await payments.handleReturn(req.query.orderCode).catch(() => null);
+    const paid = info && ['paid', 'paid_duplicate'].includes(info.orderStatus);
+    res.type('html').send(returnPage({
+      invoiceId: info?.invoiceId,
+      title: paid ? 'Thanh toán thành công' : 'Đang xác nhận thanh toán',
+      message: paid
+        ? 'BeeWise đã xác minh thanh toán với payOS. Lịch học chính thức đã được tạo.'
+        : 'Hệ thống đang xác minh thanh toán với payOS. Lịch học chỉ được mở sau khi xác minh xong; ứng dụng sẽ tự cập nhật.',
+    }));
+  }));
+  app.get('/v1/payos/cancel', asyncRoute(async (req, res) => {
+    const info = await payments.handleReturn(req.query.orderCode).catch(() => null);
+    res.type('html').send(returnPage({
+      invoiceId: info?.invoiceId,
+      title: 'Đã hủy thanh toán',
+      message: 'Bạn có thể mở lại ứng dụng BeeWise và thanh toán lại khi sẵn sàng. Lịch học chỉ được mở sau khi hệ thống xác minh thanh toán.',
+    }));
+  }));
 
   app.post('/v1/staff/chats/:chatId/claim', asyncRoute(async (req, res) => {
     res.json(await consultants.claimChat(await staff(req), req.params.chatId));
