@@ -2,6 +2,7 @@ import { createHash, randomInt } from 'node:crypto';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import { CHAT_STATUS } from './consultant-service.js';
 import { HttpError, badRequest, conflict, notFound, unavailable } from './errors.js';
+import { buildSessions } from './schedule.js';
 import { docId } from './validation.js';
 
 export const ORDER_STATUS = Object.freeze({
@@ -244,6 +245,7 @@ export class PaymentService {
       const revision = invoice
         ? (await tx.get(chatRef.collection('messages').doc(invoice.revisionId))).data()
         : null;
+      const chat = chatRef ? (await tx.get(chatRef)).data() : null;
       const stamp = { lastCheckedAt: FieldValue.serverTimestamp(), lastCheckSource: source, providerStatus: link.status };
 
       if (current.status === ORDER_STATUS.paid) {
@@ -307,6 +309,18 @@ export class PaymentService {
         activeOrderCode: null,
         classId,
       });
+      const classSessions = buildSessions({
+        classId,
+        tutorId: invoice.tutorId,
+        parentName: chat?.parentName,
+        subject: terms.subject,
+        location: terms.location,
+        startDate: terms.startDate,
+        schedule: terms.schedule,
+        time: terms.time,
+        lessonDuration: terms.lessonDuration,
+        sessions: terms.sessions,
+      });
       tx.set(this.db.collection('classes').doc(classId), {
         parentId: invoice.parentId,
         tutorId: invoice.tutorId,
@@ -324,9 +338,16 @@ export class PaymentService {
         location: terms.location ?? null,
         lessonDuration: terms.lessonDuration ?? null,
         totalFee: invoice.amount,
+        totalAmount: invoice.amount,
+        hourlyFee: terms.fee ?? null,
+        hoursPerSession: terms.hoursPerSession ?? null,
+        totalSessions: terms.sessions ?? null,
+        parentName: chat?.parentName ?? null,
+        consultantName: chat?.consultantName ?? null,
+        sessions: classSessions,
         createdAt: FieldValue.serverTimestamp(),
       });
-      tx.update(chatRef, { onboardingStatus: CHAT_STATUS.scheduleConfirmed, updatedAt: FieldValue.serverTimestamp() });
+      tx.update(chatRef, { onboardingStatus: CHAT_STATUS.scheduleConfirmed, classId, updatedAt: FieldValue.serverTimestamp() });
       tx.set(chatRef.collection('messages').doc(), {
         senderId: 'system', senderName: 'BeeWise', role: 'system', kind: 'system',
         body: 'Thanh toán đã được xác minh. Lịch học chính thức đã được tạo.',
