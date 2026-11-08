@@ -67,13 +67,41 @@ webhook-URL confirmation sample (`orderCode 123`) is acknowledged with `200`.
 | `POST /v1/payments/reconcile` `{invoiceId}` | Parent ID token | Re-check payOS (missed/late webhook) |
 | `POST /v1/payos/webhook` | payOS signature | Payment notification |
 | `GET /v1/payos/return`, `/v1/payos/cancel` | none | Informational pages only |
+| `POST /v1/tutor-applications/resubmit` `{name, phone, qualification, introduction, subjects, grades, hourlyFee, areas, teachingModes, availability}` | Applicant ID token | Fix a `needs_info` application; it returns to `pending`. Owner, email and status are never read from the body |
+| `POST /v1/staff/tutor-applications/:uid/publish` | Consultant ID token | Publish a fully approved application (`approved` + `verified` + `active`) to the public `tutors/{uid}` catalog |
 | `POST /v1/staff/chats/:chatId/claim` | Consultant ID token | Assign yourself to a valid waiting chat |
 | `POST /v1/staff/chats/:chatId/trial-proposals` `{payload, ttlHours?}` | Consultant | Publish trial proposal |
 | `POST /v1/staff/chats/:chatId/class-revisions` `{payload, ttlHours?}` | Consultant | Publish class revision |
 | `POST /v1/staff/chats/:chatId/responses/:proposalId/process` | Consultant | Consume a parent response |
 
 Set `WORKFLOW_WATCHER=1` to consume parent responses and "I paid" requests
-automatically (as the chat's assigned consultant, re-verified per event).
+automatically (as the chat's assigned consultant, re-verified per event). The
+watcher also keeps the public tutor catalog in step with tutor applications: staff
+approve an application by hand in the Firebase console (`status: approved`,
+`verified: true`, `active: true`) and the profile is published to `tutors/{uid}`;
+if approval is later revoked the profile is hidden (`active: false`). Without the
+watcher run `node scripts/staff.js publish-tutor <applicationUid>`.
+
+## Data the tutor workspace (T3/T4) reads
+
+Clients create a chat with only its structural fields and can never update it, so the
+watcher (`WORKFLOW_WATCHER=1`) fills in what the tutor screens list, all idempotently:
+
+| Where | Fields | Source |
+|---|---|---|
+| `chats/{id}` | `parentName`, `subjectSummary`, `areaSummary` | `parents/{id}.displayName`, the connection request's `learningGoal` / `area` (filled once, never overwritten) |
+| `chats/{id}` | `consultantName` | The consultant who claims the chat |
+| `chats/{id}` | `lastMessageText`, `lastMessageAt`, `lastMessageBy` | Newest message only (strictly newer wins, so replays are ignored) |
+| `chats/{id}` | `classId` | Set when a payment is verified |
+| `classes/{id}` | `parentName`, `consultantName`, `hourlyFee`, `hoursPerSession`, `totalSessions`, `totalAmount` | The confirmed class revision and invoice |
+| `classes/{id}` | `sessions[]` (dated lessons) | Generated from `startDate`, the `schedule` weekdays, `time` and `sessions` of the revision, in Vietnam time. If the terms cannot be turned into dates reliably (e.g. no `sessions` count) the array is empty: sessions are never invented and a verified payment is never blocked |
+
+For dated sessions, publish the class revision with the billing breakdown
+(`hoursPerSession`, `sessions`, e.g. see `examples/class-revision.json`).
+
+Security Rules let a fully approved tutor (`tutorApplications/{uid}`: `approved` +
+`verified` + `active`) **read** only the chats, messages and classes whose `tutorId` is
+their own UID. Tutors cannot write any of them.
 
 ## Run the tests (EMULATOR)
 
