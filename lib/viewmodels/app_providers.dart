@@ -82,6 +82,15 @@ final tutorApplicationStatusProvider = StreamProvider.family<String, String>((
   return service.watchStatus(uid);
 });
 
+final tutorApplicationDataProvider =
+    StreamProvider.family<TutorApplicationData?, String>((ref, uid) {
+      final service = ref.watch(tutorApplicationServiceProvider);
+      if (service == null) {
+        return Stream.error(const FirebaseNotConfiguredException());
+      }
+      return service.watchApplicationData(uid);
+    });
+
 final authStateProvider = StreamProvider<User?>((ref) {
   final auth = ref.watch(authServiceProvider);
   final analytics = ref.watch(analyticsServiceProvider);

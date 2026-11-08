@@ -502,9 +502,7 @@ class TutorAvatar extends StatelessWidget {
       foregroundImage: image == null || image.isEmpty
           ? null
           : NetworkImage(image),
-      onForegroundImageError: image == null || image.isEmpty
-          ? null
-          : (_, _) {},
+      onForegroundImageError: image == null || image.isEmpty ? null : (_, _) {},
       child: image == null || image.isEmpty
           ? Text(
               _initials(tutor.name),
