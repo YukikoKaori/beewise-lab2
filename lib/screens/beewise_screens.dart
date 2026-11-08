@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
@@ -2477,15 +2479,46 @@ class PaymentScreen extends ConsumerStatefulWidget {
   ConsumerState<PaymentScreen> createState() => _PaymentScreenState();
 }
 
-class _PaymentScreenState extends ConsumerState<PaymentScreen> {
+class _PaymentScreenState extends ConsumerState<PaymentScreen>
+    with WidgetsBindingObserver {
+  /// True once this screen opened a payOS checkout; only then does coming back to the app
+  /// mean "the parent may have paid" and trigger a verification with the server.
+  bool _checkoutOpened = false;
+  bool _verifiedHandled = false;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       ref.read(workflowControllerProvider.notifier).reset();
       ref.read(analyticsServiceProvider).detailViewed('invoice');
+      // Arriving here from the payOS return page (beewise://app/payment/<id>) or from a
+      // notification: quietly ask the server to re-check so the parent sees the result at once.
+      unawaited(
+        ref
+            .read(workflowControllerProvider.notifier)
+            .silentRefreshPaymentStatus(widget.invoiceId),
+      );
     });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState lifecycle) {
+    if (lifecycle == AppLifecycleState.resumed && _checkoutOpened && mounted) {
+      unawaited(
+        ref
+            .read(workflowControllerProvider.notifier)
+            .silentRefreshPaymentStatus(widget.invoiceId),
+      );
+    }
   }
 
   @override
@@ -2493,6 +2526,33 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
     final invoiceId = widget.invoiceId;
     final invoices = ref.watch(invoiceQueryProvider(invoiceId));
     final state = ref.watch(workflowControllerProvider);
+    // The server marks the invoice verified (webhook or re-check); the moment that reaches
+    // this screen, take the parent straight to the official schedule instead of leaving them
+    // to reload.
+    ref.listen(invoiceQueryProvider(invoiceId), (previous, next) {
+      final data = next.asData?.value.data();
+      final earlier = previous?.asData?.value.data();
+      // Only a pending -> verified change seen on this screen counts; reopening an invoice that
+      // was already paid must not throw the parent into the schedule.
+      if (data == null || earlier == null || earlier['status'] == 'verified') {
+        return;
+      }
+      if (_verifiedHandled) return;
+      final classId = data['classId'];
+      if (data['status'] == 'verified' &&
+          classId is String &&
+          classId.isNotEmpty) {
+        _verifiedHandled = true;
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Thanh toán thành công. Lịch học chính thức đã sẵn sàng.',
+            ),
+          ),
+        );
+        context.pushReplacement('/schedule/$classId');
+      }
+    });
     return BeeWiseScaffold(
       title: 'Thanh toán học phí',
       showBack: true,
@@ -2640,9 +2700,12 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 BeeWiseButton(
                   label: 'Thanh toán qua payOS',
                   loading: state.isLoading,
-                  onPressed: () => ref
-                      .read(workflowControllerProvider.notifier)
-                      .startPayOsCheckout(invoiceId),
+                  onPressed: () {
+                    _checkoutOpened = true;
+                    ref
+                        .read(workflowControllerProvider.notifier)
+                        .startPayOsCheckout(invoiceId);
+                  },
                 ),
                 const SizedBox(height: 8),
                 OutlinedButton.icon(
@@ -3133,64 +3196,41 @@ class ProfileScreen extends ConsumerWidget {
             icon: Icons.picture_as_pdf_outlined,
             children: [const _ReportActions()],
           ),
-          SectionCard(
-            title: 'Chẩn đoán lỗi',
-            icon: Icons.bug_report_outlined,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: () async {
-                      await ref
-                          .read(crashReportingServiceProvider)
-                          .recordHandled(
-                            StateError('BeeWise non-fatal diagnostic sample'),
-                            StackTrace.current,
-                            'Profile diagnostic button',
-                          );
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Đã gửi lỗi mẫu không nghiêm trọng tới Crashlytics.',
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    icon: const Icon(Icons.bug_report_outlined),
-                    label: const Text('Gửi lỗi mẫu'),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    'Ghi nhận một lỗi không nghiêm trọng',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: BeeWiseColors.muted,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              // Deliberate fatal crash is a demo-only control: it is compiled out
-              // of release builds so it cannot be triggered during normal use.
-              if (kDebugMode)
+          // Diagnostics exist for development only: a release build must not offer parents
+          // a button that files a fake error (or crashes the app) on purpose.
+          if (kDebugMode)
+            SectionCard(
+              title: 'Chẩn đoán lỗi',
+              icon: Icons.bug_report_outlined,
+              children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     OutlinedButton.icon(
-                      onPressed: () => ref
-                          .read(crashReportingServiceProvider)
-                          .triggerTestCrash(),
-                      icon: const Icon(Icons.warning_amber),
-                      label: const Text('Kiểm tra Crashlytics'),
+                      onPressed: () async {
+                        await ref
+                            .read(crashReportingServiceProvider)
+                            .recordHandled(
+                              StateError('BeeWise non-fatal diagnostic sample'),
+                              StackTrace.current,
+                              'Profile diagnostic button',
+                            );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Đã gửi lỗi mẫu không nghiêm trọng tới Crashlytics.',
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.bug_report_outlined),
+                      label: const Text('Gửi lỗi mẫu'),
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'Sẽ đóng ứng dụng (chỉ có ở bản debug)',
+                      'Ghi nhận một lỗi không nghiêm trọng',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
@@ -3201,8 +3241,34 @@ class ProfileScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-            ],
-          ),
+                // Deliberate fatal crash is a demo-only control: it is compiled out
+                // of release builds so it cannot be triggered during normal use.
+                if (kDebugMode)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      OutlinedButton.icon(
+                        onPressed: () => ref
+                            .read(crashReportingServiceProvider)
+                            .triggerTestCrash(),
+                        icon: const Icon(Icons.warning_amber),
+                        label: const Text('Kiểm tra Crashlytics'),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Sẽ đóng ứng dụng (chỉ có ở bản debug)',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: BeeWiseColors.muted,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+              ],
+            ),
           if (!firebaseReady) const FirebaseSetupNotice(),
         ], gap: BeeWiseSpace.x3),
       ),
