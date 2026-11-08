@@ -279,6 +279,15 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // In-app notification inbox. Written only by the trusted backend (Admin SDK); each
+    // signed-in user can read nothing but their own and clients can never create, edit or delete.
+    match /users/{userId}/notifications/{notificationId} {
+      allow read: if signedIn()
+        && request.auth.uid == userId
+        && request.auth.token.firebase.sign_in_provider != 'anonymous';
+      allow write: if false;
+    }
+
     match /classes/{classId} {
       allow read: if (isParent(resource.data.parentId)
         && resource.data.paymentStatus == 'verified')
