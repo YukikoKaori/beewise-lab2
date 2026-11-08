@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../models/tutor.dart';
 import '../models/chat_message.dart';
 import '../models/chat_preview.dart';
+import '../models/tutor_workspace_models.dart';
 import '../services/analytics_service.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
@@ -21,6 +22,7 @@ import '../services/notification_service.dart';
 import '../services/remote_config_service.dart';
 import '../services/tutor_application_service.dart';
 import '../services/tutor_repository.dart';
+import '../services/tutor_workspace_service.dart';
 import '../services/payment_api.dart';
 import '../services/workflow_service.dart';
 
@@ -82,6 +84,15 @@ final tutorApplicationStatusProvider = StreamProvider.family<String, String>((
   return service.watchStatus(uid);
 });
 
+final tutorApplicationDataProvider =
+    StreamProvider.family<TutorApplicationData?, String>((ref, uid) {
+      final service = ref.watch(tutorApplicationServiceProvider);
+      if (service == null) {
+        return Stream.error(const FirebaseNotConfiguredException());
+      }
+      return service.watchApplicationData(uid);
+    });
+
 final authStateProvider = StreamProvider<User?>((ref) {
   final auth = ref.watch(authServiceProvider);
   final analytics = ref.watch(analyticsServiceProvider);
@@ -93,6 +104,130 @@ final authStateProvider = StreamProvider<User?>((ref) {
     return user;
   });
 });
+
+final currentAuthenticatedUidProvider = Provider<String?>((ref) {
+  final user = ref.watch(authStateProvider).asData?.value;
+  if (user == null || user.isAnonymous) return null;
+  return user.uid;
+});
+
+final tutorWorkspaceServiceProvider = Provider<TutorWorkspaceService>((ref) {
+  final appService = ref.watch(tutorApplicationServiceProvider);
+  if (!ref.watch(firebaseReadyProvider) || appService == null) {
+    return const UnavailableTutorWorkspaceService();
+  }
+  return FirebaseTutorWorkspaceService(
+    FirebaseFirestore.instance,
+    FirebaseAuth.instance,
+    appService,
+  );
+});
+
+final tutorDashboardProvider = StreamProvider.autoDispose<TutorDashboardData>((
+  ref,
+) {
+  final uid = ref.watch(currentAuthenticatedUidProvider);
+  if (uid == null) {
+    return Stream.error(const TutorUnauthorizedException());
+  }
+  return ref.watch(tutorWorkspaceServiceProvider).watchDashboard(uid).map((
+    data,
+  ) {
+    if (data.tutorUid != null && data.tutorUid != uid) {
+      throw const TutorUnauthorizedException(
+        'Dữ liệu bảng điều khiển không khớp với tài khoản hiện tại.',
+      );
+    }
+    return data;
+  });
+});
+
+final tutorChatsProvider = StreamProvider.autoDispose<List<TutorChatSummary>>((
+  ref,
+) {
+  final uid = ref.watch(currentAuthenticatedUidProvider);
+  if (uid == null) {
+    return Stream.error(const TutorUnauthorizedException());
+  }
+  return ref
+      .watch(tutorWorkspaceServiceProvider)
+      .watchTutorChats(uid)
+      .map(
+        (chats) => chats.where((c) => c.tutorId == uid).toList(growable: false),
+      );
+});
+
+final tutorChatSessionProvider = StreamProvider.autoDispose
+    .family<TutorChatSession, String>((ref, chatId) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorChatSession(uid, chatId)
+          .map((session) {
+            if (session.summary.tutorId != uid) {
+              throw const TutorUnauthorizedException(
+                'Bạn không có quyền truy cập nhóm chat của gia sư khác.',
+              );
+            }
+            return session;
+          });
+    });
+
+final tutorClassDetailProvider = StreamProvider.autoDispose
+    .family<TutorClassRecord, String>((ref, classId) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorClass(uid, classId)
+          .map((record) {
+            if (record.tutorId != uid) {
+              throw const TutorUnauthorizedException(
+                'Bạn không có quyền truy cập lớp học của gia sư khác.',
+              );
+            }
+            return record;
+          });
+    });
+
+final tutorScheduleProvider =
+    StreamProvider.autoDispose<List<TutorLessonSession>>((ref) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorSchedule(uid)
+          .map(
+            (sessions) =>
+                sessions.where((s) => s.tutorId == uid).toList(growable: false),
+          );
+    });
+
+final tutorProfileViewProvider =
+    StreamProvider.autoDispose<TutorProfileViewData>((ref) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorProfile(uid)
+          .map((profile) {
+            if (profile.application.uid != uid) {
+              throw const TutorUnauthorizedException(
+                'Hồ sơ gia sư không khớp với tài khoản hiện tại.',
+              );
+            }
+            return profile;
+          });
+    });
 
 final tutorRepositoryProvider = Provider<TutorRepository>((ref) {
   if (!ref.watch(firebaseReadyProvider)) {

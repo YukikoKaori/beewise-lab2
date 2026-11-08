@@ -31,7 +31,9 @@ void main() {
   ) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: TutorAvatar(tutor: _tutor(avatarUrl: ''))),
+        home: Scaffold(
+          body: TutorAvatar(tutor: _tutor(avatarUrl: '')),
+        ),
       ),
     );
     expect(tester.takeException(), isNull);
