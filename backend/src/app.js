@@ -14,7 +14,7 @@ const page = (title, message) => `<!doctype html><html lang="vi"><head><meta cha
  * webhook authenticates with the payOS signature. No route trusts client-sent
  * owner IDs, amounts or statuses.
  */
-export function createApp({ auth, consultants, payments, logger = console, extraRoutes }) {
+export function createApp({ auth, consultants, payments, tutorApplications, logger = console, extraRoutes }) {
   const app = express();
   app.disable('x-powered-by');
   app.use(express.json({ limit: '32kb' }));
@@ -31,7 +31,25 @@ export function createApp({ auth, consultants, payments, logger = console, extra
     return requireConsultant(auth, token.uid);
   };
 
+  const applicant = async (req) => {
+    const token = await authenticate(auth, req.get('authorization'));
+    if (token.firebase?.sign_in_provider === 'anonymous') {
+      throw new HttpError(401, 'unauthenticated', 'Bạn cần đăng nhập để cập nhật hồ sơ.');
+    }
+    return token.uid;
+  };
+
   app.get('/healthz', (_req, res) => res.json({ ok: true }));
+
+  // The applicant is always the caller: the body never names an owner, status or email.
+  app.post('/v1/tutor-applications/resubmit', asyncRoute(async (req, res) => {
+    res.json(await tutorApplications.resubmit(await applicant(req), req.body));
+  }));
+  // Staff approve by hand in the console; this publishes the approved profile to the catalog.
+  app.post('/v1/staff/tutor-applications/:uid/publish', asyncRoute(async (req, res) => {
+    await staff(req);
+    res.json(await tutorApplications.publish(req.params.uid));
+  }));
 
   app.post('/v1/payments/checkout', asyncRoute(async (req, res) => {
     const uid = await parent(req);

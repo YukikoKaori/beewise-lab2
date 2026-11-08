@@ -1913,6 +1913,84 @@ void main() {
       },
     );
 
+    test('watchTutorProfile delivers the first application snapshot (no lost first event) for a missing, blocked or published catalog profile', () async {
+      final mockAuth = _MockAuth();
+      final mockStore = _MockFirestore();
+      final mockTutors = _MockCollection();
+      final mockDoc = _MockDoc();
+      final user = _fakeUser('tutor_a');
+      when(() => mockAuth.currentUser).thenAnswer((_) => user);
+      when(() => mockAuth.authStateChanges())
+          .thenAnswer((_) => Stream<User?>.value(user));
+      when(() => mockStore.collection('tutors')).thenReturn(mockTutors);
+      when(() => mockTutors.doc('tutor_a')).thenReturn(mockDoc);
+
+      final appService = _FakeTutorApplicationService(
+        applications: {
+          'tutor_a': _sampleApplication(
+            uid: 'tutor_a',
+            name: 'Gia sư A',
+            status: 'approved',
+            verified: true,
+            active: true,
+          ),
+        },
+      );
+      final service = FirebaseTutorWorkspaceService(
+        mockStore,
+        mockAuth,
+        appService,
+      );
+
+      Future<TutorProfileViewData> firstProfile() => service
+          .watchTutorProfile('tutor_a')
+          .first
+          .timeout(
+            const Duration(seconds: 2),
+            onTimeout: () => throw StateError(
+              'watchTutorProfile never emitted (first application snapshot lost)',
+            ),
+          );
+
+      // 1. Public catalog document does not exist yet.
+      final missing = _MockSnapshot();
+      when(() => missing.exists).thenReturn(false);
+      when(() => mockDoc.snapshots()).thenAnswer((_) => Stream.value(missing));
+      var profile = await firstProfile();
+      expect(profile.application.uid, 'tutor_a');
+      expect(profile.publicCatalogState, TutorDataSourceState.emptyVerified);
+
+      // 2. Rules deny reading the catalog document (what the live app hit).
+      when(() => mockDoc.snapshots()).thenAnswer(
+        (_) => Stream.error(
+          FirebaseException(
+            plugin: 'cloud_firestore',
+            code: 'permission-denied',
+          ),
+        ),
+      );
+      profile = await firstProfile();
+      expect(profile.application.uid, 'tutor_a');
+      expect(profile.publicCatalogState, TutorDataSourceState.rulesBlocked);
+
+      // 3. Published profile.
+      final published = _MockSnapshot();
+      when(() => published.exists).thenReturn(true);
+      when(() => published.id).thenReturn('tutor_a');
+      when(() => published.data()).thenReturn({
+        'name': 'Gia sư A',
+        'active': true,
+        'verified': true,
+        'reviewCount': 3,
+        'rating': 4.8,
+      });
+      when(() => mockDoc.snapshots())
+          .thenAnswer((_) => Stream.value(published));
+      profile = await firstProfile();
+      expect(profile.publicCatalogState, TutorDataSourceState.populated);
+      expect(profile.publicCatalogProfile?.reviewCount, 3);
+    });
+
     test('FirebaseTutorWorkspaceService never converts permission-denied to empty list, invalidates on User A -> User B switch, and cancels inner listeners on permission revocation without duplicates', () async {
       final mockAuth = _MockAuth();
       final mockStore = _MockFirestore();

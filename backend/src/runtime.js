@@ -2,9 +2,11 @@ import { getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 import { loadConfig, payosConfigured } from './config.js';
+import { ChatSummaryService } from './chat-summary-service.js';
 import { ConsultantService } from './consultant-service.js';
 import { createPayosGateway, createUnconfiguredGateway } from './payos-gateway.js';
 import { PaymentService } from './payment-service.js';
+import { TutorApplicationService } from './tutor-application-service.js';
 
 /** Wires Admin SDK + services from the environment (credentials via ADC). */
 export function createRuntime(env = process.env, overrides = {}) {
@@ -23,5 +25,7 @@ export function createRuntime(env = process.env, overrides = {}) {
     now: overrides.now,
     nextOrderCode: overrides.nextOrderCode,
   });
-  return { config, db, auth, gateway, consultants, payments };
+  const tutorApplications = new TutorApplicationService({ db });
+  const chatSummaries = new ChatSummaryService({ db });
+  return { config, db, auth, gateway, consultants, payments, tutorApplications, chatSummaries };
 }

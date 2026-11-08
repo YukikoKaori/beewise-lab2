@@ -4,9 +4,11 @@ import { getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { FieldValue, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { CONSULTANT_CLAIM } from '../../src/auth.js';
+import { ChatSummaryService } from '../../src/chat-summary-service.js';
 import { ConsultantService } from '../../src/consultant-service.js';
 import { createPayosGateway } from '../../src/payos-gateway.js';
 import { PaymentService } from '../../src/payment-service.js';
+import { TutorApplicationService } from '../../src/tutor-application-service.js';
 import { FakePayos, TEST_CHECKSUM_KEY } from './fake-payos.js';
 
 export const PROJECT_ID = 'demo-beewise-workflow';
@@ -34,7 +36,9 @@ export function makeServices({ now } = {}) {
   const payments = new PaymentService({
     db, gateway, publicBaseUrl: 'https://beewise.test', now, nextOrderCode: () => ++orderSeq,
   });
-  return { payos, gateway, consultants, payments };
+  const tutorApplications = new TutorApplicationService({ db });
+  const chatSummaries = new ChatSummaryService({ db });
+  return { payos, gateway, consultants, payments, tutorApplications, chatSummaries };
 }
 
 export async function createUser(email, { consultant = false, displayName } = {}) {
@@ -90,14 +94,14 @@ export const staffOf = (user) => ({ uid: user.uid, displayName: 'Tư vấn viên
 /**
  * Runs the consultant flow up to an issued invoice. Returns ids for payment tests.
  */
-export async function issueInvoice({ consultants, parent, consultant, chatId = 'chat_1', requestId = 'req_1', totalFee }) {
+export async function issueInvoice({ consultants, parent, consultant, chatId = 'chat_1', requestId = 'req_1', totalFee, revision: revisionOverrides = {} }) {
   await seedIntake({ parentUid: parent.uid, chatId, requestId });
   const staff = staffOf(consultant);
   await consultants.claimChat(staff, chatId);
   const trial = await consultants.proposeTrial(staff, chatId, trialInput);
   await respond(chatId, trial.proposalId, parent.uid, 'trial_accepted');
   await consultants.processResponse(staff, chatId, trial.proposalId);
-  const revision = await consultants.proposeClassRevision(staff, chatId, { ...revisionInput, ...(totalFee ? { totalFee } : {}) });
+  const revision = await consultants.proposeClassRevision(staff, chatId, { ...revisionInput, ...(totalFee ? { totalFee } : {}), ...revisionOverrides });
   await respond(chatId, revision.proposalId, parent.uid, 'class_revision_confirmed');
   const processed = await consultants.processResponse(staff, chatId, revision.proposalId);
   return { chatId, staff, revisionId: revision.proposalId, invoiceId: processed.invoiceId };
