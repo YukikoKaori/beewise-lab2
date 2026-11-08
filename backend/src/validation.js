@@ -93,6 +93,57 @@ function billing(input) {
   return { hoursPerSession, sessions };
 }
 
+const TEACHING_MODES = new Set(['online', 'in_person']);
+
+/** Plain-string list: trimmed, non-empty, bounded, no duplicates. */
+export function stringList(value, field, { min = 1, max = 10, itemMax = 100 } = {}) {
+  if (!Array.isArray(value)) throw badRequest('invalid_argument', `${field} phải là danh sách.`);
+  const items = value.map((item) => {
+    if (typeof item !== 'string' || item.trim().length === 0 || item.trim().length > itemMax) {
+      throw badRequest('invalid_argument', `${field} chứa giá trị không hợp lệ.`);
+    }
+    return item.trim();
+  });
+  const unique = [...new Set(items)];
+  if (unique.length < min || unique.length > max) {
+    throw badRequest('invalid_argument', `${field} phải có từ ${min} đến ${max} mục.`);
+  }
+  return unique;
+}
+
+const boundedText = (value, field, min, max) => {
+  const parsed = text(value, field, { max });
+  if (parsed.length < min) throw badRequest('invalid_argument', `${field} phải có từ ${min} đến ${max} ký tự.`);
+  return parsed;
+};
+
+/**
+ * Editable tutor application fields. Mirrors the limits in firebase/firestore.rules
+ * (tutorApplications create) so a resubmission can never be looser than a first submission.
+ * Email and status are deliberately NOT accepted: they are never client-controlled here.
+ */
+export function tutorApplicationPayload(input = {}) {
+  if (!Number.isSafeInteger(input.hourlyFee) || input.hourlyFee < 1 || input.hourlyFee > 100_000_000) {
+    throw badRequest('invalid_argument', 'hourlyFee phải là số nguyên VND hợp lệ.');
+  }
+  const teachingModes = stringList(input.teachingModes, 'teachingModes', { max: 2 });
+  if (!teachingModes.every((item) => TEACHING_MODES.has(item))) {
+    throw badRequest('invalid_argument', 'teachingModes chỉ nhận online hoặc in_person.');
+  }
+  return {
+    name: boundedText(input.name, 'name', 2, 100),
+    phone: boundedText(input.phone, 'phone', 9, 20),
+    qualification: boundedText(input.qualification, 'qualification', 2, 300),
+    introduction: boundedText(input.introduction, 'introduction', 20, 1000),
+    subjects: stringList(input.subjects, 'subjects', { max: 10 }),
+    grades: stringList(input.grades, 'grades', { max: 12 }),
+    hourlyFee: input.hourlyFee,
+    areas: stringList(input.areas, 'areas', { max: 10 }),
+    teachingModes,
+    availability: boundedText(input.availability, 'availability', 2, 500),
+  };
+}
+
 export function ttlHours(value, fallback = 48) {
   if (value == null) return fallback;
   if (!Number.isInteger(value) || value < 1 || value > 24 * 14) {
