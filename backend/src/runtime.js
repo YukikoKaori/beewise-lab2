@@ -5,6 +5,7 @@ import { loadConfig, payosConfigured } from './config.js';
 import { ChatSummaryService } from './chat-summary-service.js';
 import { ConsultantService } from './consultant-service.js';
 import { createPayosGateway, createUnconfiguredGateway } from './payos-gateway.js';
+import { NotificationService } from './notification-service.js';
 import { PaymentService } from './payment-service.js';
 import { TutorApplicationService } from './tutor-application-service.js';
 
@@ -27,5 +28,6 @@ export function createRuntime(env = process.env, overrides = {}) {
   });
   const tutorApplications = new TutorApplicationService({ db });
   const chatSummaries = new ChatSummaryService({ db });
-  return { config, db, auth, gateway, consultants, payments, tutorApplications, chatSummaries };
+  const notifications = new NotificationService({ db });
+  return { config, db, auth, gateway, consultants, payments, tutorApplications, chatSummaries, notifications };
 }

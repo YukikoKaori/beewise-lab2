@@ -8,17 +8,21 @@ import { requireConsultant } from './auth.js';
  * reconciliation. Idempotency lives in the services, so duplicate snapshot
  * events and restarts are safe.
  */
-export function startWorkflowWatcher({ db, auth, consultants, payments, tutorApplications, chatSummaries, logger = console }) {
+export function startWorkflowWatcher({ db, auth, consultants, payments, tutorApplications, chatSummaries, notifications, logger = console }) {
   // Staff approve applications by hand in the console; keep the public catalog in step.
   // Any change to an application is re-synced: fully approved => publish, otherwise hide.
   const unsubscribeApplications = tutorApplications
     ? db.collection('tutorApplications').onSnapshot((snapshot) => {
       for (const change of snapshot.docChanges()) {
+        if (change.type === 'removed') continue;
         tutorApplications.sync(change.doc.id)
           .then((result) => {
             if (result.created || result.changed) logger.info?.('[watcher] tutor catalog', change.doc.id, result);
           })
-          .catch((error) => logger.warn?.('[watcher] tutor sync failed', change.doc.id, error?.code ?? error?.message));
+          .catch((error) => logger.warn?.('[watcher] tutor sync failed', change.doc.id, error?.code ?? error?.message))
+          // Tell the applicant about the review outcome, whether or not the catalog step applied.
+          .then(() => notifications?.notifyApplication(change.doc.id))
+          .catch((error) => logger.warn?.('[watcher] application notice failed', change.doc.id, error?.code ?? error?.message));
       }
     }, (error) => logger.error?.('[watcher] applications listener stopped', error?.message))
     : () => {};
@@ -29,7 +33,10 @@ export function startWorkflowWatcher({ db, auth, consultants, payments, tutorApp
       for (const change of snapshot.docChanges()) {
         if (change.type === 'removed') continue;
         chatSummaries.enrich(change.doc.id)
-          .catch((error) => logger.warn?.('[watcher] chat summary failed', change.doc.id, error?.code ?? error?.message));
+          .catch((error) => logger.warn?.('[watcher] chat summary failed', change.doc.id, error?.code ?? error?.message))
+          // After enrichment so the notice can name the parent.
+          .then(() => notifications?.notifyChat(change.doc.id))
+          .catch((error) => logger.warn?.('[watcher] chat notice failed', change.doc.id, error?.code ?? error?.message));
       }
     }, (error) => logger.error?.('[watcher] chats listener stopped', error?.message))
     : () => {};

@@ -56,8 +56,8 @@ class FirebaseTutorWorkspaceService implements TutorWorkspaceService {
   static const String tutorReadRuleLimitation = tutorRulesBlockedMessage;
 
   static const String tutorSendRuleReason =
-      'Chức năng gửi tin nhắn của gia sư đang chờ mở quyền trên máy chủ '
-      '(firestore.rules hiện chỉ cho phép canWriteAsParent trên chats/messages).';
+      'Trao đổi trong nhóm hiện do tư vấn viên BeeWise điều phối. '
+      'Tính năng nhắn tin dành cho gia sư sẽ được mở sau.';
 
   String? get _currentAuthUid {
     final user = _auth.currentUser;

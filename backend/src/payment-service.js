@@ -21,6 +21,7 @@ const TERMINAL = new Set([ORDER_STATUS.paid, ORDER_STATUS.paidDuplicate, ORDER_S
   ORDER_STATUS.cancelled, ORDER_STATUS.expired, ORDER_STATUS.failed]);
 
 const CREATING_LEASE_MS = 60_000;
+const RETURN_CHECK_INTERVAL_MS = 5_000;
 
 const RETRYABLE = new Set([401, 403, 408, 429]);
 
@@ -60,8 +61,35 @@ export class PaymentService {
     // Only the EMULATOR demo server overrides this (to its own local page).
     this.checkoutUrlPrefix = checkoutUrlPrefix;
     this.now = now;
+    this.returnChecks = new Map(); // orderCode -> last provider check from the return page
     // 13–14 digit codes fit payOS's integer orderCode and JS safe integers.
     this.nextOrderCode = nextOrderCode ?? (() => Number(`${Date.now() % 1e10}${randomInt(1000, 9999)}`));
+  }
+
+  /**
+   * What the browser landing page after payOS needs. It is never proof of payment: when the
+   * order is still open it only *asks payOS* (the same provider re-check as the webhook and the
+   * parent's "check again" button), throttled per order so the page cannot be used to hammer the
+   * provider. Unknown or malformed order codes yield null and reveal nothing.
+   */
+  async handleReturn(rawOrderCode) {
+    const text = String(rawOrderCode ?? '');
+    if (!/^\d{1,16}$/.test(text)) return null;
+    const orderRef = this.db.collection('paymentOrders').doc(text);
+    const order = (await orderRef.get()).data();
+    if (!order || typeof order.invoiceId !== 'string') return null;
+    let orderStatus = order.status;
+    const open = [ORDER_STATUS.pending, ORDER_STATUS.uncertain, ORDER_STATUS.creating].includes(order.status);
+    const last = this.returnChecks.get(text) ?? 0;
+    if (open && this.now().getTime() - last > RETURN_CHECK_INTERVAL_MS) {
+      this.returnChecks.set(text, this.now().getTime());
+      try {
+        orderStatus = (await this.settleOrder(Number(text), { source: 'return' })).orderStatus ?? orderStatus;
+      } catch {
+        // Provider unreachable: the app still re-checks on its own; the page just stays neutral.
+      }
+    }
+    return { invoiceId: order.invoiceId, orderStatus };
   }
 
   /** Returns a payOS checkout URL for the parent's own pending invoice (idempotent). */

@@ -423,3 +423,21 @@ test('parent access to chats and classes is unchanged', async () => {
   await assertFails(getDoc(doc(db('alice'), 'classes/no')));
   await assertFails(getDoc(doc(db('bob'), 'chats/c1')));
 });
+
+test('notification inbox is owner-read-only and never client-writable', async () => {
+  const {collection, query, orderBy, getDocs, addDoc} = require('firebase/firestore');
+  await seed({
+    'users/alice/notifications/n1': {recipientUid: 'alice', title: 'Xin chào', body: 'x', route: '/home', read: false},
+    'users/bob/notifications/n2': {recipientUid: 'bob', title: 'Của Bob', body: 'x', route: '/home', read: false},
+  });
+  await assertSucceeds(getDoc(doc(db('alice'), 'users/alice/notifications/n1')));
+  await assertSucceeds(getDocs(query(collection(db('alice'), 'users/alice/notifications'), orderBy('createdAt', 'desc'))).catch(() => getDocs(collection(db('alice'), 'users/alice/notifications'))));
+  await assertFails(getDoc(doc(db('alice'), 'users/bob/notifications/n2')));
+  await assertFails(getDoc(doc(db('bob'), 'users/alice/notifications/n1')));
+  await assertFails(getDoc(doc(env.unauthenticatedContext().firestore(), 'users/alice/notifications/n1')));
+  await assertFails(setDoc(doc(db('alice'), 'users/alice/notifications/forged'), {recipientUid: 'alice', title: 'Giả', body: 'x', route: '/home', read: false}));
+  await assertFails(addDoc(collection(db('alice'), 'users/alice/notifications'), {title: 'Giả'}));
+  await assertFails(updateDoc(doc(db('alice'), 'users/alice/notifications/n1'), {read: true}));
+  await assertFails(deleteDoc(doc(db('alice'), 'users/alice/notifications/n1')));
+  await assertFails(setDoc(doc(db('alice'), 'users/bob/notifications/forged'), {title: 'Giả'}));
+});
