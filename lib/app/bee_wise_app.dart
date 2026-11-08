@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../models/tutor_workspace_models.dart';
 import '../screens/beewise_screens.dart';
-import '../services/firebase_bootstrap.dart';
-import '../services/notification_service.dart';
 import '../screens/tutor_application_screens.dart';
 import '../screens/tutor_screens.dart';
-
+import '../services/firebase_bootstrap.dart';
+import '../services/notification_service.dart';
 import '../theme/bee_wise_theme.dart';
 import '../viewmodels/app_providers.dart';
 
@@ -23,6 +23,36 @@ class BeeWiseApp extends ConsumerStatefulWidget {
 class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
   late final GoRouter _router;
   StreamSubscription<BeeWiseNotification>? _notificationRouteSubscription;
+  ProviderSubscription<AsyncValue<dynamic>>? _tutorAppSubscription;
+  String? _watchedTutorUid;
+
+  void _syncTutorApplicationWatcher(String? uid) {
+    if (_watchedTutorUid == uid) return;
+    _tutorAppSubscription?.close();
+    _tutorAppSubscription = null;
+    _watchedTutorUid = uid;
+    if (uid != null) {
+      _tutorAppSubscription = ref.listenManual(
+        tutorApplicationDataProvider(uid),
+        (previous, next) {
+          final prevData = previous?.asData?.value;
+          final nextData = next.asData?.value;
+          if (prevData?.status != nextData?.status ||
+              prevData?.verified != nextData?.verified ||
+              prevData?.active != nextData?.active) {
+            _router.refresh();
+          }
+        },
+      );
+    }
+  }
+
+  String? _guestRedirectFor(String location) {
+    final isTutorProtected =
+        location == '/tutor' ||
+        (location.startsWith('/tutor/') && location != '/tutor/apply');
+    return isTutorProtected || location == '/account/check' ? '/login' : null;
+  }
 
   @override
   void initState() {
@@ -31,65 +61,84 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
       initialLocation: '/home',
       redirect: (context, state) async {
         final location = state.matchedLocation;
-        final user = ref.read(authStateProvider).asData?.value;
 
-        // 1. Guest
-        if (user == null) {
-          final isTutorProtected =
-              location.startsWith('/tutor/') && location != '/tutor/apply';
-          return isTutorProtected || location == '/account/check'
-              ? '/login'
+        while (true) {
+          final user = ref.read(authStateProvider).asData?.value;
+          final uid = user?.isAnonymous == false ? user!.uid : null;
+
+          // 1. Guest
+          if (uid == null) {
+            return _guestRedirectFor(location);
+          }
+
+          final service = ref.read(tutorApplicationServiceProvider);
+          if (service == null) return null;
+
+          AccountRoleResolution resolution;
+          try {
+            resolution = await service.resolveAccountRole(uid);
+          } catch (error) {
+            resolution = AccountRoleResolution(
+              kind: AccountRoleKind.unresolved,
+              uid: uid,
+              error: error,
+            );
+          }
+
+          if (!mounted) return null;
+          final latestUser = ref.read(authStateProvider).asData?.value;
+          final latestUid = latestUser?.isAnonymous == false
+              ? latestUser!.uid
               : null;
-        }
+          if (latestUid != uid) {
+            // Auth state changed while role resolution was in flight.
+            // Re-evaluate immediately for the current account (or guest)
+            // so stale User A redirects never apply to User B or logged-out state.
+            continue;
+          }
 
-        final service = ref.read(tutorApplicationServiceProvider);
-        if (service == null) return null;
-
-        try {
-          final isTutorApplicant = await service.hasApplication(user.uid);
-          if (isTutorApplicant) {
-            final status = await service.status(user.uid);
-
-            // 5. Approved Tutor
-            if (status == 'approved') {
-              // Approved tutors navigate freely in tutor sections;
-              // redirect apply or fallback check to tutor home
-              if (location == '/tutor/apply' || location == '/account/check') {
+          return switch (resolution.kind) {
+            AccountRoleKind.guest => _guestRedirectFor(location),
+            AccountRoleKind.parent => () {
+              final isBlockedTutorRoute =
+                  location == '/tutor' ||
+                  (location.startsWith('/tutor/') &&
+                      location != '/tutor/apply');
+              if (isBlockedTutorRoute || location == '/account/check') {
+                return '/home';
+              }
+              return null;
+            }(),
+            AccountRoleKind.pendingApplicant =>
+              location == '/tutor/pending' ? null : '/tutor/pending',
+            AccountRoleKind.needsInfoApplicant =>
+              (location == '/tutor/pending' ||
+                      location == '/tutor/apply' ||
+                      location == '/tutor/apply/edit')
+                  ? null
+                  : '/tutor/pending',
+            AccountRoleKind.rejectedApplicant =>
+              location == '/tutor/pending' ? null : '/tutor/pending',
+            AccountRoleKind.approvedPendingVerification =>
+              location == '/tutor/pending' ? null : '/tutor/pending',
+            AccountRoleKind.authorizedTutor => () {
+              if (location == '/tutor' ||
+                  location == '/tutor/apply' ||
+                  location == '/tutor/apply/edit' ||
+                  location == '/account/check' ||
+                  location == '/home' ||
+                  location == '/login' ||
+                  location == '/register' ||
+                  location == '/messages' ||
+                  location == '/profile') {
                 return '/tutor/home';
               }
               return null;
-            }
-
-            // 4. Tutor applicant requiring correction
-            if (status == 'needs_info' || status == 'rejected') {
-              if (location == '/tutor/pending' ||
-                  location == '/tutor/apply' ||
-                  location == '/tutor/profile') {
-                return null;
-              }
-              return '/tutor/pending';
-            }
-
-            // 3. Tutor applicant awaiting approval (pending)
-            if (location == '/tutor/pending' || location == '/tutor/profile') {
-              return null;
-            }
-            return '/tutor/pending';
-          }
-
-          // 2. Parent
-          // Non-tutor accounts should not enter protected tutor routes
-          if (location.startsWith('/tutor/') && location != '/tutor/apply') {
-            return '/home';
-          }
-          if (location == '/account/check') {
-            return '/home';
-          }
-        } catch (_) {
-          // 6. Unresolved / connection error
-          return location == '/account/check' ? null : '/account/check';
+            }(),
+            AccountRoleKind.unresolved =>
+              location == '/account/check' ? null : '/account/check',
+          };
         }
-        return null;
       },
       routes: [
         GoRoute(path: '/', redirect: (_, _) => '/home'),
@@ -115,10 +164,16 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
           builder: (_, state) =>
               RegisterScreen(tutorId: state.uri.queryParameters['tutorId']),
         ),
-        // T1 Tutor Registration
+        GoRoute(path: '/tutor', redirect: (_, _) => '/tutor/home'),
+        // T1 Tutor Registration & Needs-Info Resubmission
         GoRoute(
           path: '/tutor/apply',
           builder: (_, _) => const TutorApplicationScreen(),
+        ),
+        GoRoute(
+          path: '/tutor/apply/edit',
+          builder: (_, _) =>
+              const TutorApplicationScreen(isResubmissionRoute: true),
         ),
         // T2 Tutor Application Status
         GoRoute(
@@ -128,22 +183,23 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
         // T3 Tutor Home / Dashboard
         GoRoute(
           path: '/tutor/home',
-          builder: (_, state) => TutorHomeScreen(
-            forceEmptyState: state.uri.queryParameters['empty'] == 'true',
-          ),
+          builder: (_, _) => const TutorHomeScreen(),
         ),
         // T4 Tutor Group Chat
         GoRoute(
+          path: '/tutor/chats',
+          builder: (_, _) => const TutorChatScreen(),
+        ),
+        GoRoute(
           path: '/tutor/chats/:chatId',
-          builder: (_, state) => TutorChatScreen(
-            chatId: state.pathParameters['chatId'] ?? 'chat_lan_trang',
-          ),
+          builder: (_, state) =>
+              TutorChatScreen(chatId: state.pathParameters['chatId']),
         ),
         // T5 Tutor Class Detail
         GoRoute(
           path: '/tutor/class/:classId',
           builder: (_, state) => TutorClassDetailScreen(
-            classId: state.pathParameters['classId'] ?? 'class_toan9_lan',
+            classId: state.pathParameters['classId'] ?? '',
           ),
         ),
         // T6 Tutor Schedule
@@ -206,7 +262,12 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
         message: state.error?.toString() ?? 'Không tìm thấy màn hình.',
       ),
     );
-    ref.listenManual(authStateProvider, (_, _) => _router.refresh());
+    ref.listenManual(authStateProvider, (_, next) {
+      final user = next.asData?.value;
+      final uid = user?.isAnonymous == false ? user!.uid : null;
+      _syncTutorApplicationWatcher(uid);
+      _router.refresh();
+    }, fireImmediately: true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(remoteConfigInitializationProvider);
       ref.read(notificationInitializationProvider);
@@ -225,6 +286,7 @@ class _BeeWiseAppState extends ConsumerState<BeeWiseApp> {
   @override
   void dispose() {
     _notificationRouteSubscription?.cancel();
+    _tutorAppSubscription?.close();
     _router.dispose();
     super.dispose();
   }

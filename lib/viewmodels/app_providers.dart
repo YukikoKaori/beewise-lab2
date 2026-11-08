@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../models/tutor.dart';
 import '../models/chat_message.dart';
 import '../models/chat_preview.dart';
+import '../models/tutor_workspace_models.dart';
 import '../services/analytics_service.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
@@ -21,6 +22,7 @@ import '../services/notification_service.dart';
 import '../services/remote_config_service.dart';
 import '../services/tutor_application_service.dart';
 import '../services/tutor_repository.dart';
+import '../services/tutor_workspace_service.dart';
 import '../services/payment_api.dart';
 import '../services/workflow_service.dart';
 
@@ -101,6 +103,78 @@ final authStateProvider = StreamProvider<User?>((ref) {
     await crashReporting.setUser(uid);
     return user;
   });
+});
+
+final currentAuthenticatedUidProvider = Provider<String?>((ref) {
+  final user = ref.watch(authStateProvider).asData?.value;
+  if (user == null || user.isAnonymous) return null;
+  return user.uid;
+});
+
+final tutorWorkspaceServiceProvider = Provider<TutorWorkspaceService>((ref) {
+  final appService = ref.watch(tutorApplicationServiceProvider);
+  if (!ref.watch(firebaseReadyProvider) || appService == null) {
+    return const UnavailableTutorWorkspaceService();
+  }
+  return FirebaseTutorWorkspaceService(
+    FirebaseFirestore.instance,
+    FirebaseAuth.instance,
+    appService,
+  );
+});
+
+final tutorDashboardProvider = StreamProvider<TutorDashboardData>((ref) {
+  final uid = ref.watch(currentAuthenticatedUidProvider);
+  if (uid == null) {
+    return Stream.error(const TutorUnauthorizedException());
+  }
+  return ref.watch(tutorWorkspaceServiceProvider).watchDashboard(uid);
+});
+
+final tutorChatsProvider = StreamProvider<List<TutorChatSummary>>((ref) {
+  final uid = ref.watch(currentAuthenticatedUidProvider);
+  if (uid == null) {
+    return Stream.error(const TutorUnauthorizedException());
+  }
+  return ref.watch(tutorWorkspaceServiceProvider).watchTutorChats(uid);
+});
+
+final tutorChatSessionProvider =
+    StreamProvider.family<TutorChatSession, String>((ref, chatId) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorChatSession(uid, chatId);
+    });
+
+final tutorClassDetailProvider =
+    StreamProvider.family<TutorClassRecord, String>((ref, classId) {
+      final uid = ref.watch(currentAuthenticatedUidProvider);
+      if (uid == null) {
+        return Stream.error(const TutorUnauthorizedException());
+      }
+      return ref
+          .watch(tutorWorkspaceServiceProvider)
+          .watchTutorClass(uid, classId);
+    });
+
+final tutorScheduleProvider = StreamProvider<List<TutorLessonSession>>((ref) {
+  final uid = ref.watch(currentAuthenticatedUidProvider);
+  if (uid == null) {
+    return Stream.error(const TutorUnauthorizedException());
+  }
+  return ref.watch(tutorWorkspaceServiceProvider).watchTutorSchedule(uid);
+});
+
+final tutorProfileViewProvider = StreamProvider<TutorProfileViewData>((ref) {
+  final uid = ref.watch(currentAuthenticatedUidProvider);
+  if (uid == null) {
+    return Stream.error(const TutorUnauthorizedException());
+  }
+  return ref.watch(tutorWorkspaceServiceProvider).watchTutorProfile(uid);
 });
 
 final tutorRepositoryProvider = Provider<TutorRepository>((ref) {
