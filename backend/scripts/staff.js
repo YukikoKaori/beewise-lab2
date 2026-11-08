@@ -19,6 +19,7 @@ const usage = `Usage: node scripts/staff.js <command> [...args]
   trial <staffEmail> <chatId> <file>    Publish a trial proposal from a JSON payload file
   revision <staffEmail> <chatId> <file> Publish a class revision from a JSON payload file
   process <staffEmail> <chatId> <proposalId>  Consume the parent response
+  publish-tutor <applicationUid>        Publish an approved application to the public tutor catalog
   reconcile <orderCode>                 Re-check one payOS order with the provider
   confirm-webhook <https-url>           Register the payOS webhook URL`;
 
@@ -50,6 +51,7 @@ const commands = {
     return consultants.proposeClassRevision(staffUid, chatId, await withTutorFee(runtime.db, chatId, json(file)));
   },
   process: async ([staff, chatId, proposalId]) => consultants.processResponse(await consultant(staff), chatId, proposalId),
+  'publish-tutor': async ([uid]) => runtime.tutorApplications.sync(uid),
   reconcile: async ([orderCode]) => payments.settleOrder(Number(orderCode), { source: 'operator' }),
   'confirm-webhook': async ([url]) => {
     if (!/^https:\/\//.test(url ?? '')) throw new Error('Webhook URL must be HTTPS.');

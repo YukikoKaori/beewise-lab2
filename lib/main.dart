@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app/bee_wise_app.dart';
+import 'models/tutor_workspace_models.dart';
 import 'services/firebase_bootstrap.dart';
 
 Future<void> main() async {
@@ -17,5 +18,18 @@ Future<void> main() async {
       return true;
     };
   }
-  runApp(const ProviderScope(child: BeeWiseApp()));
+  runApp(
+    ProviderScope(
+      // Riverpod 3 retries failed providers with backoff, which keeps screens
+      // on "loading" for a long time. Permission/ownership failures are not
+      // transient, so surface them immediately.
+      retry: (retryCount, error) =>
+          error is TutorBackendRulesDependencyException ||
+              error is TutorUnauthorizedException ||
+              error is TutorResourceNotFoundException
+          ? null
+          : ProviderContainer.defaultRetry(retryCount, error),
+      child: const BeeWiseApp(),
+    ),
+  );
 }

@@ -229,10 +229,10 @@ class FirebaseTutorWorkspaceService implements TutorWorkspaceService {
                 }
 
                 latestApp = app;
-                if (!appBroadcast.isClosed) {
-                  appBroadcast.add(app);
-                }
 
+                // Subscribe the inner stream BEFORE emitting on the broadcast
+                // controller; otherwise the first application snapshot is lost
+                // and consumers of `appStream` never receive it.
                 innerSub ??= buildStream(appBroadcast.stream).listen(
                   (data) {
                     if (controller.isClosed) return;
@@ -253,6 +253,10 @@ class FirebaseTutorWorkspaceService implements TutorWorkspaceService {
                     controller.addError(mapFirestoreError(error), stack);
                   },
                 );
+
+                if (!appBroadcast.isClosed) {
+                  appBroadcast.add(app);
+                }
               },
               onError: (Object error, StackTrace stack) {
                 if (controller.isClosed) return;
@@ -497,10 +501,18 @@ class FirebaseTutorWorkspaceService implements TutorWorkspaceService {
                       .listen(
                         (msgSnap) {
                           latestMessages = msgSnap.docs
-                              .map(
-                                (doc) =>
-                                    ChatMessage.fromMap(doc.id, doc.data()),
-                              )
+                              .map((doc) {
+                                // Firestore returns a Timestamp; ChatMessage
+                                // expects a DateTime (same as the parent chat).
+                                final data = Map<String, dynamic>.from(
+                                  doc.data(),
+                                );
+                                final createdAt = data['createdAt'];
+                                if (createdAt is Timestamp) {
+                                  data['createdAt'] = createdAt.toDate();
+                                }
+                                return ChatMessage.fromMap(doc.id, data);
+                              })
                               .toList(growable: false);
                           emitSessionIfReady();
                         },

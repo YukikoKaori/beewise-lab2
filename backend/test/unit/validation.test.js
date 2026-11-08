@@ -35,3 +35,26 @@ test('config defaults are safe and payOS requires all three secrets', () => {
   assert.equal(payosConfigured(config), false);
   assert.equal(payosConfigured(loadConfig({ PAYOS_CLIENT_ID: 'a', PAYOS_API_KEY: 'b', PAYOS_CHECKSUM_KEY: 'c' })), true);
 });
+
+import { tutorApplicationPayload } from '../../src/validation.js';
+
+const goodApplication = {
+  name: 'Nguyen Linh Dan', phone: '0387871708', qualification: 'Cử nhân Ngoại thương',
+  introduction: 'Ba năm kinh nghiệm dạy học cấp hai.', subjects: ['Toán', ' Lý ', 'Toán'], grades: ['6'],
+  hourlyFee: 180_000, areas: ['Quận 7'], teachingModes: ['online'], availability: 'Tối thứ 2',
+};
+
+test('tutor application payload trims, de-duplicates and mirrors the Rules limits', () => {
+  const parsed = tutorApplicationPayload(goodApplication);
+  assert.deepEqual(parsed.subjects, ['Toán', 'Lý']);
+  assert.equal(parsed.email, undefined);
+  assert.equal(parsed.status, undefined);
+  for (const bad of [
+    { name: 'A' }, { phone: '12345678' }, { introduction: 'quá ngắn' }, { introduction: 'x'.repeat(1001) },
+    { subjects: [] }, { subjects: Array.from({ length: 11 }, (_, i) => `m${i}`) }, { grades: 'lớp 6' },
+    { hourlyFee: 0 }, { hourlyFee: 1.5 }, { hourlyFee: '180000' }, { teachingModes: ['hybrid'] },
+    { teachingModes: ['online', 'in_person', 'online2'] }, { areas: [''] }, { availability: 'x' },
+  ]) {
+    assert.throws(() => tutorApplicationPayload({ ...goodApplication, ...bad }), `rejects ${JSON.stringify(bad)}`);
+  }
+});

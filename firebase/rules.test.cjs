@@ -352,3 +352,74 @@ test('exact consented demo remains unverified and owner-private; no general demo
   await assertFails(updateDoc(doc(db(),reportPath()),{sizeBytes:10}));
   await assertFails(deleteDoc(doc(db(),reportPath())));
 });
+
+const approvedTutor = (extra = {}) => ({...{name: 'Tutor', status: 'approved', verified: true, active: true}, ...extra});
+test('approved tutor reads only their own chats, messages and classes', async () => {
+  await seed({
+    'tutorApplications/tutor1': approvedTutor(),
+    'tutorApplications/tutor2': approvedTutor(),
+    'chats/c1': {parentId: 'alice', tutorId: 'tutor1'},
+    'chats/c1/messages/m1': {senderId: 'alice', role: 'parent', kind: 'text', body: 'hi'},
+    'chats/c2': {parentId: 'bob', tutorId: 'tutor2'},
+    'classes/k1': {parentId: 'alice', tutorId: 'tutor1', paymentStatus: 'pending'},
+    'classes/k2': {parentId: 'bob', tutorId: 'tutor2', paymentStatus: 'verified'},
+  });
+  await assertSucceeds(getDoc(doc(db('tutor1'), 'chats/c1')));
+  await assertSucceeds(getDoc(doc(db('tutor1'), 'chats/c1/messages/m1')));
+  await assertSucceeds(getDoc(doc(db('tutor1'), 'classes/k1')));
+  await assertFails(getDoc(doc(db('tutor1'), 'chats/c2')));
+  await assertFails(getDoc(doc(db('tutor1'), 'classes/k2')));
+  await assertFails(getDoc(doc(db('tutor2'), 'chats/c1/messages/m1')));
+});
+test('tutor workspace queries by own tutorId are allowed, other UIDs denied', async () => {
+  const {collection, query, where, getDocs} = require('firebase/firestore');
+  await seed({
+    'tutorApplications/tutor1': approvedTutor(),
+    'chats/c1': {parentId: 'alice', tutorId: 'tutor1'},
+    'classes/k1': {parentId: 'alice', tutorId: 'tutor1', paymentStatus: 'pending'},
+  });
+  await assertSucceeds(getDocs(query(collection(db('tutor1'), 'chats'), where('tutorId', '==', 'tutor1'))));
+  await assertSucceeds(getDocs(query(collection(db('tutor1'), 'classes'), where('tutorId', '==', 'tutor1'))));
+  await assertFails(getDocs(query(collection(db('tutor1'), 'chats'), where('tutorId', '==', 'tutor2'))));
+});
+test('pending, unverified, inactive, rejected tutors and non-tutors get no workspace access', async () => {
+  await seed({
+    'tutorApplications/pend': approvedTutor({status: 'pending'}),
+    'tutorApplications/unver': approvedTutor({verified: false}),
+    'tutorApplications/inact': approvedTutor({active: false}),
+    'tutorApplications/rej': approvedTutor({status: 'rejected'}),
+    'chats/cp': {parentId: 'alice', tutorId: 'pend'},
+    'chats/cu': {parentId: 'alice', tutorId: 'unver'},
+    'chats/ci': {parentId: 'alice', tutorId: 'inact'},
+    'chats/cr': {parentId: 'alice', tutorId: 'rej'},
+    'chats/cx': {parentId: 'alice', tutorId: 'nobody'},
+    'classes/kp': {parentId: 'alice', tutorId: 'pend', paymentStatus: 'verified'},
+  });
+  for (const [uid, chat] of [['pend', 'cp'], ['unver', 'cu'], ['inact', 'ci'], ['rej', 'cr'], ['nobody', 'cx']]) {
+    await assertFails(getDoc(doc(db(uid), `chats/${chat}`)));
+  }
+  await assertFails(getDoc(doc(db('pend'), 'classes/kp')));
+  await assertFails(getDoc(doc(env.unauthenticatedContext().firestore(), 'chats/cp')));
+});
+test('tutors remain read-only: no writes to chats, messages, classes or own approval', async () => {
+  await seed({
+    'tutorApplications/tutor1': approvedTutor(),
+    'chats/c1': {parentId: 'alice', tutorId: 'tutor1'},
+    'classes/k1': {parentId: 'alice', tutorId: 'tutor1', paymentStatus: 'pending'},
+  });
+  await assertFails(setDoc(doc(db('tutor1'), 'chats/c1/messages/m9'), {senderId: 'tutor1', role: 'tutor', kind: 'text', body: 'x', createdAt: serverTimestamp()}));
+  await assertFails(updateDoc(doc(db('tutor1'), 'classes/k1'), {paymentStatus: 'verified'}));
+  await assertFails(updateDoc(doc(db('tutor1'), 'chats/c1'), {tutorId: 'tutor1', parentId: 'tutor1'}));
+  await assertFails(updateDoc(doc(db('tutor1'), 'tutorApplications/tutor1'), {active: true}));
+});
+test('parent access to chats and classes is unchanged', async () => {
+  await seed({
+    'chats/c1': {parentId: 'alice', tutorId: 'tutor1'},
+    'classes/ok': {parentId: 'alice', tutorId: 'tutor1', paymentStatus: 'verified'},
+    'classes/no': {parentId: 'alice', tutorId: 'tutor1', paymentStatus: 'pending'},
+  });
+  await assertSucceeds(getDoc(doc(db('alice'), 'chats/c1')));
+  await assertSucceeds(getDoc(doc(db('alice'), 'classes/ok')));
+  await assertFails(getDoc(doc(db('alice'), 'classes/no')));
+  await assertFails(getDoc(doc(db('bob'), 'chats/c1')));
+});

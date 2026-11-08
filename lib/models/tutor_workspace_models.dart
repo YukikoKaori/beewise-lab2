@@ -163,11 +163,14 @@ class TutorChatSummary {
 
   String get onboardingStatusLabel => switch (onboardingStatus) {
     'connection_pending_consultant' => 'Đang chờ tư vấn viên tham gia',
+    'consultant_assigned' => 'Tư vấn viên đã tham gia nhóm',
     'trial_proposed' => 'Chờ phụ huynh xác nhận học thử',
     'trial_accepted' => 'Đã xác nhận lịch học thử',
+    'trial_reschedule_requested' => 'Phụ huynh đề xuất giờ học thử khác',
     'class_revision_pending' => 'Chờ phụ huynh xác nhận thông tin lớp',
-    'payment_pending' => 'Chờ phụ huynh thanh toán',
-    'verified' || 'active' => 'Lớp học đã xác nhận',
+    'class_adjustment_requested' => 'Phụ huynh yêu cầu điều chỉnh lớp',
+    'invoice_issued' || 'payment_pending' => 'Chờ phụ huynh thanh toán',
+    'schedule_confirmed' || 'verified' || 'active' => 'Lớp học đã xác nhận',
     _ => 'Đang trao đổi',
   };
 
@@ -427,10 +430,17 @@ class TutorClassRecord {
     final parentName = (map['parentName'] as String?)?.trim().isNotEmpty == true
         ? (map['parentName'] as String).trim()
         : 'Phụ huynh';
+    String? firstText(List<String> keys) {
+      for (final key in keys) {
+        final value = (map[key] as String?)?.trim();
+        if (value != null && value.isNotEmpty) return value;
+      }
+      return null;
+    }
+
     final location =
-        (map['locationSummary'] as String?)?.trim().isNotEmpty == true
-        ? (map['locationSummary'] as String).trim()
-        : ((map['area'] as String?)?.trim() ?? 'Chưa cập nhật địa điểm');
+        firstText(['locationSummary', 'location', 'area']) ??
+        'Chưa cập nhật địa điểm';
     final paymentStatus = map['paymentStatus'] as String? ?? 'pending';
     final rawStage = (map['onboardingStage'] as num?)?.round();
     final stage = rawStage != null
@@ -468,14 +478,18 @@ class TutorClassRecord {
       studentName: (map['studentName'] as String?)?.trim(),
       studentLevel: (map['studentLevel'] as String?)?.trim(),
       scheduleSummary:
-          (map['scheduleSummary'] as String?)?.trim().isNotEmpty == true
-          ? (map['scheduleSummary'] as String).trim()
-          : ((map['schedule'] as String?)?.trim() ?? 'Chưa cập nhật lịch học'),
+          firstText(['scheduleSummary']) ??
+          [
+            firstText(['schedule']),
+            firstText(['time']),
+          ].whereType<String>().join(' · ').trim().nullIfEmpty ??
+          'Chưa cập nhật lịch học',
       locationSummary: location,
-      hourlyFee: (map['hourlyFee'] as num?)?.round(),
+      hourlyFee: ((map['hourlyFee'] ?? map['fee']) as num?)?.round(),
       hoursPerSession: (map['hoursPerSession'] as num?)?.toDouble(),
-      totalSessions: (map['totalSessions'] as num?)?.round(),
-      totalAmount: (map['totalAmount'] as num?)?.round(),
+      totalSessions: ((map['totalSessions'] ?? map['sessionCount']) as num?)
+          ?.round(),
+      totalAmount: ((map['totalAmount'] ?? map['totalFee']) as num?)?.round(),
       consultantName: (map['consultantName'] as String?)?.trim(),
       paymentStatus: paymentStatus,
       onboardingStage: stage,
@@ -687,4 +701,8 @@ String _computeInitials(String raw, {required String fallback}) {
   final first = parts[parts.length - 2].characters.first;
   final second = parts.last.characters.first;
   return '$first$second'.toUpperCase();
+}
+
+extension on String {
+  String? get nullIfEmpty => isEmpty ? null : this;
 }
