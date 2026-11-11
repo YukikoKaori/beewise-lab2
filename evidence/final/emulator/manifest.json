@@ -172,6 +172,14 @@
       "observed": "the same verified invoice restored after process restart",
       "captured_at": "2026-11-11T20:50:26+00:00",
       "sha256": "fb21a9a7d6fbafa53ae2a4a21a2236d1ed39c9712324a9c71e8c635f7a0bec42"
+    },
+    {
+      "path": "screenshots/android-corrective-pdf-restarted.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp; existing emulator APK",
+      "observed": "restored the previously saved PDF after Android process restart",
+      "captured_at": "2026-11-12T04:15:35+07:00",
+      "sha256": "d46abcddf2a7982e1aa6d83cf7ac3da21da5d798204dfd5ef2f12f19f9b91695",
+      "apk_sha256": "94431a4dc93e0417190c5398a575ef3b4a73ce731fd14fc2bbbd63abe0672c26"
     }
   ],
   "payment_web_bundle_sha256": "82629eb4b0bfb2e67dc9f76305c068de880bf4e0246b656a4e75153038b2a286",

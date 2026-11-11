@@ -4,17 +4,17 @@ Baseline: `9b669b47b95909a308d9221ca74b2e22e3fda92f`. The rubric is the owner-su
 
 | Gate | Actual result | Boundary |
 |---|---|---|
-| Mobile build and native startup | Runtime APK built and ran on API 35, 360 × 800 dp | Local emulator build precedes the final chat-link and stepper copy adjustments. Local rebuild with those adjustments ran out of host disk space; candidate Android build still requires exact-HEAD CI. |
-| Mobile analyzer / tests | Clean; 180 tests passed | Includes offline typed AI contract tests, not provider proof |
+| Mobile build and native startup | EMULATOR_VERIFIED on API 35, 360 × 800 dp; prior [Android CI_PASS](https://github.com/YukikoKaori/beewise-lab2/actions/runs/43098665150/job/130784131580) on `62a4ba75ea271f99d142af40a9f900c31442cde4` | Emulator evidence uses the APK identified in the manifest, before this corrective. The earlier local rebuild ran out of disk; verify the corrective build on the exact PR HEAD. |
+| Mobile analyzer / tests | LOCAL_TEST_PASS; 181 tests | Includes offline typed AI contract tests, not provider proof |
 | Core and Web analyzer / tests | Clean; 3 core and 1 web test passed | Web release build also ran in Chrome on local Hosting |
 | Firestore Emulator | 75 passed | Role and ownership isolation, review/receipt coupling, listings, announcements, metadata-only PDF, VietQR and legacy compatibility |
 | Legacy backend on Auth/Firestore Emulators | 86 passed | Uses test provider doubles, no real charge |
-| ARTEMIS harness and startup scripts | 27 unique scenario definitions validated; 4 startup-script tests passed | No new ARTEMIS device suite; prior results retain their original scope |
+| ARTEMIS harness and startup scripts | ARTEMIS_FINAL_DEFERRED; static harness and startup script checks only | No Final ARTEMIS execution, spend or new PASS evidence. Deferred submission requirement; not a code merge gate. |
 | Web Google authorization | Emulator Google popup; denial without role, then staff Dashboard with three server counts and chart | Google OAuth, staff assignment and App Check on live Web not validated |
 | Cross-role mobile ↔ Web | One local Android-originated application, genuine Web approval, Android status changed while session remained open; private receipt and common announcement both rendered | 0/3 deployed runs; do not infer latency SLA from UI polling |
-| Native PDF | Android saved, opened in the system PDF viewer, and exposed one attachment in the share chooser. The app-private file matched the Firestore byte count; the server record contained only the seven metadata fields. A second parent had empty history after A signed out. | Synthetic parents and Firebase Emulator; no recipient selected in the share sheet |
+| Native PDF | EMULATOR_VERIFIED: Android saved, opened in the system PDF viewer, and exposed one attachment in the share chooser. The app-private file matched the metadata byte count; a second parent had empty history after A signed out. Corrective smoke reopened A's existing PDF after process restart. | Synthetic parents and Firebase Emulator; existing runtime APK and unchanged PDF code; no recipient selected in the share sheet |
 | Gemini Level 2 | Typed schema, invalid output handling, confirmation/filtering and offline fallback tested | No authorized provider call; live outputs, config switches and live analytics pending |
-| Deployment | NOT RUN | No production mutations or billing changes |
+| Deployment | DEPLOYMENT_PENDING_APPROVAL | No production mutations or billing changes |
 
 See the [local evidence manifest](../evidence/final/emulator/manifest.json) for receipt scope, runtime identities and hashes. Retest gates for production are in [final-deployment.md](final-deployment.md). Exact candidate CI is linked from the PR because CI observes a committed SHA.
 
@@ -35,7 +35,9 @@ See the [local evidence manifest](../evidence/final/emulator/manifest.json) for 
 2. Cached staff data could outlast role removal. The Web waits for a server role snapshot and uses a role-owned navigator so dialogs disappear when access is revoked. Firestore remains authoritative for writes.
 3. Sending raw free text could disclose contact information to the model. The app extracts allowlisted academic hints, rejects invalid structured output, and routes to editable manual filters if AI cannot run.
 4. Real emulator validation found that a label dropped the title of a general announcement and that approved status copy implied a public listing. Final labels now include the title and distinguish tutor access from public publication.
+5. Corrective audit: direct-write regressions reject acceptance without the exact amount, verification with the wrong transfer reference, and verification with a missing or mismatched recipient. The staff-issued first class offer supplies the price; parent confirmation explicitly binds that price before QR display. Actual posted credit remains a staff decision, never a Rules assertion.
+6. Corrective audit: the Level 2 parser rejects even schema-valid output values absent from the projected educational hints. Regression tests cover all six fields. No provider call was made.
 
 ## Next verification
 
-Confirm project/site, Google OAuth and App Check through read-only preflight. Obtain exact authorization for each cloud mutation and for the minimum genuine Gemini cases, then retain sanitized outputs and three independently timed deployed cross-role receipts. Run new ARTEMIS coverage with its own authorized scope.
+LIVE_VERIFICATION_PENDING: confirm project/site, Google OAuth and App Check through read-only preflight. Obtain exact authorization for each cloud mutation and genuine Gemini case, then retain sanitized outputs and three independently timed deployed cross-role receipts. Bank-app scanning and production bank-statement verification remain separate acceptance items.

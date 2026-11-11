@@ -1,6 +1,6 @@
 # Final deployment gate
 
-Status: **READY_FOR_OWNER_APPROVAL** for the reviewed local code and emulator build. Production bundle creation and deployment still depend on verified Web client configuration and an approved site.
+Status: **DEPLOYMENT_PENDING_APPROVAL**. Production bundle creation and deployment depend on verified Web client configuration and an approved site. A successful code CI run does not authorize deployment or verify live services.
 
 Target project: existing Firebase project `beewise-lab-3`, default database and the owner's designated Hosting site. No Firebase deployment was executed. The owner/operator must verify the authenticated CLI identity and exact site before approval; never infer site ownership from the project ID. Keep billing and existing AI provider/enforcement unchanged unless specifically approved.
 
@@ -10,3 +10,4 @@ Target project: existing Firebase project `beewise-lab-3`, default database and 
 4. After explicit approval of the verified site and bundle, from the repository root: `firebase deploy --only hosting --project beewise-lab-3 --config firebase.json` (only after confirming that the default site is the approved target; otherwise use a named verified target). This command does not deploy Rules/indexes. Never deploy the emulator bundle.
 5. Build the Final mobile APK with `BEEWISE_FINAL_FIRESTORE=true` after Rules/indexes are ready. Verify Web incognito, popup success and role denial, valid production App Check tokens on both clients and services, three deployed cross-role measurements, and separate authorized Gemini receipts. A successful local build does not verify deployment.
 6. Before enabling Final payments, obtain owner approval for the exact operator-only recipient configuration, validate its bank and scanner compatibility in an approved environment, and train reviewers to check actual posted credits. See [payment architecture](payment-architecture.md). No real transfer is part of this change.
+7. **ARTEMIS_FINAL_DEFERRED** by owner decision. This remains a Final submission requirement separate from the code PR; no Final ARTEMIS run or spend is part of this corrective.

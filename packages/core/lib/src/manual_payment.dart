@@ -199,6 +199,7 @@ class ManualPayments {
     required String id,
     required String uid,
     required bool accept,
+    int? acceptedAmount,
   }) {
     final payment = records.doc(id);
     final claim = payment.collection('reviews').doc().id;
@@ -207,7 +208,7 @@ class ManualPayments {
       final status = data?['status'];
       if (data?['parentId'] != uid ||
           (accept
-              ? status != 'offered'
+              ? status != 'offered' || acceptedAmount != (data?['amount'])
               : !['awaiting_transfer', 'rejected'].contains(status))) {
         throw const FormatException('Hóa đơn không còn ở trạng thái phù hợp.');
       }
@@ -217,6 +218,7 @@ class ManualPayments {
             ? {
                 'status': 'awaiting_transfer',
                 'acceptedAt': FieldValue.serverTimestamp(),
+                'acceptedAmount': acceptedAmount,
               }
             : {
                 'status': 'awaiting_verification',
@@ -237,6 +239,8 @@ class ManualPayments {
     String bankTransaction = '',
     int? matchedAmount,
     String matchedReference = '',
+    String matchedBankBin = '',
+    String matchedAccountNumber = '',
   }) {
     final payment = records.doc(id);
     final cleanBankTransaction = bankTransaction.trim().toUpperCase();
@@ -261,9 +265,11 @@ class ManualPayments {
         if (recipient == null ||
             matchedAmount != d['amount'] ||
             matchedReference != d['transferReference'] ||
+            matchedBankBin.trim() != recipient.bankBin ||
+            matchedAccountNumber.trim() != recipient.accountNumber ||
             !RegExp(r'^[A-Z0-9]{6,40}$').hasMatch(cleanBankTransaction)) {
           throw const FormatException(
-            'Đối chiếu lại số tiền, nội dung chuyển khoản và mã giao dịch ngân hàng.',
+            'Đối chiếu lại tài khoản nhận, số tiền, nội dung và mã giao dịch.',
           );
         }
         final receipt = '${recipient.bankBin}_$cleanBankTransaction';
@@ -299,6 +305,10 @@ class ManualPayments {
           'bankReceiptId': receipt,
           'matchedAmount': matchedAmount,
           'matchedReference': matchedReference,
+          'matchedRecipient': {
+            'bankBin': matchedBankBin.trim(),
+            'accountNumber': matchedAccountNumber.trim(),
+          },
         });
       } else {
         final trimmed = reason.trim();

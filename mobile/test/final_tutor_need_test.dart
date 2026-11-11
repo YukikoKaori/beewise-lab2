@@ -18,6 +18,29 @@ const response = {
 
 void main() {
   test(
+    'rejects invented values even when they are valid schema options',
+    () async {
+      for (final patch in [
+        {'subject': 'Vật lý'},
+        {'grade': 10},
+        {'location': 'Hà Nội'},
+        {'maxHourlyFee': 100000},
+        {'schedule': 'cuối tuần'},
+        {'teachingMode': 'online'},
+      ]) {
+        final parser = NeedNormalizer(
+          RemoteConfigService(null),
+          generate: (_, _, _) async => jsonEncode({...response, ...patch}),
+        );
+        await expectLater(
+          parser.parse('Toán lớp 9 ở Thủ Đức, học phí dưới 200k, buổi tối'),
+          throwsFormatException,
+        );
+      }
+    },
+  );
+
+  test(
     'provider receives learning hints without identities or unrelated numbers',
     () async {
       var count = 0;

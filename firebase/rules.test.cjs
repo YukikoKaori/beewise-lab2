@@ -633,15 +633,16 @@ function offerBatch(store, {id=manualChatA, reference=manualRefA, parentId='alic
   return b;
 }
 
-const acceptManual = (store, id=manualChatA) =>
-  updateDoc(doc(store,manualPath(id)),{status:'awaiting_transfer',acceptedAt:serverTimestamp()});
+const acceptManual = (store, id=manualChatA, acceptedAmount=150000) =>
+  updateDoc(doc(store,manualPath(id)),{status:'awaiting_transfer',acceptedAt:serverTimestamp(),acceptedAmount});
 const claimManual = (store, id=manualChatA, claim=manualClaimA) =>
   updateDoc(doc(store,manualPath(id)),{status:'awaiting_verification',claimId:claim,
     claimedAt:serverTimestamp(),rejectedReason:require('firebase/firestore').deleteField()});
 
 function decideManual(store, {id=manualChatA, claim=manualClaimA, staff='staff', parent='alice',
   ref=manualRefA, receipt='000000_FIXTURE00001', verify=true, withClass=true,
-  withAudit=true, amount=150000, reviewer=staff, reason='No matching bank entry',}={}) {
+  withAudit=true, withReceipt=true, amount=150000, matchedRecipient={bankBin:testRecipient.bankBin,accountNumber:testRecipient.accountNumber},
+  reviewer=staff, reason='No matching bank entry',}={}) {
   const b=writeBatch(store);
   const audit={invoiceId:id,claimId:claim,status:verify?'verified':'rejected',
     reviewedBy:reviewer,reviewedAt:serverTimestamp()};
@@ -650,8 +651,8 @@ function decideManual(store, {id=manualChatA, claim=manualClaimA, staff='staff',
       status:'verified',classId:`vietqr_${id}`,verifiedBy:staff,verifiedAt:serverTimestamp(),
       verificationMethod:'manual_bank_transfer',
     });
-    Object.assign(audit,{bankReceiptId:receipt,matchedAmount:amount,matchedReference:ref});
-    b.set(doc(store,`finalBankReceipts/${receipt}`),{invoiceId:id,claimId:claim});
+    Object.assign(audit,{bankReceiptId:receipt,matchedAmount:amount,matchedReference:ref,matchedRecipient});
+    if (withReceipt) b.set(doc(store,`finalBankReceipts/${receipt}`),{invoiceId:id,claimId:claim});
     if(withClass) b.set(doc(store,manualClass(id)),{
       invoiceId:id,chatId:id,parentId:parent,tutorId:'tutor',paymentStatus:'verified',
       subject:'Mathematics',tutorName:'Emulator Tutor',date:'2030-02-14',
@@ -680,11 +681,15 @@ test('VietQR issuance: trusted chat-bound offer and unique immutable reference',
   await assertFails(offerBatch(staff,{id:manualChatB,parentId:'bob'}).commit());
   await assertFails(acceptManual(bob));
   await assertFails(claimManual(alice));
+  await assertFails(acceptManual(alice,manualChatA,1));
+  await assertFails(updateDoc(doc(alice,manualPath()),{status:'awaiting_transfer',acceptedAt:serverTimestamp()}));
   await assertSucceeds(acceptManual(alice));
   await assertFails(updateDoc(doc(alice,manualPath()),{amount:1}));
+  await assertFails(updateDoc(doc(alice,manualPath()),{parentId:'bob',transferReference:manualRefB}));
   await assertFails(updateDoc(doc(alice,manualPath()),{recipient:{...testRecipient,accountNumber:'999999'}}));
   await assertFails(updateDoc(doc(alice,manualPath()),{status:'verified',verifiedBy:'alice'}));
   await assertFails(updateDoc(doc(staff,manualPath()),{amount:1}));
+  await assertFails(updateDoc(doc(staff,manualPath()),{recipient:{...testRecipient,accountNumber:'999999'}}));
 });
 
 test('VietQR approval atomically creates one canonical class; parent/tutor/revoked writes denied', async () => {
@@ -698,7 +703,12 @@ test('VietQR approval atomically creates one canonical class; parent/tutor/revok
   await assertFails(decideManual(staffDb('revoked'),{staff:'revoked'}).commit());
   await assertFails(decideManual(staffDb(),{withClass:false}).commit());
   await assertFails(decideManual(staffDb(),{withAudit:false}).commit());
+  await assertFails(decideManual(staffDb(),{withReceipt:false}).commit());
   await assertFails(decideManual(staffDb(),{amount:1}).commit());
+  await assertFails(decideManual(staffDb(),{ref:manualRefB}).commit());
+  await assertFails(decideManual(staffDb(),{matchedRecipient:null}).commit());
+  await assertFails(decideManual(staffDb(),{matchedRecipient:{bankBin:testRecipient.bankBin,accountNumber:'999999'}}).commit());
+  await assertFails(decideManual(staffDb(),{matchedRecipient:{bankBin:'999999',accountNumber:testRecipient.accountNumber}}).commit());
   await assertFails(decideManual(staffDb(),{reviewer:'admin'}).commit());
   await assertFails(setDoc(doc(db(),manualClass()),{parentId:'alice',paymentStatus:'verified'}));
   const results = await Promise.allSettled([
