@@ -5,9 +5,9 @@
   "web_js_sha256": "1955badeadf27074ed4ee93513c6364b297ea44885e3739f3bc21c9ccf2e6fd4",
   "android": {"scope": "production Firebase on Android emulator", "api": 35, "apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9"},
   "runs": {
-    "CR-01": "PENDING_OWNER_APPROVAL",
-    "CR-02": "PENDING_OWNER_APPROVAL",
-    "CR-03": "PENDING_OWNER_APPROVAL"
+    "CR-01": "VERIFIED_LIVE_STATUS_AND_OWNER_OBSERVED_INBOX",
+    "CR-02": "NOT_RUN",
+    "CR-03": "NOT_RUN"
   },
   "timings": null,
   "private_owner_capture_sha256": {
