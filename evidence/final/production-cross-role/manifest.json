@@ -3,14 +3,41 @@
   "firebase_project": "beewise-lab-3",
   "hosting": "https://beewise-lab-3.web.app/",
   "web_js_sha256": "1955badeadf27074ed4ee93513c6364b297ea44885e3739f3bc21c9ccf2e6fd4",
-  "android": {"scope": "production Firebase on Android emulator", "api": 35, "apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9"},
-  "runs": {
-    "CR-01": "VERIFIED_LIVE_STATUS_AND_OWNER_OBSERVED_INBOX",
-    "CR-02": "VERIFIED_LIVE_UI_STATUS_REASON_AND_RETURN_TO_PENDING",
-    "CR-03": "VERIFIED_LIVE_UI_STATUS_AND_REASON"
+  "android": {
+    "scope": "production Firebase on Android emulator",
+    "api": 35,
+    "apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9"
   },
-  "timings": null,
-  "web_authorization": {"ui": "VERIFIED_LIVE", "direct_rules_denial": "NOT_RUN"},
+  "runs": {
+    "CR-01": {
+      "status": "VERIFIED_LIVE_UI",
+      "outcome": "APPROVED",
+      "no_reload": "OWNER_OBSERVED",
+      "private_inbox": "OWNER_OBSERVED",
+      "independent_readback": "NOT_CAPTURED"
+    },
+    "CR-02": {
+      "status": "VERIFIED_LIVE_UI",
+      "outcome": "NEEDS_INFO_AND_RESUBMISSION",
+      "no_reload": "OWNER_OBSERVED",
+      "private_inbox": "RESTRICTED_BY_DESIGN",
+      "independent_readback": "NOT_CAPTURED"
+    },
+    "CR-03": {
+      "status": "VERIFIED_LIVE_UI",
+      "outcome": "REJECTED",
+      "no_reload": "OWNER_OBSERVED",
+      "private_inbox": "RESTRICTED_BY_DESIGN",
+      "independent_readback": "NOT_CAPTURED"
+    }
+  },
+  "appendix_c_propagation_timing": "NOT_MEASURED",
+  "additional_approval_repetitions": "NOT_RUN",
+  "independent_review_receipt_readback": "NOT_CAPTURED",
+  "web_authorization": {
+    "ui": "VERIFIED_LIVE_UI",
+    "direct_rules_denial": "NOT_RUN"
+  },
   "private_owner_capture_sha256": {
     "AI-01": "87cbbba7d4dadaff4b585c9e993b45901566b3d6bdaf5dad48f1a0179dfb8c76",
     "AI-02-edited": "fc3e4b7edc3ee87d8a1f15dd74f0a3ec9c86bda253c7f4322f4a8292c3e7f91b",

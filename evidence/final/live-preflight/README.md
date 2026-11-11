@@ -1,5 +1,7 @@
 # Final production preflight
 
+Historical snapshot. NOT_RUN or pending statuses below describe that stage; see [later production evidence](../production-cross-role/README.md) for current results.
+
 Source `d7fa5bea2ed5276c13ecd3739fa00257676c1242`; [main CI run 43104437452](https://github.com/YukikoKaori/beewise-lab2/actions/runs/43104437452), attempt 2, completed success on all five jobs. Attempt 1 failed at the backend watcher. The rerun does not establish the cause of that earlier failure.
 
 | Gate | Status | Observation |
