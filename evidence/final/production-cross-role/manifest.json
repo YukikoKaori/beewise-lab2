@@ -6,7 +6,7 @@
   "android": {"scope": "production Firebase on Android emulator", "api": 35, "apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9"},
   "runs": {
     "CR-01": "VERIFIED_LIVE_STATUS_AND_OWNER_OBSERVED_INBOX",
-    "CR-02": "NOT_RUN",
+    "CR-02": "VERIFIED_LIVE_UI_STATUS_REASON_AND_RETURN_TO_PENDING",
     "CR-03": "NOT_RUN"
   },
   "timings": null,
