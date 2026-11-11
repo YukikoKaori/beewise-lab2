@@ -441,3 +441,302 @@ test('notification inbox is owner-read-only and never client-writable', async ()
   await assertFails(deleteDoc(doc(db('alice'), 'users/alice/notifications/n1')));
   await assertFails(setDoc(doc(db('alice'), 'users/bob/notifications/forged'), {title: 'Giả'}));
 });
+
+// Final uses the Google sign-in provider and a verified ID-token email as well
+// as the role document; legacy consultant claims cannot confer reviewer access.
+const staffDb = (uid = 'staff', provider = 'google.com', verified = true) =>
+  env.authenticatedContext(uid, {
+    email: `${uid}@example.test`, email_verified: verified,
+    firebase: {sign_in_provider: provider},
+  }).firestore();
+const staffRoles = {'users/staff': {role: 'staff'}, 'users/admin': {role: 'admin'}};
+function reviewBatch(store, reviewer, status, reason, id = 'reviewReceipt0000001') {
+  const batch = writeBatch(store);
+  batch.update(doc(store, 'tutorApplications/alice'), {
+    status, verified: status === 'approved', active: status === 'approved',
+    reviewedBy: reviewer, reviewedAt: serverTimestamp(), reviewReason: reason, latestReviewId: id,
+  });
+  batch.set(doc(store, `tutorApplications/alice/reviews/${id}`), {
+    status, reviewerUid: reviewer, reason, createdAt: serverTimestamp(),
+  });
+  return batch;
+}
+
+test('Final roles: safe bootstrap, admin grant/revoke, no self promotion, wrong provider denied', async () => {
+  await seed(staffRoles);
+  const own = doc(db(), 'users/alice');
+  await assertFails(setDoc(own, {role: 'staff', displayName: 'Applicant'}));
+  await assertSucceeds(setDoc(own, {role: 'user', displayName: 'Applicant'}));
+  await assertSucceeds(getDoc(own));
+  await assertFails(getDoc(doc(db('bob'), 'users/alice')));
+  const rolePatch = {role: 'staff', roleChangedAt: serverTimestamp(), roleChangedBy: 'admin'};
+  await assertFails(updateDoc(own, rolePatch));
+  await assertFails(updateDoc(doc(staffDb('staff'), 'users/alice'), rolePatch));
+  await assertFails(updateDoc(doc(staffDb('admin'), 'users/admin'), {...rolePatch, role: 'user'}));
+  await assertFails(updateDoc(doc(staffDb('admin', 'password'), 'users/alice'), rolePatch));
+  await assertFails(updateDoc(doc(staffDb('admin', 'google.com', false), 'users/alice'), rolePatch));
+  await assertSucceeds(updateDoc(doc(staffDb('admin'), 'users/alice'), rolePatch));
+  await assertSucceeds(updateDoc(doc(staffDb('admin'), 'users/alice'), {...rolePatch, role: 'user'}));
+});
+
+test('Final review: only valid atomic review, one competing writer wins, receipt is owner-private and immutable', async () => {
+  await seed(staffRoles);
+  await assertSucceeds(setDoc(doc(db(), 'tutorApplications/alice'), application()));
+  await assertSucceeds(getDoc(doc(staffDb(), 'tutorApplications/alice')));
+  await assertFails(getDoc(doc(db('bob'), 'tutorApplications/alice')));
+  await assertFails(updateDoc(doc(staffDb(), 'tutorApplications/alice'), {status: 'approved', verified: true, active: true}));
+  await assertFails(reviewBatch(staffDb(), 'staff', 'rejected', '   ').commit());
+  await assertFails(reviewBatch(db(), 'alice', 'approved', 'Credentials checked').commit());
+  await assertFails(reviewBatch(staffDb('staff','password'), 'staff', 'approved', 'Credentials checked').commit());
+  const results = await Promise.allSettled([
+    reviewBatch(staffDb(), 'staff', 'approved', 'Credentials checked').commit(),
+    reviewBatch(staffDb('admin'), 'admin', 'rejected', 'Missing credential', 'reviewReceipt0000002').commit(),
+  ]);
+  if (results.filter(r => r.status === 'fulfilled').length !== 1) throw Error('Expected one committed review');
+  const app = await getDocFromServer(doc(db(), 'tutorApplications/alice'));
+  const path = `tutorApplications/alice/reviews/${app.data().latestReviewId}`;
+  await assertSucceeds(getDoc(doc(db(), path)));
+  await assertFails(getDoc(doc(db('bob'), path)));
+  await assertFails(deleteDoc(doc(staffDb(), path)));
+});
+
+test('Final resubmission: correct only needs-info using the same UID, retaining reviewer data', async () => {
+  await seed(staffRoles);
+  const own = doc(db(), 'tutorApplications/alice');
+  await assertSucceeds(setDoc(own, application()));
+  await assertSucceeds(reviewBatch(staffDb(), 'staff', 'needs_info', 'Clarify availability').commit());
+  const patch = {status: 'pending', updatedAt: serverTimestamp(), availability: 'Weekends'};
+  await assertFails(updateDoc(own, {...patch, reviewedBy: 'alice'}));
+  await assertFails(updateDoc(own, {...patch, email: 'bob@example.test'}));
+  await assertFails(updateDoc(own, {...patch, grades: [7]}));
+  await assertFails(updateDoc(doc(db('bob'), 'tutorApplications/alice'), patch));
+  await assertSucceeds(updateDoc(own, patch));
+  await assertSucceeds(reviewBatch(staffDb(), 'staff', 'approved', 'Credentials checked', 'reviewReceipt0000002').commit());
+});
+
+test('Final catalog: only approved UID, guarded archive and no privileged field or legacy demo edit', async () => {
+  await seed({...staffRoles, 'tutors/tutor_acd3824aa8734c63ac8827df': {active: true, verified: false, demoOnly: true}});
+  const managed = doc(staffDb(), 'tutors/alice');
+  const listing = {applicationUid: 'alice', managedByFinal: true, name: 'Test Tutor',
+    credential: 'Degree', introduction: 'Teaching secondary school mathematics.',
+    subjects: ['Toán'], grades: ['8'], hourlyFee: 300000, areas: ['Hà Nội'],
+    teachingModes: ['online'], availability: 'Evenings', active: true, verified: true,
+    publishedAt: serverTimestamp(), updatedAt: serverTimestamp()};
+  await assertFails(setDoc(managed, listing));
+  await assertSucceeds(setDoc(doc(db(), 'tutorApplications/alice'), application()));
+  await assertFails(setDoc(managed, listing));
+  await assertSucceeds(reviewBatch(staffDb(), 'staff', 'approved', 'Credentials checked').commit());
+  await assertFails(setDoc(managed, {...listing, applicationUid: 'bob'}));
+  await assertFails(setDoc(managed, {...listing, reviewCount: 100}));
+  await assertFails(setDoc(managed, {...listing, subjects: [{unexpected: true}]}));
+  await assertFails(setDoc(doc(db(), 'tutors/alice'), listing));
+  await assertSucceeds(setDoc(managed, listing));
+  await assertSucceeds(getDoc(doc(env.unauthenticatedContext().firestore(), 'tutors/alice')));
+  await assertFails(updateDoc(managed, {verified: false, updatedAt: serverTimestamp()}));
+  await assertFails(updateDoc(doc(staffDb(), 'tutors/tutor_acd3824aa8734c63ac8827df'), {active: false, updatedAt: serverTimestamp()}));
+  await assertSucceeds(updateDoc(managed, {active: false, updatedAt: serverTimestamp()}));
+  await assertFails(getDoc(doc(env.unauthenticatedContext().firestore(), 'tutors/alice')));
+  await assertSucceeds(getDoc(doc(db(), 'tutors/alice')));
+});
+
+test('Final announcements: signed-in published query, staff author and timestamp, revocation and immutable record', async () => {
+  await seed({...staffRoles, 'announcements/draft': {status: 'draft', title: 'Hidden'}});
+  const data = {status: 'published', title: 'Schedule update', body: 'Support hours changed.',
+    authorUid: 'staff', createdAt: serverTimestamp()};
+  const notice = doc(staffDb(), 'announcements/notice');
+  await assertFails(setDoc(doc(db(), 'announcements/notice'), {...data, authorUid: 'alice'}));
+  await assertFails(setDoc(notice, {...data, authorUid: 'admin'}));
+  await assertFails(setDoc(notice, {...data, body: ''}));
+  await assertSucceeds(setDoc(notice, data));
+  await assertSucceeds(getDoc(doc(db(), 'announcements/notice')));
+  await assertFails(getDoc(doc(db(), 'announcements/draft')));
+  await assertFails(getDoc(doc(env.unauthenticatedContext().firestore(), 'announcements/notice')));
+  await assertFails(updateDoc(notice, {body: 'Changed'}));
+  await seed({'users/staff': {role: 'user'}});
+  await assertFails(setDoc(doc(staffDb(), 'announcements/revoked'), data));
+});
+
+const localReportPath = (uid = 'alice') => `reports/${uid}/localFiles/${reportId}`;
+const localReport = (uid = 'alice', patch = {}) => ({
+  ownerUid: uid, reportId, tutorId: 'tutor',
+  fileName: `beewise-report-${reportId}.pdf`, contentType: 'application/pdf',
+  sizeBytes: 19356, createdAt: serverTimestamp(), ...patch,
+});
+test('Final PDF sync writes metadata only, isolated and immutable; legacy PDF remains readable', async () => {
+  await permittedTutor();
+  const alice = db(), bob = db('bob');
+  await assertSucceeds(setDoc(doc(alice,reportPath()),report()));
+  const target = doc(alice,localReportPath());
+  await assertSucceeds(setDoc(target, localReport()));
+  const saved = await assertSucceeds(getDocFromServer(target));
+  require('node:assert/strict').deepEqual(Object.keys(saved.data()).sort(),
+    ['contentType','createdAt','fileName','ownerUid','reportId','sizeBytes','tutorId']);
+  await assertSucceeds(getDocFromServer(doc(alice,reportPath())));
+  await assertFails(getDocFromServer(doc(bob,localReportPath())));
+  await assertFails(setDoc(doc(bob,localReportPath()), localReport()));
+  await assertFails(updateDoc(target,{sizeBytes:123}));
+  await assertFails(deleteDoc(target));
+  const guest = env.unauthenticatedContext().firestore();
+  const anonymous = env.authenticatedContext('alice',{firebase:{sign_in_provider:'anonymous'}}).firestore();
+  for (const store of [guest, anonymous]) {
+    await assertFails(getDocFromServer(doc(store,localReportPath())));
+    await assertFails(setDoc(doc(store,localReportPath('bob')),localReport('bob')));
+  }
+});
+
+test('Final PDF metadata denies bytes, path injection, foreign owners and applicant writes', async () => {
+  await permittedTutor();
+  const target = doc(db(),localReportPath());
+  for (const patch of [
+    {base64Data:'JVBERi0='}, {encoding:'base64'}, {localPath:'/data/file.pdf'},
+    {fileName:'../file.pdf'}, {ownerUid:'bob'}, {tutorId:'../tutor'},
+    {sizeBytes:512001}, {sizeBytes:0}, {createdAt:null},
+  ]) await assertFails(setDoc(target, localReport('alice',patch)));
+  await seed({'tutorApplications/alice':{status:'pending'}});
+  await assertFails(setDoc(target, localReport()));
+});
+
+const manualChatA = 'FinalChatCase0000001';
+const manualChatB = 'FinalChatCase0000002';
+const manualClaimA = 'ManualClaim000000001';
+const manualClaimB = 'ManualClaim000000002';
+const manualRefA = 'BWTESTREFERENCE001';
+const manualRefB = 'BWTESTREFERENCE002';
+const testRecipient = {bankBin:'000000', accountNumber:'000000000', accountHolder:'EMULATOR ONLY', instructions:''};
+const manualPath = (id=manualChatA) => `finalPayments/${id}`;
+const manualClass = (id=manualChatA) => `classes/vietqr_${id}`;
+const manualAudit = (id=manualChatA, claim=manualClaimA) => `${manualPath(id)}/reviews/${claim}`;
+
+async function seedManual() {
+  const chat = (parentId) => ({parentId,tutorId:'tutor',paymentMode:'manual_vietqr',onboardingStatus:'final_waiting_class_offer',consultantQueue:false});
+  await seed({
+    'users/staff':{role:'staff'}, 'users/admin':{role:'admin'}, 'users/revoked':{role:'user'},
+    'tutorApplications/tutor':{status:'approved',active:true,verified:true},
+    'tutors/tutor':{name:'Emulator Tutor',active:true,verified:true},
+    'settings/paymentRecipient':testRecipient,
+    [`chats/${manualChatA}`]:chat('alice'), [`chats/${manualChatB}`]:chat('bob'),
+    'invoices/legacy-verified':{parentId:'alice',status:'verified',classId:'legacy-class'},
+    'classes/legacy-class':{parentId:'alice',tutorId:'tutor',paymentStatus:'verified'},
+  });
+}
+
+function offerBatch(store, {id=manualChatA, reference=manualRefA, parentId='alice', staff='staff', patch={}, reserve=true}={}) {
+  const b=writeBatch(store);
+  b.set(doc(store,manualPath(id)),{
+    invoiceId:id,chatId:id,parentId,tutorId:'tutor',subject:'Mathematics',tutorName:'Emulator Tutor',
+    date:'2030-02-14',time:'18:30',location:'Online',amount:150000,currency:'VND',
+    recipient:testRecipient,transferReference:reference,
+    expiresAt:Timestamp.fromMillis(Date.now()+86400000),
+    createdAt:serverTimestamp(),offeredBy:staff,status:'offered',...patch,
+  });
+  if (reserve) b.set(doc(store,`finalTransferReferences/${reference}`),{invoiceId:id});
+  return b;
+}
+
+const acceptManual = (store, id=manualChatA) =>
+  updateDoc(doc(store,manualPath(id)),{status:'awaiting_transfer',acceptedAt:serverTimestamp()});
+const claimManual = (store, id=manualChatA, claim=manualClaimA) =>
+  updateDoc(doc(store,manualPath(id)),{status:'awaiting_verification',claimId:claim,
+    claimedAt:serverTimestamp(),rejectedReason:require('firebase/firestore').deleteField()});
+
+function decideManual(store, {id=manualChatA, claim=manualClaimA, staff='staff', parent='alice',
+  ref=manualRefA, receipt='000000_FIXTURE00001', verify=true, withClass=true,
+  withAudit=true, amount=150000, reviewer=staff, reason='No matching bank entry',}={}) {
+  const b=writeBatch(store);
+  const audit={invoiceId:id,claimId:claim,status:verify?'verified':'rejected',
+    reviewedBy:reviewer,reviewedAt:serverTimestamp()};
+  if (verify) {
+    b.update(doc(store,manualPath(id)),{
+      status:'verified',classId:`vietqr_${id}`,verifiedBy:staff,verifiedAt:serverTimestamp(),
+      verificationMethod:'manual_bank_transfer',
+    });
+    Object.assign(audit,{bankReceiptId:receipt,matchedAmount:amount,matchedReference:ref});
+    b.set(doc(store,`finalBankReceipts/${receipt}`),{invoiceId:id,claimId:claim});
+    if(withClass) b.set(doc(store,manualClass(id)),{
+      invoiceId:id,chatId:id,parentId:parent,tutorId:'tutor',paymentStatus:'verified',
+      subject:'Mathematics',tutorName:'Emulator Tutor',date:'2030-02-14',
+      time:'18:30',location:'Online',totalFee:150000,createdAt:serverTimestamp(),
+    });
+  } else {
+    b.update(doc(store,manualPath(id)),{status:'rejected',rejectedReason:reason});
+    audit.reason=reason;
+  }
+  if (withAudit) b.set(doc(store,manualAudit(id,claim)),audit);
+  return b;
+}
+
+test('VietQR issuance: trusted chat-bound offer and unique immutable reference', async () => {
+  await seedManual();
+  const staff=staffDb(), alice=db(), bob=db('bob');
+  await assertSucceeds(getDocFromServer(doc(alice,manualPath())));
+  await assertFails(getDocFromServer(doc(bob,manualPath())));
+  await assertFails(getDocFromServer(doc(alice,'settings/paymentRecipient')));
+  await assertFails(setDoc(doc(staff,'settings/paymentRecipient'),testRecipient));
+  await assertFails(offerBatch(alice).commit());
+  await assertFails(offerBatch(staff,{parentId:'bob'}).commit());
+  await assertFails(offerBatch(staff,{reserve:false}).commit());
+  await assertFails(offerBatch(staff,{patch:{recipient:{...testRecipient,accountNumber:'999999'}}}).commit());
+  await assertSucceeds(offerBatch(staff).commit());
+  await assertFails(offerBatch(staff,{id:manualChatB,parentId:'bob'}).commit());
+  await assertFails(acceptManual(bob));
+  await assertFails(claimManual(alice));
+  await assertSucceeds(acceptManual(alice));
+  await assertFails(updateDoc(doc(alice,manualPath()),{amount:1}));
+  await assertFails(updateDoc(doc(alice,manualPath()),{recipient:{...testRecipient,accountNumber:'999999'}}));
+  await assertFails(updateDoc(doc(alice,manualPath()),{status:'verified',verifiedBy:'alice'}));
+  await assertFails(updateDoc(doc(staff,manualPath()),{amount:1}));
+});
+
+test('VietQR approval atomically creates one canonical class; parent/tutor/revoked writes denied', async () => {
+  await seedManual();
+  await assertSucceeds(offerBatch(staffDb()).commit());
+  await assertSucceeds(acceptManual(db()));
+  await assertSucceeds(claimManual(db()));
+  await assertFails(getDocFromServer(doc(db(),manualClass())));
+  await assertFails(decideManual(db(),{staff:'alice'}).commit());
+  await assertFails(decideManual(db('tutor'),{staff:'tutor'}).commit());
+  await assertFails(decideManual(staffDb('revoked'),{staff:'revoked'}).commit());
+  await assertFails(decideManual(staffDb(),{withClass:false}).commit());
+  await assertFails(decideManual(staffDb(),{withAudit:false}).commit());
+  await assertFails(decideManual(staffDb(),{amount:1}).commit());
+  await assertFails(decideManual(staffDb(),{reviewer:'admin'}).commit());
+  await assertFails(setDoc(doc(db(),manualClass()),{parentId:'alice',paymentStatus:'verified'}));
+  const results = await Promise.allSettled([
+    decideManual(staffDb()).commit(),
+    decideManual(staffDb('admin'),{staff:'admin',receipt:'000000_FIXTURE00002'}).commit(),
+  ]);
+  require('node:assert/strict').equal(results.filter(r=>r.status==='fulfilled').length,1);
+  await assertSucceeds(getDocFromServer(doc(db(),manualClass())));
+  await assertSucceeds(getDocFromServer(doc(db('tutor'),manualClass())));
+  await assertFails(getDocFromServer(doc(db('bob'),manualClass())));
+  await assertFails(getDocFromServer(doc(db(),manualAudit())));
+  await assertSucceeds(getDocFromServer(doc(staffDb(),manualAudit())));
+  await assertFails(decideManual(staffDb(),{receipt:'000000_FIXTURE00003'}).commit());
+});
+
+test('VietQR rejection, same-invoice retry, cancellation and replay protection', async () => {
+  await seedManual();
+  await assertSucceeds(offerBatch(staffDb()).commit());
+  await assertSucceeds(offerBatch(staffDb(),{id:manualChatB,reference:manualRefB,parentId:'bob'}).commit());
+  await assertSucceeds(acceptManual(db()));
+  await assertSucceeds(claimManual(db()));
+  await assertFails(decideManual(staffDb(),{verify:false,reason:'  '}).commit());
+  await assertSucceeds(decideManual(staffDb(),{verify:false}).commit());
+  await assertFails(getDocFromServer(doc(db(),manualClass())));
+  await assertFails(claimManual(db()));
+  await assertSucceeds(claimManual(db(),manualChatA,manualClaimB));
+  await assertFails(decideManual(staffDb()).commit());
+  await assertSucceeds(decideManual(staffDb(),{claim:manualClaimB}).commit());
+  await assertSucceeds(acceptManual(db('bob'),manualChatB));
+  await assertSucceeds(claimManual(db('bob'),manualChatB));
+  await assertFails(decideManual(staffDb(),{id:manualChatB,parent:'bob',ref:manualRefB}).commit());
+  await assertSucceeds(decideManual(staffDb(),{id:manualChatB,parent:'bob',verify:false}).commit());
+  await assertSucceeds(updateDoc(doc(staffDb(),manualPath(manualChatB)),{
+    status:'cancelled',cancelledBy:'staff',cancelledAt:serverTimestamp(),cancelReason:'Expired request',
+  }));
+  await assertFails(claimManual(db('bob'),manualChatB,manualClaimB));
+  await assertFails(decideManual(staffDb(),{id:manualChatB,parent:'bob',ref:manualRefB,receipt:'000000_FIXTURE00003'}).commit());
+  await assertFails(getDocFromServer(doc(db('bob'),manualClass(manualChatB))));
+  await assertSucceeds(getDocFromServer(doc(db(),'invoices/legacy-verified')));
+  await assertSucceeds(getDocFromServer(doc(db(),'classes/legacy-class')));
+});

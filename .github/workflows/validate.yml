@@ -1,4 +1,4 @@
-name: Lab 3 validation
+name: BeeWise validation
 on:
   pull_request:
   push:
@@ -7,9 +7,14 @@ permissions:
   contents: read
 jobs:
   flutter-android:
+    defaults:
+      run:
+        working-directory: mobile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -27,12 +32,39 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: debug-apk-${{ github.sha }}
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          name: debug-apk-${{ github.event.pull_request.head.sha || github.sha }}
+          path: mobile/build/app/outputs/flutter-apk/app-debug.apk
+  flutter-web-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.8'
+          channel: stable
+          cache: true
+      - working-directory: packages/core
+        run: |
+          flutter pub get --enforce-lockfile
+          dart format --output=none --set-exit-if-changed lib test
+          flutter analyze
+          flutter test --reporter expanded
+      - working-directory: web
+        run: |
+          flutter pub get --enforce-lockfile
+          dart format --output=none --set-exit-if-changed lib test
+          flutter analyze
+          flutter test --reporter expanded
+          flutter build web --release
+
   firebase-rules:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -48,6 +80,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -64,6 +98,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
