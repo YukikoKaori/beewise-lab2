@@ -125,6 +125,13 @@
       "sha256": "f4c2e297b74a12a442ab819c79dc69ec4289eba11a88151ca2cca1bcc96e5a93"
     },
     {
+      "path": "screenshots/android-final-pdf-account-b.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "second synthetic parent cannot see first parent report history",
+      "captured_at": "2026-11-11T20:51:32+00:00",
+      "sha256": "a8b85c1fbac23f28ba9decd8db05a78036cb5fc3eaae2861bd7b214f6a3a762c"
+    },
+    {
       "path": "screenshots/android-final-ai-manual.png",
       "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
       "observed": "AI disabled in emulator; manual confirmation searched the actual emulator catalog",
@@ -158,6 +165,13 @@
       "observed": "native schedule opened from verified invoice",
       "captured_at": "2026-11-11T20:46:19+00:00",
       "sha256": "21d8f531849eae617c0612c88c23303be9c034ca7864b63d129c33d5fdf0a1c6"
+    },
+    {
+      "path": "screenshots/android-vietqr-restored.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "the same verified invoice restored after process restart",
+      "captured_at": "2026-11-11T20:50:26+00:00",
+      "sha256": "fb21a9a7d6fbafa53ae2a4a21a2236d1ed39c9712324a9c71e8c635f7a0bec42"
     }
   ],
   "payment_web_bundle_sha256": "82629eb4b0bfb2e67dc9f76305c068de880bf4e0246b656a4e75153038b2a286",
