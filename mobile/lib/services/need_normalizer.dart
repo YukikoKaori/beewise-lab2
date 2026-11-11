@@ -84,7 +84,24 @@ class NeedNormalizer {
       safeInput,
     ).timeout(timeout);
     if (result == null) throw const FormatException('Empty provider response');
-    return NormalizedTutorNeed.decode(result);
+    final need = NormalizedTutorNeed.decode(result);
+    final hints = safeInput.split(' · ').toSet();
+    if (!hints.containsAll([
+          ?need.subject,
+          if (need.grade case final grade?) 'lớp $grade',
+          ?need.location,
+          if (need.maxHourlyFee case final fee?) 'giới hạn $fee VND',
+          ?need.schedule,
+        ]) ||
+        (need.teachingMode == 'online' &&
+            !hints.contains('online') &&
+            !hints.contains('trực tuyến')) ||
+        (need.teachingMode == 'in_person' &&
+            !hints.contains('offline') &&
+            !hints.contains('trực tiếp'))) {
+      throw const FormatException('Provider returned an unsupported hint');
+    }
+    return need;
   }
 
   static Future<String?> _firebase(
