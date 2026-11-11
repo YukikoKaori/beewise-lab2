@@ -1,4 +1,42 @@
-## Current PDF persistence — 2026-11-02
+## PRM393 Final Assignment
+
+BeeWise keeps the Lab 3 Android package `com.beewise.beewise` and Firebase project `beewise-lab-3`. The Final adds a Flutter Web Admin and a shared Dart package. The current branch is a review candidate; no public Final admin URL has been verified. See the [rubric gap review](docs/gap-review.md), [data model](docs/data-model.md), [cross-role flow](docs/cross-role-flow.md), [AI feature](docs/ai-feature.md), and [test report](docs/test-report.md).
+
+| Directory | Responsibility |
+|---|---|
+| `mobile/` | Flutter Android app, native files, tests and Lab 3 probe |
+| `web/` | Google staff sign-in, tutor management/review, dashboard, announcements |
+| `packages/core/` | Shared role, catalog and AI models, design tokens, Firestore reads and transactions |
+| `firebase/` | Rules, indexes, defaults and tests; root `firebase.json` configures Hosting |
+| `backend/` | Existing trusted Lab 3 consultant/payOS integration |
+| `e2e_test/` | Existing Android E2E/ARTEMIS harness |
+
+**Roles.** Parents and tutors use mobile. Verified Google accounts with Firestore staff/admin roles use Web. The first admin must be manually provisioned and named by the authorized operator; no production admin or credentials were added. Emulator demo identities use disposable `example.test` addresses. See [provisioning](docs/data-model.md).
+
+**Local demo.** With Flutter 3.47.8, JDK 21, Android SDK/API 35 or 36 and Node 24:
+
+```sh
+npm ci --prefix firebase
+./firebase/node_modules/.bin/firebase emulators:start --project beewise-lab-3 --only auth,firestore,hosting
+# Separate terminal (launch on Android emulator):
+cd mobile
+flutter pub get --enforce-lockfile
+flutter run --dart-define=BEEWISE_FIREBASE_EMULATOR_HOST=10.0.2.2
+# Separate terminal (Web build before accessing localhost:5000):
+cd web
+flutter pub get --enforce-lockfile
+flutter build web --release --dart-define=BEEWISE_FIREBASE_EMULATOR_HOST=127.0.0.1
+```
+
+Choose the Auth Emulator Google popup to create a disposable staff account, then provision its role using the **local** emulator operator. Restart or reload if needed. The Android app enters Final mode automatically against the emulators; manual tutor matching works there with no provider calls. The non-emulator APK uses legacy behavior unless built with `--dart-define=BEEWISE_FINAL_FIRESTORE=true` after the Final rules/indexes are approved and available. Do not use production accounts in the local demo.
+
+**Hosting.** [Deployment gate and exact build inputs](docs/final-deployment.md). No Rules, Hosting, billing, App Check enforcement, production role assignment, or live data migration was applied during development. AI assistance: Codex for design, implementation and review; Gemini is the product provider and is not a substitute for E2E evidence.
+
+**Final Android PDFs.** Final mode stores PDF files in app-private, account-scoped device storage. Firestore holds metadata only. The profile lists recent reports and identifies legacy Base64 entries separately. No Cloud Storage is used.
+
+**Final payments.** New Final-mode invoices use per-invoice VietQR and manual bank review in Web Admin. Class activation is atomic with staff verification; the existing payOS flow remains available for legacy records. [Payment architecture and configuration](docs/payment-architecture.md).
+
+## Historical Lab 3 PDF persistence — 2026-11-02
 
 Firebase Cloud Storage is replaced by Cloud Firestore Base64 PDF persistence with mentor approval (**owner-reported**). Status: **IMPLEMENTED — LIVE VERIFICATION PENDING**. PDF ≤500 KiB, one immutable parent-owned document at `reports/{uid}/files/{reportId}`, transaction acknowledgement plus server read before success, authenticated server download and local share/open. Firebase Storage dependencies and active emulator/deployment configuration are removed. No billing upgrade, bucket or new backend. [Implementation, security, tests and live prerequisites](docs/workstreams/bao-firestore-reports.md).
 
@@ -116,5 +154,5 @@ state before marking any mobile case PASS. Collection is harness validation only
 
 [Figma](https://www.figma.com/design/gqbuTDuZYOyKyP8LsUwobC/BeeWise-Design?node-id=2-3)
 and [Stitch](https://stitch.withgoogle.com/projects/11519656942239142615).
-Local [design screenshots](assets/figma-screens/README.md) are references, not
+Local [design screenshots](mobile/assets/figma-screens/README.md) are references, not
 Android runtime evidence. No 360dp/412dp screenshot is claimed yet.
