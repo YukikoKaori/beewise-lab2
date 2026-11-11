@@ -4,7 +4,7 @@ Baseline: `9b669b47b95909a308d9221ca74b2e22e3fda92f`. The rubric is the owner-su
 
 | Gate | Actual result | Boundary |
 |---|---|---|
-| Mobile build and native startup | PASS on API 35, 360 × 800 dp | Local APK targets Firebase Emulator; no claim about release devices |
+| Mobile build and native startup | Runtime APK built and ran on API 35, 360 × 800 dp | Local emulator build precedes the final chat-link and stepper copy adjustments. Local rebuild with those adjustments ran out of host disk space; candidate Android build still requires exact-HEAD CI. |
 | Mobile analyzer / tests | Clean; 180 tests passed | Includes offline typed AI contract tests, not provider proof |
 | Core and Web analyzer / tests | Clean; 3 core and 1 web test passed | Web release build also ran in Chrome on local Hosting |
 | Firestore Emulator | 75 passed | Role and ownership isolation, review/receipt coupling, listings, announcements, metadata-only PDF, VietQR and legacy compatibility |
@@ -12,7 +12,7 @@ Baseline: `9b669b47b95909a308d9221ca74b2e22e3fda92f`. The rubric is the owner-su
 | ARTEMIS harness and startup scripts | 27 unique scenario definitions validated; 4 startup-script tests passed | No new ARTEMIS device suite; prior results retain their original scope |
 | Web Google authorization | Emulator Google popup; denial without role, then staff Dashboard with three server counts and chart | Google OAuth, staff assignment and App Check on live Web not validated |
 | Cross-role mobile ↔ Web | One local Android-originated application, genuine Web approval, Android status changed while session remained open; private receipt and common announcement both rendered | 0/3 deployed runs; do not infer latency SLA from UI polling |
-| Native PDF | Android saved, opened in the system PDF viewer, and exposed one attachment in the share chooser. The app-private file matched the Firestore byte count; the server record contained only the seven metadata fields | Synthetic parent and Firebase Emulator; no recipient selected in the share sheet |
+| Native PDF | Android saved, opened in the system PDF viewer, and exposed one attachment in the share chooser. The app-private file matched the Firestore byte count; the server record contained only the seven metadata fields. A second parent had empty history after A signed out. | Synthetic parents and Firebase Emulator; no recipient selected in the share sheet |
 | Gemini Level 2 | Typed schema, invalid output handling, confirmation/filtering and offline fallback tested | No authorized provider call; live outputs, config switches and live analytics pending |
 | Deployment | NOT RUN | No production mutations or billing changes |
 
@@ -22,7 +22,7 @@ See the [local evidence manifest](../evidence/final/emulator/manifest.json) for 
 
 | Scenario | Evidence |
 |---|---|
-| A. Confirm, claim and staff verify | Real Android created the chat and accepted the Web staff proposal; the class was absent after the claim. Web staff submitted a synthetic statement match, the invoice/review/bank reservation/class were verified together, and Android observed the update and opened the official schedule. No real transfer or bank verification. |
+| A. Confirm, claim and staff verify | Real Android created the chat and accepted the Web staff proposal; the class was absent after the claim. Web staff submitted a synthetic statement match, the invoice/review/bank reservation/class were verified together, and Android observed the update and opened the official schedule. The same verified invoice reopened after process restart. No real transfer or bank verification. |
 | B. Unpaid/rejected claim | Emulator rejected with a reason, kept the class inaccessible, and allowed a new claim on the same invoice before expiry. |
 | C. Unauthorized verification | Emulator denied parent, tutor, unrelated and revoked identities; also denied financial-field mutation and partial class activation. |
 | D. Concurrent verification | Two emulator staff attempts yielded one valid transition and one class; reusing a bank transaction for another invoice was denied. |
