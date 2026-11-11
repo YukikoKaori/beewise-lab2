@@ -8,4 +8,4 @@ Private capture SHA-256 (desktop originals excluded):
 - Android needs_info and reason: 5a353626f473b8ba3301ef027b2b544ac2f7e0e696b01026d5f469b23a5e95f5
 - Android pending after correction: c60275aa1ad2b57ec2f67a5fa4bc8016a649115247bd5c1af51ba2b6119ffffd
 
-The owner confirmed there is no inbox entry on the needs_info screen. The router permits the status and edit pages but redirects /tutor/notifications away. Inbox visibility is BLOCKED by navigation; receipt creation is not disproven.
+The owner confirmed there is no inbox entry on the needs_info screen. The router permits the status and edit pages but redirects /tutor/notifications away. The owner accepted this behavior as designed: applicants read the decision on their application screen. Firestore receipt creation was not independently checked.
