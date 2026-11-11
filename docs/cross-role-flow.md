@@ -23,4 +23,8 @@ sequenceDiagram
 | 5 | Tutor, Android bell/inbox | Listen to own reviews subcollection | Owner only (reviewers may read in Web); no navigation payload from Firestore | Private approval notification, separate from FCM |
 | 6 | Staff / signed-in Android user | CREATE published announcement; listen to published query | Staff author and timestamp; signed-in published reads only | General announcement in existing inbox |
 
-Measure from Web approval action to the first visible approved Android state on the same clock. Record each synthetic alias, original screen captures, environment, SHA and latency; never use Admin writes for applicant submission or approval in an acceptance run. Emulator and deployed results are separate. Deployed acceptance is pending owner-approved cloud configuration and deployment.
+Production: Flutter Web Admin is deployed at [beewise-lab-3.web.app](https://beewise-lab-3.web.app/) on Firebase project `beewise-lab-3`. Firestore Rules were deployed after separate owner approval, the VietQR query index reached READY, and the Final Android debug APK connected to production Firebase.
+
+Three distinct live UI scenarios were observed: CR-01 approval (private inbox notice owner-observed), CR-02 request for corrections and return to pending, and CR-03 rejection. Android showed state changes without reload per owner observation. Applicants needing corrections or rejected see the reason on their status screen; the approved tutor workspace and inbox stay restricted by design. Two additional approval repetitions were not run. Independent Firestore receipt readback was not captured.
+
+[Production evidence](../evidence/final/production-cross-role/README.md) records the boundaries: Web App Check token path and release Play Integrity unverified, Analytics receipts pending, direct production Rules denial not run, and ARTEMIS Final deferred. Appendix C propagation timing was not collected.

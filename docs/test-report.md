@@ -10,11 +10,11 @@ Baseline: `9b669b47b95909a308d9221ca74b2e22e3fda92f`. The rubric is the owner-su
 | Firestore Emulator | 75 passed | Role and ownership isolation, review/receipt coupling, listings, announcements, metadata-only PDF, VietQR and legacy compatibility |
 | Legacy backend on Auth/Firestore Emulators | 86 passed | Uses test provider doubles, no real charge |
 | ARTEMIS harness and startup scripts | ARTEMIS_FINAL_DEFERRED; static harness and startup script checks only | No Final ARTEMIS execution, spend or new PASS evidence. Deferred submission requirement; not a code merge gate. |
-| Web Google authorization | Emulator Google popup; denial without role, then staff Dashboard with three server counts and chart | Google OAuth, staff assignment and App Check on live Web not validated |
-| Cross-role mobile ↔ Web | One local Android-originated application, genuine Web approval, Android status changed while session remained open; private receipt and common announcement both rendered | 0/3 deployed runs; do not infer latency SLA from UI polling |
+| Web Google authorization | Emulator Google popup; denial without role, then staff Dashboard with three server counts and chart | Production Google sign-in and live Web UI revocation verified separately; direct Rules denial and Web App Check token path unverified |
+| Cross-role mobile ↔ Web | One local Android-originated application, genuine Web approval, Android status changed while session remained open; private receipt and common announcement both rendered | Production: three distinct UI outcomes, not three approval repetitions; only CR-01 inbox owner-observed. Appendix C timing not measured. |
 | Native PDF | EMULATOR_VERIFIED: Android saved, opened in the system PDF viewer, and exposed one attachment in the share chooser. The app-private file matched the metadata byte count; a second parent had empty history after A signed out. Corrective smoke reopened A's existing PDF after process restart. | Synthetic parents and Firebase Emulator; existing runtime APK and unchanged PDF code; no recipient selected in the share sheet |
-| Gemini Level 2 | Typed schema, invalid output handling, confirmation/filtering and offline fallback tested | No authorized provider call; live outputs, config switches and live analytics pending |
-| Deployment | DEPLOYMENT_PENDING_APPROVAL | No production mutations or billing changes |
+| Gemini Level 2 | Typed schema, invalid output handling, confirmation/filtering and offline fallback tested | Three provider-backed Android confirmation screens and controlled offline recovery observed; raw JSON, serving-model metadata, live RC switch and Analytics receipts not verified |
+| Deployment | Production Hosting and approved Firestore Rules deployed; VietQR index READY | Debug APK connected to production; release-device and App Check boundaries remain |
 
 See the [local evidence manifest](../evidence/final/emulator/manifest.json) for receipt scope, runtime identities and hashes. Retest gates for production are in [final-deployment.md](final-deployment.md). Exact candidate CI is linked from the PR because CI observes a committed SHA.
 
@@ -40,4 +40,6 @@ See the [local evidence manifest](../evidence/final/emulator/manifest.json) for 
 
 ## Next verification
 
-LIVE_VERIFICATION_PENDING: confirm project/site, Google OAuth and App Check through read-only preflight. Obtain exact authorization for each cloud mutation and genuine Gemini case, then retain sanitized outputs and three independently timed deployed cross-role receipts. Bank-app scanning and production bank-statement verification remain separate acceptance items.
+See the [production receipt](../evidence/final/live-preflight/README.md) for the exact merge SHA, CI rerun, Hosting release, signed-out browser smoke, App Check configuration, and remaining live gates. That receipt describes earlier preflight stages. The later production UI results are linked below; bank-app scan evidence was not captured. The [VietQR owner guide](vietqr-owner-guide.md) explains scan-only testing.
+
+See [Production cross-role evidence and run plan](../evidence/final/production-cross-role/README.md) for the current deployed scope, evidence and pending gates.
