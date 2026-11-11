@@ -68,3 +68,7 @@ The Flutter app and primary client flows now exist. “Implemented” below mean
 ## Known external prerequisites
 
 Configure a student-owned Firebase Android app with package `com.beewise.beewise`, import real tutor records, enable the Firebase products listed in [README.md](../README.md), configure App Check/OAuth, and supply a designated test account. A trusted service must handle consultant-authored widgets, invoices, payment verification and class schedule records. ARTEMIS needs a permitted model key and working Android APK/device. Capture every run/dashboard result; do not substitute screenshots of design mocks for runtime evidence.
+
+## PRM393 Final additions
+
+The Final adds a separate Web Admin for staff Google sign-in, Dashboard, tutor management, application review and general announcements. Mobile adds the editable AI requirements confirmation and integrates notices into the existing inbox. The existing tutor status route distinguishes account approval from publication. These additions do not supersede Lab 3 Figma references or prior device receipts. See [test report](test-report.md) and [Final runtime manifest](../evidence/final/emulator/manifest.json).

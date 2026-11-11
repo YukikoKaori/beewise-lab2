@@ -1,0 +1,211 @@
+{
+  "base_sha": "9b669b47b95909a308d9221ca74b2e22e3fda92f",
+  "target_firebase_project": "beewise-lab-3",
+  "environment": "local Firebase Auth, Firestore and Hosting emulators; synthetic identities only",
+  "browser": "Chrome 157; emulator Web JavaScript SHA-256 6de4b537e1365d73df058e5fdd2a5b143abbe3b28226c29a8630541dd5e567a0",
+  "android": {
+    "package": "com.beewise.beewise",
+    "api": 35,
+    "emulator": "emulator-5564",
+    "logical_dp": [
+      360,
+      800
+    ],
+    "initial_apk_sha256": "fdaf048238ae1624523d6aa9edac6e4ede07970dbc164c3e8dd529b2df9cdc04",
+    "initial_build_scope": "Initial local build of the feature branch before last status-copy, PDF and announcement-title fixes. Startup, pending and approved screenshots came from that build.",
+    "payment_and_pdf_apk_sha256": "94431a4dc93e0417190c5398a575ef3b4a73ce731fd14fc2bbbd63abe0672c26",
+    "payment_and_pdf_build_scope": "Native PDF and VietQR runs; subsequent UI changes restrict the Final link to eligible chats and update stepper labels."
+  },
+  "deployed_cross_role_passes": 0,
+  "new_live_provider_calls": 0,
+  "captures": [
+    {
+      "path": "screenshots/web-role-rejected.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "Google emulator identity without the staff role was denied",
+      "captured_at": "2026-11-11T19:54:16+00:00",
+      "sha256": "1bdaf1e55e993c944b7f559092f09e21f6c02cac0a30f53bb02ec41543d2c49c"
+    },
+    {
+      "path": "screenshots/web-staff-dashboard-populated.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "staff dashboard with Firestore server aggregates and chart",
+      "captured_at": "2026-11-11T20:16:18+00:00",
+      "sha256": "4048731fac4121d022bb32cf70bb3cc8095d8029effe6c49fd1d4ff40cdc6760"
+    },
+    {
+      "path": "screenshots/web-review-queue.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "pending application submitted from Android",
+      "captured_at": "2026-11-11T20:00:55+00:00",
+      "sha256": "e40af5dd8d7993134417e80d1deec4b0408fe064491cbcad27b0aecf31d5bab8"
+    },
+    {
+      "path": "screenshots/web-review-approved.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "same application approved from the Web staff review dialog",
+      "captured_at": "2026-11-11T20:02:19+00:00",
+      "sha256": "2a005d824a51ad5054e35d24c82897c367f3d0a9c512e17281028d72902216ae"
+    },
+    {
+      "path": "screenshots/web-announcement-published.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "Web staff published an announcement",
+      "captured_at": "2026-11-11T20:03:16+00:00",
+      "sha256": "7f5d35dc28a46d73d76d9c209b7124e8872cf2333360b089ad1fe91cb0524c1d"
+    },
+    {
+      "path": "screenshots/web-tutor-management.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "staff published a catalog listing linked to the approved applicant",
+      "captured_at": "2026-11-11T20:07:08+00:00",
+      "sha256": "d7969b92eecf341b07ed34a47bd2466b2519ee21715cd1434cf5bd0c55ae3f68"
+    },
+    {
+      "path": "screenshots/web-staff-revoked.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "an open staff dialog was removed after role was revoked",
+      "captured_at": "2026-11-11T20:16:23+00:00",
+      "sha256": "1bdaf1e55e993c944b7f559092f09e21f6c02cac0a30f53bb02ec41543d2c49c"
+    },
+    {
+      "path": "screenshots/web-vietqr-review-queue-after.png",
+      "scope": "Flutter Web on local Hosting emulator",
+      "observed": "staff VietQR queue after the synthetic payment decision",
+      "captured_at": "2026-11-11T20:45:55+00:00",
+      "sha256": "743f21088fd88549d6980d8eb53721bdf66cee48624ddf9c0765d8beaa07a494"
+    },
+    {
+      "path": "screenshots/android-guest-home.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "normal Flutter Android entrypoint reaches guest Home",
+      "captured_at": "2026-11-11T19:54:36+00:00",
+      "sha256": "c143010c070553dd40107c23c36de7a02c57bc6c715df1c52dd2b2e9d441414e"
+    },
+    {
+      "path": "screenshots/android-pending.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "tutor application submitted on Android, pending",
+      "captured_at": "2026-11-11T20:01:27+00:00",
+      "sha256": "dd7ce0124beb37504fa1fe1bf08d165cef14cb8aee12800bdb287dbdf4f90f81"
+    },
+    {
+      "path": "screenshots/android-approved.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "same Android session observed Web approval; pre-copy-fix screen",
+      "captured_at": "2026-11-11T20:02:55+00:00",
+      "sha256": "76d708445866c3124c767523c6c42e9bba6e26236248425618cef938d6579199"
+    },
+    {
+      "path": "screenshots/android-inbox.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "staff announcement and owner-specific approval receipt visible",
+      "captured_at": "2026-11-11T20:21:11+00:00",
+      "sha256": "ae32006f63e91be439c0dee47d2e0e01e5f69b3f01c4ae07dea6a46f506ce97a"
+    },
+    {
+      "path": "screenshots/android-final-pdf-saved.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "Final local PDF save and Firestore metadata confirmation",
+      "captured_at": "2026-11-11T20:41:44+00:00",
+      "sha256": "316b0380f6288f394809f938a8e42ae449729aaecde1469e11b0d17ae3e87c63"
+    },
+    {
+      "path": "screenshots/android-final-pdf-open.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "Android system PDF viewer rendered the locally generated PDF",
+      "captured_at": "2026-11-11T20:41:52+00:00",
+      "sha256": "82b6788ab37e3741e20e9939b1674f84553eef41bae31db6b1a38adb4d9da619"
+    },
+    {
+      "path": "screenshots/android-final-pdf-share.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "Android share chooser with a PDF attachment; no recipient selected",
+      "captured_at": "2026-11-11T20:42:58+00:00",
+      "sha256": "f4c2e297b74a12a442ab819c79dc69ec4289eba11a88151ca2cca1bcc96e5a93"
+    },
+    {
+      "path": "screenshots/android-final-pdf-account-b.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "second synthetic parent cannot see first parent report history",
+      "captured_at": "2026-11-11T20:51:32+00:00",
+      "sha256": "a8b85c1fbac23f28ba9decd8db05a78036cb5fc3eaae2861bd7b214f6a3a762c"
+    },
+    {
+      "path": "screenshots/android-final-ai-manual.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "AI disabled in emulator; manual confirmation searched the actual emulator catalog",
+      "captured_at": "2026-11-11T20:22:45+00:00",
+      "sha256": "2fc7585c861a402effbdf5faf7e2037c1684f6ea2ab4eb20cf13107b9c21c946"
+    },
+    {
+      "path": "screenshots/android-vietqr-invoice.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "parent accepted a Web staff proposal and Android rendered the unique invoice QR",
+      "captured_at": "2026-11-11T20:45:07+00:00",
+      "sha256": "c63d955e72658a998ef953581805808b247714b6b369168736695a4d24d8f45e"
+    },
+    {
+      "path": "screenshots/android-vietqr-awaiting-review.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "parent transfer claim pending; no class existed",
+      "captured_at": "2026-11-11T20:45:10+00:00",
+      "sha256": "14aee5817e31b8e2f7954863c9ba4c863ba8e185a213c3b6e4c81bd27c47e71e"
+    },
+    {
+      "path": "screenshots/android-vietqr-verified.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "native invoice observed the staff decision without reopening",
+      "captured_at": "2026-11-11T20:46:18+00:00",
+      "sha256": "ef3255e172860b7907a5500524fad7fc1860cd69f58a673cc32283995eb6c308"
+    },
+    {
+      "path": "screenshots/android-vietqr-active-class.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "native schedule opened from verified invoice",
+      "captured_at": "2026-11-11T20:46:19+00:00",
+      "sha256": "21d8f531849eae617c0612c88c23303be9c034ca7864b63d129c33d5fdf0a1c6"
+    },
+    {
+      "path": "screenshots/android-vietqr-restored.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp",
+      "observed": "the same verified invoice restored after process restart",
+      "captured_at": "2026-11-11T20:50:26+00:00",
+      "sha256": "fb21a9a7d6fbafa53ae2a4a21a2236d1ed39c9712324a9c71e8c635f7a0bec42"
+    },
+    {
+      "path": "screenshots/android-corrective-pdf-restarted.png",
+      "scope": "native Android API 35 on isolated AVD, 360 x 800 dp; existing emulator APK",
+      "observed": "restored the previously saved PDF after Android process restart",
+      "captured_at": "2026-11-12T04:15:35+07:00",
+      "sha256": "d46abcddf2a7982e1aa6d83cf7ac3da21da5d798204dfd5ef2f12f19f9b91695",
+      "apk_sha256": "94431a4dc93e0417190c5398a575ef3b4a73ce731fd14fc2bbbd63abe0672c26"
+    }
+  ],
+  "payment_web_bundle_sha256": "82629eb4b0bfb2e67dc9f76305c068de880bf4e0246b656a4e75153038b2a286",
+  "native_pdf_and_qr": {
+    "pdf": {
+      "bytes": 15077,
+      "sha256": "bc66bae16031c04336d3aa85585c804c55b9f012eed0ab1b5228d7ec46938863",
+      "metadata_only": true,
+      "owner_scoped_device_file": true
+    },
+    "qr": {
+      "scanner": "ZXing-C++ independent decode of real Android screenshot",
+      "crc_match": true,
+      "configured_test_recipient_match": true,
+      "amount_vnd": 150000,
+      "reference_matches_invoice": true,
+      "real_banking_scanner": false
+    }
+  },
+  "vietqr_firestore": {
+    "confirmed_by_web_staff": true,
+    "class_absent_before_review": true,
+    "verified_invoice_class_review_and_reservation": true,
+    "verification_method": "manual_bank_transfer",
+    "amount_vnd": 150000,
+    "bank_transaction": "synthetic_fixture_only",
+    "firebase": "local emulator"
+  }
+}

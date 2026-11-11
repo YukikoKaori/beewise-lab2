@@ -67,3 +67,15 @@ app.*.map.json
 
 # Keep real mobile automation evidence despite the general log ignore above.
 !evidence/**/*.log
+
+/mobile/build/
+/mobile/coverage/
+/mobile/android/app/debug/
+/mobile/android/app/profile/
+/mobile/android/app/release/
+/web/build/
+/web/coverage/
+/packages/core/build/
+/.code-review-graph/
+/mobile/android/.kotlin/
+/tmp-final-*.json
