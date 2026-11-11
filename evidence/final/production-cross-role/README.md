@@ -8,11 +8,11 @@ Android: Final-mode debug APK, `lib/main.dart`, `BEEWISE_FINAL_FIRESTORE=true`, 
 |---|---|---|
 | CR-01 | Pending → approved; Android updated without reload and showed the private inbox notice, per owner observation | VERIFIED_LIVE ([receipt](CR-01/README.md)); timing and independent Firestore readback pending |
 | CR-02 | Pending → needs_info with reason on Android → pending after correction | VERIFIED_LIVE ([receipt](CR-02/README.md)); inbox and timing unverified |
-| CR-03 | Pending → rejected; private reason; applicant cannot self-approve or publish | NOT_RUN |
+| CR-03 | Pending → rejected with reason on Android, without reload per owner | VERIFIED_LIVE ([receipt](CR-03/README.md)); inbox BLOCKED; privileged denials NOT_RUN |
 | Extra approval repetitions | Two further independent approvals | NOT_RUN |
 | Web non-staff / revocation | Disposable Google identity with role user → staff → user; existing owner unchanged | NOT_RUN |
 
-The owner approved the scoped disposable test plan. CR-01 has a live status receipt and owner-observed inbox delivery. CR-03 and authorization tests have not run; no propagation timings were measured.
+The owner approved the scoped disposable test plan. CR-01 has a live status receipt and owner-observed inbox delivery. CR-02 and CR-03 verified status and reason on Android. Their private inbox UI is BLOCKED: the application status page has no inbox entry, and routing limits needs_info/rejected applicants to status or eligible edit pages. This does not establish whether private receipts were written. Web authorization tests have not run; no propagation timings were measured.
 
 Use three disposable tutor identities, one isolated Android application each, with unique run aliases and synthetic data. Review using the existing owner's staff Web session. No public catalogue publication. Keep test audit records, do not replace existing applications. For the disposable Google account, record a non-staff Web denial and an ordinary-client private read denial before temporary promotion; while signed in, restore role to user and verify workspace loss and Rules denial of a valid review attempt limited to the isolated CR-02 application after it returns to pending. If unexpectedly accepted, stop and retain that test-only receipt. No owner demotion. Credentials stay private.
 
