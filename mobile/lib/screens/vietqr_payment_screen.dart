@@ -31,15 +31,19 @@ class _VietQrPaymentScreenState extends ConsumerState<VietQrPaymentScreen> {
   bool _working = false;
   String? _error;
 
-  Future<void> _submit(String uid, bool accept) async {
+  Future<void> _submit(String uid, {int? acceptedAmount}) async {
     if (_working || FirebaseAuth.instance.currentUser?.uid != uid) return;
     setState(() {
       _working = true;
       _error = null;
     });
     try {
-      await ManualPayments(FirebaseFirestore.instance)
-          .parentAction(id: widget.chatId, uid: uid, accept: accept);
+      await ManualPayments(FirebaseFirestore.instance).parentAction(
+        id: widget.chatId,
+        uid: uid,
+        accept: acceptedAmount != null,
+        acceptedAmount: acceptedAmount,
+      );
     } catch (error) {
       if (mounted && FirebaseAuth.instance.currentUser?.uid == uid) {
         setState(
@@ -115,6 +119,9 @@ class _VietQrPaymentScreenState extends ConsumerState<VietQrPaymentScreen> {
                   status == 'rejected';
               final recipient = BankRecipient.parse(d['recipient']);
               final amount = d['amount'];
+              final amountLabel = amount is int
+                  ? '${NumberFormat.decimalPattern('vi_VN').format(amount)} ₫'
+                  : '';
               final reference = d['transferReference'];
               final configured =
                   recipient != null &&
@@ -146,8 +153,7 @@ class _VietQrPaymentScreenState extends ConsumerState<VietQrPaymentScreen> {
                     _CopyLine(
                       'Số tiền VND',
                       amount.toString(),
-                      display:
-                          '${NumberFormat.decimalPattern('vi_VN').format(amount)} ₫',
+                      display: amountLabel,
                     ),
                   _CopyLine('Mã hóa đơn', widget.chatId),
                   if (!configured && pending)
@@ -214,14 +220,19 @@ class _VietQrPaymentScreenState extends ConsumerState<VietQrPaymentScreen> {
                   if (server && pending && !expired && configured)
                     BeeWiseButton(
                       label: switch (status) {
-                        'offered' => 'Xác nhận đề xuất lớp',
+                        'offered' => 'Xác nhận lớp · $amountLabel',
                         'rejected' => 'Gửi lại yêu cầu đối soát',
                         _ => 'Tôi đã chuyển khoản',
                       },
                       loading: _working,
                       onPressed: _working
                           ? null
-                          : () => _submit(uid, status == 'offered'),
+                          : () => _submit(
+                              uid,
+                              acceptedAmount: status == 'offered'
+                                  ? amount
+                                  : null,
+                            ),
                     ),
                 ],
               );

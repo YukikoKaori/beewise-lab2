@@ -283,6 +283,8 @@ class _ReviewDialogState extends State<_ReviewDialog> {
   final _receipt = TextEditingController();
   final _amount = TextEditingController();
   final _reference = TextEditingController();
+  final _bankBin = TextEditingController();
+  final _accountNumber = TextEditingController();
   bool _checked = false, _working = false;
   String? _error;
   late final _history = widget.record.reference
@@ -293,7 +295,14 @@ class _ReviewDialogState extends State<_ReviewDialog> {
 
   @override
   void dispose() {
-    for (final field in [_reason, _receipt, _amount, _reference]) {
+    for (final field in [
+      _reason,
+      _receipt,
+      _amount,
+      _reference,
+      _bankBin,
+      _accountNumber,
+    ]) {
       field.dispose();
     }
     super.dispose();
@@ -329,6 +338,8 @@ class _ReviewDialogState extends State<_ReviewDialog> {
           bankTransaction: _receipt.text,
           matchedAmount: int.tryParse(_amount.text.trim()),
           matchedReference: _reference.text.trim(),
+          matchedBankBin: _bankBin.text,
+          matchedAccountNumber: _accountNumber.text,
         );
       }
       if (mounted) Navigator.pop(context);
@@ -389,6 +400,8 @@ class _ReviewDialogState extends State<_ReviewDialog> {
                 ),
                 _entry(_amount, 'Số tiền thực nhận (VND)', 9),
                 _entry(_reference, 'Nội dung trên sao kê', 25),
+                _entry(_bankBin, 'BIN ngân hàng của sao kê', 6),
+                _entry(_accountNumber, 'Số tài khoản của sao kê', 19),
                 _entry(_receipt, 'Mã giao dịch ngân hàng (chữ và số)', 40),
                 CheckboxListTile(
                   value: _checked,

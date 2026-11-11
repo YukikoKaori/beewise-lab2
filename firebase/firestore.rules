@@ -544,7 +544,8 @@ service cloud.firestore {
           && ((resource.data.status == 'offered'
             && request.resource.data.status == 'awaiting_transfer'
             && request.resource.data.acceptedAt == request.time
-            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','acceptedAt']))
+            && request.resource.data.acceptedAmount == resource.data.amount
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','acceptedAt','acceptedAmount']))
           || (resource.data.status in ['awaiting_transfer','rejected']
             && request.resource.data.status == 'awaiting_verification'
             && request.resource.data.claimId is string
@@ -579,8 +580,9 @@ service cloud.firestore {
                 && bounded(d.reason, 1, 500))
               || (d.status == 'verified'
                 && d.keys().hasOnly(['invoiceId','claimId','status','reviewedBy','reviewedAt',
-                  'bankReceiptId','matchedAmount','matchedReference'])
+                  'bankReceiptId','matchedAmount','matchedReference','matchedRecipient'])
                 && d.matchedAmount == before.amount && d.matchedReference == before.transferReference
+                && d.matchedRecipient == {'bankBin': before.recipient.bankBin, 'accountNumber': before.recipient.accountNumber}
                 && d.bankReceiptId is string
                 && d.bankReceiptId.matches(before.recipient.bankBin + '_[A-Z0-9]{6,40}')
                 && !exists(bankReceiptPath(d.bankReceiptId))
