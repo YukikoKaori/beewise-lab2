@@ -6,7 +6,7 @@ const root = resolve(__dirname, '..');
 const {initializeApp, deleteApp} = require(resolve(root, 'firebase/node_modules/firebase/app'));
 const {getFirestore, collection, query, where, limit, getDocsFromServer, doc, getDocFromServer, terminate} = require(resolve(root, 'firebase/node_modules/firebase/firestore'));
 if (process.env.FIRESTORE_EMULATOR_HOST) throw Error('Refused emulator redirection for live guest evidence.');
-const config = JSON.parse(readFileSync(resolve(root, 'android/app/google-services.json')));
+const config = JSON.parse(readFileSync(resolve(root, 'mobile/android/app/google-services.json')));
 if (config.project_info.project_id !== 'beewise-lab-3') throw Error('Wrong project.');
 const client = config.client.find(value => value.client_info.android_client_info.package_name === 'com.beewise.beewise');
 const app = initializeApp({projectId: config.project_info.project_id, apiKey: client.api_key[0].current_key, appId: client.client_info.mobilesdk_app_id}, 'bao-guest-evidence');

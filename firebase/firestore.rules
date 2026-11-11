@@ -2,17 +2,23 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() { return request.auth != null; }
+    function isEndUser(uid) {
+      let profile = /databases/$(database)/documents/users/$(uid);
+      return !exists(profile) || !(get(profile).data.role in ['staff', 'admin']);
+    }
     function isParent(parentId) {
       return signedIn()
         && request.auth.uid == parentId
+        && isEndUser(parentId)
         && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && !exists(/databases/$(database)/documents/tutorApplications/$(parentId));
     }
     // Fully approved tutor: staff/backend set status=approved, verified=true, active=true.
-    // Clients can never create or change this state (see tutorApplications rules).
+    // Applicants cannot grant this state to themselves (see tutorApplications rules).
     function isAuthorizedTutor(tutorUid) {
       return signedIn()
         && request.auth.uid == tutorUid
+        && isEndUser(tutorUid)
         && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && exists(/databases/$(database)/documents/tutorApplications/$(tutorUid))
         && get(/databases/$(database)/documents/tutorApplications/$(tutorUid)).data.status == 'approved'
@@ -24,21 +30,100 @@ service cloud.firestore {
         && !existsAfter(/databases/$(database)/documents/tutorApplications/$(parentId));
     }
 
+    function member() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+    function roleIn(roles) {
+      return member() && request.auth.token.firebase.sign_in_provider == 'google.com'
+        && request.auth.token.email_verified == true
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in roles;
+    }
+    function reviewer() { return roleIn(['staff', 'admin']); }
+    function bounded(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max
+        && (min == 0 || value.matches('(?s).*[^\\s].*'));
+    }
+    function textList(values, max) {
+      return values is list && values.size() >= 1 && values.size() <= max
+        && bounded(values[0], 1, 120)
+        && (values.size() < 2 || bounded(values[1], 1, 120))
+        && (values.size() < 3 || bounded(values[2], 1, 120))
+        && (values.size() < 4 || bounded(values[3], 1, 120))
+        && (values.size() < 5 || bounded(values[4], 1, 120))
+        && (values.size() < 6 || bounded(values[5], 1, 120))
+        && (values.size() < 7 || bounded(values[6], 1, 120))
+        && (values.size() < 8 || bounded(values[7], 1, 120))
+        && (values.size() < 9 || bounded(values[8], 1, 120))
+        && (values.size() < 10 || bounded(values[9], 1, 120))
+        && (values.size() < 11 || bounded(values[10], 1, 120))
+        && (values.size() < 12 || bounded(values[11], 1, 120));
+    }
+    match /users/{uid} {
+      allow get: if (member() && request.auth.uid == uid) || roleIn(['admin']);
+      allow list: if roleIn(['admin']);
+      allow create: if member() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['role', 'displayName'])
+        && request.resource.data.role == 'user'
+        && bounded(request.resource.data.displayName, 0, 100);
+      allow update: if roleIn(['admin']) && request.auth.uid != uid
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['role', 'roleChangedBy', 'roleChangedAt'])
+        && request.resource.data.role in ['user', 'staff', 'admin']
+        && request.resource.data.role != resource.data.role
+        && request.resource.data.roleChangedBy == request.auth.uid
+        && request.resource.data.roleChangedAt == request.time;
+      allow delete: if false;
+    }
+
+    match /announcements/{id} {
+      allow read: if (member() && resource.data.status == 'published') || reviewer();
+      allow create: if reviewer()
+        && request.resource.data.keys().hasOnly(['title', 'body', 'status', 'createdAt', 'authorUid'])
+        && bounded(request.resource.data.title, 1, 120)
+        && bounded(request.resource.data.body, 1, 2000)
+        && request.resource.data.status == 'published'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.authorUid == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+
+    function permittedTutor(tutorId) {
+      let tutor = get(/databases/$(database)/documents/tutors/$(tutorId)).data;
+      // Only this owner-consented technical demo may remain professionally unverified.
+      // Catalog writes remain trusted-only; identity and fixture guards still apply.
+      return tutor.active == true
+        && ((tutor.verified == true
+            && (!('demoOnly' in tutor) || tutor.demoOnly == false))
+          || (tutorId == 'tutor_acd3824aa8734c63ac8827df'
+            && tutor.verified == false && tutor.demoOnly == true))
+        && !tutorId.matches('bao-lab3-.*')
+        && (!('syntheticTestFixture' in tutor) || tutor.syntheticTestFixture == false)
+        && (!('fixtureNamespace' in tutor) || tutor.fixtureNamespace == '');
+    }
+
+    // Final clients persist PDF bytes privately on Android; Firestore holds metadata.
+    match /reports/{userId}/localFiles/{reportId} {
+      allow read: if isParent(userId);
+      allow create: if canWriteAsParent(userId)
+        && reportId.matches('[A-Za-z0-9]{20}')
+        && request.resource.data.keys().hasOnly(['ownerUid', 'reportId', 'tutorId', 'fileName', 'contentType', 'sizeBytes', 'createdAt'])
+        && request.resource.data.ownerUid == userId
+        && request.resource.data.reportId == reportId
+        && request.resource.data.tutorId is string
+        && request.resource.data.tutorId.matches('[A-Za-z0-9_-]{1,128}')
+        && request.resource.data.fileName == 'beewise-report-' + reportId + '.pdf'
+        && request.resource.data.contentType == 'application/pdf'
+        && request.resource.data.sizeBytes is int
+        && request.resource.data.sizeBytes >= 5
+        && request.resource.data.sizeBytes <= 512000
+        && request.resource.data.createdAt == request.time
+        && permittedTutor(request.resource.data.tutorId);
+      allow update, delete: if false;
+    }
+
     // Immutable parent-owned PDFs. No public URLs, updates or deletes.
     match /reports/{userId}/files/{reportId} {
-      function permittedTutor(tutorId) {
-        let tutor = get(/databases/$(database)/documents/tutors/$(tutorId)).data;
-        // Only this owner-consented technical demo may remain professionally unverified.
-        // Catalog writes remain trusted-only; identity and fixture guards still apply.
-        return tutor.active == true
-          && ((tutor.verified == true
-              && (!('demoOnly' in tutor) || tutor.demoOnly == false))
-            || (tutorId == 'tutor_acd3824aa8734c63ac8827df'
-              && tutor.verified == false && tutor.demoOnly == true))
-          && !tutorId.matches('bao-lab3-.*')
-          && (!('syntheticTestFixture' in tutor) || tutor.syntheticTestFixture == false)
-          && (!('fixtureNamespace' in tutor) || tutor.fixtureNamespace == '');
-      }
       allow read: if isParent(userId);
       allow create: if canWriteAsParent(userId)
         && reportId.matches('[A-Za-z0-9]{20}')
@@ -66,11 +151,55 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
-    // Tutor profiles are managed by trusted staff/backend; clients can only read active profiles.
+    // Final-managed profiles are bound to the approved application UID.
+    // Legacy/consented demo records cannot be mutated by the Web Admin.
     match /tutors/{tutorId} {
-      allow read: if resource.data.active == true;
-      allow write: if false;
+      function managed() {
+        return tutorId != 'tutor_acd3824aa8734c63ac8827df'
+          && !tutorId.matches('bao-lab3-.*')
+          && resource.data.get('managedByFinal', false) == true
+          && resource.data.applicationUid == tutorId;
+      }
+      function approvedApplication() {
+        let app = getAfter(/databases/$(database)/documents/tutorApplications/$(tutorId)).data;
+        return app.status == 'approved' && app.verified == true && app.active == true;
+      }
+      function validListing(d) {
+        return bounded(d.name, 2, 100) && bounded(d.credential, 2, 300)
+          && bounded(d.introduction, 20, 1000) && bounded(d.availability, 2, 500)
+          && textList(d.subjects, 10)
+          && textList(d.grades, 12)
+          && textList(d.areas, 10)
+          && d.teachingModes is list && d.teachingModes.size() >= 1 && d.teachingModes.size() <= 2
+          && d.teachingModes.hasOnly(['online', 'in_person'])
+          && d.hourlyFee is int && d.hourlyFee > 0 && d.hourlyFee <= 100000000
+          && d.updatedAt == request.time;
+      }
+      allow read: if resource.data.active == true || reviewer()
+        || (member() && request.auth.uid == tutorId && managed());
+      allow create: if reviewer() && request.auth.uid != tutorId
+        && tutorId != 'tutor_acd3824aa8734c63ac8827df'
+        && !tutorId.matches('bao-lab3-.*') && approvedApplication()
+        && request.resource.data.keys().hasOnly([
+          'name', 'credential', 'introduction', 'subjects', 'grades', 'hourlyFee',
+          'areas', 'teachingModes', 'availability', 'applicationUid', 'managedByFinal',
+          'active', 'verified', 'publishedAt', 'updatedAt'
+        ])
+        && validListing(request.resource.data)
+        && request.resource.data.applicationUid == tutorId
+        && request.resource.data.managedByFinal == true
+        && request.resource.data.active == true && request.resource.data.verified == true
+        && request.resource.data.publishedAt == request.time;
+      allow update: if reviewer() && request.auth.uid != tutorId && managed()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'name', 'credential', 'introduction', 'subjects', 'grades', 'hourlyFee',
+          'areas', 'teachingModes', 'availability', 'active', 'updatedAt'
+        ])
+        && request.resource.data.active is bool && validListing(request.resource.data)
+        && (request.resource.data.active == false || approvedApplication());
+      allow delete: if false;
     }
+
 
     match /parents/{parentId} {
       allow read: if isParent(parentId);
@@ -93,10 +222,11 @@ service cloud.firestore {
     }
 
     // Applicants can submit and read only their own pending application.
-    // Approval, verification and public tutor profiles are staff/backend-only.
+    // Staff review commits an immutable receipt with every decision.
     match /tutorApplications/{userId} {
       allow create: if signedIn()
         && request.auth.uid == userId
+        && isEndUser(userId)
         && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && !existsAfter(/databases/$(database)/documents/parents/$(userId))
         && request.resource.data.keys().hasOnly([
@@ -124,17 +254,11 @@ service cloud.firestore {
         && request.resource.data.introduction is string
         && request.resource.data.introduction.size() >= 20
         && request.resource.data.introduction.size() <= 1000
-        && request.resource.data.subjects is list
-        && request.resource.data.subjects.size() > 0
-        && request.resource.data.subjects.size() <= 10
-        && request.resource.data.grades is list
-        && request.resource.data.grades.size() > 0
-        && request.resource.data.grades.size() <= 12
+        && textList(request.resource.data.subjects, 10)
+        && textList(request.resource.data.grades, 12)
         && request.resource.data.hourlyFee is int
         && request.resource.data.hourlyFee > 0
-        && request.resource.data.areas is list
-        && request.resource.data.areas.size() > 0
-        && request.resource.data.areas.size() <= 10
+        && textList(request.resource.data.areas, 10)
         && request.resource.data.teachingModes is list
         && request.resource.data.teachingModes.size() > 0
         && request.resource.data.teachingModes.size() <= 2
@@ -147,8 +271,62 @@ service cloud.firestore {
         && request.resource.data.active == false
         && request.resource.data.consentAccepted == true
         && request.resource.data.createdAt == request.time;
-      allow read: if signedIn() && request.auth.uid == userId;
-      allow update, delete: if false;
+      function reviewUpdate() {
+        let d = request.resource.data;
+        let receipt = /databases/$(database)/documents/tutorApplications/$(userId)/reviews/$(d.latestReviewId);
+        return reviewer() && request.auth.uid != userId
+          && resource.data.status == 'pending'
+          && resource.data.verified == false && resource.data.active == false
+          && d.diff(resource.data).affectedKeys().hasOnly([
+            'status', 'verified', 'active', 'reviewReason', 'reviewedAt', 'reviewedBy', 'latestReviewId'
+          ])
+          && d.status in ['approved', 'rejected', 'needs_info']
+          && d.verified == (d.status == 'approved') && d.active == d.verified
+          && bounded(d.reviewReason, 1, 500)
+          && d.reviewedAt == request.time && d.reviewedBy == request.auth.uid
+          && d.latestReviewId is string && d.latestReviewId.matches('[A-Za-z0-9]{20}')
+          && !exists(receipt) && getAfter(receipt).data.status == d.status
+          && getAfter(receipt).data.reason == d.reviewReason;
+      }
+      function applicantResubmission() {
+        let d = request.resource.data;
+        return member() && request.auth.uid == userId && isEndUser(userId) && resource.data.status == 'needs_info'
+          && d.diff(resource.data).affectedKeys().hasOnly([
+            'name', 'phone', 'qualification', 'introduction', 'subjects', 'grades', 'hourlyFee',
+            'areas', 'teachingModes', 'availability', 'status', 'updatedAt'
+          ])
+          && resource.data.verified == false && resource.data.active == false
+          && d.status == 'pending' && d.updatedAt == request.time
+          && bounded(d.name, 2, 100) && bounded(d.phone, 9, 20)
+          && bounded(d.qualification, 2, 300) && bounded(d.introduction, 20, 1000)
+          && textList(d.subjects, 10)
+          && textList(d.grades, 12)
+          && textList(d.areas, 10)
+          && d.teachingModes is list && d.teachingModes.size() >= 1 && d.teachingModes.size() <= 2
+          && d.teachingModes.hasOnly(['online', 'in_person'])
+          && d.hourlyFee is int && d.hourlyFee > 0 && d.hourlyFee <= 100000000
+          && bounded(d.availability, 2, 500);
+      }
+      allow read: if (member() && request.auth.uid == userId) || reviewer();
+      allow update: if reviewUpdate() || applicantResubmission();
+      allow delete: if false;
+      match /reviews/{reviewId} {
+        function isReceipt() {
+          let app = /databases/$(database)/documents/tutorApplications/$(userId);
+          let next = getAfter(app).data;
+          let d = request.resource.data;
+          return reviewer() && request.auth.uid != userId
+            && get(app).data.status == 'pending' && next.status != 'pending'
+            && next.latestReviewId == reviewId && next.reviewedAt == request.time
+            && d.keys().hasOnly(['status', 'reason', 'createdAt', 'reviewerUid'])
+            && d.status == next.status && d.reason == next.reviewReason
+            && d.createdAt == request.time && d.reviewerUid == request.auth.uid;
+        }
+        allow read: if (member() && request.auth.uid == userId) || reviewer();
+        allow create: if isReceipt();
+        allow update, delete: if false;
+      }
+
     }
 
     match /connectionRequests/{requestId} {
@@ -179,10 +357,17 @@ service cloud.firestore {
     match /chats/{chatId} {
       allow read: if isParent(resource.data.parentId)
         || isAuthorizedTutor(resource.data.tutorId);
+      allow get: if reviewer() && resource.data.paymentMode == 'manual_vietqr';
       allow create: if canWriteAsParent(request.resource.data.parentId)
-        && request.resource.data.consultantQueue == true
-        && request.resource.data.onboardingStatus == 'connection_pending_consultant'
-        && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'consultantQueue', 'participantRoles', 'connectionRequestId', 'onboardingStatus', 'createdAt', 'updatedAt'])
+        && ((request.resource.data.get('paymentMode', 'legacy_payos') == 'legacy_payos'
+          && !('paymentMode' in request.resource.data)
+          && request.resource.data.consultantQueue == true
+          && request.resource.data.onboardingStatus == 'connection_pending_consultant')
+          || (chatId.matches('[A-Za-z0-9]{20}')
+            && request.resource.data.paymentMode == 'manual_vietqr'
+            && request.resource.data.consultantQueue == false
+            && request.resource.data.onboardingStatus == 'final_waiting_class_offer'))
+        && request.resource.data.keys().hasOnly(['parentId', 'tutorId', 'consultantQueue', 'participantRoles', 'connectionRequestId', 'onboardingStatus', 'createdAt', 'updatedAt', 'paymentMode'])
         && request.resource.data.connectionRequestId is string
         && request.resource.data.createdAt == request.time
         && request.resource.data.updatedAt == request.time
@@ -216,7 +401,9 @@ service cloud.firestore {
               && request.resource.data.senderId == 'system'
               && request.resource.data.role == 'system'
               && request.resource.data.kind == 'system'
-              && request.resource.data.body == 'Yêu cầu kết nối đã được gửi. Tư vấn viên BeeWise sẽ tham gia nhóm sau khi xác nhận.')
+              && request.resource.data.body == (getAfter(/databases/$(database)/documents/chats/$(chatId)).data.get('paymentMode','') == 'manual_vietqr'
+                ? 'Yêu cầu kết nối đã được gửi. Nhân viên BeeWise sẽ chuẩn bị đề xuất lớp.'
+                : 'Yêu cầu kết nối đã được gửi. Tư vấn viên BeeWise sẽ tham gia nhóm sau khi xác nhận.'))
           );
         allow update, delete: if false;
       }
@@ -263,6 +450,174 @@ service cloud.firestore {
       }
     }
 
+    // Manual VietQR uses a separate contract; legacy invoices remain backend-only.
+    function finalChat(id) {
+      return get(/databases/$(database)/documents/chats/$(id)).data;
+    }
+    function finalPayment(id) {
+      return get(/databases/$(database)/documents/finalPayments/$(id)).data;
+    }
+    function finalPaymentAfter(id) {
+      return getAfter(/databases/$(database)/documents/finalPayments/$(id)).data;
+    }
+    function paymentReviewPath(id, claim) {
+      return /databases/$(database)/documents/finalPayments/$(id)/reviews/$(claim);
+    }
+    function bankReceiptPath(id) {
+      return /databases/$(database)/documents/finalBankReceipts/$(id);
+    }
+    function officialClassPath(id) {
+      let classId = 'vietqr_' + id;
+      return /databases/$(database)/documents/classes/$(classId);
+    }
+    function validRecipient(d) {
+      return d.keys().hasOnly(['bankBin','accountNumber','accountHolder','instructions'])
+        && d.bankBin is string && d.bankBin.matches('[0-9]{6}')
+        && d.accountNumber is string && d.accountNumber.matches('[A-Za-z0-9]{3,19}')
+        && bounded(d.accountHolder, 2, 100)
+        && d.instructions is string && d.instructions.size() <= 300;
+    }
+    function validOffer(id, d) {
+      let chat = finalChat(id);
+      let recipient = get(/databases/$(database)/documents/settings/paymentRecipient).data;
+      let tutor = get(/databases/$(database)/documents/tutors/$(chat.tutorId)).data;
+      let ref = /databases/$(database)/documents/finalTransferReferences/$(d.transferReference);
+      return id.matches('[A-Za-z0-9]{20}')
+        && chat.paymentMode == 'manual_vietqr'
+        && chat.onboardingStatus == 'final_waiting_class_offer'
+        && d.keys().hasOnly(['invoiceId','chatId','parentId','tutorId','subject','tutorName',
+          'date','time','location','amount','currency','recipient','transferReference',
+          'expiresAt','createdAt','offeredBy','status'])
+        && d.invoiceId == id && d.chatId == id && d.parentId == chat.parentId && d.tutorId == chat.tutorId
+        && d.status == 'offered' && d.offeredBy == request.auth.uid && d.createdAt == request.time
+        && d.amount is int && d.amount > 0 && d.amount <= 100000000
+        && d.currency == 'VND' && validRecipient(d.recipient) && d.recipient == recipient
+        && tutor.active == true && d.tutorName == tutor.name
+        && bounded(d.subject, 2, 120) && bounded(d.tutorName, 2, 100)
+        && d.date is string && d.date.matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        && d.time is string && d.time.matches('([01][0-9]|2[0-3]):[0-5][0-9]')
+        && bounded(d.location, 2, 200)
+        && d.expiresAt > request.time && d.expiresAt <= request.time + duration.value(7, 'd')
+        && d.transferReference is string && d.transferReference.matches('BW[A-Z0-9]{16}')
+        && !exists(ref) && getAfter(ref).data.invoiceId == id;
+    }
+    function validManualDecision(id, before, after) {
+      let audit = getAfter(paymentReviewPath(id, before.claimId)).data;
+      return before.status == 'awaiting_verification'
+        && !exists(paymentReviewPath(id, before.claimId))
+        && audit.invoiceId == id && audit.claimId == before.claimId
+        && audit.status == after.status && audit.reviewedBy == request.auth.uid
+        && audit.reviewedAt == request.time
+        && ((after.status == 'rejected'
+            && after.diff(before).affectedKeys().hasOnly(['status','rejectedReason'])
+            && bounded(after.rejectedReason, 1, 500) && audit.reason == after.rejectedReason)
+          || (after.status == 'verified'
+            && after.diff(before).affectedKeys().hasOnly([
+              'status','verifiedBy','verifiedAt','verificationMethod','classId'])
+            && after.verifiedBy == request.auth.uid && after.verifiedAt == request.time
+            && after.verificationMethod == 'manual_bank_transfer'
+            && after.classId == 'vietqr_' + id
+            && !exists(officialClassPath(id))
+            && getAfter(officialClassPath(id)).data.invoiceId == id));
+    }
+
+    match /settings/paymentRecipient {
+      allow get: if reviewer();
+      // Approved Firebase operator only. No client, including Web staff, can edit it.
+      allow list, write: if false;
+    }
+
+    match /finalTransferReferences/{reference} {
+      allow create: if reviewer() && reference.matches('BW[A-Z0-9]{16}')
+        && request.resource.data.keys().hasOnly(['invoiceId'])
+        && !exists(/databases/$(database)/documents/finalPayments/$(request.resource.data.invoiceId))
+        && finalPaymentAfter(request.resource.data.invoiceId).transferReference == reference;
+      allow read, update, delete: if false;
+    }
+
+    match /finalPayments/{id} {
+      allow get: if reviewer() || isParent(finalChat(id).parentId);
+      allow list: if reviewer();
+      allow create: if reviewer() && validOffer(id, request.resource.data);
+      allow update: if (
+          isParent(resource.data.parentId) && resource.data.expiresAt > request.time
+          && ((resource.data.status == 'offered'
+            && request.resource.data.status == 'awaiting_transfer'
+            && request.resource.data.acceptedAt == request.time
+            && request.resource.data.acceptedAmount == resource.data.amount
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','acceptedAt','acceptedAmount']))
+          || (resource.data.status in ['awaiting_transfer','rejected']
+            && request.resource.data.status == 'awaiting_verification'
+            && request.resource.data.claimId is string
+            && request.resource.data.claimId.matches('[A-Za-z0-9]{20}')
+            && request.resource.data.claimId != resource.data.get('claimId','')
+            && !exists(paymentReviewPath(id, request.resource.data.claimId))
+            && request.resource.data.claimedAt == request.time
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+              'status','claimId','claimedAt','rejectedReason'])
+            && !('rejectedReason' in request.resource.data))))
+        || (reviewer() && (
+          (resource.data.status == 'awaiting_verification'
+            && validManualDecision(id, resource.data, request.resource.data))
+          || (resource.data.status in ['offered','awaiting_transfer','rejected']
+            && request.resource.data.status == 'cancelled'
+            && request.resource.data.cancelledBy == request.auth.uid
+            && request.resource.data.cancelledAt == request.time
+            && bounded(request.resource.data.cancelReason, 1, 500)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+              'status','cancelledBy','cancelledAt','cancelReason']))));
+      allow delete: if false;
+
+      match /reviews/{claim} {
+        function validAudit(d) {
+          let before = finalPayment(id);
+          let after = finalPaymentAfter(id);
+          return before.status == 'awaiting_verification' && before.claimId == claim
+            && d.invoiceId == id && d.claimId == claim && after.status == d.status
+            && d.reviewedBy == request.auth.uid && d.reviewedAt == request.time
+            && ((d.status == 'rejected'
+                && d.keys().hasOnly(['invoiceId','claimId','status','reviewedBy','reviewedAt','reason'])
+                && bounded(d.reason, 1, 500))
+              || (d.status == 'verified'
+                && d.keys().hasOnly(['invoiceId','claimId','status','reviewedBy','reviewedAt',
+                  'bankReceiptId','matchedAmount','matchedReference','matchedRecipient'])
+                && d.matchedAmount == before.amount && d.matchedReference == before.transferReference
+                && d.matchedRecipient == {'bankBin': before.recipient.bankBin, 'accountNumber': before.recipient.accountNumber}
+                && d.bankReceiptId is string
+                && d.bankReceiptId.matches(before.recipient.bankBin + '_[A-Z0-9]{6,40}')
+                && !exists(bankReceiptPath(d.bankReceiptId))
+                && getAfter(bankReceiptPath(d.bankReceiptId)).data.invoiceId == id
+                && getAfter(bankReceiptPath(d.bankReceiptId)).data.claimId == claim));
+        }
+        allow read: if reviewer();
+        allow create: if reviewer() && validAudit(request.resource.data);
+        allow update, delete: if false;
+      }
+    }
+
+    match /finalBankReceipts/{receipt} {
+      allow create: if reviewer()
+        && request.resource.data.keys().hasOnly(['invoiceId','claimId'])
+        && finalPayment(request.resource.data.invoiceId).status == 'awaiting_verification'
+        && finalPaymentAfter(request.resource.data.invoiceId).status == 'verified'
+        && getAfter(paymentReviewPath(request.resource.data.invoiceId, request.resource.data.claimId)).data.bankReceiptId == receipt;
+      allow read, update, delete: if false;
+    }
+
+    function validFinalClass(id, d) {
+      let before = finalPayment(d.invoiceId);
+      let after = finalPaymentAfter(d.invoiceId);
+      return id == 'vietqr_' + d.invoiceId
+        && before.status == 'awaiting_verification'
+        && after.status == 'verified' && after.classId == id && after.verifiedBy == request.auth.uid
+        && d.keys().hasOnly(['invoiceId','chatId','parentId','tutorId','paymentStatus',
+          'subject','tutorName','date','time','location','totalFee','createdAt'])
+        && d.chatId == before.chatId && d.parentId == before.parentId && d.tutorId == before.tutorId
+        && d.paymentStatus == 'verified' && d.subject == before.subject && d.tutorName == before.tutorName
+        && d.date == before.date && d.time == before.time && d.location == before.location
+        && d.totalFee == before.amount && d.createdAt == request.time;
+    }
+
     match /invoices/{invoiceId} {
       allow read: if isParent(resource.data.parentId);
       allow write: if false; // Trusted payment backend creates and verifies invoices.
@@ -292,7 +647,8 @@ service cloud.firestore {
       allow read: if (isParent(resource.data.parentId)
         && resource.data.paymentStatus == 'verified')
         || isAuthorizedTutor(resource.data.tutorId);
-      allow write: if false;
+      allow create: if reviewer() && validFinalClass(classId, request.resource.data);
+      allow update, delete: if false;
     }
   }
 }
