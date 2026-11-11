@@ -7,12 +7,12 @@ Android: Final-mode debug APK, `lib/main.dart`, `BEEWISE_FINAL_FIRESTORE=true`, 
 | Run | Expected outcome | Status |
 |---|---|---|
 | CR-01 | Pending → approved; Android updated without reload and showed the private inbox notice, per owner observation | VERIFIED_LIVE ([receipt](CR-01/README.md)); timing and independent Firestore readback pending |
-| CR-02 | Pending → needs_info; reason in private inbox; same-UID correction → pending if supported | NOT_RUN |
+| CR-02 | Pending → needs_info with reason on Android → pending after correction | VERIFIED_LIVE ([receipt](CR-02/README.md)); inbox and timing unverified |
 | CR-03 | Pending → rejected; private reason; applicant cannot self-approve or publish | NOT_RUN |
 | Extra approval repetitions | Two further independent approvals | NOT_RUN |
 | Web non-staff / revocation | Disposable Google identity with role user → staff → user; existing owner unchanged | NOT_RUN |
 
-The owner approved the scoped disposable test plan. CR-01 has a live status receipt and owner-observed inbox delivery. CR-02, CR-03 and authorization tests have not run; no propagation timings were measured.
+The owner approved the scoped disposable test plan. CR-01 has a live status receipt and owner-observed inbox delivery. CR-03 and authorization tests have not run; no propagation timings were measured.
 
 Use three disposable tutor identities, one isolated Android application each, with unique run aliases and synthetic data. Review using the existing owner's staff Web session. No public catalogue publication. Keep test audit records, do not replace existing applications. For the disposable Google account, record a non-staff Web denial and an ordinary-client private read denial before temporary promotion; while signed in, restore role to user and verify workspace loss and Rules denial of a valid review attempt limited to the isolated CR-02 application after it returns to pending. If unexpectedly accepted, stop and retain that test-only receipt. No owner demotion. Credentials stay private.
 
