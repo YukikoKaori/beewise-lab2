@@ -40,4 +40,6 @@ See the [local evidence manifest](../evidence/final/emulator/manifest.json) for 
 
 ## Next verification
 
-LIVE_VERIFICATION_PENDING: confirm project/site, Google OAuth and App Check through read-only preflight. Obtain exact authorization for each cloud mutation and genuine Gemini case, then retain sanitized outputs and three independently timed deployed cross-role receipts. Bank-app scanning and production bank-statement verification remain separate acceptance items.
+See the [production receipt](../evidence/final/live-preflight/README.md) for the exact merge SHA, CI rerun, Hosting release, signed-out browser smoke, App Check configuration, and remaining live gates. No new Gemini response, completed production sign-in, cross-role receipt or bank-app scan was collected. The [VietQR owner guide](vietqr-owner-guide.md) explains scan-only testing.
+
+See [Production cross-role evidence and run plan](../evidence/final/production-cross-role/README.md) for the current deployed scope, evidence and pending gates.

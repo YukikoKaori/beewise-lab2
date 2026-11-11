@@ -24,3 +24,5 @@ sequenceDiagram
 | 6 | Staff / signed-in Android user | CREATE published announcement; listen to published query | Staff author and timestamp; signed-in published reads only | General announcement in existing inbox |
 
 Measure from Web approval action to the first visible approved Android state on the same clock. Record each synthetic alias, original screen captures, environment, SHA and latency; never use Admin writes for applicant submission or approval in an acceptance run. Emulator and deployed results are separate. Deployed acceptance is pending owner-approved cloud configuration and deployment.
+
+See [Production cross-role evidence and run plan](../evidence/final/production-cross-role/README.md) for the current deployed scope, evidence and pending gates.
