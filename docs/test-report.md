@@ -19,6 +19,8 @@ Baseline: `main` merge SHA `9d093a58cf47ea8055e0bb1301e8f266ae47ae40` (PR #29 / 
 
 See the [local evidence manifest](../evidence/final/emulator/manifest.json), the [ARTEMIS Final traceability matrix](artemis-final-matrix.md), the [ARTEMIS bounded summary](../evidence/final/artemis/summary.md), the [Firebase Analytics native upload receipt](../evidence/final/analytics/README.md), and the [Production cross-role acceptance receipt](../evidence/final/production-cross-role/README.md).
 
+The PR #30 assertion corrective is offline only. The **22 synthetic regression cases** exercise the actual FINAL-F01 and FINAL-F02a assertions without running ARTEMIS, bringing current pytest collection to **57** (35 device scenarios plus 22 offline cases). Gate 3 B stays at **4 PASS / 4 FAIL / 1 BLOCKED**; FINAL-F02a remains **NOT_RUN**.
+
 ## VietQR scenarios
 
 | Scenario | Evidence |
