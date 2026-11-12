@@ -106,6 +106,11 @@ class ManualPayments {
   static const mode = 'manual_vietqr';
   static const chatStatus = 'final_waiting_class_offer';
   static final validId = RegExp(r'^[A-Za-z0-9]{20}$');
+  static const cancellableStatuses = {
+    'offered',
+    'awaiting_transfer',
+    'rejected',
+  };
 
   CollectionReference<Map<String, dynamic>> get records =>
       db.collection('finalPayments');
@@ -322,11 +327,42 @@ class ManualPayments {
     });
   }
 
-  Future<void> cancel(String id, String uid, String reason) =>
-      records.doc(id).update({
+  /// Atomically cancels an unverified offer after re-checking current state and
+  /// validating the cancellation reason inside the Firestore transaction.
+  Future<void> cancel(
+    String id,
+    String uid,
+    String reason, {
+    String? expectedStatus,
+  }) async {
+    final trimmed = reason.trim();
+    if (trimmed.isEmpty || trimmed.length > 500) {
+      throw const FormatException('Nhập lý do hủy từ 1 đến 500 ký tự.');
+    }
+    final payment = records.doc(id);
+    await db.runTransaction((tx) async {
+      final snapshot = await tx.get(payment);
+      final data = snapshot.data();
+      if (!snapshot.exists || data == null) {
+        throw const FormatException('Không tìm thấy hóa đơn để hủy.');
+      }
+      final status = data['status'];
+      if (status is! String || !cancellableStatuses.contains(status)) {
+        throw const FormatException(
+          'Hóa đơn không còn ở trạng thái có thể hủy.',
+        );
+      }
+      if (expectedStatus != null && status != expectedStatus) {
+        throw const FormatException(
+          'Hóa đơn đã thay đổi trạng thái. Hãy mở lại.',
+        );
+      }
+      tx.update(payment, {
         'status': 'cancelled',
-        'cancelReason': reason.trim(),
+        'cancelReason': trimmed,
         'cancelledBy': uid,
         'cancelledAt': FieldValue.serverTimestamp(),
       });
+    });
+  }
 }

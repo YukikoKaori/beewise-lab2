@@ -915,6 +915,12 @@ void main() {
         expect(find.widgetWithText(TextFormField, 'Mật khẩu'), findsNothing);
 
         // Final server submit button is disabled because backend rules block direct updates
+        await tester.scrollUntilVisible(
+          find.text('Gửi lại hồ sơ (Chờ mở quyền máy chủ)'),
+          300,
+          scrollable: find.byType(Scrollable).first,
+        );
+        await tester.pumpAndSettle();
         final disabledSubmitFinder = find.ancestor(
           of: find.text('Gửi lại hồ sơ (Chờ mở quyền máy chủ)'),
           matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
@@ -926,9 +932,19 @@ void main() {
         expect(disabledSubmitBtn.onPressed, isNull);
 
         // Local edits work and can be validated locally without creating a new account or mutating review status
+        await tester.scrollUntilVisible(
+          find.widgetWithText(TextFormField, 'Bằng cấp / kinh nghiệm'),
+          -300,
+          scrollable: find.byType(Scrollable).first,
+        );
         await tester.enterText(
           find.widgetWithText(TextFormField, 'Bằng cấp / kinh nghiệm'),
           'Thạc sĩ Sư phạm Toán - 6 năm kinh nghiệm',
+        );
+        await tester.scrollUntilVisible(
+          find.text('Kiểm tra hợp lệ thông tin đã sửa'),
+          300,
+          scrollable: find.byType(Scrollable).first,
         );
         await tester.tap(find.text('Kiểm tra hợp lệ thông tin đã sửa'));
         await tester.pumpAndSettle();
@@ -963,6 +979,11 @@ void main() {
         await tester.enterText(
           find.widgetWithText(TextFormField, 'Bằng cấp / kinh nghiệm'),
           'Thạc sĩ Sư phạm Toán - 6 năm kinh nghiệm',
+        );
+        await tester.scrollUntilVisible(
+          find.text('Gửi lại hồ sơ'),
+          300,
+          scrollable: find.byType(Scrollable).first,
         );
         await tester.tap(find.text('Gửi lại hồ sơ'));
         await tester.pumpAndSettle();

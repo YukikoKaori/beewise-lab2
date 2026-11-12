@@ -1,7 +1,7 @@
 const {before, after, beforeEach, test} = require('node:test');
 const {readFileSync} = require('node:fs');
 const {initializeTestEnvironment, assertSucceeds, assertFails} = require('@firebase/rules-unit-testing');
-const {doc, getDoc, getDocFromServer, setDoc, updateDoc, deleteDoc, writeBatch, serverTimestamp, Timestamp} = require('firebase/firestore');
+const {doc, getDoc, getDocFromServer, setDoc, updateDoc, deleteDoc, writeBatch, runTransaction, serverTimestamp, Timestamp} = require('firebase/firestore');
 
 let env;
 const db = (uid = 'alice') => env.authenticatedContext(uid, {
@@ -642,7 +642,7 @@ const claimManual = (store, id=manualChatA, claim=manualClaimA) =>
 function decideManual(store, {id=manualChatA, claim=manualClaimA, staff='staff', parent='alice',
   ref=manualRefA, receipt='000000_FIXTURE00001', verify=true, withClass=true,
   withAudit=true, withReceipt=true, amount=150000, matchedRecipient={bankBin:testRecipient.bankBin,accountNumber:testRecipient.accountNumber},
-  reviewer=staff, reason='No matching bank entry',}={}) {
+  reviewer=staff, reason='No matching bank entry', subject='Mathematics',}={}) {
   const b=writeBatch(store);
   const audit={invoiceId:id,claimId:claim,status:verify?'verified':'rejected',
     reviewedBy:reviewer,reviewedAt:serverTimestamp()};
@@ -655,7 +655,7 @@ function decideManual(store, {id=manualChatA, claim=manualClaimA, staff='staff',
     if (withReceipt) b.set(doc(store,`finalBankReceipts/${receipt}`),{invoiceId:id,claimId:claim});
     if(withClass) b.set(doc(store,manualClass(id)),{
       invoiceId:id,chatId:id,parentId:parent,tutorId:'tutor',paymentStatus:'verified',
-      subject:'Mathematics',tutorName:'Emulator Tutor',date:'2030-02-14',
+      subject,tutorName:'Emulator Tutor',date:'2030-02-14',
       time:'18:30',location:'Online',totalFee:150000,createdAt:serverTimestamp(),
     });
   } else {
@@ -749,4 +749,153 @@ test('VietQR rejection, same-invoice retry, cancellation and replay protection',
   await assertFails(getDocFromServer(doc(db('bob'),manualClass(manualChatB))));
   await assertSucceeds(getDocFromServer(doc(db(),'invoices/legacy-verified')));
   await assertSucceeds(getDocFromServer(doc(db(),'classes/legacy-class')));
+});
+
+function napasVietQrForTest({bankBin, accountNumber, amount, reference}) {
+  const tlv = (id, val) => `${id}${String(val.length).padStart(2, '0')}${val}`;
+  const beneficiary = tlv('00', bankBin) + tlv('01', accountNumber);
+  const payload = [
+    tlv('00', '01'),
+    tlv('01', '12'),
+    tlv('38', tlv('00', 'A000000727') + tlv('01', beneficiary) + tlv('02', 'QRIBFTTA')),
+    tlv('53', '704'),
+    tlv('54', String(amount)),
+    tlv('58', 'VN'),
+    tlv('62', tlv('01', reference) + tlv('08', reference)),
+    '6304',
+  ].join('');
+  let crc = 0xffff;
+  for (let i = 0; i < payload.length; i++) {
+    crc ^= payload.charCodeAt(i) << 8;
+    for (let bit = 0; bit < 8; bit++) {
+      crc = ((crc << 1) ^ ((crc & 0x8000) === 0 ? 0 : 0x1021)) & 0xffff;
+    }
+  }
+  return payload + crc.toString(16).padStart(4, '0').toUpperCase();
+}
+
+test('Final VietQR 10-step E2E lifecycle & real runTransaction concurrency (TEST fixtures)', async () => {
+  const assert = require('node:assert/strict');
+  const chatC = 'FinalChatCase0000003';
+  const chatD = 'FinalChatCase0000004';
+  const refC = 'BWTESTREFERENCE003';
+  const refD = 'BWTESTREFERENCE004';
+  await seedManual();
+  await seed({
+    [`chats/${chatC}`]: {parentId: 'alice', tutorId: 'tutor', paymentMode: 'manual_vietqr', onboardingStatus: 'final_waiting_class_offer', consultantQueue: false},
+    [`chats/${chatD}`]: {parentId: 'bob', tutorId: 'tutor', paymentMode: 'manual_vietqr', onboardingStatus: 'final_waiting_class_offer', consultantQueue: false},
+  });
+
+  const staff = staffDb();
+  const alice = db('alice');
+  const bob = db('bob');
+  const tutor = db('tutor');
+  const revoked = staffDb('revoked');
+
+  // Step 1: Staff issues synthetic TEST offer; unauthorized clients cannot forge offers.
+  await assertFails(offerBatch(alice, {patch: {subject: '[TEST] Mathematics'}}).commit());
+  await assertSucceeds(offerBatch(staff, {patch: {subject: '[TEST] Mathematics'}}).commit());
+
+  // Step 2: Parent confirms exact amount (wrong amount is denied).
+  await assertFails(acceptManual(alice, manualChatA, 149999));
+  await assertSucceeds(acceptManual(alice, manualChatA, 150000));
+
+  // Step 3: Verify dynamic NAPAS VietQR payload encodes exact synthetic recipient, amount & reference.
+  const offerSnap = await assertSucceeds(getDocFromServer(doc(alice, manualPath(manualChatA))));
+  const offer = offerSnap.data();
+  const qr = napasVietQrForTest({
+    bankBin: offer.recipient.bankBin,
+    accountNumber: offer.recipient.accountNumber,
+    amount: offer.amount,
+    reference: offer.transferReference,
+  });
+  assert.ok(qr.includes('A000000727'));
+  assert.ok(qr.includes('QRIBFTTA'));
+  assert.ok(qr.includes(`5303704`));
+  assert.ok(qr.includes(`5406${offer.amount}`));
+  assert.ok(qr.includes(offer.transferReference));
+  assert.match(qr, /6304[0-9A-F]{4}$/);
+
+  // Step 4: Parent reports synthetic transfer (cannot spoof for another parent).
+  await assertFails(claimManual(bob, manualChatA, manualClaimA));
+  await assertSucceeds(claimManual(alice, manualChatA, manualClaimA));
+
+  // Steps 5, 6, 7 & 10: Staff reviews synthetic TEST fixture; invalid details & duplicates denied; valid activates schedule.
+  await assertFails(decideManual(alice, {staff: 'alice'}).commit()); // Self-verification denied
+  await assertFails(decideManual(tutor, {staff: 'tutor'}).commit()); // Tutor cannot verify
+  await assertFails(decideManual(revoked, {staff: 'revoked'}).commit()); // Revoked staff denied
+  await assertFails(decideManual(staff, {amount: 149000}).commit()); // Wrong amount denied
+  await assertFails(decideManual(staff, {ref: manualRefB}).commit()); // Wrong reference denied
+  await assertFails(decideManual(staff, {matchedRecipient: {bankBin: '970403', accountNumber: testRecipient.accountNumber}}).commit()); // Wrong recipient denied
+  await assertSucceeds(decideManual(staff, {receipt: '000000_TESTFIXTURE1', subject: '[TEST] Mathematics'}).commit());
+  // Duplicate verification on same invoice OR reused bank receipt is denied.
+  await assertFails(decideManual(staff, {receipt: '000000_TESTFIXTURE2', subject: '[TEST] Mathematics'}).commit());
+  await assertSucceeds(offerBatch(staff, {id: manualChatB, reference: refC, parentId: 'bob', patch: {subject: '[TEST] Physics'}}).commit());
+  await assertSucceeds(acceptManual(bob, manualChatB, 150000));
+  await assertSucceeds(claimManual(bob, manualChatB, manualClaimA));
+  await assertFails(decideManual(staff, {id: manualChatB, parent: 'bob', ref: refC, receipt: '000000_TESTFIXTURE1', subject: '[TEST] Physics'}).commit()); // Reused receipt denied
+
+  // Schedule activated only for verified invoice & readable only by owning parent & tutor.
+  const clsSnap = await assertSucceeds(getDocFromServer(doc(alice, manualClass(manualChatA))));
+  assert.equal(clsSnap.data().paymentStatus, 'verified');
+  assert.equal(clsSnap.data().totalFee, 150000);
+  await assertSucceeds(getDocFromServer(doc(tutor, manualClass(manualChatA))));
+  await assertFails(getDocFromServer(doc(bob, manualClass(manualChatA))));
+
+  // Step 8 & 9: Real Firestore runTransaction concurrency race (parent claim vs staff cancel) & F-FINAL-03 protections.
+  await assertSucceeds(offerBatch(staff, {id: chatC, reference: refD, parentId: 'alice', patch: {subject: '[TEST] Chemistry'}}).commit());
+  await assertSucceeds(acceptManual(alice, chatC, 150000));
+
+  const txClaim = runTransaction(alice, async (tx) => {
+    const refDoc = doc(alice, manualPath(chatC));
+    const snap = await tx.get(refDoc);
+    if (!['awaiting_transfer', 'rejected'].includes(snap.data().status)) {
+      throw new Error('STALE_FOR_CLAIM');
+    }
+    tx.update(refDoc, {
+      status: 'awaiting_verification',
+      claimId: 'ConcurrentClaim00001',
+      claimedAt: serverTimestamp(),
+      rejectedReason: require('firebase/firestore').deleteField(),
+    });
+    return 'claimed';
+  });
+
+  const txCancel = runTransaction(staff, async (tx) => {
+    const refDoc = doc(staff, manualPath(chatC));
+    const snap = await tx.get(refDoc);
+    if (!['offered', 'awaiting_transfer', 'rejected'].includes(snap.data().status)) {
+      throw new Error('STALE_FOR_CANCEL');
+    }
+    tx.update(refDoc, {
+      status: 'cancelled',
+      cancelReason: 'Concurrent cancel test',
+      cancelledBy: 'staff',
+      cancelledAt: serverTimestamp(),
+    });
+    return 'cancelled';
+  });
+
+  const raceResults = await Promise.allSettled([txClaim, txCancel]);
+  assert.equal(raceResults.filter(r => r.status === 'fulfilled').length, 1);
+  assert.equal(raceResults.filter(r => r.status === 'rejected').length, 1);
+
+  const racedSnap = await getDocFromServer(doc(staff, manualPath(chatC)));
+  const racedStatus = racedSnap.data().status;
+  assert.ok(['awaiting_verification', 'cancelled'].includes(racedStatus));
+  assert.equal(racedSnap.data().amount, 150000);
+  if (racedStatus === 'cancelled') {
+    await assertFails(claimManual(alice, chatC, manualClaimB));
+    await assertFails(decideManual(staff, {id: chatC, claim: 'ConcurrentClaim00001', ref: refD, receipt: '000000_TESTFIXTURE3'}).commit());
+  } else {
+    // Claim won: subsequent staff cancel fails both in transaction state check and in Rules!
+    await assertFails(updateDoc(doc(staff, manualPath(chatC)), {
+      status: 'cancelled', cancelledBy: 'staff', cancelledAt: serverTimestamp(), cancelReason: 'Late cancel after claim',
+    }));
+  }
+
+  // Verified invoice cannot be cancelled even via direct client update.
+  await assertFails(updateDoc(doc(staff, manualPath(manualChatA)), {
+    status: 'cancelled', cancelledBy: 'staff', cancelledAt: serverTimestamp(), cancelReason: 'Must fail',
+  }));
 });

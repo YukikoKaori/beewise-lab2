@@ -4,6 +4,7 @@ import 'package:beewise_core/beewise_core.dart' as core;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -50,13 +51,70 @@ final remoteConfigInitializationProvider = FutureProvider<void>((ref) async {
   ref.invalidate(activeTutorsProvider);
 });
 
-final analyticsServiceProvider = Provider<AnalyticsService>(
-  (ref) => AnalyticsService(
-    analytics: ref.watch(firebaseReadyProvider) && !usesFirebaseEmulators
-        ? FirebaseAnalytics.instance
-        : null,
-  ),
+final analyticsOptOutProvider = NotifierProvider<AnalyticsOptOutNotifier, bool>(
+  AnalyticsOptOutNotifier.new,
 );
+
+class AnalyticsOptOutNotifier extends Notifier<bool> {
+  @override
+  bool build() {
+    unawaited(_load());
+    return false;
+  }
+
+  Future<void> _load() async {
+    try {
+      final saved = await SharedPreferencesAsync().getBool(
+        FirebaseBootstrap.analyticsOptOutPrefKey,
+      );
+      if (!ref.mounted || saved == null) return;
+      state = saved;
+      final canTouchAnalytics =
+          !usesFirebaseEmulators &&
+          ref.read(firebaseReadyProvider) &&
+          Firebase.apps.isNotEmpty;
+      if (canTouchAnalytics) {
+        await FirebaseBootstrap.setPersistedAnalyticsOptOut(
+          saved,
+          setAnalyticsEnabled: (enabled) =>
+              FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(enabled),
+          clearUserId: saved
+              ? () => FirebaseAnalytics.instance.setUserId(id: null)
+              : null,
+          writeOptOut: (_) async {},
+        );
+      }
+    } catch (_) {}
+  }
+
+  Future<void> setOptOut(bool optedOut) async {
+    state = optedOut;
+    final canTouchAnalytics =
+        ref.read(firebaseReadyProvider) && Firebase.apps.isNotEmpty;
+    await FirebaseBootstrap.setPersistedAnalyticsOptOut(
+      optedOut,
+      isEmulator: usesFirebaseEmulators,
+      setAnalyticsEnabled: canTouchAnalytics
+          ? (enabled) => FirebaseAnalytics.instance
+                .setAnalyticsCollectionEnabled(enabled)
+          : (_) async {},
+      clearUserId: canTouchAnalytics && optedOut
+          ? () => FirebaseAnalytics.instance.setUserId(id: null)
+          : null,
+    );
+  }
+}
+
+final analyticsServiceProvider = Provider<AnalyticsService>((ref) {
+  final optedOut = ref.watch(analyticsOptOutProvider);
+  final ready = ref.watch(firebaseReadyProvider);
+  final enabled = ready && !usesFirebaseEmulators && !optedOut;
+  return AnalyticsService(
+    analytics: enabled ? FirebaseAnalytics.instance : null,
+    isCollectionEnabled: () =>
+        enabled && FirebaseBootstrap.analyticsCollectionActive,
+  );
+});
 
 final crashReportingServiceProvider = Provider<CrashReportingService>(
   (ref) => CrashReportingService(
