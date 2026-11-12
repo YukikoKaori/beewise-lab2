@@ -1,0 +1,32 @@
+{
+  "scope": "Final Wave 3A guest read-only",
+  "decision_required": "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3",
+  "provider": "DeepSeek API",
+  "model": "deepseek-flash",
+  "source_sha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+  "evidence_branch": "test/final-artemis-completion",
+  "target_apk_sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+  "devices": [
+    "BeeWise_Final_API35"
+  ],
+  "android_api": 35,
+  "cases": [
+    "TC-09",
+    "TC-08",
+    "TC-12",
+    "TC-03"
+  ],
+  "repetitions_per_case": 3,
+  "max_admissions": 12,
+  "retry_admissions": 0,
+  "flash_max_turns": 12,
+  "max_inference_requests": 144,
+  "max_conservative_nanodollars": 450000000,
+  "minimum_nexora_reserve_nanodollars": 0,
+  "gemini_fallback": false,
+  "stop_conditions": [
+    "Ledger cap or balance reserve gate",
+    "Rate limit, new ANR, or unresolved run review",
+    "12 admissions"
+  ]
+}

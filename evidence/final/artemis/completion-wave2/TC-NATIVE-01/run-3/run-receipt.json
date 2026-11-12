@@ -1,0 +1,58 @@
+{
+  "run_id": "45cd93f2-bca5-40ed-acb9-829479ff6800",
+  "case": "TC-NATIVE-01",
+  "started_utc": "2026-11-12T05:50:08.952838+00:00",
+  "usage_before": {
+    "http_attempts": 114,
+    "prompt_tokens": 1154969,
+    "completion_tokens": 14886,
+    "accounted_nanodollars": 371948100
+  },
+  "command": [
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-c",
+    "e2e_test/pyproject.toml",
+    "e2e_test/test_native_permission.py::test_native_notification_permission",
+    "-q",
+    "-s",
+    "-p",
+    "smoke_guard",
+    "--junitxml=D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-NATIVE-01-r3\\result.junit.xml"
+  ],
+  "native_review": "PENDING",
+  "native_preflight": {
+    "device_online": true,
+    "boot_complete": true,
+    "avd_name": "BeeWise_N03_Native_API35",
+    "focused_window": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+    "permission_before": {
+      "granted": false,
+      "flags": [
+        "USER_SENSITIVE_WHEN_DENIED",
+        "USER_SENSITIVE_WHEN_GRANTED"
+      ]
+    },
+    "decision": "deny",
+    "buttons_present": [
+      "allow",
+      "deny"
+    ],
+    "pre_xml": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-NATIVE-01-r3\\pre-ui.xml",
+    "artemis_idle": true,
+    "installed_apk_sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64"
+  },
+  "source_sha": "a3abc406074dcdde49f62e9538f4d9b65976cdd9",
+  "apk_sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+  "pytest_exit": 0,
+  "state": "REVIEW_REQUIRED",
+  "finished_utc": "2026-11-12T05:50:27.380707+00:00",
+  "usage_after": {
+    "http_attempts": 116,
+    "prompt_tokens": 1169806,
+    "completion_tokens": 15143,
+    "accounted_nanodollars": 376707600
+  },
+  "trace_id": "b1b94ad3-8cb4-4f21-97d9-a24c59e989f8"
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [900, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 272] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 656] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 833] (normalized).\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "swipe",
+    "args": {
+      "direction": "down"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped down.\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-07.jpg"
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "path": "actions.json",
+    "bytes": 2497,
+    "sha256": "f8f7b53328ca9af4aa23ed04aeac93ee10901d818523e034948ab632260446ec"
+  },
+  {
+    "path": "balance-preflight.json",
+    "bytes": 150,
+    "sha256": "c8126c6c6c363af2585ed1918418a8bd4b1f0f689634d18e0cb69515c480339c"
+  },
+  {
+    "path": "final-report.json",
+    "bytes": 447,
+    "sha256": "26d1d2ecb9f9aa3524ad3c8ac8634f91afcfdff4e932be08450e3347913e6eb9"
+  },
+  {
+    "path": "independent-review.json",
+    "bytes": 281,
+    "sha256": "93e84f0c76ebd8aa4f7db1f613fba72ea84ca49739c8ae852d4a363f3634010d"
+  },
+  {
+    "path": "result.junit.xml",
+    "bytes": 7020,
+    "sha256": "cbdf5224ff4df90090d9fbed610e0e13a0bff6b0a731d9e2df6b2163e4eacfe7"
+  },
+  {
+    "path": "run-receipt.json",
+    "bytes": 1658,
+    "sha256": "c504054631cb1c3d89e7dd0a4b93d4daa1b24495254b66c1cc8031c1775d3280"
+  },
+  {
+    "path": "step-01.jpg",
+    "bytes": 110595,
+    "sha256": "85482a9b4007abc0670324a31ba0272e58dc623592e54e236718d07d8a1b1b6f"
+  },
+  {
+    "path": "step-02.jpg",
+    "bytes": 110595,
+    "sha256": "85482a9b4007abc0670324a31ba0272e58dc623592e54e236718d07d8a1b1b6f"
+  },
+  {
+    "path": "step-03.jpg",
+    "bytes": 89665,
+    "sha256": "c59a225bb18e47b1551f77059bccb7b57043f1fef00c8acf76c305b7429c10b6"
+  },
+  {
+    "path": "step-04.jpg",
+    "bytes": 93589,
+    "sha256": "a84288b910a4b87337a0266a7ad7602f5f84e89cd4e25f2a61a13070d2f61d92"
+  },
+  {
+    "path": "step-05.jpg",
+    "bytes": 85830,
+    "sha256": "fd36908251e99de3594e426415ab0e4792af96e1812ff076424538e6570ab02b"
+  },
+  {
+    "path": "step-06.jpg",
+    "bytes": 80612,
+    "sha256": "cf6e9539757567a049ffff5511c2b2f287c6efbd517798069a3d13eed29703c9"
+  },
+  {
+    "path": "step-07.jpg",
+    "bytes": 80990,
+    "sha256": "61c600d87783fef92c24ee4e361b5dc0e82b2750ddbfa46c5ea889114ca22638"
+  },
+  {
+    "path": "step-08.jpg",
+    "bytes": 87526,
+    "sha256": "264d979ee3e281e1ef8efb81fe78c41d83d2d88bd9aee74f07f1303b1405267a"
+  },
+  {
+    "path": "step-09.jpg",
+    "bytes": 87526,
+    "sha256": "264d979ee3e281e1ef8efb81fe78c41d83d2d88bd9aee74f07f1303b1405267a"
+  },
+  {
+    "path": "step-10.jpg",
+    "bytes": 92709,
+    "sha256": "e82fc51f3c1063073fb6fcd4b304dd56de834ec266bda3de4945051034f30aff"
+  },
+  {
+    "path": "step-11.jpg",
+    "bytes": 93347,
+    "sha256": "a73edf1a15c212641c6b56de291be739710550b9af308048c67db810911fefc0"
+  },
+  {
+    "path": "step-12.jpg",
+    "bytes": 92415,
+    "sha256": "b7ba88e56411c8005b8cc7d7470e17ed46f63762d55276434f22f4e232d471bc"
+  }
+]

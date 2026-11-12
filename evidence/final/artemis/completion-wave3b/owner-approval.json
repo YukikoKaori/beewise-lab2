@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-12T13:48:56.8323572+07:00",
+  "decision": "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3_EMU",
+  "owner_approval_ref": "codex-owner-wave3b-resume-no-reserve-20261112",
+  "proposal_sha256": "be04c83a2af40cc102e74fa71d3238800fab8be423be759f1291903320ad9e6b",
+  "owner_authorization": "Original resume attachment expressly authorizes Wave 3B with available balance; current owner message removes the reserve and instructs continuation. The operator selected a finite ceiling after read-only balance preflight."
+}
