@@ -40,7 +40,9 @@ final firebaseSetupErrorProvider = Provider<Object?>(
 
 final remoteConfigProvider = Provider<RemoteConfigService>(
   (ref) => RemoteConfigService(
-    ref.watch(firebaseReadyProvider) && !usesFirebaseEmulators
+    ref.watch(firebaseReadyProvider) &&
+            !usesFirebaseEmulators &&
+            Firebase.apps.isNotEmpty
         ? FirebaseRemoteConfig.instance
         : null,
   ),
@@ -51,74 +53,196 @@ final remoteConfigInitializationProvider = FutureProvider<void>((ref) async {
   ref.invalidate(activeTutorsProvider);
 });
 
-final analyticsOptOutProvider = NotifierProvider<AnalyticsOptOutNotifier, bool>(
-  AnalyticsOptOutNotifier.new,
+final analyticsPreferenceStoreProvider = Provider<AnalyticsPreferenceStore>(
+  (ref) => const SharedPreferencesAnalyticsStore(),
 );
 
-class AnalyticsOptOutNotifier extends Notifier<bool> {
-  @override
-  bool build() {
-    unawaited(_load());
-    return false;
-  }
+final analyticsSdkGatewayProvider = Provider<AnalyticsSdkGateway?>((ref) {
+  final ready = ref.watch(firebaseReadyProvider);
+  if (!ready || Firebase.apps.isEmpty) return null;
+  return FirebaseAnalyticsSdkGateway(FirebaseAnalytics.instance);
+});
 
-  Future<void> _load() async {
-    try {
-      final saved = await SharedPreferencesAsync().getBool(
-        FirebaseBootstrap.analyticsOptOutPrefKey,
-      );
-      if (!ref.mounted || saved == null) return;
-      state = saved;
-      final canTouchAnalytics =
+final analyticsPrivacyPolicyPermitsProvider = Provider<bool>(
+  (ref) => FirebaseBootstrap.analyticsPolicyPermits,
+);
+
+final analyticsInstanceProvider = Provider<FirebaseAnalytics?>(
+  (ref) =>
+      ref.watch(firebaseReadyProvider) &&
           !usesFirebaseEmulators &&
-          ref.read(firebaseReadyProvider) &&
-          Firebase.apps.isNotEmpty;
-      if (canTouchAnalytics) {
-        await FirebaseBootstrap.setPersistedAnalyticsOptOut(
-          saved,
-          setAnalyticsEnabled: (enabled) =>
-              FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(enabled),
-          clearUserId: saved
-              ? () => FirebaseAnalytics.instance.setUserId(id: null)
-              : null,
-          writeOptOut: (_) async {},
-        );
-      }
-    } catch (_) {}
+          Firebase.apps.isNotEmpty
+      ? FirebaseAnalytics.instance
+      : null,
+);
+
+final analyticsPrivacyProvider =
+    NotifierProvider<AnalyticsPrivacyNotifier, AnalyticsPrivacyState>(
+      AnalyticsPrivacyNotifier.new,
+    );
+
+/// Compatibility selector reporting whether analytics collection is suppressed
+/// (`true` when opted out, policy-blocked, emulator mode, unread, or failed closed).
+final analyticsOptOutProvider = Provider<bool>(
+  (ref) => !ref.watch(analyticsPrivacyProvider).isCollectionEnabled,
+);
+
+class AnalyticsPrivacyNotifier extends Notifier<AnalyticsPrivacyState> {
+  int _operationToken = 0;
+
+  @override
+  AnalyticsPrivacyState build() {
+    final ready = ref.watch(firebaseReadyProvider);
+    final policyPermits = ref.watch(analyticsPrivacyPolicyPermitsProvider);
+    final store = ref.watch(analyticsPreferenceStoreProvider);
+    final sdk = ref.watch(analyticsSdkGatewayProvider);
+
+    final initial = AnalyticsPrivacyState(
+      bootstrapReady: ready,
+      isEmulator: usesFirebaseEmulators,
+      privacyPolicyPermits: policyPermits,
+      preferenceLoaded: false,
+      nativeCollectionEnabled: false,
+      sdkSynced: false,
+    );
+    unawaited(
+      _reconcile(
+        token: ++_operationToken,
+        ready: ready,
+        policyPermits: policyPermits,
+        store: store,
+        sdk: sdk,
+      ),
+    );
+    return initial;
   }
 
-  Future<void> setOptOut(bool optedOut) async {
-    state = optedOut;
-    final canTouchAnalytics =
-        ref.read(firebaseReadyProvider) && Firebase.apps.isNotEmpty;
-    await FirebaseBootstrap.setPersistedAnalyticsOptOut(
-      optedOut,
+  Future<void> _reconcile({
+    required int token,
+    required bool ready,
+    required bool policyPermits,
+    required AnalyticsPreferenceStore store,
+    required AnalyticsSdkGateway? sdk,
+  }) async {
+    final reconciled = await FirebaseBootstrap.reconcileAnalyticsPrivacy(
       isEmulator: usesFirebaseEmulators,
-      setAnalyticsEnabled: canTouchAnalytics
-          ? (enabled) => FirebaseAnalytics.instance
-                .setAnalyticsCollectionEnabled(enabled)
-          : (_) async {},
-      clearUserId: canTouchAnalytics && optedOut
-          ? () => FirebaseAnalytics.instance.setUserId(id: null)
+      preferenceStore: store,
+      sdkGateway: sdk,
+      setAnalyticsEnabled: sdk == null && (!ready || Firebase.apps.isEmpty)
+          ? (_) async {}
           : null,
+      clearUserId: sdk == null && (!ready || Firebase.apps.isEmpty)
+          ? () async {}
+          : null,
+      privacyPolicyPermits: policyPermits,
+      bootstrapReady: ready,
     );
+    if (!ref.mounted || token != _operationToken) return;
+    state = reconciled;
+  }
+
+  Future<void> retryReconcile() async {
+    if (!ref.mounted) return;
+    final token = ++_operationToken;
+    state = state.copyWith(isUpdating: true, clearErrorMessage: true);
+    await _reconcile(
+      token: token,
+      ready: ref.read(firebaseReadyProvider),
+      policyPermits: ref.read(analyticsPrivacyPolicyPermitsProvider),
+      store: ref.read(analyticsPreferenceStoreProvider),
+      sdk: ref.read(analyticsSdkGatewayProvider),
+    );
+  }
+
+  Future<bool> setOptOut(bool optedOut) async {
+    if (!ref.mounted) return false;
+    final token = ++_operationToken;
+    final ready = ref.read(firebaseReadyProvider);
+    final policyPermits = ref.read(analyticsPrivacyPolicyPermitsProvider);
+    final store = ref.read(analyticsPreferenceStoreProvider);
+    final sdk = ref.read(analyticsSdkGatewayProvider);
+
+    state = state.copyWith(
+      isUpdating: true,
+      nativeCollectionEnabled: optedOut ? false : state.nativeCollectionEnabled,
+      clearErrorMessage: true,
+      clearLastError: true,
+    );
+
+    try {
+      final updated = await FirebaseBootstrap.setPersistedAnalyticsOptOut(
+        optedOut,
+        isEmulator: usesFirebaseEmulators,
+        privacyPolicyPermits: policyPermits,
+        bootstrapReady: ready,
+        preferenceStore: store,
+        sdkGateway: sdk,
+        setAnalyticsEnabled: sdk == null && (!ready || Firebase.apps.isEmpty)
+            ? (_) async {}
+            : null,
+        clearUserId: sdk == null && (!ready || Firebase.apps.isEmpty)
+            ? () async {}
+            : null,
+      );
+      if (!ref.mounted || token != _operationToken) return false;
+      state = updated;
+      return true;
+    } on AnalyticsPrivacyException catch (error) {
+      if (!ref.mounted || token != _operationToken) return false;
+      state = error.state;
+      return false;
+    } catch (error) {
+      if (!ref.mounted || token != _operationToken) return false;
+      final fallback = state.copyWith(
+        nativeCollectionEnabled: false,
+        sdkSynced: false,
+        isUpdating: false,
+        failureKind: AnalyticsPrivacyFailureKind.sdkSyncFailed,
+        failedOptOutIntent: optedOut,
+        errorMessage: optedOut
+            ? 'Không thể hoàn tất tắt thống kê. Thu thập trong ứng dụng vẫn bị khóa.'
+            : 'Không thể bật thu thập thống kê. Dữ liệu vẫn đang tắt.',
+        lastError: error,
+      );
+      FirebaseBootstrap.analyticsCollectionActive = false;
+      state = fallback;
+      return false;
+    }
+  }
+
+  Future<bool> retryFailedAction() async {
+    if (!ref.mounted) return false;
+    if (state.preferenceStatus == AnalyticsPreferenceStatus.readFailed ||
+        state.failureKind == AnalyticsPrivacyFailureKind.readFailed) {
+      await retryReconcile();
+      return !state.hasError;
+    }
+    final intent = state.failedOptOutIntent;
+    if (intent != null) {
+      return setOptOut(intent);
+    }
+    await retryReconcile();
+    return !state.hasError;
   }
 }
 
 final analyticsServiceProvider = Provider<AnalyticsService>((ref) {
-  final optedOut = ref.watch(analyticsOptOutProvider);
-  final ready = ref.watch(firebaseReadyProvider);
-  final enabled = ready && !usesFirebaseEmulators && !optedOut;
+  final privacy = ref.watch(analyticsPrivacyProvider);
+  final instance = ref.watch(analyticsInstanceProvider);
   return AnalyticsService(
-    analytics: enabled ? FirebaseAnalytics.instance : null,
+    analytics: instance,
     isCollectionEnabled: () =>
-        enabled && FirebaseBootstrap.analyticsCollectionActive,
+        privacy.isCollectionEnabled &&
+        FirebaseBootstrap.analyticsCollectionActive,
   );
 });
 
 final crashReportingServiceProvider = Provider<CrashReportingService>(
   (ref) => CrashReportingService(
-    crashlytics: ref.watch(firebaseReadyProvider) && !usesFirebaseEmulators
+    crashlytics:
+        ref.watch(firebaseReadyProvider) &&
+            !usesFirebaseEmulators &&
+            Firebase.apps.isNotEmpty
         ? FirebaseCrashlytics.instance
         : null,
   ),
@@ -164,10 +288,28 @@ final tutorApplicationDataProvider =
 
 final authStateProvider = StreamProvider<User?>((ref) {
   final auth = ref.watch(authServiceProvider);
-  final analytics = ref.watch(analyticsServiceProvider);
   final crashReporting = ref.watch(crashReportingServiceProvider);
+  String? previousUid;
+  User? latestUser;
+  var hasUser = false;
+
+  ref.listen<AnalyticsService>(analyticsServiceProvider, (_, nextAnalytics) {
+    if (!hasUser) return;
+    final uid = latestUser?.isAnonymous == false ? latestUser!.uid : null;
+    unawaited(
+      nextAnalytics.setUserId(nextAnalytics.collectionEnabled ? uid : null),
+    );
+  });
+
   return auth.authStateChanges().asyncMap((user) async {
+    latestUser = user;
+    hasUser = true;
+    final analytics = ref.read(analyticsServiceProvider);
     final uid = user?.isAnonymous == false ? user!.uid : null;
+    if (previousUid != null && uid != null && uid != previousUid) {
+      await analytics.setUserId(null);
+    }
+    previousUid = uid;
     await analytics.setUserId(uid);
     await crashReporting.setUser(uid);
     return user;
@@ -375,23 +517,23 @@ final checkoutLauncherProvider = Provider<Future<bool> Function(Uri)>(
       (uri) => launchUrl(uri, mode: LaunchMode.externalApplication),
 );
 
-final exportServiceProvider = Provider<ExportService>(
-  (ref) => ExportService(
-    ref.watch(firebaseReadyProvider) ? FirebaseFirestore.instance : null,
-    ref.watch(firebaseReadyProvider) ? FirebaseAuth.instance : null,
+final exportServiceProvider = Provider<ExportService>((ref) {
+  final enabled = ref.watch(firebaseReadyProvider) && Firebase.apps.isNotEmpty;
+  return ExportService(
+    enabled ? FirebaseFirestore.instance : null,
+    enabled ? FirebaseAuth.instance : null,
     localMetadataOnly: usesFinalFirestore,
-  ),
-);
+  );
+});
 
-final notificationServiceProvider = Provider<NotificationService>(
-  (ref) => NotificationService(
-    ref.watch(firebaseReadyProvider) && !usesFirebaseEmulators
-        ? FirebaseMessaging.instance
-        : null,
-    ref.watch(firebaseReadyProvider) ? FirebaseFirestore.instance : null,
-    ref.watch(firebaseReadyProvider) ? FirebaseAuth.instance : null,
-  ),
-);
+final notificationServiceProvider = Provider<NotificationService>((ref) {
+  final enabled = ref.watch(firebaseReadyProvider) && Firebase.apps.isNotEmpty;
+  return NotificationService(
+    enabled && !usesFirebaseEmulators ? FirebaseMessaging.instance : null,
+    enabled ? FirebaseFirestore.instance : null,
+    enabled ? FirebaseAuth.instance : null,
+  );
+});
 
 final serverNotificationServiceProvider = Provider<ServerNotificationService?>(
   (ref) => ref.watch(firebaseReadyProvider)

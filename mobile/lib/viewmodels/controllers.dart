@@ -43,6 +43,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
+      await ref.read(analyticsServiceProvider).setUserId(null);
       final credential = await ref.read(authServiceProvider).signInWithGoogle();
       final uid = credential.user?.uid;
       await ref.read(analyticsServiceProvider).login('google');
@@ -66,6 +67,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
+      await ref.read(analyticsServiceProvider).setUserId(null);
       final credential = await ref
           .read(authServiceProvider)
           .signInWithEmail(email, password);
@@ -93,6 +95,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
+      await ref.read(analyticsServiceProvider).setUserId(null);
       final credential = await ref
           .read(authServiceProvider)
           .registerParent(
@@ -170,6 +173,7 @@ class TutorApplicationController extends Notifier<AsyncValue<void>> {
     state = const AsyncLoading();
     try {
       await ref.read(notificationServiceProvider).detachCurrentUser();
+      await ref.read(analyticsServiceProvider).setUserId(null);
       final service = ref.read(tutorApplicationServiceProvider);
       if (service == null) throw const FirebaseNotConfiguredException();
       final uid = await service.submit(
