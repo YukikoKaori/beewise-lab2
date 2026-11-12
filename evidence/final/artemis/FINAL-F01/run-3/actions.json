@@ -1,0 +1,62 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [300, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [300, 925] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 161] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed 'Thu Trang' at [500, 161] (normalized).\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [289, 351] (normalized).\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "press_key",
+    "args": {
+      "key": "ENTER"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Pressed key 'ENTER'.\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-07.jpg"
+  },
+  {
+    "step": 8,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-08.jpg"
+  }
+]

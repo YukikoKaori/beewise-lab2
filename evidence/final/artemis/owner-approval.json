@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-12T00:18:00+00:00",
+  "decision": "OWNER_APPROVED_FINAL_GATE_3_B",
+  "owner_approval_ref": "owner_msg_gate3_b_approved_20261112",
+  "proposal_sha256": "a7f070404f24c5b8ae9f99fc731ef58439c478b2d9059c7869251849cdb0e5ec",
+  "owner_answer": "gate 3 A/B selection: Gate 3 Option B (gate 3 duyệt); deepseek-flash bounded 60 requests / $0.20 USD, retry_admissions=0, Nexora reserve >= $0.50 USD"
+}

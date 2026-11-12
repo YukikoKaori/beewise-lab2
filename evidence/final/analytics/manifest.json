@@ -1,0 +1,68 @@
+{
+  "generatedAtUtc": "2026-11-12T01:49:00+00:00",
+  "gateApproval": "OWNER_APPROVED_GATE_2_OPTION_2_1",
+  "firebaseProject": "beewise-lab-3",
+  "androidAppId": "1:840483888286:android:50c11fbb460437ed6a2f8f",
+  "avd": "BeeWise_Final_API35",
+  "deviceSerial": "emulator-5564",
+  "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+  "status": "VERIFIED_NATIVE_UPLOAD_204",
+  "consoleDebugViewUiScreenshot": "NOT_CAPTURED (requires authenticated browser session for property 560584336)",
+  "preconditionCleanPmClear": true,
+  "appCheckDebugTokenLabel": "BeeWise Final API35 emulator-5564",
+  "appCheckActiveTokenCountForLabel": 1,
+  "inspectorSummary": {
+    "completeBusinessBundles": 3,
+    "nativeUserIdRemovalAcknowledgements": 1,
+    "incompleteUploadsIgnored": 0,
+    "successfulUploadCount": 5,
+    "unexpectedParameterKeys": [],
+    "unsafeParameterValuesOmitted": 0,
+    "rawIdentityOrPayloadExported": false,
+    "eventsVerified": [
+      {
+        "name": "ai_request",
+        "parameters": {"feature": "tutor_need"},
+        "uploadAck": "204, 0"
+      },
+      {
+        "name": "ai_result_accepted",
+        "parameters": {"feature": "tutor_need"},
+        "uploadAck": "204, 0"
+      },
+      {
+        "name": "ai_error",
+        "parameters": {"feature": "tutor_need", "kind": "provider"},
+        "uploadAck": "204, 0"
+      }
+    ]
+  },
+  "restoration": {
+    "debug.firebase.analytics.app": "",
+    "log.tag.FA": "",
+    "log.tag.FA-SVC": "",
+    "wifiAndMobileDataRestored": true
+  },
+  "artifacts": [
+    {
+      "path": "native-receipt.json",
+      "bytes": 2039,
+      "sha256": "ea225341afc72acff3aefb5447c540032449e6ecc89d21c408bc6f3bd48c39c8"
+    },
+    {
+      "path": "ai-need-parsed.png",
+      "bytes": 347954,
+      "sha256": "69eea18ced6f32387002324bb9fe1b87b2aa4ad110bf1fb482ba23a8b62547af"
+    },
+    {
+      "path": "ai-result-accepted.png",
+      "bytes": 394547,
+      "sha256": "668625e26f87702ee0af0a6b9892891f64893c89f89b4594b7255b020fa7fd2b"
+    },
+    {
+      "path": "ai-offline-error.png",
+      "bytes": 394295,
+      "sha256": "68a6b2fcdeee831aa223da2a6b74dfb6d0131097a1422832b6a0b3fa50e78b4b"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T01:05:05.185594+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Independent review REJECT: Turn 1 tap on Search tab did not navigate and diacritic paste plus keyboard dismiss/scroll exhausted Flash max_turns=8 on Search results (2 tutors visible); pytest exited 0 via conditional profile_opened check while Tutor Profile was never opened (profile_opened=false, connection_action_visible=false).",
+  "accepted": false,
+  "junit_pass": true
+}
