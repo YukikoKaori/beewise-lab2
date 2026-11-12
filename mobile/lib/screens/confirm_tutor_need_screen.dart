@@ -29,7 +29,7 @@ class _ConfirmTutorNeedState extends ConsumerState<ConfirmTutorNeedScreen> {
   final _form = GlobalKey<FormState>();
   String? _subject, _location, _schedule, _mode, _error;
   int? _grade;
-  bool _editing = false, _ai = false, _busy = false;
+  bool _editing = false, _ai = false, _busy = false, _aiAcceptedLogged = false;
   List<Tutor>? _results;
   int _revision = 0;
 
@@ -41,6 +41,7 @@ class _ConfirmTutorNeedState extends ConsumerState<ConfirmTutorNeedScreen> {
       _results = null;
       _editing = true;
       _ai = need != null;
+      _aiAcceptedLogged = false;
       _subject = need?.subject;
       _grade = need?.grade;
       _location = need?.location;
@@ -62,6 +63,8 @@ class _ConfirmTutorNeedState extends ConsumerState<ConfirmTutorNeedScreen> {
       _error = null;
       _results = null;
       _editing = false;
+      _ai = false;
+      _aiAcceptedLogged = false;
     });
     final telemetry = ref.read(analyticsServiceProvider);
     unawaited(telemetry.event('ai_request', {'feature': 'tutor_need'}));
@@ -88,7 +91,7 @@ class _ConfirmTutorNeedState extends ConsumerState<ConfirmTutorNeedScreen> {
   }
 
   Future<void> _confirm() async {
-    if (_form.currentState?.validate() != true) return;
+    if (_busy || _form.currentState?.validate() != true) return;
     final confirmed = NormalizedTutorNeed(
       subject: _subject,
       grade: _grade,
@@ -103,7 +106,8 @@ class _ConfirmTutorNeedState extends ConsumerState<ConfirmTutorNeedScreen> {
       _error = null;
       _results = null;
     });
-    if (_ai) {
+    if (_ai && !_aiAcceptedLogged) {
+      _aiAcceptedLogged = true;
       unawaited(
         ref.read(analyticsServiceProvider).event('ai_result_accepted', {
           'feature': 'tutor_need',
@@ -323,7 +327,7 @@ List<Tutor> matchConfirmedNeed(List<Tutor> tutors, NormalizedTutorNeed need) {
     return tutor.active &&
         !tutor.isSyntheticTestFixture &&
         contains(tutor.subjects, need.subject) &&
-        contains(tutor.areas, need.location) &&
+        NormalizedTutorNeed.tutorMatchesLocation(tutor.areas, need.location) &&
         contains(tutor.teachingModes, need.teachingMode) &&
         (grade == null ||
             tutor.grades.any(
