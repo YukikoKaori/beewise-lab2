@@ -28,9 +28,10 @@ class TutorApplicationService {
       _directResubmission || (_api?.configured ?? false);
 
   static const String resubmissionServerBlockMessage =
-      'Chức năng gửi lại hồ sơ cần bổ sung hiện yêu cầu xác thực từ máy chủ '
-      '(firestore.rules: tutorApplications.update = false). Hồ sơ gốc và lịch sử '
-      'duyệt được giữ nguyên; vui lòng liên hệ BeeWise để mở khóa cập nhật.';
+      'Chức năng gửi lại hồ sơ cần bổ sung hiện chỉ khả dụng khi bật cấu hình Final '
+      '(BEEWISE_FINAL_FIRESTORE=true) hoặc máy chủ cập nhật được cấu hình. '
+      'Hồ sơ gốc và lịch sử duyệt được giữ nguyên; vui lòng kiểm tra cấu hình '
+      'hoặc liên hệ BeeWise để mở khóa cập nhật.';
 
   Future<String> submit({
     required String name,
@@ -47,6 +48,9 @@ class TutorApplicationService {
     required String availability,
   }) async {
     UserCredential? credential;
+    final canonicalAreas = core.NormalizedTutorNeed.normalizeLocationList(
+      areas,
+    );
     try {
       credential = await _auth.createUserWithEmailAndPassword(
         email: email.trim().toLowerCase(),
@@ -64,7 +68,7 @@ class TutorApplicationService {
         'subjects': subjects,
         'grades': grades,
         'hourlyFee': hourlyFee,
-        'areas': areas,
+        'areas': canonicalAreas,
         'teachingModes': teachingModes,
         'availability': availability.trim(),
         'status': 'pending',
@@ -115,6 +119,9 @@ class TutorApplicationService {
       );
     }
 
+    final canonicalAreas = core.NormalizedTutorNeed.normalizeLocationList(
+      areas,
+    );
     try {
       final docRef = _firestore.collection('tutorApplications').doc(uid);
       final snapshot = await docRef.get();
@@ -144,7 +151,7 @@ class TutorApplicationService {
           subjects: subjects,
           grades: grades,
           hourlyFee: hourlyFee,
-          areas: areas,
+          areas: canonicalAreas,
           teachingModes: teachingModes,
           availability: availability,
         );
@@ -166,7 +173,7 @@ class TutorApplicationService {
         'subjects': subjects,
         'grades': grades,
         'hourlyFee': hourlyFee,
-        'areas': areas,
+        'areas': canonicalAreas,
         'teachingModes': teachingModes,
         'availability': availability.trim(),
         'status': 'pending',

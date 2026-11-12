@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:beewise_core/beewise_core.dart'
-    show BeeWisePaymentMode, ManualPayments;
+    show BeeWisePaymentMode, ManualPayments, NormalizedTutorNeed;
 import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
@@ -13,7 +13,8 @@ import '../models/chat_message.dart';
 import '../models/chat_preview.dart';
 import '../models/tutor.dart';
 import '../services/export_service.dart';
-import '../services/firebase_bootstrap.dart' show usesFinalFirestore;
+import '../services/firebase_bootstrap.dart'
+    show usesFinalFirestore, usesFirebaseEmulators;
 import '../services/tutor_repository.dart';
 import '../theme/bee_wise_theme.dart';
 import '../viewmodels/app_providers.dart';
@@ -336,9 +337,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
               FilterGroup(
                 label: 'Khu vực',
-                columns: 3,
+                columns: 2,
                 chips: [
-                  for (final v in ['Quận 1', 'Quận 3', 'Thủ Đức'])
+                  for (final v in NormalizedTutorNeed.locations)
                     FilterPill(
                       label: v,
                       selected: _area == v,
@@ -3118,6 +3119,7 @@ class ProfileScreen extends ConsumerWidget {
     final authAction = ref.watch(authControllerProvider);
     final notifications = ref.watch(notificationsProvider);
     final remoteConfig = ref.watch(remoteConfigProvider);
+    final analyticsOptedOut = ref.watch(analyticsOptOutProvider);
     final notificationError = ref
         .watch(notificationServiceProvider)
         .registrationError;
@@ -3234,6 +3236,23 @@ class ProfileScreen extends ConsumerWidget {
                 value:
                     'Ghép AI: ${remoteConfig.matchingEnabled ? 'đang bật' : 'đang tắt'} · tối đa ${remoteConfig.aiResultLimit} kết quả',
                 icon: Icons.cloud_done_outlined,
+              ),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Gửi thống kê sử dụng ẩn danh'),
+                subtitle: Text(
+                  usesFirebaseEmulators
+                      ? 'Tắt tự động trong chế độ Emulator.'
+                      : analyticsOptedOut
+                      ? 'Đã tắt thu thập Firebase Analytics trên thiết bị này.'
+                      : 'Chỉ ghi nhận sự kiện ẩn danh; có thể tắt bất kỳ lúc nào.',
+                ),
+                value: !usesFirebaseEmulators && !analyticsOptedOut,
+                onChanged: usesFirebaseEmulators
+                    ? null
+                    : (enabled) => ref
+                          .read(analyticsOptOutProvider.notifier)
+                          .setOptOut(!enabled),
               ),
             ],
           ),

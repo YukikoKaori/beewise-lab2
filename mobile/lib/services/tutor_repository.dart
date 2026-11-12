@@ -1,3 +1,4 @@
+import 'package:beewise_core/beewise_core.dart' show NormalizedTutorNeed;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/tutor.dart';
@@ -92,10 +93,17 @@ class TutorSearchCriteria {
 }
 
 List<Tutor> filterTutors(List<Tutor> tutors, TutorSearchCriteria criteria) {
-  final query = criteria.query.trim().toLowerCase();
+  final rawQuery = criteria.query.trim();
+  final query = rawQuery.toLowerCase();
+  final queryLocation = NormalizedTutorNeed.normalizeLocation(rawQuery);
   final filtered = tutors.where((tutor) {
     final matchesQuery =
         query.isEmpty ||
+        (queryLocation != null &&
+            NormalizedTutorNeed.tutorMatchesLocation(
+              tutor.areas,
+              queryLocation,
+            )) ||
         [
           tutor.name,
           tutor.credential,
@@ -103,9 +111,10 @@ List<Tutor> filterTutors(List<Tutor> tutors, TutorSearchCriteria criteria) {
           ...tutor.subjects,
           ...tutor.grades,
           ...tutor.areas,
+          ...tutor.areas.map(NormalizedTutorNeed.normalizeLocationOrPreserve),
         ].any((value) => value.toLowerCase().contains(query));
     return matchesQuery &&
-        (criteria.area == null || tutor.areas.contains(criteria.area)) &&
+        NormalizedTutorNeed.tutorMatchesLocation(tutor.areas, criteria.area) &&
         (criteria.subject == null ||
             tutor.subjects.contains(criteria.subject)) &&
         (criteria.maxHourlyFee == null ||
