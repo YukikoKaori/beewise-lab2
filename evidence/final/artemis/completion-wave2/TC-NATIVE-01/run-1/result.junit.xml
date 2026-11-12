@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="23.629" timestamp="2026-11-12T12:43:38.401300+07:00"><testcase classname="test_native_permission" name="test_native_notification_permission" time="23.600" /></testsuite></testsuites>
