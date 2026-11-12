@@ -16,7 +16,7 @@ Synthetic inputs used in the live UI cases (expected criteria, not raw outputs):
 | AI-02 | Mình cần gia sư tiếng Anh lớp 7, ưu tiên học online vào cuối tuần, ngân sách tối đa 150k/giờ. | Tiếng Anh, 7, online, cuối tuần, 150000 VND |
 | AI-03 | Cần tìm gia sư Vật lý lớp 11, học trực tiếp tại khu vực Quận 3, học phí dưới 250k. | Vật lý, 11, in person, Quận 3, 250000 VND |
 
-AI-03 uses Quận 3 because Bình Thạnh is outside the current location allowlist. The captures do not show the transmitted payload or prove every field.
+AI-03 uses Quận 3 because Bình Thạnh is outside the current pre-corrective APK allowlist (`e885a076...`); see the unified 16-region vocabulary fix below (`F-FINAL-04`). The captures do not show the transmitted payload or prove every field.
 
 Historical preflight, before the approved debug token registration, on `BeeWise_Final_API35:5564` (Final debug APK, SHA-256 `e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9`): billing disabled; Remote Config v4 had no model/enable override; native App Check logged HTTP 403 attestation failure followed by throttling. No Level 2 provider request was made during that preflight.
 
@@ -26,11 +26,24 @@ Subsequent owner screenshots completed the remaining native scenarios on the sam
 
 | Proof required | Status |
 |---|---|
-| AI-01 / AI-02 / AI-03 | VERIFIED_LIVE_UI — three provider-backed confirmation screens (`AI-01` re-verified live on `2026-11-12` during Analytics capture). AI-02 shows the user-edited 160,000 VND/hour, not verified raw model output. |
-| Network failure and recovery | VERIFIED_LIVE_UI & `FINAL-F02b` ARTEMIS `1/3` ACCEPTED — airplane/offline error and manual recovery verified without crash. |
+| AI-01 / AI-02 / AI-03 | VERIFIED_LIVE_UI (pre-corrective APK `e885a076...`) & `VERIFIED_FUNCTIONAL` (post-fix suite) — three provider-backed confirmation screens (`AI-01` re-verified live on `2026-11-12` during Analytics capture). AI-02 shows the user-edited 160,000 VND/hour, not verified raw model output. |
+| Network failure and recovery | VERIFIED_LIVE_UI & `FINAL-F02b` ARTEMIS `1/3` ACCEPTED (`e885a076...`) + `VERIFIED_FUNCTIONAL` unit/widget suite — airplane/offline error and manual recovery verified without crash. |
 | Raw JSON and exact serving-model metadata | NOT CAPTURED |
-| Remote Config live enable/disable | NOT VERIFIED |
+| Remote Config live enable/disable | Verified functionally (`mobile/test/gemini_level2_functional_test.dart`); live Firebase Console RC toggle `NOT_VERIFIED` |
 | Actual Android form and fallback | Runtime evidence tracked in the test report and [`docs/artemis-final-matrix.md`](artemis-final-matrix.md) |
-| Analytics Telemetry (`ai_request`, `ai_result_accepted`, `ai_error`) | **VERIFIED_NATIVE_UPLOAD_204** (`HTTP 204, 0` complete `FA-SVC` upload bundles via [`scripts/inspect-bao-analytics.py`](../scripts/inspect-bao-analytics.py)); real-time Firebase Console DebugView UI screenshot `NOT_CAPTURED` separately in CLI |
+| Analytics Telemetry (`ai_request`, `ai_result_accepted`, `ai_error`) | **VERIFIED_NATIVE_UPLOAD_204** (`HTTP 204, 0` complete `FA-SVC` upload bundles via [`scripts/inspect-bao-analytics.py`](../scripts/inspect-bao-analytics.py) on `e885a076...`); bootstrap restoration & opt-out `VERIFIED_LOCAL_BEHAVIOR`; real-time Firebase Console DebugView UI screenshot `NOT_CAPTURED` separately in CLI |
 
 See [Production cross-role evidence and run plan](../evidence/final/production-cross-role/README.md) for the current deployed scope, evidence and pending gates.
+
+## Corrective functional fixes & test coverage (2026-11-12)
+
+Fixes landed on branch `fix/final-corrective-acceptance` (Commit `595616d` over `main` `2d14aa0`):
+
+1. **Deduplicated AI acceptance telemetry (`F-FINAL-02`):** [`ConfirmTutorNeedScreen`](../mobile/lib/screens/confirm_tutor_need_screen.dart) tracks the current parse generation so confirming after a transient catalog failure, adjusting search filters, or retrying never emits duplicate `ai_result_accepted` events for the same AI parse; a fresh AI parse resets the flag and manual confirmation never emits `ai_result_accepted`.
+2. **Unified location contract (`F-FINAL-04`):** [`NormalizedTutorNeed`](../packages/core/lib/src/tutor_need.dart) defines a shared 16-region canonical vocabulary used identically by T1 tutor registration ([`tutor_application_screens.dart`](../mobile/lib/screens/tutor_application_screens.dart)), [`SearchScreen`](../mobile/lib/screens/beewise_screens.dart), [`providerSafeNeed`](../mobile/lib/services/need_normalizer.dart), `filterTutors`, and `matchConfirmedNeed`. [`tutorMatchesLocation`](../packages/core/lib/src/tutor_need.dart) resolves aliases (`Thành phố Hồ Chí Minh` / `Sài Gòn` ↔ `TP.HCM`, `Ha Noi` ↔ `Hà Nội`, `q1` ↔ `Quận 1`, etc.) and symmetric city/district matching without breaking legacy Firestore tutor records. Updated `TutorApplicationService.resubmissionServerBlockMessage` to match Final Rules (`BEEWISE_FINAL_FIRESTORE=true`).
+3. **Analytics bootstrap persistence & opt-out (`F-FINAL-05`):** [`FirebaseBootstrap`](../mobile/lib/services/firebase_bootstrap.dart), [`AnalyticsService`](../mobile/lib/services/analytics_service.dart), `app_providers.dart`, and `ProfileScreen` explicitly restore native `setAnalyticsCollectionEnabled(true)` for non-emulator Final runs unless prohibited by privacy policy or user opt-out (replacing emulator-persisted `false`).
+
+**Current status split:**
+
+- Functional matching, schema validation, alias compatibility, Remote Config `ai_matching_enabled=false` & `ai_result_limit <= 3` clamping, typed `ai_error` fallback (`timeout`, `invalid_response`, `unavailable`, `provider`), duplicate-event prevention, account-switch reset, and Analytics opt-out/bootstrap gating: **`VERIFIED_FUNCTIONAL`** (`packages/core` 21/21, `mobile` 197/197).
+- Live Android UI screens (`AI-01`..`AI-03` + airplane recovery) and native `HTTP 204` Analytics upload receipts (`evidence/final/analytics/native-receipt.json`) were recorded on pre-corrective APK `e885a076...` (PR #30); live verification on a freshly rebuilt APK incorporating these Dart fixes remains **pending post-merge rebuild & device run**.

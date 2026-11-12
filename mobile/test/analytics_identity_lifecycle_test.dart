@@ -124,4 +124,49 @@ void main() {
       container.dispose();
     },
   );
+
+  test('direct A -> B account switch without intermediate guest event clears userId before identifying B', () async {
+    final auth = MockAuth();
+    final crash = MockCrash();
+    final analytics = RecordingAnalytics();
+    final stream = StreamController<User?>();
+    final a = MockUser();
+    final b = MockUser();
+    when(() => a.uid).thenReturn('test-a');
+    when(() => b.uid).thenReturn('test-b');
+    when(() => a.isAnonymous).thenReturn(false);
+    when(() => b.isAnonymous).thenReturn(false);
+    when(auth.authStateChanges).thenAnswer((_) => stream.stream);
+    when(() => crash.setUser(any())).thenAnswer((_) async {});
+    final container = ProviderContainer(
+      overrides: [
+        authServiceProvider.overrideWithValue(auth),
+        analyticsServiceProvider.overrideWithValue(analytics),
+        crashReportingServiceProvider.overrideWithValue(crash),
+      ],
+    );
+    final published = <String?>[];
+    final subscription = container.listen(authStateProvider, (_, value) {
+      if (value.hasValue) published.add(value.value?.uid);
+    });
+    stream.add(a);
+    await pumpEventQueue();
+    expect(published, ['test-a']);
+    analytics.clearGate = Completer<void>();
+    stream.add(b);
+    await pumpEventQueue();
+    expect(published, ['test-a']);
+    expect(analytics.calls, ['identify:test-a', 'clear:null']);
+    analytics.clearGate!.complete();
+    await pumpEventQueue();
+    expect(published, ['test-a', 'test-b']);
+    expect(analytics.calls, [
+      'identify:test-a',
+      'clear:null',
+      'identify:test-b',
+    ]);
+    subscription.close();
+    container.dispose();
+    await stream.close();
+  });
 }

@@ -54,6 +54,7 @@ class _PaymentWorkspaceState extends State<PaymentWorkspace> {
           label: const Text('Phát hành đề xuất lớp'),
           onPressed: () => showDialog<void>(
             context: context,
+            useRootNavigator: false,
             builder: (_) => _IssueDialog(widget.store, widget.uid),
           ),
         ),
@@ -130,6 +131,7 @@ class _PaymentWorkspaceState extends State<PaymentWorkspace> {
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () => showDialog<void>(
                       context: context,
+                      useRootNavigator: false,
                       builder: (_) =>
                           _ReviewDialog(widget.store, widget.uid, item),
                     ),
@@ -321,7 +323,12 @@ class _ReviewDialogState extends State<_ReviewDialog> {
     try {
       final id = widget.record.id;
       if (action == 'cancelled') {
-        await widget.store.cancel(id, widget.uid, reason);
+        await widget.store.cancel(
+          id,
+          widget.uid,
+          reason,
+          expectedStatus: widget.record.data()?['status'] as String?,
+        );
       } else {
         final claim = widget.record.data()?['claimId'];
         if (claim is! String || (action == 'verified' && !_checked)) {

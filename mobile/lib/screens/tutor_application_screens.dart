@@ -1,3 +1,4 @@
+import 'package:beewise_core/beewise_core.dart' as core;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -34,16 +35,8 @@ const _kAvailableGrades = [
   'Lớp 12',
 ];
 
-const _kAvailableAreas = [
-  'Cầu Giấy',
-  'Đống Đa',
-  'Ba Đình',
-  'Thanh Xuân',
-  'Hai Bà Trưng',
-  'Hoàn Kiếm',
-  'Nam Từ Liêm',
-  'Bắc Từ Liêm',
-];
+// Canonical areas come from core.NormalizedTutorNeed.locations so T1,
+// SearchScreen, and Gemini Level 2 share one normalized geographical vocabulary.
 
 const _kAvailableTimes = [
   'T2 tối',
@@ -119,7 +112,7 @@ class _TutorApplicationScreenState
       ..addAll(data.grades.where((g) => g.trim().isNotEmpty));
     _selectedAreas
       ..clear()
-      ..addAll(data.areas.where((a) => a.trim().isNotEmpty));
+      ..addAll(core.NormalizedTutorNeed.normalizeLocationList(data.areas));
 
     _selectedTimes.clear();
     for (final part in data.availability.split(',')) {
@@ -785,25 +778,32 @@ class _TutorApplicationScreenState
                     Wrap(
                       spacing: 8,
                       runSpacing: 4,
-                      children: _kAvailableAreas
-                          .map(
-                            (area) => _buildChip(
-                              label: area,
-                              selected: _selectedAreas.contains(area),
-                              onSelected: (sel) {
-                                setState(() {
-                                  if (sel) {
-                                    if (_selectedAreas.length < 10) {
-                                      _selectedAreas.add(area);
-                                    }
-                                  } else {
-                                    _selectedAreas.remove(area);
-                                  }
-                                });
-                              },
-                            ),
-                          )
-                          .toList(growable: false),
+                      children:
+                          [
+                                ...core.NormalizedTutorNeed.locations,
+                                ..._selectedAreas.where(
+                                  (a) => !core.NormalizedTutorNeed.locations
+                                      .contains(a),
+                                ),
+                              ]
+                              .map(
+                                (area) => _buildChip(
+                                  label: area,
+                                  selected: _selectedAreas.contains(area),
+                                  onSelected: (sel) {
+                                    setState(() {
+                                      if (sel) {
+                                        if (_selectedAreas.length < 10) {
+                                          _selectedAreas.add(area);
+                                        }
+                                      } else {
+                                        _selectedAreas.remove(area);
+                                      }
+                                    });
+                                  },
+                                ),
+                              )
+                              .toList(growable: false),
                     ),
                     const SizedBox(height: BeeWiseSpace.x3),
 
