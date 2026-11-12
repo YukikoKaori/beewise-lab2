@@ -1,0 +1,12 @@
+{
+  "utc": "2026-11-12T05:47:37.318439+00:00",
+  "window": "com.beewise.beewise/com.beewise.beewise.MainActivity",
+  "permission": {
+    "granted": true,
+    "flags": [
+      "USER_SENSITIVE_WHEN_DENIED",
+      "USER_SENSITIVE_WHEN_GRANTED",
+      "USER_SET"
+    ]
+  }
+}

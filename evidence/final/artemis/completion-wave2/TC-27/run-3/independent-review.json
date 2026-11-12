@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T05:35:53.724731+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Verified frames step-01..04: Guest Home -> Tai khoan (Chua dang nhap) -> Dang nhap -> blank submit -> 'Nhap email hop le.' & 'Mat khau can it nhat 8 ky tu.' while signed_in=false.",
+  "accepted": true,
+  "junit_pass": true
+}

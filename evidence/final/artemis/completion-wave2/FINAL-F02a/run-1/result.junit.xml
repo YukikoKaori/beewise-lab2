@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="73.037" timestamp="2026-11-12T12:01:54.384649+07:00"><testcase classname="test_final_flows" name="test_final_f02a_ai_level2_confirm_and_edit_flow" time="72.798"><failure message="AssertionError: FINAL-F02a failed: failed&#10;assert False&#10; +  where False = TaskResult(task_id='d3e0f72c-dedd-497a-9b28-6c574afb193b', status='failed', goal='Test case FINAL-F02a. Starting point...oolean,&quot;profiles_fabricated&quot;:false}', profile=None, device_serial='emulator-5564', output=None, error=None, turns=None).succeeded">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x000001D49B567240&gt;
+
+    @pytest.mark.manual_setup
+    async def test_final_f02a_ai_level2_confirm_and_edit_flow(run_flow):
+        """FINAL-F02a; Final A1 / Lab 2 Screens 02 &amp; 02c; /matching ConfirmTutorNeedScreen."""
+        prompt = os.environ.get(
+            "BEEWISE_FINAL_AI_PROMPT",
+            "Tìm gia sư Toán lớp 9 ở Thủ Đức, học phí dưới 200k một giờ, học buổi tối.",
+        )
+&gt;       observed = await run_flow(
+            case_id="FINAL-F02a",
+            start=(
+                "BeeWise is on /matching (Ghép gia sư bằng AI) with Firebase App Check token "
+                "active and Remote Config ai_matching_enabled=true."
+            ),
+            steps=(
+                f"Enter the synthetic learning need {prompt!r} into the requirement input and "
+                "tap Phân tích nhu cầu bằng AI once. Wait for the AI parse to complete and verify "
+                "the heading 'Gợi ý AI · Kiểm tra và chỉnh sửa' appears. Edit one field (for example, "
+                "adjust 'Phí tối đa mỗi giờ (VND)' from 200000 to 220000 or change 'Hình thức'), "
+                "and read the same field before and after the edit. Then tap 'Xác nhận và tìm gia sư' "
+                "and wait for the post-submit UI. Quote the AI heading and the actual result heading "
+                "or empty message. Report any AI, transport, Firestore or UI error observed; do not "
+                "infer missing observations or fabricate tutor records."
+            ),
+            expected=(
+                '{"ai_suggestion_header_visible":true,"ai_heading_text":string,"field_edited":true,'
+                '"edited_field":string,"value_before_edit":string,"value_after_edit":string,'
+                '"confirmed_search_submitted":true,"result_count":integer,'
+                '"outcome":"results|empty|error","terminal_ui_text":string,'
+                '"error_observed":boolean,"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_final_flows.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+case_id = 'FINAL-F02a'
+start = 'BeeWise is on /matching (Ghép gia sư bằng AI) with Firebase App Check token active and Remote Config ai_matching_enabled=true.'
+steps = "Enter the synthetic learning need 'Tìm gia sư Toán lớp 9 ở Cầu Giấy, học phí dưới 300k một giờ, học buổi tối.' into t...eport any AI, transport, Firestore or UI error observed; do not infer missing observations or fabricate tutor records."
+expected = '{"ai_suggestion_header_visible":true,"ai_heading_text":string,"field_edited":true,"edited_field":string,"value_before...nteger,"outcome":"results|empty|error","terminal_ui_text":string,"error_observed":boolean,"profiles_fabricated":false}'
+profile = 'flash', timeout = 600
+
+    async def run(
+        *,
+        case_id: str,
+        start: str,
+        steps: str,
+        expected: str,
+        profile: str = "flash",
+        timeout: int = 600,
+    ) -&gt; dict[str, Any]:
+        goal = (
+            f"Test case {case_id}. Starting point: {start}.\n"
+            f"Steps: {steps}\n"
+            "Use only visible app/device state. Do not invent records or results. "
+            "After input_text, verify the text actually appears in the focused field. "
+            "On this Android device KEYCODE_PASTE can leave text only in Gboard's "
+            "clipboard suggestion; if the field is still blank, tap that visible "
+            "clipboard suggestion to insert it, then verify the field before submitting. "
+            "When calling report_task_status, put the requested JSON object in "
+            "the explanation argument itself, with no prose or Markdown. "
+            f"Required explanation contract: {expected}"
+        )
+        session_id = str(uuid.uuid4())
+        remote_run = asyncio.create_task(
+            artemis.run(
+                goal,
+                profile=profile,  # type: ignore[arg-type]
+                device_serial=artemis.device_serial,
+                locked_app_package=APP_PACKAGE,
+                expected_output=(
+                    "Return a JSON object only, matching this observable contract: "
+                    + expected
+                ),
+                enable_outputter=True,
+                task_id=session_id,
+                timeout=timeout,
+            )
+        )
+        quota_detected = False
+        while not remote_run.done():
+            await asyncio.sleep(2)
+            try:
+                trace = await artemis._request(
+                    "GET", f"/api/sessions/{session_id}/steps"
+                )
+            except Exception:
+                # The session may not be persisted until scheduler admission.
+                continue
+            if _trace_has_rate_limit(trace):
+                quota_detected = True
+                try:
+                    await artemis.stop(session_id)
+                finally:
+                    try:
+                        await asyncio.wait_for(remote_run, timeout=20)
+                    except Exception:
+                        remote_run.cancel()
+                break
+    
+        if quota_detected:
+            pytest.fail(
+                f"{case_id} blocked: ARTEMIS trace {session_id} reports a provider "
+                "quota/rate-limit error; the task was stopped before further retries."
+            )
+    
+        result: TaskResult = await remote_run
+        print(
+            f"ARTEMIS_RESULT case={case_id} trace_id={result.trace_id} "
+            f"status={result.status} device={result.device_serial}"
+        )
+        assert result.trace_id, f"{case_id} has no trace provenance"
+&gt;       assert result.succeeded, f"{case_id} failed: {result.error or result.status}"
+E       AssertionError: FINAL-F02a failed: failed
+E       assert False
+E        +  where False = TaskResult(task_id='d3e0f72c-dedd-497a-9b28-6c574afb193b', status='failed', goal='Test case FINAL-F02a. Starting point...oolean,"profiles_fabricated":false}', profile=None, device_serial='emulator-5564', output=None, error=None, turns=None).succeeded
+
+e2e_test\conftest.py:172: AssertionError</failure></testcase></testsuite></testsuites>

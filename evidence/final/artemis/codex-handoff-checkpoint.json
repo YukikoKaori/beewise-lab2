@@ -1,0 +1,1700 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAtUtc": "2026-11-12T06:00:15.180982+00:00",
+  "handoffPurpose": "PRM393 Final ARTEMIS complete auditable handoff checkpoint for Codex resumption (PR #31 APK 4e38d1ca...)",
+  "status": "PAUSED_CLEAN_AFTER_WAVE_2_TC_NATIVE_01",
+  "git": {
+    "repository": "YukikoKaori/beewise-lab2",
+    "branch": "test/final-artemis-completion",
+    "remoteTrackingBranch": "origin/test/final-artemis-completion",
+    "baseCommitBeforeCheckpointSha": "a3abc406074dcdde49f62e9538f4d9b65976cdd9",
+    "pr31Branch": "fix/final-corrective-acceptance",
+    "pr31HeadSha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+    "pr31Url": "https://github.com/YukikoKaori/beewise-lab2/pull/31",
+    "gate3bMergedMainSha": "2d14aa03a2548c74e40f7c49e93f2205cce8da6a",
+    "preCorrectiveBaselineMainSha": "d7fa5bea2ed5276c13ecd3739fa00257676c1242",
+    "protectedPathsUntouchedFromPr31Head": [
+      "mobile/",
+      "packages/",
+      "web/",
+      "firebase/",
+      "e2e_test/"
+    ],
+    "protectedHistoricalEvidenceUntouched": [
+      "evidence/final/artemis/FINAL-F01/",
+      "evidence/final/artemis/FINAL-F02b/",
+      "evidence/final/artemis/TC-27/",
+      "evidence/final/artemis/budget-proposal.json",
+      "evidence/final/artemis/owner-approval.json",
+      "evidence/final/artemis/matrix.json",
+      "evidence/final/artemis/summary.md",
+      "evidence/final/artemis/completion-batch/",
+      "evidence/artemis/"
+    ],
+    "workingTreeIntent": "Clean handoff commit on test/final-artemis-completion; PRs untouched (not merged); Firebase untouched (not deployed)."
+  },
+  "targetBuildsAndDevices": {
+    "rebuiltPr31FinalDebugApk": {
+      "path": "mobile/build/app/outputs/flutter-apk/app-debug.apk",
+      "sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+      "builtFromSha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+      "defines": [
+        "BEEWISE_FINAL_FIRESTORE=true"
+      ],
+      "installedOnAvds": [
+        "BeeWise_Final_API35",
+        "BeeWise_N03_Native_API35"
+      ]
+    },
+    "historicalGate3BApkDoNotMix": {
+      "sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+      "builtFromSha": "d7fa5bea2ed5276c13ecd3739fa00257676c1242",
+      "note": "PR #30 Gate 3 B baseline only."
+    },
+    "plannedWave3BIsolatedEmulatorApk": {
+      "builtYet": false,
+      "sourceShaRequired": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+      "suggestedOutputDir": "D:\\CodexTemp\\tmp\\wave3b-emu-apk\\app-debug.apk",
+      "recommendedDartDefines": [
+        "BEEWISE_FINAL_FIRESTORE=true",
+        "BEEWISE_FIREBASE_EMULATOR_HOST=10.0.2.2",
+        "BEEWISE_FIREBASE_AUTH_PORT=9199",
+        "BEEWISE_FIRESTORE_PORT=8180"
+      ],
+      "note": "Build only for Wave 3B on BeeWise_N03_Native_API35; never install over BeeWise_Final_API35 App Check production state."
+    },
+    "emulators": {
+      "primaryFinalAvd": {
+        "avdName": "BeeWise_Final_API35",
+        "avdHome": "D:\\CodexTemp\\prm393-avd",
+        "serial": "emulator-5564",
+        "port": 5564,
+        "androidApi": 35,
+        "state": "STOPPED",
+        "appCheckStore": "W0RFRkFVTFRd preserved (NEVER run adb shell pm clear com.beewise.beewise)"
+      },
+      "disposableNativeAndIsolatedAvd": {
+        "avdName": "BeeWise_N03_Native_API35",
+        "avdHome": "D:\\CodexTemp\\n03-native-disposable-avd",
+        "serial": "emulator-5566",
+        "port": 5566,
+        "androidApi": 35,
+        "state": "STOPPED",
+        "lastPermissionState": "POST_NOTIFICATIONS granted=false, flags=[USER_SENSITIVE_WHEN_DENIED, USER_SENSITIVE_WHEN_GRANTED, USER_SET] after TC-NATIVE-01 R3"
+      },
+      "unrelatedConcurrentDoNotTouch": {
+        "adbSerial": "emulator-5562",
+        "avdName": "BeeWise_Tutor_PR25_API35",
+        "occupiedLocalPorts": [
+          4400,
+          8080,
+          8087,
+          8088,
+          9099,
+          9150,
+          9151,
+          9152
+        ],
+        "rule": "Owned by unrelated active sessions; never kill, clear, or connect to these ports/emulators."
+      }
+    }
+  },
+  "artemisHostAndProviderConfig": {
+    "hostEntrypoint": "tools/artemis-deepseek/host.py",
+    "completionRunner": "tools/artemis-deepseek/completion_once.py",
+    "exporter": "tools/artemis-deepseek/export_run.py",
+    "balanceGate": "tools/artemis-deepseek/balance_gate.py",
+    "baseUrl": "http://127.0.0.1:8001",
+    "hostStatus": "STOPPED",
+    "artemisRoot": "D:\\CodexTemp\\artemis-deepseek-audit",
+    "pythonExecutable": "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe",
+    "configJsonc": "tools/artemis-deepseek/artemis.deepseek.jsonc",
+    "provider": "openai",
+    "model": "deepseek-flash",
+    "temperature": 0,
+    "baseApiEndpoint": "https://api.deepseek.com",
+    "deepseekOnly": true,
+    "flashMaxTurnsByBatch": {
+      "gate3b": 8,
+      "wave1": 12,
+      "wave2": 18
+    },
+    "maxNonImageBytesWave2": 131072,
+    "stepSummarizerEnabled": false,
+    "videoAnalyzerEnabled": false,
+    "credentialKeyFilePathDoNotReadOrCommit": "D:\\CodexTemp\\beewise-deepseek-compat\\tools\\artemis-deepseek\\.env",
+    "credentialsIncluded": false
+  },
+  "activeSessionAndDeviceState": {
+    "activeSessionsInAnyLedger": 0,
+    "unreviewedSessionsInAnyLedger": 0,
+    "port8001Listening": false,
+    "adbDevicesVisibleOwnedByFinal": [],
+    "adbDevicesVisibleConcurrentUntouched": [
+      "emulator-5562"
+    ]
+  },
+  "cumulativeUsageAndBudget": {
+    "perBatch": {
+      "gate3bPreCorrectiveApk": {
+        "admittedRuns": 9,
+        "acceptedPasses": 4,
+        "failedOrRejectedRuns": 4,
+        "blockedRuns": 1,
+        "acceptedPassRate": "4/9 (44.44%)",
+        "httpRequests": 60,
+        "promptTokens": 567430,
+        "completionTokens": 6093,
+        "accountedNanodollars": 177540600,
+        "accountedUsdConservative": "0.1775406"
+      },
+      "wave1RebuiltPr31Apk": {
+        "admittedRuns": 3,
+        "acceptedPasses": 0,
+        "failedOrRejectedRuns": 3,
+        "blockedRuns": 0,
+        "acceptedPassRate": "0/3 (0.00%)",
+        "httpRequests": 36,
+        "promptTokens": 380233,
+        "completionTokens": 4054,
+        "accountedNanodollars": 118934700,
+        "accountedUsdConservative": "0.1189347"
+      },
+      "wave2RebuiltPr31Apk": {
+        "admittedRuns": 15,
+        "acceptedPasses": 11,
+        "failedOrRejectedRuns": 4,
+        "blockedRuns": 0,
+        "acceptedPassRate": "11/15 (73.33%)",
+        "httpRequests": 116,
+        "promptTokens": 1169806,
+        "completionTokens": 15143,
+        "accountedNanodollars": 376707600,
+        "accountedUsdConservative": "0.3767076"
+      }
+    },
+    "rebuiltPr31ApkCombined": {
+      "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+      "admittedRuns": 18,
+      "acceptedPasses": 11,
+      "failedOrRejectedRuns": 7,
+      "blockedRuns": 0,
+      "acceptedPassRate": "11/18 (61.11%)",
+      "httpRequests": 152,
+      "promptTokens": 1550039,
+      "completionTokens": 19197,
+      "accountedNanodollars": 495642300,
+      "accountedUsdConservative": "0.4956423"
+    },
+    "allFinalBatchesCombined": {
+      "admittedRuns": 27,
+      "acceptedPasses": 15,
+      "failedOrRejectedRuns": 11,
+      "blockedRuns": 1,
+      "httpRequests": 212,
+      "promptTokens": 2117469,
+      "completionTokens": 25290,
+      "accountedNanodollars": 673182900,
+      "accountedUsdConservative": "0.6731829"
+    },
+    "ledgers": {
+      "wave1": {
+        "path": "D:\\CodexTemp\\tmp\\final-completion-runs\\completion-ledger.sqlite3",
+        "status": "CLOSED_STOPPED_AT_RESERVE_BOUNDARY",
+        "approvalFile": "evidence/final/artemis/completion-batch/owner-approval.json",
+        "proposalFile": "evidence/final/artemis/completion-batch/budget-proposal.json",
+        "admissionsUsed": 3,
+        "maxAdmissions": 6,
+        "httpRequestsUsed": 36,
+        "maxHttpRequests": 54,
+        "remainingRequestsInCap": 18,
+        "accountedNanodollarsUsed": 118934700,
+        "maxConservativeNanodollars": 150000000,
+        "remainingNanodollarsInCap": 31065300,
+        "blockedFlag": 0,
+        "expiresUtc": "2026-11-13T04:21:37.816595+00:00",
+        "activeOrReviewRequiredSessions": 0
+      },
+      "wave2": {
+        "path": "D:\\CodexTemp\\tmp\\final-completion-wave2\\wave2-ledger.sqlite3",
+        "status": "COMPLETED_MAX_ADMISSIONS_REACHED_DO_NOT_REUSE",
+        "approvalFile": "evidence/final/artemis/completion-wave2/owner-approval.json",
+        "proposalFile": "evidence/final/artemis/completion-wave2/budget-proposal.json",
+        "admissionsUsed": 15,
+        "maxAdmissions": 15,
+        "httpRequestsUsed": 116,
+        "maxHttpRequests": 240,
+        "remainingRequestsInCap": 124,
+        "accountedNanodollarsUsed": 376707600,
+        "maxConservativeNanodollars": 500000000,
+        "remainingNanodollarsInCap": 123292400,
+        "blockedFlag": 0,
+        "expiresUtc": "2026-11-13T04:57:17.158118+00:00",
+        "activeOrReviewRequiredSessions": 0
+      }
+    },
+    "providerBalanceCheck": {
+      "postRunReceipt": "evidence/final/artemis/completion-wave2/post-run-balance-check.json",
+      "httpStatus": 200,
+      "isAvailable": true,
+      "usdBalanceCovers050Reserve": true,
+      "note": "Exact account balance intentionally omitted from Git-tracked artifacts per balance_gate.py privacy policy. Owner pre-authorized >$0.50 budget (owner_msg_unlock_full_balance_20261112); run balance check live before initializing a fresh Wave 3 ledger/proposal so cap <= available_usd_balance - minimum_nexora_reserve."
+    }
+  },
+  "completedCaseSummaryRebuiltPr31Apk": {
+    "FINAL-F01": {
+      "attempted": 4,
+      "acceptedPasses": 1,
+      "repetitions": {
+        "wave1_R1": "FAILED",
+        "wave2_R1": "FAILED",
+        "wave2_R2": "FAILED",
+        "wave2_R3": "ACCEPTED_PASS"
+      }
+    },
+    "FINAL-F02a": {
+      "attempted": 5,
+      "acceptedPasses": 2,
+      "repetitions": {
+        "wave1_R1": "FAILED",
+        "wave1_R2": "FAILED",
+        "wave2_R1": "FAILED",
+        "wave2_R2": "ACCEPTED_PASS",
+        "wave2_R3": "ACCEPTED_PASS"
+      }
+    },
+    "FINAL-F02b": {
+      "attempted": 3,
+      "acceptedPasses": 2,
+      "repetitions": {
+        "wave2_R1": "ACCEPTED_PASS",
+        "wave2_R2": "REJECTED_FAILED",
+        "wave2_R3": "ACCEPTED_PASS"
+      }
+    },
+    "TC-27": {
+      "attempted": 3,
+      "acceptedPasses": 3,
+      "repetitions": {
+        "wave2_R1": "ACCEPTED_PASS",
+        "wave2_R2": "ACCEPTED_PASS",
+        "wave2_R3": "ACCEPTED_PASS"
+      }
+    },
+    "TC-NATIVE-01": {
+      "attempted": 3,
+      "acceptedPasses": 3,
+      "repetitions": {
+        "wave2_R1_deny": "ACCEPTED_PASS",
+        "wave2_R2_allow": "ACCEPTED_PASS",
+        "wave2_R3_deny": "ACCEPTED_PASS"
+      }
+    }
+  },
+  "nonArtemisAnalyticsEvidenceOnRebuiltPr31Apk": {
+    "receipt": "evidence/final/artemis/completion-batch/rebuilt-apk-analytics-check.json",
+    "screenshots": [
+      "evidence/final/artemis/completion-batch/profile-analytics-optout-before-restart.png",
+      "evidence/final/artemis/completion-batch/profile-analytics-optout-after-restart.png",
+      "evidence/final/artemis/completion-batch/profile-analytics-optin.png"
+    ],
+    "verified": [
+      "manifest default firebase_analytics_collection_enabled=false",
+      "opt-out persistence across force-stop cold restart",
+      "live Gemini Level 2 parse on /matching and HTTP 204 ai_request + ai_result_accepted uploads with userIdPropertyCount=0"
+    ]
+  },
+  "completedRuns": {
+    "gate3b": [
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 1,
+        "runId": "88cbd3f4-ec88-4bee-b0f8-5aa9e9c13530",
+        "traceId": "9337276b-5c62-41a6-8c96-90057ef4e13e",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": false,
+        "verdict": "REJECTED_FAILED",
+        "httpRequests": 8,
+        "promptTokens": 77950,
+        "completionTokens": 669,
+        "accountedNanodollars": 24187800,
+        "evidenceDir": "evidence/final/artemis/FINAL-F01/run-1",
+        "manifest": "evidence/final/artemis/FINAL-F01/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/FINAL-F01/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/FINAL-F01/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/FINAL-F01/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/FINAL-F01/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/FINAL-F01/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/FINAL-F01/run-1/step-01.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-02.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-03.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-04.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-05.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-06.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-07.jpg",
+          "evidence/final/artemis/FINAL-F01/run-1/step-08.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/FINAL-F01/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f01-r1\\pytest-private.log",
+        "reviewerNote": "Independent review REJECT: Turn 1 tap on Search tab did not navigate and diacritic paste plus keyboard dismiss/scroll exhausted Flash max_turns=8 on Search results (2 tutors visible); pytest exited 0 via conditional profile_opened check while Tutor Profile was never opened (profile_opened=false, connection_action_visible=false)."
+      },
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 2,
+        "runId": "fa783965-c1a0-4f58-80f8-16ccaa3e5d9a",
+        "traceId": "f61abd90-6671-4d1d-90b1-9f334f770a28",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": null,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "BLOCKED",
+        "httpRequests": 8,
+        "promptTokens": 71962,
+        "completionTokens": 632,
+        "accountedNanodollars": 22347000,
+        "evidenceDir": "evidence/final/artemis/FINAL-F01/run-2",
+        "manifest": "evidence/final/artemis/FINAL-F01/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/FINAL-F01/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/FINAL-F01/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/FINAL-F01/run-2/actions.json",
+        "finalReportJson": null,
+        "junitXml": null,
+        "screenshots": [
+          "evidence/final/artemis/FINAL-F01/run-2/screen-after-anr.png",
+          "evidence/final/artemis/FINAL-F01/run-2/step-01.jpg",
+          "evidence/final/artemis/FINAL-F01/run-2/step-02.jpg",
+          "evidence/final/artemis/FINAL-F01/run-2/step-03.jpg",
+          "evidence/final/artemis/FINAL-F01/run-2/step-04.jpg",
+          "evidence/final/artemis/FINAL-F01/run-2/step-05.jpg",
+          "evidence/final/artemis/FINAL-F01/run-2/step-06-post.jpg",
+          "evidence/final/artemis/FINAL-F01/run-2/step-06.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/FINAL-F01/run-2/README.md",
+          "evidence/final/artemis/FINAL-F01/run-2/anr-dropbox-excerpt.txt",
+          "evidence/final/artemis/FINAL-F01/run-2/anr-logcat-excerpt.txt",
+          "evidence/final/artemis/FINAL-F01/run-2/balance-preflight.json",
+          "evidence/final/artemis/FINAL-F01/run-2/during-run-anr.txt"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f01-r2\\pytest-private.log",
+        "reviewerNote": "BLOCKED by genuine Android ANR during FINAL-F01 R2: Steps 1-6 typed \"Thu Trang\", selected \"Toan\", and rendered \"1 gia su phu hop\" in step-06-post.jpg, after which Turn 7 manage_app launch hit ANR (ErrorId bd55a9a5-5f32-458c-8fd6-d865cec57632: Input dispatching timed out / Application does not have a focused window; main thread blocked in FlutterJNI.nativeSurfaceCreated during CPU pressure some avg10=54.65 while concurrent host flutter test ran). Preserved screen-after-anr.png and DropBox/logcat excerpts; ledger remains BLOCKED."
+      },
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 3,
+        "runId": "e6f89028-de65-4c5f-8b08-bd7f4ea57dcc",
+        "traceId": "e1df3ef1-0090-4102-8e4f-a5af938b5b7d",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": false,
+        "verdict": "REJECTED_FAILED",
+        "httpRequests": 8,
+        "promptTokens": 77993,
+        "completionTokens": 810,
+        "accountedNanodollars": 24369900,
+        "evidenceDir": "evidence/final/artemis/FINAL-F01/run-3",
+        "manifest": "evidence/final/artemis/FINAL-F01/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/FINAL-F01/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/FINAL-F01/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/FINAL-F01/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/FINAL-F01/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/FINAL-F01/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/FINAL-F01/run-3/step-01.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-02.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-03.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-04.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-05.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-06.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-07.jpg",
+          "evidence/final/artemis/FINAL-F01/run-3/step-08.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/FINAL-F01/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f01-r3\\pytest-private.log",
+        "reviewerNote": "Independent review REJECT: Turn 1 tap on Search tab did not navigate and step 3 focused search box before step 4 typed 'Thu Trang'; BeeWise filtered live catalog to '1 gia sư phù hợp' ('ThS. Hoàng Thu Trang', '250.000đ/giờ', 'Xem hồ sơ' visible in step-08.jpg), but Flash exhausted max_turns=8 without tapping 'Xem hồ sơ' to open Tutor Profile (/tutors/:id). pytest exited 0 via conditional profile_opened check while profile_opened=false and connection_action_visible=false."
+      },
+      {
+        "caseId": "FINAL-F02b",
+        "repetition": 1,
+        "runId": "1f7f2345-1ded-421e-9c59-e4731a6f0d5b",
+        "traceId": "96f137d2-6d0f-4e0a-b79c-6d4baca0723b",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 8,
+        "promptTokens": 78312,
+        "completionTokens": 934,
+        "accountedNanodollars": 24614400,
+        "evidenceDir": "evidence/final/artemis/FINAL-F02b/run-1",
+        "manifest": "evidence/final/artemis/FINAL-F02b/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/FINAL-F02b/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/FINAL-F02b/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/FINAL-F02b/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/FINAL-F02b/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/FINAL-F02b/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/FINAL-F02b/run-1/step-01.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-02.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-03.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-04.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-05.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-06.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-07.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-1/step-08.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/FINAL-F02b/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f02b-r1\\pytest-private.log",
+        "reviewerNote": "Independent review PASS: Verified step-01..08 frames offline on /matching showing Gboard clipboard insert ('Tim gia su Vat ly lop 11 o Quan 3'), loading spinner -> recoverable error ('Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.'), manual fallback form ('Yeu cau hoc tap'), and manual search link ('Mo trang tim kiem gia su')."
+      },
+      {
+        "caseId": "FINAL-F02b",
+        "repetition": 2,
+        "runId": "fd851a4d-e83c-4ddc-9b84-e023013548b1",
+        "traceId": "d83d1b4d-60a3-4f69-a390-566e9701ea3b",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": false,
+        "verdict": "REJECTED_FAILED",
+        "httpRequests": 8,
+        "promptTokens": 79553,
+        "completionTokens": 905,
+        "accountedNanodollars": 24951900,
+        "evidenceDir": "evidence/final/artemis/FINAL-F02b/run-2",
+        "manifest": "evidence/final/artemis/FINAL-F02b/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/FINAL-F02b/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/FINAL-F02b/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/FINAL-F02b/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/FINAL-F02b/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/FINAL-F02b/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/FINAL-F02b/run-2/step-01.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-02.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-03.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-04.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-05.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-06.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-07.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-2/step-08.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/FINAL-F02b/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f02b-r2\\pytest-private.log",
+        "reviewerNote": "Independent review REJECT: Steps 1-6 successfully entered 'Tim gia su Vat ly lop 11 o Quan 3', triggered offline error 'Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.', and opened manual form 'Yeu cau hoc tap'. However Step 7 swiped over open Gboard keyboard (typing 'my') instead of scrolling, so 'Mo trang tim kiem gia su' was never verified visible after tapping 'Tu dien bo loc'; Flash inferred it from pre-tap step-01 rather than post-tap step-08."
+      },
+      {
+        "caseId": "FINAL-F02b",
+        "repetition": 3,
+        "runId": "6b87a44e-acb9-47e3-9208-758917cc8e52",
+        "traceId": "c8aa757f-27fb-4a8a-b3ca-887a849defb8",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 7,
+        "promptTokens": 70192,
+        "completionTokens": 812,
+        "accountedNanodollars": 22032000,
+        "evidenceDir": "evidence/final/artemis/FINAL-F02b/run-3",
+        "manifest": "evidence/final/artemis/FINAL-F02b/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/FINAL-F02b/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/FINAL-F02b/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/FINAL-F02b/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/FINAL-F02b/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/FINAL-F02b/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/FINAL-F02b/run-3/step-01.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-3/step-02.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-3/step-03.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-3/step-04.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-3/step-05.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-3/step-06.jpg",
+          "evidence/final/artemis/FINAL-F02b/run-3/step-07.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/FINAL-F02b/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f02b-r3\\pytest-private.log",
+        "reviewerNote": "Honest FAIL (budget ceiling reached mid-run): Steps 1-7 entered 'Tim gia su Vat ly lop 11 o Quan 3' with Gboard clipboard artifact ('https' -> 'h' after 5 backspaces, 35/500 visible) on offline /matching, then Turn 8 hit the hard Gate 3 B cumulative ceiling (60/60 HTTP attempts, $0.1775406/$0.2000) before tapping 'Phan tich nhu cau bang AI'; preflight blocked request 61 before HTTP dispatch."
+      },
+      {
+        "caseId": "TC-27",
+        "repetition": 1,
+        "runId": "a186d7f7-42cf-403a-b345-43191ed317ad",
+        "traceId": "c1cb72b7-993f-47a1-9021-d9c200ffda21",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 5,
+        "promptTokens": 44319,
+        "completionTokens": 478,
+        "accountedNanodollars": 13869300,
+        "evidenceDir": "evidence/final/artemis/TC-27/run-1",
+        "manifest": "evidence/final/artemis/TC-27/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/TC-27/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/TC-27/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/TC-27/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/TC-27/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/TC-27/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/TC-27/run-1/step-01.jpg",
+          "evidence/final/artemis/TC-27/run-1/step-02.jpg",
+          "evidence/final/artemis/TC-27/run-1/step-03.jpg",
+          "evidence/final/artemis/TC-27/run-1/step-04.jpg",
+          "evidence/final/artemis/TC-27/run-1/step-05.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/TC-27/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\tc27-r1\\pytest-private.log",
+        "reviewerNote": "Independent review PASS: Verified step-01..05 frames showing Guest Home -> Tai khoan -> Dang nhap -> local validation errors ('Nhap email hop le.', 'Mat khau can it nhat 8 ky tu.') on blank submission."
+      },
+      {
+        "caseId": "TC-27",
+        "repetition": 2,
+        "runId": "1e1126e1-0553-4e95-a082-5f85b24563e3",
+        "traceId": "ccc50349-7655-469e-bf21-2a3f31731cd3",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 4,
+        "promptTokens": 33543,
+        "completionTokens": 423,
+        "accountedNanodollars": 10570500,
+        "evidenceDir": "evidence/final/artemis/TC-27/run-2",
+        "manifest": "evidence/final/artemis/TC-27/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/TC-27/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/TC-27/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/TC-27/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/TC-27/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/TC-27/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/TC-27/run-2/step-01.jpg",
+          "evidence/final/artemis/TC-27/run-2/step-02.jpg",
+          "evidence/final/artemis/TC-27/run-2/step-03.jpg",
+          "evidence/final/artemis/TC-27/run-2/step-04.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/TC-27/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\tc27-r2\\pytest-private.log",
+        "reviewerNote": "Independent review PASS: Verified step-01..04 showing Home -> Tai khoan ([500,272]) -> Dang nhap ([500,526]) -> local validation errors ('Nhap email hop le.', 'Mat khau can it nhat 8 ky tu.') on blank submission."
+      },
+      {
+        "caseId": "TC-27",
+        "repetition": 3,
+        "runId": "aa32cdab-d09f-4c8a-9c92-40be642a121b",
+        "traceId": "587db39f-1981-4e4d-9b26-8e0c28d03eac",
+        "apkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 4,
+        "promptTokens": 33606,
+        "completionTokens": 430,
+        "accountedNanodollars": 10597800,
+        "evidenceDir": "evidence/final/artemis/TC-27/run-3",
+        "manifest": "evidence/final/artemis/TC-27/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/TC-27/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/TC-27/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/TC-27/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/TC-27/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/TC-27/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/TC-27/run-3/step-01.jpg",
+          "evidence/final/artemis/TC-27/run-3/step-02.jpg",
+          "evidence/final/artemis/TC-27/run-3/step-03.jpg",
+          "evidence/final/artemis/TC-27/run-3/step-04.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/TC-27/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-artemis-runs\\tc27-r3\\pytest-private.log",
+        "reviewerNote": "Independent review PASS: Verified step-01..04 showing Home -> Tai khoan -> Dang nhap -> local validation errors ('Nhap email hop le.', 'Mat khau can it nhat 8 ky tu.') on blank submission."
+      }
+    ],
+    "wave1": [
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 1,
+        "runId": "f95381e9-2825-4389-93b7-714bc20168f7",
+        "traceId": "92e0025c-d4c4-490d-945c-4cc50396d7de",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 12,
+        "promptTokens": 127417,
+        "completionTokens": 1172,
+        "accountedNanodollars": 39631500,
+        "evidenceDir": "evidence/final/artemis/completion-batch/FINAL-F01/run-1",
+        "manifest": "evidence/final/artemis/completion-batch/FINAL-F01/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-batch/FINAL-F01/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-batch/FINAL-F01/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-batch/FINAL-F01/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-batch/FINAL-F01/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-batch/FINAL-F01/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-02.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-03.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-04.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-05.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-06.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-07.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-08.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-09.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-10.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-11.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/step-12.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-batch/FINAL-F01/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-runs\\final-f01-r1\\pytest-private.log",
+        "reviewerNote": "Pytest exit 1 during FINAL-F01 R1 (12 HTTP turns -> failed); inspecting step-by-step trace before subsequent runs."
+      },
+      {
+        "caseId": "FINAL-F02a",
+        "repetition": 1,
+        "runId": "096ab363-9e1c-4a08-bce8-a4fac3060edf",
+        "traceId": "6f2e9a2c-57c7-4595-92fc-07d4a69b741f",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 12,
+        "promptTokens": 126534,
+        "completionTokens": 1360,
+        "accountedNanodollars": 39592200,
+        "evidenceDir": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1",
+        "manifest": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-02.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-03.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-04.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-05.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-06.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-07.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-08.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-09.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-10.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-11.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/step-12.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-runs\\final-f02a-r1\\pytest-private.log",
+        "reviewerNote": "Pytest failed (exit=1); exporting trace for forensic inspection."
+      },
+      {
+        "caseId": "FINAL-F02a",
+        "repetition": 2,
+        "runId": "1db17c6f-0f3b-40c5-b0ce-e240e3726398",
+        "traceId": "d259be26-cef7-4d18-968f-02f21c8340d5",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 12,
+        "promptTokens": 126282,
+        "completionTokens": 1522,
+        "accountedNanodollars": 39711000,
+        "evidenceDir": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2",
+        "manifest": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-01.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-02.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-03.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-04.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-05.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-06.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-07.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-08.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-09.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-10.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-11.jpg",
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/step-12.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-batch/FINAL-F02a/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-runs\\final-f02a-r2\\pytest-private.log",
+        "reviewerNote": "Pytest failed (exit=1); exporting trace for forensic inspection."
+      }
+    ],
+    "wave2": [
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 1,
+        "runId": "139f5f53-fc06-427a-bfd7-fe4ba8894e06",
+        "traceId": "307ffdd1-68f3-4c54-91d6-2c0f5266b8f0",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 11,
+        "promptTokens": 119892,
+        "completionTokens": 1271,
+        "accountedNanodollars": 37492800,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-09.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-10.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/step-11.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F01-r1\\pytest-private.log",
+        "reviewerNote": "Honest FAILED export: app genuinely opened /tutors/:id (ThS. Hoang Thu Trang) displaying 250.000d/gio and Gui yeu cau ket noi, but pytest AssertionError rejected profile_hourly_fee_text='Hoc phi tham khao 250.000d/gio' per strict regex [0-9][0-9., ]*\\\\s*d/gio."
+      },
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 2,
+        "runId": "88f8fa9f-0e65-46be-b88d-e3c8af275441",
+        "traceId": "81ad66b7-593e-401d-a47f-68d5dd59c502",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 12,
+        "promptTokens": 131534,
+        "completionTokens": 1415,
+        "accountedNanodollars": 41158200,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-09.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-10.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-11.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/step-12.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F01-r2\\pytest-private.log",
+        "reviewerNote": "Honest FAILED export: app genuinely opened /tutors/:id (ThS. Hoang Thu Trang) displaying 250.000d/gio and Gui yeu cau ket noi, but pytest AssertionError rejected profile_hourly_fee_text='Hoc phi tham khao 250.000d/gio' per strict regex [0-9][0-9., ]*\\\\s*d/gio."
+      },
+      {
+        "caseId": "FINAL-F01",
+        "repetition": 3,
+        "runId": "bf0c6074-cc3b-4e67-8763-d49161840447",
+        "traceId": "7f4e44d9-c661-4ac9-bf67-a3fa2e58c0e6",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 11,
+        "promptTokens": 118918,
+        "completionTokens": 1220,
+        "accountedNanodollars": 37139400,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-09.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-10.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/step-11.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F01/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F01-r3\\pytest-private.log",
+        "reviewerNote": "Verified frames step-05..11: Toan chip highlighted gold, '2 gia su phu hop' loaded, opened ThS. Hoang Thu Trang /tutors/:id displaying '250.000d/gio' and 'Gui yeu cau ket noi'."
+      },
+      {
+        "caseId": "FINAL-F02a",
+        "repetition": 1,
+        "runId": "f6641a51-45e3-48b3-9836-c4a9226cf769",
+        "traceId": "d3e0f72c-dedd-497a-9b28-6c574afb193b",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 1,
+        "junitPass": false,
+        "accepted": false,
+        "verdict": "FAILED",
+        "httpRequests": 13,
+        "promptTokens": 129195,
+        "completionTokens": 1212,
+        "accountedNanodollars": 47807100,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-09.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-10.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-11.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/step-12.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F02a-r1\\pytest-private.log",
+        "reviewerNote": "Exported Wave 2 FINAL-F02a R1 pytest failure for forensic inspection"
+      },
+      {
+        "caseId": "FINAL-F02a",
+        "repetition": 2,
+        "runId": "c05c1b3c-3ec6-4ed8-95ed-cf015ba0006c",
+        "traceId": "373d96b9-6181-4738-9028-a8cb35ecadba",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 14,
+        "promptTokens": 146780,
+        "completionTokens": 2464,
+        "accountedNanodollars": 46990800,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-09.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-10.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-11.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-12.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/step-13.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F02a-r2\\pytest-private.log",
+        "reviewerNote": "Verified frames step-06..13: AI parse Heading, Phi toi da 300000->220000, keypad dismissed (BACK), Xac nhan submitted cleanly, empty UI 'Chua co ho so phu hop voi bo loc da xac nhan.' visible."
+      },
+      {
+        "caseId": "FINAL-F02a",
+        "repetition": 3,
+        "runId": "2ee125b3-37ac-4514-b745-1c18692adeb5",
+        "traceId": "d9d78ee0-1ffd-4966-b70b-0fbdea1c1676",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 14,
+        "promptTokens": 145497,
+        "completionTokens": 2388,
+        "accountedNanodollars": 46514700,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-09.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-10.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-11.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-12.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/step-13.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02a/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F02a-r3\\pytest-private.log",
+        "reviewerNote": "Verified frames step-06..13: AI parse Heading, Phi toi da 300000->220000, keypad dismissed, Xac nhan submitted, empty UI 'Chua co ho so phu hop voi bo loc da xac nhan.' rendered."
+      },
+      {
+        "caseId": "FINAL-F02b",
+        "repetition": 1,
+        "runId": "5d9b2267-8f13-42e9-87e1-b1699d85aa82",
+        "traceId": "0644fe9b-77a0-4925-a3f3-f3b3e0cfe252",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 7,
+        "promptTokens": 69579,
+        "completionTokens": 820,
+        "accountedNanodollars": 21857700,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/step-07.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F02b-r1\\pytest-private.log",
+        "reviewerNote": "Verified frames step-03..07: offline input, error 'Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.' visible, tapped 'Tu dien bo loc', dismissed keyboard and scrolled to verify both 'Yeu cau hoc tap' and 'Mo trang tim kiem gia su' on screen."
+      },
+      {
+        "caseId": "FINAL-F02b",
+        "repetition": 2,
+        "runId": "57c6a721-0035-4a4a-8158-0af185066bc6",
+        "traceId": "2b55f2ff-a646-4a35-b113-2907a97bc2dd",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": false,
+        "verdict": "REJECTED_FAILED",
+        "httpRequests": 7,
+        "promptTokens": 70087,
+        "completionTokens": 1042,
+        "accountedNanodollars": 22276500,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/step-07.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F02b-r2\\pytest-private.log",
+        "reviewerNote": "Rejected upon independent frame review despite pytest_exit=0: step-04 tapped 'Tu dien bo loc' while AI request spinner was still running, so error box 'Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.' never rendered in any captured frame (ai_error_visible=true uncorroborated)."
+      },
+      {
+        "caseId": "FINAL-F02b",
+        "repetition": 3,
+        "runId": "d827e522-70de-44bf-9164-7da051a255a5",
+        "traceId": "f0f3315b-5100-4a39-bcc8-ce7cd1cdc3e8",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 9,
+        "promptTokens": 93225,
+        "completionTokens": 1280,
+        "accountedNanodollars": 29503500,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3",
+        "manifest": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-04.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-05.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-06.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-07.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-08.jpg",
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/step-09.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/FINAL-F02b/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\FINAL-F02b-r3\\pytest-private.log",
+        "reviewerNote": "Verified frames step-04..09: offline error 'Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.' clearly visible in step-05, tapped 'Tu dien bo loc', verified both 'Yeu cau hoc tap' and 'Mo trang tim kiem gia su' rendered cleanly on screen."
+      },
+      {
+        "caseId": "TC-27",
+        "repetition": 1,
+        "runId": "ddd32ae4-5ec4-48ae-af35-b15744095b30",
+        "traceId": "57c5befb-01ea-48fe-8cd7-64685d484701",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 4,
+        "promptTokens": 33562,
+        "completionTokens": 431,
+        "accountedNanodollars": 10585800,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/TC-27/run-1",
+        "manifest": "evidence/final/artemis/completion-wave2/TC-27/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/TC-27/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/TC-27/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/TC-27/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/TC-27/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/TC-27/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/TC-27/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-1/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-1/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-1/step-04.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/TC-27/run-1/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-27-r1\\pytest-private.log",
+        "reviewerNote": "Verified all 4 frames step-01..04: Guest Home -> Tai khoan (Chua dang nhap) -> Dang nhap -> blank submit -> 'Nhap email hop le.' & 'Mat khau can it nhat 8 ky tu.' while signed_in=false."
+      },
+      {
+        "caseId": "TC-27",
+        "repetition": 2,
+        "runId": "31c5b4e2-3b3a-437b-b7f5-1fc716f5094f",
+        "traceId": "9231aa26-f9bc-4df3-be9d-3debb0d21f26",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 4,
+        "promptTokens": 33506,
+        "completionTokens": 407,
+        "accountedNanodollars": 10540200,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/TC-27/run-2",
+        "manifest": "evidence/final/artemis/completion-wave2/TC-27/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/TC-27/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/TC-27/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/TC-27/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/TC-27/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/TC-27/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/TC-27/run-2/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-2/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-2/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-2/step-04.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/TC-27/run-2/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-27-r2\\pytest-private.log",
+        "reviewerNote": "Verified frames step-01..04: Guest Home -> Tai khoan (Chua dang nhap) -> Dang nhap -> blank submit -> 'Nhap email hop le.' & 'Mat khau can it nhat 8 ky tu.' with signed_in=false."
+      },
+      {
+        "caseId": "TC-27",
+        "repetition": 3,
+        "runId": "ef900282-d0e0-4afa-915a-cb1400b8ebf1",
+        "traceId": "652e29dd-564c-4ceb-b611-c3783300a10e",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5564",
+        "avdName": "BeeWise_Final_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 4,
+        "promptTokens": 33523,
+        "completionTokens": 422,
+        "accountedNanodollars": 10563300,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/TC-27/run-3",
+        "manifest": "evidence/final/artemis/completion-wave2/TC-27/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/TC-27/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/TC-27/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/TC-27/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/TC-27/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/TC-27/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/TC-27/run-3/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-3/step-02.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-3/step-03.jpg",
+          "evidence/final/artemis/completion-wave2/TC-27/run-3/step-04.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/TC-27/run-3/balance-preflight.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-27-r3\\pytest-private.log",
+        "reviewerNote": "Verified frames step-01..04: Guest Home -> Tai khoan (Chua dang nhap) -> Dang nhap -> blank submit -> 'Nhap email hop le.' & 'Mat khau can it nhat 8 ky tu.' while signed_in=false."
+      },
+      {
+        "caseId": "TC-NATIVE-01",
+        "repetition": 1,
+        "runId": "e254ff57-f3a5-4991-a35a-e482fff16fb0",
+        "traceId": "6607d397-74e6-46be-ab5c-27b0a5705965",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5566",
+        "avdName": "BeeWise_N03_Native_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 2,
+        "promptTokens": 14819,
+        "completionTokens": 241,
+        "accountedNanodollars": 4734900,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1",
+        "manifest": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/native-proof/after.png",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/native-proof/before.png",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/step-02.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/balance-preflight.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/native-proof/actions.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/native-proof/after.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/native-proof/agent.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-1/native-proof/before.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-NATIVE-01-r1\\pytest-private.log",
+        "reviewerNote": "Verified before.png/after.png and native-proof: GrantPermissionsActivity focused on Final APK 4e38d1ca, ARTEMIS clicked 'Don't allow' at [360,976] inside bounds [98,924,622,1036], returned to com.beewise.beewise.MainActivity with granted=false, USER_SET."
+      },
+      {
+        "caseId": "TC-NATIVE-01",
+        "repetition": 2,
+        "runId": "0ac7e0d3-6634-4900-a9e8-ca50803625db",
+        "traceId": "c1e21ad7-fca0-484f-9927-4622e1c75980",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5566",
+        "avdName": "BeeWise_N03_Native_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 2,
+        "promptTokens": 14852,
+        "completionTokens": 273,
+        "accountedNanodollars": 4783200,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2",
+        "manifest": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/native-proof/after.png",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/native-proof/before.png",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/step-02.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/balance-preflight.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/native-proof/actions.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/native-proof/after.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/native-proof/agent.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-2/native-proof/before.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-NATIVE-01-r2\\pytest-private.log",
+        "reviewerNote": "Verified before.png/after.png and native-proof: GrantPermissionsActivity focused on Final APK 4e38d1ca, ARTEMIS clicked 'Allow' at [360,848] inside bounds [98,804,622,916], returned to com.beewise.beewise.MainActivity with granted=true, USER_SET."
+      },
+      {
+        "caseId": "TC-NATIVE-01",
+        "repetition": 3,
+        "runId": "45cd93f2-bca5-40ed-acb9-829479ff6800",
+        "traceId": "b1b94ad3-8cb4-4f21-97d9-a24c59e989f8",
+        "apkSha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+        "deviceSerial": "emulator-5566",
+        "avdName": "BeeWise_N03_Native_API35",
+        "pytestExit": 0,
+        "junitPass": true,
+        "accepted": true,
+        "verdict": "ACCEPTED_PASS",
+        "httpRequests": 2,
+        "promptTokens": 14837,
+        "completionTokens": 257,
+        "accountedNanodollars": 4759500,
+        "evidenceDir": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3",
+        "manifest": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/manifest.json",
+        "independentReviewReceipt": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/independent-review.json",
+        "runReceipt": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/run-receipt.json",
+        "actionsJson": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/actions.json",
+        "finalReportJson": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/final-report.json",
+        "junitXml": "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/result.junit.xml",
+        "screenshots": [
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/native-proof/after.png",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/native-proof/before.png",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/step-01.jpg",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/step-02.jpg"
+        ],
+        "additionalEvidenceFiles": [
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/balance-preflight.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/native-proof/actions.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/native-proof/after.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/native-proof/agent.json",
+          "evidence/final/artemis/completion-wave2/TC-NATIVE-01/run-3/native-proof/before.json"
+        ],
+        "privateLocalLogRef": "D:\\CodexTemp\\tmp\\final-completion-wave2\\TC-NATIVE-01-r3\\pytest-private.log",
+        "reviewerNote": "Verified before.png/after.png and native-proof: GrantPermissionsActivity focused on Final APK 4e38d1ca, ARTEMIS clicked 'Don't allow' at [360,981] inside bounds [98,924,622,1036], returned to com.beewise.beewise.MainActivity with granted=false, USER_SET."
+      }
+    ]
+  },
+  "remainingTestMatrix": [
+    {
+      "caseId": "TC-09",
+      "wave": "Wave 3A (Priority Read-Only)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Signed-out guest on Home; 5 bottom destinations visible; do not submit AI requests."
+    },
+    {
+      "caseId": "TC-08",
+      "wave": "Wave 3A (Priority Read-Only)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Signed-out guest; Tai khoan -> Register -> blank submit without entering personal data."
+    },
+    {
+      "caseId": "TC-12",
+      "wave": "Wave 3A (Priority Read-Only)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Signed-out guest on Profile inspecting visible Remote Config values & Crashlytics actions without triggering crash."
+    },
+    {
+      "caseId": "TC-03",
+      "wave": "Wave 3A (Priority Read-Only)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Signed-out guest; BEEWISE_NO_RESULT_TERM=zz-no-tutor-match-393-2026 against live catalog."
+    },
+    {
+      "caseId": "FINAL-F04",
+      "wave": "Wave 3B (Priority Isolated Emulator)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "Isolated emulator debug APK built from 1cbc950c... (Auth 9199 / Firestore 8180)",
+      "fixtureRequirements": "Isolated Auth+Firestore emulators on non-colliding ports (4410/8180/9199); seeded active catalog tutor matching BEEWISE_TEST_TUTOR_NAME; synthetic Parent A & Parent B isolation data."
+    },
+    {
+      "caseId": "FINAL-F07",
+      "wave": "Wave 3B (Priority Isolated Emulator)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "Isolated emulator debug APK built from 1cbc950c... (Auth 9199 / Firestore 8180)",
+      "fixtureRequirements": "BEEWISE_FINAL_TEST_ENV=emulator; settings/paymentRecipient test fixture; signed-in synthetic parent + chat with staff-issued offered finalPayments/{chatId}; never run real bank transfer."
+    },
+    {
+      "caseId": "FINAL-PDF",
+      "wave": "Wave 3B (Isolated Emulator)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "Isolated emulator debug APK built from 1cbc950c... (Auth 9199 / Firestore 8180)",
+      "fixtureRequirements": "Signed-in Parent A viewing active BEEWISE_TEST_TUTOR_NAME -> save local PDF -> switch to Parent B to verify /reports/{uid}/localFiles isolation."
+    },
+    {
+      "caseId": "FINAL-F08",
+      "wave": "Conditional Cross-Role",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN (REQUIRES_PAIRED_WEB_ADMIN_SESSION)",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566) + Web Admin",
+      "targetApk": "Isolated emulator or authorized staging build",
+      "fixtureRequirements": "BEEWISE_DEDICATED_TEST_PROJECT=1 + operator-entered disposable tutor credentials outside model traces + synchronized Web Admin approval mid-wait; note production CR-01/CR-04/CR-05 verified manually in PR #30."
+    },
+    {
+      "caseId": "TC-01",
+      "wave": "Supplemental Read-Only",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Signed-out guest on Home; note conftest._decode_tc01_prose expects count==0 unless Flash returns exact JSON when catalog > 0."
+    },
+    {
+      "caseId": "TC-04",
+      "wave": "Supplemental Read-Only (Partially Covered by FINAL-F01)",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "BEEWISE_TEST_TUTOR_NAME='ThS. Hoàng Thu Trang' visible in active catalog."
+    },
+    {
+      "caseId": "TC-06",
+      "wave": "Supplemental Read-Only",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 (emulator-5564)",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Signed-out guest on profile of BEEWISE_TEST_TUTOR_NAME."
+    },
+    {
+      "caseId": "TC-02",
+      "wave": "Isolated Empty-Catalog + Logcat",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "Isolated empty-catalog emulator APK",
+      "fixtureRequirements": "Empty tutors catalog + Logcat Analytics verification (remember manifest/opt-out disables Analytics until opted in!)."
+    },
+    {
+      "caseId": "TC-17",
+      "wave": "Isolated Crashlytics Test",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "4e38d1ca... or isolated APK",
+      "fixtureRequirements": "Deliberately kills app process via Crashlytics test crash button and requires relaunch."
+    },
+    {
+      "caseId": "TC-24",
+      "wave": "Superseded / Legacy Trust Boundary",
+      "repetitionsRemaining": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "countRemaining": 3,
+      "status": "NOT_RUN (EXTENDED_BY_FINAL_F07)",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "Isolated emulator APK",
+      "fixtureRequirements": "Signed-in account with zero invoices."
+    },
+    {
+      "caseId": "TC-07, TC-13, TC-16",
+      "wave": "Blocked Missing Device Google Play Account",
+      "repetitionsRemaining": [
+        "TC-07: R1-R3",
+        "TC-13: R1-R3",
+        "TC-16: R1-R3"
+      ],
+      "countRemaining": 9,
+      "status": "BLOCKED_HEADLESS_AVD_NO_GMS_ACCOUNT",
+      "targetDevice": "Play-Services AVD with BEEWISE_TEST_ACCOUNT_EMAIL",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Dedicated test Google account added to Android system Google account picker; Lab 3 N-03 hit 0-account picker failure on TC-16."
+    },
+    {
+      "caseId": "TC-10, TC-14, TC-15",
+      "wave": "Blocked External FCM Dispatch Infrastructure",
+      "repetitionsRemaining": [
+        "TC-10: R1-R3",
+        "TC-14: R1-R3",
+        "TC-15: R1-R3"
+      ],
+      "countRemaining": 9,
+      "status": "BLOCKED_REQUIRES_LIVE_FCM_PUSH_DISPATCH",
+      "targetDevice": "Play-Services AVD / Physical Device with FCM token",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Authorized Firebase Console/Admin SDK push dispatch matching BEEWISE_TEST_PUSH_* titles in foreground/background/terminated states."
+    },
+    {
+      "caseId": "TC-18, TC-19, TC-20, TC-21, TC-22, TC-23",
+      "wave": "Legacy Backend / Emulator Workflow",
+      "repetitionsRemaining": [
+        "TC-18..TC-23: R1-R3 each"
+      ],
+      "countRemaining": 18,
+      "status": "NOT_RUN (REQUIRES_LEGACY_BACKEND_AND_FIXTURE_SEED)",
+      "targetDevice": "BeeWise_N03_Native_API35 (emulator-5566)",
+      "targetApk": "Isolated emulator APK",
+      "fixtureRequirements": "Legacy backend server on http://10.0.2.2:8787 + tools/artemis-deepseek/local_fixture.mjs seeding n03-tc20/tc22 chats (TC-18/19 superseded by FINAL-F04; F05/F06 cover TC-20..23)."
+    },
+    {
+      "caseId": "TC-05, TC-11, TC-26",
+      "wave": "Explicitly Superseded in PRM393 Final",
+      "repetitionsRemaining": [
+        "TC-05: R1-R3",
+        "TC-11: R1-R3",
+        "TC-26: R1-R3"
+      ],
+      "countRemaining": 9,
+      "status": "SUPERSEDED_BY_FINAL_CASES",
+      "targetDevice": "N/A",
+      "targetApk": "N/A",
+      "fixtureRequirements": "TC-05 -> FINAL-F02a/F02b; TC-11 -> FINAL-PDF (local private PDF); TC-26 -> FINAL-F08."
+    },
+    {
+      "caseId": "TC-25",
+      "wave": "Pro Exploratory Session",
+      "repetitionsRemaining": [
+        "Optional R1"
+      ],
+      "countRemaining": 1,
+      "status": "NOT_RUN_ON_FINAL_APK",
+      "targetDevice": "BeeWise_Final_API35 / Isolated AVD",
+      "targetApk": "4e38d1ca... (PR #31)",
+      "fixtureRequirements": "Explicit owner exploratory budget (~25+ Flash/Pro turns, 900s exploration pacing; Lab 3 N-03 had 1 qualifying 23-step PASS)."
+    }
+  ],
+  "knownDefectsAndFindings": [
+    {
+      "id": "HARNESS-F01-FEE-REGEX",
+      "area": "e2e_test/test_final_flows.py:56 + Flutter _InfoRow semantics",
+      "severity": "Medium (flaky assertion against valid UI)",
+      "description": "BeeWise renders 'Học phí tham khảo\\n250.000đ/giờ' in a combined semantics node. DeepSeek Flash emitted 'Học phí tham khảo 250.000đ/giờ' on FINAL-F01 Wave 2 R1 & R2 after genuinely opening ThS. Hoàng Thu Trang (/tutors/:id), failing strict fullmatch regex [0-9][0-9., ]*\\s*đ/giờ, whereas R3 emitted '250.000đ/giờ' and passed (1/3 PASS). Do not modify test_final_flows.py unless separately approved."
+    },
+    {
+      "id": "HARNESS-F02a-PAYLOAD-AND-KEYPAD",
+      "area": "tools/artemis-deepseek/host.py + Android numeric IME",
+      "severity": "Resolved in Wave 2 via host.py",
+      "description": "FINAL-F02a requires 13-14 turns plus explicit KEYCODE_BACK after editing 'Phí tối đa mỗi giờ (VND)' (Wave 1 hit max_turns=12; Wave 2 R1 hit non_image_bytes=35042 > 32768 before host.py enabled ARTEMIS_DEEPSEEK_MAX_NON_IMAGE_BYTES=131072 for flash_max_turns > 12). Wave 2 R2 & R3 both passed (2/3)."
+    },
+    {
+      "id": "MODEL-F02b-SPINNER-FALSE-POSITIVE",
+      "area": "ARTEMIS DeepSeek Flash premature tap on ConfirmTutorNeedScreen",
+      "severity": "Medium (caught by mandatory frame review)",
+      "description": "Wave 2 FINAL-F02b R2 exited pytest=0 while Flash tapped 'Tự điền bộ lọc' before the offline error box 'Chưa lấy được gợi ý AI. Thử lại hoặc tự điền bộ lọc.' finished appearing. Independently caught and rejected (--reject)."
+    },
+    {
+      "id": "ANDROID-PERMISSION-CONTROLLER-TASK",
+      "area": "BeeWise_N03_Native_API35 (API 35) GrantPermissionsActivity",
+      "severity": "Environment quirk (runbook mitigates)",
+      "description": "If PermissionController retains a stale task or cold boot triggers a System UI ANR, dismissing GrantPermissionsActivity can land on Launcher wallpaper instead of BeeWise MainActivity. Always run 'am force-stop com.beewise.beewise' AND 'am force-stop com.google.android.permissioncontroller', clear user flags, sleep 2s, start MainActivity, verify pre-screenshot before admitting TC-NATIVE-01."
+    },
+    {
+      "id": "HOST-CPU-CONTENTION-ANR",
+      "area": "Gate 3 B FINAL-F01 R2 (historical e885a076...)",
+      "severity": "Operational (avoided when host CPU idle)",
+      "description": "Concurrent heavy host tests triggered FlutterJNI.nativeSurfaceCreated ANR under CPU pressure (some avg10=54.65). Never run Flutter/Gradle builds concurrently with ARTEMIS emulator runs."
+    },
+    {
+      "id": "PRODUCTION-REDEPLOY-AND-APPCHECK-COUPLING",
+      "area": "beewise-lab-3 Hosting & App Check",
+      "severity": "Operational / Release boundary",
+      "description": "PR #31 fixes F-FINAL-01..F-FINAL-05 on branch fix/final-corrective-acceptance (1cbc950c...), while live https://beewise-lab-3.web.app/ still serves pre-corrective bundle 1955bade... pending owner deploy approval. BeeWise_Final_API35 preserves App Check debug secret W0RFRkFVTFRd; never run pm clear on emulator-5564 and never run mutating tests (FINAL-F04/F07/F08) against production."
+    },
+    {
+      "id": "CONCURRENT-PORT-AND-EMULATOR-COLLISION",
+      "area": "Host workstation shared emulators & Firebase emulator ports",
+      "severity": "High operational risk if ignored",
+      "description": "Unrelated active sessions currently hold emulator-5562 and local ports 4400, 8080, 8087, 8088, 9099, 9150, 9151, 9152. Wave 3B must use non-colliding ports (e.g., Hub 4410, Auth 9199, Firestore 8180) and emulator-5566."
+    }
+  ],
+  "offlineChecksToVerify": [
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe -m unittest scripts/test_final_artemis_policy.py",
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe scripts/check_e2e_harness.py",
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe scripts/test_measure_bao_startup.py",
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe -m pytest -c e2e_test/pyproject.toml e2e_test/test_final_flow_assertions.py -q",
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe -m pytest -c e2e_test/pyproject.toml e2e_test --collect-only -q",
+    "git diff --stat 1cbc950c04f6e1b42487dacd7d37016792aed3ec -- mobile packages web firebase e2e_test",
+    "git diff --check"
+  ]
+}

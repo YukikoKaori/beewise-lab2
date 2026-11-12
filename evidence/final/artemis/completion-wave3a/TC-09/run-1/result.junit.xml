@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="20.598" timestamp="2026-11-12T13:26:53.828565+07:00"><testcase classname="test_account_and_firebase" name="test_tc09_all_top_level_destinations_are_reachable" time="20.403"><failure message="AssertionError: TC-09 must report exactly five destination observations.">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x000001DEF2EBA160&gt;
+
+    async def test_tc09_all_top_level_destinations_are_reachable(run_flow):
+        """TC-09; primary navigation; signed-out app on Home."""
+&gt;       observed = await run_flow(
+            case_id="TC-09",
+            start="BeeWise is signed out on Home with the bottom navigation visible.",
+            steps=(
+                "Open each bottom destination in order: Trang chủ, Tìm gia sư, Ghép "
+                "AI, Tin nhắn, Tài khoản. For each destination return one object "
+                "with its exact name, title_visible based on the rendered screen, "
+                "and separate overflow_seen and crash_dialog_seen booleans. Include "
+                "all five observations in order. overflow_seen means a visible layout "
+                "overflow defect (clipped content or an overflow error stripe), never "
+                "an ordinary three-dot overflow-menu icon. Do not submit AI requests."
+            ),
+            expected=(
+                '{"destinations":[{"name":string,"title_visible":true,'
+                '"overflow_seen":false,"crash_dialog_seen":false}]}'
+            ),
+        )
+
+e2e_test\test_account_and_firebase.py:81:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+e2e_test\conftest.py:178: in run
+    output = await _trace_report(artemis, result.trace_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+e2e_test\conftest.py:202: in _trace_report
+    return _decode_observation(explanation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = '{"destinations":[{"name":"Trang chủ","title_visible":true,"overflow_seen":false,"crash_dialog_seen":false}]}'
+
+    def _decode_observation(output: Any) -&gt; dict[str, Any]:
+        if isinstance(output, dict):
+            value = output
+        elif isinstance(output, str):
+            text = output.strip()
+            fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+            candidate = fenced.group(1) if fenced else text
+            try:
+                value = json.loads(candidate)
+            except json.JSONDecodeError as error:
+                start, end = text.find("{"), text.rfind("}")
+                embedded = text[start : end + 1].replace("\\n", "\n") if start &gt;= 0 and end &gt; start else ""
+                try:
+                    value = json.loads(embedded) if embedded else _decode_tc01_prose(text)
+                except json.JSONDecodeError:
+                    value = _decode_tc01_prose(text)
+                if value is None:
+                    value = _decode_tc09_prose(text)
+                if value is None:
+                    raise AssertionError(
+                        f"ARTEMIS output was not the required JSON observation: {text!r}"
+                    ) from error
+        else:
+            raise AssertionError(
+                f"ARTEMIS did not return a structured observation: {output!r}"
+            )
+        if not isinstance(value, dict):
+            raise AssertionError(f"Expected a JSON object, received {value!r}")
+        expected_destinations = ["Trang chủ", "Tìm gia sư", "Ghép AI", "Tin nhắn", "Tài khoản"]
+        destination_rows = value.get("destinations")
+        if isinstance(destination_rows, list) and all(
+            isinstance(destination, str) for destination in destination_rows
+        ):
+            raise AssertionError(
+                "TC-09 requires a title_visible observation for each destination; "
+                "a bare list of destination names is insufficient."
+            )
+        if isinstance(destination_rows, list) and all(
+            isinstance(row, dict) for row in destination_rows
+        ):
+            if len(destination_rows) != len(expected_destinations):
+&gt;               raise AssertionError("TC-09 must report exactly five destination observations.")
+E               AssertionError: TC-09 must report exactly five destination observations.
+
+e2e_test\conftest.py:247: AssertionError</failure></testcase></testsuite></testsuites>

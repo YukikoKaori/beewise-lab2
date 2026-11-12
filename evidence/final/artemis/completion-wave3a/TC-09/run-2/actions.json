@@ -1,0 +1,67 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [300, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "press_key",
+    "args": {
+      "key": "BACK"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Pressed key 'BACK'.\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "manage_app",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Launched app 'BeeWise' (com.beewise.beewise); foreground confirmed.\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "wait_for_delay",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Waited 3000ms.\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [300, 925] (normalized).\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 925] (normalized).\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [700, 925] (normalized).\"}",
+    "image": "step-07.jpg"
+  },
+  {
+    "step": 8,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [900, 925] (normalized).\"}",
+    "image": "step-08.jpg"
+  },
+  {
+    "step": 9,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-09.jpg"
+  }
+]

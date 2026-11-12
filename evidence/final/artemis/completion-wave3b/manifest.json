@@ -1,0 +1,37 @@
+[
+  {
+    "path": "batch-balance-preflight.json",
+    "bytes": 149,
+    "sha256": "2923ceebe994961fd1294078efb7e28fbac36e43051a3709cbc3cbb5c5bb0d63"
+  },
+  {
+    "path": "budget-proposal.json",
+    "bytes": 884,
+    "sha256": "be04c83a2af40cc102e74fa71d3238800fab8be423be759f1291903320ad9e6b"
+  },
+  {
+    "path": "interrupted-receipt.json",
+    "bytes": 2594,
+    "sha256": "de27225fa168f93294877cde276c814d62ac897f9b0df9c3109f3605e861aad7"
+  },
+  {
+    "path": "owner-approval.json",
+    "bytes": 529,
+    "sha256": "fdb1387f8e03ec3f190862e360637de391e3dec154438b748e642906eec9f591"
+  },
+  {
+    "path": "step-01.jpg",
+    "bytes": 77361,
+    "sha256": "acfdaadfada6ccbf802588a9f3145de110cd4091459f4b5774cdad706f093896"
+  },
+  {
+    "path": "step-02.jpg",
+    "bytes": 89253,
+    "sha256": "0512e890ca144d2f9d3222fadcfac61b4c263c7f16208e58a9c8bdada5723107"
+  },
+  {
+    "path": "step-03.jpg",
+    "bytes": 94266,
+    "sha256": "8129248be6f13364af577cfb8712ec8a5a21fcc75a4715cf3eaabf3c9579f859"
+  }
+]

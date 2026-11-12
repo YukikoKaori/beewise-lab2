@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T06:29:06.981818+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Steps 5-9 independently show Home, Search, AI Matching, Messages and Account in order, with selected tabs and distinct screens. Guest Account says signed out; no AI submission or crash dialog seen.",
+  "accepted": true,
+  "junit_pass": true
+}

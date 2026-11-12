@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-12T04:56:47+00:00",
+  "decision": "OWNER_APPROVED_FINAL_COMPLETION_WAVE_2",
+  "owner_approval_ref": "owner_msg_unlock_full_balance_20261112",
+  "proposal_sha256": "407636d62500ce1562561a3f06e204399e59f202f216adaa0ac3ccf44212873c",
+  "owner_authorization": "Owner explicitly lifted the $0.50 USD Nexora reserve constraint ('cứ yên tâm test đủ các test nhé , tôi duyệt ngân sách >0.5$ , tôi sẽ bổ sung cho nexora sau') to execute Wave 2 (15 bounded admissions across FINAL-F02a, FINAL-F01, FINAL-F02b, TC-27, and TC-NATIVE-01) within live DeepSeek balance ($0.63 USD; conservative cap 240 requests / $0.500 USD)."
+}

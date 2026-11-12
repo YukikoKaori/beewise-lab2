@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="77.368" timestamp="2026-11-12T11:23:52.082668+07:00"><testcase classname="test_final_flows" name="test_final_f01_discovery_search_filters_and_tutor_profile" time="77.083"><failure message="AssertionError: FINAL-F01 failed: failed&#10;assert False&#10; +  where False = TaskResult(task_id='92e0025c-d4c4-490d-945c-4cc50396d7de', status='failed', goal='Test case FINAL-F01. Starting point:...string,&quot;profiles_fabricated&quot;:false}', profile=None, device_serial='emulator-5564', output=None, error=None, turns=None).succeeded">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x0000022265D67240&gt;
+
+    async def test_final_f01_discovery_search_filters_and_tutor_profile(run_flow):
+        """FINAL-F01; Lab 2 Screens 01, 03, 04; Home -&gt; /search -&gt; filters -&gt; /tutors/:id."""
+        query = os.environ.get("BEEWISE_SEARCH_TERM", "Toán")
+        tutor_name = os.environ.get("BEEWISE_TEST_TUTOR_NAME", "")
+&gt;       observed = await run_flow(
+            case_id="FINAL-F01",
+            start=(
+                "BeeWise is on /home with a real active catalog tutor matching the search "
+                "and selected filter. This profile-inspection scenario does not allow empty recovery."
+            ),
+            steps=(
+                f"From Trang chủ, open Tìm gia sư, enter {query!r}, and apply at least one visible "
+                "filter chip/option (subject/mode/sort). Wait for real Firestore results to load. "
+                "Read the displayed result count and open a real tutor card (preferring "
+                f"{tutor_name!r} if configured), open its profile and verify subject/hourly fee "
+                "and the Gửi yêu cầu kết nối action on the profile itself. Quote the actual fee "
+                "value and CTA from that screen, not from the search card. Report any search or "
+                "profile error even if other steps succeeded; never infer a missing observation."
+            ),
+            expected=(
+                '{"screen":"Tìm gia sư","query":"configured term","filter_applied":true,'
+                '"result_count":integer,"search_count_text":string,'
+                '"state":"data|empty|error","error_observed":boolean,'
+                '"profile_opened":boolean,"hourly_fee_visible":boolean,'
+                '"connection_action_visible":boolean,"terminal_screen":"tutor_profile",'
+                '"profile_hourly_fee_text":string,"profile_connection_cta_text":string,'
+                '"profiles_fabricated":false}'
+            ),
+        )
+
+e2e_test\test_final_flows.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+case_id = 'FINAL-F01'
+start = 'BeeWise is on /home with a real active catalog tutor matching the search and selected filter. This profile-inspection scenario does not allow empty recovery.'
+steps = "From Trang chủ, open Tìm gia sư, enter 'Toán', and apply at least one visible filter chip/option (subject/mode/sort).... the search card. Report any search or profile error even if other steps succeeded; never infer a missing observation."
+expected = '{"screen":"Tìm gia sư","query":"configured term","filter_applied":true,"result_count":integer,"search_count_text":str...en":"tutor_profile","profile_hourly_fee_text":string,"profile_connection_cta_text":string,"profiles_fabricated":false}'
+profile = 'flash', timeout = 600
+
+    async def run(
+        *,
+        case_id: str,
+        start: str,
+        steps: str,
+        expected: str,
+        profile: str = "flash",
+        timeout: int = 600,
+    ) -&gt; dict[str, Any]:
+        goal = (
+            f"Test case {case_id}. Starting point: {start}.\n"
+            f"Steps: {steps}\n"
+            "Use only visible app/device state. Do not invent records or results. "
+            "After input_text, verify the text actually appears in the focused field. "
+            "On this Android device KEYCODE_PASTE can leave text only in Gboard's "
+            "clipboard suggestion; if the field is still blank, tap that visible "
+            "clipboard suggestion to insert it, then verify the field before submitting. "
+            "When calling report_task_status, put the requested JSON object in "
+            "the explanation argument itself, with no prose or Markdown. "
+            f"Required explanation contract: {expected}"
+        )
+        session_id = str(uuid.uuid4())
+        remote_run = asyncio.create_task(
+            artemis.run(
+                goal,
+                profile=profile,  # type: ignore[arg-type]
+                device_serial=artemis.device_serial,
+                locked_app_package=APP_PACKAGE,
+                expected_output=(
+                    "Return a JSON object only, matching this observable contract: "
+                    + expected
+                ),
+                enable_outputter=True,
+                task_id=session_id,
+                timeout=timeout,
+            )
+        )
+        quota_detected = False
+        while not remote_run.done():
+            await asyncio.sleep(2)
+            try:
+                trace = await artemis._request(
+                    "GET", f"/api/sessions/{session_id}/steps"
+                )
+            except Exception:
+                # The session may not be persisted until scheduler admission.
+                continue
+            if _trace_has_rate_limit(trace):
+                quota_detected = True
+                try:
+                    await artemis.stop(session_id)
+                finally:
+                    try:
+                        await asyncio.wait_for(remote_run, timeout=20)
+                    except Exception:
+                        remote_run.cancel()
+                break
+    
+        if quota_detected:
+            pytest.fail(
+                f"{case_id} blocked: ARTEMIS trace {session_id} reports a provider "
+                "quota/rate-limit error; the task was stopped before further retries."
+            )
+    
+        result: TaskResult = await remote_run
+        print(
+            f"ARTEMIS_RESULT case={case_id} trace_id={result.trace_id} "
+            f"status={result.status} device={result.device_serial}"
+        )
+        assert result.trace_id, f"{case_id} has no trace provenance"
+&gt;       assert result.succeeded, f"{case_id} failed: {result.error or result.status}"
+E       AssertionError: FINAL-F01 failed: failed
+E       assert False
+E        +  where False = TaskResult(task_id='92e0025c-d4c4-490d-945c-4cc50396d7de', status='failed', goal='Test case FINAL-F01. Starting point:...string,"profiles_fabricated":false}', profile=None, device_serial='emulator-5564', output=None, error=None, turns=None).succeeded
+
+e2e_test\conftest.py:172: AssertionError</failure></testcase></testsuite></testsuites>
