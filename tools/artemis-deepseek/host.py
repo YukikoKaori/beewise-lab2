@@ -33,6 +33,26 @@ def check_native_authorization(approval_file, budget):
         raise ValueError("Native supplement ledger requires the exact current owner approval")
 
 
+def check_final_authorization(approval_file, budget):
+    """Validate owner-approved PRM393 Final Gate 3 Option B bounded budget."""
+    proposal_file = (Path(__file__).resolve().parents[2] /
+                     "evidence/final/artemis/budget-proposal.json")
+    proposed = proposal_file.read_bytes().replace(b"\r\n", b"\n")
+    proposal = json.loads(proposed)
+    approval = json.loads(approval_file.read_text(encoding="utf-8"))
+    requests, cost, expires, reference, blocked = budget
+    digest = hashlib.sha256(proposed).hexdigest()
+    owner_ref = approval.get("owner_approval_ref")
+    if (approval.get("decision") != "OWNER_APPROVED_FINAL_GATE_3_B" or
+            approval.get("proposal_sha256") != digest or
+            not isinstance(owner_ref, str) or not owner_ref.strip() or
+            reference != f"{owner_ref}:{digest}" or
+            requests != proposal["max_inference_requests"] or
+            cost != proposal["max_conservative_nanodollars"] or
+            blocked or datetime.now(UTC) >= datetime.fromisoformat(expires)):
+        raise ValueError("Final Gate 3 B ledger requires the exact current owner approval")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artemis-root", type=Path, required=True)
@@ -40,6 +60,7 @@ def main():
     parser.add_argument("--approved-live-budget", type=int, default=0, choices=range(13))
     parser.add_argument("--ledger", type=Path, help="Existing owner-approved cumulative batch ledger")
     parser.add_argument("--native-approval", type=Path, help="Exact owner receipt for the separate native ledger")
+    parser.add_argument("--final-approval", type=Path, help="Exact owner receipt for PRM393 Final Gate 3 B ledger")
     parser.add_argument("--key-file", type=Path, default=Path(__file__).with_name(".env"))
     args = parser.parse_args()
     root = args.artemis_root.resolve(strict=True)
@@ -47,10 +68,12 @@ def main():
     state.mkdir(parents=True, exist_ok=True)
     if args.ledger and args.approved_live_budget:
         parser.error("Batch ledger and historical single-smoke budget are mutually exclusive")
+    if args.native_approval and args.final_approval:
+        parser.error("Native approval and Final approval are mutually exclusive")
     live = bool(args.ledger or args.approved_live_budget)
-    if args.native_approval and not args.ledger:
-        parser.error("Native approval requires a separate ledger")
-    if live and not args.native_approval:
+    if (args.native_approval or args.final_approval) and not args.ledger:
+        parser.error("Approval receipt requires a separate ledger")
+    if live and not (args.native_approval or args.final_approval):
         from policy import require_live_authorization
         require_live_authorization()
     _policy = {}
@@ -65,6 +88,11 @@ def main():
                 check_native_authorization(args.native_approval, (maximum, ceiling, expires, approval, blocked))
             except (OSError, ValueError, TypeError, KeyError):
                 parser.error("Native supplement ledger requires the exact current owner approval")
+        elif args.final_approval:
+            try:
+                check_final_authorization(args.final_approval, (maximum, ceiling, expires, approval, blocked))
+            except (OSError, ValueError, TypeError, KeyError):
+                parser.error("Final Gate 3 B ledger requires the exact current owner approval")
         else:
             amendment = require_live_authorization(maximum, ceiling)
             _policy = json.loads(Path(__file__).with_name("execution-policy.json").read_text(encoding="utf-8"))
@@ -110,7 +138,7 @@ def main():
         "ARTEMIS_DEEPSEEK_COUNTER_FILE": str(counter),
         "LANGCHAIN_TRACING_V2": "false", "LANGSMITH_TRACING": "false",
     })
-    if args.native_approval:
+    if args.native_approval or args.final_approval:
         # Keep the usual envelope and disable the historical exploration pacing/retry overrides.
         for name in ("ARTEMIS_TURN_PACING_SECONDS", "ARTEMIS_MIN_TURNS_BEFORE_REPORT",
                      "ARTEMIS_MIN_EXPLORATION_SECONDS", "ARTEMIS_DEEPSEEK_MAX_NON_IMAGE_BYTES",

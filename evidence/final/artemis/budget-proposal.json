@@ -1,0 +1,31 @@
+{
+  "scope": "PRM393 Final ARTEMIS Bounded Execution (Gate 3 Option B)",
+  "decision": "PROPOSED_NOT_APPROVED",
+  "provider": "DeepSeek API",
+  "model": "deepseek-flash",
+  "target_apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+  "device": "BeeWise_Final_API35",
+  "android_api": 35,
+  "cases": [
+    "FINAL-F01",
+    "FINAL-F02b",
+    "TC-27"
+  ],
+  "environment": "Production safe read-only catalog (FINAL-F01, TC-27) + Android offline fallback without Gemini call (FINAL-F02b)",
+  "repetitions_per_case": 3,
+  "max_admissions": 9,
+  "retry_admissions": 0,
+  "max_inference_requests": 60,
+  "max_conservative_nanodollars": 200000000,
+  "minimum_nexora_reserve_nanodollars": 500000000,
+  "required_balance_coverage_usd": "0.70",
+  "gemini_fallback": false,
+  "flash_goal_patch_applied": true,
+  "stop_conditions": [
+    "All 9 planned admissions complete (3 per case)",
+    "Any provider 429 or ledger usage mismatch",
+    "60 HTTP inference requests reached",
+    "$0.20 USD accounted ceiling reached",
+    "Balance check falls below $0.70 USD ($0.50 reserve + $0.20 cap)"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T01:24:14.607397+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Independent review PASS: Verified step-01..08 frames offline on /matching showing Gboard clipboard insert ('Tim gia su Vat ly lop 11 o Quan 3'), loading spinner -> recoverable error ('Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.'), manual fallback form ('Yeu cau hoc tap'), and manual search link ('Mo trang tim kiem gia su').",
+  "accepted": true,
+  "junit_pass": true
+}

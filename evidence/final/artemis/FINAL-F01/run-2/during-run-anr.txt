@@ -1,0 +1,1 @@
+         1794446022.785   575 10263 I am_anr  : [0,9640,com.beewise.beewise,682147398,Input dispatching timed out (Application does not have a focused window).]
