@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T05:16:54.695743+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Honest FAILED export: app genuinely opened /tutors/:id (ThS. Hoang Thu Trang) displaying 250.000d/gio and Gui yeu cau ket noi, but pytest AssertionError rejected profile_hourly_fee_text='Hoc phi tham khao 250.000d/gio' per strict regex [0-9][0-9., ]*\\\\s*d/gio.",
+  "accepted": false,
+  "junit_pass": false
+}

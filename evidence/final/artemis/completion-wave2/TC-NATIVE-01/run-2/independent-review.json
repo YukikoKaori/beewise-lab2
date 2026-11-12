@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T05:49:15.553361+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Verified before.png/after.png and native-proof: GrantPermissionsActivity focused on Final APK 4e38d1ca, ARTEMIS clicked 'Allow' at [360,848] inside bounds [98,804,622,916], returned to com.beewise.beewise.MainActivity with granted=true, USER_SET.",
+  "accepted": true,
+  "junit_pass": true
+}

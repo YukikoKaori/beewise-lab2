@@ -1,0 +1,52 @@
+[
+  {
+    "path": "actions.json",
+    "bytes": 809,
+    "sha256": "cac6ff53f872102e58566ea295f2c92f033b618bac32d61c2663c7095edc1498"
+  },
+  {
+    "path": "balance-preflight.json",
+    "bytes": 155,
+    "sha256": "0fcb4e1585780cf48457789951b13bd33077a6a373672d934651cf8ae5c041bd"
+  },
+  {
+    "path": "final-report.json",
+    "bytes": 158,
+    "sha256": "9ef9d2fc8c3ff64d52c07136675d762e593a01667eb9a81813f38ec8c7d89c22"
+  },
+  {
+    "path": "independent-review.json",
+    "bytes": 344,
+    "sha256": "6aff9f5ee45f1dd6a076be06852d501f249a82e4486552efbf244e7d990605b9"
+  },
+  {
+    "path": "result.junit.xml",
+    "bytes": 360,
+    "sha256": "802538773fc959faf47faa8bf64cc70e65acf9a80eb4bca3b4c5e88325d103b3"
+  },
+  {
+    "path": "run-receipt.json",
+    "bytes": 1697,
+    "sha256": "0c1b4a005383e2d7b59aaa702a246dc91ae5f7b422cb18c78050c804abd111c1"
+  },
+  {
+    "path": "step-01.jpg",
+    "bytes": 110340,
+    "sha256": "cf159a6827fa2963793b57f4634ec7ec21e69f2591d89a2acb74382ebc181080"
+  },
+  {
+    "path": "step-02.jpg",
+    "bytes": 89942,
+    "sha256": "45c4bcd766a1e17804877e25d17363d321f8ff9691e873328dcab3f4fc1ce6ce"
+  },
+  {
+    "path": "step-03.jpg",
+    "bytes": 73229,
+    "sha256": "97d048b5c8517df62a6ad567483d7c87144b4d110751408737d621c2e5799e32"
+  },
+  {
+    "path": "step-04.jpg",
+    "bytes": 85900,
+    "sha256": "0ae56e2606d8f652461b69d5f5265892aacb8d00ea909de3532f7e57a3574066"
+  }
+]

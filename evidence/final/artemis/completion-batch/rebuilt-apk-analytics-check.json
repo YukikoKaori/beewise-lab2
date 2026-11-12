@@ -1,0 +1,51 @@
+{
+  "recordedAtUtc": "2026-11-12T04:20:02.262091+00:00",
+  "privateLogSha256": "246391aa9ed68f51c30e1a93020a9ddbedc597360ec927763d9536870e0fec40",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "11-12 11:17:39.536",
+      "servicePid": "1422"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "successfulUploadCount": 3,
+  "unexpectedParameterKeys": [],
+  "unsafeParameterValuesOmitted": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "11-12 11:18:03.318",
+      "servicePid": "1422",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "ai_request",
+          "timestampMillis": "1794457082180",
+          "parameters": {
+            "feature": "tutor_need"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-12 11:19:05.954",
+      "servicePid": "1422",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "ai_result_accepted",
+          "timestampMillis": "1794457145208",
+          "parameters": {
+            "feature": "tutor_need"
+          }
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}

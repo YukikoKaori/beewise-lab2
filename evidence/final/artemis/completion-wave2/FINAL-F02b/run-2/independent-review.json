@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T05:24:53.882340+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Rejected upon independent frame review despite pytest_exit=0: step-04 tapped 'Tu dien bo loc' while AI request spinner was still running, so error box 'Chua lay duoc goi y AI. Thu lai hoac tu dien bo loc.' never rendered in any captured frame (ai_error_visible=true uncorroborated).",
+  "accepted": false,
+  "junit_pass": true
+}
