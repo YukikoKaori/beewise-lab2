@@ -1,0 +1,9 @@
+[
+  {
+    "step": 1,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-01.jpg"
+  }
+]

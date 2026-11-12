@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T06:40:12.940941+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Trace entered the unique query and submitted it; frame 10 shows the empty-state message and clear-filters action.",
+  "accepted": true,
+  "junit_pass": true
+}

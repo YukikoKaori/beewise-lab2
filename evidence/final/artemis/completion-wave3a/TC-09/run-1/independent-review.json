@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T06:27:43.560065+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Only one frame: Guest Home with all five labels. Trace immediately reports status without opening other destinations. Pytest failed; navigation unverified.",
+  "accepted": false,
+  "junit_pass": false
+}
