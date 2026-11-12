@@ -8,23 +8,34 @@ import 'remote_config_service.dart';
 String providerSafeNeed(String raw) {
   if (raw.trim().isEmpty || raw.length > 500) return '';
   final hints = <(int, String)>[];
+  final coveredSpans = <(int, int)>[];
   final input = raw.toLowerCase().replaceAll(
     RegExp(r'https?://\S+|\S+@\S+'),
     ' ',
   );
+  bool overlapsSpan(int start, int end) =>
+      coveredSpans.any((span) => start < span.$2 && end > span.$1);
   void add(String pattern, String Function(RegExpMatch) value) {
     final expression = RegExp(
       '(?<![a-zà-ỹ0-9])(?:$pattern)(?![a-zà-ỹ0-9])',
       unicode: true,
     );
     for (final match in expression.allMatches(input)) {
+      if (overlapsSpan(match.start, match.end)) continue;
+      coveredSpans.add((match.start, match.end));
       hints.add((match.start, value(match)));
     }
   }
 
+  final aliasEntries = NormalizedTutorNeed.locationAliases.entries.toList()
+    ..sort((a, b) => b.key.length.compareTo(a.key.length));
+  for (final entry in aliasEntries) {
+    final pattern = entry.key.split(' ').map(RegExp.escape).join(r'\s+');
+    add(pattern, (_) => entry.value);
+  }
+
   for (final phrase in [
     ...NormalizedTutorNeed.subjects,
-    ...NormalizedTutorNeed.locations,
     ...NormalizedTutorNeed.schedules,
     'trực tuyến',
     'trực tiếp',
