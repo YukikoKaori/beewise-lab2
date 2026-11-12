@@ -1,4 +1,4 @@
-"""Offline checks for PRM393 Final Gate 3 Option B ARTEMIS budget and approval gating."""
+"""Offline checks for PRM393 Final ARTEMIS budget and approval gating."""
 
 from __future__ import annotations
 
@@ -15,8 +15,9 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools/artemis-deepseek"))
 
+from completion_once import check_completion_approval  # noqa: E402
 from final_once import check_final_approval, verify_installed_apk  # noqa: E402
-from host import check_final_authorization  # noqa: E402
+from host import check_completion_authorization, check_final_authorization  # noqa: E402
 
 
 class FinalArtemisPolicyTests(unittest.TestCase):
@@ -101,6 +102,64 @@ class FinalArtemisPolicyTests(unittest.TestCase):
             ],
         ), self.assertRaisesRegex(ValueError, "Installed APK SHA-256 mismatch"):
             verify_installed_apk("offline-device", expected)
+
+
+class CompletionBatchPolicyTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.proposal_file = ROOT / "evidence/final/artemis/completion-batch/budget-proposal.json"
+        self.approval_file = ROOT / "evidence/final/artemis/completion-batch/owner-approval.json"
+        proposed = self.proposal_file.read_bytes().replace(b"\r\n", b"\n")
+        self.digest = hashlib.sha256(proposed).hexdigest()
+        self.proposal = json.loads(proposed)
+        self.approval = json.loads(self.approval_file.read_text(encoding="utf-8"))
+
+    def test_completion_proposal_and_approval_match_contract(self) -> None:
+        proposal, approval, digest = check_completion_approval(
+            self.approval_file, self.proposal_file
+        )
+        self.assertEqual(digest, self.digest)
+        self.assertEqual(proposal["cases"], ["FINAL-F01", "FINAL-F02a"])
+        self.assertEqual(proposal["max_admissions"], 6)
+        self.assertEqual(proposal["repetitions_per_case"], 3)
+        self.assertEqual(proposal["retry_admissions"], 0)
+        self.assertEqual(proposal["max_inference_requests"], 54)
+        self.assertEqual(proposal["max_conservative_nanodollars"], 150_000_000)
+        self.assertEqual(proposal["minimum_nexora_reserve_nanodollars"], 500_000_000)
+        self.assertEqual(proposal["flash_max_turns"], 12)
+        expires = (datetime.now(UTC) + timedelta(hours=1)).isoformat()
+        ref = f"{approval['owner_approval_ref']}:{digest}"
+        returned = check_completion_authorization(
+            self.approval_file,
+            (
+                proposal["max_inference_requests"],
+                proposal["max_conservative_nanodollars"],
+                expires,
+                ref,
+                0,
+            ),
+        )
+        self.assertEqual(returned["flash_max_turns"], 12)
+
+    def test_completion_tampered_or_expired_or_blocked_fails_closed(self) -> None:
+        ref = f"{self.approval['owner_approval_ref']}:{self.digest}"
+        future = (datetime.now(UTC) + timedelta(hours=1)).isoformat()
+        past = (datetime.now(UTC) - timedelta(minutes=1)).isoformat()
+        req = self.proposal["max_inference_requests"]
+        cap = self.proposal["max_conservative_nanodollars"]
+        with self.assertRaises(ValueError):
+            check_completion_authorization(self.approval_file, (req, cap, future, ref, 1))
+        with self.assertRaises(ValueError):
+            check_completion_authorization(self.approval_file, (req, cap, past, ref, 0))
+        with self.assertRaises(ValueError):
+            check_completion_authorization(self.approval_file, (req + 1, cap, future, ref, 0))
+        with tempfile.TemporaryDirectory() as tmp:
+            bad = Path(tmp) / "bad-approval.json"
+            bad.write_text(
+                json.dumps({**self.approval, "decision": "WRONG_DECISION"}),
+                encoding="utf-8",
+            )
+            with self.assertRaises(ValueError):
+                check_completion_authorization(bad, (req, cap, future, ref, 0))
 
 
 if __name__ == "__main__":

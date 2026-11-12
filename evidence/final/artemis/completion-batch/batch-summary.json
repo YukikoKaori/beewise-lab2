@@ -1,0 +1,115 @@
+{
+  "batch": "PRM393 Final ARTEMIS Completion Batch",
+  "status": "BOUNDED_COMPLETION_STOPPED_AT_BUDGET_RESERVE",
+  "owner_approval_ref": "owner_msg_final_completion_authorized_20261112",
+  "proposal_sha256": "5ecaddcb8b5ac12b171b92b8ee0e4e3caec37db0699dfda02b0d8ee8d483029b",
+  "source_sha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+  "target_apk_sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+  "device": "BeeWise_Final_API35",
+  "android_api": 35,
+  "provider": "DeepSeek API",
+  "model": "deepseek-flash",
+  "flash_max_turns": 12,
+  "planned_admissions": 6,
+  "executed_admissions": 3,
+  "accepted_passes": 0,
+  "attempted_pass_rate": "0/3 (0.00%)",
+  "gate_3_b_baseline_kept_separate": {
+    "source_sha": "2d14aa03a2548c74e40f7c49e93f2205cce8da6a",
+    "target_apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+    "executed_admissions": 9,
+    "accepted_passes": 4,
+    "attempted_pass_rate": "4/9 (44.44%)"
+  },
+  "usage": {
+    "http_requests": 36,
+    "max_http_requests": 54,
+    "prompt_tokens": 380233,
+    "completion_tokens": 4054,
+    "accounted_nanodollars": 118934700,
+    "accounted_usd": "0.1189347",
+    "max_conservative_nanodollars": 150000000,
+    "max_usd": "0.150",
+    "uncommitted_ceiling_nanodollars": 31065300,
+    "uncommitted_ceiling_usd": "0.0310653",
+    "minimum_nexora_reserve_usd": "0.50",
+    "post_run_balance_check_ref": "evidence/final/artemis/completion-batch/post-run-balance-check.json",
+    "post_run_balance_covers_reserve": true,
+    "fail_closed_stop_reason": "Remaining uncommitted cap ($0.0310653) allows ~6 pre-call ledger reservations (~12.1M-15.0M nanodollars/turn) before exceeding the $0.150 ceiling, insufficient to complete a 9-12 turn FINAL-F02a R3 or FINAL-F01 R2 run."
+  },
+  "rebuilt_apk_live_f_final_05_check": {
+    "receipt": "evidence/final/artemis/completion-batch/rebuilt-apk-analytics-check.json",
+    "apk_sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+    "manifest_default_disabled_verified": true,
+    "opt_out_persisted_across_force_stop_restart": true,
+    "analytics_events_uploaded_204": [
+      "ai_request",
+      "ai_result_accepted"
+    ],
+    "user_id_property_count": 0,
+    "screenshots": [
+      "evidence/final/artemis/completion-batch/profile-analytics-optout-before-restart.png",
+      "evidence/final/artemis/completion-batch/profile-analytics-optout-after-restart.png",
+      "evidence/final/artemis/completion-batch/profile-analytics-optin.png"
+    ]
+  },
+  "admissions": [
+    {
+      "admission": 1,
+      "case": "FINAL-F01",
+      "run": 1,
+      "run_id": "f95381e9-2825-4389-93b7-714bc20168f7",
+      "trace_id": "92e0025c-d4c4-490d-945c-4cc50396d7de",
+      "http_requests": 12,
+      "prompt_tokens": 127417,
+      "completion_tokens": 1172,
+      "accounted_nanodollars": 39631500,
+      "pytest_exit": 1,
+      "verdict": "FAILED",
+      "evidence_dir": "evidence/final/artemis/completion-batch/FINAL-F01/run-1",
+      "summary": "Entered Toán, applied Toán filter chip, rendered '2 gia sư phù hợp', scrolled past first card toward ThS. Hoàng Thu Trang, exhausted max_turns=12 before opening /tutors/:id."
+    },
+    {
+      "admission": 2,
+      "case": "FINAL-F02a",
+      "run": 1,
+      "run_id": "096ab363-9e1c-4a08-bce8-a4fac3060edf",
+      "trace_id": "6f2e9a2c-57c7-4595-92fc-07d4a69b741f",
+      "http_requests": 12,
+      "prompt_tokens": 126534,
+      "completion_tokens": 1360,
+      "accounted_nanodollars": 39592200,
+      "pytest_exit": 1,
+      "verdict": "FAILED",
+      "evidence_dir": "evidence/final/artemis/completion-batch/FINAL-F02a/run-1",
+      "summary": "Parsed Gemini Level 2 'Gợi ý AI · Kiểm tra và chỉnh sửa', edited 'Phí tối đa mỗi giờ (VND)' 300000->220000, tapped 'Xác nhận và tìm gia sư'; post-run ADB scroll confirmed 'Chưa có hồ sơ phù hợp với bộ lọc đã xác nhận.' rendered beneath keypad, but Turn 12 terminated with numeric keypad obscuring the result."
+    },
+    {
+      "admission": 3,
+      "case": "FINAL-F02a",
+      "run": 2,
+      "run_id": "1db17c6f-0f3b-40c5-b0ce-e240e3726398",
+      "trace_id": "d259be26-cef7-4d18-968f-02f21c8340d5",
+      "http_requests": 12,
+      "prompt_tokens": 126282,
+      "completion_tokens": 1522,
+      "accounted_nanodollars": 39711000,
+      "pytest_exit": 1,
+      "verdict": "FAILED",
+      "evidence_dir": "evidence/final/artemis/completion-batch/FINAL-F02a/run-2",
+      "summary": "Parsed Gemini Level 2 'Gợi ý AI · Kiểm tra và chỉnh sửa', edited 'Phí tối đa mỗi giờ (VND)' 300000->220000, dismissed keypad in Turn 10; Turn 11 tap at [500,800] reopened numeric keypad before Xác nhận submission completed at Turn 12."
+    }
+  ],
+  "remaining_slot_classification": {
+    "FINAL-F01_run_2": "NOT_RUN (BLOCKED_BUDGET_RESERVE)",
+    "FINAL-F01_run_3": "NOT_RUN (BLOCKED_BUDGET_RESERVE)",
+    "FINAL-F02a_run_3": "NOT_RUN (BLOCKED_BUDGET_RESERVE)",
+    "FINAL-F02b": "EXECUTED_IN_GATE_3_B (1/3 PASS on APK e885a076...; not repeated on 4e38d1ca...)",
+    "TC-27": "EXECUTED_IN_GATE_3_B (3/3 PASS on APK e885a076...; not repeated on 4e38d1ca...)",
+    "FINAL-F04": "NOT_RUN (OUT_OF_BATCH_SCOPE / REQUIRES_MUTATION_FIXTURE)",
+    "FINAL-F07": "NOT_RUN (OUT_OF_BATCH_SCOPE / REQUIRES_EMULATOR_OR_OFFER_FIXTURE)",
+    "FINAL-F08": "NOT_RUN (OUT_OF_BATCH_SCOPE / REQUIRES_PAIRED_WEB_ADMIN_SESSION; 3/3 production cross-role verified separately)",
+    "FINAL-PDF": "NOT_RUN (OUT_OF_BATCH_SCOPE / REQUIRES_SIGNED_IN_PARENT_A_B; emulator PDF verified separately)",
+    "TC-NATIVE-01": "NOT_RUN (REQUIRES_DISPOSABLE_UNSET_AVD)"
+  }
+}

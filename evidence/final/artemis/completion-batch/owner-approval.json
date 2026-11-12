@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-12T04:19:45+00:00",
+  "decision": "OWNER_APPROVED_FINAL_COMPLETION_BATCH",
+  "owner_approval_ref": "owner_msg_final_completion_authorized_20261112",
+  "proposal_sha256": "5ecaddcb8b5ac12b171b92b8ee0e4e3caec37db0699dfda02b0d8ee8d483029b",
+  "owner_authorization": "Owner explicitly authorized completing Final ARTEMIS testing using DeepSeek API within available balance while strictly preserving >= $0.50 USD Nexora reserve (54 requests / $0.150 USD cap over $0.66 USD live balance)."
+}

@@ -1,0 +1,36 @@
+{
+  "scope": "PRM393 Final ARTEMIS Completion Batch (Rebuilt PR #31 APK: FINAL-F01 & FINAL-F02a)",
+  "decision": "PROPOSED_NOT_APPROVED",
+  "provider": "DeepSeek API",
+  "model": "deepseek-flash",
+  "source_sha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+  "target_apk_sha256": "4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64",
+  "device": "BeeWise_Final_API35",
+  "android_api": 35,
+  "cases": [
+    "FINAL-F01",
+    "FINAL-F02a"
+  ],
+  "configured_ai_prompt": "Tìm gia sư Toán lớp 9 ở Cầu Giấy, học phí dưới 300k một giờ, học buổi tối.",
+  "configured_search_term": "Toán",
+  "configured_tutor_name": "ThS. Hoàng Thu Trang",
+  "environment": "Production read-only catalog (FINAL-F01) + live App Check & Gemini Level 2 on rebuilt PR #31 APK without test account writes (FINAL-F02a)",
+  "flash_max_turns": 12,
+  "repetitions_per_case": 3,
+  "max_admissions": 6,
+  "retry_admissions": 0,
+  "max_inference_requests": 54,
+  "max_conservative_nanodollars": 150000000,
+  "minimum_nexora_reserve_nanodollars": 500000000,
+  "required_balance_coverage_usd": "0.650",
+  "preflight_live_balance_usd": "0.66",
+  "gemini_fallback": false,
+  "flash_goal_patch_applied": true,
+  "stop_conditions": [
+    "All 6 planned admissions complete (3 per case)",
+    "Any provider 429 or ledger usage mismatch",
+    "54 HTTP inference requests reached",
+    "$0.150 USD accounted ceiling reached",
+    "Balance check falls below $0.650 USD ($0.500 reserve + remaining completion cap)"
+  ]
+}
