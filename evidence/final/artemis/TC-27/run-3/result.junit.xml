@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="34.633" timestamp="2026-11-12T08:10:52.154626+07:00"><testcase classname="test_account_and_firebase" name="test_tc27_login_validation_is_local_and_does_not_authenticate" time="34.591" /></testsuite></testsuites>

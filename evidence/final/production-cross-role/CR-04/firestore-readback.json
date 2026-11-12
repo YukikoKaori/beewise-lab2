@@ -1,0 +1,47 @@
+{
+  "case_id": "CR-04",
+  "queried_at_utc": "2026-11-12T00:55:42.975Z",
+  "firebase_project": "beewise-lab-3",
+  "collection": "tutorApplications",
+  "uid_alias": "uid-sha256:bf311f01d0c4c207",
+  "application": {
+    "name": "BeeWise Test CR-04",
+    "status": "approved",
+    "verified": true,
+    "active": true,
+    "subjects": [
+      "Tiếng Anh"
+    ],
+    "grades": [
+      "Lớp 9"
+    ],
+    "areas": [
+      "Thanh Xuân"
+    ],
+    "teachingModes": [
+      "online"
+    ],
+    "hourlyFee": 200000,
+    "reviewReason": "duyệt",
+    "reviewedBy_alias": "uid-sha256:ac9b26bbfe422b28",
+    "reviewedAt": "2026-11-12T00:41:03.609Z",
+    "latestReviewId_hash": "doc-sha256:4de0d27b1a5e7900",
+    "resubmissionCount": null,
+    "createdAt": "2026-11-12T00:36:15.575Z",
+    "updatedAt": null
+  },
+  "reviews_subcollection_count": 1,
+  "reviews": [
+    {
+      "reviewId_hash": "doc-sha256:4de0d27b1a5e7900",
+      "createTime": "2026-11-12T00:41:03.644967Z",
+      "fields": {
+        "reviewerUid_alias": "uid-sha256:ac9b26bbfe422b28",
+        "reason": "duyệt",
+        "createdAt": "2026-11-12T00:41:03.609Z",
+        "status": "approved"
+      }
+    }
+  ],
+  "public_tutor_doc_exists": false
+}

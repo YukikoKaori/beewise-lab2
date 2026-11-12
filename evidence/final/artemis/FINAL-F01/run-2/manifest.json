@@ -1,0 +1,82 @@
+[
+  {
+    "path": "actions.json",
+    "bytes": 1555,
+    "sha256": "90dc697141033628c99ad83c3519ba9771984f4aa653d8fe5c57d32e46ed4f0f"
+  },
+  {
+    "path": "anr-dropbox-excerpt.txt",
+    "bytes": 18909,
+    "sha256": "f96dad27c2f71a12db4f12a5ba8800a7688ae1750a5e5676ad3195636871fc1c"
+  },
+  {
+    "path": "anr-logcat-excerpt.txt",
+    "bytes": 15237,
+    "sha256": "ff0f858e7caba3d66dff49a75b2392308e4fc84a3ae68b22b9ba952d076913d0"
+  },
+  {
+    "path": "balance-preflight.json",
+    "bytes": 155,
+    "sha256": "48861aaf30ac1900abaae2b2fbc34b15ea612fe2b032bc1e4683708297281db2"
+  },
+  {
+    "path": "during-run-anr.txt",
+    "bytes": 162,
+    "sha256": "fd4baafba5891051edf3e80dc35647c4f916bbde64334e0885cc45a313e76318"
+  },
+  {
+    "path": "independent-review.json",
+    "bytes": 729,
+    "sha256": "254552754a7bfa2d49334ed41140b9f0b8c41e754ffb98143d364092a60f963f"
+  },
+  {
+    "path": "README.md",
+    "bytes": 2744,
+    "sha256": "abd08df1aa143e4958383aedaec4f82366f99532b9eaef046f993163ec54ee65"
+  },
+  {
+    "path": "run-receipt.json",
+    "bytes": 1723,
+    "sha256": "7b93414e10ef003faf563e119066c29e0a1e45168cc39a8e99b960a7a75cb485"
+  },
+  {
+    "path": "screen-after-anr.png",
+    "bytes": 140504,
+    "sha256": "543dbb140f247895ed18a7935fc7b7716e2f168454234ce4b57daedbd8b08a9d"
+  },
+  {
+    "path": "step-01.jpg",
+    "bytes": 110340,
+    "sha256": "ec3536f4cca7713df12f00c3a46b7a9c6e7fedede6211d82228ad2ae07ac4878"
+  },
+  {
+    "path": "step-02.jpg",
+    "bytes": 110340,
+    "sha256": "ec3536f4cca7713df12f00c3a46b7a9c6e7fedede6211d82228ad2ae07ac4878"
+  },
+  {
+    "path": "step-03.jpg",
+    "bytes": 79272,
+    "sha256": "534a426027b3f5d779c70aa43d0a47adddb2bc59e5037a8ce76523d3606c21df"
+  },
+  {
+    "path": "step-04.jpg",
+    "bytes": 84895,
+    "sha256": "1f73d07d6b6af023b2ec675b46aef023b40891f97f990596bc6d40359e63bc0f"
+  },
+  {
+    "path": "step-05.jpg",
+    "bytes": 85712,
+    "sha256": "d086f2b75078506db229b4bb4554340c62604cec4361ebe6601343a0a5ff8612"
+  },
+  {
+    "path": "step-06-post.jpg",
+    "bytes": 77930,
+    "sha256": "e211ffabd11d8d9f80a84f611e161620f54b74d17f23394e9d423cfebf740795"
+  },
+  {
+    "path": "step-06.jpg",
+    "bytes": 63507,
+    "sha256": "44866b3e30a31832d6aec63421e1caa96e843f6756f3af0d3068e935548907cd"
+  }
+]
