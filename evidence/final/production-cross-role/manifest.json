@@ -29,11 +29,33 @@
       "no_reload": "OWNER_OBSERVED",
       "private_inbox": "RESTRICTED_BY_DESIGN",
       "independent_readback": "NOT_CAPTURED"
+    },
+    "CR-04": {
+      "status": "VERIFIED_PRODUCTION",
+      "outcome": "APPROVED",
+      "uid_alias": "uid-sha256:bf311f01d0c4c207",
+      "reviewed_at_utc": "2026-11-12T00:41:03.609Z",
+      "no_reload": "VERIFIED_ANDROID_CAPTURE",
+      "private_inbox": "VERIFIED_ANDROID_CAPTURE",
+      "independent_readback": "VERIFIED_FIRESTORE_REST",
+      "public_tutor_doc_exists": false,
+      "fixture_disposition": "RETAINED_BY_OWNER_GATE_1_APPROVAL"
+    },
+    "CR-05": {
+      "status": "VERIFIED_PRODUCTION",
+      "outcome": "APPROVED",
+      "uid_alias": "uid-sha256:4560c22f5d530e2d",
+      "reviewed_at_utc": "2026-11-12T00:54:37.821Z",
+      "no_reload": "VERIFIED_ANDROID_CAPTURE",
+      "private_inbox": "VERIFIED_ANDROID_CAPTURE",
+      "independent_readback": "VERIFIED_FIRESTORE_REST",
+      "public_tutor_doc_exists": false,
+      "fixture_disposition": "RETAINED_BY_OWNER_GATE_1_APPROVAL"
     }
   },
   "appendix_c_propagation_timing": "NOT_MEASURED",
-  "additional_approval_repetitions": "NOT_RUN",
-  "independent_review_receipt_readback": "NOT_CAPTURED",
+  "additional_approval_repetitions": "COMPLETED_3_TOTAL_APPROVALS (CR-01, CR-04, CR-05)",
+  "independent_review_receipt_readback": "VERIFIED_CR04_CR05",
   "web_authorization": {
     "ui": "VERIFIED_LIVE_UI",
     "direct_rules_denial": "NOT_RUN"
@@ -45,6 +67,6 @@
     "airplane-mode-error": "031047c1bf1eb1bc82e9264043868b4f312de13fc2f2c4b1310f00fa5c3cd800",
     "manual-results": "b1841d2eef1a4c5dbfc56c882d5c88bce72c06ef19f0b8ebb287e12b719a5437"
   },
-  "analytics": "ANALYTICS_EVIDENCE_PENDING",
-  "artemis_final": "DEFERRED"
+  "analytics": "VERIFIED_NATIVE_UPLOAD_204 (ai_request, ai_result_accepted, ai_error via scripts/inspect-bao-analytics.py; Console DebugView screenshot NOT_CAPTURED)",
+  "artemis_final": "BOUNDED_GATE_3_B_COMPLETE (4/9 ACCEPTED_PASS: TC-27 3/3, FINAL-F02b 1/3, FINAL-F01 0/3; remaining flows NOT_RUN)"
 }

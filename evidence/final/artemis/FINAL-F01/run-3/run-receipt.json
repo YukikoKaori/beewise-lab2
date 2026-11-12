@@ -1,0 +1,49 @@
+{
+  "run_id": "e6f89028-de65-4c5f-8b08-bd7f4ea57dcc",
+  "case": "FINAL-F01",
+  "started_utc": "2026-11-12T01:19:06.977477+00:00",
+  "usage_before": {
+    "http_attempts": 29,
+    "prompt_tokens": 261380,
+    "completion_tokens": 2632,
+    "accounted_nanodollars": 81572400
+  },
+  "command": [
+    "D:\\CodexTemp\\artemis-deepseek-audit\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-c",
+    "e2e_test/pyproject.toml",
+    "e2e_test/test_final_flows.py::test_final_f01_discovery_search_filters_and_tutor_profile",
+    "-q",
+    "-s",
+    "-p",
+    "smoke_guard",
+    "--junitxml=D:\\CodexTemp\\tmp\\final-artemis-runs\\final-f01-r3\\result.junit.xml"
+  ],
+  "native_review": "PENDING",
+  "native_preflight": {
+    "device_online": true,
+    "boot_complete": true,
+    "focused_rendered_app": "com.beewise.beewise",
+    "readable_accessibility": true,
+    "first_frame_scope": "Actual rendered accessibility content and focused app window",
+    "system_ui_roundtrip_ms": 1687,
+    "system_ui_responsive": true,
+    "anr_dialog_present": false,
+    "artemis_idle": true,
+    "installed_apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9"
+  },
+  "source_sha": "9d093a58cf47ea8055e0bb1301e8f266ae47ae40",
+  "apk_sha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+  "pytest_exit": 0,
+  "state": "REVIEW_REQUIRED",
+  "finished_utc": "2026-11-12T01:19:55.111905+00:00",
+  "usage_after": {
+    "http_attempts": 37,
+    "prompt_tokens": 339373,
+    "completion_tokens": 3442,
+    "accounted_nanodollars": 105942300
+  },
+  "trace_id": "e1df3ef1-0090-4102-8e4f-a5af938b5b7d"
+}

@@ -1,0 +1,180 @@
+{
+  "generatedAtUtc": "2026-11-12T01:49:00+00:00",
+  "baselineMainSha": "d7fa5bea2ed5276c13ecd3739fa00257676c1242",
+  "finalDebugApkSha256": "e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9",
+  "finalArtemisStatus": "BOUNDED_GATE_3_B_COMPLETE",
+  "finalArtemisGateState": "OWNER_APPROVED_FINAL_GATE_3_B",
+  "ownerApprovalRef": "owner_msg_gate3_b_approved_20261112",
+  "finalArtemisPassRateDenominatorRule": "accepted_passes / attempted_runs (NOT_RUN flows excluded from denominator; historical Lab 3 runs and pytest --collect-only excluded)",
+  "finalAttemptedRuns": 9,
+  "finalAcceptedPasses": 4,
+  "finalFailedRuns": 4,
+  "finalBlockedRuns": 1,
+  "finalAcceptedPassRate": 0.4444,
+  "finalPaidInferenceCalls": 60,
+  "finalPromptTokens": 567430,
+  "finalCompletionTokens": 6093,
+  "finalAccountedNanodollars": 177540600,
+  "finalCostUsd": "0.1775406",
+  "postRunBalanceReservePass": true,
+  "minimumNexoraReserveNanodollars": 500000000,
+  "harnessChecks": {
+    "check_e2e_harness": "PASS (27 unique test_tc* functions preserved)",
+    "pytest_collect_only": "PASS (35 tests collected: 27 Lab 3 test_tc* + 7 Final test_final_* + TC-NATIVE-01)",
+    "check_artemis_report_parser": "PASS",
+    "check_artemis_runner": "PASS (7 process-double safety checks)",
+    "test_final_artemis_policy": "PASS"
+  },
+  "boundedGate3BRuns": {
+    "TC-27": {
+      "admitted": 3,
+      "acceptedPasses": 3,
+      "failed": 0,
+      "blocked": 0,
+      "runs": [
+        {"run": 1, "traceId": "c1cb72b7-993f-47a1-9021-d9c200ffda21", "verdict": "ACCEPTED", "httpRequests": 5, "costNanodollars": 13869300, "evidenceDir": "TC-27/run-1"},
+        {"run": 2, "traceId": "ccc50349-7655-469e-bf21-2a3f31731cd3", "verdict": "ACCEPTED", "httpRequests": 4, "costNanodollars": 10570500, "evidenceDir": "TC-27/run-2"},
+        {"run": 3, "traceId": "587db39f-1981-4e4d-9b26-8e0c28d03eac", "verdict": "ACCEPTED", "httpRequests": 4, "costNanodollars": 10597800, "evidenceDir": "TC-27/run-3"}
+      ]
+    },
+    "FINAL-F01": {
+      "admitted": 3,
+      "acceptedPasses": 0,
+      "failed": 2,
+      "blocked": 1,
+      "runs": [
+        {"run": 1, "traceId": "9337276b-5c62-41a6-8c96-90057ef4e13e", "verdict": "FAILED", "pytestExit": 0, "independentReviewAccepted": false, "httpRequests": 8, "costNanodollars": 24187800, "evidenceDir": "FINAL-F01/run-1"},
+        {"run": 2, "traceId": "f61abd90-6671-4d1d-90b1-9f334f770a28", "verdict": "BLOCKED", "anrErrorId": "bd55a9a5-5f32-458c-8fd6-d865cec57632", "httpRequests": 8, "costNanodollars": 22347000, "evidenceDir": "FINAL-F01/run-2"},
+        {"run": 3, "traceId": "e1df3ef1-0090-4102-8e4f-a5af938b5b7d", "verdict": "FAILED", "pytestExit": 0, "independentReviewAccepted": false, "httpRequests": 8, "costNanodollars": 24369900, "evidenceDir": "FINAL-F01/run-3"}
+      ]
+    },
+    "FINAL-F02b": {
+      "admitted": 3,
+      "acceptedPasses": 1,
+      "failed": 2,
+      "blocked": 0,
+      "runs": [
+        {"run": 1, "traceId": "96f137d2-6d0f-4e0a-b79c-6d4baca0723b", "verdict": "ACCEPTED", "httpRequests": 8, "costNanodollars": 24614400, "evidenceDir": "FINAL-F02b/run-1"},
+        {"run": 2, "traceId": "d83d1b4d-60a3-4f69-a390-566e9701ea3b", "verdict": "FAILED", "pytestExit": 0, "independentReviewAccepted": false, "httpRequests": 8, "costNanodollars": 24951900, "evidenceDir": "FINAL-F02b/run-2"},
+        {"run": 3, "traceId": "c8aa757f-27fb-4a8a-b3ca-887a849defb8", "verdict": "FAILED", "pytestExit": 1, "budgetStopAtCumulativeRequests": 60, "httpRequests": 7, "costNanodollars": 22032000, "evidenceDir": "FINAL-F02b/run-3"}
+      ]
+    }
+  },
+  "deepseekAdapterAudit": {
+    "providerModel": "openai/deepseek-flash",
+    "policyFile": "tools/artemis-deepseek/execution-policy.json",
+    "historicalLab3AmendmentsExpired": true,
+    "finalGate3BApprovalFile": "evidence/final/artemis/owner-approval.json",
+    "nexoraReserveNanodollars": 500000000
+  },
+  "flows": [
+    {
+      "flowId": "F01",
+      "lab2Screens": ["01", "03", "04"],
+      "routes": ["/home", "/search", "/tutors/:id"],
+      "testCases": ["FINAL-F01", "TC-01", "TC-02", "TC-03", "TC-04"],
+      "repetitions": ["FAIL (FINAL-F01)", "BLOCKED_ANR (FINAL-F01)", "FAIL (FINAL-F01)"],
+      "status": "FAILED (0/3 FINAL-F01 ACCEPTED; TC-01..04 NOT_RUN)"
+    },
+    {
+      "flowId": "F02",
+      "lab2Screens": ["02", "02c", "Final-A1"],
+      "routes": ["/matching", "/search", "/tutors/:id"],
+      "testCases": ["FINAL-F02a", "FINAL-F02b"],
+      "repetitions": ["PASS (FINAL-F02b)", "FAIL (FINAL-F02b)", "FAIL (FINAL-F02b)"],
+      "status": "PARTIAL (FINAL-F02b 1/3 ACCEPTED; FINAL-F02a NOT_RUN)"
+    },
+    {
+      "flowId": "F03",
+      "lab2Screens": ["05", "06"],
+      "routes": ["/login", "/register", "/profile", "/account/check"],
+      "testCases": ["TC-27", "TC-07", "TC-08", "TC-13", "TC-16"],
+      "repetitions": ["PASS (TC-27)", "PASS (TC-27)", "PASS (TC-27)"],
+      "status": "PASS_IN_EXECUTED_CASE (TC-27 3/3 ACCEPTED; TC-07/08/13/16 NOT_RUN)"
+    },
+    {
+      "flowId": "F04",
+      "lab2Screens": ["07", "08"],
+      "routes": ["/tutors/:id", "/connection/:tutorId", "/chats/:chatId", "/messages"],
+      "testCases": ["FINAL-F04", "TC-06", "TC-18", "TC-19"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F05",
+      "lab2Screens": ["09"],
+      "routes": ["/trial/:chatId/:proposalId"],
+      "testCases": ["TC-20", "TC-21"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F06",
+      "lab2Screens": ["10"],
+      "routes": ["/class/:chatId/:revisionId"],
+      "testCases": ["TC-22", "TC-23"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F07",
+      "lab2Screens": ["11", "12", "Final-VietQR"],
+      "routes": ["/vietqr/:chatId", "/schedule/:classId", "/payment/:invoiceId"],
+      "testCases": ["FINAL-F07", "TC-24"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F08",
+      "lab2Screens": ["T1", "T2", "T3", "T8", "Final-X1", "Final-M2", "Final-W1"],
+      "routes": ["/tutor/apply", "/tutor/apply/edit", "/tutor/pending", "/tutor/home", "/tutor/notifications"],
+      "testCases": ["FINAL-F08"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F09",
+      "lab2Screens": ["T3", "T4", "T5", "T6", "T7"],
+      "routes": ["/tutor/home", "/tutor/chats", "/tutor/chats/:chatId", "/tutor/class/:classId", "/tutor/schedule", "/tutor/profile"],
+      "testCases": ["FINAL-F08 (T3 entry)"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F10",
+      "lab2Screens": ["04", "Final-I1"],
+      "routes": ["/tutors/:id", "/profile"],
+      "testCases": ["FINAL-PDF", "TC-09", "TC-12", "TC-17"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    },
+    {
+      "flowId": "F11",
+      "lab2Screens": ["OS-Native"],
+      "routes": ["GrantPermissionsActivity", "/home", "/tutor/notifications"],
+      "testCases": ["TC-NATIVE-01", "TC-10", "TC-14", "TC-15"],
+      "repetitions": ["NOT_RUN", "NOT_RUN", "NOT_RUN"],
+      "status": "NOT_RUN"
+    }
+  ],
+  "historicalLab3ReferenceDoNotCountAsFinal": {
+    "n03Regression": {
+      "statusFile": "evidence/artemis/n03-deepseek-final/STATUS.md",
+      "acceptedPasses": 30,
+      "retainedFailures": 14,
+      "admittedSessions": 44,
+      "rawAttemptPassRate": 0.6818
+    },
+    "n03Native": {
+      "statusFile": "evidence/artemis/n03-native-final/STATUS.md",
+      "acceptedPasses": 3,
+      "admittedSessions": 3
+    },
+    "n03ExplorationV6": {
+      "statusFile": "evidence/artemis/n03-exploration-final/STATUS.md",
+      "qualifyingPass": 1,
+      "elapsedSeconds": 925.734,
+      "ledgerReservations": "161/168"
+    }
+  }
+}

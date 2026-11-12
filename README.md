@@ -1,6 +1,6 @@
 ## PRM393 Final Assignment
 
-BeeWise keeps the Lab 3 Android package `com.beewise.beewise` and Firebase project `beewise-lab-3`. The Final adds a Flutter Web Admin and a shared Dart package. The current branch is a review candidate; no public Final admin URL has been verified. See the [rubric gap review](docs/gap-review.md), [data model](docs/data-model.md), [cross-role flow](docs/cross-role-flow.md), [AI feature](docs/ai-feature.md), and [test report](docs/test-report.md).
+BeeWise keeps the Lab 3 Android package `com.beewise.beewise` and Firebase project `beewise-lab-3`. The Final adds a Flutter Web Admin (`https://beewise-lab-3.web.app/`, deployed cleanly on `beewise-lab-3`) and a shared Dart package. See the [rubric gap review](docs/gap-review.md), [data model](docs/data-model.md), [cross-role flow](docs/cross-role-flow.md), [AI feature](docs/ai-feature.md), [ARTEMIS Final matrix](docs/artemis-final-matrix.md), [Firebase Analytics receipt](evidence/final/analytics/README.md), and [test report](docs/test-report.md).
 
 | Directory | Responsibility |
 |---|---|
