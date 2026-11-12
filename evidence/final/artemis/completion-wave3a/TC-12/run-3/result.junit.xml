@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="30.543" timestamp="2026-11-12T13:35:17.531280+07:00"><testcase classname="test_account_and_firebase" name="test_tc12_remote_config_and_crashlytics_demo_area" time="30.519" /></testsuite></testsuites>
