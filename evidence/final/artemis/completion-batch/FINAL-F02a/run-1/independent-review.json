@@ -1,0 +1,7 @@
+{
+  "at_utc": "2026-11-12T04:30:22.116401+00:00",
+  "reviewer": "Codex root native evidence review",
+  "note": "Pytest failed (exit=1); exporting trace for forensic inspection.",
+  "accepted": false,
+  "junit_pass": false
+}

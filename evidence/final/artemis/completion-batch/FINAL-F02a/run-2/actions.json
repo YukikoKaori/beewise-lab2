@@ -1,0 +1,92 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 345] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed 'T\\u00ecm gia s\\u01b0 To\\u00e1n l\\u1edbp 9 \\u1edf C\\u1ea7u Gi\\u1ea5y, h\\u1ecdc ph\\u00ed d\\u01b0\\u1edbi 300k m\\u1ed9t gi\\u1edd, h\\u1ecdc bu\\u1ed5i t\\u1ed1i.' at [500, 345] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [438, 654] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 448] (normalized).\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "wait_for_delay",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Waited 5000ms.\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "press_key",
+    "args": {
+      "key": "BACK"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Pressed key 'BACK'.\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-07.jpg"
+  },
+  {
+    "step": 8,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 690] (normalized).\"}",
+    "image": "step-08.jpg"
+  },
+  {
+    "step": 9,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed '220000' at [500, 618] (normalized).\"}",
+    "image": "step-09.jpg"
+  },
+  {
+    "step": 10,
+    "action": "press_key",
+    "args": {
+      "key": "BACK"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Pressed key 'BACK'.\"}",
+    "image": "step-10.jpg"
+  },
+  {
+    "step": 11,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 800] (normalized).\"}",
+    "image": "step-11.jpg"
+  },
+  {
+    "step": 12,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-12.jpg"
+  }
+]
