@@ -8,6 +8,8 @@
         <!-- Registration is owned by the authenticated-account lifecycle. -->
         <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
         <meta-data android:name="firebase_messaging_installation_id_enabled" android:value="true" />
+        <!-- Fail closed until FirebaseBootstrap reconciles emulator mode, policy, and opt-out state. -->
+        <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.local_pdf"

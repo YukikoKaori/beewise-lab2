@@ -14,7 +14,7 @@ import '../models/chat_preview.dart';
 import '../models/tutor.dart';
 import '../services/export_service.dart';
 import '../services/firebase_bootstrap.dart'
-    show usesFinalFirestore, usesFirebaseEmulators;
+    show AnalyticsPrivacyFailureKind, usesFinalFirestore, usesFirebaseEmulators;
 import '../services/tutor_repository.dart';
 import '../theme/bee_wise_theme.dart';
 import '../viewmodels/app_providers.dart';
@@ -3119,7 +3119,7 @@ class ProfileScreen extends ConsumerWidget {
     final authAction = ref.watch(authControllerProvider);
     final notifications = ref.watch(notificationsProvider);
     final remoteConfig = ref.watch(remoteConfigProvider);
-    final analyticsOptedOut = ref.watch(analyticsOptOutProvider);
+    final analyticsPrivacy = ref.watch(analyticsPrivacyProvider);
     final notificationError = ref
         .watch(notificationServiceProvider)
         .registrationError;
@@ -3241,19 +3241,43 @@ class ProfileScreen extends ConsumerWidget {
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Gửi thống kê sử dụng ẩn danh'),
                 subtitle: Text(
-                  usesFirebaseEmulators
+                  usesFirebaseEmulators || analyticsPrivacy.isEmulator
                       ? 'Tắt tự động trong chế độ Emulator.'
-                      : analyticsOptedOut
-                      ? 'Đã tắt thu thập Firebase Analytics trên thiết bị này.'
-                      : 'Chỉ ghi nhận sự kiện ẩn danh; có thể tắt bất kỳ lúc nào.',
+                      : !analyticsPrivacy.bootstrapReady
+                      ? 'Firebase chưa khởi tạo xong; thu thập thống kê đang tắt.'
+                      : !analyticsPrivacy.privacyPolicyPermits
+                      ? 'Chính sách quyền riêng tư hiện không cho phép thu thập thống kê.'
+                      : analyticsPrivacy.failureKind ==
+                            AnalyticsPrivacyFailureKind.readFailed
+                      ? 'Không đọc được tùy chọn quyền riêng tư; thu thập đang tắt.'
+                      : analyticsPrivacy.failureKind ==
+                                AnalyticsPrivacyFailureKind.persistenceFailed &&
+                            analyticsPrivacy.failedOptOutIntent == true
+                      ? 'Tạm tắt trong phiên này; chưa lưu được vào thiết bị.'
+                      : analyticsPrivacy.isCollectionEnabled
+                      ? 'Chỉ ghi nhận sự kiện ẩn danh; có thể tắt bất kỳ lúc nào.'
+                      : 'Đã tắt thu thập Firebase Analytics trên thiết bị này.',
                 ),
-                value: !usesFirebaseEmulators && !analyticsOptedOut,
-                onChanged: usesFirebaseEmulators
+                value: analyticsPrivacy.isCollectionEnabled,
+                onChanged:
+                    usesFirebaseEmulators ||
+                        analyticsPrivacy.isEmulator ||
+                        !analyticsPrivacy.canEnableCollection ||
+                        analyticsPrivacy.isUpdating
                     ? null
                     : (enabled) => ref
-                          .read(analyticsOptOutProvider.notifier)
+                          .read(analyticsPrivacyProvider.notifier)
                           .setOptOut(!enabled),
               ),
+              if (analyticsPrivacy.errorMessage != null)
+                ErrorStateView(
+                  message: analyticsPrivacy.errorMessage!,
+                  onRetry: analyticsPrivacy.isUpdating
+                      ? null
+                      : () => ref
+                            .read(analyticsPrivacyProvider.notifier)
+                            .retryFailedAction(),
+                ),
             ],
           ),
           SectionCard(

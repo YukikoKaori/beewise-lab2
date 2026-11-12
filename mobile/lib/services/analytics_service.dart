@@ -6,7 +6,8 @@ class AnalyticsService {
   final FirebaseAnalytics? _analytics;
   final bool Function()? _isCollectionEnabled;
 
-  bool get collectionEnabled => _isCollectionEnabled?.call() ?? true;
+  bool get collectionEnabled =>
+      _analytics != null && (_isCollectionEnabled?.call() ?? true);
 
   Future<void> event(String name, [Map<String, Object>? parameters]) async {
     final analytics = _analytics;
