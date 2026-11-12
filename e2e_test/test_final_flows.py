@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import re
 
 import pytest
 
@@ -15,33 +16,47 @@ async def test_final_f01_discovery_search_filters_and_tutor_profile(run_flow):
     tutor_name = os.environ.get("BEEWISE_TEST_TUTOR_NAME", "")
     observed = await run_flow(
         case_id="FINAL-F01",
-        start="BeeWise is installed, signed out or signed in cleanly on /home.",
+        start=(
+            "BeeWise is on /home with a real active catalog tutor matching the search "
+            "and selected filter. This profile-inspection scenario does not allow empty recovery."
+        ),
         steps=(
             f"From Trang chủ, open Tìm gia sư, enter {query!r}, and apply at least one visible "
             "filter chip/option (subject/mode/sort). Wait for real Firestore results to load. "
-            "Confirm no fabricated tutors are shown: report real result_count and whether an "
-            "empty recovery or active tutor card rendered. If at least one real tutor card is "
-            "visible (preferring "
+            "Read the displayed result count and open a real tutor card (preferring "
             f"{tutor_name!r} if configured), open its profile and verify subject/hourly fee "
-            "and the Gửi yêu cầu kết nối action."
+            "and the Gửi yêu cầu kết nối action on the profile itself. Quote the actual fee "
+            "value and CTA from that screen, not from the search card. Report any search or "
+            "profile error even if other steps succeeded; never infer a missing observation."
         ),
         expected=(
             '{"screen":"Tìm gia sư","query":"configured term","filter_applied":true,'
-            '"result_count":integer,"state":"data|empty|error",'
+            '"result_count":integer,"search_count_text":string,'
+            '"state":"data|empty|error","error_observed":boolean,'
             '"profile_opened":boolean,"hourly_fee_visible":boolean,'
-            '"connection_action_visible":boolean,"profiles_fabricated":false}'
+            '"connection_action_visible":boolean,"terminal_screen":"tutor_profile",'
+            '"profile_hourly_fee_text":string,"profile_connection_cta_text":string,'
+            '"profiles_fabricated":false}'
         ),
     )
     assert require(observed, "screen", str).lower() in {"tìm gia sư", "search"}
+    assert require(observed, "query", str).strip().casefold() == query.strip().casefold()
     assert require(observed, "filter_applied", bool)
     count = require(observed, "result_count", int)
-    assert count >= 0
-    assert observed.get("state") in {"data", "empty", "error"}
+    assert require(observed, "error_observed", bool) is False
+    assert require(observed, "state", str) == "data" and count > 0, (
+        "FINAL-F01 requires a matching catalog tutor; empty recovery is not in scope."
+    )
+    assert require(observed, "search_count_text", str) == f"{count} gia sư phù hợp"
     assert require(observed, "profiles_fabricated", bool) is False
-    if count > 0:
-        assert require(observed, "profile_opened", bool)
-        assert require(observed, "hourly_fee_visible", bool)
-        assert require(observed, "connection_action_visible", bool)
+    assert require(observed, "profile_opened", bool)
+    assert require(observed, "hourly_fee_visible", bool)
+    assert require(observed, "connection_action_visible", bool)
+    assert require(observed, "terminal_screen", str) == "tutor_profile"
+    assert re.fullmatch(r"[0-9][0-9., ]*\s*đ/giờ", require(
+        observed, "profile_hourly_fee_text", str
+    ).strip()), "Expected the actual hourly fee from the profile."
+    assert require(observed, "profile_connection_cta_text", str) == "Gửi yêu cầu kết nối"
 
 
 @pytest.mark.manual_setup
@@ -62,20 +77,39 @@ async def test_final_f02a_ai_level2_confirm_and_edit_flow(run_flow):
             "tap Phân tích nhu cầu bằng AI once. Wait for the AI parse to complete and verify "
             "the heading 'Gợi ý AI · Kiểm tra và chỉnh sửa' appears. Edit one field (for example, "
             "adjust 'Phí tối đa mỗi giờ (VND)' from 200000 to 220000 or change 'Hình thức'), "
-            "then tap 'Xác nhận và tìm gia sư'. Report the confirmed state without fabricating "
-            "tutor records."
+            "and read the same field before and after the edit. Then tap 'Xác nhận và tìm gia sư' "
+            "and wait for the post-submit UI. Quote the AI heading and the actual result heading "
+            "or empty message. Report any AI, transport, Firestore or UI error observed; do not "
+            "infer missing observations or fabricate tutor records."
         ),
         expected=(
-            '{"ai_suggestion_header_visible":true,"field_edited":true,'
+            '{"ai_suggestion_header_visible":true,"ai_heading_text":string,"field_edited":true,'
+            '"edited_field":string,"value_before_edit":string,"value_after_edit":string,'
             '"confirmed_search_submitted":true,"result_count":integer,'
-            '"outcome":"results|empty|error","profiles_fabricated":false}'
+            '"outcome":"results|empty|error","terminal_ui_text":string,'
+            '"error_observed":boolean,"profiles_fabricated":false}'
         ),
     )
     assert require(observed, "ai_suggestion_header_visible", bool)
+    assert require(observed, "ai_heading_text", str) == "Gợi ý AI · Kiểm tra và chỉnh sửa"
     assert require(observed, "field_edited", bool)
+    assert require(observed, "edited_field", str) in {
+        "Môn học", "Khối lớp", "Khu vực", "Lịch ưu tiên", "Hình thức",
+        "Phí tối đa mỗi giờ (VND)",
+    }
+    before = require(observed, "value_before_edit", str).strip()
+    after = require(observed, "value_after_edit", str).strip()
+    assert before.casefold() != after.casefold(), "The same field must visibly change."
     assert require(observed, "confirmed_search_submitted", bool)
-    assert require(observed, "result_count", int) >= 0
-    assert observed.get("outcome") in {"results", "empty", "error"}
+    assert require(observed, "error_observed", bool) is False
+    count = require(observed, "result_count", int)
+    outcome = require(observed, "outcome", str)
+    terminal_text = require(observed, "terminal_ui_text", str)
+    assert (
+        (outcome == "results" and count > 0 and terminal_text == "Gia sư phù hợp")
+        or (outcome == "empty" and count == 0
+            and terminal_text == "Chưa có hồ sơ phù hợp với bộ lọc đã xác nhận.")
+    ), "Expected post-submit results or the explicit empty UI, with a matching count."
     assert require(observed, "profiles_fabricated", bool) is False
 
 
