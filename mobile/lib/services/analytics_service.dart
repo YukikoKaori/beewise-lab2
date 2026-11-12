@@ -1,13 +1,17 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 class AnalyticsService {
-  AnalyticsService({this._analytics});
+  AnalyticsService({this._analytics, this._isCollectionEnabled});
 
   final FirebaseAnalytics? _analytics;
+  final bool Function()? _isCollectionEnabled;
+
+  bool get collectionEnabled =>
+      _analytics != null && (_isCollectionEnabled?.call() ?? true);
 
   Future<void> event(String name, [Map<String, Object>? parameters]) async {
     final analytics = _analytics;
-    if (analytics == null) return;
+    if (analytics == null || !collectionEnabled) return;
     try {
       await analytics.logEvent(name: name, parameters: parameters);
     } catch (_) {
@@ -17,7 +21,7 @@ class AnalyticsService {
 
   Future<void> login(String method) async {
     final analytics = _analytics;
-    if (analytics == null) return;
+    if (analytics == null || !collectionEnabled) return;
     try {
       await analytics.logLogin(loginMethod: method);
     } catch (_) {
@@ -26,8 +30,11 @@ class AnalyticsService {
   }
 
   Future<void> setUserId(String? uid) async {
+    final analytics = _analytics;
+    if (analytics == null) return;
+    final effectiveUid = collectionEnabled ? uid : null;
     try {
-      await _analytics?.setUserId(id: uid);
+      await analytics.setUserId(id: effectiveUid);
     } catch (_) {
       // A telemetry outage must not interrupt authentication or sign-out.
     }
