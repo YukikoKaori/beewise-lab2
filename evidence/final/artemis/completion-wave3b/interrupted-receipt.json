@@ -1,0 +1,118 @@
+{
+  "case": "FINAL-F04",
+  "repetition": 1,
+  "verdict": "INTERRUPTED_OWNER_STOP",
+  "accepted": false,
+  "trace_id": "307dc074-c229-4874-ba4c-9b4075ebd22f",
+  "apk_sha256": "abaa933074857765675a1994294507126ed45204f53e29d76d14ba4a3fff5368",
+  "apk_source_sha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+  "harness_source_sha": "c918e3e3e49cf7b83078b5f4eb2a61f89dc37d90",
+  "device": "BeeWise_N03_Native_API35 / emulator-5566 / API 35",
+  "provider": "DeepSeek deepseek-flash",
+  "pytest_exit": null,
+  "junit_available": true,
+  "http_attempts_reserved": 19,
+  "http_attempts_with_response": 19,
+  "prompt_tokens": 186152,
+  "completion_tokens": 2516,
+  "accounted_nanodollars": 58864800,
+  "observed": "Three usable frames show the synthetic tutor profile, connection request form, and focused learning-goal field. Later captures are blank after shutdown and are kept only in the private trace. No completed chat or account-isolation assertion was verified.",
+  "actions": [
+    {
+      "step": 1,
+      "action": "click",
+      "frame": "step-01.jpg"
+    },
+    {
+      "step": 2,
+      "action": "click",
+      "frame": "step-02.jpg"
+    },
+    {
+      "step": 3,
+      "action": "input_text",
+      "frame": "step-03.jpg"
+    },
+    {
+      "step": 4,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 5,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 6,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 7,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 8,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 9,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 10,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 11,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 12,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 13,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 14,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 15,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 16,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 17,
+      "action": "click",
+      "frame": null
+    },
+    {
+      "step": 18,
+      "action": "report_task_status",
+      "frame": null
+    }
+  ],
+  "junit": {
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "reason": "Pytest could no longer reach the stopped ARTEMIS host. This is an interrupted run, not an application assertion result."
+  }
+}

@@ -2,6 +2,8 @@
 
 **Updated:** 2026-11-12 | **Gate 3 B baseline:** `main` (`d7fa5bea2ed5276c13ecd3739fa00257676c1242` / APK `e885a076b3a1f39e40f7cacc603ea0aec2d30e7e44028511e6f3bc06be3986b9`) | **Completion Batch baseline:** PR #31 (`fix/final-corrective-acceptance` @ `1cbc950c04f6e1b42487dacd7d37016792aed3ec` / Rebuilt APK `4e38d1cac93ad30a30fae70a98c0759c674992747394c5061d2f11bbfbb9bf64`)
 
+**Final ARTEMIS status: EXECUTED — SELECTIVE COVERAGE.** The [mentor closeout](artemis-final-mentor-summary.md) supersedes the old continuation plan. Wave 3A added **10 PASS / 2 FAIL** in 12 runs on the PR #31 APK (TC-09 1/3, TC-08 3/3, TC-12 3/3, TC-03 3/3). Wave 3B has one owner-interrupted F04 start and no accepted runs. Overall: **40 started; 25 PASS, 13 FAIL/rejected, 1 BLOCKED, 1 interrupted**. Rows describing older batches retain their historical scope.
+
 > **Truthfulness & Evidence Boundary**
 >
 > - **Gate 3 Option B (PR #30 `2d14aa0`, pre-corrective APK `e885a076...`):** **`BOUNDED_GATE_3_B_COMPLETE` — `4/9` (`44.44%`) independently accepted PASSes** across `9` owner-approved bounded admissions (`TC-27`: `3/3` PASS; `FINAL-F02b`: `1/3` PASS; `FINAL-F01`: `0/3` [`2 FAIL`, `1 BLOCKED` ANR]; `60/60` HTTP requests; `$0.1775406` / `$0.2000` cap; `>= $0.50` Nexora reserve preserved). Preserved untouched and strictly separate from the Completion Batch.
