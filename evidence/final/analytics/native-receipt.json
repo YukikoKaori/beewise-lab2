@@ -1,0 +1,75 @@
+{
+  "recordedAtUtc": "2026-11-12T01:46:45.216739+00:00",
+  "privateLogSha256": "099bb310aac716d0f2caba7d70b1ce3d4a2c9308661bce21b59f6c61413f5b4b",
+  "package": "com.beewise.beewise",
+  "nativeUserIdRemovalAcknowledgements": [
+    {
+      "nativeLogTime": "11-12 08:42:26.072",
+      "servicePid": "1389"
+    }
+  ],
+  "incompleteUploadsIgnored": 0,
+  "successfulUploadCount": 5,
+  "unexpectedParameterKeys": [],
+  "unsafeParameterValuesOmitted": 0,
+  "businessEventUploadBundles": [
+    {
+      "nativeUploadLogTime": "11-12 08:42:56.972",
+      "servicePid": "1389",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "ai_request",
+          "timestampMillis": "1794447775603",
+          "parameters": {
+            "feature": "tutor_need"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-12 08:43:55.368",
+      "servicePid": "1389",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "ai_result_accepted",
+          "timestampMillis": "1794447834090",
+          "parameters": {
+            "feature": "tutor_need"
+          }
+        }
+      ]
+    },
+    {
+      "nativeUploadLogTime": "11-12 08:44:48.106",
+      "servicePid": "1389",
+      "completeBundle": true,
+      "userIdPropertyCount": 0,
+      "userIdAliases": [],
+      "events": [
+        {
+          "name": "ai_request",
+          "timestampMillis": "1794447881128",
+          "parameters": {
+            "feature": "tutor_need"
+          }
+        },
+        {
+          "name": "ai_error",
+          "timestampMillis": "1794447881407",
+          "parameters": {
+            "feature": "tutor_need",
+            "kind": "provider"
+          }
+        }
+      ]
+    }
+  ],
+  "rawIdentityOrPayloadExported": false,
+  "limitation": "Native SDK upload payload evidence; DebugView/backend receipt must be correlated separately. An app instance ID is not a Firebase Auth user ID."
+}

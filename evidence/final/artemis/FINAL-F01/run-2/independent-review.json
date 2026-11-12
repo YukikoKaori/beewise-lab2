@@ -1,0 +1,8 @@
+{
+  "at_utc": "2026-11-12T01:18:05.155735+00:00",
+  "reviewer": "Codex root native evidence review",
+  "state": "BLOCKED",
+  "accepted": false,
+  "junit_pass": false,
+  "note": "BLOCKED by genuine Android ANR during FINAL-F01 R2: Steps 1-6 typed \"Thu Trang\", selected \"Toan\", and rendered \"1 gia su phu hop\" in step-06-post.jpg, after which Turn 7 manage_app launch hit ANR (ErrorId bd55a9a5-5f32-458c-8fd6-d865cec57632: Input dispatching timed out / Application does not have a focused window; main thread blocked in FlutterJNI.nativeSurfaceCreated during CPU pressure some avg10=54.65 while concurrent host flutter test ran). Preserved screen-after-anr.png and DropBox/logcat excerpts; ledger remains BLOCKED."
+}

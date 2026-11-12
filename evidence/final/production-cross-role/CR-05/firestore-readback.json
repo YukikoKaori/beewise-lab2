@@ -1,0 +1,47 @@
+{
+  "case_id": "CR-05",
+  "queried_at_utc": "2026-11-12T00:55:05.419Z",
+  "firebase_project": "beewise-lab-3",
+  "collection": "tutorApplications",
+  "uid_alias": "uid-sha256:4560c22f5d530e2d",
+  "application": {
+    "name": "BeeWise Test CR-05",
+    "status": "approved",
+    "verified": true,
+    "active": true,
+    "subjects": [
+      "Vật lý"
+    ],
+    "grades": [
+      "Lớp 10"
+    ],
+    "areas": [
+      "Đống Đa"
+    ],
+    "teachingModes": [
+      "online"
+    ],
+    "hourlyFee": 180000,
+    "reviewReason": "duyệt",
+    "reviewedBy_alias": "uid-sha256:ac9b26bbfe422b28",
+    "reviewedAt": "2026-11-12T00:54:37.821Z",
+    "latestReviewId_hash": "doc-sha256:3cbbfa07dda3aacd",
+    "resubmissionCount": null,
+    "createdAt": "2026-11-12T00:50:19.296Z",
+    "updatedAt": null
+  },
+  "reviews_subcollection_count": 1,
+  "reviews": [
+    {
+      "reviewId_hash": "doc-sha256:3cbbfa07dda3aacd",
+      "createTime": "2026-11-12T00:54:37.886647Z",
+      "fields": {
+        "reviewerUid_alias": "uid-sha256:ac9b26bbfe422b28",
+        "createdAt": "2026-11-12T00:54:37.821Z",
+        "status": "approved",
+        "reason": "duyệt"
+      }
+    }
+  ],
+  "public_tutor_doc_exists": false
+}

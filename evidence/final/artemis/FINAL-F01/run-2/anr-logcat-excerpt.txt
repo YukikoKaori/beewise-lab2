@@ -1,0 +1,111 @@
+11-12 08:13:53.306   575 10263 I ActivityManager: Done dumping
+11-12 08:13:53.353   575 10263 E ActivityManager: ANR in com.beewise.beewise (com.beewise.beewise/.MainActivity)
+11-12 08:13:53.353   575 10263 E ActivityManager: PID: 9640
+11-12 08:13:53.353   575 10263 E ActivityManager: Reason: Input dispatching timed out (Application does not have a focused window).
+11-12 08:13:53.353   575 10263 E ActivityManager: Parent: com.beewise.beewise/.MainActivity
+11-12 08:13:53.353   575 10263 E ActivityManager: ErrorId: bd55a9a5-5f32-458c-8fd6-d865cec57632
+11-12 08:13:53.353   575 10263 E ActivityManager: Frozen: false
+11-12 08:13:53.353   575 10263 E ActivityManager: Load: 4.46 / 3.05 / 2.16
+11-12 08:13:53.353   575 10263 E ActivityManager: ----- Output from /proc/pressure/memory -----
+11-12 08:13:53.353   575 10263 E ActivityManager: some avg10=3.19 avg60=3.39 avg300=1.90 total=49644606
+11-12 08:13:53.353   575 10263 E ActivityManager: full avg10=0.74 avg60=0.66 avg300=0.40 total=17341390
+11-12 08:13:53.353   575 10263 E ActivityManager: ----- End output from /proc/pressure/memory -----
+11-12 08:13:53.353   575 10263 E ActivityManager: ----- Output from /proc/pressure/cpu -----
+11-12 08:13:53.353   575 10263 E ActivityManager: some avg10=54.65 avg60=41.58 avg300=26.52 total=840782678
+11-12 08:13:53.353   575 10263 E ActivityManager: full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+11-12 08:13:53.353   575 10263 E ActivityManager: ----- End output from /proc/pressure/cpu -----
+11-12 08:13:53.353   575 10263 E ActivityManager: ----- Output from /proc/pressure/io -----
+11-12 08:13:53.353   575 10263 E ActivityManager: some avg10=1.11 avg60=0.83 avg300=0.59 total=53227460
+11-12 08:13:53.353   575 10263 E ActivityManager: full avg10=0.05 avg60=0.04 avg300=0.03 total=10285773
+11-12 08:13:53.353   575 10263 E ActivityManager: ----- End output from /proc/pressure/io -----
+11-12 08:13:53.353   575 10263 E ActivityManager: 
+11-12 08:13:53.353   575 10263 E ActivityManager: CPU usage from 35ms to 10537ms later (2026-11-12 08:13:42.834 to 2026-11-12 08:13:53.316):
+11-12 08:13:53.353   575 10263 E ActivityManager:   87% 9640/com.beewise.beewise: 15% user + 71% kernel / faults: 22472 minor 119 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   36% 575/system_server: 2.7% user + 33% kernel / faults: 3419 minor 165 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   9.7% 1086/com.google.android.gms.persistent: 4.5% user + 5.2% kernel / faults: 10948 minor 132 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   5.9% 1214/com.google.android.inputmethod.latin: 2.6% user + 3.2% kernel / faults: 10348 minor 73 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   4.6% 2224/com.google.android.apps.messaging: 2.9% user + 1.7% kernel / faults: 497 minor 10 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   4.5% 402/android.hardware.graphics.composer3-service.ranchu: 0% user + 4.4% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   3.1% 383/android.hardware.sensors-service.multihal: 0% user + 3.1% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   2.7% 835/com.android.systemui: 1.1% user + 1.6% kernel / faults: 1245 minor 47 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   2.5% 963/com.android.phone: 1% user + 1.4% kernel / faults: 928 minor 41 major
+11-12 08:13:53.353   575 10263 E ActivityManager:   1.8% 439/surfaceflinger: 0.1% user + 1.6% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager: 83% TOTAL: 15% user + 62% kernel + 2.6% iowait + 1.7% softirq
+11-12 08:13:53.353   575 10263 E ActivityManager: CPU usage from 392ms to 2213ms later (2026-11-12 08:13:43.171 to 2026-11-12 08:13:44.991):
+11-12 08:13:53.353   575 10263 E ActivityManager:   68% 575/system_server: 0% user + 68% kernel / faults: 387 minor
+11-12 08:13:53.353   575 10263 E ActivityManager:     44% 10264/AnrAuxiliaryTas: 2.1% user + 42% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     13% 679/eduling.default: 0% user + 13% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     1% 612/android.ui: 0% user + 1% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     1% 614/android.display: 0% user + 1% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     1% 736/WifiHandlerThre: 0% user + 1% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     1% 8772/binder:575_1F: 0% user + 1% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   128% 9640/com.beewise.beewise: 6.7% user + 122% kernel / faults: 445 minor 20 major
+11-12 08:13:53.353   575 10263 E ActivityManager:     64% 9642/Signal Catcher: 33% user + 30% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     61% 10210/2.raster: 0% user + 61% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     3.3% 9645/Jit thread pool: 0% user + 3.3% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   13% 402/android.hardware.graphics.composer3-service.ranchu: 0% user + 13% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     9.5% 419/binder:402_1: 0% user + 9.5% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     5.2% 465/_thread: 0% user + 5.2% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   8.4% 439/surfaceflinger: 0% user + 8.4% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     3.7% 471/TimerDispatch: 0.9% user + 2.8% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     1.8% 439/surfaceflinger: 0% user + 1.8% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     1.8% 450/RenderEngine: 0% user + 1.8% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     0.9% 519/binder:439_5: 0% user + 0.9% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   6.6% 1086/com.google.android.gms.persistent: 5.3% user + 1.3% kernel / faults: 61 minor
+11-12 08:13:53.353   575 10263 E ActivityManager:   3.4% 383/android.hardware.sensors-service.multihal: 0% user + 3.4% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:     2.5% 400/android.hardwar: 0% user + 2.5% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   1.8% 484/logcat: 0% user + 1.8% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   7.1% 10153/kworker/1:0H-kverityd: 0% user + 7.1% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   0.5% 15/ksoftirqd/0: 0% user + 0.5% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   0.5% 152/logd: 0% user + 0.5% kernel / faults: 1 minor
+11-12 08:13:53.353   575 10263 E ActivityManager:   0.6% 303/kworker/u6:3-loop17: 0% user + 0.6% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager:   0.7% 361/statsd: 0% user + 0.7% kernel
+11-12 08:13:53.353   575 10263 E ActivityManager: 97% TOTAL: 8.5% user + 85% kernel + 1.1% iowait + 2.2% softirq
+11-12 08:13:53.375   575 10263 D ActivityManager: Completed ANR of com.beewise.beewise in 10713ms, latency 11ms
+11-12 08:13:53.383   575 10284 I DropBoxManagerService: add tag=data_app_anr isTagEnabled=true flags=0x6
+11-12 08:13:53.517   575   612 W Looper  : Drained
+11-12 08:13:53.518   575   612 W Looper  : Slow dispatch took 142ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=2
+11-12 08:13:53.644   575   598 I system_server: Background concurrent mark compact GC freed 24MB AllocSpace bytes, 36(2656KB) LOS objects, 46% free, 28MB/52MB, paused 2.226ms,10.933ms total 252.288ms
+11-12 08:13:53.667   575   599 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+--------- beginning of kernel
+11-12 08:13:53.663     0     0 I binder  : 575:599 DecRefs 0 refcount change on invalid ref 1325 ret -22
+11-12 08:13:53.663     0     0 I binder  : 575:599 DecRefs 0 refcount change on invalid ref 1333 ret -22
+11-12 08:13:53.663     0     0 I binder  : 575:599 DecRefs 0 refcount change on invalid ref 1491 ret -22
+11-12 08:13:53.663     0     0 I binder  : 575:599 DecRefs 0 refcount change on invalid ref 1507 ret -22
+11-12 08:13:53.730   575   612 W Looper  : Slow dispatch took 211ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.ErrorDialogController$$ExternalSyntheticLambda4@5189dbd m=0
+11-12 08:13:53.768   575   612 D CoreBackPreview: Window{54fcf5a u0 Application Not Responding: com.beewise.beewise}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.WindowOnBackInvokedDispatcher$OnBackInvokedCallbackWrapper@a17c45f, mPriority=0, mIsAnimationCallback=false}
+11-12 08:13:53.907   575  1453 W ProcessStats: Tracking association SourceState{8396f5 com.google.android.gms/10143 BTop #5041} whose proc state 2 is better than process ProcessState{f0ebe4d com.google.android.gms.persistent/10143 pkg=com.google.android.gms} proc state 4 (7 skipped)
+11-12 08:13:54.047   575   688 D ActivityManager: freezing 7229 com.google.android.googlequicksearchbox:search
+11-12 08:13:54.407   575   575 W AccessibilityManagerService:  wait for adding window timeout: 491
+11-12 08:13:54.921   575 10287 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[beewise]#0) as ready
+11-12 08:13:54.922   575 10287 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[beewise]#1) as ready
+11-12 08:13:55.325   575   575 W AccessibilityManagerService:  wait for adding window timeout: 490
+11-12 08:13:55.326   575   575 W AccessibilityManagerService:  wait for adding window timeout: 490
+11-12 08:13:55.393  9640  9640 I Choreographer: Skipped 470 frames!  The application may be doing too much work on its main thread.
+11-12 08:13:55.473   575  8952 E ClipboardService: Denying clipboard access to com.beewise.beewise, application is not in focus nor is it a system service for user 0
+11-12 08:13:55.485   835   949 W Looper  : Drained
+11-12 08:13:55.639  9640 10135 V FA      : Inactivity, disconnecting from the service
+11-12 08:13:55.640  9640 10135 V FA      : User property not set since app measurement is disabled
+11-12 08:13:55.801   575  8952 I HWUI    : Davey! duration=2021ms; Flags=1, FrameTimelineVsyncId=188036, IntendedVsync=9550660643350, Vsync=9550677310016, InputEventId=0, HandleInputStart=9550690580341, AnimationStart=9550690614041, PerformTraversalsStart=9550690679341, DrawStart=9550842839541, FrameDeadline=9550677310016, FrameInterval=9550690561541, FrameStartTime=16666666, SyncQueued=9550854970741, SyncStart=9550858101141, IssueDrawCommandsStart=9550887263441, SwapBuffers=9552181542841, FrameCompleted=9552684790741, DequeueBufferDuration=52200, QueueBufferDuration=1109600, GpuCompleted=9552684790741, SwapBuffersCompleted=9552667540741, DisplayPresentTime=288234774265332736, CommandSubmissionCompleted=9552181542841, 
+11-12 08:13:55.822   575   612 W Looper  : Slow dispatch took 2061ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@51c62c3 m=0
+11-12 08:13:55.824   575   612 W Looper  : Slow delivery took 2097ms android.ui h=com.android.server.wm.DisplayPolicy$PolicyHandler c=com.android.server.wm.DisplayPolicy$$ExternalSyntheticLambda12@54fe679 m=0
+11-12 08:13:55.824   575   612 I Choreographer: Skipped 123 frames!  The application may be doing too much work on its main thread.
+11-12 08:13:56.144   575   612 W Looper  : Slow dispatch took 308ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.UidObserverController$$ExternalSyntheticLambda0@28dcbfe m=0
+11-12 08:13:56.231  9640  9672 W beewise.beewise: Long monitor contention with owner Firebase Background Thread #3 (9686) at java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController()(DefaultHeartBeatController.java:71) waiters=1 in java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController() for 456ms
+11-12 08:13:56.262   575   612 W Looper  : Slow dispatch took 117ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@51c62c3 m=0
+11-12 08:13:56.273   575  8952 I HWUI    : Davey! duration=2482ms; Flags=0, FrameTimelineVsyncId=188058, IntendedVsync=9550693976682, Vsync=9552743976600, InputEventId=0, HandleInputStart=9552755665541, AnimationStart=9552755707141, PerformTraversalsStart=9552762346741, DrawStart=9552762722941, FrameDeadline=9552710643268, FrameInterval=9552753878941, FrameStartTime=16666666, SyncQueued=9552764089841, SyncStart=9552764313841, IssueDrawCommandsStart=9552764447541, SwapBuffers=9552995323241, FrameCompleted=9553176318641, DequeueBufferDuration=41400, QueueBufferDuration=845700, GpuCompleted=9553176114641, SwapBuffersCompleted=9553176318641, DisplayPresentTime=288234774265332736, CommandSubmissionCompleted=9552995323241, 
+11-12 08:13:56.340   835  1050 D EGL_emulation: app_time_stats: avg=5283.26ms min=62.09ms max=20917.79ms count=4
+11-12 08:13:56.360  1136  1421 D EGL_emulation: app_time_stats: avg=10169.58ms min=96.07ms max=20243.09ms count=2
+11-12 08:13:56.413  9640  9673 W beewise.beewise: Long monitor contention with owner Firebase Background Thread #3 (9686) at java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController()(DefaultHeartBeatController.java:71) waiters=0 in java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController() for 950ms
+11-12 08:13:56.453   575   612 W Looper  : Drained
+11-12 08:13:56.456   575   612 W Looper  : Slow dispatch took 179ms android.ui h=android.view.ViewRootImpl$ViewRootHandler c=null m=6
+11-12 08:13:56.660   575   612 W Looper  : Slow dispatch took 113ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@51c62c3 m=0
+11-12 08:13:56.675  9640  9640 I Choreographer: Skipped 76 frames!  The application may be doing too much work on its main thread.
+11-12 08:13:56.686  9640  9640 D FlutterJNI: Sending viewport metrics to the engine.
+11-12 08:13:56.851  9640  9640 I flutter : BeeWisePush stop-delivery generation=1 requested=false installation=false
+11-12 08:13:56.860  9640  9640 I flutter : BeeWisePush auth-change generation=2 requested=false installation=false
+11-12 08:13:57.112   575   611 W ziparchive: Unable to open '/data/app/~~Jalh9jTco5CNB5ybtaIBTQ==/com.beewise.beewise-paU8v3C9owLDE2rhEq7Czg==/base.dm': No such file or directory
+11-12 08:13:57.140   575   611 I ActivityTaskManager: Displayed com.beewise.beewise/.MainActivity for user 0: +24s60ms
+11-12 08:13:57.140   575   611 I ActivityTaskManager: Fully drawn com.beewise.beewise/.MainActivity: +24s60ms
+11-12 08:13:57.140   575   611 W ziparchive: Unable to open '/data/app/~~Jalh9jTco5CNB5ybtaIBTQ==/com.beewise.beewise-paU8v3C9owLDE2rhEq7Czg==/base.dm': No such file or directory
+11-12 08:13:57.169  1351  1794 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=57 ]

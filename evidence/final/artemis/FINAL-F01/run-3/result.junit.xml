@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="46.644" timestamp="2026-11-12T08:19:08.198167+07:00"><testcase classname="test_final_flows" name="test_final_f01_discovery_search_filters_and_tutor_profile" time="46.624" /></testsuite></testsuites>
