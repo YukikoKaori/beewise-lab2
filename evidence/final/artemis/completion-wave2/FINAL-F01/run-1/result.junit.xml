@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="54.995" timestamp="2026-11-12T12:12:06.399738+07:00"><testcase classname="test_final_flows" name="test_final_f01_discovery_search_filters_and_tutor_profile" time="54.760"><failure message="AssertionError: Expected the actual hourly fee from the profile.&#10;assert None&#10; +  where None = &lt;function fullmatch at 0x000001E9D1664B80&gt;('[0-9][0-9., ]*\\s*đ/giờ', 'Học phí tham khảo 250.000đ/giờ')&#10; +    where &lt;function fullmatch at 0x000001E9D1664B80&gt; = re.fullmatch&#10; +    and   'Học phí tham khảo 250.000đ/giờ' = &lt;built-in method strip of str object at 0x000001E9D54A1A30&gt;()&#10; +      where &lt;built-in method strip of str object at 0x000001E9D54A1A30&gt; = 'Học phí tham khảo 250.000đ/giờ'.strip&#10; +        where 'Học phí tham khảo 250.000đ/giờ' = require({'screen': 'Tìm gia sư', 'query': 'Toán', 'filter_applied': True, 'result_count': 2, ...}, 'profile_hourly_fee_text', str)">run_flow = &lt;function run_flow.&lt;locals&gt;.run at 0x000001E9D5467240&gt;
+
+    async def test_final_f01_discovery_search_filters_and_tutor_profile(run_flow):
+        """FINAL-F01; Lab 2 Screens 01, 03, 04; Home -&gt; /search -&gt; filters -&gt; /tutors/:id."""
+        query = os.environ.get("BEEWISE_SEARCH_TERM", "Toán")
+        tutor_name = os.environ.get("BEEWISE_TEST_TUTOR_NAME", "")
+        observed = await run_flow(
+            case_id="FINAL-F01",
+            start=(
+                "BeeWise is on /home with a real active catalog tutor matching the search "
+                "and selected filter. This profile-inspection scenario does not allow empty recovery."
+            ),
+            steps=(
+                f"From Trang chủ, open Tìm gia sư, enter {query!r}, and apply at least one visible "
+                "filter chip/option (subject/mode/sort). Wait for real Firestore results to load. "
+                "Read the displayed result count and open a real tutor card (preferring "
+                f"{tutor_name!r} if configured), open its profile and verify subject/hourly fee "
+                "and the Gửi yêu cầu kết nối action on the profile itself. Quote the actual fee "
+                "value and CTA from that screen, not from the search card. Report any search or "
+                "profile error even if other steps succeeded; never infer a missing observation."
+            ),
+            expected=(
+                '{"screen":"Tìm gia sư","query":"configured term","filter_applied":true,'
+                '"result_count":integer,"search_count_text":string,'
+                '"state":"data|empty|error","error_observed":boolean,'
+                '"profile_opened":boolean,"hourly_fee_visible":boolean,'
+                '"connection_action_visible":boolean,"terminal_screen":"tutor_profile",'
+                '"profile_hourly_fee_text":string,"profile_connection_cta_text":string,'
+                '"profiles_fabricated":false}'
+            ),
+        )
+        assert require(observed, "screen", str).lower() in {"tìm gia sư", "search"}
+        assert require(observed, "query", str).strip().casefold() == query.strip().casefold()
+        assert require(observed, "filter_applied", bool)
+        count = require(observed, "result_count", int)
+        assert require(observed, "error_observed", bool) is False
+        assert require(observed, "state", str) == "data" and count &gt; 0, (
+            "FINAL-F01 requires a matching catalog tutor; empty recovery is not in scope."
+        )
+        assert require(observed, "search_count_text", str) == f"{count} gia sư phù hợp"
+        assert require(observed, "profiles_fabricated", bool) is False
+        assert require(observed, "profile_opened", bool)
+        assert require(observed, "hourly_fee_visible", bool)
+        assert require(observed, "connection_action_visible", bool)
+        assert require(observed, "terminal_screen", str) == "tutor_profile"
+&gt;       assert re.fullmatch(r"[0-9][0-9., ]*\s*đ/giờ", require(
+            observed, "profile_hourly_fee_text", str
+        ).strip()), "Expected the actual hourly fee from the profile."
+E       AssertionError: Expected the actual hourly fee from the profile.
+E       assert None
+E        +  where None = &lt;function fullmatch at 0x000001E9D1664B80&gt;('[0-9][0-9., ]*\\s*đ/giờ', 'Học phí tham khảo 250.000đ/giờ')
+E        +    where &lt;function fullmatch at 0x000001E9D1664B80&gt; = re.fullmatch
+E        +    and   'Học phí tham khảo 250.000đ/giờ' = &lt;built-in method strip of str object at 0x000001E9D54A1A30&gt;()
+E        +      where &lt;built-in method strip of str object at 0x000001E9D54A1A30&gt; = 'Học phí tham khảo 250.000đ/giờ'.strip
+E        +        where 'Học phí tham khảo 250.000đ/giờ' = require({'screen': 'Tìm gia sư', 'query': 'Toán', 'filter_applied': True, 'result_count': 2, ...}, 'profile_hourly_fee_text', str)
+
+e2e_test\test_final_flows.py:56: AssertionError</failure></testcase></testsuite></testsuites>

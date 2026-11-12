@@ -1,0 +1,12 @@
+{
+  "trace_id": "6607d397-74e6-46be-ab5c-27b0a5705965",
+  "actions": [
+    "click",
+    "report_task_status"
+  ],
+  "decision": "deny",
+  "click_pixels": [
+    360,
+    976
+  ]
+}

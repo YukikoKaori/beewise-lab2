@@ -1,0 +1,85 @@
+[
+  {
+    "step": 1,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [300, 925] (normalized).\"}",
+    "image": "step-01.jpg"
+  },
+  {
+    "step": 2,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [500, 161] (normalized).\"}",
+    "image": "step-02.jpg"
+  },
+  {
+    "step": 3,
+    "action": "input_text",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Typed 'To\\u00e1n' at [500, 161] (normalized).\"}",
+    "image": "step-03.jpg"
+  },
+  {
+    "step": 4,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [522, 654] (normalized).\"}",
+    "image": "step-04.jpg"
+  },
+  {
+    "step": 5,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [289, 351] (normalized).\"}",
+    "image": "step-05.jpg"
+  },
+  {
+    "step": 6,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [919, 910] (normalized).\"}",
+    "image": "step-06.jpg"
+  },
+  {
+    "step": 7,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-07.jpg"
+  },
+  {
+    "step": 8,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-08.jpg"
+  },
+  {
+    "step": 9,
+    "action": "click",
+    "args": {},
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Tapped at [744, 851] (normalized).\"}",
+    "image": "step-09.jpg"
+  },
+  {
+    "step": 10,
+    "action": "swipe",
+    "args": {
+      "direction": "up"
+    },
+    "execution_result": "{\"status\": \"dispatched\", \"result\": \"Swiped up.\"}",
+    "image": "step-10.jpg"
+  },
+  {
+    "step": 11,
+    "action": "report_task_status",
+    "args": {},
+    "execution_result": "{\"result\": \"Task completed with final report.\"}",
+    "image": "step-11.jpg"
+  }
+]

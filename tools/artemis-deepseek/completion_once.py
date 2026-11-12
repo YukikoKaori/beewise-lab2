@@ -21,9 +21,28 @@ DEFAULT_ADB_DIR = Path("D:/Android/SDK/platform-tools")
 COMPLETION_CASES = {
     "FINAL-F01": "test_final_f01_",
     "FINAL-F02a": "test_final_f02a_",
+    "FINAL-F02b": "test_final_f02b_",
+    "FINAL-F04": "test_final_f04_",
+    "FINAL-F07": "test_final_f07_",
+    "TC-03": "test_tc03_",
+    "TC-08": "test_tc08_",
+    "TC-09": "test_tc09_",
+    "TC-12": "test_tc12_",
+    "TC-27": "test_tc27_",
+    "TC-NATIVE-01": "test_native_notification_permission",
 }
+ALLOWED_COMPLETION_DECISIONS = (
+    "OWNER_APPROVED_FINAL_COMPLETION_BATCH",
+    "OWNER_APPROVED_FINAL_COMPLETION_WAVE_2",
+    "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3",
+    "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3_EMU",
+)
 DEFAULT_PROPOSAL = Path("evidence/final/artemis/completion-batch/budget-proposal.json")
 DEFAULT_APPROVAL = Path("evidence/final/artemis/completion-batch/owner-approval.json")
+NATIVE_CONTROLLER_ACTIVITY = (
+    "com.google.android.permissioncontroller/"
+    "com.android.permissioncontroller.permission.ui.GrantPermissionsActivity"
+)
 
 
 def adb_exe() -> str:
@@ -93,14 +112,66 @@ def check_completion_approval(approval_file: Path, proposal_file: Path) -> tuple
     proposal = json.loads(proposed_bytes)
     approval = json.loads(approval_file.read_text(encoding="utf-8"))
     owner_ref = approval.get("owner_approval_ref")
+    decision = approval.get("decision")
+    expected_decision = proposal.get("decision_required", "OWNER_APPROVED_FINAL_COMPLETION_BATCH")
     if (
-        approval.get("decision") != "OWNER_APPROVED_FINAL_COMPLETION_BATCH"
+        decision not in ALLOWED_COMPLETION_DECISIONS
+        or decision != expected_decision
         or approval.get("proposal_sha256") != digest
         or not isinstance(owner_ref, str)
         or not owner_ref.strip()
     ):
         raise ValueError("Final Completion ARTEMIS execution requires matching owner approval receipt")
     return proposal, approval, digest
+
+
+def prepare_native_permission_preflight(serial: str, output: Path, prior_runs: int) -> dict:
+    """Validate pre-focused OS permission prompt without touching the dialog."""
+    if prior_runs >= 3:
+        raise ValueError(f"TC-NATIVE-01 already used {prior_runs} admissions")
+    decision = ("deny", "allow", "deny")[prior_runs]
+    adb = adb_exe()
+
+    def run_adb(*cmd: str, timeout: int = 20) -> bytes:
+        return subprocess.check_output([adb, "-s", serial, *cmd], timeout=timeout)
+
+    sdk = run_adb("shell", "getprop", "ro.build.version.sdk").decode(errors="replace").strip()
+    if sdk != "35":
+        raise ValueError(f"TC-NATIVE-01 requires API 35, got {sdk!r}")
+    avd_lines = run_adb("emu", "avd", "name").decode(errors="replace").splitlines()
+    if not avd_lines or avd_lines[0].strip() != "BeeWise_N03_Native_API35":
+        raise ValueError(f"TC-NATIVE-01 requires BeeWise_N03_Native_API35, got {avd_lines!r}")
+    boot = run_adb("shell", "getprop", "sys.boot_completed").decode(errors="replace").strip()
+    if boot != "1":
+        raise ValueError("Android boot is not complete")
+
+    windows = run_adb("shell", "dumpsys", "window").decode(errors="replace")
+    focus = [line.strip() for line in windows.splitlines() if "mCurrentFocus=" in line]
+    if not any(NATIVE_CONTROLLER_ACTIVITY in line for line in focus):
+        raise ValueError(f"OS notification permission prompt is not focused: {focus!r}")
+
+    root = Path(__file__).resolve().parents[2]
+    sys.path.insert(0, str(root / "e2e_test"))
+    from test_native_permission import button_bounds, permission_state
+
+    perm = permission_state(run_adb("shell", "dumpsys", "package", "com.beewise.beewise").decode(errors="replace"))
+    if perm["granted"] or ({"USER_SET", "USER_FIXED"} & set(perm["flags"])):
+        raise ValueError(f"POST_NOTIFICATIONS permission must be ungranted/unset before run: {perm!r}")
+
+    run_adb("shell", "uiautomator", "dump", "/data/local/tmp/beewise-completion-native.xml", timeout=25)
+    pre_xml = output / "pre-ui.xml"
+    pre_xml.write_bytes(run_adb("exec-out", "cat", "/data/local/tmp/beewise-completion-native.xml"))
+    bounds = button_bounds(pre_xml.read_text(encoding="utf-8"))
+    return {
+        "device_online": True,
+        "boot_complete": True,
+        "avd_name": "BeeWise_N03_Native_API35",
+        "focused_window": NATIVE_CONTROLLER_ACTIVITY,
+        "permission_before": perm,
+        "decision": decision,
+        "buttons_present": sorted(bounds),
+        "pre_xml": str(pre_xml),
+    }
 
 
 def wait_case(child: subprocess.Popen, serial: str, device_epoch: int, output: Path) -> int:
@@ -141,7 +212,9 @@ def main() -> None:
     parser.add_argument("--approval", type=Path, default=DEFAULT_APPROVAL)
     parser.add_argument("--proposal", type=Path, default=DEFAULT_PROPOSAL)
     parser.add_argument("--search-term", default="Toán")
+    parser.add_argument("--no-result-term", default="zz-no-tutor-match-393-2026")
     parser.add_argument("--tutor-name", default="ThS. Hoàng Thu Trang")
+    parser.add_argument("--final-test-env", default="emulator", choices=("emulator", "production_safe_check"))
     parser.add_argument(
         "--ai-prompt",
         default="Tìm gia sư Toán lớp 9 ở Cầu Giấy, học phí dưới 300k một giờ, học buổi tối.",
@@ -200,12 +273,23 @@ def main() -> None:
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
 
+    native_proof_env: dict[str, str] = {}
+    prior_case_runs = sum(case == args.case for case, _ in rows)
     try:
         if DEFAULT_ADB_DIR.is_dir():
             os.environ["PATH"] = str(DEFAULT_ADB_DIR) + os.pathsep + os.environ.get("PATH", "")
         validate_idle(local_json(8001, "/api/status"))
         installed_sha = verify_installed_apk(args.serial, proposal["target_apk_sha256"])
-        native_preflight = probe_device(args.serial)
+        if args.case == "TC-NATIVE-01":
+            native_preflight = prepare_native_permission_preflight(args.serial, output, prior_case_runs)
+            native_proof_env = {
+                "ADB": adb_exe(),
+                "BEEWISE_NATIVE_EVIDENCE": str(output / "native-proof"),
+                "BEEWISE_NATIVE_PRE_XML": native_preflight["pre_xml"],
+                "BEEWISE_NATIVE_DECISION": native_preflight["decision"],
+            }
+        else:
+            native_preflight = probe_device(args.serial)
         validate_idle(local_json(8001, "/api/status"))
         native_preflight.update(artemis_idle=True, installed_apk_sha256=installed_sha)
         device_epoch = int(
@@ -258,8 +342,11 @@ def main() -> None:
         PYTHONPATH=str(Path(__file__).parent),
         PYTHONIOENCODING="utf-8",
         BEEWISE_SEARCH_TERM=args.search_term,
+        BEEWISE_NO_RESULT_TERM=args.no_result_term,
         BEEWISE_TEST_TUTOR_NAME=args.tutor_name,
+        BEEWISE_FINAL_TEST_ENV=args.final_test_env,
         BEEWISE_FINAL_AI_PROMPT=args.ai_prompt,
+        **native_proof_env,
     )
     command = [
         sys.executable,

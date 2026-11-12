@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-12T05:43:39.341127+00:00",
+  "window": "com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity",
+  "permission": {
+    "granted": false,
+    "flags": [
+      "USER_SENSITIVE_WHEN_DENIED",
+      "USER_SENSITIVE_WHEN_GRANTED"
+    ]
+  },
+  "buttons": {
+    "allow": [
+      98,
+      804,
+      622,
+      916
+    ],
+    "deny": [
+      98,
+      924,
+      622,
+      1036
+    ]
+  },
+  "screen_size": [
+    720,
+    1600
+  ]
+}

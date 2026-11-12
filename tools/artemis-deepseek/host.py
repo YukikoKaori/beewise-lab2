@@ -53,24 +53,41 @@ def check_final_authorization(approval_file, budget):
         raise ValueError("Final Gate 3 B ledger requires the exact current owner approval")
 
 
-def check_completion_authorization(approval_file, budget):
+DEFAULT_COMPLETION_PROPOSAL = Path("evidence/final/artemis/completion-batch/budget-proposal.json")
+ALLOWED_COMPLETION_DECISIONS = (
+    "OWNER_APPROVED_FINAL_COMPLETION_BATCH",
+    "OWNER_APPROVED_FINAL_COMPLETION_WAVE_2",
+    "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3",
+    "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3_EMU",
+)
+
+
+def check_completion_authorization(approval_file, budget, proposal_file=None):
     """Validate owner-authorized PRM393 Final Completion Batch bounded budget."""
-    proposal_file = (Path(__file__).resolve().parents[2] /
-                     "evidence/final/artemis/completion-batch/budget-proposal.json")
-    proposed = proposal_file.read_bytes().replace(b"\r\n", b"\n")
+    root = Path(__file__).resolve().parents[2]
+    resolved_proposal = (
+        (root / proposal_file) if proposal_file and not proposal_file.is_absolute()
+        else (proposal_file or (root / DEFAULT_COMPLETION_PROPOSAL))
+    )
+    proposed = resolved_proposal.read_bytes().replace(b"\r\n", b"\n")
     proposal = json.loads(proposed)
     approval = json.loads(approval_file.read_text(encoding="utf-8"))
     requests, cost, expires, reference, blocked = budget
     digest = hashlib.sha256(proposed).hexdigest()
     owner_ref = approval.get("owner_approval_ref")
     flash_turns = proposal.get("flash_max_turns")
-    if (approval.get("decision") != "OWNER_APPROVED_FINAL_COMPLETION_BATCH" or
+    decision = approval.get("decision")
+    expected_decision = proposal.get("decision_required", "OWNER_APPROVED_FINAL_COMPLETION_BATCH")
+    if (decision not in ALLOWED_COMPLETION_DECISIONS or
+            decision != expected_decision or
             approval.get("proposal_sha256") != digest or
             not isinstance(owner_ref, str) or not owner_ref.strip() or
             reference != f"{owner_ref}:{digest}" or
+            not 1 <= proposal["max_inference_requests"] <= 240 or
+            not 1 <= proposal["max_conservative_nanodollars"] <= 500_000_000 or
             requests != proposal["max_inference_requests"] or
             cost != proposal["max_conservative_nanodollars"] or
-            not isinstance(flash_turns, int) or not 1 <= flash_turns <= 16 or
+            not isinstance(flash_turns, int) or not 1 <= flash_turns <= 20 or
             blocked or datetime.now(UTC) >= datetime.fromisoformat(expires)):
         raise ValueError("Final Completion Batch ledger requires the exact current owner approval")
     return proposal
@@ -85,6 +102,7 @@ def main():
     parser.add_argument("--native-approval", type=Path, help="Exact owner receipt for the separate native ledger")
     parser.add_argument("--final-approval", type=Path, help="Exact owner receipt for PRM393 Final Gate 3 B ledger")
     parser.add_argument("--completion-approval", type=Path, help="Exact owner receipt for PRM393 Final Completion Batch ledger")
+    parser.add_argument("--completion-proposal", type=Path, help="Proposal JSON matching --completion-approval")
     parser.add_argument("--key-file", type=Path, default=Path(__file__).with_name(".env"))
     args = parser.parse_args()
     root = args.artemis_root.resolve(strict=True)
@@ -121,7 +139,9 @@ def main():
         elif args.completion_approval:
             try:
                 completion_proposal = check_completion_authorization(
-                    args.completion_approval, (maximum, ceiling, expires, approval, blocked)
+                    args.completion_approval,
+                    (maximum, ceiling, expires, approval, blocked),
+                    proposal_file=args.completion_proposal,
                 )
             except (OSError, ValueError, TypeError, KeyError):
                 parser.error("Final Completion Batch ledger requires the exact current owner approval")
@@ -178,6 +198,8 @@ def main():
             os.environ.pop(name, None)
     if args.completion_approval and completion_proposal is not None:
         os.environ["ARTEMIS_FLASH_MAX_TURNS"] = str(completion_proposal["flash_max_turns"])
+        if completion_proposal["flash_max_turns"] > 12:
+            os.environ["ARTEMIS_DEEPSEEK_MAX_NON_IMAGE_BYTES"] = "131072"
     if args.ledger:
         os.environ["ARTEMIS_DEEPSEEK_LEDGER_FILE"] = str(args.ledger)
         if _policy.get("decision") in {"OWNER_APPROVED_EXPLORATION", "OWNER_APPROVED_EXPLORATION_V3", "OWNER_APPROVED_EXPLORATION_V4", "OWNER_APPROVED_EXPLORATION_V5", "OWNER_APPROVED_EXPLORATION_V6"}:
