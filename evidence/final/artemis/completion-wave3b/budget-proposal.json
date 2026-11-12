@@ -1,0 +1,31 @@
+{
+  "scope": "Wave 3B isolated Android Auth and Firestore only",
+  "decision_required": "OWNER_APPROVED_FINAL_COMPLETION_WAVE_3_EMU",
+  "provider": "DeepSeek API",
+  "model": "deepseek-flash",
+  "source_sha": "1cbc950c04f6e1b42487dacd7d37016792aed3ec",
+  "target_apk_sha256": "abaa933074857765675a1994294507126ed45204f53e29d76d14ba4a3fff5368",
+  "devices": [
+    "BeeWise_N03_Native_API35"
+  ],
+  "android_api": 35,
+  "cases": [
+    "FINAL-F04",
+    "FINAL-F07",
+    "FINAL-PDF"
+  ],
+  "repetitions_per_case": 3,
+  "max_admissions": 9,
+  "retry_admissions": 0,
+  "flash_max_turns": 18,
+  "max_inference_requests": 162,
+  "max_conservative_nanodollars": 300000000,
+  "minimum_nexora_reserve_nanodollars": 0,
+  "gemini_fallback": false,
+  "stop_conditions": [
+    "Ledger cap or balance gate",
+    "Rate limit, new ANR, or unresolved review",
+    "9 admissions",
+    "Owner stop"
+  ]
+}
