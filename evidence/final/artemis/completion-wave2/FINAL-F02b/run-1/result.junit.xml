@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="42.566" timestamp="2026-11-12T12:20:24.595892+07:00"><testcase classname="test_final_flows" name="test_final_f02b_ai_level2_offline_error_and_manual_fallback" time="42.536" /></testsuite></testsuites>
